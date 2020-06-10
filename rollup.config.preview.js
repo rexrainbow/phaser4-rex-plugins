@@ -1,7 +1,9 @@
 import resolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
 
 const inputSrc = process.env.src;  // Required
 const outputFolder = process.env.outputfolder || 'public';
+const isTypeScript = (inputSrc.split('.').pop() === 'ts');
 
 export default {
 
@@ -17,7 +19,12 @@ export default {
     ],
 
     plugins: [
-        resolve()
+        resolve({
+            extensions: ['.js', '.jsx', '.ts', '.tsx']
+        }),
+        isTypeScript && typescript({
+            tsconfig: './tsconfig.json'
+        })
     ]
 
 };
