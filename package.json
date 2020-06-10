@@ -1,0 +1,40 @@
+{
+    "name": "phaser4-rex-plugins",
+    "version": "0.0.1",
+    "description": "Plugins of phaser4",
+    "author": "Rex",
+    "files": [
+        "src",
+        "dist"
+    ],
+    "main": "./src/index.ts",
+    "scripts": {
+        "build": "rollup -c rollup.config.build.js",
+        "watch": "rollup -c rollup.config.preview.js -w",
+        "dev": "npm-run-all --parallel start watch",
+        "start": "serve public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rexrainbow/phaser4-rex-plugins"
+    },
+    "keywords": [
+        "phaser4"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/rexrainbow/phaser4-rex-plugins/issues"
+    },
+    "homepage": "https://rexrainbow.github.io/phaser3-rex-notes/docs/site/index.html",
+    "devDependencies": {
+        "@phaserjs/phaser": "0.0.22",
+        "@rollup/plugin-image": "^2.0.5",
+        "@rollup/plugin-node-resolve": "^8.0.0",
+        "npm-run-all": "^4.1.5",
+        "rollup": "^2.10.9",
+        "rollup-plugin-filesize": "^9.0.0",
+        "rollup-plugin-terser": "^6.1.0",
+        "serve": "^11.3.1"
+    },
+    "dependencies": {}
+}
