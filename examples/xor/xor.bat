@@ -1,5 +1,5 @@
 @echo off
-set main=./examples/test/test.ts
+set main=./examples/xor/xor.ts
 cd ..
 cd ..
 npm run dev
