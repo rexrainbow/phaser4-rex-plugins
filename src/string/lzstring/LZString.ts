@@ -1,11 +1,14 @@
-import lzstring from '../../utils/lzstring/lz-string.min.js';
+import lzstring from './lz-string.min.js';
 
 class LZStringKlass {
-    constructor(config) {
+
+    encoding: number;
+
+    constructor(config: object) {
         this.resetFromJSON(config);
     }
 
-    resetFromJSON({encoding= 0}) {
+    resetFromJSON({ encoding = 0 }) {
         this.setEncoding(encoding);
         return this;
     }
@@ -16,7 +19,7 @@ class LZStringKlass {
         };
     }
 
-    setEncoding(m) {
+    setEncoding(m: number | string | undefined) {
         if (m === undefined) {
             m = 0;
         } else if (typeof (m) === 'string') {
@@ -26,13 +29,13 @@ class LZStringKlass {
         return this;
     }
 
-    compress(s) {
-        var fnName = COMPRESSFNNAME[this.encoding];
+    compress(s: string): string {
+        let fnName = COMPRESSFNNAME[this.encoding];
         return lzstring[fnName](s);
     }
 
-    decompress(s) {
-        var fnName = DECOMPRESSFNNAME[this.encoding];
+    decompress(s: string): string {
+        let fnName = DECOMPRESSFNNAME[this.encoding];
         return lzstring[fnName](s);
     }
 }
