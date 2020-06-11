@@ -1,9 +1,9 @@
-import XOR from '../../src/string/xor/XOR';
+import { XOR } from '../../src/index';
 
 let src = 'Hello world';
 let pwd = 'aabbcc';
-let encResult: string = XOR.encrypt(src, pwd);
-let decResult: string = XOR.decrypt(encResult, pwd);
+let encResult = XOR.encrypt(src, pwd);
+let decResult = XOR.decrypt(encResult, pwd);
 
 console.log(src);
 console.log(encResult);
