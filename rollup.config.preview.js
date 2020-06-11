@@ -1,13 +1,13 @@
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 
-const inputSrc = process.env.src;  // Required
+const inputMain = process.env.main;  // Required
 const outputFolder = process.env.outputfolder || 'public';
-const isTypeScript = (inputSrc.split('.').pop() === 'ts');
+const isTypeScript = (inputMain.split('.').pop() === 'ts');
 
 export default {
 
-    input: inputSrc,
+    input: inputMain,
 
     output: [
         {

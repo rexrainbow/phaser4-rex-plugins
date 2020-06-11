@@ -1,4 +1,4 @@
-set src=./examples/test/test.ts
+set main=./examples/test/test.ts
 cd ..
 cd ..
 npm run dev
