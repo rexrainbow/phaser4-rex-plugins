@@ -1,5 +1,5 @@
 import lzstring from './lz-string.min.js';
-import { IConfig, EncodeType } from './IConfig';
+import { IConfig, EncodeType, EncodeTypeString } from './IConfig';
 
 class LZString {
 
@@ -53,7 +53,7 @@ class LZString {
      * @returns {this}
      * @memberof LZString
      */
-    setEncoding(m: EncodeType | string = EncodeType.none): this {
+    setEncoding(m: EncodeType | EncodeTypeString = EncodeType.none): this {
 
         if (typeof (m) === 'string') {
             m = (EncodeType[m] || 0) as number;

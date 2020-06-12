@@ -11,6 +11,8 @@ export enum EncodeType {
     uri
 };
 
+export type EncodeTypeString = 'none' | 'base64' | 'utf16' | 'uri';
+
 /**
  * Configuration of LZString class
  *
@@ -24,5 +26,5 @@ export interface IConfig {
      * @type {EncodeType}
      * @memberof IConfig
      */
-    encoding?: EncodeType
+    encoding?: EncodeType | EncodeTypeString
 }
