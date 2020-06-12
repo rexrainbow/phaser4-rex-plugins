@@ -9,7 +9,8 @@ export enum EncodeType {
 
 export type ConfigType = {
     encoding?: EncodeType
-}
+};
+;
 
 export class LZString {
 
@@ -34,7 +35,7 @@ export class LZString {
      * @returns {this}
      * @memberof LZString
      */
-    resetFromJSON({ encoding = EncodeType.none }): this {
+    resetFromJSON({ encoding = EncodeType.none }: ConfigType): this {
         this.setEncoding(encoding);
         return this;
     }

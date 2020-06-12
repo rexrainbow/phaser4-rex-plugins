@@ -1,9 +1,14 @@
-import { LZString, EncodeType as LZStringEncodeType } from './string/lzstring/LZString'
+import {
+    LZString,
+    EncodeType as LZStringEncodeType,
+    ConfigType as LZStringConfigType
+} from './string/lzstring/LZString'
+
 import XOR from './string/xor/XOR'
 
 export {
     // LZString
-    LZString, LZStringEncodeType,
+    LZString, LZStringEncodeType, LZStringConfigType,
 
     // XOR
     XOR
