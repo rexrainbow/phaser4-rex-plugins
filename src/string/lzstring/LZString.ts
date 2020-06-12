@@ -1,51 +1,92 @@
 import lzstring from './lz-string.min.js';
 
-class LZStringKlass {
+export enum EncodeType {
+    none,
+    base64,
+    utf16,
+    uri
+};
+
+export type ConfigType = {
+    encoding?: EncodeType
+}
+
+export class LZString {
 
     encoding: number;
 
-    constructor(config: object) {
+    /**
+     * Creates an instance of LZString.
+     * @param {ConfigType} [config]
+     * @memberof LZString
+     */
+    constructor(config?: ConfigType) {
+        if (config === undefined) {
+            config = {};
+        }
         this.resetFromJSON(config);
     }
 
-    resetFromJSON({ encoding = 0 }) {
+    /**
+     * Reset configuration.
+     *
+     * @param {ConfigType} { encoding = EncodeType.none }
+     * @returns {this}
+     * @memberof LZString
+     */
+    resetFromJSON({ encoding = EncodeType.none }): this {
         this.setEncoding(encoding);
         return this;
     }
 
-    toJSON() {
+    /**
+     * Get state of this instance.
+     *
+     * @returns {object} State
+     * @memberof LZString
+     */
+    toJSON(): object {
         return {
             encoding: this.encoding
         };
     }
 
-    setEncoding(m: number | string | undefined) {
-        if (m === undefined) {
-            m = 0;
-        } else if (typeof (m) === 'string') {
-            m = ENCODINGMAP[m.toLowerCase()] || 0;
-        }
+    /**
+     * Set encoding type.
+     *
+     * @param {EncodeType} [m=EncodeType.none] Encoding type
+     * @returns {this}
+     * @memberof LZString
+     */
+    setEncoding(m: EncodeType = EncodeType.none): this {
         this.encoding = m;
         return this;
     }
 
+    /**
+     * Compress source string
+     *
+     * @param {string} s Source string
+     * @returns {string} Compression result
+     * @memberof LZString
+     */
     compress(s: string): string {
         let fnName = COMPRESSFNNAME[this.encoding];
         return lzstring[fnName](s);
     }
 
+    /**
+     * Decompress result string.
+     *
+     * @param {string} s Compression result
+     * @returns {string} Source string
+     * @memberof LZString
+     */
     decompress(s: string): string {
         let fnName = DECOMPRESSFNNAME[this.encoding];
         return lzstring[fnName](s);
     }
 }
-
-const ENCODINGMAP = {
-    none: 0,
-    base64: 1,
-    utf16: 2,
-    uri: 3
-};
 
 const COMPRESSFNNAME = [
     'compress',
@@ -59,5 +100,3 @@ const DECOMPRESSFNNAME = [
     'decompressFromUTF16',
     'decompressFromEncodedURIComponent'
 ];
-
-export default LZStringKlass;

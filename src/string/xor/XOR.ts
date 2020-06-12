@@ -6,7 +6,7 @@ import Decrypt from './Decrypt';
  *
  * @class XOR
  */
-class XOR {   
+class XOR {
     /**
      * Encrypt source string with password via XOR algorithm
      *

@@ -1,4 +1,5 @@
 import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 
 const inputMain = process.env.main;  // Required
@@ -22,6 +23,7 @@ export default {
         resolve({
             extensions: ['.js', '.jsx', '.ts', '.tsx']
         }),
+        commonjs(),
         isTypeScript && typescript({
             tsconfig: './tsconfig.json'
         })
