@@ -7,9 +7,6 @@ import {
 
 // XOR
 import XOR from './string/xor/XOR'
-import {
-    IConfig as IXORConfig
-} from './string/xor/IConfig'
 
 
 export {
@@ -17,5 +14,5 @@ export {
     LZString, ILZStringConfig, LZStringEncodeType,
 
     // XOR
-    XOR, IXORConfig
+    XOR
 }
