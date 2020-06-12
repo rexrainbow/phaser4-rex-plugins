@@ -1,7 +1,7 @@
 import {
     LZString,
     LZStringEncodeType as EncodeType,
-    LZStringConfigType as ConfigType
+    ILZStringConfig as IConfig
 } from '../../src/index'
 
 let dump = function (src: string, result0: string, result1: string) {

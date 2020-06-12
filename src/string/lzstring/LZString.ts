@@ -1,26 +1,16 @@
 import lzstring from './lz-string.min.js';
+import { IConfig, EncodeType } from './IConfig';
 
-export enum EncodeType {
-    none,
-    base64,
-    utf16,
-    uri
-};
-
-export type ConfigType = {
-    encoding?: EncodeType
-};
-
-export class LZString {
+class LZString {
 
     encoding: number;
 
     /**
      * Creates an instance of LZString.
-     * @param {ConfigType} [config]
+     * @param {IConfig} [config]
      * @memberof LZString
      */
-    constructor(config?: ConfigType) {
+    constructor(config?: IConfig) {
 
         if (config === undefined) {
             config = {};
@@ -31,13 +21,13 @@ export class LZString {
     /**
      * Reset configuration.
      *
-     * @param {ConfigType} { encoding = EncodeType.none }
+     * @param {IConfig} { encoding = EncodeType.none }
      * @returns {this}
      * @memberof LZString
      */
     resetFromJSON({
         encoding = EncodeType.none
-    }: ConfigType): this {
+    }: IConfig): this {
 
         this.setEncoding(encoding);
         return this;
@@ -108,3 +98,5 @@ const DECOMPRESSFNNAME = [
     'decompressFromUTF16',
     'decompressFromEncodedURIComponent'
 ];
+
+export default LZString;

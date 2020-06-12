@@ -1,15 +1,21 @@
+// LZString
+import LZString from './string/lzstring/LZString'
 import {
-    LZString,
-    EncodeType as LZStringEncodeType,
-    ConfigType as LZStringConfigType
-} from './string/lzstring/LZString'
+    IConfig as ILZStringConfig,
+    EncodeType as LZStringEncodeType
+} from './string/lzstring/IConfig';
 
+// XOR
 import XOR from './string/xor/XOR'
+import {
+    IConfig as IXORConfig
+} from './string/xor/IConfig'
+
 
 export {
     // LZString
-    LZString, LZStringEncodeType, LZStringConfigType,
+    LZString, ILZStringConfig, LZStringEncodeType,
 
     // XOR
-    XOR
+    XOR, IXORConfig
 }
