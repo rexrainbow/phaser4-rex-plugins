@@ -10,7 +10,6 @@ export enum EncodeType {
 export type ConfigType = {
     encoding?: EncodeType
 };
-;
 
 export class LZString {
 
@@ -22,6 +21,7 @@ export class LZString {
      * @memberof LZString
      */
     constructor(config?: ConfigType) {
+
         if (config === undefined) {
             config = {};
         }
@@ -38,6 +38,7 @@ export class LZString {
     resetFromJSON({
         encoding = EncodeType.none
     }: ConfigType): this {
+
         this.setEncoding(encoding);
         return this;
     }
@@ -49,6 +50,7 @@ export class LZString {
      * @memberof LZString
      */
     toJSON(): object {
+
         return {
             encoding: this.encoding
         };
@@ -62,6 +64,7 @@ export class LZString {
      * @memberof LZString
      */
     setEncoding(m: EncodeType = EncodeType.none): this {
+
         this.encoding = m;
         return this;
     }
@@ -74,6 +77,7 @@ export class LZString {
      * @memberof LZString
      */
     compress(s: string): string {
+
         let fnName = COMPRESSFNNAME[this.encoding];
         return lzstring[fnName](s);
     }
@@ -86,6 +90,7 @@ export class LZString {
      * @memberof LZString
      */
     decompress(s: string): string {
+
         let fnName = DECOMPRESSFNNAME[this.encoding];
         return lzstring[fnName](s);
     }
