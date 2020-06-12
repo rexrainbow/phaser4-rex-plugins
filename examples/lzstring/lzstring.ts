@@ -25,3 +25,10 @@ compressResult = lzString.compress(src);
 decompressResult = lzString.decompress(compressResult);
 console.log(`---- Encode = ${lzString.encoding} ----`)
 dump(src, compressResult, decompressResult);
+
+// Set encode type to utf16
+lzString.setEncoding('utf16');
+compressResult = lzString.compress(src);
+decompressResult = lzString.decompress(compressResult);
+console.log(`---- Encode = ${lzString.encoding} ----`)
+dump(src, compressResult, decompressResult);
