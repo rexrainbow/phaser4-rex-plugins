@@ -35,7 +35,9 @@ export class LZString {
      * @returns {this}
      * @memberof LZString
      */
-    resetFromJSON({ encoding = EncodeType.none }: ConfigType): this {
+    resetFromJSON({
+        encoding = EncodeType.none
+    }: ConfigType): this {
         this.setEncoding(encoding);
         return this;
     }
