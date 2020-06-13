@@ -25,7 +25,7 @@ export default {
         }),
         commonjs(),
         isTypeScript && typescript({
-            tsconfig: './tsconfig.json'
+            tsconfig: './tsconfig.preview.json'
         })
     ]
 
