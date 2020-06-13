@@ -21,7 +21,9 @@ class LZString {
     /**
      * Reset configuration.
      *
-     * @param {IConfig} { encoding = EncodeType.none }
+     * @param {IConfig} {
+     *         encoding = EncodeType.none
+     *     }
      * @returns {this}
      * @memberof LZString
      */
@@ -102,4 +104,4 @@ const DECOMPRESSFNNAME = [
     'decompressFromEncodedURIComponent'
 ];
 
-export  {LZString, IConfig, EncodeType};
+export { LZString, IConfig, EncodeType };
