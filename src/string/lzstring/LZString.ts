@@ -102,4 +102,4 @@ const DECOMPRESSFNNAME = [
     'decompressFromEncodedURIComponent'
 ];
 
-export default LZString;
+export  {LZString, IConfig, EncodeType};

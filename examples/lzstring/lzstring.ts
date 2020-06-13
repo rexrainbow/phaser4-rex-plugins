@@ -1,8 +1,8 @@
 import {
     LZString,
-    LZStringEncodeType as EncodeType,
-    ILZStringConfig as IConfig
-} from '../../src/index'
+    EncodeType,
+    IConfig
+} from '../../src/string/lzstring/LZString.js'
 
 let dump = function (src: string, result0: string, result1: string) {
     console.log(src);

@@ -39,4 +39,4 @@ class XOR {
     }
 }
 
-export default XOR;
+export { XOR };
