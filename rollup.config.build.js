@@ -1,11 +1,8 @@
+import del from 'del';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
-
-// Clear dist folder before building
-const del = require('del');
-del.sync(['./dist']);
 
 
 let outputs = [];
@@ -15,13 +12,38 @@ const extensions = [
 
 const pluginList = require('./plugins-list.js');
 
-// Minify
+// UMD
+del.sync(['./dist/umd']);
 for (var key in pluginList) {
+    //  UMD Bundle
     outputs.push({
         input: pluginList[key],
         output: [
             {
-                file: `./dist/rex${key}.min.js`,
+                file: `./dist/umd/rex${key}.js`,
+                format: 'umd',
+                name: `rex${key}`,
+                sourcemap: true,
+                esModule: false                
+            }
+        ],
+        plugins: [
+            resolve({
+                extensions: extensions
+            }),
+            commonjs(),
+            typescript({
+                tsconfig: './tsconfig.preview.json' // Won't generate d.ts
+            }),
+        ]
+    })
+
+    //  UMD Minified Bundle
+    outputs.push({
+        input: pluginList[key],
+        output: [
+            {
+                file: `./dist/umd/rex${key}.min.js`,
                 format: 'umd',
                 name: `rex${key}`,
                 sourcemap: false,
@@ -49,24 +71,25 @@ for (var key in pluginList) {
 }
 
 // ESM
-//  outputs.push({
-//      input: jsOutputs,
-//      output: [
-//          {
-//              dir: 'dist',
-//              format: 'esm'
-//          }
-//      ],
-//      plugins: [
-//          resolve({
-//              extensions: extensions
-//          }),
-//          commonjs(),
-//          typescript({
-//              tsconfig: './tsconfig.build.json'
-//          }),
-//      ]
-//  })
+// del.sync(['./dist/umd']);
+// outputs.push({
+//     input: jsOutputs,
+//     output: [
+//         {
+//             dir: 'dist',
+//             format: 'esm'
+//         }
+//     ],
+//     plugins: [
+//         resolve({
+//             extensions: extensions
+//         }),
+//         commonjs(),
+//         typescript({
+//             tsconfig: './tsconfig.build.json'
+//         }),
+//     ]
+// })
 
 
 
