@@ -8,7 +8,7 @@ let Scope = {
     }
 }
 
-// Run single commnads
+// Run single commnad
 console.log('----');
 RunCommands(['print', 'hello'], Scope);
 
