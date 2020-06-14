@@ -55,6 +55,19 @@ class AwayTime {
     }
 
     /**
+     * Get state of this instance.
+     *
+     * @returns {object}
+     * @memberof AwayTime
+     */
+    toJSON(): object {
+        return {
+            key: this.key,
+            period: this.period
+        }
+    }
+
+    /**
      * Get time from previous closing application to now, in millisecond.
      *
      * @readonly
