@@ -42,5 +42,9 @@
         "tslib": "^2.0.0",
         "typescript": "^3.9.3"
     },
-    "dependencies": {}
+    "dependencies": {
+        "lokijs": "^1.5.8",
+        "papaparse": "^5.2.0",
+        "webfontloader": "^1.6.28"
+    }
 }

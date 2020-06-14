@@ -1,4 +1,5 @@
 import { RunCommands } from '../../src/logic/runcommands/RunCommands';
+import { CSVToArray } from '../../src/data/csvtoarray/CSVToArray';
 
 let CommandSet = {
     print(s: string, count: number = 1) {
@@ -11,13 +12,9 @@ let CommandSet = {
     }
 }
 
-// Run single commnad
-console.log('----');
-RunCommands(['print', 'hello'], CommandSet);
-
-// Run command queue
-console.log('----');
-RunCommands([
-    ['print', 'hello'],
-    ['print', 'world', 3],
-], CommandSet);
+let csvString = `\
+print,hello,
+print,world,3`;
+let commands = CSVToArray(csvString);
+console.log(commands);
+RunCommands(commands, CommandSet);

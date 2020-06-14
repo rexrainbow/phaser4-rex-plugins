@@ -4,6 +4,11 @@ import {
     IConfig as IAwayTimeConfig
 } from './time/awaytime/AwayTime';
 
+import { 
+    CSVToArray, 
+    IConfig as ICSVToArrayConfig
+} from './data/csvtoarray/CSVToArray';
+
 import {
     Gashapon,
     IConfig as IGashaponConfig,
@@ -30,6 +35,9 @@ import { XOR } from './string/xor/XOR';
 export {
     // AwayTime
     AwayTime, IAwayTimeConfig,
+
+    // CSVToArray
+    CSVToArray, ICSVToArrayConfig,
 
     // Gashapon
     Gashapon, IGashaponConfig, GashaponMode,

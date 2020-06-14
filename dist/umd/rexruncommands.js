@@ -76,8 +76,8 @@
      * Run callbacks from command queue.
      *
      * @param {(any[] | [any[]])} queue Commands queue, a single array `[fnName, ...param]` for a callback, or an array of callbacks.
-     * @param {object} scope Scope of callbacks
-     * @param {IRunCommandsConfig} [config]
+     * @param {object} scope Scope of callbacks.
+     * @param {IRunCommandsConfig} [config] Configuration.
      * @returns {*}
      */
     let RunCommands = function (queue, scope, config) {
