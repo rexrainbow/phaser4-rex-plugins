@@ -17,6 +17,12 @@ import {
     EncodeType as LZStringEncodeType
 } from './string/lzstring/LZString';
 
+// RunCommands
+import {
+    RunCommands, 
+    IRunCommandsConfig
+} from './logic/runcommands/RunCommands';
+
 // XOR
 import { XOR } from './string/xor/XOR';
 
@@ -30,6 +36,9 @@ export {
 
     // LZString
     LZString, ILZStringConfig, LZStringEncodeType,
+
+    // RunCommands
+    RunCommands, IRunCommandsConfig,
 
     // XOR
     XOR
