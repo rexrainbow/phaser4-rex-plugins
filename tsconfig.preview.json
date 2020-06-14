@@ -7,5 +7,7 @@
     "include": [
         "**/*"
     ],
+    "exclude": [
+    ],
     "allowJs": true
 }

@@ -4,11 +4,13 @@ import {
     IConfig as IAwayTimeConfig
 } from './time/awaytime/AwayTime';
 
+// CSVToArray
 import { 
     CSVToArray, 
     IConfig as ICSVToArrayConfig
 } from './data/csvtoarray/CSVToArray';
 
+// Gashapon
 import {
     Gashapon,
     IConfig as IGashaponConfig,

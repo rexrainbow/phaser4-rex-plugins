@@ -1,3 +1,4 @@
+import { IXOR } from './IXOR';
 import Encrypt from './Encrypt';
 import Decrypt from './Decrypt';
 
@@ -6,7 +7,7 @@ import Decrypt from './Decrypt';
  *
  * @class XOR
  */
-class XOR {
+class XOR implements IXOR {
     /**
      * Encrypt source string with password via XOR algorithm
      *
@@ -39,4 +40,4 @@ class XOR {
     }
 }
 
-export { XOR };
+export { XOR, IXOR };
