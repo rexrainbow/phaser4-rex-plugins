@@ -1,5 +1,5 @@
 import { IGashapon } from './IGashapon';
-import { IConfig, Mode, ModeString, RNDObjType } from './IConfig';
+import { IConfig, Mode, ModeString, ItemType, RNDObjType } from './IConfig';
 import Clone from '../../utils/object/Clone';
 import IsEmpty from '../../utils/object/IsEmpty';
 import Clear from '../../utils/object/Clear';
@@ -7,8 +7,8 @@ import Clear from '../../utils/object/Clear';
 export class Gashapon implements IGashapon {
 
     mode: Mode;
-    items: { [name: string]: number };
-    remainder: { [name: string]: number };
+    items: ItemType;
+    remainder: ItemType;
     reload: boolean;
     rnd: RNDObjType | undefined;
     result: string | null;
@@ -27,25 +27,26 @@ export class Gashapon implements IGashapon {
     /**
      * Reset configuration.
      *
-     * @param {IConfig} {
-     *         mode = Mode.shuffle,
-     *         reload = true,
-     *         items = {},
-     *         result = null,
-     *         remainder = undefined,
-     *         rnd = undefined
-     *     }
+     * @param {IConfig} [config]
      * @returns {this}
      * @memberof Gashapon
      */
-    resetFromJSON({
-        mode = Mode.shuffle,
-        reload = true,
-        items = {},
-        result = null,
-        remainder = undefined,
-        rnd = undefined
-    }: IConfig): this {
+    resetFromJSON(config?: IConfig): this {
+
+        let mode: Mode | ModeString,
+            reload: boolean,
+            items: ItemType,
+            result: string | null,
+            remainder: ItemType | undefined,
+            rnd: RNDObjType | undefined;
+        ({
+            mode = Mode.shuffle,
+            reload = true,
+            items = {},
+            result = null,
+            remainder = undefined,
+            rnd = undefined
+        } = config || {})
 
         if (this.items == undefined) {
             this.items = {};
@@ -62,7 +63,7 @@ export class Gashapon implements IGashapon {
         this.setRND(rnd);
 
         // data
-        this.items = Clone(items, this.items) as { [name: string]: number };
+        this.items = Clone(items, this.items) as ItemType;
         this._list.length = 0;
 
         // result
@@ -76,7 +77,7 @@ export class Gashapon implements IGashapon {
             this.startGen();
         }
         if (remainder) {
-            this.remainder = Clone(remainder, this.remainder) as { [name: string]: number };
+            this.remainder = Clone(remainder, this.remainder) as ItemType;
         }
 
         return this;
@@ -179,13 +180,13 @@ export class Gashapon implements IGashapon {
     /**
      * Set candidate items.
      *
-     * @param {{ [name: string]: number }} [items={}] Candidate items.
+     * @param {ItemType} [items={}] Candidate items.
      * @returns {this}
      * @memberof Gashapon
      */
-    setItems(items: { [name: string]: number } = {}): this {
+    setItems(items: ItemType = {}): this {
 
-        this.items = Clone(items, this.items) as { [name: string]: number };
+        this.items = Clone(items, this.items) as ItemType;
         return this;
     }
 
@@ -262,6 +263,7 @@ export class Gashapon implements IGashapon {
         name: string,
         count: number = 1
     ): this {
+
         if (this.mode === Mode.random) {
             return this;
         } else if ( // Shuffle mode
@@ -324,10 +326,10 @@ export class Gashapon implements IGashapon {
     /**
      * Get all candidate items.
      *
-     * @returns {{ [name: string]: number }} Candidate items.
+     * @returns {ItemType} Candidate items.
      * @memberof Gashapon
      */
-    getItems(): { [name: string]: number } {
+    getItems(): ItemType {
 
         return this.items;
     }
@@ -335,10 +337,10 @@ export class Gashapon implements IGashapon {
     /**
      * Get all remainder items in box.
      *
-     * @returns {{ [name: string]: number }} Remainder items in box.
+     * @returns {ItemType} Remainder items in box.
      * @memberof Gashapon
      */
-    getRemain(): { [name: string]: number } {
+    getRemain(): ItemType {
 
         return this.remainder
     }
@@ -439,6 +441,7 @@ export class Gashapon implements IGashapon {
      * @memberof Gashapon
      */
     destroy() {
+
         // data
         Clear(this.items);
         Clear(this.remainder);
@@ -476,7 +479,7 @@ export class Gashapon implements IGashapon {
     }
 
     private resetItemList(
-        items: { [name: string]: number }
+        items: ItemType
     ): this {
 
         // Clear list

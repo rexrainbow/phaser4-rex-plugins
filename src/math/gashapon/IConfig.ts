@@ -18,6 +18,8 @@ export enum Mode {
 
 export type ModeString = 'shuffle' | 'random';
 
+export type ItemType = { [name: string]: number };
+
 export type RNDObjType = {
     frac: () => number
 }
@@ -49,10 +51,10 @@ export interface IConfig {
     /**
      * Candidate items.
      *
-     * @type {{ [name: string]: number }}
+     * @type {ItemType}
      * @memberof IConfig
      */
-    items?: { [name: string]: number };
+    items?: ItemType;
 
     /**
      * Custom random number generator, optional.
@@ -64,5 +66,5 @@ export interface IConfig {
 
     result?: string | null;
 
-    remainder?: { [name: string]: number };
+    remainder?: ItemType;
 }

@@ -3,7 +3,7 @@
  *
  * @param {(any[] | { [name: string]: any })} obj
  */
-let Clear = function (obj: any[] | { [name: string]: any }): void {
+export default function Clear(obj: any[] | { [name: string]: any }): void {
 
     if (Array.isArray(obj)) {
         obj.length = 0;
@@ -14,4 +14,3 @@ let Clear = function (obj: any[] | { [name: string]: any }): void {
     }
 
 }
-export default Clear;

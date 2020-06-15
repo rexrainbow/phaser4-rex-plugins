@@ -6,7 +6,7 @@ let FLOAT = /^\s*-?(\d*\.?\d+|\d+\.?\d*)(e[-+]?\d+)?\s*$/i;
  * @param {string} s Source string.
  * @returns {(string | number | boolean | null)} String, number, boolean value, or null(from empty string).
  */
-let convert = function (s: string): string | number | boolean | null {
+export default function Convert(s: string): string | number | boolean | null {
 
     let result: string | number | boolean | null;
     if (s === '') {
@@ -25,5 +25,3 @@ let convert = function (s: string): string | number | boolean | null {
 
     return result;
 };
-
-export default convert;

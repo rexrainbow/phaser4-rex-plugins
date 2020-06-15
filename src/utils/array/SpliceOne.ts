@@ -1,4 +1,4 @@
-let SpliceOne = function (
+export default function SpliceOne(
     array: any[],
     index: number
 ): any {
@@ -15,5 +15,3 @@ let SpliceOne = function (
     array.length = len;
     return item;
 };
-
-export default SpliceOne;

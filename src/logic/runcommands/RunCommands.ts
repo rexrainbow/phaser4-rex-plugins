@@ -24,6 +24,7 @@ export function RunCommands(
     if (Array.isArray(queue[0])) {
         let reverse: boolean;
         ({ reverse = false } = config);
+
         if (!reverse) {
             for (let i = 0, cnt = queue.length; i < cnt; i++) {
                 retVal = RunCommands(queue[i], scope, config);
@@ -48,7 +49,10 @@ let RunCommand = function (
 
     let argsConvert: ArgConvertCallbackType | boolean,
         argsConvertScope: object | undefined;
-    ({ argsConvert = false, argsConvertScope = undefined } = config);
+    ({
+        argsConvert = false,
+        argsConvertScope = undefined
+    } = config || {});
 
     let fnName: string,
         fnArgs: any[];

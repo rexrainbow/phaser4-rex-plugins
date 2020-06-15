@@ -13,24 +13,22 @@ export class LZString implements ILZString {
      */
     constructor(config?: IConfig) {
 
-        if (config === undefined) {
-            config = {};
-        }
         this.resetFromJSON(config);
     }
 
     /**
      * Reset configuration.
      *
-     * @param {IConfig} {
-     *         encoding = EncodeType.none
-     *     }
+     * @param {IConfig} [config]
      * @returns {this}
      * @memberof LZString
      */
-    resetFromJSON({
-        encoding = EncodeType.none
-    }: IConfig): this {
+    resetFromJSON(config?: IConfig): this {
+
+        let encoding: EncodeType | EncodeTypeString;
+        ({
+            encoding = EncodeType.none
+        } = config || {})
 
         this.setEncoding(encoding);
         return this;

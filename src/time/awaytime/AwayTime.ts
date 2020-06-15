@@ -19,9 +19,6 @@ export class AwayTime implements IAwayTime {
      * @memberof AwayTime
      */
     constructor(config?: IConfig) {
-        if (config === undefined) {
-            config = {};
-        }
         this.resetFromJSON(config);
     }
 
@@ -37,17 +34,18 @@ export class AwayTime implements IAwayTime {
     /**
      * Reset configuration.
      *
-     * @param {IConfig} {
-     *         key = 'away',
-     *         period = 1000
-     *     }
+     * @param {IConfig} [config]
      * @returns {this}
      * @memberof AwayTime
      */
-    resetFromJSON({
-        key = 'away',
-        period = 1000
-    }: IConfig): this {
+    resetFromJSON(config?: IConfig): this {
+
+        let key: string,
+            period: number;
+        ({
+            key='away',
+            period=1000
+        } = config || {})
 
         this.state = State.IDLE;
         this.setKey(key);

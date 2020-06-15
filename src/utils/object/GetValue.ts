@@ -6,7 +6,7 @@
  * @param {*} defaultValue
  * @returns
  */
-let GetValue = function (
+export default function GetValue(
     source: any,
     key: string,
     defaultValue: any
@@ -45,5 +45,3 @@ let GetValue = function (
         return defaultValue;
     }
 };
-
-export default GetValue;

@@ -1,15 +1,16 @@
 import { ITable } from './ITable';
+import { Get } from './Get';
 
-enum SortMode {
+export enum SortMode {
     ascending = 0,
     descending = 1,
     logical_ascending = 2,
     logical_descending = 3
 }
-type SortModeString = 'ascending' | 'descending' | 'logical_ascending' | 'logical_descending';
-type SortCallback = (keyA: string, keyB: string) => number;
+export type SortModeString = 'ascending' | 'descending' | 'logical_ascending' | 'logical_descending';
+export type SortCallback = (keyA: string, keyB: string) => number;
 
-let SortCol = function (
+export function SortCol(
     table: ITable,
     callback: SortCallback | string,
     scope?: object | SortMode | SortModeString
@@ -34,9 +35,9 @@ let SortCol = function (
         }
 
         sortCallback = function (rowKeyA: string, rowKeyB: string): number {
-            let valA = table.get(rowKeyA, colKey);
-            let valB = table.get(rowKeyB, colKey);
-            let retVal;
+            let valA = Get(table, rowKeyA, colKey);
+            let valB = Get(table, rowKeyB, colKey);
+            let retVal: any;
             if ((mode === SortMode.logical_ascending) || (mode === SortMode.logical_descending)) {
                 valA = parseFloat(valA);
                 valB = parseFloat(valB);
@@ -61,7 +62,7 @@ let SortCol = function (
     table.rowKeys.sort(sortCallback);
 }
 
-let SortRow = function (
+export function SortRow(
     table: ITable,
     callback: SortCallback | string,
     scope?: object | SortMode | SortModeString
@@ -79,15 +80,15 @@ let SortRow = function (
         if (!this.hasRowKey(rowKey)) {
             return;
         }
-        let mode = scope;
+        let mode = scope as SortMode | SortModeString;
         if (typeof (mode) === 'string') {
             mode = SortMode[mode] as number;
         }
 
-        sortCallback = function (colKeyA, colKeyB) {
-            let valA = table.get(rowKey, colKeyA);
-            let valB = table.get(rowKey, colKeyB);
-            let retVal;
+        sortCallback = function (colKeyA: string, colKeyB: string) {
+            let valA = Get(table, colKeyA, colKeyB);
+            let valB = Get(table, colKeyA, colKeyB);
+            let retVal: any;
             if ((mode === SortMode.logical_ascending) || (mode === SortMode.logical_descending)) {
                 valA = parseFloat(valA);
                 valB = parseFloat(valB);
@@ -111,5 +112,3 @@ let SortRow = function (
 
     table.colKeys.sort(sortCallback);
 }
-
-export { SortCol, SortRow, SortMode, SortModeString, SortCallback };

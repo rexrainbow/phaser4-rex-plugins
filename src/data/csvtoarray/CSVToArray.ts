@@ -12,13 +12,13 @@ export function CSVToArray(
     csvString: string,
     config?: IConfig
 ): [any[]] {
-    if (config === undefined) {
-        config = {};
-    }
 
     let delimiter: string,
         convert: boolean;
-    ({ delimiter = ',', convert = true } = config);
+    ({
+        delimiter = ',',
+        convert = true
+    } = config || {});
 
     let arr = CSVParser.parse(csvString, {
         delimiter: delimiter,

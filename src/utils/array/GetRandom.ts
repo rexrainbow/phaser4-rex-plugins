@@ -1,4 +1,4 @@
-let GetRandom = function (
+export default function GetRandom(
     array: any[] | string,
     startIndex: number = 0,
     length: number = array.length
@@ -7,5 +7,3 @@ let GetRandom = function (
     let randomIndex = startIndex + Math.floor(Math.random() * length);
     return (array[randomIndex] === undefined) ? null : array[randomIndex];
 };
-
-export default GetRandom;

@@ -7,7 +7,7 @@ import Clear from './Clear';
  * @param {(any[] | { [name: string]: any })} [out]
  * @returns {(any[] | { [name: string]: any })}
  */
-let Clone = function (
+export default function Clone(
     obj: any[] | { [name: string]: any },
     out?: any[] | { [name: string]: any }
 ): any[] | { [name: string]: any } {
@@ -33,5 +33,3 @@ let Clone = function (
 
     return out;
 };
-
-export default Clone;
