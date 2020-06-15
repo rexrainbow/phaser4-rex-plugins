@@ -10,7 +10,9 @@
     "main": "./src/index.ts",
     "scripts": {
         "build": "rollup -c rollup.config.build.js",
-        "dev": "webpack --config webpack.config.js"
+        "watch": "rollup -c rollup.config.preview.js -w",
+        "dev": "npm-run-all --parallel start watch",
+        "start": "serve public"
     },
     "repository": {
         "type": "git",
