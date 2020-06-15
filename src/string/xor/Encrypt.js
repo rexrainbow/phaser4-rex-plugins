@@ -39,4 +39,8 @@ let Encrypt = function (str, pwd) {
     return enc_str;
 }
 
-export default Encrypt;
+export default function (src, pwd) {
+    src = escape(src);
+    pwd = escape(pwd.toString());
+    return Encrypt(src, pwd);
+};

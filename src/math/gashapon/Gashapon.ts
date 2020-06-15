@@ -1,5 +1,4 @@
-import { IGashapon } from './IGashapon';
-import { IConfig, Mode, ModeString, ItemType, RNDObjType } from './IConfig';
+import { IGashapon, IConfig, Mode, ModeString, ItemType, RNDObjType } from './IGashapon';
 import Clone from '../../utils/object/Clone';
 import IsEmpty from '../../utils/object/IsEmpty';
 import Clear from '../../utils/object/Clear';

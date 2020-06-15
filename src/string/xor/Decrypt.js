@@ -31,4 +31,11 @@ let Decrypt = function (str, pwd) {
     return enc_str;
 }
 
-export default Decrypt;
+export default function (data, pwd) {
+    pwd = escape(pwd.toString());
+    let result = Decrypt(data, pwd);
+    if (result != null) {
+        result = unescape(result)
+    }
+    return result;
+};

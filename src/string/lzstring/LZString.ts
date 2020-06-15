@@ -1,6 +1,5 @@
 import lzstring from './lz-string.min.js';
-import { ILZString } from './ILZString';
-import { IConfig, EncodeType, EncodeTypeString } from './IConfig';
+import { ILZString, IConfig, EncodeType, EncodeTypeString } from './ILZString';
 
 export class LZString implements ILZString {
 
