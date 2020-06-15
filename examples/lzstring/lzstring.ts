@@ -1,5 +1,5 @@
 import { LZString } from '../../src/string/lzstring/LZString'
-import { EncodeType } from '../../src/string/lzstring/IConfig';
+import { EncodeType } from '../../src/string/lzstring/ILZString';
 
 let dump = function (src: string, result0: string, result1: string) {
     console.log(src);
