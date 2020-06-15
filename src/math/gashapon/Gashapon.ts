@@ -1,9 +1,10 @@
+import { IGashapon } from './IGashapon';
 import { IConfig, Mode, ModeString, RNDObjType } from './IConfig';
 import Clone from '../../utils/object/Clone';
 import IsEmpty from '../../utils/object/IsEmpty';
 import Clear from '../../utils/object/Clear';
 
-class Gashapon {
+export class Gashapon implements IGashapon {
 
     mode: Mode;
     items: { [name: string]: number };
@@ -550,5 +551,3 @@ class Gashapon {
     }
 
 }
-
-export { Gashapon, IConfig, Mode };

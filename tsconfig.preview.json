@@ -8,6 +8,7 @@
         "**/*"
     ],
     "exclude": [
+        "./src/data/csvtohashtable/"
     ],
     "allowJs": true
 }

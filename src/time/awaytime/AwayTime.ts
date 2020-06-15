@@ -1,3 +1,4 @@
+import { IAwayTime, State } from './IAwayTime';
 import { IConfig } from './IConfig';
 
 /**
@@ -5,7 +6,7 @@ import { IConfig } from './IConfig';
  *
  * @class AwayTime
  */
-class AwayTime {
+export class AwayTime implements IAwayTime {
 
     state: State;
     key: string;
@@ -173,9 +174,3 @@ class AwayTime {
         return this;
     }
 }
-
-enum State {
-    IDLE, UPDATING
-};
-
-export { AwayTime, IConfig };

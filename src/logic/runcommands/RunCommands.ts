@@ -10,7 +10,7 @@ import GetValue from '../../utils/object/GetValue';
  * @param {IRunCommandsConfig} [config] Configuration.
  * @returns {*}
  */
-let RunCommands = function (
+export function RunCommands(
     queue: any[] | [any[]],
     scope: object,
     config?: IRunCommandsConfig
@@ -82,5 +82,3 @@ let RunCommand = function (
     let retValue = fn.apply(scope, fnArgs);
     return retValue;
 }
-
-export { RunCommands, IRunCommandsConfig };

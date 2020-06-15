@@ -7,7 +7,7 @@ import Decrypt from './Decrypt';
  *
  * @class XOR
  */
-class XOR implements IXOR {
+export class XOR implements IXOR {
     /**
      * Encrypt source string with password via XOR algorithm
      *
@@ -39,5 +39,3 @@ class XOR implements IXOR {
         return result;
     }
 }
-
-export { XOR, IXOR };

@@ -2,7 +2,7 @@ import lzstring from './lz-string.min.js';
 import { ILZString } from './ILZString';
 import { IConfig, EncodeType, EncodeTypeString } from './IConfig';
 
-class LZString implements ILZString {
+export class LZString implements ILZString {
 
     encoding: number;
 
@@ -104,5 +104,3 @@ const DECOMPRESSFNNAME = [
     'decompressFromUTF16',
     'decompressFromEncodedURIComponent'
 ];
-
-export { LZString, IConfig, EncodeType };

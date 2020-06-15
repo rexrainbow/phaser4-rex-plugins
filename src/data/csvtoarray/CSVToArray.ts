@@ -8,7 +8,7 @@ import CSVParser from 'papaparse/papaparse.min.js';
  * @param {IConfig} [config] Configuration.
  * @returns {[any[]]} An 2d array.
  */
-let CSVToArray = function (
+export function CSVToArray(
     csvString: string,
     config?: IConfig
 ): [any[]] {
@@ -26,5 +26,3 @@ let CSVToArray = function (
     }).data;
     return arr;
 };
-
-export { CSVToArray, IConfig };
