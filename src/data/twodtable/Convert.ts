@@ -1,11 +1,10 @@
-import { ITable, RowType } from './ITable';
-import { CellCallbackType } from './IConfig';
+import { ITable, RowType, CellValueCallbackType } from './ITable';
 import { DefaultTypeConvert } from './TypeConvert';
 
 export function ConvertCol(
     table: ITable,
     colKey: string | string[],
-    callback: CellCallbackType = DefaultTypeConvert,
+    callback: CellValueCallbackType = DefaultTypeConvert,
     scope?: object
 ): void {
 
@@ -42,7 +41,7 @@ export function ConvertCol(
 export function ConvertRow(
     table: ITable,
     rowKey: string | string[],
-    callback: CellCallbackType = DefaultTypeConvert,
+    callback: CellValueCallbackType = DefaultTypeConvert,
     scope?: object
 ): void {
 

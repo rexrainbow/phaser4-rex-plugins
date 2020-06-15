@@ -1,7 +1,7 @@
-import { ITable, DataType, KeyType, CursorType } from './ITable';
-import { IConfig, ILoadCSVConfig, CellCallbackType } from './IConfig';
+import { ITable, DataType, KeyType, CursorType, IConfig, ILoadCSVConfig, CellValueCallbackType } from './ITable';
 import { LoadCSV } from './LoadCSV';
 import { ConvertCol, ConvertRow } from './Convert';
+import { EachRow, EachCol, EachCallback } from './ForEach';
 import { Get, HasRowKey, HasColKey, HasKey } from './Get';
 import { Set, Add } from './Set';
 import { AppendRow, AppendCol, AppendCallbackType } from './Append';
@@ -72,7 +72,7 @@ export class TwoDTable implements ITable {
 
     convertRow(
         rowKey: string,
-        callback?: CellCallbackType,
+        callback?: CellValueCallbackType,
         scope?: object
     ): this {
 
@@ -82,7 +82,7 @@ export class TwoDTable implements ITable {
 
     convertCol(
         colKey: string,
-        callback?: CellCallbackType,
+        callback?: CellValueCallbackType,
         scope?: object
     ): this {
 
@@ -167,42 +167,15 @@ export class TwoDTable implements ITable {
         return this;
     }
 
-    eachRow(colKey, callback, scope) {
-        var rowKeys = this.rowKeys,
-            rowKey, value;
-        var isValidColKey = this.hasColKey(colKey);
+    eachRow(callback: EachCallback, scope?: object) {
 
-        for (var i = 0, len = rowKeys.length; i < len; i++) {
-            rowKey = rowKeys[i];
-            if (isValidColKey) {
-                value = this.get(rowKey, colKey);
-            }
-
-            if (scope) {
-                callback.call(scope, this, rowKey, colKey, value);
-            } else {
-                callback(this, rowKey, colKey, value);
-            }
-        }
+        EachRow(this, callback, scope);
         return this;
     }
 
-    eachCol(rowKey, callback, scope) {
-        var colKeys = this.colKeys,
-            colKey, value;
-        var isValidRowKey = this.hasRowKey(rowKey);
-        for (var i = 0, len = colKeys.length; i < len; i++) {
-            colKey = colKeys[i];
-            if (isValidRowKey) {
-                value = this.get(rowKey, colKey);
-            }
+    eachCol(callback: EachCallback, scope?: object) {
 
-            if (scope) {
-                callback.call(scope, this, rowKey, colKey, value);
-            } else {
-                callback(scope, this, rowKey, colKey, value);
-            }
-        }
+        EachCol(this, callback, scope);
         return this;
     }
 

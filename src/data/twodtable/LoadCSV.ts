@@ -1,5 +1,4 @@
-import { ITable, RowType } from './ITable';
-import { ILoadCSVConfig, CellCallbackType } from './IConfig'
+import { ITable, RowType, ILoadCSVConfig, CellValueCallbackType } from './ITable';
 import { DefaultTypeConvert } from './TypeConvert';
 import CSVParser from 'papaparse/papaparse.min.js';
 import { Clear } from './Remove';
@@ -13,7 +12,7 @@ export function LoadCSV(
 
     let delimiter: string,
         convert: boolean,
-        convertCallback: CellCallbackType | undefined,
+        convertCallback: CellValueCallbackType | undefined,
         convertScope: object | undefined;
     ({
         delimiter = ',',
