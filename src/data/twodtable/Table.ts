@@ -529,12 +529,40 @@ export class Table implements ITable {
     }
 
     /**
+     * Get key of first row.
+     *
+     * @readonly
+     * @memberof Table
+     */
+    get firstRowKey(): string {
+        if (this.rowKeys.length === 0) {
+            return '';
+        } else {
+            return this.rowKeys[0];
+        }
+    }
+
+    /**
+     * Get key of first column.
+     *
+     * @readonly
+     * @memberof Table
+     */
+    get firstColKey(): string {
+        if (this.colKeys.length === 0) {
+            return '';
+        } else {
+            return this.colKeys[0];
+        }
+    }
+
+    /**
      * Get row key of last access (get or set cell).
      *
      * @readonly
      * @memberof Table
      */
-    get curRowKey() {
+    get curRowKey(): string {
         return this.cursor.rowKey;
     }
 
@@ -544,21 +572,21 @@ export class Table implements ITable {
      * @readonly
      * @memberof Table
      */
-    get curColKey() {
+    get curColKey(): string {
         return this.cursor.colKey;
     }
 
     /**
      * Set cursor to (rowKey, colKey).
      *
-     * @param {string} [rowKey='']
-     * @param {string} [colKey='']
+     * @param {string} [rowKey=this.firstRowKey]
+     * @param {string} [colKey=this.firstColKey]
      * @returns {this}
      * @memberof Table
      */
     setCursor(
-        rowKey: string = '',
-        colKey: string = ''
+        rowKey: string = this.firstRowKey,
+        colKey: string = this.firstColKey
     ): this {
 
         SetCursor(this, rowKey, colKey);

@@ -858,6 +858,34 @@
             return IsValueInCol(this, colKey, value);
         }
         /**
+         * Get key of first row.
+         *
+         * @readonly
+         * @memberof Table
+         */
+        get firstRowKey() {
+            if (this.rowKeys.length === 0) {
+                return '';
+            }
+            else {
+                return this.rowKeys[0];
+            }
+        }
+        /**
+         * Get key of first column.
+         *
+         * @readonly
+         * @memberof Table
+         */
+        get firstColKey() {
+            if (this.colKeys.length === 0) {
+                return '';
+            }
+            else {
+                return this.colKeys[0];
+            }
+        }
+        /**
          * Get row key of last access (get or set cell).
          *
          * @readonly
@@ -878,12 +906,12 @@
         /**
          * Set cursor to (rowKey, colKey).
          *
-         * @param {string} [rowKey='']
-         * @param {string} [colKey='']
+         * @param {string} [rowKey=this.firstRowKey]
+         * @param {string} [colKey=this.firstColKey]
          * @returns {this}
          * @memberof Table
          */
-        setCursor(rowKey = '', colKey = '') {
+        setCursor(rowKey = this.firstRowKey, colKey = this.firstColKey) {
             SetCursor(this, rowKey, colKey);
             return this;
         }
