@@ -1,6 +1,6 @@
 import { ITable, RowType, ILoadCSVConfig, CellValueCallbackType } from './ITable';
 import { DefaultTypeConvert } from './TypeConvert';
-import CSVParser from 'papaparse/papaparse.min.js';
+import { CSVParser } from '../../utils/string/papaparse';
 import { Clear } from './Remove';
 import ArrayCopy from '../../utils/array/Copy';
 
@@ -26,7 +26,7 @@ export function LoadCSV(
 
     Clear(table);
 
-    let arr = CSVParser.parse(csvString, {
+    let arr: any[] = CSVParser.parse(csvString, {
         delimiter: delimiter
     }).data;
 

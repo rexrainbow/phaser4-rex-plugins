@@ -386,13 +386,13 @@ export class Gashapon implements IGashapon {
     /**
      * For each candidate item.
      *
-     * @param {((string, number) => void | boolean)} callback
+     * @param {((name: string, count: number) => boolean | undefined)} callback
      * @param {object} [scope]
      * @returns {this}
      * @memberof Gashapon
      */
     forEachItem(
-        callback: (string, number) => void | boolean,
+        callback: (name: string, count: number) => boolean | undefined,
         scope?: object
     ): this {
 
@@ -415,13 +415,13 @@ export class Gashapon implements IGashapon {
     /**
      * For each remainder item in box.
      *
-     * @param {((string, number) => void | boolean)} callback
+     * @param {((name: string, count: number) => boolean | undefined)} callback
      * @param {object} [scope]
      * @returns {this}
      * @memberof Gashapon
      */
     forEachRemain(
-        callback: (string, number) => void | boolean,
+        callback: (name: string, count: number) => boolean | undefined,
         scope?: object
     ): this {
 

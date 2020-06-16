@@ -35,7 +35,7 @@
 	 *
 	 * @param {string} csvString Csv-format string
 	 * @param {IConfig} [config] Configuration.
-	 * @returns {[any[]]} An 2d array.
+	 * @returns {any[]} An 2d array.
 	 */
 	function CSVToArray(csvString, config) {
 	    let delimiter, convert;

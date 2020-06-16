@@ -4,7 +4,7 @@
     (global = global || self, factory(global.rexxor = {}));
 }(this, (function (exports) { 'use strict';
 
-    let Encrypt = function (str, pwd) {
+    let XOREncrypt = function (str, pwd) {
         if (pwd == null || pwd.length <= 0) {
             return null;
         }
@@ -45,13 +45,13 @@
         return enc_str;
     };
 
-    function Encrypt$1 (src, pwd) {
+    function Encrypt(src, pwd) {
         src = escape(src);
         pwd = escape(pwd.toString());
-        return Encrypt(src, pwd);
+        return XOREncrypt(src, pwd);
     }
 
-    let Decrypt = function (str, pwd) {
+    let XORDecrypt = function (str, pwd) {
         if (str == null || str.length < 8) {
             return null;
         }
@@ -84,9 +84,9 @@
         return enc_str;
     };
 
-    function Decrypt$1 (data, pwd) {
+    function Decrypt(data, pwd) {
         pwd = escape(pwd.toString());
-        let result = Decrypt(data, pwd);
+        let result = XORDecrypt(data, pwd);
         if (result != null) {
             result = unescape(result);
         }
@@ -102,7 +102,7 @@
          * @returns {(string | null)} Encrypted result
          */
         encrypt(src, pwd) {
-            return Encrypt$1(src, pwd);
+            return Encrypt(src, pwd);
         },
         /**
          * Decrypt result string with password via XOR algorithm
@@ -112,7 +112,7 @@
          * @returns {(string | null)} Source string
          */
         decrypt(data, pwd) {
-            return Decrypt$1(data, pwd);
+            return Decrypt(data, pwd);
         }
     };
 

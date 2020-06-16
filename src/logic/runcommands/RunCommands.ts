@@ -4,13 +4,13 @@ import { RunCommand } from './RunCommand';
 /**
  * Run callbacks from command queue.
  *
- * @param {(any[] | [any[]])} queue Commands queue, a single array `[fnName, ...param]` for a callback, or an array of callbacks.
+ * @param {any[]} queue Commands queue, a single array `[fnName, ...param]` for a callback, or an array of callbacks.
  * @param {object} scope 
  * @param {IRunCommandsConfig} [config] Configuration.
  * @returns {*}
  */
 export function RunCommands(
-    queue: any[] | [any[]],
+    queue: any[],
     scope: object,
     config?: IRunCommandsConfig
 ): any {

@@ -3,19 +3,21 @@
         "moduleResolution": "node",
         "target": "esnext",
         "module": "es2015",
-        "lib": ["dom", "es5", "es6", "es7", "esnext"],
+        "lib": [ "dom", "es5", "es6", "es7", "esnext" ],
         "outDir": "./dist",
         "declarationDir": "./dist",
         "sourceMap": true,
         "declaration": true,
         "declarationMap": true,
-        "removeComments": true,
+        "removeComments":true,
         "esModuleInterop": true,
         "downlevelIteration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
+        "strict": true,
         "alwaysStrict": true,
+        "noImplicitAny": true,
         "noImplicitThis": true,
         "strictBindCallApply": true,
         "strictFunctionTypes": true,
@@ -27,7 +29,6 @@
         "src/**/*"
     ],
     "exclude": [
-        "node_modules",
-        "dev/**/*"
+        "node_modules"
     ]
 }

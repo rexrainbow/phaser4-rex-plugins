@@ -1,4 +1,4 @@
-let Decrypt = function (str, pwd) {
+let XORDecrypt = function (str, pwd) {
     if (str == null || str.length < 8) {
         return null;
     }
@@ -31,9 +31,9 @@ let Decrypt = function (str, pwd) {
     return enc_str;
 }
 
-export default function (data, pwd) {
+export function Decrypt(data, pwd) {
     pwd = escape(pwd.toString());
-    let result = Decrypt(data, pwd);
+    let result = XORDecrypt(data, pwd);
     if (result != null) {
         result = unescape(result)
     }

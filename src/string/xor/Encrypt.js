@@ -1,4 +1,4 @@
-let Encrypt = function (str, pwd) {
+let XOREncrypt = function (str, pwd) {
     if (pwd == null || pwd.length <= 0) {
         return null;
     }
@@ -39,8 +39,8 @@ let Encrypt = function (str, pwd) {
     return enc_str;
 }
 
-export default function (src, pwd) {
+export function Encrypt(src, pwd) {
     src = escape(src);
     pwd = escape(pwd.toString());
-    return Encrypt(src, pwd);
+    return XOREncrypt(src, pwd);
 };

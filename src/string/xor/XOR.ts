@@ -1,5 +1,5 @@
-import Encrypt from './Encrypt';
-import Decrypt from './Decrypt';
+import { Encrypt } from './Encrypt';
+import { Decrypt } from './Decrypt';
 
 let XOR = {
     /**
