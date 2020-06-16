@@ -400,7 +400,7 @@
         table.colKeys.sort(sortCallback);
     }
 
-    function NextColKey(table, colKey = table.cursor.colKey, step = 1, wrap = false) {
+    function NextColKey(table, colKey, step = 1, wrap = true) {
         let colKeys = table.colKeys;
         let idx = colKeys.indexOf(colKey);
         if (idx === -1) {
@@ -412,10 +412,10 @@
         }
         return colKeys[idx];
     }
-    function PreviousColKey(table, colKey = table.cursor.colKey, step = 1, wrap = false) {
+    function PreviousColKey(table, colKey, step = 1, wrap = true) {
         return NextColKey(table, colKey, -step, wrap);
     }
-    function NextRowKey(table, rowKey = table.cursor.rowKey, step = 1, wrap = false) {
+    function NextRowKey(table, rowKey, step = 1, wrap = true) {
         let rowKeys = table.rowKeys;
         let idx = rowKeys.indexOf(rowKey);
         if (idx === -1) {
@@ -427,7 +427,7 @@
         }
         return rowKeys[idx];
     }
-    function PreviousRowKey(table, rowKey = table.cursor.rowKey, step = 1, wrap = false) {
+    function PreviousRowKey(table, rowKey, step = 1, wrap = true) {
         return NextRowKey(table, rowKey, -step, wrap);
     }
 
@@ -578,47 +578,70 @@
         ;
         /**
          * Get value in a cell.
+         * This operation will change the cursor.
          *
-         * @param {string} rowKey
-         * @param {string} colKey
+         * @param {string} [rowKey=this.curRowKey]
+         * @param {string} [colKey=this.curColKey]
          * @returns {*}
          * @memberof Table
          */
-        get(rowKey, colKey) {
+        get(rowKey = this.curRowKey, colKey = this.curColKey) {
             let value = Get(this, rowKey, colKey);
             this.setCursor(rowKey, colKey);
             return value;
         }
         /**
-         * Set value of a cell.
+         * Set value of a cell. It has 2 parameter modes :
          *
-         * @param {string} rowKey
-         * @param {string} colKey
-         * @param {*} value
+         * - `table.set(rowKey, colKey, value)` : Set value to (rowKey, colKey) cell.
+         * - `table.set(value)` : Set value to cursor cell.
+         *
+         * This operation will change the cursor.
+         *
+         * @param {(string | any)} rowKey
+         * @param {string} [colKey]
+         * @param {*} [value]
          * @returns {this}
          * @memberof Table
          */
         set(rowKey, colKey, value) {
+            if (arguments.length === 1) {
+                value = rowKey;
+                rowKey = this.curRowKey;
+                colKey = this.curColKey;
+            }
             Set(this, rowKey, colKey, value);
             this.setCursor(rowKey, colKey);
             return this;
         }
         /**
-         * Add a number value to a cell.
+         * Add a number value to a cell. It has 4 parameter modes :
          *
-         * @param {string} rowKey
-         * @param {string} colKey
-         * @param {number} [value=1]
+         * - `table.add(rowKey, colKey, value)` : Add value to (rowKey, colKey) cell.
+         * - `table.add(rowKey, colKey)` : Add 1 to (rowKey, colKey) cell.
+         * - `table.add(value)` : Add value to cursor cell.
+         * - `table.add()` : Add 1 to cursor cell.
+         *
+         * This operation also change the cursor.
+         *
+         * @param {(string | any)} [rowKey]
+         * @param {string} [colKey]
+         * @param {number} [value]
          * @returns {this}
          * @memberof Table
          */
-        add(rowKey, colKey, value = 1) {
+        add(rowKey, colKey, value) {
+            if (arguments.length <= 1) {
+                value = (arguments.length === 0) ? 1 : rowKey;
+                rowKey = this.curRowKey;
+                colKey = this.curColKey;
+            }
             Add(this, rowKey, colKey, value);
             this.setCursor(rowKey, colKey);
             return this;
         }
         /**
-         *
+         * Dose table has this row-key?
          *
          * @param {string} rowKey
          * @returns
@@ -628,7 +651,7 @@
             return HasRowKey(this, rowKey);
         }
         /**
-         *
+         * Dose table has this column-key?
          *
          * @param {string} colKey
          * @returns
@@ -638,7 +661,7 @@
             return HasColKey(this, colKey);
         }
         /**
-         *
+         * Dose table has this row-key and column-key?
          *
          * @param {string} rowKey
          * @param {string} colKey
@@ -722,51 +745,71 @@
         }
         /**
          * Get next row key.
+         * This operation also change the cursor.
          *
-         * @param {string} [rowKey]
+         * @param {string} [rowKey=this.curRowKey]
          * @param {number} [step]
          * @param {boolean} [wrap]
-         * @returns {string}
+         * @returns {(string | undefined)}
          * @memberof Table
          */
-        nextRowKey(rowKey, step, wrap) {
-            return NextRowKey(this, rowKey, step, wrap);
+        nextRowKey(rowKey = this.curRowKey, step, wrap) {
+            let key = NextRowKey(this, rowKey, step, wrap);
+            if (key) {
+                this.cursor.rowKey = key;
+            }
+            return key;
         }
         /**
          * Get next column key.
+         * This operation will change the cursor.
          *
-         * @param {string} [colKey]
+         * @param {string} [colKey=this.curColKey]
          * @param {number} [step]
          * @param {boolean} [wrap]
-         * @returns {string}
+         * @returns {(string | undefined)}
          * @memberof Table
          */
-        nextColKey(colKey, step, wrap) {
-            return NextColKey(this, colKey, step, wrap);
+        nextColKey(colKey = this.curColKey, step, wrap) {
+            let key = NextColKey(this, colKey, step, wrap);
+            if (key) {
+                this.cursor.colKey = key;
+            }
+            return key;
         }
         /**
          * Get previous row key.
+         * This operation will change the cursor.
          *
-         * @param {string} [rowKey]
+         * @param {string} [rowKey=this.curRowKey]
          * @param {number} [step]
          * @param {boolean} [wrap]
-         * @returns {string}
+         * @returns {(string | undefined)}
          * @memberof Table
          */
-        previousRowKey(rowKey, step, wrap) {
-            return PreviousRowKey(this, rowKey, step, wrap);
+        previousRowKey(rowKey = this.curRowKey, step, wrap) {
+            let key = PreviousRowKey(this, rowKey, step, wrap);
+            if (key) {
+                this.cursor.rowKey = key;
+            }
+            return key;
         }
         /**
          * Get previous column key.
+         * This operation will change the cursor.
          *
-         * @param {string} [colKey]
+         * @param {string} [colKey=this.curColKey]
          * @param {number} [step]
          * @param {boolean} [wrap]
-         * @returns {string}
+         * @returns {(string | undefined)}
          * @memberof Table
          */
-        previousColKey(colKey, step, wrap) {
-            return PreviousColKey(this, colKey, step, wrap);
+        previousColKey(colKey = this.curColKey, step, wrap) {
+            let key = PreviousColKey(this, colKey, step, wrap);
+            if (key) {
+                this.cursor.colKey = key;
+            }
+            return key;
         }
         /**
          * Sort rows.
@@ -814,14 +857,26 @@
         isValueInCol(colKey, value) {
             return IsValueInCol(this, colKey, value);
         }
-        get curColKey() {
-            return this.cursor.colKey;
-        }
+        /**
+         * Get row key of last access (get or set cell).
+         *
+         * @readonly
+         * @memberof Table
+         */
         get curRowKey() {
             return this.cursor.rowKey;
         }
         /**
-         * Set cursor key.
+         * Get column key of last access (get or set cell).
+         *
+         * @readonly
+         * @memberof Table
+         */
+        get curColKey() {
+            return this.cursor.colKey;
+        }
+        /**
+         * Set cursor to (rowKey, colKey).
          *
          * @param {string} [rowKey='']
          * @param {string} [colKey='']

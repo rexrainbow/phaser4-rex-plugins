@@ -166,15 +166,16 @@ export class Table implements ITable {
 
     /**
      * Get value in a cell.
+     * This operation will change the cursor.
      *
-     * @param {string} rowKey
-     * @param {string} colKey
+     * @param {string} [rowKey=this.curRowKey]
+     * @param {string} [colKey=this.curColKey]
      * @returns {*}
      * @memberof Table
      */
     get(
-        rowKey: string,
-        colKey: string
+        rowKey: string = this.curRowKey,
+        colKey: string = this.curColKey
     ): any {
 
         let value: any = Get(this, rowKey, colKey);
@@ -183,15 +184,30 @@ export class Table implements ITable {
     }
 
     /**
-     * Set value of a cell.
+     * Set value of a cell. It has 2 parameter modes :  
+     * 
+     * - `table.set(rowKey, colKey, value)` : Set value to (rowKey, colKey) cell.
+     * - `table.set(value)` : Set value to cursor cell.
+     * 
+     * This operation will change the cursor.
      *
-     * @param {string} rowKey
-     * @param {string} colKey
-     * @param {*} value
+     * @param {(string | any)} rowKey
+     * @param {string} [colKey]
+     * @param {*} [value]
      * @returns {this}
      * @memberof Table
      */
-    set(rowKey: string, colKey: string, value: any): this {
+    set(
+        rowKey: string | any,
+        colKey?: string,
+        value?: any
+    ): this {
+
+        if (arguments.length === 1) {
+            value = rowKey;
+            rowKey = this.curRowKey;
+            colKey = this.curColKey;
+        }
 
         Set(this, rowKey, colKey, value);
         this.setCursor(rowKey, colKey);
@@ -199,15 +215,32 @@ export class Table implements ITable {
     }
 
     /**
-     * Add a number value to a cell.
+     * Add a number value to a cell. It has 4 parameter modes :  
+     * 
+     * - `table.add(rowKey, colKey, value)` : Add value to (rowKey, colKey) cell.
+     * - `table.add(rowKey, colKey)` : Add 1 to (rowKey, colKey) cell.
+     * - `table.add(value)` : Add value to cursor cell.
+     * - `table.add()` : Add 1 to cursor cell.
+     * 
+     * This operation also change the cursor.
      *
-     * @param {string} rowKey
-     * @param {string} colKey
-     * @param {number} [value=1]
+     * @param {(string | any)} [rowKey]
+     * @param {string} [colKey]
+     * @param {number} [value]
      * @returns {this}
      * @memberof Table
      */
-    add(rowKey: string, colKey: string, value: number = 1): this {
+    add(
+        rowKey?: string | any,
+        colKey?: string,
+        value?: number
+    ): this {
+
+        if (arguments.length <= 1) {
+            value = (arguments.length === 0) ? 1 : rowKey;
+            rowKey = this.curRowKey;
+            colKey = this.curColKey;
+        }
 
         Add(this, rowKey, colKey, value);
         this.setCursor(rowKey, colKey);
@@ -215,7 +248,7 @@ export class Table implements ITable {
     }
 
     /**
-     * 
+     * Dose table has this row-key?
      *
      * @param {string} rowKey
      * @returns
@@ -227,7 +260,7 @@ export class Table implements ITable {
     }
 
     /**
-     *
+     * Dose table has this column-key?
      *
      * @param {string} colKey
      * @returns
@@ -239,7 +272,7 @@ export class Table implements ITable {
     }
 
     /**
-     *
+     * Dose table has this row-key and column-key?
      *
      * @param {string} rowKey
      * @param {string} colKey
@@ -345,58 +378,94 @@ export class Table implements ITable {
 
     /**
      * Get next row key.
+     * This operation also change the cursor.
      *
-     * @param {string} [rowKey]
+     * @param {string} [rowKey=this.curRowKey]
      * @param {number} [step]
      * @param {boolean} [wrap]
-     * @returns {string}
+     * @returns {(string | undefined)}
      * @memberof Table
      */
-    nextRowKey(rowKey?: string, step?: number, wrap?: boolean): string {
+    nextRowKey(
+        rowKey: string = this.curRowKey,
+        step?: number,
+        wrap?: boolean
+    ): string | undefined {
 
-        return NextRowKey(this, rowKey, step, wrap);
+        let key = NextRowKey(this, rowKey, step, wrap);
+        if (key) {
+            this.cursor.rowKey = key;
+        }
+        return key;
     }
 
     /**
      * Get next column key.
+     * This operation will change the cursor.
      *
-     * @param {string} [colKey]
+     * @param {string} [colKey=this.curColKey]
      * @param {number} [step]
      * @param {boolean} [wrap]
-     * @returns {string}
+     * @returns {(string | undefined)}
      * @memberof Table
      */
-    nextColKey(colKey?: string, step?: number, wrap?: boolean): string {
+    nextColKey(
+        colKey: string = this.curColKey,
+        step?: number,
+        wrap?: boolean
+    ): string | undefined {
 
-        return NextColKey(this, colKey, step, wrap);
+        let key = NextColKey(this, colKey, step, wrap);
+        if (key) {
+            this.cursor.colKey = key;
+        }
+        return key;
     }
 
     /**
      * Get previous row key.
+     * This operation will change the cursor.
      *
-     * @param {string} [rowKey]
+     * @param {string} [rowKey=this.curRowKey]
      * @param {number} [step]
      * @param {boolean} [wrap]
-     * @returns {string}
+     * @returns {(string | undefined)}
      * @memberof Table
      */
-    previousRowKey(rowKey?: string, step?: number, wrap?: boolean): string {
+    previousRowKey(
+        rowKey: string = this.curRowKey,
+        step?: number,
+        wrap?: boolean
+    ): string | undefined {
 
-        return PreviousRowKey(this, rowKey, step, wrap);
+        let key = PreviousRowKey(this, rowKey, step, wrap);
+        if (key) {
+            this.cursor.rowKey = key;
+        }
+        return key;
     }
 
     /**
      * Get previous column key.
+     * This operation will change the cursor.
      *
-     * @param {string} [colKey]
+     * @param {string} [colKey=this.curColKey]
      * @param {number} [step]
      * @param {boolean} [wrap]
-     * @returns {string}
+     * @returns {(string | undefined)}
      * @memberof Table
      */
-    previousColKey(colKey?: string, step?: number, wrap?: boolean): string {
+    previousColKey(
+        colKey: string = this.curColKey,
+        step?: number,
+        wrap?: boolean
+    ): string | undefined {
 
-        return PreviousColKey(this, colKey, step, wrap);
+        let key = PreviousColKey(this, colKey, step, wrap);
+        if (key) {
+            this.cursor.colKey = key;
+        }
+        return key;
     }
 
     /**
@@ -459,23 +528,38 @@ export class Table implements ITable {
         return IsValueInCol(this, colKey, value)
     }
 
-    get curColKey() {
-        return this.cursor.colKey;
-    }
-
+    /**
+     * Get row key of last access (get or set cell).
+     *
+     * @readonly
+     * @memberof Table
+     */
     get curRowKey() {
         return this.cursor.rowKey;
     }
 
     /**
-     * Set cursor key.
+     * Get column key of last access (get or set cell).
+     *
+     * @readonly
+     * @memberof Table
+     */
+    get curColKey() {
+        return this.cursor.colKey;
+    }
+
+    /**
+     * Set cursor to (rowKey, colKey).
      *
      * @param {string} [rowKey='']
      * @param {string} [colKey='']
      * @returns {this}
      * @memberof Table
      */
-    setCursor(rowKey: string = '', colKey: string = ''): this {
+    setCursor(
+        rowKey: string = '',
+        colKey: string = ''
+    ): this {
 
         SetCursor(this, rowKey, colKey);
         return this;
