@@ -29,7 +29,7 @@ export function RemoveCol(
     colKey: string
 ): void {
 
-    let idx: number = this.colKeys.indexOf(colKey);
+    let idx: number = table.colKeys.indexOf(colKey);
     if (idx === -1) {
         return;
     }

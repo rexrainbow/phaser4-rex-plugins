@@ -76,7 +76,7 @@
         delete table.data[rowKey];
     }
     function RemoveCol(table, colKey) {
-        let idx = this.colKeys.indexOf(colKey);
+        let idx = table.colKeys.indexOf(colKey);
         if (idx === -1) {
             return;
         }
@@ -323,7 +323,7 @@
         }
         else {
             let colKey = callback;
-            if (!this.hasRowKey(colKey)) {
+            if (table.colKeys.indexOf(colKey) === -1) {
                 return;
             }
             let mode = scope;
@@ -367,7 +367,7 @@
         }
         else {
             let rowKey = callback;
-            if (!this.hasRowKey(rowKey)) {
+            if (table.rowKeys.indexOf(rowKey) === -1) {
                 return;
             }
             let mode = scope;

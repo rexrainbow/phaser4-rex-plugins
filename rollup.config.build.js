@@ -71,25 +71,25 @@ for (var key in pluginList) {
 }
 
 // ESM
-// del.sync(['./dist/esm']);
-// outputs.push({
-//     input: jsOutputs,
-//     output: [
-//         {
-//             dir: './dist/esm',
-//             format: 'esm'
-//         }
-//     ],
-//     plugins: [
-//         resolve({
-//             extensions: extensions
-//         }),
-//         commonjs(),
-//         typescript({
-//             tsconfig: './tsconfig.build.json'
-//         }),
-//     ]
-// })
+del.sync(['./dist/esm']);
+outputs.push({
+    input: jsOutputs,
+    output: [
+        {
+            dir: './dist/esm',
+            format: 'esm'
+        }
+    ],
+    plugins: [
+        resolve({
+            extensions: extensions
+        }),
+        commonjs(),
+        typescript({
+            tsconfig: './tsconfig.build.json'
+        }),
+    ]
+})
 
 
 

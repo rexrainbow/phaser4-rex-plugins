@@ -72,39 +72,7 @@
         }
     }
 
-    /**
-     * Run callbacks from command queue.
-     *
-     * @param {(any[] | [any[]])} queue Commands queue, a single array `[fnName, ...param]` for a callback, or an array of callbacks.
-     * @param {object} scope
-     * @param {IRunCommandsConfig} [config] Configuration.
-     * @returns {*}
-     */
-    function RunCommands(queue, scope, config) {
-        if (config === undefined) {
-            config = {};
-        }
-        let retVal;
-        if (Array.isArray(queue[0])) {
-            let reverse;
-            ({ reverse = false } = config);
-            if (!reverse) {
-                for (let i = 0, cnt = queue.length; i < cnt; i++) {
-                    retVal = RunCommands(queue[i], scope, config);
-                }
-            }
-            else {
-                for (let cnt = queue.length, i = cnt - 1; i >= 0; i--) {
-                    retVal = RunCommands(queue[i], scope, config);
-                }
-            }
-        }
-        else {
-            retVal = RunCommand(queue, scope, config);
-        }
-        return retVal;
-    }
-    let RunCommand = function (cmd, scope, config) {
+    function RunCommand(cmd, scope, config) {
         let argsConvert, argsConvertScope;
         ({
             argsConvert = false,
@@ -139,7 +107,40 @@
         }
         let retValue = fn.apply(scope, fnArgs);
         return retValue;
-    };
+    }
+
+    /**
+     * Run callbacks from command queue.
+     *
+     * @param {(any[] | [any[]])} queue Commands queue, a single array `[fnName, ...param]` for a callback, or an array of callbacks.
+     * @param {object} scope
+     * @param {IRunCommandsConfig} [config] Configuration.
+     * @returns {*}
+     */
+    function RunCommands(queue, scope, config) {
+        if (config === undefined) {
+            config = {};
+        }
+        let retVal;
+        if (Array.isArray(queue[0])) {
+            let reverse;
+            ({ reverse = false } = config);
+            if (!reverse) {
+                for (let i = 0, cnt = queue.length; i < cnt; i++) {
+                    retVal = RunCommands(queue[i], scope, config);
+                }
+            }
+            else {
+                for (let cnt = queue.length, i = cnt - 1; i >= 0; i--) {
+                    retVal = RunCommands(queue[i], scope, config);
+                }
+            }
+        }
+        else {
+            retVal = RunCommand(queue, scope, config);
+        }
+        return retVal;
+    }
 
     exports.RunCommands = RunCommands;
 

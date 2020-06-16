@@ -16,7 +16,7 @@ export function SortCol(
         }
     } else {
         let colKey = callback;
-        if (!this.hasRowKey(colKey)) {
+        if (table.colKeys.indexOf(colKey) === -1) {
             return;
         }
 
@@ -68,7 +68,7 @@ export function SortRow(
         }
     } else {
         let rowKey = callback;
-        if (!this.hasRowKey(rowKey)) {
+        if (table.rowKeys.indexOf(rowKey) === -1) {
             return;
         }
         let mode = scope as SortMode | SortModeString;
