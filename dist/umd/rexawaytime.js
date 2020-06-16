@@ -4,6 +4,12 @@
     (global = global || self, factory(global.rexawaytime = {}));
 }(this, (function (exports) { 'use strict';
 
+    var State;
+    (function (State) {
+        State[State["IDLE"] = 0] = "IDLE";
+        State[State["UPDATING"] = 1] = "UPDATING";
+    })(State || (State = {}));
+
     /**
      * Get time from previous closing application to now.
      *
@@ -16,9 +22,6 @@
          * @memberof AwayTime
          */
         constructor(config) {
-            if (config === undefined) {
-                config = {};
-            }
             this.resetFromJSON(config);
         }
         /**
@@ -32,14 +35,16 @@
         /**
          * Reset configuration.
          *
-         * @param {IConfig} {
-         *         key = 'away',
-         *         period = 1000
-         *     }
+         * @param {IConfig} [config]
          * @returns {this}
          * @memberof AwayTime
          */
-        resetFromJSON({ key = 'away', period = 1000 }) {
+        resetFromJSON(config) {
+            let key, period;
+            ({
+                key = 'away',
+                period = 1000
+            } = config || {});
             this.state = State.IDLE;
             this.setKey(key);
             this.setPeriod(period);
@@ -150,11 +155,6 @@
             return this;
         }
     }
-    var State;
-    (function (State) {
-        State[State["IDLE"] = 0] = "IDLE";
-        State[State["UPDATING"] = 1] = "UPDATING";
-    })(State || (State = {}));
 
     exports.AwayTime = AwayTime;
 

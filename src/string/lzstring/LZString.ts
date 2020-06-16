@@ -16,7 +16,7 @@ export class LZString implements ILZString {
     }
 
     /**
-     * Reset configuration.
+     * Reset state.
      *
      * @param {IConfig} [config]
      * @returns {this}

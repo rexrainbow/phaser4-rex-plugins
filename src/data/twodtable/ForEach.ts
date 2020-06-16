@@ -1,10 +1,8 @@
-import { ITable } from './ITable';
-
-export type EachCallback = (key?: string, table?: ITable) => boolean;
+import { ITable, EachKeyCallback } from './ITable';
 
 export function EachRow(
     table: ITable,
-    callback: EachCallback,
+    callback: EachKeyCallback,
     scope?: object
 ): void {
 
@@ -23,7 +21,7 @@ export function EachRow(
 
 export function EachCol(
     table: ITable,
-    callback: EachCallback,
+    callback: EachKeyCallback,
     scope?: object
 ): void {
 

@@ -1,6 +1,4 @@
-import { ITable } from './ITable';
-
-export type AppendCallbackType = (table: ITable, rowKey: string, colKey: string) => any;
+import { ITable, AppendCallbackType } from './ITable';
 
 export function AppendRow(
     table: ITable,

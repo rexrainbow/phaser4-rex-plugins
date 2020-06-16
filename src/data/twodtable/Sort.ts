@@ -1,14 +1,5 @@
-import { ITable } from './ITable';
+import { ITable, SortMode, SortModeString, SortCallback } from './ITable';
 import { Get } from './Get';
-
-export enum SortMode {
-    ascending = 0,
-    descending = 1,
-    logical_ascending = 2,
-    logical_descending = 3
-}
-export type SortModeString = 'ascending' | 'descending' | 'logical_ascending' | 'logical_descending';
-export type SortCallback = (keyA: string, keyB: string) => number;
 
 export function SortCol(
     table: ITable,

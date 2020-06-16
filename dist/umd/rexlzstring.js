@@ -28,12 +28,13 @@
 	 * @export
 	 * @enum {number}
 	 */
+	var EncodeType;
 	(function (EncodeType) {
 	    EncodeType[EncodeType["none"] = 0] = "none";
 	    EncodeType[EncodeType["base64"] = 1] = "base64";
 	    EncodeType[EncodeType["utf16"] = 2] = "utf16";
 	    EncodeType[EncodeType["uri"] = 3] = "uri";
-	})(exports.EncodeType || (exports.EncodeType = {}));
+	})(EncodeType || (EncodeType = {}));
 
 	class LZString {
 	    /**
@@ -42,21 +43,20 @@
 	     * @memberof LZString
 	     */
 	    constructor(config) {
-	        if (config === undefined) {
-	            config = {};
-	        }
 	        this.resetFromJSON(config);
 	    }
 	    /**
-	     * Reset configuration.
+	     * Reset state.
 	     *
-	     * @param {IConfig} {
-	     *         encoding = EncodeType.none
-	     *     }
+	     * @param {IConfig} [config]
 	     * @returns {this}
 	     * @memberof LZString
 	     */
-	    resetFromJSON({ encoding = exports.EncodeType.none }) {
+	    resetFromJSON(config) {
+	        let encoding;
+	        ({
+	            encoding = EncodeType.none
+	        } = config || {});
 	        this.setEncoding(encoding);
 	        return this;
 	    }
@@ -78,9 +78,9 @@
 	     * @returns {this}
 	     * @memberof LZString
 	     */
-	    setEncoding(m = exports.EncodeType.none) {
+	    setEncoding(m = EncodeType.none) {
 	        if (typeof (m) === 'string') {
-	            m = (exports.EncodeType[m] || 0);
+	            m = (EncodeType[m] || 0);
 	        }
 	        this.encoding = m;
 	        return this;

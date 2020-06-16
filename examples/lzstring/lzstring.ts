@@ -1,4 +1,4 @@
-import { LZString } from '../../src/string/lzstring/LZString'
+import { LZString } from '../../src/string/lzstring'
 import { EncodeType } from '../../src/string/lzstring/ILZString';
 
 let dump = function (src: string, result0: string, result1: string) {

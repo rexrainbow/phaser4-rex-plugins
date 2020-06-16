@@ -2,8 +2,8 @@ import { ITable } from './ITable';
 
 export function Set(
     table: ITable,
-    colKey: string,
     rowKey: string,
+    colKey: string,
     value: any
 ): void {
 
@@ -18,9 +18,9 @@ export function Set(
 
 export function Add(
     table: ITable,
-    colKey: string,
     rowKey: string,
-    value: any
+    colKey: string,
+    value: number = 1
 ): void {
 
     var data = table.data;

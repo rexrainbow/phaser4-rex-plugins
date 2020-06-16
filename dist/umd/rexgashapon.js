@@ -10,6 +10,7 @@
      * @export
      * @enum {number}
      */
+    var Mode;
     (function (Mode) {
         /**
          * Don't put item back to box after pick it.
@@ -19,14 +20,14 @@
          * Put item back to box after pick it.
          */
         Mode[Mode["random"] = 1] = "random";
-    })(exports.Mode || (exports.Mode = {}));
+    })(Mode || (Mode = {}));
 
     /**
      * Clear all items of an array, or all properties of an object
      *
      * @param {(any[] | { [name: string]: any })} obj
      */
-    let Clear = function (obj) {
+    function Clear(obj) {
         if (Array.isArray(obj)) {
             obj.length = 0;
         }
@@ -35,7 +36,7 @@
                 delete obj[key];
             }
         }
-    };
+    }
 
     /**
      * Clone all items of an array, or all properties of an object
@@ -44,7 +45,7 @@
      * @param {(any[] | { [name: string]: any })} [out]
      * @returns {(any[] | { [name: string]: any })}
      */
-    let Clone = function (obj, out) {
+    function Clone(obj, out) {
         var objIsArray = Array.isArray(obj);
         if (out === undefined) {
             out = (objIsArray) ? [] : {};
@@ -64,7 +65,7 @@
             }
         }
         return out;
-    };
+    }
 
     /**
      * Is an array empty, or an object has no property?
@@ -72,7 +73,7 @@
      * @param {(any[] | { [name: string]: any })} obj
      * @returns {boolean}
      */
-    let IsEmpty = function (obj) {
+    function IsEmpty(obj) {
         if (Array.isArray(obj)) {
             return (obj.length === 0);
         }
@@ -82,8 +83,15 @@
             }
             return true;
         }
-    };
+    }
 
+    /**
+     * Pick a random item from box.
+     *
+     * @export
+     * @class Gashapon
+     * @implements {IGashapon}
+     */
     class Gashapon {
         constructor(config) {
             if (config === undefined) {
@@ -92,20 +100,22 @@
             this.resetFromJSON(config);
         }
         /**
-         * Reset configuration.
+         * Reset state.
          *
-         * @param {IConfig} {
-         *         mode = Mode.shuffle,
-         *         reload = true,
-         *         items = {},
-         *         result = null,
-         *         remainder = undefined,
-         *         rnd = undefined
-         *     }
+         * @param {IConfig} [config]
          * @returns {this}
          * @memberof Gashapon
          */
-        resetFromJSON({ mode = exports.Mode.shuffle, reload = true, items = {}, result = null, remainder = undefined, rnd = undefined }) {
+        resetFromJSON(config) {
+            let mode, reload, items, result, remainder, rnd;
+            ({
+                mode = Mode.shuffle,
+                reload = true,
+                items = {},
+                result = null,
+                remainder = undefined,
+                rnd = undefined
+            } = config || {});
             if (this.items == undefined) {
                 this.items = {};
             }
@@ -165,7 +175,7 @@
          */
         setMode(m) {
             if (typeof (m) === 'string') {
-                m = exports.Mode[m];
+                m = Mode[m];
             }
             if (this.mode === m) {
                 return this;
@@ -215,7 +225,7 @@
         /**
          * Set candidate items.
          *
-         * @param {{ [name: string]: number }} [items={}] Candidate items.
+         * @param {ItemType} [items={}] Candidate items.
          * @returns {this}
          * @memberof Gashapon
          */
@@ -265,7 +275,7 @@
             if (this._restartFlag) {
                 return this;
             }
-            if (this.mode === exports.Mode.shuffle) {
+            if (this.mode === Mode.shuffle) {
                 this.addRemainItem(name, count);
             }
             else { // ??
@@ -282,7 +292,7 @@
          * @memberof Gashapon
          */
         putItemBack(name, count = 1) {
-            if (this.mode === exports.Mode.random) {
+            if (this.mode === Mode.random) {
                 return this;
             }
             else if ( // Shuffle mode
@@ -311,7 +321,7 @@
                 this.startGen();
             }
             if (name === undefined) {
-                if (this.mode === exports.Mode.shuffle) {
+                if (this.mode === Mode.shuffle) {
                     this.resetItemList(this.remainder);
                     result = this.getRndItem(this._list);
                     this.addRemainItem(result, -1);
@@ -326,7 +336,7 @@
                 }
                 else {
                     result = name;
-                    if (this.mode === exports.Mode.shuffle) {
+                    if (this.mode === Mode.shuffle) {
                         this.addRemainItem(name, -1);
                     }
                 }
@@ -337,7 +347,7 @@
         /**
          * Get all candidate items.
          *
-         * @returns {{ [name: string]: number }} Candidate items.
+         * @returns {ItemType} Candidate items.
          * @memberof Gashapon
          */
         getItems() {
@@ -346,7 +356,7 @@
         /**
          * Get all remainder items in box.
          *
-         * @returns {{ [name: string]: number }} Remainder items in box.
+         * @returns {ItemType} Remainder items in box.
          * @memberof Gashapon
          */
         getRemain() {
@@ -459,7 +469,7 @@
                     this.remainder[name] = count;
                 }
             }
-            if (this.mode === exports.Mode.random) {
+            if (this.mode === Mode.random) {
                 this.resetItemList(this.remainder);
             }
             this._restartFlag = false;
@@ -502,7 +512,7 @@
             if (this.remainder[name] <= 0) {
                 delete this.remainder[name];
             }
-            if ((this.mode === exports.Mode.shuffle) && this.reload && IsEmpty(this.remainder)) {
+            if ((this.mode === Mode.shuffle) && this.reload && IsEmpty(this.remainder)) {
                 this._restartFlag = true;
             }
             return this;

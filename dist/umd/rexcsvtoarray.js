@@ -37,18 +37,18 @@
 	 * @param {IConfig} [config] Configuration.
 	 * @returns {[any[]]} An 2d array.
 	 */
-	let CSVToArray = function (csvString, config) {
-	    if (config === undefined) {
-	        config = {};
-	    }
+	function CSVToArray(csvString, config) {
 	    let delimiter, convert;
-	    ({ delimiter = ',', convert = true } = config);
+	    ({
+	        delimiter = ',',
+	        convert = true
+	    } = config || {});
 	    let arr = papaparse_min.parse(csvString, {
 	        delimiter: delimiter,
 	        dynamicTyping: convert
 	    }).data;
 	    return arr;
-	};
+	}
 
 	exports.CSVToArray = CSVToArray;
 

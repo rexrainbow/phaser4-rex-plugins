@@ -1,4 +1,4 @@
-import { XOR } from '../../src/string/xor/XOR';
+import { XOR } from '../../src/string/xor';
 
 let src = 'Hello world';
 let pwd = 'aabbcc';

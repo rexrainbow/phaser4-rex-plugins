@@ -1,5 +1,5 @@
-import { RunCommands } from '../../src/logic/runcommands/RunCommands';
-import { CSVToArray } from '../../src/data/csvtoarray/CSVToArray';
+import { RunCommands } from '../../src/logic/runcommands';
+import { CSVToArray } from '../../src/data/csvtoarray';
 
 let CommandSet = {
     print(s: string, count: number = 1) {

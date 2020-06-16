@@ -1,4 +1,4 @@
-import { Gashapon } from '../../src/math/gashapon/Gashapon';
+import { Gashapon } from '../../src/math/gashapon';
 
 let gashapon = new Gashapon({
     mode: 'shuffle',

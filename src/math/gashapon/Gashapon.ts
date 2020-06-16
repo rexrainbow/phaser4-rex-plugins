@@ -3,6 +3,13 @@ import Clone from '../../utils/object/Clone';
 import IsEmpty from '../../utils/object/IsEmpty';
 import Clear from '../../utils/object/Clear';
 
+/**
+ * Pick a random item from box.
+ *
+ * @export
+ * @class Gashapon
+ * @implements {IGashapon}
+ */
 export class Gashapon implements IGashapon {
 
     mode: Mode;
@@ -24,7 +31,7 @@ export class Gashapon implements IGashapon {
     }
 
     /**
-     * Reset configuration.
+     * Reset state.
      *
      * @param {IConfig} [config]
      * @returns {this}

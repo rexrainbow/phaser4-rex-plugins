@@ -11,7 +11,7 @@
      * @param {string} s Source string.
      * @returns {(string | number | boolean | null)} String, number, boolean value, or null(from empty string).
      */
-    let convert = function (s) {
+    function Convert(s) {
         let result;
         if (s === '') {
             result = null;
@@ -31,7 +31,7 @@
             }
         }
         return result;
-    };
+    }
 
     /**
      * Retrieves a value from an object.
@@ -41,7 +41,7 @@
      * @param {*} defaultValue
      * @returns
      */
-    let GetValue = function (source, key, defaultValue) {
+    function GetValue(source, key, defaultValue) {
         if (!source || typeof source !== 'object') {
             return defaultValue;
         }
@@ -70,17 +70,17 @@
         else {
             return defaultValue;
         }
-    };
+    }
 
     /**
      * Run callbacks from command queue.
      *
      * @param {(any[] | [any[]])} queue Commands queue, a single array `[fnName, ...param]` for a callback, or an array of callbacks.
-     * @param {object} scope Scope of callbacks.
+     * @param {object} scope
      * @param {IRunCommandsConfig} [config] Configuration.
      * @returns {*}
      */
-    let RunCommands = function (queue, scope, config) {
+    function RunCommands(queue, scope, config) {
         if (config === undefined) {
             config = {};
         }
@@ -103,16 +103,19 @@
             retVal = RunCommand(queue, scope, config);
         }
         return retVal;
-    };
+    }
     let RunCommand = function (cmd, scope, config) {
         let argsConvert, argsConvertScope;
-        ({ argsConvert = false, argsConvertScope = undefined } = config);
+        ({
+            argsConvert = false,
+            argsConvertScope = undefined
+        } = config || {});
         let fnName, fnArgs;
         ([fnName, ...fnArgs] = cmd);
         if (argsConvert) {
             // Convert string to number, boolean, null, or string        
             if (argsConvert === true) { // Use default type convert callback
-                argsConvert = convert;
+                argsConvert = Convert;
                 argsConvertScope = undefined;
             }
             for (let i = 0, cnt = fnArgs.length; i < cnt; i++) {

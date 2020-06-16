@@ -1,4 +1,4 @@
-import { RunCommands } from '../../src/logic/runcommands/RunCommands';
+import { RunCommands } from '../../src/logic/runcommands';
 
 let CommandSet = {
     print(s: string, count: number = 1) {

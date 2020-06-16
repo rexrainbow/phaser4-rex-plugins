@@ -45,6 +45,12 @@
         return enc_str;
     };
 
+    function Encrypt$1 (src, pwd) {
+        src = escape(src);
+        pwd = escape(pwd.toString());
+        return Encrypt(src, pwd);
+    }
+
     let Decrypt = function (str, pwd) {
         if (str == null || str.length < 8) {
             return null;
@@ -78,42 +84,37 @@
         return enc_str;
     };
 
-    /**
-     * Encrypt or Decrypt source string via XOR algorithm
-     *
-     * @class XOR
-     */
-    class XOR {
+    function Decrypt$1 (data, pwd) {
+        pwd = escape(pwd.toString());
+        let result = Decrypt(data, pwd);
+        if (result != null) {
+            result = unescape(result);
+        }
+        return result;
+    }
+
+    let XOR = {
         /**
          * Encrypt source string with password via XOR algorithm
          *
          * @param {string} src Source string
          * @param {string} pwd Password
          * @returns {(string | null)} Encrypted result
-         * @memberof XOR
          */
         encrypt(src, pwd) {
-            src = escape(src);
-            pwd = escape(pwd.toString());
-            return Encrypt(src, pwd);
-        }
+            return Encrypt$1(src, pwd);
+        },
         /**
          * Decrypt result string with password via XOR algorithm
          *
          * @param {string} data Encrypted result
          * @param {string} pwd Password
          * @returns {(string | null)} Source string
-         * @memberof XOR
          */
         decrypt(data, pwd) {
-            pwd = escape(pwd.toString());
-            let result = Decrypt(data, pwd);
-            if (result != null) {
-                result = unescape(result);
-            }
-            return result;
+            return Decrypt$1(data, pwd);
         }
-    }
+    };
 
     exports.XOR = XOR;
 
