@@ -1,0 +1,1 @@
+{"version":3,"file":"IAwayTime.d.ts","sourceRoot":"","sources":["../../src/time/awaytime/IAwayTime.ts"],"names":[],"mappings":"AAAA,oBAAY,KAAK;IACb,IAAI,IAAA;IAAE,QAAQ,IAAA;CACjB;AAED,MAAM,WAAW,SAAS;IACtB,KAAK,EAAE,KAAK,CAAC;IACb,GAAG,EAAE,MAAM,CAAC;IACZ,MAAM,EAAE,MAAM,CAAC;IACf,KAAK,EAAE,MAAM,CAAC;IAEd,QAAQ,EAAE,MAAM,CAAC;CACpB"}

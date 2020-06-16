@@ -2,4 +2,3 @@
 /public/*.js
 /public/*.map
 package-lock.json
-/dist/esm/*
