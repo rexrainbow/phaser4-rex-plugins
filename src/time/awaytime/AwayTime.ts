@@ -1,6 +1,4 @@
-import { IAwayTime, State } from './IAwayTime';
-import { IConfig } from './IConfig';
-
+import { IAwayTime, IConfig, IState, State } from './IAwayTime';
 /**
  * Get time from previous closing application to now. 
  *
@@ -15,11 +13,21 @@ export class AwayTime implements IAwayTime {
 
     /**
      * Creates an instance of AwayTime.
-     * @param {IConfig} [config]
+     * @param {IConfig} [config={}]
      * @memberof AwayTime
      */
-    constructor(config?: IConfig) {
-        this.resetFromJSON(config);
+    constructor(config: IConfig = {}) {
+
+        let key: string,
+            period: number;
+        ({
+            key='away',
+            period=1000
+        } = config || {})
+
+        this.state = State.IDLE;
+        this.setKey(key);
+        this.setPeriod(period);
     }
 
     /**
@@ -32,20 +40,16 @@ export class AwayTime implements IAwayTime {
     }
 
     /**
-     * Reset configuration.
+     * Reset state.
      *
-     * @param {IConfig} [config]
+     * @param {IState} [config]
      * @returns {this}
      * @memberof AwayTime
      */
-    resetFromJSON(config?: IConfig): this {
-
-        let key: string,
-            period: number;
-        ({
-            key='away',
-            period=1000
-        } = config || {})
+    fromJSON({
+        key = 'away',
+        period = 1000
+    }: IState): this {
 
         this.state = State.IDLE;
         this.setKey(key);
@@ -54,12 +58,12 @@ export class AwayTime implements IAwayTime {
     }
 
     /**
-     * Get state of this instance.
+     * Get state.
      *
-     * @returns {object}
+     * @returns {IState}
      * @memberof AwayTime
      */
-    toJSON(): object {
+    toJSON(): IState {
         return {
             key: this.key,
             period: this.period

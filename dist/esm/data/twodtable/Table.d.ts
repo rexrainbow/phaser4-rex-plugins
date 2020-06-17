@@ -1,17 +1,12 @@
-import { ITable, DataType, KeyType, CursorType, IConfig, ILoadCSVConfig, CellValueCallbackType, AppendCallbackType, EachKeyCallback, SortMode, SortModeString, SortCallback } from './ITable';
+import { ITable, DataType, KeyType, CursorType, IState, ILoadCSVConfig, CellValueCallbackType, AppendCallbackType, EachKeyCallback, SortMode, SortModeString, SortCallback } from './ITable';
 export declare class Table implements ITable {
     data: DataType;
     rowKeys: KeyType;
     colKeys: KeyType;
     cursor: CursorType;
-    constructor(config?: IConfig);
-    resetFromJSON(o?: IConfig): this;
-    toJSON(): {
-        data: DataType;
-        row: KeyType;
-        col: KeyType;
-        cursor: CursorType;
-    };
+    constructor(data?: DataType);
+    fromJSON({ data, row, col, cursor }: IState): this;
+    toJSON(): IState;
     shutdown(): void;
     destroy(): void;
     loadCSV(csvString: string, config?: ILoadCSVConfig): this;

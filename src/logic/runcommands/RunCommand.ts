@@ -1,11 +1,20 @@
-import { IRunCommandConfig, ArgConvertCallbackType } from './IConfig';
+import { IRunCommandConfig, ArgConvertCallbackType } from './IRunCommands';
 import DefaultTypeConvert from '../../utils/string/TypeConvert';
 import GetValue from '../../utils/object/GetValue';
 
+/**
+ * Invoke a callback.
+ *
+ * @export
+ * @param {any[]} cmd
+ * @param {object} scope
+ * @param {IRunCommandConfig} [config={}]
+ * @returns {*}
+ */
 export function RunCommand(
     cmd: any[],
     scope: object,
-    config?: IRunCommandConfig
+    config: IRunCommandConfig = {}
 ): any {
 
     let argsConvert: ArgConvertCallbackType | boolean,
@@ -13,7 +22,7 @@ export function RunCommand(
     ({
         argsConvert = false,
         argsConvertScope = undefined
-    } = config || {});
+    } = config);
 
     let fnName: string,
         fnArgs: any[];

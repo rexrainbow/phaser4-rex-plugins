@@ -14,20 +14,21 @@ export interface IConfig {
     reload?: boolean;
     items?: ItemType;
     rnd?: RNDObjType;
+}
+export interface IState {
+    mode?: Mode | ModeString;
+    reload?: boolean;
+    items?: ItemType;
+    rnd?: RNDObjType;
     result?: string | null;
     remainder?: ItemType;
 }
 export interface IGashapon {
     mode: Mode;
-    items: {
-        [name: string]: number;
-    };
-    remainder: {
-        [name: string]: number;
-    };
+    items: ItemType;
+    remainder: ItemType;
     reload: boolean;
     rnd: RNDObjType | undefined;
     result: string | null;
-    next(name?: string): string | null;
 }
 //# sourceMappingURL=IGashapon.d.ts.map

@@ -50,31 +50,24 @@ function IsEmpty(obj) {
 }
 
 class Gashapon {
-    constructor(config) {
-        if (config === undefined) {
-            config = {};
-        }
-        this.resetFromJSON(config);
-    }
-    resetFromJSON(config) {
-        let mode, reload, items, result, remainder, rnd;
+    constructor(config = {}) {
+        let mode, reload, items, rnd;
         ({
             mode = Mode.shuffle,
             reload = true,
             items = {},
-            result = null,
-            remainder = undefined,
             rnd = undefined
-        } = config || {});
-        if (this.items == undefined) {
-            this.items = {};
-        }
-        if (this.remainder == undefined) {
-            this.remainder = {};
-        }
-        if (this._list == undefined) {
-            this._list = [];
-        }
+        } = config);
+        this.items = {};
+        this.remainder = {};
+        this._list = [];
+        this.result = null;
+        this.setMode(mode);
+        this.setReload(reload);
+        this.setRND(rnd);
+        Object.assign(this.items, items);
+    }
+    fromJSON({ mode = Mode.shuffle, reload = true, items = {}, result = null, remainder = undefined, rnd = undefined }) {
         this.setMode(mode);
         this.setReload(reload);
         this.setRND(rnd);
@@ -97,8 +90,7 @@ class Gashapon {
             rnd: this.rnd,
             items: this.items,
             remainder: this.remainder,
-            result: this.result,
-            restart: true
+            result: this.result
         };
     }
     ;

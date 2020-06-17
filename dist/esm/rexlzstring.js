@@ -13,14 +13,14 @@ var EncodeType;
 })(EncodeType || (EncodeType = {}));
 
 class LZString {
-    constructor(config) {
-        this.resetFromJSON(config);
-    }
-    resetFromJSON(config) {
+    constructor(config = {}) {
         let encoding;
         ({
             encoding = EncodeType.none
-        } = config || {});
+        } = config);
+        this.setEncoding(encoding);
+    }
+    fromJSON({ encoding = EncodeType.none }) {
         this.setEncoding(encoding);
         return this;
     }

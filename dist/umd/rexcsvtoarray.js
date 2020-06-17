@@ -33,16 +33,17 @@
 	/**
 	 * Conver csv-format string to an 2d array.
 	 *
-	 * @param {string} csvString Csv-format string
-	 * @param {IConfig} [config] Configuration.
-	 * @returns {any[]} An 2d array.
+	 * @export
+	 * @param {string} csvString
+	 * @param {IConfig} [config={}]
+	 * @returns {any[]}
 	 */
-	function CSVToArray(csvString, config) {
+	function CSVToArray(csvString, config = {}) {
 	    let delimiter, convert;
 	    ({
 	        delimiter = ',',
 	        convert = true
-	    } = config || {});
+	    } = config);
 	    let arr = papaparse_min.parse(csvString, {
 	        delimiter: delimiter,
 	        dynamicTyping: convert

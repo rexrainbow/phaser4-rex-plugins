@@ -1,5 +1,5 @@
 import { LZString as lzstring } from '../../utils/string/lzstring'
-import { ILZString, IConfig, EncodeType, EncodeTypeString } from './ILZString';
+import { ILZString, IConfig, IState, EncodeType, EncodeTypeString } from './ILZString';
 
 export class LZString implements ILZString {
 
@@ -7,39 +7,42 @@ export class LZString implements ILZString {
 
     /**
      * Creates an instance of LZString.
-     * @param {IConfig} [config]
+     * @param {IConfig} [config={}]
      * @memberof LZString
      */
-    constructor(config?: IConfig) {
+    constructor(config: IConfig = {}) {
 
-        this.resetFromJSON(config);
+        let encoding: EncodeType | EncodeTypeString;
+        ({
+            encoding = EncodeType.none
+        } = config)
+        this.setEncoding(encoding);
     }
 
     /**
      * Reset state.
      *
-     * @param {IConfig} [config]
+     * @param {IState} {
+     *         encoding = EncodeType.none
+     *     }
      * @returns {this}
      * @memberof LZString
      */
-    resetFromJSON(config?: IConfig): this {
-
-        let encoding: EncodeType | EncodeTypeString;
-        ({
-            encoding = EncodeType.none
-        } = config || {})
+    fromJSON({
+        encoding = EncodeType.none
+    }: IState): this {
 
         this.setEncoding(encoding);
         return this;
     }
 
     /**
-     * Get state of this instance.
+     * Get state.
      *
-     * @returns {object} State
+     * @returns {IState} State
      * @memberof LZString
      */
-    toJSON(): object {
+    toJSON(): IState {
 
         return {
             encoding: this.encoding
@@ -49,7 +52,7 @@ export class LZString implements ILZString {
     /**
      * Set encoding type.
      *
-     * @param {EncodeType} [m=EncodeType.none] Encoding type
+     * @param {(EncodeType | EncodeTypeString)} [m=EncodeType.none]
      * @returns {this}
      * @memberof LZString
      */

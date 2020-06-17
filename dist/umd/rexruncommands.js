@@ -72,12 +72,21 @@
         }
     }
 
-    function RunCommand(cmd, scope, config) {
+    /**
+     * Invoke a callback.
+     *
+     * @export
+     * @param {any[]} cmd
+     * @param {object} scope
+     * @param {IRunCommandConfig} [config={}]
+     * @returns {*}
+     */
+    function RunCommand(cmd, scope, config = {}) {
         let argsConvert, argsConvertScope;
         ({
             argsConvert = false,
             argsConvertScope = undefined
-        } = config || {});
+        } = config);
         let fnName, fnArgs;
         ([fnName, ...fnArgs] = cmd);
         if (argsConvert) {
@@ -110,17 +119,15 @@
     }
 
     /**
-     * Run callbacks from command queue.
+     * Invoke callbacks from command queue.
      *
+     * @export
      * @param {any[]} queue Commands queue, a single array `[fnName, ...param]` for a callback, or an array of callbacks.
      * @param {object} scope
-     * @param {IRunCommandsConfig} [config] Configuration.
+     * @param {IRunCommandsConfig} [config={}]
      * @returns {*}
      */
-    function RunCommands(queue, scope, config) {
-        if (config === undefined) {
-            config = {};
-        }
+    function RunCommands(queue, scope, config = {}) {
         let retVal;
         if (Array.isArray(queue[0])) {
             let reverse;

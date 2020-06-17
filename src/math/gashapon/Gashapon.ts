@@ -1,4 +1,4 @@
-import { IGashapon, IConfig, Mode, ModeString, ItemType, RNDObjType } from './IGashapon';
+import { IGashapon, IConfig, IState, Mode, ModeString, ItemType, RNDObjType } from './IGashapon';
 import Clone from '../../utils/object/Clone';
 import IsEmpty from '../../utils/object/IsEmpty';
 import Clear from '../../utils/object/Clear';
@@ -22,63 +22,73 @@ export class Gashapon implements IGashapon {
     private _restartFlag: boolean;
     private _list: [string, number][];
 
-    constructor(config?: IConfig) {
-
-        if (config === undefined) {
-            config = {};
-        }
-        this.resetFromJSON(config);
-    }
-
     /**
-     * Reset state.
-     *
-     * @param {IConfig} [config]
-     * @returns {this}
+     * Creates an instance of Gashapon.
+     * @param {IConfig} [config={}]
      * @memberof Gashapon
      */
-    resetFromJSON(config?: IConfig): this {
+    constructor(config: IConfig = {}) {
 
         let mode: Mode | ModeString,
             reload: boolean,
             items: ItemType,
-            result: string | null,
-            remainder: ItemType | undefined,
             rnd: RNDObjType | undefined;
         ({
             mode = Mode.shuffle,
             reload = true,
             items = {},
-            result = null,
-            remainder = undefined,
             rnd = undefined
-        } = config || {})
+        } = config)
 
-        if (this.items == undefined) {
-            this.items = {};
-        }
-        if (this.remainder == undefined) {
-            this.remainder = {};
-        }
-        if (this._list == undefined) {
-            this._list = [];
-        }
+        this.items = {};
+        this.remainder = {};
+        this._list = [];
+        this.result = null;
+
+        this.setMode(mode);
+        this.setReload(reload);
+        this.setRND(rnd);
+        Object.assign(this.items, items);
+    }
+
+    /**
+     * Reset state.
+     *
+     * @param {IState} {
+     *         mode = Mode.shuffle,
+     *         reload = true,
+     *         items = {},
+     *         result = null,
+     *         remainder = undefined,
+     *         rnd = undefined
+     *     }
+     * @returns {this}
+     * @memberof Gashapon
+     */
+    fromJSON({
+        mode = Mode.shuffle,
+        reload = true,
+        items = {},
+        result = null,
+        remainder = undefined,
+        rnd = undefined
+    }: IState): this {
 
         this.setMode(mode);
         this.setReload(reload);
         this.setRND(rnd);
 
-        // data
+        // Data
         this.items = Clone(items, this.items) as ItemType;
         this._list.length = 0;
 
-        // result
+        // Result
         this.result = result;
 
-        // flags
+        // Flags
         this._restartFlag = true; // force restart to rebuild this._list
 
-        // initialize
+        // Initialize
         if (this._restartFlag) {
             this.startGen();
         }
@@ -90,12 +100,12 @@ export class Gashapon implements IGashapon {
     }
 
     /**
-     * Get state of this instance.
+     * Get state.
      *
-     * @returns {object}
+     * @returns {IState}
      * @memberof Gashapon
      */
-    toJSON(): object {
+    toJSON(): IState {
         return {
             // Configuration
             mode: this.mode,
@@ -107,10 +117,7 @@ export class Gashapon implements IGashapon {
             remainder: this.remainder,
 
             // Result
-            result: this.result,
-
-            // Flags
-            restart: true // Force restart to rebuild this._list
+            result: this.result
         };
     };
 

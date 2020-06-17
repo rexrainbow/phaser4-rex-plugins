@@ -1,4 +1,5 @@
 import { ITable } from './ITable';
+import { HasKey } from './Get';
 
 export function Set(
     table: ITable,
@@ -7,13 +8,15 @@ export function Set(
     value: any
 ): void {
 
-    let data = table.data;
-    if (data.hasOwnProperty(rowKey)) {
-        let row = data[rowKey];
-        if (row.hasOwnProperty(colKey)) {
-            row[colKey] = value;
-        }
+    if (!HasKey(table, rowKey, colKey)) {
+        return;
     }
+
+    let data = table.data;
+    if (!data.hasOwnProperty(rowKey)) {
+        data[rowKey] = {};
+    }
+    data[rowKey][colKey] = value;
 }
 
 export function Add(
@@ -23,11 +26,17 @@ export function Add(
     value: number = 1
 ): void {
 
-    var data = table.data;
-    if (data.hasOwnProperty(rowKey)) {
-        var row = data[rowKey];
-        if (row.hasOwnProperty(colKey)) {
-            row[colKey] += value;
-        }
+    if (!HasKey(table, rowKey, colKey)) {
+        return;
     }
+
+    let data = table.data;
+    if (!data.hasOwnProperty(rowKey)) {
+        data[rowKey] = {};
+    }
+    let row = data[rowKey];
+    if (!row.hasOwnProperty(colKey)) {
+        row[colKey] = 0;
+    }
+    row[colKey] += value;
 }

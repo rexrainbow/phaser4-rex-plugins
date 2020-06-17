@@ -139,21 +139,41 @@
         }
     }
 
-    function ConvertCol(table, colKey, callback = Convert, scope) {
-        if (Array.isArray(colKey)) {
-            for (let i = 0, cnt = colKey.length; i < cnt; i++) {
-                ConvertCol(table, colKey[i], callback, scope);
+    function Get(table, rowKey, colKey) {
+        let value = undefined;
+        let data = table.data;
+        if (data.hasOwnProperty(rowKey)) {
+            let row = data[rowKey];
+            if (row.hasOwnProperty(colKey)) {
+                value = row[colKey];
+            }
+        }
+        return value;
+    }
+    function HasRowKey(table, rowKey) {
+        return (table.rowKeys.indexOf(rowKey) !== -1);
+    }
+    function HasColKey(table, colKey) {
+        return (table.colKeys.indexOf(colKey) !== -1);
+    }
+    function HasKey(table, rowKey, colKey) {
+        return HasRowKey(table, rowKey) && HasColKey(table, colKey);
+    }
+
+    function ConvertRow(table, rowKey, callback = Convert, scope) {
+        if (Array.isArray(rowKey)) {
+            for (let i = 0, cnt = rowKey.length; i < cnt; i++) {
+                ConvertRow(table, rowKey[i], callback, scope);
             }
             return;
         }
-        if (table.colKeys.indexOf(colKey) === -1) {
+        if (!HasRowKey(table, rowKey)) {
             return;
         }
-        let data = table.data;
-        let row, rowKeys = table.rowKeys, rowKey, value;
-        for (let r = 0, rcnt = rowKeys.length; r < rcnt; r++) {
-            rowKey = rowKeys[r];
-            row = data[rowKey];
+        let row = table.data[rowKey];
+        let colKeys = table.colKeys, colKey, value;
+        for (let c = 0, ccnt = colKeys.length; c < ccnt; c++) {
+            colKey = colKeys[c];
             value = row[colKey];
             if (scope) {
                 value = callback.call(scope, value, rowKey, colKey, table);
@@ -164,17 +184,21 @@
             row[colKey] = value;
         }
     }
-    function ConvertRow(table, rowKey, callback = Convert, scope) {
-        if (Array.isArray(rowKey)) {
-            for (let i = 0, cnt = rowKey.length; i < cnt; i++) {
-                ConvertRow(table, rowKey[i], callback, scope);
+    function ConvertCol(table, colKey, callback = Convert, scope) {
+        if (Array.isArray(colKey)) {
+            for (let i = 0, cnt = colKey.length; i < cnt; i++) {
+                ConvertCol(table, colKey[i], callback, scope);
             }
             return;
         }
-        let row = table.data[rowKey];
-        let colKeys = table.colKeys, colKey, value;
-        for (let c = 0, ccnt = colKeys.length; c < ccnt; c++) {
-            colKey = colKeys[c];
+        if (!HasColKey(table, colKey)) {
+            return;
+        }
+        let data = table.data;
+        let row, rowKeys = table.rowKeys, rowKey, value;
+        for (let r = 0, rcnt = rowKeys.length; r < rcnt; r++) {
+            rowKey = rowKeys[r];
+            row = data[rowKey];
             value = row[colKey];
             if (scope) {
                 value = callback.call(scope, value, rowKey, colKey, table);
@@ -211,48 +235,33 @@
         }
     }
 
-    function Get(table, rowKey, colKey) {
-        let value = undefined;
-        let data = table.data;
-        if (data.hasOwnProperty(rowKey)) {
-            let row = data[rowKey];
-            if (row.hasOwnProperty(colKey)) {
-                value = row[colKey];
-            }
-        }
-        return value;
-    }
-    function HasRowKey(table, rowKey) {
-        return (table.rowKeys.indexOf(rowKey) !== -1);
-    }
-    function HasColKey(table, colKey) {
-        return (table.colKeys.indexOf(colKey) !== -1);
-    }
-    function HasKey(table, rowKey, colKey) {
-        return HasRowKey(table, rowKey) && HasColKey(table, colKey);
-    }
-
     function Set(table, rowKey, colKey, value) {
-        let data = table.data;
-        if (data.hasOwnProperty(rowKey)) {
-            let row = data[rowKey];
-            if (row.hasOwnProperty(colKey)) {
-                row[colKey] = value;
-            }
+        if (!HasKey(table, rowKey, colKey)) {
+            return;
         }
+        let data = table.data;
+        if (!data.hasOwnProperty(rowKey)) {
+            data[rowKey] = {};
+        }
+        data[rowKey][colKey] = value;
     }
     function Add(table, rowKey, colKey, value = 1) {
-        var data = table.data;
-        if (data.hasOwnProperty(rowKey)) {
-            var row = data[rowKey];
-            if (row.hasOwnProperty(colKey)) {
-                row[colKey] += value;
-            }
+        if (!HasKey(table, rowKey, colKey)) {
+            return;
         }
+        let data = table.data;
+        if (!data.hasOwnProperty(rowKey)) {
+            data[rowKey] = {};
+        }
+        let row = data[rowKey];
+        if (!row.hasOwnProperty(colKey)) {
+            row[colKey] = 0;
+        }
+        row[colKey] += value;
     }
 
     function AppendRow(table, rowKey, callback = 0, scope) {
-        if (table.rowKeys.indexOf(rowKey) !== -1) {
+        if (!HasRowKey(table, rowKey)) {
             return;
         }
         let isCallbackMode = (typeof (callback) === 'function');
@@ -278,7 +287,7 @@
         }
     }
     function AppendCol(table, colKey, callback = 0, scope) {
-        if (table.colKeys.indexOf(colKey) !== -1) {
+        if (!HasColKey(table, colKey)) {
             return;
         }
         let isCallbackMode = (typeof (callback) === 'function');
@@ -311,50 +320,6 @@
         SortMode[SortMode["logical_descending"] = 3] = "logical_descending";
     })(SortMode || (SortMode = {}));
 
-    function SortCol(table, callback, scope) {
-        let sortCallback;
-        if (typeof (callback) === 'function') {
-            if (scope) {
-                sortCallback = callback.bind(scope);
-            }
-            else {
-                sortCallback = callback;
-            }
-        }
-        else {
-            let colKey = callback;
-            if (table.colKeys.indexOf(colKey) === -1) {
-                return;
-            }
-            let mode = scope;
-            if (typeof (mode) === 'string') {
-                mode = SortMode[mode];
-            }
-            sortCallback = function (rowKeyA, rowKeyB) {
-                let valA = Get(table, rowKeyA, colKey);
-                let valB = Get(table, rowKeyB, colKey);
-                let retVal;
-                if ((mode === SortMode.logical_ascending) || (mode === SortMode.logical_descending)) {
-                    valA = parseFloat(valA);
-                    valB = parseFloat(valB);
-                }
-                switch (mode) {
-                    case SortMode.ascending:
-                    case SortMode.logical_ascending:
-                        retVal = (valA > valB) ? 1 :
-                            (valA < valB) ? -1 : 0;
-                        break;
-                    case SortMode.descending:
-                    case SortMode.logical_descending:
-                        retVal = (valA < valB) ? 1 :
-                            (valA > valB) ? -1 : 0;
-                        break;
-                }
-                return retVal;
-            };
-        }
-        table.rowKeys.sort(sortCallback);
-    }
     function SortRow(table, callback, scope) {
         let sortCallback;
         if (typeof (callback) === 'function') {
@@ -367,7 +332,7 @@
         }
         else {
             let rowKey = callback;
-            if (table.rowKeys.indexOf(rowKey) === -1) {
+            if (!HasRowKey(table, rowKey)) {
                 return;
             }
             let mode = scope;
@@ -398,6 +363,50 @@
             };
         }
         table.colKeys.sort(sortCallback);
+    }
+    function SortCol(table, callback, scope) {
+        let sortCallback;
+        if (typeof (callback) === 'function') {
+            if (scope) {
+                sortCallback = callback.bind(scope);
+            }
+            else {
+                sortCallback = callback;
+            }
+        }
+        else {
+            let colKey = callback;
+            if (!HasColKey(table, colKey)) {
+                return;
+            }
+            let mode = scope;
+            if (typeof (mode) === 'string') {
+                mode = SortMode[mode];
+            }
+            sortCallback = function (rowKeyA, rowKeyB) {
+                let valA = Get(table, rowKeyA, colKey);
+                let valB = Get(table, rowKeyB, colKey);
+                let retVal;
+                if ((mode === SortMode.logical_ascending) || (mode === SortMode.logical_descending)) {
+                    valA = parseFloat(valA);
+                    valB = parseFloat(valB);
+                }
+                switch (mode) {
+                    case SortMode.ascending:
+                    case SortMode.logical_ascending:
+                        retVal = (valA > valB) ? 1 :
+                            (valA < valB) ? -1 : 0;
+                        break;
+                    case SortMode.descending:
+                    case SortMode.logical_descending:
+                        retVal = (valA < valB) ? 1 :
+                            (valA > valB) ? -1 : 0;
+                        break;
+                }
+                return retVal;
+            };
+        }
+        table.rowKeys.sort(sortCallback);
     }
 
     function NextColKey(table, colKey, step = 1, wrap = true) {
@@ -432,7 +441,7 @@
     }
 
     function IsValueInRow(table, rowKey, value) {
-        if (table.rowKeys.indexOf(rowKey) === -1) {
+        if (!HasRowKey(table, rowKey)) {
             return false;
         }
         let row = table.data[rowKey];
@@ -446,7 +455,7 @@
         return false;
     }
     function IsValueInCol(table, colKey, value) {
-        if (table.colKeys.indexOf(colKey) === -1) {
+        if (!HasColKey(table, colKey)) {
             return false;
         }
         let data = table.data;
@@ -474,37 +483,68 @@
     class Table {
         /**
          * Creates an instance of Table.
-         * @param {IConfig} [config]
+         * @param {DataType} [data]
          * @memberof Table
          */
-        constructor(config) {
-            this.resetFromJSON(config);
+        constructor(data) {
+            this.data = {};
+            this.rowKeys = [];
+            this.colKeys = [];
+            this.cursor = { colKey: '', rowKey: '' };
+            if (data) {
+                this.fromJSON({ data: data });
+            }
         }
         /**
-         * Reset state of this table.
+         * Reset state.
          *
-         * @param {IConfig} [o]
+         * @param {IState} {
+         *         data = {},
+         *         row = undefined,
+         *         col = undefined,
+         *         cursor = undefined
+         *     }
          * @returns
          * @memberof Table
          */
-        resetFromJSON(o) {
-            let data, row, col, cursor;
-            ({
-                data = {},
-                row = [],
-                col = [],
-                cursor = { colKey: '', rowKey: '' }
-            } = o || {});
-            this.data = data;
-            this.rowKeys = row;
-            this.colKeys = col;
-            this.cursor = cursor;
+        fromJSON({ data = {}, row = undefined, col = undefined, cursor = undefined }) {
+            Clear(this);
+            // Assign rowKeys and colKeys
+            if ((row === undefined) || (col === undefined)) {
+                row = [];
+                col = [];
+                for (let rowKey in data) {
+                    row.push(rowKey);
+                }
+                if (row.length > 0) {
+                    let firstRow = data[row[0]];
+                    for (let colKey in firstRow) {
+                        col.push(colKey);
+                    }
+                }
+            }
+            Copy(this.rowKeys, row);
+            Copy(this.colKeys, col);
+            // Fill data
+            for (let j = 0, jcnt = row.length; j < jcnt; j++) {
+                let rowKey = row[j];
+                for (let i = 0, icnt = col.length; i < icnt; i++) {
+                    let colKey = col[i];
+                    Set(this, rowKey, colKey, data[rowKey][colKey]);
+                }
+            }
+            if (cursor) {
+                this.setCursor(cursor.rowKey, cursor.colKey);
+            }
+            else {
+                this.setCursor();
+            }
             return this;
         }
         /**
-         * Get state of this table.
+         * Get state.
          *
-         * @returns
+         * @returns {IState}
          * @memberof Table
          */
         toJSON() {

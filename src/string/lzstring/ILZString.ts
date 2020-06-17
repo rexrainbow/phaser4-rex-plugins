@@ -29,6 +29,12 @@ export interface IConfig {
     encoding?: EncodeType | EncodeTypeString;
 }
 
+export interface IState {
+
+    encoding?: EncodeType | EncodeTypeString;
+}
+
+
 export interface ILZString {
     encoding: number;
 

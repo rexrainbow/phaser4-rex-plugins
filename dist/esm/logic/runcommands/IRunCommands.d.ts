@@ -6,4 +6,4 @@ export interface IRunCommandConfig {
 export interface IRunCommandsConfig extends IRunCommandConfig {
     reverse?: boolean;
 }
-//# sourceMappingURL=IConfig.d.ts.map
+//# sourceMappingURL=IRunCommands.d.ts.map

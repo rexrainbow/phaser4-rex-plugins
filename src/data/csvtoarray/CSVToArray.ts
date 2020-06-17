@@ -1,16 +1,17 @@
-import { IConfig } from './IConfig';
+import { IConfig } from './ICSVToArray';
 import { CSVParser } from '../../utils/string/papaparse';
 
 /**
  * Conver csv-format string to an 2d array.
  *
- * @param {string} csvString Csv-format string
- * @param {IConfig} [config] Configuration.
- * @returns {any[]} An 2d array.
+ * @export
+ * @param {string} csvString
+ * @param {IConfig} [config={}]
+ * @returns {any[]}
  */
 export function CSVToArray(
     csvString: string,
-    config?: IConfig
+    config: IConfig = {}
 ): any[] {
 
     let delimiter: string,
@@ -18,7 +19,7 @@ export function CSVToArray(
     ({
         delimiter = ',',
         convert = true
-    } = config || {});
+    } = config);
 
     let arr: any[] = CSVParser.parse(csvString, {
         delimiter: delimiter,

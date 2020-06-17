@@ -1,9 +1,9 @@
-import { ILZString, IConfig, EncodeType, EncodeTypeString } from './ILZString';
+import { ILZString, IConfig, IState, EncodeType, EncodeTypeString } from './ILZString';
 export declare class LZString implements ILZString {
     encoding: number;
     constructor(config?: IConfig);
-    resetFromJSON(config?: IConfig): this;
-    toJSON(): object;
+    fromJSON({ encoding }: IState): this;
+    toJSON(): IState;
     setEncoding(m?: EncodeType | EncodeTypeString): this;
     compress(s: string): string;
     decompress(s: string): string;

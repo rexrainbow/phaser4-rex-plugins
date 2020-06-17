@@ -1,4 +1,5 @@
 import { ITable, AppendCallbackType } from './ITable';
+import { HasRowKey, HasColKey } from './Get';
 
 export function AppendRow(
     table: ITable,
@@ -7,7 +8,7 @@ export function AppendRow(
     scope?: object
 ): void {
 
-    if (table.rowKeys.indexOf(rowKey) !== -1) {
+    if (!HasRowKey(table, rowKey)) {
         return;
     }
 
@@ -42,7 +43,7 @@ export function AppendCol(
     scope?: object
 ): void {
 
-    if (table.colKeys.indexOf(colKey) !== -1) {
+    if (!HasColKey(table, colKey)) {
         return;
     }
 

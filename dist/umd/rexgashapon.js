@@ -93,49 +93,54 @@
      * @implements {IGashapon}
      */
     class Gashapon {
-        constructor(config) {
-            if (config === undefined) {
-                config = {};
-            }
-            this.resetFromJSON(config);
-        }
         /**
-         * Reset state.
-         *
-         * @param {IConfig} [config]
-         * @returns {this}
+         * Creates an instance of Gashapon.
+         * @param {IConfig} [config={}]
          * @memberof Gashapon
          */
-        resetFromJSON(config) {
-            let mode, reload, items, result, remainder, rnd;
+        constructor(config = {}) {
+            let mode, reload, items, rnd;
             ({
                 mode = Mode.shuffle,
                 reload = true,
                 items = {},
-                result = null,
-                remainder = undefined,
                 rnd = undefined
-            } = config || {});
-            if (this.items == undefined) {
-                this.items = {};
-            }
-            if (this.remainder == undefined) {
-                this.remainder = {};
-            }
-            if (this._list == undefined) {
-                this._list = [];
-            }
+            } = config);
+            this.items = {};
+            this.remainder = {};
+            this._list = [];
+            this.result = null;
             this.setMode(mode);
             this.setReload(reload);
             this.setRND(rnd);
-            // data
+            Object.assign(this.items, items);
+        }
+        /**
+         * Reset state.
+         *
+         * @param {IState} {
+         *         mode = Mode.shuffle,
+         *         reload = true,
+         *         items = {},
+         *         result = null,
+         *         remainder = undefined,
+         *         rnd = undefined
+         *     }
+         * @returns {this}
+         * @memberof Gashapon
+         */
+        fromJSON({ mode = Mode.shuffle, reload = true, items = {}, result = null, remainder = undefined, rnd = undefined }) {
+            this.setMode(mode);
+            this.setReload(reload);
+            this.setRND(rnd);
+            // Data
             this.items = Clone(items, this.items);
             this._list.length = 0;
-            // result
+            // Result
             this.result = result;
-            // flags
+            // Flags
             this._restartFlag = true; // force restart to rebuild this._list
-            // initialize
+            // Initialize
             if (this._restartFlag) {
                 this.startGen();
             }
@@ -145,9 +150,9 @@
             return this;
         }
         /**
-         * Get state of this instance.
+         * Get state.
          *
-         * @returns {object}
+         * @returns {IState}
          * @memberof Gashapon
          */
         toJSON() {
@@ -160,9 +165,7 @@
                 items: this.items,
                 remainder: this.remainder,
                 // Result
-                result: this.result,
-                // Flags
-                restart: true // Force restart to rebuild this._list
+                result: this.result
             };
         }
         ;

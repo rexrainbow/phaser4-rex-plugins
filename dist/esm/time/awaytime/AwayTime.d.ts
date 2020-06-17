@@ -1,5 +1,4 @@
-import { IAwayTime, State } from './IAwayTime';
-import { IConfig } from './IConfig';
+import { IAwayTime, IConfig, IState, State } from './IAwayTime';
 export declare class AwayTime implements IAwayTime {
     state: State;
     key: string;
@@ -7,8 +6,8 @@ export declare class AwayTime implements IAwayTime {
     timer: number;
     constructor(config?: IConfig);
     destroy(): void;
-    resetFromJSON(config?: IConfig): this;
-    toJSON(): object;
+    fromJSON({ key, period }: IState): this;
+    toJSON(): IState;
     get awayTime(): number;
     get curTime(): number;
     start(): this;

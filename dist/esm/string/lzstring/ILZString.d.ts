@@ -8,6 +8,9 @@ export declare type EncodeTypeString = 'none' | 'base64' | 'utf16' | 'uri';
 export interface IConfig {
     encoding?: EncodeType | EncodeTypeString;
 }
+export interface IState {
+    encoding?: EncodeType | EncodeTypeString;
+}
 export interface ILZString {
     encoding: number;
     setEncoding(m: EncodeType | EncodeTypeString): this;

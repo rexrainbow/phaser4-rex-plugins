@@ -20,8 +20,8 @@ export declare enum SortMode {
 }
 export declare type SortModeString = 'ascending' | 'descending' | 'logical_ascending' | 'logical_descending';
 export declare type SortCallback = (keyA: string, keyB: string) => number;
-export interface IConfig {
-    data?: DataType;
+export interface IState {
+    data: DataType;
     row?: KeyType;
     col?: KeyType;
     cursor?: CursorType;

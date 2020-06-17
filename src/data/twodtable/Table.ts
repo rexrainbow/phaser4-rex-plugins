@@ -1,7 +1,7 @@
 import {
     ITable,
     DataType, KeyType, CursorType,
-    IConfig, ILoadCSVConfig,
+    IState, ILoadCSVConfig,
     CellValueCallbackType, AppendCallbackType, EachKeyCallback,
     SortMode, SortModeString, SortCallback
 } from './ITable';
@@ -16,6 +16,7 @@ import { SortCol, SortRow } from './Sort';
 import { NextColKey, PreviousColKey, NextRowKey, PreviousRowKey } from './NextKey';
 import { IsValueInRow, IsValueInCol } from './Search';
 import { SetCursor } from './Cursor';
+import ArrayCopy from '../../utils/array/Copy'
 
 /**
  * A 2-Dimations table indexed by (rowKey, columnKey).
@@ -32,47 +33,82 @@ export class Table implements ITable {
 
     /**
      * Creates an instance of Table.
-     * @param {IConfig} [config]
+     * @param {DataType} [data]
      * @memberof Table
      */
-    constructor(config?: IConfig) {
-        this.resetFromJSON(config);
+    constructor(data?: DataType) {
+        this.data = {};
+        this.rowKeys = [];
+        this.colKeys = [];
+        this.cursor = { colKey: '', rowKey: '' };
+
+        if (data) {
+            this.fromJSON({ data: data });
+        }
     }
 
     /**
-     * Reset state of this table.
+     * Reset state.
      *
-     * @param {IConfig} [o]
+     * @param {IState} {
+     *         data = {},
+     *         row = undefined,
+     *         col = undefined,
+     *         cursor = undefined
+     *     }
      * @returns
      * @memberof Table
      */
-    resetFromJSON(o?: IConfig) {
+    fromJSON({
+        data = {},
+        row = undefined,
+        col = undefined,
+        cursor = undefined
+    }: IState) {
 
-        let data: DataType,
-            row: KeyType,
-            col: KeyType,
-            cursor: CursorType;
-        ({
-            data = {},
-            row =[],
-            col =[],
-            cursor = { colKey: '', rowKey: '' }
-        } = o || {})
+        Clear(this);
 
-        this.data = data;
-        this.rowKeys = row;
-        this.colKeys = col;
-        this.cursor = cursor;
+        // Assign rowKeys and colKeys
+        if ((row === undefined) || (col === undefined)) {
+            row = [];
+            col = [];
+            for (let rowKey in data) {
+                row.push(rowKey);
+            }
+            if (row.length > 0) {
+                let firstRow = data[row[0]];
+                for (let colKey in firstRow) {
+                    col.push(colKey);
+                }
+            }
+        }
+        ArrayCopy(this.rowKeys, row);
+        ArrayCopy(this.colKeys, col);
+
+        // Fill data
+        for (let j = 0, jcnt = row.length; j < jcnt; j++) {
+            let rowKey = row[j];
+            for (let i = 0, icnt = col.length; i < icnt; i++) {
+                let colKey = col[i];
+                Set(this, rowKey, colKey, data[rowKey][colKey]);
+            }
+        }
+
+        if (cursor) {
+            this.setCursor(cursor.rowKey, cursor.colKey);
+        } else {
+            this.setCursor();
+        }
         return this;
     }
 
     /**
-     * Get state of this table.
+     * Get state.
      *
-     * @returns
+     * @returns {IState}
      * @memberof Table
      */
-    toJSON() {
+    toJSON(): IState {
         return {
             data: this.data,
             row: this.rowKeys,

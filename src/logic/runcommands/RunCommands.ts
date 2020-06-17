@@ -1,23 +1,20 @@
-import { IRunCommandsConfig } from './IConfig';
+import { IRunCommandsConfig } from './IRunCommands';
 import { RunCommand } from './RunCommand';
 
 /**
- * Run callbacks from command queue.
+ * Invoke callbacks from command queue.
  *
+ * @export
  * @param {any[]} queue Commands queue, a single array `[fnName, ...param]` for a callback, or an array of callbacks.
- * @param {object} scope 
- * @param {IRunCommandsConfig} [config] Configuration.
+ * @param {object} scope
+ * @param {IRunCommandsConfig} [config={}]
  * @returns {*}
  */
 export function RunCommands(
     queue: any[],
     scope: object,
-    config?: IRunCommandsConfig
+    config: IRunCommandsConfig = {}
 ): any {
-
-    if (config === undefined) {
-        config = {};
-    }
 
     let retVal: any;
     if (Array.isArray(queue[0])) {

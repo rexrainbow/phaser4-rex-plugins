@@ -39,31 +39,33 @@
 	class LZString {
 	    /**
 	     * Creates an instance of LZString.
-	     * @param {IConfig} [config]
+	     * @param {IConfig} [config={}]
 	     * @memberof LZString
 	     */
-	    constructor(config) {
-	        this.resetFromJSON(config);
+	    constructor(config = {}) {
+	        let encoding;
+	        ({
+	            encoding = EncodeType.none
+	        } = config);
+	        this.setEncoding(encoding);
 	    }
 	    /**
 	     * Reset state.
 	     *
-	     * @param {IConfig} [config]
+	     * @param {IState} {
+	     *         encoding = EncodeType.none
+	     *     }
 	     * @returns {this}
 	     * @memberof LZString
 	     */
-	    resetFromJSON(config) {
-	        let encoding;
-	        ({
-	            encoding = EncodeType.none
-	        } = config || {});
+	    fromJSON({ encoding = EncodeType.none }) {
 	        this.setEncoding(encoding);
 	        return this;
 	    }
 	    /**
-	     * Get state of this instance.
+	     * Get state.
 	     *
-	     * @returns {object} State
+	     * @returns {IState} State
 	     * @memberof LZString
 	     */
 	    toJSON() {
@@ -74,7 +76,7 @@
 	    /**
 	     * Set encoding type.
 	     *
-	     * @param {EncodeType} [m=EncodeType.none] Encoding type
+	     * @param {(EncodeType | EncodeTypeString)} [m=EncodeType.none]
 	     * @returns {this}
 	     * @memberof LZString
 	     */

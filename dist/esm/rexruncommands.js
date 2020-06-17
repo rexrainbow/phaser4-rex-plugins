@@ -28,12 +28,12 @@ function GetValue(source, key, defaultValue) {
     }
 }
 
-function RunCommand(cmd, scope, config) {
+function RunCommand(cmd, scope, config = {}) {
     let argsConvert, argsConvertScope;
     ({
         argsConvert = false,
         argsConvertScope = undefined
-    } = config || {});
+    } = config);
     let fnName, fnArgs;
     ([fnName, ...fnArgs] = cmd);
     if (argsConvert) {
@@ -64,10 +64,7 @@ function RunCommand(cmd, scope, config) {
     return retValue;
 }
 
-function RunCommands(queue, scope, config) {
-    if (config === undefined) {
-        config = {};
-    }
+function RunCommands(queue, scope, config = {}) {
     let retVal;
     if (Array.isArray(queue[0])) {
         let reverse;

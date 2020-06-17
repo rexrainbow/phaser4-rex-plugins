@@ -1,4 +1,4 @@
-import { IGashapon, IConfig, Mode, ModeString, ItemType, RNDObjType } from './IGashapon';
+import { IGashapon, IConfig, IState, Mode, ModeString, ItemType, RNDObjType } from './IGashapon';
 export declare class Gashapon implements IGashapon {
     mode: Mode;
     items: ItemType;
@@ -9,8 +9,8 @@ export declare class Gashapon implements IGashapon {
     private _restartFlag;
     private _list;
     constructor(config?: IConfig);
-    resetFromJSON(config?: IConfig): this;
-    toJSON(): object;
+    fromJSON({ mode, reload, items, result, remainder, rnd }: IState): this;
+    toJSON(): IState;
     setMode(m: Mode | ModeString): this;
     setReload(isReload?: boolean): this;
     setRND(rnd?: RNDObjType): this;

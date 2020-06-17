@@ -1,4 +1,5 @@
 import { ITable } from "./ITable";
+import { HasRowKey, HasColKey } from './Get';
 
 export function IsValueInRow(
     table: ITable,
@@ -6,7 +7,7 @@ export function IsValueInRow(
     value: any
 ): boolean {
 
-    if (table.rowKeys.indexOf(rowKey) === -1) {
+    if (!HasRowKey(table, rowKey)) {
         return false;
     }
 
@@ -29,7 +30,7 @@ export function IsValueInCol(
     value: any
 ): boolean {
 
-    if (table.colKeys.indexOf(colKey) === -1) {
+    if (!HasColKey(table, colKey)) {
         return false;
     }
 

@@ -5,18 +5,20 @@ var State;
 })(State || (State = {}));
 
 class AwayTime {
-    constructor(config) {
-        this.resetFromJSON(config);
-    }
-    destroy() {
-        this.stop();
-    }
-    resetFromJSON(config) {
+    constructor(config = {}) {
         let key, period;
         ({
             key = 'away',
             period = 1000
         } = config || {});
+        this.state = State.IDLE;
+        this.setKey(key);
+        this.setPeriod(period);
+    }
+    destroy() {
+        this.stop();
+    }
+    fromJSON({ key = 'away', period = 1000 }) {
         this.state = State.IDLE;
         this.setKey(key);
         this.setPeriod(period);

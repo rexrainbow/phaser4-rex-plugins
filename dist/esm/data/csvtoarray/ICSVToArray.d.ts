@@ -2,4 +2,4 @@ export interface IConfig {
     delimiter?: string;
     convert?: boolean;
 }
-//# sourceMappingURL=IConfig.d.ts.map
+//# sourceMappingURL=ICSVToArray.d.ts.map
