@@ -12,7 +12,7 @@
         "build": "rollup -c rollup.config.build.js",
         "watch": "rollup -c rollup.config.preview.js -w",
         "dev": "npm-run-all --parallel start watch",
-        "start": "serve public"
+        "start": "serve public -p 3000"
     },
     "repository": {
         "type": "git",
