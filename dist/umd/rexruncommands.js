@@ -82,11 +82,7 @@
      * @returns {*}
      */
     function RunCommand(cmd, scope, config = {}) {
-        let argsConvert, argsConvertScope;
-        ({
-            argsConvert = false,
-            argsConvertScope = undefined
-        } = config);
+        let { argsConvert = false, argsConvertScope = undefined } = config;
         let fnName, fnArgs;
         ([fnName, ...fnArgs] = cmd);
         if (argsConvert) {
@@ -130,8 +126,7 @@
     function RunCommands(queue, scope, config = {}) {
         let retVal;
         if (Array.isArray(queue[0])) {
-            let reverse;
-            ({ reverse = false } = config);
+            let { reverse = false } = config;
             if (!reverse) {
                 for (let i = 0, cnt = queue.length; i < cnt; i++) {
                     retVal = RunCommands(queue[i], scope, config);

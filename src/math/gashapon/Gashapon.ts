@@ -29,16 +29,12 @@ export class Gashapon implements IGashapon {
      */
     constructor(config: IConfig = {}) {
 
-        let mode: Mode | ModeString,
-            reload: boolean,
-            items: ItemType,
-            rnd: RNDObjType | undefined;
-        ({
+        let {
             mode = Mode.shuffle,
             reload = true,
             items = {},
             rnd = undefined
-        } = config)
+        } = config
 
         this.items = {};
         this.remainder = {};

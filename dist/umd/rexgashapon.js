@@ -99,13 +99,7 @@
          * @memberof Gashapon
          */
         constructor(config = {}) {
-            let mode, reload, items, rnd;
-            ({
-                mode = Mode.shuffle,
-                reload = true,
-                items = {},
-                rnd = undefined
-            } = config);
+            let { mode = Mode.shuffle, reload = true, items = {}, rnd = undefined } = config;
             this.items = {};
             this.remainder = {};
             this._list = [];

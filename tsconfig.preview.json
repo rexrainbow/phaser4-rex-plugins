@@ -5,7 +5,8 @@
         "allowSyntheticDefaultImports": true
     },
     "include": [
-        "**/*"
+        "src/**/*",
+        "examples/**/*"
     ],
     "exclude": [
         "node_modules",

@@ -18,8 +18,7 @@ export function RunCommands(
 
     let retVal: any;
     if (Array.isArray(queue[0])) {
-        let reverse: boolean;
-        ({ reverse = false } = config);
+        let { reverse = false } = config;
 
         if (!reverse) {
             for (let i = 0, cnt = queue.length; i < cnt; i++) {

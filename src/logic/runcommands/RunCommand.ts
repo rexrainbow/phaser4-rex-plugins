@@ -17,12 +17,10 @@ export function RunCommand(
     config: IRunCommandConfig = {}
 ): any {
 
-    let argsConvert: ArgConvertCallbackType | boolean,
-        argsConvertScope: object | undefined;
-    ({
+    let {
         argsConvert = false,
         argsConvertScope = undefined
-    } = config);
+    } = config;
 
     let fnName: string,
         fnArgs: any[];

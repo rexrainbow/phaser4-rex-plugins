@@ -12,10 +12,9 @@ export class LZString implements ILZString {
      */
     constructor(config: IConfig = {}) {
 
-        let encoding: EncodeType | EncodeTypeString;
-        ({
+        let {
             encoding = EncodeType.none
-        } = config)
+        } = config
         this.setEncoding(encoding);
     }
 

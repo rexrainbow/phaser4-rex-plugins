@@ -43,10 +43,7 @@
 	     * @memberof LZString
 	     */
 	    constructor(config = {}) {
-	        let encoding;
-	        ({
-	            encoding = EncodeType.none
-	        } = config);
+	        let { encoding = EncodeType.none } = config;
 	        this.setEncoding(encoding);
 	    }
 	    /**

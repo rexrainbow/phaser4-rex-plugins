@@ -22,11 +22,7 @@
          * @memberof AwayTime
          */
         constructor(config = {}) {
-            let key, period;
-            ({
-                key = 'away',
-                period = 1000
-            } = config || {});
+            let { key = 'away', period = 1000 } = config;
             this.state = State.IDLE;
             this.setKey(key);
             this.setPeriod(period);

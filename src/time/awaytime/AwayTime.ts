@@ -18,12 +18,10 @@ export class AwayTime implements IAwayTime {
      */
     constructor(config: IConfig = {}) {
 
-        let key: string,
-            period: number;
-        ({
+        let {
             key='away',
             period=1000
-        } = config || {})
+        } = config;
 
         this.state = State.IDLE;
         this.setKey(key);
