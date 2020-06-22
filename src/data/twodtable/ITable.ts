@@ -22,7 +22,7 @@ export type SortModeString = 'ascending' | 'descending' | 'logical_ascending' | 
 export type SortCallback = (keyA: string, keyB: string) => number;
 
 export interface IState {
-    data: DataType;
+    data?: DataType;
     row?: KeyType;
     col?: KeyType;
     cursor?: CursorType;

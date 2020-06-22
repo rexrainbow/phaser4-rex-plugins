@@ -18,11 +18,13 @@
     class AwayTime {
         /**
          * Creates an instance of AwayTime.
-         * @param {IConfig} [config={}]
+         * @param {IConfig} [{
+         *         key = 'away',
+         *         period = 1000
+         *     }={}]
          * @memberof AwayTime
          */
-        constructor(config = {}) {
-            let { key = 'away', period = 1000 } = config;
+        constructor({ key = 'away', period = 1000 } = {}) {
             this.state = State.IDLE;
             this.setKey(key);
             this.setPeriod(period);
@@ -38,11 +40,14 @@
         /**
          * Reset state.
          *
-         * @param {IState} [config]
+         * @param {IState} [{
+         *         key = 'away',
+         *         period = 1000
+         *     }={}]
          * @returns {this}
          * @memberof AwayTime
          */
-        fromJSON({ key = 'away', period = 1000 }) {
+        fromJSON({ key = 'away', period = 1000 } = {}) {
             this.state = State.IDLE;
             this.setKey(key);
             this.setPeriod(period);

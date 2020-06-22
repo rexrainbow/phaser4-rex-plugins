@@ -24,17 +24,20 @@ export class Gashapon implements IGashapon {
 
     /**
      * Creates an instance of Gashapon.
-     * @param {IConfig} [config={}]
+     * @param {IConfig} [{
+     *         mode = Mode.shuffle,
+     *         reload = true,
+     *         items = {},
+     *         rnd = undefined
+     *     }={}]
      * @memberof Gashapon
      */
-    constructor(config: IConfig = {}) {
-
-        let {
-            mode = Mode.shuffle,
-            reload = true,
-            items = {},
-            rnd = undefined
-        } = config
+    constructor({
+        mode = Mode.shuffle,
+        reload = true,
+        items = {},
+        rnd = undefined
+    }: IConfig = {}) {
 
         this.items = {};
         this.remainder = {};
@@ -50,14 +53,14 @@ export class Gashapon implements IGashapon {
     /**
      * Reset state.
      *
-     * @param {IState} {
+     * @param {IState} [{
      *         mode = Mode.shuffle,
      *         reload = true,
      *         items = {},
      *         result = null,
      *         remainder = undefined,
      *         rnd = undefined
-     *     }
+     *     }={}]
      * @returns {this}
      * @memberof Gashapon
      */
@@ -68,7 +71,7 @@ export class Gashapon implements IGashapon {
         result = null,
         remainder = undefined,
         rnd = undefined
-    }: IState): this {
+    }: IState = {}): this {
 
         this.setMode(mode);
         this.setReload(reload);

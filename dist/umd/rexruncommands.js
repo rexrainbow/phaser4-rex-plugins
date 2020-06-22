@@ -81,8 +81,7 @@
      * @param {IRunCommandConfig} [config={}]
      * @returns {*}
      */
-    function RunCommand(cmd, scope, config = {}) {
-        let { argsConvert = false, argsConvertScope = undefined } = config;
+    function RunCommand(cmd, scope, { argsConvert = false, argsConvertScope = undefined } = {}) {
         let fnName, fnArgs;
         ([fnName, ...fnArgs] = cmd);
         if (argsConvert) {
@@ -123,10 +122,10 @@
      * @param {IRunCommandsConfig} [config={}]
      * @returns {*}
      */
-    function RunCommands(queue, scope, config = {}) {
+    function RunCommands(queue, scope, { reverse = false } = {}) {
+        let config = arguments[2];
         let retVal;
         if (Array.isArray(queue[0])) {
-            let { reverse = false } = config;
             if (!reverse) {
                 for (let i = 0, cnt = queue.length; i < cnt; i++) {
                     retVal = RunCommands(queue[i], scope, config);

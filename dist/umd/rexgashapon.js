@@ -95,11 +95,15 @@
     class Gashapon {
         /**
          * Creates an instance of Gashapon.
-         * @param {IConfig} [config={}]
+         * @param {IConfig} [{
+         *         mode = Mode.shuffle,
+         *         reload = true,
+         *         items = {},
+         *         rnd = undefined
+         *     }={}]
          * @memberof Gashapon
          */
-        constructor(config = {}) {
-            let { mode = Mode.shuffle, reload = true, items = {}, rnd = undefined } = config;
+        constructor({ mode = Mode.shuffle, reload = true, items = {}, rnd = undefined } = {}) {
             this.items = {};
             this.remainder = {};
             this._list = [];
@@ -112,18 +116,18 @@
         /**
          * Reset state.
          *
-         * @param {IState} {
+         * @param {IState} [{
          *         mode = Mode.shuffle,
          *         reload = true,
          *         items = {},
          *         result = null,
          *         remainder = undefined,
          *         rnd = undefined
-         *     }
+         *     }={}]
          * @returns {this}
          * @memberof Gashapon
          */
-        fromJSON({ mode = Mode.shuffle, reload = true, items = {}, result = null, remainder = undefined, rnd = undefined }) {
+        fromJSON({ mode = Mode.shuffle, reload = true, items = {}, result = null, remainder = undefined, rnd = undefined } = {}) {
             this.setMode(mode);
             this.setReload(reload);
             this.setRND(rnd);

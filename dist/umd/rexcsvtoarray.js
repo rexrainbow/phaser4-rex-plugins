@@ -31,19 +31,17 @@
 	});
 
 	/**
-	 * Conver csv-format string to an 2d array.
+	 * onver csv-format string to an 2d array.
 	 *
 	 * @export
 	 * @param {string} csvString
-	 * @param {IConfig} [config={}]
+	 * @param {IConfig} [{
+	 *         delimiter = ',',
+	 *         convert = true
+	 *     }={}]
 	 * @returns {any[]}
 	 */
-	function CSVToArray(csvString, config = {}) {
-	    let delimiter, convert;
-	    ({
-	        delimiter = ',',
-	        convert = true
-	    } = config);
+	function CSVToArray(csvString, { delimiter = ',', convert = true } = {}) {
 	    let arr = papaparse_min.parse(csvString, {
 	        delimiter: delimiter,
 	        dynamicTyping: convert

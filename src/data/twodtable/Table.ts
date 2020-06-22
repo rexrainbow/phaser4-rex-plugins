@@ -50,12 +50,12 @@ export class Table implements ITable {
     /**
      * Reset state.
      *
-     * @param {IState} {
+     * @param {IState} [{
      *         data = {},
      *         row = undefined,
      *         col = undefined,
      *         cursor = undefined
-     *     }
+     *     }={}]
      * @returns
      * @memberof Table
      */
@@ -64,7 +64,7 @@ export class Table implements ITable {
         row = undefined,
         col = undefined,
         cursor = undefined
-    }: IState) {
+    }: IState = {}) {
 
         Clear(this);
 

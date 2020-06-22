@@ -13,15 +13,16 @@ export class AwayTime implements IAwayTime {
 
     /**
      * Creates an instance of AwayTime.
-     * @param {IConfig} [config={}]
+     * @param {IConfig} [{
+     *         key = 'away',
+     *         period = 1000
+     *     }={}]
      * @memberof AwayTime
      */
-    constructor(config: IConfig = {}) {
-
-        let {
-            key='away',
-            period=1000
-        } = config;
+    constructor({
+        key = 'away',
+        period = 1000
+    }: IConfig = {}) {
 
         this.state = State.IDLE;
         this.setKey(key);
@@ -40,14 +41,17 @@ export class AwayTime implements IAwayTime {
     /**
      * Reset state.
      *
-     * @param {IState} [config]
+     * @param {IState} [{
+     *         key = 'away',
+     *         period = 1000
+     *     }={}]
      * @returns {this}
      * @memberof AwayTime
      */
     fromJSON({
         key = 'away',
         period = 1000
-    }: IState): this {
+    }: IState = {}): this {
 
         this.state = State.IDLE;
         this.setKey(key);

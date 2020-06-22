@@ -498,16 +498,16 @@
         /**
          * Reset state.
          *
-         * @param {IState} {
+         * @param {IState} [{
          *         data = {},
          *         row = undefined,
          *         col = undefined,
          *         cursor = undefined
-         *     }
+         *     }={}]
          * @returns
          * @memberof Table
          */
-        fromJSON({ data = {}, row = undefined, col = undefined, cursor = undefined }) {
+        fromJSON({ data = {}, row = undefined, col = undefined, cursor = undefined } = {}) {
             Clear(this);
             // Assign rowKeys and colKeys
             if ((row === undefined) || (col === undefined)) {

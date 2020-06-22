@@ -14,13 +14,11 @@ import GetValue from '../../utils/object/GetValue';
 export function RunCommand(
     cmd: any[],
     scope: object,
-    config: IRunCommandConfig = {}
-): any {
-
-    let {
+    {
         argsConvert = false,
         argsConvertScope = undefined
-    } = config;
+    }: IRunCommandConfig = {}
+): any {
 
     let fnName: string,
         fnArgs: any[];

@@ -13,12 +13,14 @@ import { RunCommand } from './RunCommand';
 export function RunCommands(
     queue: any[],
     scope: object,
-    config: IRunCommandsConfig = {}
+    {
+        reverse = false
+    }: IRunCommandsConfig = {}
 ): any {
 
+    let config = arguments[2];
     let retVal: any;
     if (Array.isArray(queue[0])) {
-        let { reverse = false } = config;
 
         if (!reverse) {
             for (let i = 0, cnt = queue.length; i < cnt; i++) {

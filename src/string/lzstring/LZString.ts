@@ -7,29 +7,30 @@ export class LZString implements ILZString {
 
     /**
      * Creates an instance of LZString.
-     * @param {IConfig} [config={}]
+     * @param {IConfig} [{
+     *         encoding = EncodeType.none
+     *     }={}]
      * @memberof LZString
      */
-    constructor(config: IConfig = {}) {
+    constructor({
+        encoding = EncodeType.none
+    }: IConfig = {}) {
 
-        let {
-            encoding = EncodeType.none
-        } = config
         this.setEncoding(encoding);
     }
 
     /**
      * Reset state.
      *
-     * @param {IState} {
+     * @param {IState} [{
      *         encoding = EncodeType.none
-     *     }
+     *     }={}]
      * @returns {this}
      * @memberof LZString
      */
     fromJSON({
         encoding = EncodeType.none
-    }: IState): this {
+    }: IState = {}): this {
 
         this.setEncoding(encoding);
         return this;
