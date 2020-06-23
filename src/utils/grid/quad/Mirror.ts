@@ -1,7 +1,9 @@
+import { IQuad } from './IQuad';
 import { PositionType } from '../../types/PositionType';
 import { MirrorMode, MirrorModeString } from '../MirrorMode';
 
 export function Mirror(
+    quad: IQuad,
     srcTileXY: PositionType,
     mode: number | MirrorMode | MirrorModeString,
     out: PositionType | true = {}

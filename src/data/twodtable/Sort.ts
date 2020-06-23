@@ -1,7 +1,7 @@
 import { ITable, SortMode, SortModeString, SortCallback } from './ITable';
 import { Get, HasRowKey, HasColKey } from './Get';
 
-export function SortRow(
+export let SortRow = function (
     table: ITable,
     callback: SortCallback | string,
     scope?: object | SortMode | SortModeString
@@ -52,7 +52,7 @@ export function SortRow(
     table.colKeys.sort(sortCallback);
 }
 
-export function SortCol(
+export let SortCol = function (
     table: ITable,
     callback: SortCallback | string,
     scope?: object | SortMode | SortModeString

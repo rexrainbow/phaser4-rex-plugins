@@ -2,7 +2,7 @@ import { ITable, RowType, CellValueCallbackType } from './ITable';
 import { DefaultTypeConvert } from './TypeConvert';
 import { HasRowKey, HasColKey } from './Get';
 
-export function ConvertRow(
+export let ConvertRow = function (
     table: ITable,
     rowKey: string | string[],
     callback: CellValueCallbackType = DefaultTypeConvert,
@@ -37,7 +37,7 @@ export function ConvertRow(
     }
 }
 
-export function ConvertCol(
+export let ConvertCol = function (
     table: ITable,
     colKey: string | string[],
     callback: CellValueCallbackType = DefaultTypeConvert,

@@ -1,6 +1,6 @@
 import { ITable } from './ITable';
 
-export function NextColKey(
+export let NextColKey = function (
     table: ITable,
     colKey: string,
     step: number = 1,
@@ -19,7 +19,7 @@ export function NextColKey(
     return colKeys[idx];
 }
 
-export function PreviousColKey(
+export let PreviousColKey = function (
     table: ITable,
     colKey: string,
     step: number = 1,
@@ -29,7 +29,7 @@ export function PreviousColKey(
     return NextColKey(table, colKey, -step, wrap);
 }
 
-export function NextRowKey(
+export let NextRowKey = function (
     table: ITable,
     rowKey: string,
     step: number = 1,
@@ -48,7 +48,7 @@ export function NextRowKey(
     return rowKeys[idx];
 }
 
-export function PreviousRowKey(
+export let PreviousRowKey = function (
     table: ITable,
     rowKey: string,
     step: number = 1,

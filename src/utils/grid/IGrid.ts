@@ -9,3 +9,15 @@ export interface IGrid {
     mode: number,
     directions: number
 };
+
+import { PositionType } from '../types/PositionType';
+
+export interface IRotateCallback {
+    (
+        grid: IGrid,
+        srcTileXY: PositionType,
+        dir: number,
+        out?: PositionType | true
+    )
+        : PositionType;
+};

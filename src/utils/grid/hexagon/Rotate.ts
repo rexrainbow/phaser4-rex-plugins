@@ -1,15 +1,16 @@
 import { IHexagon } from './IHexagon';
+import { IRotateCallback } from '../IGrid';
 import { PositionType } from '../../types/PositionType';
 import { cr2cube, cube2cr } from './CubeTransfer';
 
 import { Wrap } from '../../math/Wrap';
 
-export function Rotate(
+export let Rotate: IRotateCallback = function (
     hexagon: IHexagon,
-    srcTileXY: PositionType,
-    dir: number,
-    out: PositionType | true = {}
-): PositionType {
+    srcTileXY,
+    dir,
+    out = {}
+) {
 
     if (out === true) {
         out = globTileXY;

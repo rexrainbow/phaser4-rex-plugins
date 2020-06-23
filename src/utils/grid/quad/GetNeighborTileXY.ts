@@ -8,5 +8,6 @@ export function GetNeighborTileXY(
     direction: number,
     out: PositionType | true = {}
 ): PositionType {
+
     return GetTileXAtDirection(quad, srcTileXY, direction, 1, out);
 }

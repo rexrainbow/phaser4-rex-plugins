@@ -1,6 +1,8 @@
+import { IQuad } from './IQuad';
 import { PositionType } from '../../types/PositionType'
 
 export function Offset(
+    quad: IQuad,
     srcTileXY: PositionType,
     offsetTileX: number,
     offsetTileY: number,

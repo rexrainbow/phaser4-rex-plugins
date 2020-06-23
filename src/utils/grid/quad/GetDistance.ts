@@ -1,6 +1,8 @@
+import { IQuad } from './IQuad';
 import { PositionType } from '../../types/PositionType'
 
 export function GetDistance(
+    quad: IQuad,
     tileA: PositionType,
     tileB: PositionType,
     roughMode: boolean = false

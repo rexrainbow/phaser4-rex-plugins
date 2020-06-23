@@ -1,7 +1,7 @@
 import { ITable, AppendCallbackType } from './ITable';
 import { HasRowKey, HasColKey } from './Get';
 
-export function AppendRow(
+export let AppendRow = function (
     table: ITable,
     rowKey: string,
     callback: AppendCallbackType | any = 0,
@@ -36,7 +36,7 @@ export function AppendRow(
     }
 }
 
-export function AppendCol(
+export let AppendCol = function (
     table: ITable,
     colKey: string,
     callback: AppendCallbackType | any = 0,

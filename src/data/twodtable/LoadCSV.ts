@@ -4,7 +4,7 @@ import { CSVParser } from '../../utils/string/papaparse';
 import { Clear } from './Remove';
 import ArrayCopy from '../../utils/array/Copy';
 
-export function LoadCSV(
+export let LoadCSV = function (
     table: ITable,
     csvString: string,
     config?: ILoadCSVConfig

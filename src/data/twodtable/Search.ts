@@ -1,7 +1,7 @@
 import { ITable } from "./ITable";
 import { HasRowKey, HasColKey } from './Get';
 
-export function IsValueInRow(
+export let IsValueInRow = function (
     table: ITable,
     rowKey: string,
     value: any
@@ -24,7 +24,7 @@ export function IsValueInRow(
     return false;
 }
 
-export function IsValueInCol(
+export let IsValueInCol = function (
     table: ITable,
     colKey: string,
     value: any

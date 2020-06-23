@@ -1,6 +1,6 @@
 import { ITable } from './ITable';
 
-export function Clear(
+export let Clear = function (
     table: ITable
 ) {
     let data = table.data;
@@ -11,7 +11,7 @@ export function Clear(
     table.colKeys.length = 0;
 }
 
-export function RemoveRow(
+export let RemoveRow = function (
     table: ITable,
     rowKey: string
 ): void {
@@ -24,7 +24,7 @@ export function RemoveRow(
     delete table.data[rowKey];
 }
 
-export function RemoveCol(
+export let RemoveCol = function (
     table: ITable,
     colKey: string
 ): void {

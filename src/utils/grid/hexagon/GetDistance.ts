@@ -6,7 +6,7 @@ export function GetDistance(
     hexagon: IHexagon,
     tileA: PositionType,
     tileB: PositionType,
-    roughMode?: boolean
+    roughMode: boolean = false
 ): number {
 
     cr2cube(hexagon.mode, tileA.x, tileA.y, globCubeA);

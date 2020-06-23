@@ -1,6 +1,6 @@
 import { ITable } from './ITable';
 
-export function Get(
+export let Get = function (
     table: ITable,
     rowKey: string,
     colKey: string
@@ -18,7 +18,7 @@ export function Get(
     return value;
 }
 
-export function HasRowKey(
+export let HasRowKey = function (
     table: ITable,
     rowKey: string
 ): boolean {
@@ -26,7 +26,7 @@ export function HasRowKey(
     return (table.rowKeys.indexOf(rowKey) !== -1);
 }
 
-export function HasColKey(
+export let HasColKey = function (
     table: ITable,
     colKey: string
 ): boolean {
@@ -34,7 +34,7 @@ export function HasColKey(
     return (table.colKeys.indexOf(colKey) !== -1);
 }
 
-export function HasKey(
+export let HasKey = function (
     table: ITable,
     rowKey: string,
     colKey: string

@@ -1,7 +1,7 @@
 import { ITable } from './ITable';
 import { HasKey } from './Get';
 
-export function Set(
+export let Set = function (
     table: ITable,
     rowKey: string,
     colKey: string,
@@ -19,7 +19,7 @@ export function Set(
     data[rowKey][colKey] = value;
 }
 
-export function Add(
+export let Add = function (
     table: ITable,
     rowKey: string,
     colKey: string,
