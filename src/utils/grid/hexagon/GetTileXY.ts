@@ -1,16 +1,17 @@
 import { IHexagon, LayoutMode } from './IHexagon';
+import { IGetTileXY } from '../IGrid';
 import { PositionType } from '../../types/PositionType';
 import { qr2cube, roundcube, cube2cr, CubeType } from './CubeTransfer';
 
 const C_4div3 = (4 / 3);
 const C_2div3 = (2 / 3);
 
-export function GetTileXY(
+export let GetTileXY: IGetTileXY = function (
     hexagon: IHexagon,
-    worldX: number | PositionType,
-    worldY?: number,
-    out: PositionType | true = {}
-): PositionType {
+    worldX,
+    worldY,
+    out = {}
+) {
 
     if (typeof (worldX) === 'object') {
         worldY = worldX.y;

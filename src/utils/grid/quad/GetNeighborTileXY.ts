@@ -1,13 +1,13 @@
 import { IQuad } from './IQuad';
-import { PositionType } from '../../types/PositionType';
+import { IGetNeighborTileXY } from '../IGrid';
 import { GetTileXAtDirection } from './GetTileXYAtDirection';
 
-export function GetNeighborTileXY(
+export let GetNeighborTileXY: IGetNeighborTileXY = function (
     quad: IQuad,
-    srcTileXY: PositionType,
-    direction: number,
-    out: PositionType | true = {}
-): PositionType {
+    srcTileXY,
+    direction,
+    out = {}
+) {
 
     return GetTileXAtDirection(quad, srcTileXY, direction, 1, out);
 }

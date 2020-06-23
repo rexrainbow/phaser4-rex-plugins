@@ -1,12 +1,13 @@
-import { IQuad, LayoutMode } from './IQuad'
+import { IQuad, LayoutMode } from './IQuad';
+import { IGetTileXY } from '../IGrid';
 import { PositionType } from '../../types/PositionType';
 
-export function GetTileXY(
+export let GetTileXY: IGetTileXY = function (
     quad: IQuad,
-    worldX: number | PositionType,
-    worldY?: number,
-    out: PositionType | true = {}
-): PositionType {
+    worldX,
+    worldY,
+    out = {}
+) {
 
     if (typeof (worldX) === 'object') {
         worldY = worldX.y;

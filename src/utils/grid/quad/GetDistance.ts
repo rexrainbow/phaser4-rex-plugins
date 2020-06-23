@@ -1,12 +1,12 @@
 import { IQuad } from './IQuad';
-import { PositionType } from '../../types/PositionType'
+import { IGetDistance } from '../IGrid';
 
-export function GetDistance(
+export let GetDistance: IGetDistance = function (
     quad: IQuad,
-    tileA: PositionType,
-    tileB: PositionType,
-    roughMode: boolean = false
-): number {
+    tileA,
+    tileB,
+    roughMode = false
+) {
 
     let dx = tileB.x - tileA.x;
     let dy = tileB.y - tileA.y;

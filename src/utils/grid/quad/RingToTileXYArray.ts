@@ -1,17 +1,14 @@
 import { IQuad } from './IQuad';
+import { IRingToTileXYArray } from '../IGrid';
 import { PositionType } from '../../types/PositionType';
 import { Offset } from './Offset';
 
-export function RingToTileXYArray(
+export let RingToTileXYArray: IRingToTileXYArray = function (
     quad: IQuad,
-    centerTileXY: PositionType,
-    radius: number,
-    out?: PositionType[]
-): PositionType[] {
-
-    if (out === undefined) {
-        out = [];
-    }
+    centerTileXY,
+    radius,
+    out = []
+) {
 
     let i: number, j: number;
     // Top-right to bottom-right

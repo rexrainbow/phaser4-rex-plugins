@@ -1,11 +1,11 @@
 import { IHexagon } from './IHexagon';
-import { IRotateCallback } from '../IGrid';
+import { IRotate } from '../IGrid';
 import { PositionType } from '../../types/PositionType';
 import { cr2cube, cube2cr } from './CubeTransfer';
 
 import { Wrap } from '../../math/Wrap';
 
-export let Rotate: IRotateCallback = function (
+export let Rotate: IRotate = function (
     hexagon: IHexagon,
     srcTileXY,
     dir,

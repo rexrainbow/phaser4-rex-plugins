@@ -1,9 +1,9 @@
 import { IQuad } from './IQuad';
-import { IRotateCallback } from '../IGrid';
+import { IRotate } from '../IGrid';
 import { PositionType } from '../../types/PositionType';
 import { Wrap } from '../../math/Wrap';
 
-export let Rotate: IRotateCallback = function (
+export let Rotate: IRotate = function (
     quad: IQuad,
     srcTileXY,
     dir,

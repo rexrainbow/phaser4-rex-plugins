@@ -1,13 +1,14 @@
 import { IHexagon, LayoutMode } from './IHexagon';
+import { IOffset } from '../IGrid';
 import { PositionType } from '../../types/PositionType';
 
-export function Offset(
+export let Offset: IOffset = function (
     hexagon: IHexagon,
-    srcTileXY: PositionType,
-    offsetX: number,
-    offsetY: number,
-    out: PositionType | true = {}
-): PositionType {
+    srcTileXY,
+    offsetX,
+    offsetY,
+    out = {}
+) {
 
     if (out === true) {
         out = globTileXY;

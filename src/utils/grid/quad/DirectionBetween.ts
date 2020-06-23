@@ -1,13 +1,14 @@
 import { IQuad, LayoutMode, DirMode } from './IQuad';
-import { PositionType } from '../../types/PositionType';
+import { IDirectionBetween } from '../IGrid';
 import { Between as GetAngle } from '../../math/angle/Between';
 import { RadToDeg } from '../../math/angle/RadToDeg';
 
-export function DirectionBetween(
+export let DirectionBetween: IDirectionBetween = function (
     quad: IQuad,
-    tileA: PositionType,
-    tileB: PositionType,
-    round: boolean = true): number {
+    tileA,
+    tileB,
+    round = true
+) {
 
     let direction: number;
     switch (quad.mode) {

@@ -1,13 +1,14 @@
 import { IQuad } from './IQuad';
+import { IOffset } from '../IGrid';
 import { PositionType } from '../../types/PositionType'
 
-export function Offset(
+export let Offset: IOffset = function (
     quad: IQuad,
-    srcTileXY: PositionType,
-    offsetTileX: number,
-    offsetTileY: number,
-    out: PositionType | true = {}
-): PositionType {
+    srcTileXY,
+    offsetTileX,
+    offsetTileY,
+    out = {}
+) {
 
     if (out === true) {
         out = globTileXY;

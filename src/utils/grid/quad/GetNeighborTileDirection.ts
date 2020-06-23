@@ -1,16 +1,16 @@
 import { IQuad, LayoutMode } from './IQuad';
-import { PositionType } from '../../types/PositionType';
+import { IGetNeighborTileDirection } from '../IGrid';
 import {
     OrthogonalMap,
     IsometricMap,
     DeltaXYToDirectionType
 } from './DeltaTileXYToDirection';
 
-export function GetNeighborTileDirection(
+export let GetNeighborTileDirection: IGetNeighborTileDirection = function (
     quad: IQuad,
-    srcTileXY: PositionType,
-    neighborTileXY: PositionType
-): number | null {
+    srcTileXY,
+    neighborTileXY
+) {
 
     let deltaTileXYToDirMap: DeltaXYToDirectionType;
     switch (quad.mode) {

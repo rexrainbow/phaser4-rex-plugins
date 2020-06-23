@@ -1,12 +1,12 @@
 import { IHexagon } from './IHexagon';
-import { PositionType } from '../../types/PositionType';
+import { IGetOppositeDirection } from '../IGrid';
 
-export function GetOppositeDirection(
+export let GetOppositeDirection: IGetOppositeDirection = function (
     hexagon: IHexagon,
-    tileX: number | PositionType,
-    tileY: number | undefined | null,
-    direction?: number
-): number {
+    tileX,
+    tileY,
+    direction
+) {
 
     return (direction + 3) % 6;
 };

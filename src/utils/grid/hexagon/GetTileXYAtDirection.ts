@@ -1,16 +1,17 @@
 import { IHexagon } from './IHexagon';
+import { IGetTileXAtDirection } from '../IGrid';
 import { PositionType } from '../../types/PositionType';
 import { DirectionToDeltaTileXY } from './DirectionToDeltaTileXY';
 import { GetParity } from './GetParity';
 import { cr2cube, cube2cr } from './CubeTransfer';
 
-export function GetTileXAtDirection(
+export let GetTileXAtDirection: IGetTileXAtDirection = function (
     hexragon: IHexagon,
-    srcTileXY: PositionType,
-    direction: number,
-    distance: number,
-    out: PositionType | true = {}
-): PositionType {
+    srcTileXY,
+    direction,
+    distance,
+    out = {}
+) {
 
     if (out === true) {
         out = globTileXY;
