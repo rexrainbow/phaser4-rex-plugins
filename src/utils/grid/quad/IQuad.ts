@@ -32,6 +32,8 @@ export interface IState {
 
 import { IGrid } from '../IGrid';
 export interface IQuad extends IGrid {
+    _halfWidth: number,
+    _halfHeight: number,
     mode: LayoutMode,
     directions: DirMode,
 };

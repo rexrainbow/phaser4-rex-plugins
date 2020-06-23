@@ -48,5 +48,8 @@ export interface IConfig {
 
 import { IGrid } from '../IGrid';
 export interface IHexagon extends IGrid {
-    mode: LayoutMode
+    _halfWidth: number,
+    _halfHeight: number,
+    mode: LayoutMode,
+    directions: number
 };
