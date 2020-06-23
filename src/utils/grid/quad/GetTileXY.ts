@@ -1,4 +1,4 @@
-import { IQuad, OrientationMode } from './IQuad'
+import { IQuad, LayoutMode } from './IQuad'
 import { PositionType } from '../../types/PositionType';
 
 export function GetTileXY(
@@ -22,11 +22,11 @@ export function GetTileXY(
     let tmpx = worldX / quad.width;
     let tmpy = worldY / quad.height;
     switch (quad.mode) {
-        case OrientationMode.orthogonal:
+        case LayoutMode.orthogonal:
             out.x = Math.round(tmpx);
             out.y = Math.round(tmpy);
             break;
-        case OrientationMode.isometric:
+        case LayoutMode.isometric:
             out.x = Math.round(+tmpx + tmpy);
             out.y = Math.round(-tmpx + tmpy);
             break;
@@ -34,4 +34,4 @@ export function GetTileXY(
     return out;
 };
 
-let globTileXY: PositionType = {};
+var globTileXY: PositionType = {};

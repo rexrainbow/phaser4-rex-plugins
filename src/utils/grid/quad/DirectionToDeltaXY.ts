@@ -1,7 +1,7 @@
 // orthogonal or isometric
-export type DirMapType = [number, number][];
+export type DirectionToDeltaXYType = [number, number][];
 
-const OrthogonalMap: DirMapType = [
+const OrthogonalMap: DirectionToDeltaXYType = [
     [1, 0],
     [0, 1],
     [-1, 0],
@@ -11,7 +11,7 @@ const OrthogonalMap: DirMapType = [
     [-1, -1],
     [1, -1]
 ];
-const IsometricMap: DirMapType = OrthogonalMap;
+const IsometricMap: DirectionToDeltaXYType = OrthogonalMap;
 
 export {
     OrthogonalMap,

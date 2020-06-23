@@ -37,4 +37,4 @@ export function Rotate(
     return out;
 }
 
-let globTileXY: PositionType = {};
+var globTileXY: PositionType = {};

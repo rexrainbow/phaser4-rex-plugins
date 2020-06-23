@@ -18,4 +18,4 @@ export function Offset(
     return out;
 }
 
-let globTileXY: PositionType = {};
+var globTileXY: PositionType = {};

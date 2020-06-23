@@ -1,9 +1,9 @@
-import { IQuad, OrientationMode } from './IQuad';
+import { IQuad, LayoutMode } from './IQuad';
 import { PositionType } from '../../types/PositionType';
 import {
     OrthogonalMap,
     IsometricMap,
-    ReverseDirMapType
+    DeltaXYToDirectionType
 } from './DeltaTileXYToDirection';
 
 export function GetNeighborTileDirection(
@@ -12,12 +12,12 @@ export function GetNeighborTileDirection(
     neighborTileXY: PositionType
 ): number | null {
 
-    let deltaTileXYToDirMap: ReverseDirMapType;
+    let deltaTileXYToDirMap: DeltaXYToDirectionType;
     switch (quad.mode) {
-        case OrientationMode.orthogonal:
+        case LayoutMode.orthogonal:
             deltaTileXYToDirMap = OrthogonalMap;
             break;
-        case OrientationMode.isometric:
+        case LayoutMode.isometric:
             deltaTileXYToDirMap = IsometricMap;
             break;
     }

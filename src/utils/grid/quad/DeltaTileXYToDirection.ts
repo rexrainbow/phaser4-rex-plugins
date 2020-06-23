@@ -1,17 +1,17 @@
 import {
     OrthogonalMap as OrthogonalMapIn,
     IsometricMap as IsometricMapIn,
-    DirMapType
-} from './DistanceToDeltaTileXY';
+    DirectionToDeltaXYType
+} from './DirectionToDeltaXY';
 
-export type ReverseDirMapType = {
+export type DeltaXYToDirectionType = {
     [x: number]: {
         [y: number]: number
     }
 }
 
-let ReverseDirMap = function (dirMap: DirMapType): ReverseDirMapType {
-    let out: ReverseDirMapType = {},
+let ReverseDirMap = function (dirMap: DirectionToDeltaXYType): DeltaXYToDirectionType {
+    let out: DeltaXYToDirectionType = {},
         entry: [number, number],
         x: number,
         y: number;

@@ -1,4 +1,4 @@
-import { IQuad, OrientationMode, DirMode } from './IQuad';
+import { IQuad, LayoutMode, DirMode } from './IQuad';
 import { PositionType } from '../../types/PositionType';
 import { Between as GetAngle } from '../../math/angle/Between';
 import { RadToDeg } from '../../math/angle/RadToDeg';
@@ -11,8 +11,8 @@ export function DirectionBetween(
 
     let direction: number;
     switch (quad.mode) {
-        case OrientationMode.orthogonal:
-        case OrientationMode.isometric:
+        case LayoutMode.orthogonal:
+        case LayoutMode.isometric:
             if (tileA.y === tileB.y) {
                 direction = (tileB.x >= tileA.x) ? 0 : 2;
             } else if (tileA.x === tileB.x) {

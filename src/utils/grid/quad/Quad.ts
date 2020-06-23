@@ -1,6 +1,6 @@
 import {
     IQuad, IConfig, IState,
-    OrientationMode, OrientationModeString,
+    LayoutMode, LayoutModeString,
     DirMode, DirModeString
 } from './IQuad';
 
@@ -13,7 +13,7 @@ export class Quad implements IQuad {
     _halfWidth: number;
     _halfHeight: number;
 
-    mode: OrientationMode;
+    mode: LayoutMode;
     directions: DirMode;
 
     constructor({
@@ -21,7 +21,7 @@ export class Quad implements IQuad {
         y = 0,
         cellWidth = 0,
         cellHeight = 0,
-        type = OrientationMode.orthogonal,
+        type = LayoutMode.orthogonal,
         dir = DirMode['4dir']
     }: IConfig = {}) {
 
@@ -36,14 +36,15 @@ export class Quad implements IQuad {
         y = 0,
         cellWidth = 0,
         cellHeight = 0,
-        type = OrientationMode.orthogonal,
+        type = LayoutMode.orthogonal,
         dir = DirMode['4dir']
     }: IState = {}) {
 
-        this.setOriginPosition(x, y);
-        this.setCellSize(cellWidth, cellHeight);
         this.setType(type);
         this.setDirectionMode(dir);
+        this.setOriginPosition(x, y);
+        this.setCellSize(cellWidth, cellHeight);
+
     }
 
     toJSON(): IState {
@@ -105,10 +106,10 @@ export class Quad implements IQuad {
         this.height = value;
     }
 
-    setType(type: OrientationMode | OrientationModeString = OrientationMode.orthogonal): this {
+    setType(type: LayoutMode | LayoutModeString = LayoutMode.orthogonal): this {
 
         if (typeof (type) === 'string') {
-            type = OrientationMode[type]
+            type = LayoutMode[type]
         }
 
         this.mode = type;

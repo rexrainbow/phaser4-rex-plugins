@@ -1,10 +1,13 @@
+import { IQuad } from './IQuad';
 import { PositionType } from '../../types/PositionType';
 
 export function GetOppositeDirection(
+    quad: IQuad,
     tileX: number | PositionType,
     tileY: number | undefined | null,
     direction?: number
-) {
+): number {
+
     return oppositeDirectionMap[direction];
 }
 

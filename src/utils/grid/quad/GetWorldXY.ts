@@ -1,4 +1,4 @@
-import { IQuad, OrientationMode } from './IQuad'
+import { IQuad, LayoutMode } from './IQuad'
 import { PositionType } from '../../types/PositionType';
 
 export function GetWorldXY(
@@ -7,6 +7,7 @@ export function GetWorldXY(
     tileY?: number,
     out: PositionType | true = {}
 ): PositionType {
+    
     if (typeof (tileX) === 'object') {
         tileY = tileX.y;
         tileX = tileX.x;
@@ -18,11 +19,11 @@ export function GetWorldXY(
 
     let worldX, worldY;
     switch (quad.mode) {
-        case OrientationMode.orthogonal:
+        case LayoutMode.orthogonal:
             worldX = tileX * quad.width;
             worldY = tileY * quad.height;
             break;
-        case OrientationMode.isometric: // isometric
+        case LayoutMode.isometric: // isometric
             worldX = (tileX - tileY) * quad._halfWidth;
             worldY = (tileX + tileY) * quad._halfHeight;
             break;
@@ -35,4 +36,4 @@ export function GetWorldXY(
 
 };
 
-let globWorldXY: PositionType = {};
+var globWorldXY: PositionType = {};

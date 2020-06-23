@@ -1,9 +1,6 @@
-import { IQuad, OrientationMode } from './IQuad';
+import { IQuad, LayoutMode } from './IQuad';
 import { PositionType } from '../../types/PositionType';
-import {
-    OrthogonalMap,
-    IsometricMap
-} from './DistanceToDeltaTileXY';
+import { OrthogonalMap, IsometricMap } from './DirectionToDeltaXY';
 
 export function GetTileXAtDirection(
     quad: IQuad,
@@ -20,11 +17,11 @@ export function GetTileXAtDirection(
     let deltaTileX: number,
         deltaTileY: number;
     switch (quad.mode) {
-        case OrientationMode.orthogonal:
+        case LayoutMode.orthogonal:
             deltaTileX = OrthogonalMap[direction][0];
             deltaTileY = OrthogonalMap[direction][1];
             break;
-        case OrientationMode.isometric:
+        case LayoutMode.isometric:
             deltaTileX = IsometricMap[direction][0];
             deltaTileY = IsometricMap[direction][1];
             break;
@@ -41,4 +38,4 @@ export function GetTileXAtDirection(
 
 }
 
-let globTileXY: PositionType = {};
+var globTileXY: PositionType = {};

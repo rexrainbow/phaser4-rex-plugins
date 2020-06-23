@@ -1,9 +1,9 @@
-export enum OrientationMode {
+export enum LayoutMode {
     'orthogonal' = 0,
     'isometric' = 1
 }
 
-export type OrientationModeString = 'orthogonal' | 'isometric';
+export type LayoutModeString = 'orthogonal' | 'isometric';
 
 export enum DirMode {
     '4dir' = 4,
@@ -17,7 +17,7 @@ export interface IConfig {
     y?: number,
     cellWidth?: number,
     cellHeight?: number,
-    type?: OrientationMode | OrientationModeString,
+    type?: LayoutMode | LayoutModeString,
     dir?: DirMode | DirModeString
 }
 
@@ -26,19 +26,12 @@ export interface IState {
     y?: number,
     cellWidth?: number,
     cellHeight?: number,
-    type?: OrientationMode | OrientationModeString,
+    type?: LayoutMode | LayoutModeString,
     dir?: DirMode | DirModeString
 }
 
-export interface IQuad {
-    x: number,
-    y: number,
-
-    width: number,
-    height: number,
-    _halfWidth: number,
-    _halfHeight: number,
-
-    mode: OrientationMode | OrientationModeString,
-    directions: DirMode | DirModeString,
+import { IGrid } from '../IGrid';
+export interface IQuad extends IGrid {
+    mode: LayoutMode,
+    directions: DirMode,
 };
