@@ -11,7 +11,7 @@
      * @param {string} s Source string.
      * @returns {(string | number | boolean | null)} String, number, boolean value, or null(from empty string).
      */
-    function Convert(s) {
+    let TypeConvert = function (s) {
         let result;
         if (s === '') {
             result = null;
@@ -31,7 +31,7 @@
             }
         }
         return result;
-    }
+    };
 
     /**
      * Retrieves a value from an object.
@@ -41,7 +41,7 @@
      * @param {*} defaultValue
      * @returns
      */
-    function GetValue(source, key, defaultValue) {
+    let GetValue = function (source, key, defaultValue) {
         if (!source || typeof source !== 'object') {
             return defaultValue;
         }
@@ -70,7 +70,7 @@
         else {
             return defaultValue;
         }
-    }
+    };
 
     /**
      * Invoke a callback.
@@ -81,13 +81,13 @@
      * @param {IRunCommandConfig} [config={}]
      * @returns {*}
      */
-    function RunCommand(cmd, scope, { argsConvert = false, argsConvertScope = undefined } = {}) {
+    let RunCommand = function (cmd, scope, { argsConvert = false, argsConvertScope = undefined } = {}) {
         let fnName, fnArgs;
         ([fnName, ...fnArgs] = cmd);
         if (argsConvert) {
             // Convert string to number, boolean, null, or string        
             if (argsConvert === true) { // Use default type convert callback
-                argsConvert = Convert;
+                argsConvert = TypeConvert;
                 argsConvertScope = undefined;
             }
             for (let i = 0, cnt = fnArgs.length; i < cnt; i++) {
@@ -111,7 +111,7 @@
         }
         let retValue = fn.apply(scope, fnArgs);
         return retValue;
-    }
+    };
 
     /**
      * Invoke callbacks from command queue.
@@ -122,7 +122,7 @@
      * @param {IRunCommandsConfig} [config={}]
      * @returns {*}
      */
-    function RunCommands(queue, scope, { reverse = false } = {}) {
+    let RunCommands = function (queue, scope, { reverse = false } = {}) {
         let config = arguments[2];
         let retVal;
         if (Array.isArray(queue[0])) {
@@ -141,7 +141,7 @@
             retVal = RunCommand(queue, scope, config);
         }
         return retVal;
-    }
+    };
 
     exports.RunCommands = RunCommands;
 

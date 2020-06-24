@@ -22,68 +22,17 @@
         Mode[Mode["random"] = 1] = "random";
     })(Mode || (Mode = {}));
 
-    /**
-     * Clear all items of an array, or all properties of an object
-     *
-     * @param {(any[] | { [name: string]: any })} obj
-     */
-    function Clear(obj) {
-        if (Array.isArray(obj)) {
-            obj.length = 0;
-        }
-        else {
-            for (let key in obj) {
-                delete obj[key];
-            }
-        }
-    }
-
-    /**
-     * Clone all items of an array, or all properties of an object
-     *
-     * @param {(any[] | { [name: string]: any })} obj
-     * @param {(any[] | { [name: string]: any })} [out]
-     * @returns {(any[] | { [name: string]: any })}
-     */
-    function Clone(obj, out) {
-        var objIsArray = Array.isArray(obj);
-        if (out === undefined) {
-            out = (objIsArray) ? [] : {};
-        }
-        else {
-            Clear(out);
-        }
-        if (objIsArray) {
-            out.length = obj.length;
-            for (let i = 0, cnt = obj.length; i < cnt; i++) {
-                out[i] = obj[i];
-            }
-        }
-        else {
-            for (let key in obj) {
-                out[key] = obj[key];
-            }
+    let ObjToMap = function (obj, out = new Map) {
+        for (let key in obj) {
+            out.set(key, obj[key]);
         }
         return out;
-    }
+    };
 
-    /**
-     * Is an array empty, or an object has no property?
-     *
-     * @param {(any[] | { [name: string]: any })} obj
-     * @returns {boolean}
-     */
-    function IsEmpty(obj) {
-        if (Array.isArray(obj)) {
-            return (obj.length === 0);
-        }
-        else {
-            for (let k in obj) {
-                return false;
-            }
-            return true;
-        }
-    }
+    let MapToObj = function (map, out = {}) {
+        map.forEach((value, key) => (out[key] = value));
+        return out;
+    };
 
     /**
      * Pick a random item from box.
@@ -104,14 +53,14 @@
          * @memberof Gashapon
          */
         constructor({ mode = Mode.shuffle, reload = true, items = {}, rnd = undefined } = {}) {
-            this.items = {};
-            this.remainder = {};
-            this._list = [];
+            this.items = new Map();
+            this.remainder = new Map();
+            this._totalRemainderCount = null;
             this.result = null;
             this.setMode(mode);
             this.setReload(reload);
             this.setRND(rnd);
-            Object.assign(this.items, items);
+            this.setItems(items);
         }
         /**
          * Reset state.
@@ -132,8 +81,8 @@
             this.setReload(reload);
             this.setRND(rnd);
             // Data
-            this.items = Clone(items, this.items);
-            this._list.length = 0;
+            this.setItems(items);
+            this._totalRemainderCount = null;
             // Result
             this.result = result;
             // Flags
@@ -143,7 +92,8 @@
                 this.startGen();
             }
             if (remainder) {
-                this.remainder = Clone(remainder, this.remainder);
+                this.remainder.clear();
+                ObjToMap(remainder, this.remainder);
             }
             return this;
         }
@@ -160,8 +110,8 @@
                 reload: this.reload,
                 rnd: this.rnd,
                 // Data
-                items: this.items,
-                remainder: this.remainder,
+                items: MapToObj(this.items),
+                remainder: MapToObj(this.remainder),
                 // Result
                 result: this.result
             };
@@ -216,10 +166,10 @@
          * @memberof Gashapon
          */
         setItem(name, count) {
-            if (this.items[name] === count) {
+            if (this.items.has(name) && (this.items.get(name) === count)) {
                 return this;
             }
-            this.items[name] = count;
+            this.items.set(name, count);
             this._restartFlag = true;
             return this;
         }
@@ -231,7 +181,9 @@
          * @memberof Gashapon
          */
         setItems(items = {}) {
-            this.items = Clone(items, this.items);
+            this.items.clear();
+            ObjToMap(items, this.items);
+            this._restartFlag = true;
             return this;
         }
         /**
@@ -242,10 +194,10 @@
          * @memberof Gashapon
          */
         removeItem(name) {
-            if (!this.items.hasOwnProperty(name)) {
+            if (!this.items.has(name)) {
                 return this;
             }
-            delete this.items[name];
+            this.items.delete(name);
             this._restartFlag = true;
             return this;
         }
@@ -256,7 +208,7 @@
          * @memberof Gashapon
          */
         removeAllItems() {
-            Clear(this.items);
+            this.items.clear();
             this._restartFlag = true;
             return this;
         }
@@ -269,18 +221,20 @@
          * @memberof Gashapon
          */
         addItem(name, count = 1) {
-            if (!this.items.hasOwnProperty(name)) {
-                this.items[name] = 0;
+            if (this.items.has(name)) {
+                this.items.set(name, this.items.get(name) + count);
             }
-            this.items[name] += count;
+            else {
+                this.items.set(name, count);
+            }
             if (this._restartFlag) {
                 return this;
             }
             if (this.mode === Mode.shuffle) {
                 this.addRemainItem(name, count);
             }
-            else { // ??
-                this.resetItemList(this.remainder);
+            else { // Mode.random
+                this._totalRemainderCount = null;
             }
             return this;
         }
@@ -298,12 +252,8 @@
             }
             else if ( // Shuffle mode
             this._restartFlag ||
-                (!this.items.hasOwnProperty(name))) {
+                (!this.items.has(name))) {
                 return this;
-            }
-            // Generator had started
-            if (!this.remainder.hasOwnProperty(name)) {
-                this.remainder[name] = 0;
             }
             this.addRemainItem(name, count, this.items[name]);
             return this;
@@ -323,16 +273,16 @@
             }
             if (name === undefined) {
                 if (this.mode === Mode.shuffle) {
-                    this.resetItemList(this.remainder);
-                    result = this.getRndItem(this._list);
+                    this._totalRemainderCount = null;
+                    result = this.getRndItem();
                     this.addRemainItem(result, -1);
                 }
                 else { // random mode
-                    result = this.getRndItem(this._list);
+                    result = this.getRndItem();
                 }
             }
             else { // Force picking
-                if (!this.remainder.hasOwnProperty(name)) {
+                if (!this.remainder.has(name)) {
                     result = null; // Can not pick that result
                 }
                 else {
@@ -352,7 +302,7 @@
          * @memberof Gashapon
          */
         getItems() {
-            return this.items;
+            return MapToObj(this.items);
         }
         /**
          * Get all remainder items in box.
@@ -361,7 +311,7 @@
          * @memberof Gashapon
          */
         getRemain() {
-            return this.remainder;
+            return MapToObj(this.remainder);
         }
         /**
          * Get amount of a candidate item.
@@ -371,8 +321,8 @@
          * @memberof Gashapon
          */
         getItemCount(name) {
-            if (this.items.hasOwnProperty(name)) {
-                return this.items[name];
+            if (this.items.has(name)) {
+                return this.items.get(name);
             }
             else {
                 return 0;
@@ -386,8 +336,8 @@
          * @memberof Gashapon
          */
         getRemainCount(name) {
-            if (this.remainder.hasOwnProperty(name)) {
-                return this.remainder[name];
+            if (this.remainder.has(name)) {
+                return this.remainder.get(name);
             }
             else {
                 return 0;
@@ -402,19 +352,7 @@
          * @memberof Gashapon
          */
         forEachItem(callback, scope) {
-            let items = this.items;
-            for (let name in items) {
-                let breakLoop;
-                if (scope) {
-                    breakLoop = callback.call(scope, name, items[name]);
-                }
-                else {
-                    breakLoop = callback(name, items[name]);
-                }
-                if (breakLoop) {
-                    break;
-                }
-            }
+            this.items.forEach(callback, scope);
             return this;
         }
         /**
@@ -426,19 +364,7 @@
          * @memberof Gashapon
          */
         forEachRemain(callback, scope) {
-            let items = this.remainder;
-            for (let name in items) {
-                let breakLoop;
-                if (scope) {
-                    breakLoop = callback.call(scope, name, items[name]);
-                }
-                else {
-                    breakLoop = callback(name, items[name]);
-                }
-                if (breakLoop) {
-                    break;
-                }
-            }
+            this.remainder.forEach(callback, scope);
             return this;
         }
         /**
@@ -448,90 +374,80 @@
          */
         destroy() {
             // data
-            Clear(this.items);
-            Clear(this.remainder);
-            Clear(this._list);
+            this.items.clear();
+            this.remainder.clear();
             // result
             this.result = null;
             // flags
             this._restartFlag = false;
         }
-        startGen() {
-            // Clear remainder items
-            for (let name in this.remainder) {
-                if (!this.items.hasOwnProperty(name)) {
-                    delete this.remainder[name];
-                }
+        get totalRemainderCount() {
+            if (this._totalRemainderCount === null) {
+                this._totalRemainderCount = GetTotalItemCount(this.remainder);
             }
-            // Init remainder items
-            for (let name in this.items) {
-                let count = this.items[name];
+            return this._totalRemainderCount;
+        }
+        startGen() {
+            this.remainder.clear();
+            for (const [name, count] of this.items) {
                 if (count > 0) {
-                    this.remainder[name] = count;
+                    this.remainder.set(name, count);
                 }
             }
             if (this.mode === Mode.random) {
-                this.resetItemList(this.remainder);
+                this._totalRemainderCount = null;
             }
             this._restartFlag = false;
-            return this;
-        }
-        resetItemList(items) {
-            // Clear list
-            this._list.length = 0;
-            let totalCount = 0;
-            // Get total count
-            for (let name in items) {
-                let count = items[name];
-                if (count > 0) {
-                    totalCount += count;
-                }
-            }
-            // Set percentage
-            for (let name in items) {
-                let count = items[name];
-                if (count > 0) {
-                    this._list.push([
-                        name,
-                        (count / totalCount)
-                    ]);
-                }
-            }
             return this;
         }
         addRemainItem(name, inc = 1, maxCount) {
             if (inc === 0) {
                 return this;
             }
-            if (!this.remainder.hasOwnProperty(name)) {
-                this.remainder[name] = 0;
+            var prevValue, newValue;
+            if (!this.remainder.has(name)) {
+                prevValue = 0;
             }
-            this.remainder[name] += inc;
-            if ((maxCount !== undefined) && (this.remainder[name] > maxCount)) {
-                this.remainder[name] = maxCount;
+            else {
+                prevValue = this.remainder.get(name);
             }
-            if (this.remainder[name] <= 0) {
-                delete this.remainder[name];
+            newValue = prevValue + inc;
+            if ((maxCount !== undefined) && (newValue > maxCount)) {
+                newValue = maxCount;
             }
-            if ((this.mode === Mode.shuffle) && this.reload && IsEmpty(this.remainder)) {
+            if (newValue > 0) {
+                this.remainder.set(name, newValue);
+            }
+            else {
+                this.remainder.delete(name);
+            }
+            if ((this.mode === Mode.shuffle) && this.reload &&
+                (this.remainder.size === 0)) {
                 this._restartFlag = true;
             }
             return this;
         }
-        getRndItem(list) {
-            let value = (this.rnd) ? this.rnd.frac() : Math.random();
-            let result = null, item;
-            for (let i = 0, cnt = list.length; i < cnt; i++) {
-                item = list[i];
-                value -= item[1];
-                if (value < 0) {
-                    result = item[0];
+        getRndItem() {
+            let result = null;
+            let p = (this.rnd) ? this.rnd.frac() : Math.random();
+            let totalCount = p * this.totalRemainderCount;
+            for (const [name, count] of this.remainder) {
+                totalCount -= count;
+                if (totalCount <= 0) {
+                    result = name;
                     break;
                 }
             }
             return result;
         }
     }
+    let GetTotalItemCount = function (items) {
+        let result = 0;
+        for (const [name, count] of items) {
+            result += count;
+        }
+        return result;
+    };
 
     exports.Gashapon = Gashapon;
 

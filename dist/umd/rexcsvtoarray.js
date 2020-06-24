@@ -41,13 +41,13 @@
 	 *     }={}]
 	 * @returns {any[]}
 	 */
-	function CSVToArray(csvString, { delimiter = ',', convert = true } = {}) {
+	let CSVToArray = function (csvString, { delimiter = ',', convert = true } = {}) {
 	    let arr = papaparse_min.parse(csvString, {
 	        delimiter: delimiter,
 	        dynamicTyping: convert
 	    }).data;
 	    return arr;
-	}
+	};
 
 	exports.CSVToArray = CSVToArray;
 

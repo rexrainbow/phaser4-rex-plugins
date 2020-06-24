@@ -20,6 +20,8 @@ export type ModeString = 'shuffle' | 'random';
 
 export type ItemType = { [name: string]: number };
 
+export type ItemMapType = Map<string, number>;
+
 export type RNDObjType = {
     frac: () => number
 }
@@ -82,8 +84,8 @@ export interface IState {
 
 export interface IGashapon {
     mode: Mode;
-    items: ItemType;
-    remainder: ItemType;
+    items: ItemMapType;
+    remainder: ItemMapType;
     reload: boolean;
     rnd: RNDObjType | undefined;
     result: string | null;

@@ -1,7 +1,6 @@
-import { IGashapon, IConfig, IState, Mode, ModeString, ItemType, RNDObjType } from './IGashapon';
-import { Clone } from '../../utils/object/Clone';
-import { IsEmpty } from '../../utils/object/IsEmpty';
-import { Clear } from '../../utils/object/Clear';
+import { IGashapon, IConfig, IState, Mode, ModeString, ItemType, ItemMapType, RNDObjType } from './IGashapon';
+import { ObjToMap } from '../../utils/map/ObjToMap';
+import { MapToObj } from '../../utils/map/MapToObj';
 
 /**
  * Pick a random item from box.
@@ -13,14 +12,15 @@ import { Clear } from '../../utils/object/Clear';
 export class Gashapon implements IGashapon {
 
     mode: Mode;
-    items: ItemType;
-    remainder: ItemType;
+    items: ItemMapType;
+    remainder: ItemMapType;
     reload: boolean;
     rnd: RNDObjType | undefined;
     result: string | null;
 
+
     private _restartFlag: boolean;
-    private _list: [string, number][];
+    private _totalRemainderCount: number | null;
 
     /**
      * Creates an instance of Gashapon.
@@ -39,15 +39,15 @@ export class Gashapon implements IGashapon {
         rnd = undefined
     }: IConfig = {}) {
 
-        this.items = {};
-        this.remainder = {};
-        this._list = [];
+        this.items = new Map();
+        this.remainder = new Map();
+        this._totalRemainderCount = null;
         this.result = null;
 
         this.setMode(mode);
         this.setReload(reload);
         this.setRND(rnd);
-        Object.assign(this.items, items);
+        this.setItems(items);
     }
 
     /**
@@ -78,8 +78,8 @@ export class Gashapon implements IGashapon {
         this.setRND(rnd);
 
         // Data
-        this.items = Clone(items, this.items) as ItemType;
-        this._list.length = 0;
+        this.setItems(items);
+        this._totalRemainderCount = null;
 
         // Result
         this.result = result;
@@ -92,7 +92,8 @@ export class Gashapon implements IGashapon {
             this.startGen();
         }
         if (remainder) {
-            this.remainder = Clone(remainder, this.remainder) as ItemType;
+            this.remainder.clear();
+            ObjToMap(remainder, this.remainder);
         }
 
         return this;
@@ -112,8 +113,8 @@ export class Gashapon implements IGashapon {
             rnd: this.rnd,
 
             // Data
-            items: this.items,
-            remainder: this.remainder,
+            items: MapToObj(this.items),
+            remainder: MapToObj(this.remainder),
 
             // Result
             result: this.result
@@ -180,11 +181,11 @@ export class Gashapon implements IGashapon {
         count: number
     ): this {
 
-        if (this.items[name] === count) {
+        if (this.items.has(name) && (this.items.get(name) === count)) {
             return this;
         }
 
-        this.items[name] = count;
+        this.items.set(name, count);
         this._restartFlag = true;
         return this;
     }
@@ -198,7 +199,9 @@ export class Gashapon implements IGashapon {
      */
     setItems(items: ItemType = {}): this {
 
-        this.items = Clone(items, this.items) as ItemType;
+        this.items.clear();
+        ObjToMap(items, this.items);
+        this._restartFlag = true;
         return this;
     }
 
@@ -211,11 +214,11 @@ export class Gashapon implements IGashapon {
      */
     removeItem(name: string): this {
 
-        if (!this.items.hasOwnProperty(name)) {
+        if (!this.items.has(name)) {
             return this;
         }
 
-        delete this.items[name];
+        this.items.delete(name);
         this._restartFlag = true;
         return this;
     }
@@ -228,7 +231,7 @@ export class Gashapon implements IGashapon {
      */
     removeAllItems(): this {
 
-        Clear(this.items);
+        this.items.clear();
         this._restartFlag = true;
         return this;
     }
@@ -246,10 +249,11 @@ export class Gashapon implements IGashapon {
         count: number = 1
     ): this {
 
-        if (!this.items.hasOwnProperty(name)) {
-            this.items[name] = 0;
+        if (this.items.has(name)) {
+            this.items.set(name, this.items.get(name) + count);
+        } else {
+            this.items.set(name, count);
         }
-        this.items[name] += count;
 
         if (this._restartFlag) {
             return this;
@@ -257,8 +261,8 @@ export class Gashapon implements IGashapon {
 
         if (this.mode === Mode.shuffle) {
             this.addRemainItem(name, count);
-        } else { // ??
-            this.resetItemList(this.remainder);
+        } else { // Mode.random
+            this._totalRemainderCount = null;
         }
         return this;
     }
@@ -280,14 +284,9 @@ export class Gashapon implements IGashapon {
             return this;
         } else if ( // Shuffle mode
             this._restartFlag ||
-            (!this.items.hasOwnProperty(name))
+            (!this.items.has(name))
         ) {
             return this;
-        }
-
-        // Generator had started
-        if (!this.remainder.hasOwnProperty(name)) {
-            this.remainder[name] = 0;
         }
 
         this.addRemainItem(name, count, this.items[name]);
@@ -312,15 +311,15 @@ export class Gashapon implements IGashapon {
 
         if (name === undefined) {
             if (this.mode === Mode.shuffle) {
-                this.resetItemList(this.remainder);
-                result = this.getRndItem(this._list);
+                this._totalRemainderCount = null;
+                result = this.getRndItem();
                 this.addRemainItem(result, -1);
             } else { // random mode
-                result = this.getRndItem(this._list);
+                result = this.getRndItem();
             }
 
         } else { // Force picking
-            if (!this.remainder.hasOwnProperty(name)) {
+            if (!this.remainder.has(name)) {
                 result = null; // Can not pick that result
             } else {
                 result = name;
@@ -343,7 +342,7 @@ export class Gashapon implements IGashapon {
      */
     getItems(): ItemType {
 
-        return this.items;
+        return MapToObj(this.items);
     }
 
     /**
@@ -354,7 +353,7 @@ export class Gashapon implements IGashapon {
      */
     getRemain(): ItemType {
 
-        return this.remainder
+        return MapToObj(this.remainder);
     }
 
     /**
@@ -366,8 +365,8 @@ export class Gashapon implements IGashapon {
      */
     getItemCount(name: string): number {
 
-        if (this.items.hasOwnProperty(name)) {
-            return this.items[name];
+        if (this.items.has(name)) {
+            return this.items.get(name);
         } else {
             return 0;
         }
@@ -382,8 +381,8 @@ export class Gashapon implements IGashapon {
      */
     getRemainCount(name: string): number {
 
-        if (this.remainder.hasOwnProperty(name)) {
-            return this.remainder[name];
+        if (this.remainder.has(name)) {
+            return this.remainder.get(name);
         } else {
             return 0;
         }
@@ -398,23 +397,11 @@ export class Gashapon implements IGashapon {
      * @memberof Gashapon
      */
     forEachItem(
-        callback: (name: string, count: number) => boolean | undefined,
+        callback: (count: number, name: string) => boolean | undefined,
         scope?: object
     ): this {
 
-        let items = this.items;
-        for (let name in items) {
-            let breakLoop;
-            if (scope) {
-                breakLoop = callback.call(scope, name, items[name]);
-            } else {
-                breakLoop = callback(name, items[name]);
-            }
-            if (breakLoop) {
-                break;
-            }
-        }
-
+        this.items.forEach(callback, scope);
         return this;
     }
 
@@ -427,23 +414,11 @@ export class Gashapon implements IGashapon {
      * @memberof Gashapon
      */
     forEachRemain(
-        callback: (name: string, count: number) => boolean | undefined,
+        callback: (count: number, name: string) => boolean | undefined,
         scope?: object
     ): this {
 
-        let items = this.remainder;
-        for (let name in items) {
-            let breakLoop;
-            if (scope) {
-                breakLoop = callback.call(scope, name, items[name]);
-            } else {
-                breakLoop = callback(name, items[name]);
-            }
-            if (breakLoop) {
-                break;
-            }
-        }
-
+        this.remainder.forEach(callback, scope);
         return this;
     }
 
@@ -455,9 +430,8 @@ export class Gashapon implements IGashapon {
     destroy() {
 
         // data
-        Clear(this.items);
-        Clear(this.remainder);
-        Clear(this._list);
+        this.items.clear();
+        this.remainder.clear();
 
         // result
         this.result = null;
@@ -466,54 +440,27 @@ export class Gashapon implements IGashapon {
         this._restartFlag = false;
     }
 
+    get totalRemainderCount() {
+        if (this._totalRemainderCount === null) {
+            this._totalRemainderCount = GetTotalItemCount(this.remainder);
+        }
+        return this._totalRemainderCount;
+    }
+
     private startGen(): this {
 
-        // Clear remainder items
-        for (let name in this.remainder) {
-            if (!this.items.hasOwnProperty(name)) {
-                delete this.remainder[name];
-            }
-        }
-        // Init remainder items
-        for (let name in this.items) {
-            let count = this.items[name];
+        this.remainder.clear();
+        for (const [name, count] of this.items) {
             if (count > 0) {
-                this.remainder[name] = count;
+                this.remainder.set(name, count);
             }
         }
 
         if (this.mode === Mode.random) {
-            this.resetItemList(this.remainder);
+            this._totalRemainderCount = null;
         }
         this._restartFlag = false;
 
-        return this;
-    }
-
-    private resetItemList(
-        items: ItemType
-    ): this {
-
-        // Clear list
-        this._list.length = 0;
-        let totalCount = 0;
-        // Get total count
-        for (let name in items) {
-            let count = items[name];
-            if (count > 0) {
-                totalCount += count;
-            }
-        }
-        // Set percentage
-        for (let name in items) {
-            let count = items[name];
-            if (count > 0) {
-                this._list.push([
-                    name,
-                    (count / totalCount)
-                ]);
-            }
-        }
         return this;
     }
 
@@ -527,42 +474,53 @@ export class Gashapon implements IGashapon {
             return this;
         }
 
-        if (!this.remainder.hasOwnProperty(name)) {
-            this.remainder[name] = 0;
+        var prevValue: number,
+            newValue: number;
+        if (!this.remainder.has(name)) {
+            prevValue = 0;
+        } else {
+            prevValue = this.remainder.get(name);
+        }
+        newValue = prevValue + inc;
+        if ((maxCount !== undefined) && (newValue > maxCount)) {
+            newValue = maxCount;
         }
 
-        this.remainder[name] += inc;
-        if ((maxCount !== undefined) && (this.remainder[name] > maxCount)) {
-            this.remainder[name] = maxCount
+        if (newValue > 0) {
+            this.remainder.set(name, newValue);
+        } else {
+            this.remainder.delete(name);
         }
 
-        if (this.remainder[name] <= 0) {
-            delete this.remainder[name];
-        }
-
-        if ((this.mode === Mode.shuffle) && this.reload && IsEmpty(this.remainder)) {
+        if ((this.mode === Mode.shuffle) && this.reload &&
+            (this.remainder.size === 0)) {
             this._restartFlag = true;
         }
 
         return this;
     }
 
-    private getRndItem(
-        list: [string, number][]
-    ): string {
+    private getRndItem(): string {
 
-        let value = (this.rnd) ? this.rnd.frac() : Math.random();
-        let result = null,
-            item: [string, number];
-        for (let i = 0, cnt = list.length; i < cnt; i++) {
-            item = list[i];
-            value -= item[1];
-            if (value < 0) {
-                result = item[0];
+        let result = null;
+        let p = (this.rnd) ? this.rnd.frac() : Math.random();
+        let totalCount = p * this.totalRemainderCount;
+        for (const [name, count] of this.remainder) {
+            totalCount -= count;
+            if (totalCount <= 0) {
+                result = name;
                 break;
             }
         }
         return result;
     }
 
+}
+
+let GetTotalItemCount = function (items: ItemMapType) {
+    let result = 0;
+    for (const [name, count] of items) {
+        result += count;
+    }
+    return result;
 }

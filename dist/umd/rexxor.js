@@ -45,11 +45,11 @@
         return enc_str;
     };
 
-    function Encrypt(src, pwd) {
+    let Encrypt = function (src, pwd) {
         src = escape(src);
         pwd = escape(pwd.toString());
         return XOREncrypt(src, pwd);
-    }
+    };
 
     let XORDecrypt = function (str, pwd) {
         if (str == null || str.length < 8) {
@@ -84,14 +84,14 @@
         return enc_str;
     };
 
-    function Decrypt(data, pwd) {
+    let Decrypt = function (data, pwd) {
         pwd = escape(pwd.toString());
         let result = XORDecrypt(data, pwd);
         if (result != null) {
             result = unescape(result);
         }
         return result;
-    }
+    };
 
     let XOR = {
         /**
