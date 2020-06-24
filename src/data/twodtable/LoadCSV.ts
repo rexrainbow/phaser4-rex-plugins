@@ -1,8 +1,9 @@
-import { ITable, RowType, ILoadCSVConfig, CellValueCallbackType } from './ITable';
+import { ITable, ILoadCSVConfig, CellValueCallbackType } from './ITable';
 import { DefaultTypeConvert } from './TypeConvert';
 import { CSVParser } from '../../utils/string/papaparse';
 import { Clear } from './Remove';
 import { Copy as ArrayCopy } from '../../utils/array/Copy';
+import { GetKey } from './MapKey';
 
 export let LoadCSV = function (
     table: ITable,
@@ -41,15 +42,13 @@ export let LoadCSV = function (
     let data = table.data;
     let colKey: string,
         rowKey: string,
-        row: RowType,
         value: any;
     for (let r = 0, rcnt = rowKeys.length; r < rcnt; r++) {
         rowKey = rowKeys[r];
-        row = {};
-        data[rowKey] = row;
+
         for (let c = 0, ccnt = colKeys.length; c < ccnt; c++) {
-            value = arr[r + 1][c];
             colKey = colKeys[c];
+            value = arr[r + 1][c];
 
             if (convertCallback) {
                 if (convertScope) {
@@ -58,7 +57,8 @@ export let LoadCSV = function (
                     value = convertCallback(value, rowKey, colKey, table);
                 }
             }
-            row[colKey] = value;
+
+            data.set(GetKey(rowKey, colKey), value);
         }
     }
 }

@@ -1,10 +1,12 @@
 import {
     ITable,
-    DataType, KeyType, CursorType,
+    MapDataType, JSONDataType, KeyType, CursorType,
     IState, ILoadCSVConfig,
     CellValueCallbackType, AppendCallbackType, EachKeyCallback,
     SortMode, SortModeString, SortCallback
 } from './ITable';
+import { GetKey } from './MapKey';
+import { DataToJSON } from './DataToJSON';
 import { LoadCSV } from './LoadCSV';
 import { ConvertCol, ConvertRow } from './Convert';
 import { EachRow, EachCol } from './ForEach';
@@ -26,18 +28,18 @@ import { Copy as ArrayCopy } from '../../utils/array/Copy'
  * @implements {ITable}
  */
 export class Table implements ITable {
-    data: DataType;
+    data: MapDataType;
     rowKeys: KeyType;
     colKeys: KeyType;
     cursor: CursorType;
 
     /**
      * Creates an instance of Table.
-     * @param {DataType} [data]
+     * @param {JSONDataType} [data]
      * @memberof Table
      */
-    constructor(data?: DataType) {
-        this.data = {};
+    constructor(data?: JSONDataType) {
+        this.data = new Map();
         this.rowKeys = [];
         this.colKeys = [];
         this.cursor = { colKey: '', rowKey: '' };
@@ -86,11 +88,12 @@ export class Table implements ITable {
         ArrayCopy(this.colKeys, col);
 
         // Fill data
+        let mapData = this.data;
         for (let j = 0, jcnt = row.length; j < jcnt; j++) {
             let rowKey = row[j];
             for (let i = 0, icnt = col.length; i < icnt; i++) {
                 let colKey = col[i];
-                Set(this, rowKey, colKey, data[rowKey][colKey]);
+                mapData.set(GetKey(rowKey, colKey), data[rowKey][colKey]);
             }
         }
 
@@ -110,7 +113,7 @@ export class Table implements ITable {
      */
     toJSON(): IState {
         return {
-            data: this.data,
+            data: DataToJSON(this),
             row: this.rowKeys,
             col: this.colKeys,
             cursor: this.cursor

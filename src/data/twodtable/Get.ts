@@ -1,4 +1,5 @@
 import { ITable } from './ITable';
+import { GetKey } from './MapKey';
 
 export let Get = function (
     table: ITable,
@@ -6,16 +7,7 @@ export let Get = function (
     colKey: string
 ): any {
 
-    let value: any = undefined;
-    let data = table.data;
-    if (data.hasOwnProperty(rowKey)) {
-        let row = data[rowKey];
-        if (row.hasOwnProperty(colKey)) {
-            value = row[colKey];
-        }
-    }
-
-    return value;
+    return table.data.get(GetKey(rowKey, colKey));
 }
 
 export let HasRowKey = function (

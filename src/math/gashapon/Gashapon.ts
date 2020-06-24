@@ -181,7 +181,7 @@ export class Gashapon implements IGashapon {
         count: number
     ): this {
 
-        if (this.items.has(name) && (this.items.get(name) === count)) {
+        if (this.items.get(name) === count) {
             return this;
         }
 
@@ -249,11 +249,8 @@ export class Gashapon implements IGashapon {
         count: number = 1
     ): this {
 
-        if (this.items.has(name)) {
-            this.items.set(name, this.items.get(name) + count);
-        } else {
-            this.items.set(name, count);
-        }
+        var prevValue = this.items.get(name) || 0;
+        this.items.set(name, prevValue + count);
 
         if (this._restartFlag) {
             return this;
@@ -365,11 +362,7 @@ export class Gashapon implements IGashapon {
      */
     getItemCount(name: string): number {
 
-        if (this.items.has(name)) {
-            return this.items.get(name);
-        } else {
-            return 0;
-        }
+        return this.items.get(name) || 0;
     }
 
     /**
@@ -381,11 +374,7 @@ export class Gashapon implements IGashapon {
      */
     getRemainCount(name: string): number {
 
-        if (this.remainder.has(name)) {
-            return this.remainder.get(name);
-        } else {
-            return 0;
-        }
+        return this.remainder.get(name) || 0;
     }
 
     /**
@@ -474,14 +463,8 @@ export class Gashapon implements IGashapon {
             return this;
         }
 
-        var prevValue: number,
-            newValue: number;
-        if (!this.remainder.has(name)) {
-            prevValue = 0;
-        } else {
-            prevValue = this.remainder.get(name);
-        }
-        newValue = prevValue + inc;
+        var prevValue = this.remainder.get(name) || 0,
+            newValue = prevValue + inc;
         if ((maxCount !== undefined) && (newValue > maxCount)) {
             newValue = maxCount;
         }

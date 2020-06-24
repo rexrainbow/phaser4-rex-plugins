@@ -1,4 +1,5 @@
-import { ITable, RowType, CellValueCallbackType } from './ITable';
+import { ITable, CellValueCallbackType } from './ITable';
+import { GetKey } from './MapKey';
 import { DefaultTypeConvert } from './TypeConvert';
 import { HasRowKey, HasColKey } from './Get';
 
@@ -20,21 +21,19 @@ export let ConvertRow = function (
         return;
     }
 
-    let row = table.data[rowKey];
-    let colKeys = table.colKeys,
-        colKey: string,
-        value: any;
-    for (let c = 0, ccnt = colKeys.length; c < ccnt; c++) {
-        colKey = colKeys[c];
-        value = row[colKey];
+    let data = table.data;
+    table.colKeys.forEach(function (colKey) {
+        let key = GetKey(rowKey, colKey);
+        let value = data.get(key);
+
         if (scope) {
             value = callback.call(scope, value, rowKey, colKey, table);
         } else {
             value = callback(value, rowKey, colKey, table);
         }
 
-        row[colKey] = value;
-    }
+        data.set(key, value);
+    })
 }
 
 export let ConvertCol = function (
@@ -56,20 +55,16 @@ export let ConvertCol = function (
     }
 
     let data = table.data;
-    let row: RowType,
-        rowKeys = table.rowKeys,
-        rowKey: string,
-        value: any;
-    for (let r = 0, rcnt = rowKeys.length; r < rcnt; r++) {
-        rowKey = rowKeys[r];
-        row = data[rowKey];
-        value = row[colKey];
+    table.rowKeys.forEach(function (rowKey) {
+        let key = GetKey(rowKey, colKey);
+        let value = data.get(key);
+
         if (scope) {
             value = callback.call(scope, value, rowKey, colKey, table);
         } else {
             value = callback(value, rowKey, colKey, table);
         }
 
-        row[colKey] = value;
-    }
+        data.set(key, value);
+    })
 }

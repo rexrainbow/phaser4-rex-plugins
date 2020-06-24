@@ -1,5 +1,6 @@
 import { ITable, SortMode, SortModeString, SortCallback } from './ITable';
-import { Get, HasRowKey, HasColKey } from './Get';
+import { HasRowKey, HasColKey } from './Get';
+import { GetKey } from './MapKey';
 
 export let SortRow = function (
     table: ITable,
@@ -24,9 +25,10 @@ export let SortRow = function (
             mode = SortMode[mode] as number;
         }
 
+        let data = table.data;
         sortCallback = function (colKeyA: string, colKeyB: string) {
-            let valA = Get(table, colKeyA, colKeyB);
-            let valB = Get(table, colKeyA, colKeyB);
+            let valA = data.get(GetKey(rowKey, colKeyA));
+            let valB = data.get(GetKey(rowKey, colKeyB));
             let retVal: any;
             if ((mode === SortMode.logical_ascending) || (mode === SortMode.logical_descending)) {
                 valA = parseFloat(valA);
@@ -76,9 +78,10 @@ export let SortCol = function (
             mode = SortMode[mode] as number;
         }
 
+        let data = table.data;
         sortCallback = function (rowKeyA: string, rowKeyB: string): number {
-            let valA = Get(table, rowKeyA, colKey);
-            let valB = Get(table, rowKeyB, colKey);
+            let valA = data.get(GetKey(rowKeyA, colKey));
+            let valB = data.get(GetKey(rowKeyB, colKey));
             let retVal: any;
             if ((mode === SortMode.logical_ascending) || (mode === SortMode.logical_descending)) {
                 valA = parseFloat(valA);

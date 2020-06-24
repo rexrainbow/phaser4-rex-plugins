@@ -1,5 +1,6 @@
 import { ITable } from './ITable';
 import { HasKey } from './Get';
+import { GetKey } from './MapKey';
 
 export let Set = function (
     table: ITable,
@@ -12,11 +13,7 @@ export let Set = function (
         return;
     }
 
-    let data = table.data;
-    if (!data.hasOwnProperty(rowKey)) {
-        data[rowKey] = {};
-    }
-    data[rowKey][colKey] = value;
+    table.data.set(GetKey(rowKey, colKey), value);
 }
 
 export let Add = function (
@@ -30,13 +27,8 @@ export let Add = function (
         return;
     }
 
+    let key = GetKey(rowKey, colKey);
     let data = table.data;
-    if (!data.hasOwnProperty(rowKey)) {
-        data[rowKey] = {};
-    }
-    let row = data[rowKey];
-    if (!row.hasOwnProperty(colKey)) {
-        row[colKey] = 0;
-    }
-    row[colKey] += value;
+    let prevValue = data.get(key) || 0;
+    data.set(key, prevValue + value);
 }

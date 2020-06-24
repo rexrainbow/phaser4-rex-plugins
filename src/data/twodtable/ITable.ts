@@ -1,7 +1,11 @@
 export type RowType = { [colKey: string]: any };
-export type DataType = {
-    [rowKey: string]: RowType
+export type JSONDataType = {
+    [rowKey: string]: {
+        [colKey: string]: any
+    }
 };
+export type MapDataType = Map<string, any>;
+
 export type KeyType = string[];
 export type CursorType = {
     colKey: string,
@@ -22,7 +26,7 @@ export type SortModeString = 'ascending' | 'descending' | 'logical_ascending' | 
 export type SortCallback = (keyA: string, keyB: string) => number;
 
 export interface IState {
-    data?: DataType;
+    data?: JSONDataType;
     row?: KeyType;
     col?: KeyType;
     cursor?: CursorType;
@@ -36,7 +40,7 @@ export interface ILoadCSVConfig {
 }
 
 export interface ITable {
-    data: DataType;
+    data: MapDataType;
     rowKeys: KeyType;
     colKeys: KeyType;
     cursor: CursorType;

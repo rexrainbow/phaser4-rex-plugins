@@ -1,5 +1,6 @@
 import { ITable, AppendCallbackType } from './ITable';
 import { HasRowKey, HasColKey } from './Get';
+import { GetKey } from './MapKey';
 
 export let AppendRow = function (
     table: ITable,
@@ -8,7 +9,7 @@ export let AppendRow = function (
     scope?: object
 ): void {
 
-    if (!HasRowKey(table, rowKey)) {
+    if (HasRowKey(table, rowKey)) {
         return;
     }
 
@@ -16,13 +17,11 @@ export let AppendRow = function (
     let initValue = (isCallbackMode) ? undefined : callback;
 
     table.rowKeys.push(rowKey);
-    let row = {};
-    table.data[rowKey] = row;
-    let colKeys = table.colKeys,
-        colKey: string,
-        value: any;
-    for (let i = 0, cnt = colKeys.length; i < cnt; i++) {
-        colKey = colKeys[i];
+
+    let data = table.data;
+    table.colKeys.forEach(function (colKey) {
+        let key = GetKey(rowKey, colKey);
+        let value: any;
         if (isCallbackMode) {
             if (scope) {
                 value = callback.call(scope, table, rowKey, colKey);
@@ -32,8 +31,9 @@ export let AppendRow = function (
         } else {
             value = initValue;
         }
-        row[colKey] = value;
-    }
+
+        data.set(key, value);
+    })
 }
 
 export let AppendCol = function (
@@ -43,7 +43,7 @@ export let AppendCol = function (
     scope?: object
 ): void {
 
-    if (!HasColKey(table, colKey)) {
+    if (HasColKey(table, colKey)) {
         return;
     }
 
@@ -51,22 +51,22 @@ export let AppendCol = function (
     let initValue = (isCallbackMode) ? undefined : callback;
 
     table.colKeys.push(colKey);
-    let data = table.data;
-    let rowKeys = table.rowKeys,
-        rowKey: string,
-        value: any;
-    for (let i = 0, cnt = rowKeys.length; i < cnt; i++) {
-        rowKey = rowKeys[i];
 
+
+    let data = table.data;
+    table.rowKeys.forEach(function (rowKey) {
+        let key = GetKey(rowKey, colKey);
+        let value: any;
         if (isCallbackMode) {
             if (scope) {
                 value = callback.call(scope, table, rowKey, colKey);
             } else {
-                value = callback(table, rowKey, colKey);
+                value = callback(table, rowKey, colKey)
             }
         } else {
             value = initValue;
         }
-        data[rowKey][colKey] = value;
-    }
+
+        data.set(key, value);
+    })
 }

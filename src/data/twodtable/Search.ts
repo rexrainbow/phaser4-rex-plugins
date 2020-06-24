@@ -1,5 +1,7 @@
 import { ITable } from "./ITable";
 import { HasRowKey, HasColKey } from './Get';
+import { GetKey } from './MapKey';
+
 
 export let IsValueInRow = function (
     table: ITable,
@@ -11,17 +13,16 @@ export let IsValueInRow = function (
         return false;
     }
 
-    let row = table.data[rowKey];
-    let colKeys = table.colKeys,
-        colKey: string;
-    for (let i = 0, cnt = colKeys.length; i < cnt; i++) {
-        colKey = colKeys[i];
-        if (row[colKey] === value) {
-            return true;
+    let found = false;
+    let data = table.data;
+    table.colKeys.forEach(function (colKey) {
+        if (data.get(GetKey(rowKey, colKey)) === value) {
+            found = true;
+            return true; // Break forEach
         }
-    }
+    })
 
-    return false;
+    return found;
 }
 
 export let IsValueInCol = function (
@@ -34,14 +35,14 @@ export let IsValueInCol = function (
         return false;
     }
 
+    let found = false;
     let data = table.data;
-    let rowKeys = table.rowKeys,
-        rowKey: string;
-    for (let i = 0, cnt = rowKeys.length; i < cnt; i++) {
-        if (data[rowKey][colKey] === value) {
-            return true;
+    table.rowKeys.forEach(function (rowKey) {
+        if (data.get(GetKey(rowKey, colKey)) === value) {
+            found = true;
+            return true; // Break forEach
         }
-    }
+    })
 
-    return false;
+    return found;
 }

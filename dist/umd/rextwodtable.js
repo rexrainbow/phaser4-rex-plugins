@@ -4,6 +4,24 @@
     (global = global || self, factory(global.rextwodtable = {}));
 }(this, (function (exports) { 'use strict';
 
+    let GetKey = function (rowKey, colKey) {
+        return `(${rowKey}][${colKey})`;
+    };
+
+    let DataToJSON = function (table) {
+        let obj = {};
+        let data = table.data;
+        let rowKeys = table.rowKeys, colKeys = table.colKeys;
+        rowKeys.forEach(function (rowKey) {
+            let row = {};
+            obj[rowKey] = row;
+            colKeys.forEach(function (colKey) {
+                row[colKey] = data.get(GetKey(rowKey, colKey));
+            });
+        });
+        return obj;
+    };
+
     let FLOAT = /^\s*-?(\d*\.?\d+|\d+\.?\d*)(e[-+]?\d+)?\s*$/i;
     /**
      * Convert string to string, number, boolean value, or null(from empty string).
@@ -60,10 +78,7 @@
     });
 
     let Clear = function (table) {
-        let data = table.data;
-        for (let key in data) {
-            delete data[key];
-        }
+        table.data.clear();
         table.rowKeys.length = 0;
         table.colKeys.length = 0;
     };
@@ -73,7 +88,9 @@
             return;
         }
         table.rowKeys.splice(idx, 1);
-        delete table.data[rowKey];
+        table.colKeys.forEach(function (colKey) {
+            table.data.delete(GetKey(rowKey, colKey));
+        });
     };
     let RemoveCol = function (table, colKey) {
         let idx = table.colKeys.indexOf(colKey);
@@ -81,11 +98,9 @@
             return;
         }
         table.colKeys.splice(idx, 1);
-        let data = table.data;
-        let rowKeys = table.rowKeys;
-        for (let i = 0, cnt = rowKeys.length; i < cnt; i++) {
-            delete data[rowKeys[i]][colKey];
-        }
+        table.rowKeys.forEach(function (rowKey) {
+            table.data.delete(GetKey(rowKey, colKey));
+        });
     };
 
     let Copy = function (dest, src, startIdx = 0, endIdx = src.length) {
@@ -118,14 +133,12 @@
         }
         let colKeys = table.colKeys, rowKeys = table.rowKeys;
         let data = table.data;
-        let colKey, rowKey, row, value;
+        let colKey, rowKey, value;
         for (let r = 0, rcnt = rowKeys.length; r < rcnt; r++) {
             rowKey = rowKeys[r];
-            row = {};
-            data[rowKey] = row;
             for (let c = 0, ccnt = colKeys.length; c < ccnt; c++) {
-                value = arr[r + 1][c];
                 colKey = colKeys[c];
+                value = arr[r + 1][c];
                 if (convertCallback) {
                     if (convertScope) {
                         value = convertCallback.call(convertScope, value, rowKey, colKey, table);
@@ -134,21 +147,13 @@
                         value = convertCallback(value, rowKey, colKey, table);
                     }
                 }
-                row[colKey] = value;
+                data.set(GetKey(rowKey, colKey), value);
             }
         }
     };
 
     let Get = function (table, rowKey, colKey) {
-        let value = undefined;
-        let data = table.data;
-        if (data.hasOwnProperty(rowKey)) {
-            let row = data[rowKey];
-            if (row.hasOwnProperty(colKey)) {
-                value = row[colKey];
-            }
-        }
-        return value;
+        return table.data.get(GetKey(rowKey, colKey));
     };
     let HasRowKey = function (table, rowKey) {
         return (table.rowKeys.indexOf(rowKey) !== -1);
@@ -170,19 +175,18 @@
         if (!HasRowKey(table, rowKey)) {
             return;
         }
-        let row = table.data[rowKey];
-        let colKeys = table.colKeys, colKey, value;
-        for (let c = 0, ccnt = colKeys.length; c < ccnt; c++) {
-            colKey = colKeys[c];
-            value = row[colKey];
+        let data = table.data;
+        table.colKeys.forEach(function (colKey) {
+            let key = GetKey(rowKey, colKey);
+            let value = data.get(key);
             if (scope) {
                 value = callback.call(scope, value, rowKey, colKey, table);
             }
             else {
                 value = callback(value, rowKey, colKey, table);
             }
-            row[colKey] = value;
-        }
+            data.set(key, value);
+        });
     };
     let ConvertCol = function (table, colKey, callback = TypeConvert, scope) {
         if (Array.isArray(colKey)) {
@@ -195,19 +199,17 @@
             return;
         }
         let data = table.data;
-        let row, rowKeys = table.rowKeys, rowKey, value;
-        for (let r = 0, rcnt = rowKeys.length; r < rcnt; r++) {
-            rowKey = rowKeys[r];
-            row = data[rowKey];
-            value = row[colKey];
+        table.rowKeys.forEach(function (rowKey) {
+            let key = GetKey(rowKey, colKey);
+            let value = data.get(key);
             if (scope) {
                 value = callback.call(scope, value, rowKey, colKey, table);
             }
             else {
                 value = callback(value, rowKey, colKey, table);
             }
-            row[colKey] = value;
-        }
+            data.set(key, value);
+        });
     };
 
     let EachRow = function (table, callback, scope) {
@@ -239,39 +241,29 @@
         if (!HasKey(table, rowKey, colKey)) {
             return;
         }
-        let data = table.data;
-        if (!data.hasOwnProperty(rowKey)) {
-            data[rowKey] = {};
-        }
-        data[rowKey][colKey] = value;
+        table.data.set(GetKey(rowKey, colKey), value);
     };
     let Add = function (table, rowKey, colKey, value = 1) {
         if (!HasKey(table, rowKey, colKey)) {
             return;
         }
+        let key = GetKey(rowKey, colKey);
         let data = table.data;
-        if (!data.hasOwnProperty(rowKey)) {
-            data[rowKey] = {};
-        }
-        let row = data[rowKey];
-        if (!row.hasOwnProperty(colKey)) {
-            row[colKey] = 0;
-        }
-        row[colKey] += value;
+        let prevValue = data.get(key) || 0;
+        data.set(key, prevValue + value);
     };
 
     let AppendRow = function (table, rowKey, callback = 0, scope) {
-        if (!HasRowKey(table, rowKey)) {
+        if (HasRowKey(table, rowKey)) {
             return;
         }
         let isCallbackMode = (typeof (callback) === 'function');
         let initValue = (isCallbackMode) ? undefined : callback;
         table.rowKeys.push(rowKey);
-        let row = {};
-        table.data[rowKey] = row;
-        let colKeys = table.colKeys, colKey, value;
-        for (let i = 0, cnt = colKeys.length; i < cnt; i++) {
-            colKey = colKeys[i];
+        let data = table.data;
+        table.colKeys.forEach(function (colKey) {
+            let key = GetKey(rowKey, colKey);
+            let value;
             if (isCallbackMode) {
                 if (scope) {
                     value = callback.call(scope, table, rowKey, colKey);
@@ -283,20 +275,20 @@
             else {
                 value = initValue;
             }
-            row[colKey] = value;
-        }
+            data.set(key, value);
+        });
     };
     let AppendCol = function (table, colKey, callback = 0, scope) {
-        if (!HasColKey(table, colKey)) {
+        if (HasColKey(table, colKey)) {
             return;
         }
         let isCallbackMode = (typeof (callback) === 'function');
         let initValue = (isCallbackMode) ? undefined : callback;
         table.colKeys.push(colKey);
         let data = table.data;
-        let rowKeys = table.rowKeys, rowKey, value;
-        for (let i = 0, cnt = rowKeys.length; i < cnt; i++) {
-            rowKey = rowKeys[i];
+        table.rowKeys.forEach(function (rowKey) {
+            let key = GetKey(rowKey, colKey);
+            let value;
             if (isCallbackMode) {
                 if (scope) {
                     value = callback.call(scope, table, rowKey, colKey);
@@ -308,8 +300,8 @@
             else {
                 value = initValue;
             }
-            data[rowKey][colKey] = value;
-        }
+            data.set(key, value);
+        });
     };
 
     var SortMode;
@@ -339,9 +331,10 @@
             if (typeof (mode) === 'string') {
                 mode = SortMode[mode];
             }
+            let data = table.data;
             sortCallback = function (colKeyA, colKeyB) {
-                let valA = Get(table, colKeyA, colKeyB);
-                let valB = Get(table, colKeyA, colKeyB);
+                let valA = data.get(GetKey(rowKey, colKeyA));
+                let valB = data.get(GetKey(rowKey, colKeyB));
                 let retVal;
                 if ((mode === SortMode.logical_ascending) || (mode === SortMode.logical_descending)) {
                     valA = parseFloat(valA);
@@ -383,9 +376,10 @@
             if (typeof (mode) === 'string') {
                 mode = SortMode[mode];
             }
+            let data = table.data;
             sortCallback = function (rowKeyA, rowKeyB) {
-                let valA = Get(table, rowKeyA, colKey);
-                let valB = Get(table, rowKeyB, colKey);
+                let valA = data.get(GetKey(rowKeyA, colKey));
+                let valB = data.get(GetKey(rowKeyB, colKey));
                 let retVal;
                 if ((mode === SortMode.logical_ascending) || (mode === SortMode.logical_descending)) {
                     valA = parseFloat(valA);
@@ -444,28 +438,29 @@
         if (!HasRowKey(table, rowKey)) {
             return false;
         }
-        let row = table.data[rowKey];
-        let colKeys = table.colKeys, colKey;
-        for (let i = 0, cnt = colKeys.length; i < cnt; i++) {
-            colKey = colKeys[i];
-            if (row[colKey] === value) {
-                return true;
+        let found = false;
+        let data = table.data;
+        table.colKeys.forEach(function (colKey) {
+            if (data.get(GetKey(rowKey, colKey)) === value) {
+                found = true;
+                return true; // Break forEach
             }
-        }
-        return false;
+        });
+        return found;
     };
     let IsValueInCol = function (table, colKey, value) {
         if (!HasColKey(table, colKey)) {
             return false;
         }
+        let found = false;
         let data = table.data;
-        let rowKeys = table.rowKeys, rowKey;
-        for (let i = 0, cnt = rowKeys.length; i < cnt; i++) {
-            if (data[rowKey][colKey] === value) {
-                return true;
+        table.rowKeys.forEach(function (rowKey) {
+            if (data.get(GetKey(rowKey, colKey)) === value) {
+                found = true;
+                return true; // Break forEach
             }
-        }
-        return false;
+        });
+        return found;
     };
 
     let SetCursor = function (table, rowKey = '', colKey = '') {
@@ -483,11 +478,11 @@
     class Table {
         /**
          * Creates an instance of Table.
-         * @param {DataType} [data]
+         * @param {JSONDataType} [data]
          * @memberof Table
          */
         constructor(data) {
-            this.data = {};
+            this.data = new Map();
             this.rowKeys = [];
             this.colKeys = [];
             this.cursor = { colKey: '', rowKey: '' };
@@ -526,11 +521,12 @@
             Copy(this.rowKeys, row);
             Copy(this.colKeys, col);
             // Fill data
+            let mapData = this.data;
             for (let j = 0, jcnt = row.length; j < jcnt; j++) {
                 let rowKey = row[j];
                 for (let i = 0, icnt = col.length; i < icnt; i++) {
                     let colKey = col[i];
-                    Set(this, rowKey, colKey, data[rowKey][colKey]);
+                    mapData.set(GetKey(rowKey, colKey), data[rowKey][colKey]);
                 }
             }
             if (cursor) {
@@ -549,7 +545,7 @@
          */
         toJSON() {
             return {
-                data: this.data,
+                data: DataToJSON(this),
                 row: this.rowKeys,
                 col: this.colKeys,
                 cursor: this.cursor

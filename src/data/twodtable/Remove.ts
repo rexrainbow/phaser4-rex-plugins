@@ -1,12 +1,10 @@
 import { ITable } from './ITable';
+import { GetKey } from './MapKey';
 
 export let Clear = function (
     table: ITable
 ) {
-    let data = table.data;
-    for (let key in data) {
-        delete data[key];
-    }
+    table.data.clear();
     table.rowKeys.length = 0;
     table.colKeys.length = 0;
 }
@@ -21,7 +19,10 @@ export let RemoveRow = function (
         return;
     }
     table.rowKeys.splice(idx, 1);
-    delete table.data[rowKey];
+
+    table.colKeys.forEach(function (colKey) {
+        table.data.delete(GetKey(rowKey, colKey));
+    })
 }
 
 export let RemoveCol = function (
@@ -35,9 +36,7 @@ export let RemoveCol = function (
     }
     table.colKeys.splice(idx, 1);
 
-    let data = table.data;
-    let rowKeys = table.rowKeys;
-    for (let i = 0, cnt = rowKeys.length; i < cnt; i++) {
-        delete data[rowKeys[i]][colKey];
-    }
+    table.rowKeys.forEach(function (rowKey) {
+        table.data.delete(GetKey(rowKey, colKey));
+    })
 }
