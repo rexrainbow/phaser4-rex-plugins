@@ -1,4 +1,4 @@
-export default function Copy(
+export let Copy = function (
     dest: any[],
     src: any[],
     startIdx: number = 0,

@@ -16,7 +16,7 @@ import { SortCol, SortRow } from './Sort';
 import { NextColKey, PreviousColKey, NextRowKey, PreviousRowKey } from './NextKey';
 import { IsValueInRow, IsValueInCol } from './Search';
 import { SetCursor } from './Cursor';
-import ArrayCopy from '../../utils/array/Copy'
+import { Copy as ArrayCopy } from '../../utils/array/Copy'
 
 /**
  * A 2-Dimations table indexed by (rowKey, columnKey).

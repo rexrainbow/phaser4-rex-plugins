@@ -4,7 +4,7 @@
  * @param {(any[] | { [name: string]: any })} obj
  * @returns {boolean}
  */
-export default function IsEmpty(
+export let IsEmpty = function (
     obj: any[] | { [name: string]: any }
 ): boolean {
 

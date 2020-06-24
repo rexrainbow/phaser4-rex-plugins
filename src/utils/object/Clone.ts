@@ -1,4 +1,4 @@
-import Clear from './Clear';
+import { Clear } from './Clear';
 
 /**
  * Clone all items of an array, or all properties of an object
@@ -7,7 +7,7 @@ import Clear from './Clear';
  * @param {(any[] | { [name: string]: any })} [out]
  * @returns {(any[] | { [name: string]: any })}
  */
-export default function Clone(
+export let Clone = function (
     obj: any[] | { [name: string]: any },
     out?: any[] | { [name: string]: any }
 ): any[] | { [name: string]: any } {

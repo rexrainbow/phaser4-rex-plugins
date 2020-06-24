@@ -1,7 +1,7 @@
 import { IGashapon, IConfig, IState, Mode, ModeString, ItemType, RNDObjType } from './IGashapon';
-import Clone from '../../utils/object/Clone';
-import IsEmpty from '../../utils/object/IsEmpty';
-import Clear from '../../utils/object/Clear';
+import { Clone } from '../../utils/object/Clone';
+import { IsEmpty } from '../../utils/object/IsEmpty';
+import { Clear } from '../../utils/object/Clear';
 
 /**
  * Pick a random item from box.

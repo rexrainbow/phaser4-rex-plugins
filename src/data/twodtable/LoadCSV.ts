@@ -2,7 +2,7 @@ import { ITable, RowType, ILoadCSVConfig, CellValueCallbackType } from './ITable
 import { DefaultTypeConvert } from './TypeConvert';
 import { CSVParser } from '../../utils/string/papaparse';
 import { Clear } from './Remove';
-import ArrayCopy from '../../utils/array/Copy';
+import { Copy as ArrayCopy } from '../../utils/array/Copy';
 
 export let LoadCSV = function (
     table: ITable,

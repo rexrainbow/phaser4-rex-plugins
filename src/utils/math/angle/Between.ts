@@ -1,4 +1,4 @@
-export function Between(
+export let Between = function (
     x1: number,
     y1: number,
     x2: number,

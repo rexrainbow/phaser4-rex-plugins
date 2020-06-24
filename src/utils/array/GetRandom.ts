@@ -1,4 +1,4 @@
-export default function GetRandom(
+export let GetRandomItem = function (
     array: any[] | string,
     startIndex: number = 0,
     length: number = array.length

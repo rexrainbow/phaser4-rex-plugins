@@ -1,4 +1,4 @@
-export default function SpliceOne(
+export let SpliceOne = function (
     array: any[],
     index: number
 ): any {

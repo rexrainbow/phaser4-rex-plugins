@@ -1,4 +1,4 @@
-export function Wrap(
+export let Wrap = function (
     value: number,
     min: number,
     max: number

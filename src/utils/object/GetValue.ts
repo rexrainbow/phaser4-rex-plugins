@@ -6,7 +6,7 @@
  * @param {*} defaultValue
  * @returns
  */
-export default function GetValue(
+export let GetValue = function (
     source: any,
     key: string,
     defaultValue: any

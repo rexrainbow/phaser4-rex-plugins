@@ -1,6 +1,6 @@
-import { IRunCommandConfig, ArgConvertCallbackType } from './IRunCommands';
-import DefaultTypeConvert from '../../utils/string/TypeConvert';
-import GetValue from '../../utils/object/GetValue';
+import { IRunCommandConfig } from './IRunCommands';
+import { TypeConvert as DefaultTypeConvert } from '../../utils/string/TypeConvert';
+import { GetValue } from '../../utils/object/GetValue';
 
 /**
  * Invoke a callback.

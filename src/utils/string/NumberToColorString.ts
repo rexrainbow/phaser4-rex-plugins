@@ -4,7 +4,7 @@
  * @param {*} value Color number
  * @returns {string} Color value in hex string.
  */
-export default function NumberToColorString(value: any): string {
+export let NumberToColorString = function (value: any): string {
     if (typeof (value) === 'number') {
         value = `#${value.toString(16)}`;
     }

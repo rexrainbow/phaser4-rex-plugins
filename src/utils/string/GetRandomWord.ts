@@ -1,5 +1,5 @@
-import RandomInt from '../math/RandomInt';
-import RandomItem from '../array/GetRandom';
+import { RandomInt } from '../math/RandomInt';
+import { GetRandomItem } from '../array/GetRandom';
 
 const CANDIDATES = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -20,7 +20,7 @@ export default function GetRandomWord(
     let count = (max === undefined) ? min : RandomInt(min, max);
     let word = '';
     for (let i = 0; i < count; i++) {
-        word += RandomItem(candidates);
+        word += GetRandomItem(candidates);
     }
     return word;
 }
