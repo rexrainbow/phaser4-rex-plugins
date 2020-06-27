@@ -1,5 +1,7 @@
 import { ILogicBoard, IConfig } from './ILogicBoard';
 import { IGrid } from '../grid/IGrid';
+import { SetBoardWidth } from './boarddata/SetBoardWidth';
+import { SetBoardHeight } from './boarddata/SetBoardHeight';
 
 export class LogicBoard implements ILogicBoard {
     isBoard: boolean;
@@ -26,7 +28,7 @@ export class LogicBoard implements ILogicBoard {
     }
 
     destroy() {
-        
+
     }
 
     setGrid(grid?: IGrid): this {
@@ -49,6 +51,20 @@ export class LogicBoard implements ILogicBoard {
 
     setBoardSize(width: number = 0, height: number = 0): this {
 
+        SetBoardWidth(this, width);
+        SetBoardHeight(this, height);
+        return this;
+    }
+
+    setBoardWidth(width: number = 0): this {
+
+        SetBoardWidth(this, width);
+        return this
+    }
+
+    setBoardHeight(height: number = 0): this {
+
+        SetBoardHeight(this, height);
         return this;
     }
 }

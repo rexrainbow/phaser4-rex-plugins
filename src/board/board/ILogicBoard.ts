@@ -22,4 +22,6 @@ export interface ILogicBoard {
     setWrapMode(mode?: boolean): this;
     setInfinityMode(mode?: boolean): this;
     setBoardSize(width?: number, height?: number): this;
+    setBoardWidth(width?: number): this;
+    setBoardHeight(height?: number): this;
 }
