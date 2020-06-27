@@ -66,6 +66,7 @@ export class BoardData implements IBoardData {
     ): this {
 
         AddChess(this, chess, x, y, z);
+        this.clearBounds();
         return this;
     }
 
@@ -73,7 +74,7 @@ export class BoardData implements IBoardData {
         x: XType,
         y: YType,
         z?: ZType
-    ): ChessType | ZMapType {
+    ): ChessType | ZMapType | undefined {
 
         return GetChess(this, x, y, z);
     }
@@ -85,6 +86,7 @@ export class BoardData implements IBoardData {
     ): this {
 
         RemoveChess(this, x, y, z);
+        this.clearBounds();
         return this;
     }
 

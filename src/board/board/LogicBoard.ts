@@ -1,5 +1,7 @@
 import { ILogicBoard, IConfig } from './ILogicBoard';
 import { IGrid } from '../grid/IGrid';
+import { IBoardData } from './boarddata/IBoardData';
+import { BoardData } from './boarddata/BoardData';
 import { SetBoardWidth } from './boarddata/SetBoardWidth';
 import { SetBoardHeight } from './boarddata/SetBoardHeight';
 
@@ -10,6 +12,7 @@ export class LogicBoard implements ILogicBoard {
     infinityMode: boolean;
     width: number | undefined;
     height: number | undefined;
+    boardData: IBoardData;
 
     constructor({
         isBoard = true,
@@ -20,6 +23,7 @@ export class LogicBoard implements ILogicBoard {
         height = 0
     }: IConfig = {}) {
 
+        this.boardData = new BoardData();
         this.isBoard = isBoard;
         this.setGrid(grid);
         this.setWrapMode(wrap);

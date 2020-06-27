@@ -22,4 +22,13 @@ export interface IBoardData {
     xMin: number;
     yMax: number;
     yMin: number;
+
+    destroy(): void;
+    clear(): this;
+    addChess(chess: ChessType, x: XType, y: YType, z: ZType): this;
+    getChess(x: XType, y: YType, z?: ZType): ChessType | ZMapType | undefined;
+    removeChess(x: XType, y: YType, z?: ZType): this;
+    hasChess(chess: ChessType): boolean;
+    contains(x: XType, y: YType, z?: ZType): boolean;
+    getXYZ(chess: ChessType): LogicPosType | undefined;
 }

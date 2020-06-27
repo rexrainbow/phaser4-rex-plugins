@@ -1,4 +1,5 @@
 import { IGrid } from '../grid/IGrid';
+import { IBoardData } from './boarddata/IBoardData';
 
 export interface IConfig {
     isBoard?: boolean;
@@ -17,6 +18,7 @@ export interface ILogicBoard {
     infinityMode: boolean;
     width: number | undefined;
     height: number | undefined;
+    boardData: IBoardData;
 
     destroy(): void;
     setWrapMode(mode?: boolean): this;
