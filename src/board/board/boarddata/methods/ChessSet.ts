@@ -1,11 +1,11 @@
 import {
     ChessSetType,
-    ChessType,
+    IChess,
     AnyKeyType
 } from '../IBoardData';
 
 export let AddChessToSet = function (
-    chess: ChessType,
+    chess: IChess,
     chessMap: Map<AnyKeyType, ChessSetType>,
     prevKey: AnyKeyType | undefined,
     currKey: AnyKeyType | undefined
@@ -39,7 +39,7 @@ export let AddChessToSet = function (
 export let RemoveChessFromSet = function (
     chessMap: Map<AnyKeyType, ChessSetType>,
     key: AnyKeyType,
-    chess: ChessType
+    chess: IChess
 ): void {
 
     let chessSet = chessMap.get(key);

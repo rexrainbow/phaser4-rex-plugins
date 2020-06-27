@@ -21,7 +21,7 @@ export interface IGrid extends Base {
         direction: number
     ): number
 
-    GetDistance(
+    getDistance(
         tileA: PositionType,
         tileB: PositionType,
         roughMode?: boolean

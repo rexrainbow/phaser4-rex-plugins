@@ -1,12 +1,12 @@
 import {
-    ChessType,
+    IChess,
     XType, YType, ZType,
     ZMapType
 } from '../IBoardData';
 import { GetXYKey } from './Key';
 
 export let AddChessToZMap = function (
-    chess: ChessType,
+    chess: IChess,
     chessMap: Map<string, ZMapType>,
     prevX: XType | undefined,
     prevY: YType | undefined,
@@ -33,10 +33,10 @@ export let AddChessToZMap = function (
     if (currKey) {
         let zMap = chessMap.get(currKey);
         if (zMap) {
-            zMap.set(currZ, chessMap);
+            zMap.set(currZ, chess);
         } else {
             zMap = new Map();
-            zMap.set(currZ, chessMap);
+            zMap.set(currZ, chess);
             chessMap.set(currKey, zMap);
         }
     }

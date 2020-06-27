@@ -1,18 +1,12 @@
-export type XType = number;
-export type YType = number;
-export type ZType = number | string;
-export type LogicPosType = {
-    x: XType,
-    y: YType,
-    z: ZType
-}
+import { XType, YType, ZType, XYZType, IChess } from '../ILogicBoard';
+export { XType, YType, ZType, XYZType, IChess };
+
 export type AnyKeyType = XType | YType | ZType;
-export type ChessType = object;
-export type ChessSetType = Set<ChessType>;
-export type ZMapType = Map<ZType, ChessType>;
+export type ChessSetType = Set<IChess>;
+export type ZMapType = Map<ZType, IChess>;
 
 export interface IBoardData {
-    chessToXYZ: Map<ChessType, LogicPosType>;
+    chessToXYZ: Map<IChess, XYZType>;
     XYToZMap: Map<string, ZMapType>;
     XToChessSet: Map<XType, ChessSetType>;
     YToChessSet: Map<YType, ChessSetType>;
@@ -25,10 +19,10 @@ export interface IBoardData {
 
     destroy(): void;
     clear(): this;
-    addChess(chess: ChessType, x: XType, y: YType, z: ZType): this;
-    getChess(x: XType, y: YType, z?: ZType): ChessType | ZMapType | undefined;
+    addChess(chess: IChess, x: XType, y: YType, z: ZType): this;
+    getChess(x: XType, y: YType, z?: ZType): IChess | ZMapType | undefined;
     removeChess(x: XType, y: YType, z?: ZType): this;
-    hasChess(chess: ChessType): boolean;
+    hasChess(chess: IChess): boolean;
     contains(x: XType, y: YType, z?: ZType): boolean;
-    getXYZ(chess: ChessType): LogicPosType | undefined;
+    getXYZ(chess: IChess): XYZType | undefined;
 }

@@ -1,6 +1,6 @@
 import {
     IBoardData,
-    ChessType,
+    IChess,
     XType, YType, ZType
 } from '../IBoardData';
 import { AddChessToZMap } from './ZMap';
@@ -8,7 +8,7 @@ import { AddChessToSet } from './ChessSet';
 
 export let AddChess = function (
     boardData: IBoardData,
-    chess: ChessType,
+    chess: IChess,
     x: XType,
     y: YType,
     z: ZType

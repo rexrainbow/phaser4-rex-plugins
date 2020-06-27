@@ -54,7 +54,7 @@ export class Quad extends Base implements IGrid {
         return DirectionNormalize(this, direction);
     }
 
-    GetDistance(
+    getDistance(
         tileA: PositionType,
         tileB: PositionType,
         roughMode: boolean = false

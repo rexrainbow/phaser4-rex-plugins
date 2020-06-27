@@ -1,7 +1,7 @@
 import {
     IBoardData,
-    ChessSetType, ChessType, ZMapType,
-    LogicPosType, XType, YType, ZType
+    ChessSetType, IChess, ZMapType,
+    XYZType, XType, YType, ZType
 } from './IBoardData';
 import { AddChess } from './methods/AddChess';
 import { GetChess } from './methods/GetChess';
@@ -12,8 +12,8 @@ import { GetXYZ } from './methods/GetXYZ';
 import { GetMaxMapKey, GetMinMapKey } from './methods/GetMaxMinMapKey';
 
 export class BoardData implements IBoardData {
-    chessToXYZ: Map<ChessType, LogicPosType>; // {chess: {x,y,z}}
-    XYToZMap: Map<string, Map<ZType, ChessType>>; // {'x|y': {z:chess}}
+    chessToXYZ: Map<IChess, XYZType>; // {chess: {x,y,z}}
+    XYToZMap: Map<string, Map<ZType, IChess>>; // {'x|y': {z:chess}}
     XToChessSet: Map<XType, ChessSetType>; // {x, [chess]}
     YToChessSet: Map<YType, ChessSetType>; // {y, [chess]}
     ZToChessSet: Map<ZType, ChessSetType>; // {z, [chess]}
@@ -59,7 +59,7 @@ export class BoardData implements IBoardData {
     }
 
     addChess(
-        chess: ChessType,
+        chess: IChess,
         x: XType,
         y: YType,
         z: ZType
@@ -74,7 +74,7 @@ export class BoardData implements IBoardData {
         x: XType,
         y: YType,
         z?: ZType
-    ): ChessType | ZMapType | undefined {
+    ): IChess | ZMapType | undefined {
 
         return GetChess(this, x, y, z);
     }
@@ -91,7 +91,7 @@ export class BoardData implements IBoardData {
     }
 
     hasChess(
-        chess: ChessType
+        chess: IChess
     ): boolean {
 
         return HasChess(this, chess);
@@ -106,7 +106,7 @@ export class BoardData implements IBoardData {
         return Contains(this, x, y, z);
     }
 
-    getXYZ(chess: ChessType): LogicPosType | undefined {
+    getXYZ(chess: IChess): XYZType | undefined {
 
         return GetXYZ(this, chess);
     }

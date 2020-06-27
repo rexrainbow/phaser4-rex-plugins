@@ -1,12 +1,12 @@
 import {
     IBoardData,
-    ChessType, LogicPosType
+    IChess, XYZType
 } from '../IBoardData';
 
 export let GetXYZ = function (
     boardData: IBoardData,
-    chess: ChessType
-): LogicPosType | undefined {
+    chess: IChess
+): XYZType | undefined {
 
     return boardData.chessToXYZ.get(chess);
 }
