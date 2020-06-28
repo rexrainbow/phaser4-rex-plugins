@@ -7,7 +7,7 @@ export let TileXYToWorldXY = function (
     board: ILogicBoard,
     tileX: XType,
     tileY: YType,
-    out?: PositionType
+    out?: PositionType | true
 ): PositionType {
 
     return board.grid.getWorldXY(tileX, tileY, out);

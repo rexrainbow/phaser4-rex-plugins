@@ -81,6 +81,26 @@ export interface ILogicBoard {
         align?: boolean
     ): this;
 
+    angleBetween(
+        chessA: IChess | XYType,
+        chessB: IChess | XYType
+    ): number;
+
+    angleSnapToDirection(
+        tileXY: XYType,
+        angle: number
+    ): number;
+
+    angleToward(
+        tileXY: XYType,
+        direction: number
+    ): number;
+
+    areNeighbors(
+        chessA: IChess | XYType,
+        chessB: IChess | XYType
+    ): boolean;
+
     chessToTileXYZ(
         chess: object
     ): XYZType | XYType | null;
@@ -128,6 +148,35 @@ export interface ILogicBoard {
         tileZ?: ZType,
         out?: XYType[]
     ): XYType[];
+
+    getNeighborChess(
+        chess: IChess | XYType,
+        directions: number | number[] | string | null,
+        neighborTileZ?: ZType | null,
+        out?: IChess[]
+    ): IChess | IChess[] | null;
+
+    getNeighborChessDirection(
+        chess: IChess | XYType,
+        neighborChess: IChess | XYType
+    ): number;
+
+    getNeighborTileDirection(
+        srcTileXY: XYType | null,
+        neighborTileXY: XYType | null
+    ): number | null;
+
+    getNeighborTileXY(
+        srcTileXY: XYType,
+        directions: number | number[] | string | null,
+        out?: XYType | true
+    ): XYType | XYType[] | null;
+
+    getNeighborTileXYAtAngle(
+        srcTileXY: XYType,
+        angle: number,
+        out?: XYType | true
+    ): XYType | null;
 
     getOppositeDirection(
         tileX: XType,
@@ -215,7 +264,7 @@ export interface ILogicBoard {
 
     tileXYArrayToChessArray(
         tileXYArray: XYType[],
-        tileZ?: ZType | IChess[],
+        tileZ?: ZType,
         out?: IChess[]
     ): IChess[];
 
@@ -239,7 +288,7 @@ export interface ILogicBoard {
     tileXYToWorldXY(
         tileX: XType,
         tileY: YType,
-        out?: PositionType
+        out?: PositionType | true
     ): PositionType;
 
 }

@@ -14,6 +14,10 @@ import { SetBoardWidth } from './boarddata/SetBoardWidth';
 import { SetBoardHeight } from './boarddata/SetBoardHeight';
 
 import { AddChess } from './chess/AddChess';
+import { AngleBetween } from './worldposition/AngleBetween';
+import { AngleSnapToDirection } from './worldposition/AngleSnapToDirection';
+import { AngleToward } from './worldposition/AngleToward';
+import { AreNeighbors } from './neighbors/AreNeighbors';
 import { ChessToTileXYZ } from './tileposition/ChessToTileXYZ';
 import { Contains } from './tileposition/Contains';
 import { DirectionBetween } from './tileposition/DirectionBetween';
@@ -23,6 +27,11 @@ import { GetAllChess } from './chess/GetAllChess';
 import { GetChessData } from '../chess/GetChessData';
 import { GetDistance } from './tileposition/GetDistance';
 import { GetEmptyTileXYArray } from './empty/GetEmptyTileXYArray';
+import { GetNeighborChess } from './neighbors/GetNeighborChess';
+import { GetNeighborChessDirection } from './neighbors/GetNeighborChessDirection';
+import { GetNeighborTileDirection } from './neighbors/GetNeighborTileDirection';
+import { GetNeighborTileXY } from './neighbors/GetNeighborTileXY';
+import { GetNeighborTileXYAtAngle } from './neighbors/GetNeighborTileXYAtAngle';
 import { GetOppositeDirection } from './tileposition/GetOppositeDirection';
 import { GetRandomEmptyTileXY } from './empty/GetRandomEmptyTileXY';
 import { GetTileXYAtDirection } from './neighbors/GetTileXYAtDirection'
@@ -108,6 +117,38 @@ export class LogicBoard implements ILogicBoard {
         return this;
     }
 
+    angleBetween(
+        chessA: IChess | XYType,
+        chessB: IChess | XYType
+    ): number {
+
+        return AngleBetween(this, chessA, chessB);
+    }
+
+    angleSnapToDirection(
+        tileXY: XYType,
+        angle: number
+    ): number {
+
+        return AngleSnapToDirection(this, tileXY, angle);
+    }
+
+    angleToward(
+        tileXY: XYType,
+        direction: number
+    ): number {
+
+        return AngleToward(this, tileXY, direction);
+    }
+
+    areNeighbors(
+        chessA: IChess | XYType,
+        chessB: IChess | XYType
+    ): boolean {
+
+        return AreNeighbors(this, chessA, chessB);
+    }
+
     chessToTileXYZ(chess: object): XYZType | any | null {
 
         return ChessToTileXYZ(this, chess);
@@ -181,6 +222,50 @@ export class LogicBoard implements ILogicBoard {
     ): XYType[] {
 
         return GetEmptyTileXYArray(this, tileZ, out);
+    }
+
+    getNeighborChess(
+        chess: IChess | XYType,
+        directions: number | number[] | string | null,
+        neighborTileZ?: ZType | null,
+        out?: IChess[]
+    ): IChess | IChess[] | null {
+
+        return GetNeighborChess(this, chess, directions, neighborTileZ, out);
+    }
+
+    getNeighborChessDirection(
+        chess: IChess | XYType,
+        neighborChess: IChess | XYType
+    ): number {
+
+        return GetNeighborChessDirection(this, chess, neighborChess);
+    }
+
+    getNeighborTileDirection(
+        srcTileXY: XYType | null,
+        neighborTileXY: XYType | null
+    ): number | null {
+
+        return GetNeighborTileDirection(this, srcTileXY, neighborTileXY);
+    }
+
+    getNeighborTileXY(
+        srcTileXY: XYType,
+        directions: number | number[] | string | null,
+        out: XYType | true = { x: 0, y: 0 }
+    ): XYType | XYType[] | null {
+
+        return GetNeighborTileXY(this, srcTileXY, directions, out);
+    }
+
+    getNeighborTileXYAtAngle(
+        srcTileXY: XYType,
+        angle: number,
+        out: XYType | true = { x: 0, y: 0 }
+    ): XYType | null {
+
+        return GetNeighborTileXYAtAngle(this, srcTileXY, angle, out);
     }
 
     getOppositeDirection(
@@ -313,7 +398,7 @@ export class LogicBoard implements ILogicBoard {
 
     tileXYArrayToChessArray(
         tileXYArray: XYType[],
-        tileZ?: ZType | IChess[],
+        tileZ?: ZType,
         out: IChess[] = []
     ): IChess[] {
 
@@ -349,7 +434,7 @@ export class LogicBoard implements ILogicBoard {
     tileXYToWorldXY(
         tileX: XType,
         tileY: YType,
-        out: PositionType = { x: 0, y: 0 }
+        out: PositionType | true = { x: 0, y: 0 }
     ): PositionType {
 
         return TileXYToWorldXY(this, tileX, tileY, out);
