@@ -1,4 +1,8 @@
-import { IGrid, PositionType } from '../grid/IGrid';
+import {
+    IGrid,
+    PositionType,
+    MirrorMode, MirrorModeString
+} from '../grid/IGrid';
 import { IBoardData } from './boarddata/IBoardData';
 import { IChessData, EdgeBlockerType } from '../chess/IChessData';
 
@@ -48,6 +52,9 @@ export type DistanceConfig = {
     start?: number,
     step?: number
 };
+
+// Mirror
+export { MirrorMode, MirrorModeString };
 
 export interface ILogicBoard {
     isBoard: boolean;
@@ -122,6 +129,10 @@ export interface ILogicBoard {
         radius: number,
         nearToFar?: boolean,
         out?: XYType[]
+    ): XYType[];
+
+    fit(
+        tileXYArray: XYType[]
     ): XYType[];
 
     forEachTileXY(
@@ -221,12 +232,39 @@ export interface ILogicBoard {
         direction: number
     ): boolean;
 
+    isAngleInCone(
+        chessA: IChess | XYType,
+        chessB: IChess | XYType,
+        face: number,
+        cone: number
+    ): boolean;
+
     isDirectionInCone(
         chessA: IChess | XYType,
         chessB: IChess | XYType,
         face: number,
         cone: number
     ): boolean;
+
+    isOverlappingPoint(
+        worldX: number,
+        worldY: number,
+        tileZ?: ZType
+    ): boolean;
+
+    mirror(
+        tileXY: XYType,
+        mode: MirrorMode | MirrorModeString,
+        originTileXY?: XYType | null,
+        out?: XYType | true
+    ): XYType;
+
+    offset(
+        tileXY: XYType,
+        offsetTileX: number,
+        offsetTileY: number,
+        out?: XYType | true
+    ): XYType;
 
     removeAllChess(
         destroy?: boolean,
@@ -246,7 +284,14 @@ export interface ILogicBoard {
         centerTileXY: XYType,
         radius?: number,
         out?: XYType[]
-    ): XYType[]
+    ): XYType[];
+
+    rotate(
+        tileXY: XYType,
+        direction: number,
+        originTileXY?: XYType | null,
+        out?: XYType | true
+    ): XYType;
 
     setBoardWidth(
         width?: number
@@ -267,6 +312,11 @@ export interface ILogicBoard {
         tileZ?: ZType,
         out?: IChess[]
     ): IChess[];
+
+    tileXYArrayToWorldXYArray(
+        tileXYArray: XYType[],
+        out?: PositionType[]
+    ): PositionType[];
 
     tileXYToChessArray(
         tileX: XType,
@@ -291,4 +341,22 @@ export interface ILogicBoard {
         out?: PositionType | true
     ): PositionType;
 
+    worldXYSnapToGrid(
+        worldX: number,
+        worldY: number,
+        out: PositionType | true
+    ): PositionType;
+
+    worldXYToChess(
+        worldX: number,
+        worldY: number,
+        tileZ?: ZType,
+        out?: IChess[]
+    ): IChess | IChess[];
+
+    worldXYToTileXY(
+        worldX: number,
+        worldY: number,
+        out?: XYType | true
+    ): XYType;
 }

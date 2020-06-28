@@ -68,7 +68,7 @@ export interface IGrid extends Base {
 
     mirror(
         srcTileXY: PositionType,
-        mode: number | string,
+        mode: MirrorMode | MirrorModeString,
         out?: PositionType | true
     ): PositionType
 

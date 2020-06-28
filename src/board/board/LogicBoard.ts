@@ -3,7 +3,8 @@ import {
     IConfig,
     XType, YType, ZType, XYType, PositionType,
     ForEachTileXYCallback,
-    DistanceConfig
+    DistanceConfig,
+    MirrorMode, MirrorModeString
 } from './ILogicBoard';
 import { IGrid } from '../grid/IGrid';
 import { IBoardData, IChess, XYZType } from './boarddata/IBoardData';
@@ -22,6 +23,7 @@ import { ChessToTileXYZ } from './tileposition/ChessToTileXYZ';
 import { Contains } from './tileposition/Contains';
 import { DirectionBetween } from './tileposition/DirectionBetween';
 import { FilledRingToTileXYArray } from './ring/FilledRingToTileXYArray';
+import { Fit } from './transform/Fit';
 import { ForEachTileXY } from './tileposition/ForEachTileXY';
 import { GetAllChess } from './chess/GetAllChess';
 import { GetChessData } from '../chess/GetChessData';
@@ -39,16 +41,25 @@ import { GetWrapTileXY } from './tileposition/GetWrapTileXY';
 import { GridAlign } from './worldposition/GridAlign';
 import { HasBlocker } from './blocker/HasBlocker';
 import { HasEdgeBlocker } from './blocker/HasEdgeBlocker';
+import { IsAngleInCone } from './worldposition/IsAngleInCone';
 import { IsDirectionInCone } from './tileposition/IsDirectionInCone';
+import { IsOverlappingPoint } from './worldposition/IsOverlappingPoint';
+import { Mirror } from './transform/Mirror';
+import { Offset } from './transform/Offset';
 import { RemoveAllChess } from './chess/RemoveAllChess';
 import { RemoveChess } from './chess/RemoveChess';
 import { RingToTileXYArray } from './ring/RingToTileXYArray';
+import { Rotate } from './transform/Rotate';
 import { SwapChess } from './chess/SwapChess';
 import { TileXYArrayToChessArray } from './tileposition/TileXYArrayToChessArray';
 import { TileXYToChessArray } from './tileposition/TileXYToChessArray';
 import { TileXYZToChess } from './tileposition/TileXYZToChess';
 import { TileZToChessArray } from './tileposition/TileZToChessArray';
+import { TileXYArrayToWorldXYArray } from './worldposition/TileXYArrayToWorldXYArray';
 import { TileXYToWorldXY } from './worldposition/TileXYToWorldXY';
+import { WorldXYSnapToGrid } from './worldposition/WorldXYSnapToGrid';
+import { WorldXYToChess } from './worldposition/WorldXYToChess';
+import { WorldXYToTileXY } from './worldposition/WorldXYToTileXY';
 
 export class LogicBoard implements ILogicBoard {
     isBoard: boolean;
@@ -181,6 +192,13 @@ export class LogicBoard implements ILogicBoard {
     ): XYType[] {
 
         return FilledRingToTileXYArray(this, centerTileXY, radius, nearToFar, out);
+    }
+
+    fit(
+        tileXYArray: XYType[]
+    ): XYType[] {
+
+        return Fit(this, tileXYArray);
     }
 
     forEachTileXY(
@@ -333,6 +351,16 @@ export class LogicBoard implements ILogicBoard {
         return HasEdgeBlocker(this, tileX, tileY, tileZ, direction);
     }
 
+    isAngleInCone(
+        chessA: IChess | XYType,
+        chessB: IChess | XYType,
+        face: number,
+        cone: number
+    ): boolean {
+
+        return IsAngleInCone(this, chessA, chessB, face, cone);
+    }
+
     isDirectionInCone(
         chessA: IChess | XYType,
         chessB: IChess | XYType,
@@ -341,6 +369,35 @@ export class LogicBoard implements ILogicBoard {
     ): boolean {
 
         return IsDirectionInCone(this, chessA, chessB, face, cone);
+    }
+
+    isOverlappingPoint(
+        worldX: number,
+        worldY: number,
+        tileZ?: ZType
+    ): boolean {
+
+        return IsOverlappingPoint(this, worldX, worldY, tileZ);
+    }
+
+    mirror(
+        tileXY: XYType,
+        mode: MirrorMode | MirrorModeString,
+        originTileXY: XYType | null = null,
+        out: XYType | true = { x: 0, y: 0 }
+    ): XYType {
+
+        return Mirror(this, tileXY, mode, originTileXY, out);
+    }
+
+    offset(
+        tileXY: XYType,
+        offsetTileX: number,
+        offsetTileY: number,
+        out?: XYType | true
+    ): XYType {
+
+        return Offset(this, tileXY, offsetTileX, offsetTileY, out);
     }
 
     removeAllChess(
@@ -372,6 +429,16 @@ export class LogicBoard implements ILogicBoard {
     ): XYType[] {
 
         return RingToTileXYArray(this, centerTileXY, radius, out);
+    }
+
+    rotate(
+        tileXY: XYType,
+        direction: number,
+        originTileXY: XYType | null = null,
+        out: XYType | true = { x: 0, y: 0 }
+    ): XYType {
+
+        return Rotate(this, tileXY, direction, originTileXY, out);
     }
 
     setBoardWidth(width: number = 0): this {
@@ -431,6 +498,14 @@ export class LogicBoard implements ILogicBoard {
         return TileZToChessArray(this, tileZ, out);
     }
 
+    tileXYArrayToWorldXYArray(
+        tileXYArray: XYType[],
+        out: PositionType[] = []
+    ): PositionType[] {
+
+        return TileXYArrayToWorldXYArray(this, tileXYArray, out);
+    }
+
     tileXYToWorldXY(
         tileX: XType,
         tileY: YType,
@@ -438,5 +513,33 @@ export class LogicBoard implements ILogicBoard {
     ): PositionType {
 
         return TileXYToWorldXY(this, tileX, tileY, out);
+    }
+
+    worldXYSnapToGrid(
+        worldX: number,
+        worldY: number,
+        out: PositionType | true = { x: 0, y: 0 }
+    ): PositionType {
+
+        return WorldXYSnapToGrid(this, worldX, worldY, out);
+    }
+
+    worldXYToChess(
+        worldX: number,
+        worldY: number,
+        tileZ?: ZType,
+        out?: IChess[]
+    ): IChess | IChess[] {
+
+        return WorldXYToChess(this, worldX, worldY, tileZ, out);
+    }
+
+    worldXYToTileXY(
+        worldX: number,
+        worldY: number,
+        out?: XYType | true
+    ): XYType {
+
+        return WorldXYToTileXY(this, worldX, worldY, out);
     }
 }
