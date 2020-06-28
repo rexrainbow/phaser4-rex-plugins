@@ -1,7 +1,8 @@
 import {
     ILogicBoard,
     IConfig,
-    XType, YType, ZType, XYType
+    XType, YType, ZType, XYType,
+    ForEachTileXYCallback
 } from './ILogicBoard';
 import { IGrid } from '../grid/IGrid';
 import { IBoardData, IChess, XYZType } from './boarddata/IBoardData';
@@ -13,10 +14,14 @@ import { SetBoardHeight } from './boarddata/SetBoardHeight';
 import { AddChess } from './chess/AddChess';
 import { ChessToTileXYZ } from './tileposition/ChessToTileXYZ';
 import { Contains } from './tileposition/Contains';
+import { DirectionBetween } from './tileposition/DirectionBetween';
+import { ForEachTileXY } from './tileposition/ForEachTileXY';
 import { GetAllChess } from './chess/GetAllChess';
 import { GetDistance } from './tileposition/GetDistance';
 import { GetOppositeDirection } from './tileposition/GetOppositeDirection';
+import { GetWrapTileXY } from './tileposition/GetWrapTileXY';
 import { GridAlign } from './worldposition/GridAlign';
+import { IsDirectionInCone } from './tileposition/IsDirectionInCone';
 import { RemoveAllChess } from './chess/RemoveAllChess';
 import { RemoveChess } from './chess/RemoveChess';
 import { SwapChess } from './chess/SwapChess';
@@ -81,18 +86,6 @@ export class LogicBoard implements ILogicBoard {
         return this;
     }
 
-    setBoardWidth(width: number = 0): this {
-
-        SetBoardWidth(this, width);
-        return this
-    }
-
-    setBoardHeight(height: number = 0): this {
-
-        SetBoardHeight(this, height);
-        return this;
-    }
-
     addChess(
         chess: IChess,
         tileX: XType,
@@ -105,7 +98,7 @@ export class LogicBoard implements ILogicBoard {
         return this;
     }
 
-    chessToTileXYZ(chess: IChess): XYZType | object | null {
+    chessToTileXYZ(chess: object): XYZType | any | null {
 
         return ChessToTileXYZ(this, chess);
     }
@@ -118,6 +111,25 @@ export class LogicBoard implements ILogicBoard {
 
 
         return Contains(this, tileX, tileY, tileZ);
+    }
+
+    directionBetween(
+        chessA: IChess | XYType,
+        chessB: IChess | XYType,
+        round: boolean = true
+    ): number | null {
+
+        return DirectionBetween(this, chessA, chessB, round);
+    }
+
+    forEachTileXY(
+        callback: ForEachTileXYCallback,
+        scope: any,
+        order: number = 0
+    ): this {
+
+        ForEachTileXY(this, callback, scope, order);
+        return this;
     }
 
     getAllChess(
@@ -145,6 +157,15 @@ export class LogicBoard implements ILogicBoard {
         return GetOppositeDirection(this, tileX, tileY, direction);
     }
 
+    getWrapTileXY(
+        tileX: XType,
+        tileY: YType,
+        out: XYType | true = { x: 0, y: 0 }
+    ): XYType {
+
+        return GetWrapTileXY(this, tileX, tileY, out)
+    }
+
     gridAlign(
         chess?: IChess,
         tileX?: XType,
@@ -153,6 +174,16 @@ export class LogicBoard implements ILogicBoard {
 
         GridAlign(this, chess, tileX, tileY);
         return this;
+    }
+
+    isDirectionInCone(
+        chessA: IChess | XYType,
+        chessB: IChess | XYType,
+        face: number,
+        cone: number
+    ): boolean {
+
+        return IsDirectionInCone(this, chessA, chessB, face, cone);
     }
 
     removeAllChess(
@@ -174,6 +205,18 @@ export class LogicBoard implements ILogicBoard {
     ): this {
 
         RemoveChess(this, chess, tileX, tileY, tileZ, destroy, fromBoardRemove);
+        return this;
+    }
+
+    setBoardWidth(width: number = 0): this {
+
+        SetBoardWidth(this, width);
+        return this
+    }
+
+    setBoardHeight(height: number = 0): this {
+
+        SetBoardHeight(this, height);
         return this;
     }
 

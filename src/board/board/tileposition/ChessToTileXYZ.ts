@@ -1,12 +1,12 @@
 import {
     ILogicBoard,
-    XYType, XYZType
+    XYZType
 } from '../ILogicBoard';
 import { IsTileXYZ } from '../utils/IsTileXYZ';
 
 export let ChessToTileXYZ = function (
     board: ILogicBoard,
-    chess: any
+    chess: object
 ): XYZType | object | null {
 
     let xyz: XYZType | undefined = board.boardData.getXYZ(chess);

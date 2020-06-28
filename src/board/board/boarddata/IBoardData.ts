@@ -18,11 +18,40 @@ export interface IBoardData {
     yMin: number;
 
     destroy(): void;
+
     clear(): this;
-    addChess(chess: IChess, x: XType, y: YType, z: ZType): this;
-    getChess(x: XType, y: YType, z?: ZType): IChess | ZMapType | undefined;
-    removeChess(x: XType, y: YType, z?: ZType): this;
-    hasChess(chess: IChess): boolean;
-    contains(x: XType, y: YType, z?: ZType): boolean;
-    getXYZ(chess: IChess): XYZType | undefined;
+
+    addChess(
+        chess: IChess,
+        x: XType,
+        y: YType,
+        z: ZType
+    ): this;
+
+    getChess(
+        x: XType,
+        y: YType,
+        z?: ZType
+    ): IChess | ZMapType | null;
+
+    removeChess(
+        x: XType,
+        y: YType,
+        z?: ZType
+    ): this;
+
+    hasChess(
+        chess: IChess
+    ): boolean;
+
+    contains(
+        x: XType,
+        y: YType,
+        z?: ZType
+    ): boolean;
+
+    getXYZ(
+        chess: IChess
+    ): XYZType | null;
+
 }

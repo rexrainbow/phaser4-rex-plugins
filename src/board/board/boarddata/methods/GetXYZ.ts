@@ -6,7 +6,7 @@ import {
 export let GetXYZ = function (
     boardData: IBoardData,
     chess: IChess
-): XYZType | undefined {
-
-    return boardData.chessToXYZ.get(chess);
+): XYZType | null {
+    
+    return boardData.chessToXYZ.get(chess) || null;
 }

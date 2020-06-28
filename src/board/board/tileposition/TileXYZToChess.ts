@@ -9,7 +9,7 @@ export let TileXYZToChess = function (
     tileX: XType,
     tileY: YType,
     tileZ: ZType
-): IChess | undefined {
+): IChess | null {
 
     return board.boardData.getChess(tileX, tileY, tileZ) as IChess;
 }

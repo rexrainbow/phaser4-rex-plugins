@@ -74,7 +74,7 @@ export class BoardData implements IBoardData {
         x: XType,
         y: YType,
         z?: ZType
-    ): IChess | ZMapType | undefined {
+    ): IChess | ZMapType | null {
 
         return GetChess(this, x, y, z);
     }
@@ -106,7 +106,9 @@ export class BoardData implements IBoardData {
         return Contains(this, x, y, z);
     }
 
-    getXYZ(chess: IChess): XYZType | undefined {
+    getXYZ(
+        chess: IChess
+    ): XYZType | null {
 
         return GetXYZ(this, chess);
     }

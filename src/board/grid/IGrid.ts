@@ -76,6 +76,8 @@ export interface IGrid extends Base {
         out?: PositionType | true
     ): PositionType
 
+    restoreOrigin(): this;
+
     ringToTileXYArray(
         centerTileXY: PositionType,
         radius: number,
@@ -88,8 +90,7 @@ export interface IGrid extends Base {
         out?: PositionType | true
     ): PositionType
 
-    saveOrigin(): this
-    restoreOrigin(): this
+    saveOrigin(): this;
 }
 
 import { MirrorMode, MirrorModeString } from '../../utils/grid/MirrorMode';

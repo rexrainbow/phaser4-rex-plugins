@@ -10,7 +10,15 @@ export let GetChess = function (
     x: XType,
     y: YType,
     z?: ZType
-): IChess | ZMapType {
+): IChess | ZMapType | null {
     let zMap = boardData.XYToZMap.get(GetXYKey(x, y));
-    return (z !== undefined) ? zMap.get(z) : zMap;
+    if (zMap === undefined) {
+        return null;
+    }
+
+    if (z !== undefined) {
+        return (zMap.has(z)) ? zMap.get(z) : null;
+    } else {
+        return zMap;
+    }
 }

@@ -2,14 +2,13 @@ import {
     ILogicBoard,
     IChess, XType, YType, XYZType
 } from '../ILogicBoard';
-import { TileXYToWorldXY } from './TileXYToWorldXY';
 
 export let GridAlign = function (
     board: ILogicBoard,
     chess?: IChess,
     tileX?: XType,
     tileY?: YType
-):void {
+): void {
 
     if (chess === undefined) {
         let chessArray = board.getAllChess();
@@ -17,7 +16,7 @@ export let GridAlign = function (
             let chess = chessArray[i];
             let tileXYZ = board.chessToTileXYZ(chess) as XYZType;
 
-            TileXYToWorldXY(board, tileXYZ.x, tileXYZ.y, chess);
+            board.tileXYToWorldXY(tileXYZ.x, tileXYZ.y, chess);
         }
     } else {
         if (tileX === undefined) {
@@ -26,6 +25,6 @@ export let GridAlign = function (
             tileY = tileXYZ.y;
         }
 
-        TileXYToWorldXY(board, tileX, tileY, chess);
+        board.tileXYToWorldXY(tileX, tileY, chess);
     }
 };
