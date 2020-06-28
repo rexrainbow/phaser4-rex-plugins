@@ -1,8 +1,7 @@
 import {
     ILogicBoard,
-    XType, YType
+    XType, YType, PositionType
 } from '../ILogicBoard';
-import { PositionType } from '../../../utils/types/PositionType'
 
 export let TileXYToWorldXY = function (
     board: ILogicBoard,

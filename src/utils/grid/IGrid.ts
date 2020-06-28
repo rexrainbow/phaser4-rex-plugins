@@ -6,6 +6,7 @@ export interface IGrid {
 };
 
 import { PositionType } from '../types/PositionType';
+export { PositionType };
 
 export interface IDirectionBetween {
     (

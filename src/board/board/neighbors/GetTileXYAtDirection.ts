@@ -12,7 +12,7 @@ export let GetTileXYAtDirection = function (
     out?: XYType | XYType[] | true
 ): XYType | XYType[] | null {
 
-    let srcTileXY = board.chessToTileXYZ(chess) as XYType;
+    let srcTileXY = board.chessToTileXYZ(chess);
     if (srcTileXY === null) {
         return null;
     }

@@ -1,6 +1,5 @@
-import { IHexagon, LayoutMode } from './IHexagon';
+import { IHexagon, LayoutMode, PositionType } from './IHexagon';
 import { IMirror } from '../IGrid';
-import { PositionType } from '../../types/PositionType';
 import { MirrorMode, MirrorModeString } from '../MirrorMode';
 import { cr2cube, cube2cr } from './CubeTransfer';
 
@@ -8,7 +7,7 @@ export let Mirror: IMirror = function (
     hexagon: IHexagon,
     srcTileXY,
     mode: MirrorMode | MirrorModeString,
-    out = {}
+    out = { x: 0, y: 0 }
 ) {
 
     if (typeof (mode) === 'string') {
@@ -54,6 +53,6 @@ export let Mirror: IMirror = function (
     return out;
 }
 
-var globTileXY: PositionType = {};
+var globTileXY: PositionType = { x: 0, y: 0 };
 
 export default Mirror;

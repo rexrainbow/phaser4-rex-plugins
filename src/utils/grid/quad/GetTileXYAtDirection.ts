@@ -1,6 +1,5 @@
-import { IQuad, LayoutMode } from './IQuad';
+import { IQuad, LayoutMode, PositionType } from './IQuad';
 import { IGetTileXAtDirection } from '../IGrid';
-import { PositionType } from '../../types/PositionType';
 import { OrthogonalMap, IsometricMap } from './DirectionToDeltaXY';
 
 export let GetTileXYAtDirection: IGetTileXAtDirection = function (
@@ -8,7 +7,7 @@ export let GetTileXYAtDirection: IGetTileXAtDirection = function (
     srcTileXY,
     direction,
     distance,
-    out = {}
+    out = { x: 0, y: 0 }
 ): PositionType {
 
     if (out === true) {
@@ -39,4 +38,4 @@ export let GetTileXYAtDirection: IGetTileXAtDirection = function (
 
 }
 
-var globTileXY: PositionType = {};
+var globTileXY: PositionType = { x: 0, y: 0 };

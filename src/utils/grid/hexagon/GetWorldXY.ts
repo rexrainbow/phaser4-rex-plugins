@@ -1,12 +1,11 @@
-import { IHexagon, LayoutMode } from './IHexagon';
+import { IHexagon, LayoutMode, PositionType } from './IHexagon';
 import { IGetWorldXY } from '../IGrid';
-import { PositionType } from '../../types/PositionType';
 
 export let GetWorldXY: IGetWorldXY = function (
     hexagon: IHexagon,
     tileX,
     tileY,
-    out = {}
+    out = { x: 0, y: 0 }
 ) {
 
     if (typeof (tileX) === 'object') {
@@ -56,4 +55,4 @@ export let GetWorldXY: IGetWorldXY = function (
     return out;
 }
 
-var globWorldXY: PositionType = {};
+var globWorldXY: PositionType = { x: 0, y: 0 };

@@ -1,6 +1,5 @@
 import { IQuad } from './IQuad';
 import { IRingToTileXYArray } from '../IGrid';
-import { PositionType } from '../../types/PositionType';
 import { Offset } from './Offset';
 
 export let RingToTileXYArray: IRingToTileXYArray = function (

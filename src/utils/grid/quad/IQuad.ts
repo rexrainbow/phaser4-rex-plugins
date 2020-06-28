@@ -30,7 +30,8 @@ export interface IState {
     dir?: DirMode | DirModeString
 }
 
-import { IGrid } from '../IGrid';
+import { IGrid, PositionType } from '../IGrid';
+export { PositionType };
 export interface IQuad extends IGrid {
     _halfWidth: number,
     _halfHeight: number,

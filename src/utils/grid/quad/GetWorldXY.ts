@@ -1,12 +1,11 @@
-import { IQuad, LayoutMode } from './IQuad'
+import { IQuad, LayoutMode, PositionType } from './IQuad'
 import { IGetWorldXY } from '../IGrid';
-import { PositionType } from '../../types/PositionType';
 
 export let GetWorldXY: IGetWorldXY = function (
     quad: IQuad,
     tileX,
     tileY,
-    out = {}
+    out = { x: 0, y: 0 }
 ) {
 
     if (typeof (tileX) === 'object') {
@@ -37,4 +36,4 @@ export let GetWorldXY: IGetWorldXY = function (
 
 };
 
-var globWorldXY: PositionType = {};
+var globWorldXY: PositionType = { x: 0, y: 0 };

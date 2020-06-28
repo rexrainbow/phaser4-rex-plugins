@@ -1,6 +1,9 @@
-import { IGrid as Base } from '../../utils/grid/IGrid';
-import { PositionType } from '../../utils/types/PositionType';
+import {
+    IGrid as Base,
+    PositionType
+} from '../../utils/grid/IGrid';
 
+export { PositionType };
 export interface IGrid extends Base {
 
     directions: number;

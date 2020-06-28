@@ -1,6 +1,5 @@
-import { IHexagon } from './IHexagon';
+import { IHexagon, PositionType } from './IHexagon';
 import { IRingToTileXYArray } from '../IGrid';
-import { PositionType } from '../../types/PositionType';
 import { cr2cube, cube2cr } from './CubeTransfer';
 
 export let RingToTileXYArray: IRingToTileXYArray = function (

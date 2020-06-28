@@ -1,6 +1,5 @@
-import { IGrid } from '../IGrid';
+import { IGrid, PositionType } from '../IGrid';
 import { Hexagon as Base } from '../../../utils/grid/hexagon/Hexagon';
-import { PositionType } from '../../../utils/types/PositionType';
 
 import { DirectionBetween } from '../../../utils/grid/hexagon/DirectionBetween';
 import { DirectionNormalize } from '../utils/DirectionNormalize';
@@ -73,7 +72,7 @@ export class Hexagon extends Base implements IGrid {
     getNeighborTileXY(
         srcTileXY: PositionType,
         direction: number,
-        out: PositionType | true = {}
+        out: PositionType | true = { x: 0, y: 0 }
     ): PositionType {
 
         return GetNeighborTileXY(this, srcTileXY, direction, out);
@@ -91,7 +90,7 @@ export class Hexagon extends Base implements IGrid {
     getTileXY(
         worldX: number | PositionType,
         worldY?: number,
-        out: PositionType | true = {}
+        out: PositionType | true = { x: 0, y: 0 }
     ): PositionType {
 
         return GetTileXY(this, worldX, worldY, out);
@@ -101,7 +100,7 @@ export class Hexagon extends Base implements IGrid {
         srcTileXY: PositionType,
         direction: number,
         distance: number,
-        out: PositionType | true = {}
+        out: PositionType | true = { x: 0, y: 0 }
     ): PositionType {
 
         return GetTileXYAtDirection(this, srcTileXY, direction, distance, out);
@@ -110,7 +109,7 @@ export class Hexagon extends Base implements IGrid {
     getWorldXY(
         tileX: number | PositionType,
         tileY?: number,
-        out: PositionType | true = {}
+        out: PositionType | true = { x: 0, y: 0 }
     ): PositionType {
 
         return GetWorldXY(this, tileX, tileY, out);
@@ -119,7 +118,7 @@ export class Hexagon extends Base implements IGrid {
     mirror(
         srcTileXY: PositionType,
         mode: MirrorMode | MirrorModeString,
-        out: PositionType | true = {}
+        out: PositionType | true = { x: 0, y: 0 }
     ): PositionType {
 
         return Mirror(this, srcTileXY, mode, out);
@@ -129,7 +128,7 @@ export class Hexagon extends Base implements IGrid {
         srcTileXY: PositionType,
         offsetTileX: number,
         offsetTileY: number,
-        out: PositionType | true = {}
+        out: PositionType | true = { x: 0, y: 0 }
     ): PositionType {
 
         return Offset(this, srcTileXY, offsetTileX, offsetTileY, out);
@@ -146,7 +145,7 @@ export class Hexagon extends Base implements IGrid {
 
     rotate(srcTileXY: PositionType,
         dir: number,
-        out: PositionType | true = {}
+        out: PositionType | true = { x: 0, y: 0 }
     ): PositionType {
 
         return Rotate(this, srcTileXY, dir, out);

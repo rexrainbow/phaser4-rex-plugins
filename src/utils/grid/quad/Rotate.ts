@@ -1,13 +1,12 @@
-import { IQuad } from './IQuad';
+import { IQuad, PositionType } from './IQuad';
 import { IRotate } from '../IGrid';
-import { PositionType } from '../../types/PositionType';
 import { Wrap } from '../../math/Wrap';
 
 export let Rotate: IRotate = function (
     quad: IQuad,
     srcTileXY,
     dir,
-    out = {}
+    out = {x:0, y:0}
 ) {
 
     if (out === true) {
@@ -40,4 +39,4 @@ export let Rotate: IRotate = function (
     return out;
 }
 
-var globTileXY: PositionType = {};
+var globTileXY: PositionType = { x: 0, y: 0 };

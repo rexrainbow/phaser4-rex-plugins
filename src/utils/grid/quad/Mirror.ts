@@ -1,13 +1,12 @@
-import { IQuad } from './IQuad';
+import { IQuad, PositionType } from './IQuad';
 import { IMirror } from '../IGrid';
-import { PositionType } from '../../types/PositionType';
 import { MirrorMode, MirrorModeString } from '../MirrorMode';
 
 export let Mirror: IMirror = function (
     quad: IQuad,
     srcTileXY,
     mode: MirrorMode | MirrorModeString,
-    out = {}
+    out = { x: 0, y: 0 }
 ) {
 
     if (typeof (mode) === 'string') {
@@ -23,4 +22,4 @@ export let Mirror: IMirror = function (
     return out;
 }
 
-var globTileXY: PositionType = {};
+var globTileXY: PositionType = { x: 0, y: 0 };

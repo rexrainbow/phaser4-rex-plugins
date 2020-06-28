@@ -1,26 +1,26 @@
 import { LayoutMode } from './IHexagon';
 
 export type CubeType = {
-    x?: number,
-    y?: number,
-    z?: number
+    x: number,
+    y: number,
+    z: number
 }
 
 export type ColRowType = {
-    x?: number,
-    y?: number
+    x: number,
+    y: number
 }
 
 export type QRType = {
-    q?: number,
-    r?: number
+    q: number,
+    r: number
 }
 
 export function cr2cube(
     mode: LayoutMode,
     col: number,
     row: number,
-    out: CubeType | true = {}
+    out: CubeType | true = { x: 0, y: 0, z: 0 }
 ): CubeType {
 
     if (out === true) {
@@ -55,7 +55,7 @@ export function roundcube(
     x: number | CubeType,
     y?: number,
     z?: number,
-    out: CubeType | true = {}
+    out: CubeType | true = { x: 0, y: 0, z: 0 }
 ): CubeType {
 
     if (typeof (x) !== 'number') {
@@ -95,7 +95,7 @@ export function cube2cr(
     x: number,
     y: number,
     z: number,
-    out: ColRowType | true = {}
+    out: ColRowType | true = { x: 0, y: 0 }
 ): ColRowType {
 
     if (out === true) {
@@ -127,7 +127,7 @@ export function cube2cr(
 export function qr2cube(
     q: number,
     r: number,
-    out: CubeType | true = {}
+    out: CubeType | true = { x: 0, y: 0, z: 0 }
 ): CubeType {
 
     if (out === true) {
@@ -143,7 +143,7 @@ export function cube2qr(
     x: number,
     y: number,
     z: number,
-    out: QRType | true = {}
+    out: QRType | true = { q: 0, r: 0 }
 ): QRType {
 
     if (out === true) {
@@ -155,6 +155,6 @@ export function cube2qr(
     return out;
 }
 
-var globCube: CubeType = {};
-var globCR: ColRowType = {};
-var globQR: QRType = {};
+var globCube: CubeType = { x: 0, y: 0, z: 0 };
+var globCR: ColRowType = { x: 0, y: 0 };
+var globQR: QRType = { q: 0, r: 0 };

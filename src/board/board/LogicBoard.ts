@@ -1,7 +1,7 @@
 import {
     ILogicBoard,
     IConfig,
-    XType, YType, ZType, XYType,
+    XType, YType, ZType, XYType, PositionType,
     ForEachTileXYCallback,
     DistanceConfig
 } from './ILogicBoard';
@@ -9,7 +9,6 @@ import { IGrid } from '../grid/IGrid';
 import { IBoardData, IChess, XYZType } from './boarddata/IBoardData';
 import { IChessData } from '../chess/IChessData';
 
-import { PositionType } from '../../utils/types/PositionType';
 import { BoardData } from './boarddata/BoardData';
 import { SetBoardWidth } from './boarddata/SetBoardWidth';
 import { SetBoardHeight } from './boarddata/SetBoardHeight';
@@ -350,7 +349,7 @@ export class LogicBoard implements ILogicBoard {
     tileXYToWorldXY(
         tileX: XType,
         tileY: YType,
-        out: PositionType = {}
+        out: PositionType = { x: 0, y: 0 }
     ): PositionType {
 
         return TileXYToWorldXY(this, tileX, tileY, out);

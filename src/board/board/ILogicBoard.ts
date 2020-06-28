@@ -1,7 +1,6 @@
-import { IGrid } from '../grid/IGrid';
+import { IGrid, PositionType } from '../grid/IGrid';
 import { IBoardData } from './boarddata/IBoardData';
 import { IChessData, EdgeBlockerType } from '../chess/IChessData';
-import { PositionType } from '../../utils/types/PositionType';
 
 export type XType = number;
 export type YType = number;
@@ -15,6 +14,7 @@ export type XYZType = {
     y: YType,
     z: ZType
 }
+export { PositionType };
 export interface IChess {
     rexChess?: IChessData;
     x?: number,
@@ -83,7 +83,7 @@ export interface ILogicBoard {
 
     chessToTileXYZ(
         chess: object
-    ): XYZType | object | null;
+    ): XYZType | XYType | null;
 
     contains(
         tileX: XType,
