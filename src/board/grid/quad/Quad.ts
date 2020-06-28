@@ -9,7 +9,7 @@ import { GetNeighborTileDirection } from '../../../utils/grid/quad/GetNeighborTi
 import { GetNeighborTileXY } from '../../../utils/grid/quad/GetNeighborTileXY';
 import { GetOppositeDirection } from '../../../utils/grid/quad/GetOppositeDirection';
 import { GetTileXY } from '../../../utils/grid/quad/GetTileXY';
-import { GetTileXAtDirection } from '../../../utils/grid/quad/GetTileXYAtDirection';
+import { GetTileXYAtDirection } from '../../../utils/grid/quad/GetTileXYAtDirection';
 import { GetWorldXY } from '../../../utils/grid/quad/GetWorldXY';
 import { MirrorMode, MirrorModeString } from '../IGrid';
 import { Mirror } from '../../../utils/grid/quad/Mirror';
@@ -98,14 +98,14 @@ export class Quad extends Base implements IGrid {
         return GetTileXY(this, worldX, worldY, out);
     }
 
-    getTileXAtDirection(
+    getTileXYAtDirection(
         srcTileXY: PositionType,
         direction: number,
         distance: number,
         out: PositionType | true = {}
     ): PositionType {
 
-        return GetTileXAtDirection(this, srcTileXY, direction, distance, out);
+        return GetTileXYAtDirection(this, srcTileXY, direction, distance, out);
     }
 
     getWorldXY(

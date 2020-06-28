@@ -2,10 +2,13 @@ import {
     ILogicBoard,
     IConfig,
     XType, YType, ZType, XYType,
-    ForEachTileXYCallback
+    ForEachTileXYCallback,
+    DistanceConfig
 } from './ILogicBoard';
 import { IGrid } from '../grid/IGrid';
 import { IBoardData, IChess, XYZType } from './boarddata/IBoardData';
+import { IChessData } from '../chess/IChessData';
+
 import { PositionType } from '../../utils/types/PositionType';
 import { BoardData } from './boarddata/BoardData';
 import { SetBoardWidth } from './boarddata/SetBoardWidth';
@@ -15,15 +18,23 @@ import { AddChess } from './chess/AddChess';
 import { ChessToTileXYZ } from './tileposition/ChessToTileXYZ';
 import { Contains } from './tileposition/Contains';
 import { DirectionBetween } from './tileposition/DirectionBetween';
+import { FilledRingToTileXYArray } from './ring/FilledRingToTileXYArray';
 import { ForEachTileXY } from './tileposition/ForEachTileXY';
 import { GetAllChess } from './chess/GetAllChess';
+import { GetChessData } from '../chess/GetChessData';
 import { GetDistance } from './tileposition/GetDistance';
+import { GetEmptyTileXYArray } from './empty/GetEmptyTileXYArray';
 import { GetOppositeDirection } from './tileposition/GetOppositeDirection';
+import { GetRandomEmptyTileXY } from './empty/GetRandomEmptyTileXY';
+import { GetTileXYAtDirection } from './neighbors/GetTileXYAtDirection'
 import { GetWrapTileXY } from './tileposition/GetWrapTileXY';
 import { GridAlign } from './worldposition/GridAlign';
+import { HasBlocker } from './blocker/HasBlocker';
+import { HasEdgeBlocker } from './blocker/HasEdgeBlocker';
 import { IsDirectionInCone } from './tileposition/IsDirectionInCone';
 import { RemoveAllChess } from './chess/RemoveAllChess';
 import { RemoveChess } from './chess/RemoveChess';
+import { RingToTileXYArray } from './ring/RingToTileXYArray';
 import { SwapChess } from './chess/SwapChess';
 import { TileXYArrayToChessArray } from './tileposition/TileXYArrayToChessArray';
 import { TileXYToChessArray } from './tileposition/TileXYToChessArray';
@@ -122,6 +133,16 @@ export class LogicBoard implements ILogicBoard {
         return DirectionBetween(this, chessA, chessB, round);
     }
 
+    filledRingToTileXYArray(
+        centerTileXY: XYType,
+        radius: number,
+        nearToFar: boolean = true,
+        out: XYType[] = []
+    ): XYType[] {
+
+        return FilledRingToTileXYArray(this, centerTileXY, radius, nearToFar, out);
+    }
+
     forEachTileXY(
         callback: ForEachTileXYCallback,
         scope: any,
@@ -139,6 +160,13 @@ export class LogicBoard implements ILogicBoard {
         return GetAllChess(this, out);
     }
 
+    getChessData(
+        chess: IChess
+    ): IChessData {
+
+        return GetChessData(chess);
+    }
+
     getDistance(
         tileA: XYType,
         tileB: XYType,
@@ -148,6 +176,14 @@ export class LogicBoard implements ILogicBoard {
         return GetDistance(this, tileA, tileB, roughMode);
     }
 
+    getEmptyTileXYArray(
+        tileZ: ZType = 0,
+        out: XYType[] = []
+    ): XYType[] {
+
+        return GetEmptyTileXYArray(this, tileZ, out);
+    }
+
     getOppositeDirection(
         tileX: XType,
         tileY: YType,
@@ -155,6 +191,24 @@ export class LogicBoard implements ILogicBoard {
     ): number {
 
         return GetOppositeDirection(this, tileX, tileY, direction);
+    }
+
+    getRandomEmptyTileXY(
+        tileZ: ZType = 0,
+        out: XYType | true = { x: 0, y: 0 }
+    ): XYType | null {
+
+        return GetRandomEmptyTileXY(this, tileZ, out);
+    }
+
+    getTileXYAtDirection(
+        chess: IChess | XYType,
+        directions: number | number[] | string | null,
+        distance: number | number[] | DistanceConfig,
+        out?: XYType | XYType[] | true
+    ): XYType | XYType[] | null {
+
+        return GetTileXYAtDirection(this, chess, directions, distance, out);
     }
 
     getWrapTileXY(
@@ -174,6 +228,25 @@ export class LogicBoard implements ILogicBoard {
 
         GridAlign(this, chess, tileX, tileY);
         return this;
+    }
+
+    hasBlocker(
+        tileX: XType,
+        tileY: YType,
+        tileZ?: ZType
+    ): boolean {
+
+        return HasBlocker(this, tileX, tileY, tileZ);
+    }
+
+    hasEdgeBlocker(
+        tileX: XType,
+        tileY: YType,
+        tileZ: ZType | undefined,
+        direction: number
+    ): boolean {
+
+        return HasEdgeBlocker(this, tileX, tileY, tileZ, direction);
     }
 
     isDirectionInCone(
@@ -206,6 +279,15 @@ export class LogicBoard implements ILogicBoard {
 
         RemoveChess(this, chess, tileX, tileY, tileZ, destroy, fromBoardRemove);
         return this;
+    }
+
+    ringToTileXYArray(
+        centerTileXY: XYType,
+        radius: number = 1,
+        out: XYType[] = []
+    ): XYType[] {
+
+        return RingToTileXYArray(this, centerTileXY, radius, out);
     }
 
     setBoardWidth(width: number = 0): this {

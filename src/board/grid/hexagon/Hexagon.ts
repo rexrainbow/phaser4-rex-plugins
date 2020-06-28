@@ -9,7 +9,7 @@ import { GetNeighborTileDirection } from '../../../utils/grid/hexagon/GetNeighbo
 import { GetNeighborTileXY } from '../../../utils/grid/hexagon/GetNeighborTileXY';
 import { GetOppositeDirection } from '../../../utils/grid/hexagon/GetOppositeDirection';
 import { GetTileXY } from '../../../utils/grid/hexagon/GetTileXY';
-import { GetTileXAtDirection } from '../../../utils/grid/hexagon/GetTileXYAtDirection';
+import { GetTileXYAtDirection } from '../../../utils/grid/hexagon/GetTileXYAtDirection';
 import { GetWorldXY } from '../../../utils/grid/hexagon/GetWorldXY';
 import { MirrorMode, MirrorModeString } from '../IGrid';
 import { Mirror } from '../../../utils/grid/hexagon/Mirror';
@@ -97,14 +97,14 @@ export class Hexagon extends Base implements IGrid {
         return GetTileXY(this, worldX, worldY, out);
     }
 
-    getTileXAtDirection(
+    getTileXYAtDirection(
         srcTileXY: PositionType,
         direction: number,
         distance: number,
         out: PositionType | true = {}
     ): PositionType {
 
-        return GetTileXAtDirection(this, srcTileXY, direction, distance, out);
+        return GetTileXYAtDirection(this, srcTileXY, direction, distance, out);
     }
 
     getWorldXY(

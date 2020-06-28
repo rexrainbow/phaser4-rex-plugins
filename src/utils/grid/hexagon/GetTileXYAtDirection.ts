@@ -5,7 +5,7 @@ import { DirectionToDeltaTileXY } from './DirectionToDeltaTileXY';
 import { GetParity } from './GetParity';
 import { cr2cube, cube2cr } from './CubeTransfer';
 
-export let GetTileXAtDirection: IGetTileXAtDirection = function (
+export let GetTileXYAtDirection: IGetTileXAtDirection = function (
     hexragon: IHexagon,
     srcTileXY,
     direction,

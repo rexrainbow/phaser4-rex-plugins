@@ -4,5 +4,3 @@ export let IsTileXYZ = function (obj: any): boolean {
     return obj &&
         (IsPlainObject(obj) || obj.isTileXYZ);
 }
-
-export default IsTileXYZ;

@@ -50,5 +50,3 @@ export let AddChess = function (
         GridAlign(board, chess, tileX, tileY);
     }
 };
-
-export default AddChess;

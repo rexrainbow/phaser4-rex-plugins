@@ -23,5 +23,3 @@ export let SetBoardHeight = function (
 
     board.height = height;
 }
-
-export default SetBoardHeight;

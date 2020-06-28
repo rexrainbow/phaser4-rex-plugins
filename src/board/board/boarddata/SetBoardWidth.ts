@@ -22,5 +22,3 @@ export let SetBoardWidth = function (
 
     board.width = width;
 }
-
-export default SetBoardWidth;

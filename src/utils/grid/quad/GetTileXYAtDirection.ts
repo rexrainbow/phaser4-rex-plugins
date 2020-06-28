@@ -3,7 +3,7 @@ import { IGetTileXAtDirection } from '../IGrid';
 import { PositionType } from '../../types/PositionType';
 import { OrthogonalMap, IsometricMap } from './DirectionToDeltaXY';
 
-export let GetTileXAtDirection: IGetTileXAtDirection = function (
+export let GetTileXYAtDirection: IGetTileXAtDirection = function (
     quad: IQuad,
     srcTileXY,
     direction,

@@ -14,4 +14,3 @@ export let GetAllChess = function (
     }
     return out;
 };
-export default GetAllChess;

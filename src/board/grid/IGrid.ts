@@ -50,7 +50,7 @@ export interface IGrid extends Base {
         out?: PositionType | true
     ): PositionType
 
-    getTileXAtDirection(
+    getTileXYAtDirection(
         srcTileXY: PositionType,
         direction: number,
         distance: number,

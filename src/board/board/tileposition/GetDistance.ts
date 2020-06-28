@@ -12,4 +12,3 @@ export let GetDistance = function (
 
     return board.grid.getDistance(tileA, tileB, roughMode);
 }
-export default GetDistance;
