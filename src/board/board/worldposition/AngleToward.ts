@@ -19,7 +19,7 @@ export let AngleToward = function (
     board.infinityMode = true;
 
     // Get neighborTileXY
-    let neighborTileXY = board.getNeighborTileXY(tileXY, direction, true);
+    let neighborTileXY = board.getNeighborTileXY(tileXY, direction, true) as XYType;
 
     // Restore wrapMode, infinityMode and clear them
     board.wrapMode = wrapModeSave;
@@ -27,4 +27,4 @@ export let AngleToward = function (
     return board.angleBetween(tileXY, neighborTileXY); // -PI~PI
 }
 
-var zeroTileXY : XYType = { x: 0, y: 0 };
+var zeroTileXY: XYType = { x: 0, y: 0 };

@@ -1,7 +1,7 @@
 import {
     IBoardData,
     XType, YType, ZType,
-    ZMapType
+    IChess, ZMapType
 } from '../IBoardData';
 import { GetChess } from './GetChess';
 import { RemoveChessFromZMap } from './ZMap';
@@ -15,7 +15,7 @@ export let RemoveChess = function (
 ): void {
 
     if (z !== undefined) {
-        let chess = GetChess(boardData, x, y, z);
+        let chess = GetChess(boardData, x, y, z) as IChess;
         if (chess === undefined) {
             return;
         }

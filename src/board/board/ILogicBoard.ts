@@ -21,8 +21,8 @@ export type XYZType = {
 export { PositionType };
 export interface IChess {
     rexChess?: IChessData;
-    x?: number,
-    y?: number,
+    x: number,
+    y: number,
     destroy?: () => any;
 };
 export { EdgeBlockerType };
@@ -109,7 +109,7 @@ export interface ILogicBoard {
     ): boolean;
 
     chessToTileXYZ(
-        chess: object
+        chess: IChess | XYZType | XYType
     ): XYZType | XYType | null;
 
     contains(

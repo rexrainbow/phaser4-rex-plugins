@@ -160,7 +160,9 @@ export class LogicBoard implements ILogicBoard {
         return AreNeighbors(this, chessA, chessB);
     }
 
-    chessToTileXYZ(chess: object): XYZType | any | null {
+    chessToTileXYZ(
+        chess: IChess | XYZType | XYType
+    ): XYZType | any | null {
 
         return ChessToTileXYZ(this, chess);
     }

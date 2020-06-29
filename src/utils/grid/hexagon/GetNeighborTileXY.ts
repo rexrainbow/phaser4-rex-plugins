@@ -1,13 +1,13 @@
 import { IHexagon } from './IHexagon';
 import { IGetNeighborTileXY } from '../IGrid';
-import { GetTileXAtDirection } from './GetTileXYAtDirection';
+import { GetTileXYAtDirection } from './GetTileXYAtDirection';
 
 export let GetNeighborTileXY: IGetNeighborTileXY = function (
     hexragon: IHexagon,
     srcTileXY,
     direction,
-    out = {}
+    out = { x: 0, y: 0 }
 ) {
 
-    return GetTileXAtDirection(hexragon, srcTileXY, direction, 1, out);
+    return GetTileXYAtDirection(hexragon, srcTileXY, direction, 1, out);
 };
