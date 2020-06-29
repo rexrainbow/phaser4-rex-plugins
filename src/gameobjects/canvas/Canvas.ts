@@ -38,8 +38,8 @@ export class Canvas extends CanvasBase {
     getPixel(
         x: number,
         y: number,
-        out: number[] = []
-    ): number[] {
+        out: [number, number, number, number] = [0, 0, 0, 0]
+    ): [number, number, number, number] {
 
         return GetPixel(this, x, y, out);
     }

@@ -87,11 +87,10 @@ export let GetPixel = function (
     canvas: ICanvas,
     x: number,
     y: number,
-    out: number[] = []
-): number[] {
+    out: [number, number, number, number] = [0, 0, 0, 0]
+): [number, number, number, number] {
 
     let data = canvas.context.getImageData(x, y, 1, 1).data;
-    out.length = 4;
     out[0] = data[0];
     out[1] = data[1];
     out[2] = data[2];
