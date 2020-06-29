@@ -77,7 +77,8 @@ export let LoadFromURLPromise = function (
 export let GetDataURL = function (
     canvas: ICanvas,
     type?: string,
-    encoderOptions?: any): string {
+    encoderOptions?: any
+): string {
 
     return canvas.canvas.toDataURL(type, encoderOptions);
 };
@@ -101,7 +102,8 @@ export let GetPixel = function (
 export let SetPixel = function (
     canvas: ICanvas,
     x: number, y: number,
-    r: number, g: number, b: number, a?: number): void {
+    r: number, g: number, b: number, a?: number
+): void {
 
     if (a === undefined) {
         a = ((r !== 0) || (g !== 0) || (b !== 0)) ? 255 : 0;

@@ -1,57 +1,84 @@
-import { CanvasTexture } from '@phaserjs/phaser/textures/types/CanvasTexture';
-import { DIRTY_CONST } from '@phaserjs/phaser/gameobjects/DIRTY_CONST';
-import { GameInstance } from '@phaserjs/phaser/GameInstance';
-import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
-import { Sprite } from '@phaserjs/phaser/gameobjects/sprite/Sprite';
-import { Resize, Clear } from './CanvasMethods';
+import { CanvasBase } from './Base';
+import {
+    Fill,
+    LoadFromURL, LoadFromURLPromise, GetDataURL,
+    GetPixel, SetPixel
+} from './CanvasMethods';
+import {
+    GenerateTexture, LoadTexture
+} from './TextureMethods';
 
-export class Canvas extends Sprite {
 
-    canvas: HTMLCanvasElement;
-    context: CanvasRenderingContext2D;
-    resolution: number;
+export class Canvas extends CanvasBase {
 
-    constructor(x: number, y: number, width: number, height: number) {
+    fill(
+        fillStyle: string | CanvasGradient | CanvasPattern = '#fff'
+    ): this {
 
-        super(x, y, CanvasTexture());
-        this.type = 'rexCanvas';
-
-        const game = GameInstance.get();
-        this.resolution = game.renderer.resolution;
-        this.canvas = this.texture.image as HTMLCanvasElement;
-        this.context = this.canvas.getContext('2d');
-
-        this.resize(width, height);
-    }
-
-    updateTexture(): this {
-
-        if (this.texture.binding) {
-            this.texture.binding.update();
-        }
-
-        this.setDirty(DIRTY_CONST.TEXTURE);
+        Fill(this, fillStyle);
         return this;
     }
 
-    destroy(reparentChildren?: IContainer): void {
-        this.texture.destroy();
+    getDataURL(
+        type?: string,
+        encoderOptions?: any
+    ): string {
 
-        this.canvas = null;
-        this.context = null;
-
-        super.destroy(reparentChildren);
+        return GetDataURL(this, type, encoderOptions);
     }
 
-    resize(width: number, height: number): this {
+    getPixel(
+        x: number,
+        y: number,
+        out: number[] = []
+    ): number[] {
 
-        Resize(this, width, height);
+        return GetPixel(this, x, y, out);
+    }
+
+    generateTexture(
+        key: string,
+        x: number = 0,
+        y: number = 0,
+        width: number = this.width,
+        height: number = this.height
+    ): this {
+
+        GenerateTexture(this, key, x, y, width, height);
         return this;
     }
 
-    clear():this {
+    loadFromURL(
+        url: string,
+        callback?: () => void
+    ): this {
 
-        Clear(this);
+        LoadFromURL(this, url, callback);
+        return this;
+    }
+
+    loadFromURLPromise(
+        url: string
+    ): Promise<number> {
+
+        return LoadFromURLPromise(this, url);
+    }
+
+    loadTexture(
+        key: string,
+        frame?: string | number
+    ): this {
+
+        LoadTexture(this, key, frame);
+        return this;
+    }
+
+    setPixel(
+        x: number, y: number,
+        r: number, g: number, b: number, a?: number
+    ): this {
+
+        SetPixel(this, x, y, r, g, b, a);
         return this;
     }
 }

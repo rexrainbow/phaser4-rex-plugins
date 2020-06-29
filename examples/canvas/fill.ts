@@ -2,18 +2,21 @@ import { BackgroundColor, Parent, Scenes, Size, WebGLRenderer } from '@phaserjs/
 import { Game, Scene } from '@phaserjs/phaser';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { StaticWorld } from '@phaserjs/phaser/world';
-import { Canvas } from '../../src/gameobjects/canvas/Canvas';
-import { Fill } from '../../src/gameobjects/canvas/CanvasMethods';
+import { Canvas } from '../../src/gameobjects/canvas';
 
 class Demo extends Scene {
     constructor() {
         super();
 
         const world = new StaticWorld(this);
-        const canvas = new Canvas(400, 300, 200, 200);
+        const canvas = new Canvas(400, 300, 200, 100);
         AddChild(world, canvas);
 
-        Fill(canvas, 'red');
+        let ctx = canvas.getContext();
+        let grd = ctx.createLinearGradient(0, 50, 200, 50);
+        grd.addColorStop(0, 'blue');
+        grd.addColorStop(1, 'red');
+        canvas.fill(grd);
     }
 }
 
