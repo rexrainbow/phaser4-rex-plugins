@@ -24,14 +24,6 @@ export class CanvasBase extends Sprite {
         this.resize(width, height);
     }
 
-    getCanvas(): HTMLCanvasElement {
-        return this.canvas;
-    }
-
-    getContext(): CanvasRenderingContext2D {
-        return this.context;
-    }
-
     updateTexture(): this {
 
         if (this.texture.binding) {

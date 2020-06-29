@@ -19,6 +19,14 @@ export class Canvas extends CanvasBase {
         return this;
     }
 
+    getCanvas(): HTMLCanvasElement {
+        return this.canvas;
+    }
+
+    getContext(): CanvasRenderingContext2D {
+        return this.context;
+    }
+
     getDataURL(
         type?: string,
         encoderOptions?: any
