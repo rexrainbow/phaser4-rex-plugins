@@ -11,7 +11,12 @@ export class CanvasBase extends Sprite {
     context: CanvasRenderingContext2D;
     resolution: number;
 
-    constructor(x: number, y: number, width: number, height: number) {
+    constructor(
+        x: number = 0,
+        y: number = 0,
+        width: number = 32,
+        height: number = 32
+    ) {
 
         super(x, y, CanvasTexture());
         this.type = 'rexCanvas';
