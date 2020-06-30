@@ -1,5 +1,4 @@
 /node_modules/*
-/public/*.js
-/public/*.map
+/public/_preview/*
 package-lock.json
 /dist/esm/*

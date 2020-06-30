@@ -1,9 +1,9 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import htmlTemplate from 'rollup-plugin-generate-html-template';
 
 const inputMain = process.env.main;  // Required
-const outputFolder = process.env.outputfolder || 'public';
 const isTypeScript = (inputMain.split('.').pop() === 'ts');
 
 export default {
@@ -12,7 +12,7 @@ export default {
 
     output: [
         {
-            file: `${outputFolder}/bundle.js`,
+            file: `public/_preview/bundle.js`,
             format: 'iife',
             name: 'Phaser4Game',
             sourcemap: true
@@ -26,6 +26,10 @@ export default {
         commonjs(),
         isTypeScript && typescript({
             tsconfig: './tsconfig.preview.json'
+        }),
+        htmlTemplate({
+            template: 'examples/template.html',
+            target: 'public/_preview/index.html',
         })
     ],
 

@@ -10,7 +10,7 @@ class Demo extends Scene {
     constructor() {
         super();
 
-        ImageFile('logo', 'assets/logo.png')
+        ImageFile('logo', '../assets/logo.png')
             .load()
             .then(() => {
                 this.create();
