@@ -2,8 +2,8 @@
 
 ## Canvas
 
-- [Gradient filling](https://rexrainbow.github.io/phaser4-rex-plugins/canvas-fill/)
+- [Gradient filling](https://rexrainbow.github.io/phaser4-rex-plugins/public/canvas-fill/)
 
 ## Sample project
 
-- [Sample](https://rexrainbow.github.io/phaser4-rex-plugins/test-sample/)
+- [Sample](https://rexrainbow.github.io/phaser4-rex-plugins/public/test-sample/)
