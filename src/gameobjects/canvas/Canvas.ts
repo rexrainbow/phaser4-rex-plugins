@@ -1,4 +1,4 @@
-import { CanvasBase } from './Base';
+import { CanvasBase } from './CanvasBase';
 import {
     Fill,
     LoadFromURL, LoadFromURLPromise, GetDataURL,
