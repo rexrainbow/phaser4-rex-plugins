@@ -9,10 +9,11 @@
     ],
     "main": "./src/index.ts",
     "scripts": {
-        "build": "rollup -c rollup.config.build.js",
-        "watch": "rollup -c rollup.config.preview.js -w",
+        "build-plugins": "rollup -c rollup.config.build.js",
+        "watch": "rollup -c rollup.config.project.js -w",
+        "start": "serve public -p 3000",
         "dev": "npm-run-all --parallel start watch",
-        "start": "serve public -p 3000"
+        "build-project": "rollup -c rollup.config.project.js"
     },
     "repository": {
         "type": "git",
