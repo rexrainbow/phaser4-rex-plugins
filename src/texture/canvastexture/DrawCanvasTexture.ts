@@ -7,7 +7,7 @@ export let DrawCanvasTexture = function (
     callback: (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D) => void,
     scope?: any,
     resolution: number = 1
-): void {
+): Texture {
 
     let texture: Texture;
     if (typeof (key) === 'string') {
@@ -36,4 +36,6 @@ export let DrawCanvasTexture = function (
     if (texture.binding) {
         texture.binding.update();
     }
+
+    return texture;
 }

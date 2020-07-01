@@ -6,4 +6,4 @@
 
 ## Canvas-texture
 
-- [Draw circle](https://rexrainbow.github.io/phaser4-rex-plugins/public/canvas-texture-circle/)
+- [Draw](https://rexrainbow.github.io/phaser4-rex-plugins/public/canvas-texture-draw/)

@@ -1,5 +1,8 @@
-import { DrawCanvasTexture } from './DrawCanvasTexture'
+import { DrawCanvasTexture } from './DrawCanvasTexture';
+import { CreateCircleTexture } from './CreateCircleTexture';
 
 export {
-    DrawCanvasTexture
+    DrawCanvasTexture,
+
+    CreateCircleTexture
 }

@@ -2,28 +2,28 @@ import { BackgroundColor, Parent, Scenes, Size, WebGLRenderer } from '@phaserjs/
 import { Game, Scene } from '@phaserjs/phaser';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { StaticWorld } from '@phaserjs/phaser/world';
-import { CreateCircleTexture } from '../../src/texture/canvastexture';
+import { DrawCanvasTexture } from '../../src/texture/canvastexture';
 import { Sprite } from '@phaserjs/phaser/gameobjects/sprite/Sprite';
 
 class Demo extends Scene {
     constructor() {
         super();
 
-        CreateCircleTexture(
-            'circle',
-            100,
-            'blue' // Color            
-            // function (canvas, context) {  // Return gradient
-            //     let w = canvas.width,
-            //         h = canvas.height,
-            //         x = w / 2,
-            //         y = h / 2;
-            //     let grd = context.createRadialGradient(x, y, 0, x, y, w);
-            //     grd.addColorStop(0, 'white');
-            //     grd.addColorStop(1, 'black');
-            //     return grd;
-            // }
-        )
+        // Draw on a canvas and put it into texture manager
+        DrawCanvasTexture('circle', function (canvas, context) {
+            canvas.width = 200;
+            canvas.height = 200;
+
+            context.beginPath();
+            context.arc(100, 100, 100, 0, 2 * Math.PI);
+
+            let grd = context.createLinearGradient(0, 100, 200, 100);
+            grd.addColorStop(0, 'blue');
+            grd.addColorStop(1, 'red');
+
+            context.fillStyle = grd;
+            context.fill();
+        });
 
         const world = new StaticWorld(this);
         const image = new Sprite(400, 300, 'circle');
