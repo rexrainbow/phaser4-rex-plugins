@@ -1,10 +1,11 @@
-import {
-    IGrid as Base,
-    PositionType
-} from '../../utils/grid/IGrid';
-
+import { PositionType } from '../../utils/types/PositionType';
 export { PositionType };
-export interface IGrid extends Base {
+
+export interface IGrid {
+    x: number,
+    y: number,
+    width: number,
+    height: number
 
     directions: number;
     readonly sides: number;

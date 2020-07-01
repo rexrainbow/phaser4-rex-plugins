@@ -6,7 +6,7 @@ export let GetNeighborTileXY = function (
     hexragon: IHexagonBase,
     srcTileXY: PositionType,
     direction: number,
-    out = { x: 0, y: 0 }
+    out: PositionType | true = { x: 0, y: 0 }
 ): PositionType {
 
     return GetTileXYAtDirection(hexragon, srcTileXY, direction, 1, out);

@@ -34,7 +34,7 @@ export interface IQuadBase {
     x: number,
     y: number,
     width: number,
-    height: number,
+    height: number
 
     _halfWidth: number,
     _halfHeight: number,

@@ -4,7 +4,7 @@ import { PositionType } from '../IGrid';
 export let GetOppositeDirection = function (
     quad: IQuadBase,
     tileX: number | PositionType,
-    tileY: number,
+    tileY: number | undefined | null,
     direction: number
 ): number {
 

@@ -3,8 +3,8 @@ import { PositionType } from '../IGrid';
 
 export let GetOppositeDirection = function (
     hexagon: IHexagonBase,
-    tileX: PositionType,
-    tileY: PositionType,
+    tileX: number | PositionType,
+    tileY: number | undefined | null,
     direction
 ): number {
 

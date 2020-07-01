@@ -6,8 +6,8 @@ export let RingToTileXYArray = function (
     hexagon: IHexagonBase,
     centerTileXY: PositionType,
     radius: number,
-    out = []
-): PositionType {
+    out: PositionType[] = []
+): PositionType[] {
 
     let centerCube = cr2cube(hexagon.mode, centerTileXY.x, centerTileXY.y, true);
     let cx = centerCube.x,
