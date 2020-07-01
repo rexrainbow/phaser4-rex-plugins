@@ -19,66 +19,72 @@ export interface IGrid {
         tileA: PositionType,
         tileB: PositionType,
         round?: boolean
-    ): number
+    ): number;
 
     directionNormalize(
         direction: number
-    ): number
+    ): number;
 
     getDistance(
         tileA: PositionType,
         tileB: PositionType,
         roughMode?: boolean
-    ): number
+    ): number;
+
+    getGridPoints(
+        tileX?: number | PositionType,
+        tileY?: number,
+        out?: PositionType[] | true
+    ): PositionType[];
 
     getNeighborTileDirection(
         srcTileXY: PositionType,
         neighborTileXY: PositionType
-    ): number | null
+    ): number | null;
 
     getNeighborTileXY(
         srcTileXY: PositionType,
         direction: number,
         out?: PositionType | true
-    ): PositionType
+    ): PositionType;
 
     getOppositeDirection(
         tileX: number | PositionType,
         tileY: number | undefined | null,
         direction: number
-    ): number
+    ): number;
 
     getTileXY(
         worldX: number | PositionType,
         worldY?: number,
         out?: PositionType | true
-    ): PositionType
+    ): PositionType;
 
     getTileXYAtDirection(
         srcTileXY: PositionType,
         direction: number,
         distance: number,
         out?: PositionType | true
-    ): PositionType
+    ): PositionType;
 
     getWorldXY(
         tileX: number | PositionType,
         tileY?: number,
         out?: PositionType | true
-    ): PositionType
+    ): PositionType;
 
     mirror(
         srcTileXY: PositionType,
         mode: MirrorMode | MirrorModeString,
         out?: PositionType | true
-    ): PositionType
+    ): PositionType;
 
     offset(
         srcTileXY: PositionType,
         offsetTileX: number,
         offsetTileY: number,
         out?: PositionType | true
-    ): PositionType
+    ): PositionType;
 
     restoreOrigin(): this;
 
@@ -86,7 +92,7 @@ export interface IGrid {
         centerTileXY: PositionType,
         radius: number,
         out?: PositionType[]
-    ): PositionType[]
+    ): PositionType[];
 
     rotate(
         srcTileXY: PositionType,

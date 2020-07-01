@@ -4,6 +4,7 @@ import { HexagonBase } from './HexagonBase';
 import { DirectionBetween } from './DirectionBetween';
 import { DirectionNormalize } from '../utils/DirectionNormalize';
 import { GetDistance } from './GetDistance';
+import { GetGridPoints } from './GetGridPoints';
 import { GetNeighborTileDirection } from './GetNeighborTileDirection';
 import { GetNeighborTileXY } from './GetNeighborTileXY';
 import { GetOppositeDirection } from './GetOppositeDirection';
@@ -59,6 +60,15 @@ export class Hexagon extends HexagonBase implements IGrid {
     ): number {
 
         return GetDistance(this, tileA, tileB, roughMode);
+    }
+
+    getGridPoints(
+        tileX: number | PositionType = 0,
+        tileY: number = 0,
+        out: PositionType[] | true = []
+    ): PositionType[] {
+
+        return GetGridPoints(this, tileX, tileY, out);
     }
 
     getNeighborTileDirection(

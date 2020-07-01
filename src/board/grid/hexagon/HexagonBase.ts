@@ -11,6 +11,7 @@ export class HexagonBase implements IHexagonBase {
     _height: number;
     _halfWidth: number;
     _halfHeight: number;
+    radius: number;
 
     mode: LayoutMode;
     staggerAxis: StaggerAxis;
@@ -42,23 +43,32 @@ export class HexagonBase implements IHexagonBase {
     fromJSON({
         x = 0,
         y = 0,
+        radius = undefined,
         cellWidth = 0,
         cellHeight = 0,
         staggerAxis = StaggerAxis.x,
         staggerIndex = StaggerIndex.odd
-    }: IState = {}) {
+    }: IState = {}): this {
 
         this.setType(staggerAxis, staggerIndex);
         this.setDirectionMode();
 
         this.setOriginPosition(x, y);
-        this.setCellSize(cellWidth, cellHeight);
+        if (radius !== undefined) {
+            this.setRadius(radius);
+        } else {
+            this.setCellSize(cellWidth, cellHeight);
+        }
+
+        return this;
     }
 
     toJSON(): IState {
         return {
             x: this.x,
             y: this.y,
+
+            radius: this.radius,
             cellWidth: this.cellWidth,
             cellHeight: this.cellHeight,
             staggerAxis: this.staggerAxis,
@@ -94,6 +104,7 @@ export class HexagonBase implements IHexagonBase {
 
         this.width = width;
         this.height = height;
+        this.radius = undefined;
         return this;
     }
 
@@ -125,6 +136,7 @@ export class HexagonBase implements IHexagonBase {
             cellHeight = 2 * radius;
         }
         this.setCellSize(cellWidth, cellHeight);
+        this.radius = radius;
         return this;
     }
 

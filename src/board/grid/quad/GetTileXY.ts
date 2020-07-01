@@ -4,7 +4,7 @@ import { PositionType } from '../IGrid';
 export let GetTileXY = function (
     quad: IQuadBase,
     worldX: number | PositionType,
-    worldY: number,
+    worldY?: number,
     out: PositionType | true = { x: 0, y: 0 }
 ): PositionType {
 

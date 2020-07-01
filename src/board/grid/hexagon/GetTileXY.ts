@@ -8,7 +8,7 @@ const C_2div3 = (2 / 3);
 export let GetTileXY = function (
     hexagon: IHexagonBase,
     worldX: number | PositionType,
-    worldY: number,
+    worldY?: number,
     out: PositionType | true = { x: 0, y: 0 }
 ): PositionType {
 

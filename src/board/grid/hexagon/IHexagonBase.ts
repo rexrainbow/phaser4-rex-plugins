@@ -27,6 +27,7 @@ export interface IState {
     x?: number,
     y?: number,
 
+    radius?: number,
     cellWidth?: number,
     cellHeight?: number,
 
@@ -54,6 +55,8 @@ export interface IHexagonBase {
 
     _halfWidth: number,
     _halfHeight: number,
+    radius: number,
     mode: LayoutMode,
-    directions: number
+    directions: number,
+    staggerAxis: StaggerAxis
 };

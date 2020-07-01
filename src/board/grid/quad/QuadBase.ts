@@ -38,13 +38,14 @@ export class QuadBase implements IQuadBase {
         cellHeight = 0,
         type = LayoutMode.orthogonal,
         dir = DirMode['4dir']
-    }: IState = {}) {
+    }: IState = {}): this {
 
         this.setType(type);
         this.setDirectionMode(dir);
         this.setOriginPosition(x, y);
         this.setCellSize(cellWidth, cellHeight);
 
+        return this;
     }
 
     toJSON(): IState {

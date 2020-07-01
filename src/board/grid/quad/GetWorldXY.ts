@@ -23,7 +23,7 @@ export let GetWorldXY = function (
             worldX = tileX * quad.width;
             worldY = tileY * quad.height;
             break;
-        case LayoutMode.isometric: // isometric
+        case LayoutMode.isometric:
             worldX = (tileX - tileY) * quad._halfWidth;
             worldY = (tileX + tileY) * quad._halfHeight;
             break;
