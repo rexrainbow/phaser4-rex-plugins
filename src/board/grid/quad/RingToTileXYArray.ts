@@ -7,7 +7,7 @@ export let RingToTileXYArray = function (
     centerTileXY: PositionType,
     radius: number,
     out: PositionType[] = []
-) {
+): PositionType[] {
 
     let i: number, j: number;
     // Top-right to bottom-right

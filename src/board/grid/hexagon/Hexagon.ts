@@ -1,23 +1,23 @@
 import { IGrid, PositionType } from '../IGrid';
-import { Hexagon as Base } from '../../../utils/grid/hexagon/Hexagon';
+import { HexagonBase } from './HexagonBase';
 
-import { DirectionBetween } from '../../../utils/grid/hexagon/DirectionBetween';
+import { DirectionBetween } from './DirectionBetween';
 import { DirectionNormalize } from '../utils/DirectionNormalize';
-import { GetDistance } from '../../../utils/grid/hexagon/GetDistance';
-import { GetNeighborTileDirection } from '../../../utils/grid/hexagon/GetNeighborTileDirection';
-import { GetNeighborTileXY } from '../../../utils/grid/hexagon/GetNeighborTileXY';
-import { GetOppositeDirection } from '../../../utils/grid/hexagon/GetOppositeDirection';
-import { GetTileXY } from '../../../utils/grid/hexagon/GetTileXY';
-import { GetTileXYAtDirection } from '../../../utils/grid/hexagon/GetTileXYAtDirection';
-import { GetWorldXY } from '../../../utils/grid/hexagon/GetWorldXY';
+import { GetDistance } from './GetDistance';
+import { GetNeighborTileDirection } from './GetNeighborTileDirection';
+import { GetNeighborTileXY } from './GetNeighborTileXY';
+import { GetOppositeDirection } from './GetOppositeDirection';
+import { GetTileXY } from './GetTileXY';
+import { GetTileXYAtDirection } from './GetTileXYAtDirection';
+import { GetWorldXY } from './GetWorldXY';
 import { MirrorMode, MirrorModeString } from '../IGrid';
-import { Mirror } from '../../../utils/grid/hexagon/Mirror';
-import { Offset } from '../../../utils/grid/hexagon/Offset';
-import { RingToTileXYArray } from '../../../utils/grid/hexagon/RingToTileXYArray';
-import { Rotate } from '../../../utils/grid/hexagon/Rotate';
+import { Mirror } from './Mirror';
+import { Offset } from './Offset';
+import { RingToTileXYArray } from './RingToTileXYArray';
+import { Rotate } from './Rotate';
 import { SaveOrigin, RestoreOrigin } from '../utils/SaveOrigin';
 
-export class Hexagon extends Base implements IGrid {
+export class Hexagon extends HexagonBase implements IGrid {
 
     _savedOriginX: number;
     _savedOriginY: number;

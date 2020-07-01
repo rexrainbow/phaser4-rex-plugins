@@ -10,7 +10,7 @@ export let GetNeighborTileDirection = function (
     quad: IQuadBase,
     srcTileXY: PositionType,
     neighborTileXY: PositionType
-) {
+): number | null {
 
     let deltaTileXYToDirMap: DeltaXYToDirectionType;
     switch (quad.mode) {

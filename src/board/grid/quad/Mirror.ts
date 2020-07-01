@@ -6,7 +6,7 @@ export let Mirror = function (
     srcTileXY: PositionType,
     mode: MirrorMode | MirrorModeString,
     out: PositionType | true = { x: 0, y: 0 }
-) {
+): PositionType {
 
     if (typeof (mode) === 'string') {
         mode = MirrorMode[mode];

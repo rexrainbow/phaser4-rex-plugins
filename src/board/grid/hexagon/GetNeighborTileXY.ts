@@ -1,13 +1,13 @@
-import { IQuadBase } from './IQuadBase';
+import { IHexagonBase } from './IHexagonBase';
 import { PositionType } from '../IGrid';
 import { GetTileXYAtDirection } from './GetTileXYAtDirection';
 
 export let GetNeighborTileXY = function (
-    quad: IQuadBase,
+    hexragon: IHexagonBase,
     srcTileXY: PositionType,
     direction: number,
-    out: PositionType | true = { x: 0, y: 0 }
+    out = { x: 0, y: 0 }
 ): PositionType {
 
-    return GetTileXYAtDirection(quad, srcTileXY, direction, 1, out);
-}
+    return GetTileXYAtDirection(hexragon, srcTileXY, direction, 1, out);
+};

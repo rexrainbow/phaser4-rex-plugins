@@ -1,5 +1,5 @@
 import { IGrid, PositionType } from '../IGrid';
-import { QuadBase } from '../../../utils/grid/quad/QuadBase';
+import { QuadBase } from './QuadBase';
 
 import { DirectionBetween } from './DirectionBetween';
 import { DirectionNormalize } from '../utils/DirectionNormalize';

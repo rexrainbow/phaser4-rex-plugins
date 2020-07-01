@@ -1,13 +1,13 @@
-import { IHexagon } from './IHexagon';
-import { IGetDistance } from '../IGrid';
+import { IHexagonBase } from './IHexagonBase';
+import { PositionType } from '../IGrid';
 import { cr2cube, CubeType } from './CubeTransfer';
 
-export let GetDistance: IGetDistance = function (
-    hexagon: IHexagon,
-    tileA,
-    tileB,
-    roughMode = false
-) {
+export let GetDistance = function (
+    hexagon: IHexagonBase,
+    tileA: PositionType,
+    tileB: PositionType,
+    roughMode: boolean = false
+): number {
 
     cr2cube(hexagon.mode, tileA.x, tileA.y, globCubeA);
     cr2cube(hexagon.mode, tileB.x, tileB.y, globCubeB);

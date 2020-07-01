@@ -9,7 +9,10 @@ type DeltaXYToDirectionEntryType = {
     }
 }
 
-let ReverseDirMap = function (dirMap: DirectionToDeltaXYEntryType): DeltaXYToDirectionEntryType {
+let ReverseDirMap = function (
+    dirMap: DirectionToDeltaXYEntryType
+): DeltaXYToDirectionEntryType {
+
     let out: DeltaXYToDirectionEntryType = {},
         x: number, y: number;
     for (let dir in dirMap) {

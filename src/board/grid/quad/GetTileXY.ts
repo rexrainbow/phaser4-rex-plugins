@@ -6,7 +6,7 @@ export let GetTileXY = function (
     worldX: number | PositionType,
     worldY: number,
     out: PositionType | true = { x: 0, y: 0 }
-) {
+): PositionType {
 
     if (typeof (worldX) === 'object') {
         worldY = worldX.y;

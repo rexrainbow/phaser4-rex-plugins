@@ -1,4 +1,4 @@
-import { LayoutMode } from './IHexagon'
+import { LayoutMode } from './IHexagonBase'
 
 export function GetParity(
     mode: LayoutMode,

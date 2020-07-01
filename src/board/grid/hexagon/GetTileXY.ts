@@ -1,16 +1,16 @@
-import { IHexagon, LayoutMode, PositionType } from './IHexagon';
-import { IGetTileXY } from '../IGrid';
+import { IHexagonBase, LayoutMode } from './IHexagonBase';
+import { PositionType } from '../IGrid';
 import { qr2cube, roundcube, cube2cr, CubeType } from './CubeTransfer';
 
 const C_4div3 = (4 / 3);
 const C_2div3 = (2 / 3);
 
-export let GetTileXY: IGetTileXY = function (
-    hexagon: IHexagon,
-    worldX,
-    worldY,
-    out = { x: 0, y: 0 }
-) {
+export let GetTileXY = function (
+    hexagon: IHexagonBase,
+    worldX: number | PositionType,
+    worldY: number,
+    out: PositionType | true = { x: 0, y: 0 }
+): PositionType {
 
     if (typeof (worldX) === 'object') {
         worldY = worldX.y;

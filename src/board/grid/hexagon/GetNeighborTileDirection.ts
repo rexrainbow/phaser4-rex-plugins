@@ -1,13 +1,13 @@
-import { IHexagon } from './IHexagon';
-import { IGetNeighborTileDirection } from '../IGrid';
+import { IHexagonBase } from './IHexagonBase';
+import { PositionType } from '../IGrid';
 import { DeltaTileXYToDirection } from './DeltaTileXYToDirection';
 import { GetParity } from './GetParity';
 
-export let GetNeighborTileDirection: IGetNeighborTileDirection = function (
-    hexagon: IHexagon,
-    srcTileXY,
-    neighborTileXY
-) {
+export let GetNeighborTileDirection = function (
+    hexagon: IHexagonBase,
+    srcTileXY: PositionType,
+    neighborTileXY: PositionType
+): number | null {
 
     let mode = hexagon.mode;
     let parity = GetParity(mode, srcTileXY.x, srcTileXY.y);

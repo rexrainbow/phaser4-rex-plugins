@@ -8,7 +8,7 @@ export let DirectionBetween = function (
     tileA: PositionType,
     tileB: PositionType,
     round: boolean = true
-) {
+): number {
 
     let direction: number;
     switch (quad.mode) {

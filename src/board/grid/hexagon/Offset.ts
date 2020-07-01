@@ -1,13 +1,13 @@
-import { IHexagon, LayoutMode, PositionType } from './IHexagon';
-import { IOffset } from '../IGrid';
+import { IHexagonBase, LayoutMode } from './IHexagonBase';
+import { PositionType } from '../IGrid';
 
-export let Offset: IOffset = function (
-    hexagon: IHexagon,
-    srcTileXY,
-    offsetX,
-    offsetY,
-    out = { x: 0, y: 0 }
-) {
+export let Offset = function (
+    hexagon: IHexagonBase,
+    srcTileXY: PositionType,
+    offsetX: number,
+    offsetY: number,
+    out: PositionType | true = { x: 0, y: 0 }
+): PositionType {
 
     if (out === true) {
         out = globTileXY;

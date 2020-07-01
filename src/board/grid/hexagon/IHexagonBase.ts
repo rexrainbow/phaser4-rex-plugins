@@ -46,10 +46,12 @@ export interface IConfig {
     staggerIndex?: StaggerIndex | StaggerIndexString
 }
 
-import { IGrid, PositionType } from '../IGrid';
-export { PositionType };
+export interface IHexagonBase {
+    x: number,
+    y: number,
+    width: number,
+    height: number
 
-export interface IHexagon extends IGrid {
     _halfWidth: number,
     _halfHeight: number,
     mode: LayoutMode,

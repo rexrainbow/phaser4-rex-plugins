@@ -6,7 +6,7 @@ export let GetWorldXY = function (
     tileX: number | PositionType,
     tileY: number,
     out: PositionType | true = { x: 0, y: 0 }
-) {
+): PositionType {
 
     if (typeof (tileX) === 'object') {
         tileY = tileX.y;

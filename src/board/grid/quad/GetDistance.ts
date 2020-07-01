@@ -6,7 +6,7 @@ export let GetDistance = function (
     tileA: PositionType,
     tileB: PositionType,
     roughMode: boolean = false
-) {
+): number {
 
     let dx = tileB.x - tileA.x;
     let dy = tileB.y - tileA.y;

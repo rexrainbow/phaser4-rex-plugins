@@ -1,9 +1,9 @@
 import {
-    IHexagon, IConfig, IState,
+    IHexagonBase, IConfig, IState,
     StaggerAxis, StaggerAxisString, StaggerIndex, StaggerIndexString, LayoutMode
-} from './IHexagon';
+} from './IHexagonBase';
 
-export class Hexagon implements IHexagon {
+export class HexagonBase implements IHexagonBase {
     x: number;
     y: number;
 

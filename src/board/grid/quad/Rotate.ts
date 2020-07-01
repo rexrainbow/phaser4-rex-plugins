@@ -7,7 +7,7 @@ export let Rotate = function (
     srcTileXY: PositionType,
     dir: number,
     out: PositionType | true = { x: 0, y: 0 }
-) {
+): PositionType {
 
     if (out === true) {
         out = globTileXY;

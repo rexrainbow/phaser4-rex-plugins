@@ -1,13 +1,13 @@
-import { IHexagon } from './IHexagon';
-import { IDirectionBetween } from '../IGrid';
+import { IHexagonBase } from './IHexagonBase';
+import { PositionType } from '../IGrid';
 import { cr2cube, CubeType } from './CubeTransfer';
 
-export let DirectionBetween: IDirectionBetween = function (
-    hexagon: IHexagon,
-    tileA,
-    tileB,
-    round = true
-) {
+export let DirectionBetween = function (
+    hexagon: IHexagonBase,
+    tileA: PositionType,
+    tileB: PositionType,
+    round: boolean = true
+): number {
 
     let direction: number;
     cr2cube(hexagon.mode, tileA.x, tileA.y, globCubeA);

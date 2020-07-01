@@ -1,13 +1,13 @@
-import { IHexagon, PositionType } from './IHexagon';
-import { IRingToTileXYArray } from '../IGrid';
+import { IHexagonBase } from './IHexagonBase';
+import { PositionType } from '../IGrid';
 import { cr2cube, cube2cr } from './CubeTransfer';
 
-export let RingToTileXYArray: IRingToTileXYArray = function (
-    hexagon: IHexagon,
-    centerTileXY,
-    radius,
+export let RingToTileXYArray = function (
+    hexagon: IHexagonBase,
+    centerTileXY: PositionType,
+    radius: number,
     out = []
-) {
+): PositionType {
 
     let centerCube = cr2cube(hexagon.mode, centerTileXY.x, centerTileXY.y, true);
     let cx = centerCube.x,
