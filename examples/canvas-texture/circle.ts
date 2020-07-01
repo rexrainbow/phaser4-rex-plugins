@@ -2,7 +2,7 @@ import { BackgroundColor, Parent, Scenes, Size, WebGLRenderer } from '@phaserjs/
 import { Game, Scene } from '@phaserjs/phaser';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { StaticWorld } from '@phaserjs/phaser/world';
-import { DrawCanvasTexture } from '../../src/texture/DrawCanvasTexture';
+import { DrawCanvasTexture } from '../../src/texture/canvastexture';
 import { Sprite } from '@phaserjs/phaser/gameobjects/sprite/Sprite';
 
 class Demo extends Scene {

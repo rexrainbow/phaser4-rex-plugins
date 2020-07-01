@@ -5,10 +5,11 @@ import { CanvasTexture } from '@phaserjs/phaser/textures/types/CanvasTexture';
 export let DrawCanvasTexture = function (
     key: string | Texture,
     callback: (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D) => void,
-    scope?: any
+    scope?: any,
+    resolution: number = 1
 ): void {
 
-    let texture;
+    let texture: Texture;
     if (typeof (key) === 'string') {
         let textureManager = TextureManagerInstance.get();
         if (!textureManager.has(key)) {
@@ -28,14 +29,11 @@ export let DrawCanvasTexture = function (
         callback(canvas, context);
     }
 
-    let canvasWidth = canvas.width,
-        canvasHeight = canvas.height;
-
-    texture.width = canvasWidth;
-    texture.height = canvasHeight;
+    texture.setSize(
+        canvas.width / resolution,
+        canvas.height / resolution
+    );
     if (texture.binding) {
         texture.binding.update();
     }
-
-    texture.getFrame('__BASE').setSize(canvasWidth, canvasHeight);
 }

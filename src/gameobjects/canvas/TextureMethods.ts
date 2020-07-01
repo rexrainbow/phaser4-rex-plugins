@@ -1,6 +1,6 @@
 import { ICanvas } from './ICanvas';
 import { TextureManagerInstance } from '@phaserjs/phaser/textures/TextureManagerInstance';
-import { CanvasTexture } from '@phaserjs/phaser/textures/types/CanvasTexture';
+import { DrawCanvasTexture } from '../../texture/canvastexture'
 import { DrawFrame } from '../../utils/texture/DrawFrameToCanvas';
 
 export let GenerateTexture = function (
@@ -11,31 +11,23 @@ export let GenerateTexture = function (
     width: number = canvas.width,
     height: number = canvas.height
 ) {
+
     let resolution = canvas.resolution;
-    width = Math.ceil(width * resolution);
-    height = Math.ceil(height * resolution);
-    let srcCanvas = canvas.canvas;
 
-    let textureManager = TextureManagerInstance.get();
-    if (!textureManager.has(key)) {
-        textureManager.add(key, CanvasTexture());
-    }
-    let texture = textureManager.get(key);
-    let destCanvas = texture.image as HTMLCanvasElement;
-    if (destCanvas.width !== width) {
-        destCanvas.width = width;
-    }
-    if (destCanvas.height !== height) {
-        destCanvas.height = height;
-    }
-    let destCtx = destCanvas.getContext('2d');
-    destCtx.clearRect(0, 0, width, height);
-    destCtx.drawImage(srcCanvas, x, y, width, height);
+    let srcCanvas = canvas.canvas,
+        srcWidth = Math.ceil(width * resolution),
+        srcHeight = Math.ceil(height * resolution)
 
-    if (texture.binding) {
-        texture.binding.update();
-    }
-
+    DrawCanvasTexture(key, function (destCanvas, destContext) {
+        if (destCanvas.width !== srcWidth) {
+            destCanvas.width = srcWidth;
+        }
+        if (destCanvas.height !== srcHeight) {
+            destCanvas.height = srcHeight;
+        }
+        destContext.clearRect(0, 0, srcWidth, srcHeight);
+        destContext.drawImage(srcCanvas, x, y, srcWidth, srcHeight);
+    }, undefined, canvas.resolution);
 };
 
 export let LoadTexture = function (
