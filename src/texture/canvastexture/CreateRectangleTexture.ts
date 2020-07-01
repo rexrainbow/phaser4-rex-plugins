@@ -3,7 +3,7 @@ import { DrawCanvasTexture } from './DrawCanvasTexture';
 import { GetCanvasGradientCallbackType } from '../../utils/types/GetCanvasGradientCallbackType';
 import { GetStyle } from '../../utils/canvas/GetStyle';
 
-export let CreateCircleTexture = function (
+export let CreateRectangleTexture = function (
     key: string | Texture,
     width: number,
     height: number,
@@ -20,13 +20,15 @@ export let CreateCircleTexture = function (
         canvas.width = Math.ceil(width);
         canvas.height = Math.ceil(height);
 
-        let x = canvas.width / 2;
-        let y = canvas.height / 2;
-        let rx = (width - lineWidth) / 2;
-        let ry = (height - lineWidth) / 2;
-
         context.beginPath();
-        context.ellipse(x, y, rx, ry, 0, 0, (2 * Math.PI));
+
+        let halfLineWidth = lineWidth / 2;
+        context.rect(
+            halfLineWidth,
+            halfLineWidth,
+            (width - lineWidth),
+            (height - lineWidth)
+        );
 
         if (fillStyle) {
             context.fillStyle = GetStyle(fillStyle, canvas, context);

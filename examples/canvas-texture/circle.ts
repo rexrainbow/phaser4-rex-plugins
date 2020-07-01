@@ -12,6 +12,7 @@ class Demo extends Scene {
         CreateCircleTexture(
             'circle',
             100,
+            100,
             'yellow', // Color            
             // function (canvas, context) {  // Return gradient
             //     let w = canvas.width,
