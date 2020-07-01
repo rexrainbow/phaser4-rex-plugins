@@ -33,8 +33,9 @@ export let Fill = function (
     fillStyle: string | CanvasGradient | CanvasPattern = '#fff'
 ): void {
 
-    canvas.context.fillStyle = fillStyle;
-    canvas.context.fillRect(0, 0, canvas.canvas.width, canvas.canvas.height);
+    let context = canvas.context;
+    context.fillStyle = fillStyle;
+    context.fillRect(0, 0, canvas.canvas.width, canvas.canvas.height);
     canvas.updateTexture();
 };
 

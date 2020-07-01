@@ -1,6 +1,7 @@
 import { ICanvas } from './ICanvas';
 import { TextureManagerInstance } from '@phaserjs/phaser/textures/TextureManagerInstance';
 import { CanvasTexture } from '@phaserjs/phaser/textures/types/CanvasTexture';
+import { DrawFrame } from '../../utils/texture/DrawFrameToCanvas';
 
 export let GenerateTexture = function (
     canvas: ICanvas,
@@ -47,18 +48,18 @@ export let LoadTexture = function (
     if (!textureManager.has(key)) {
         return;
     }
-    let texture = textureManager.get(key);
-    let frameObject = texture.getFrame(frame);
-    let resolution = canvas.resolution;
-    let displayWidth = frameObject.width / resolution,
-        displayHeight = frameObject.height / resolution;
-    canvas.resize(displayWidth, displayHeight);
 
-    let srcCanvas = canvas.canvas;
-    let srcContext = canvas.context;
-    srcContext.drawImage(texture.image as HTMLCanvasElement,
-        frameObject.x, frameObject.y, frameObject.width, frameObject.height,
-        0, 0, srcCanvas.width, srcCanvas.height);
+    DrawFrame(
+        textureManager.get(key).getFrame(frame),
+        canvas.canvas
+    );
 
+    let canvasWidth = canvas.canvas.width,
+        canvasHeight = canvas.canvas.height,
+        resolution = canvas.resolution;
+    let displayWidth = canvasWidth / resolution;
+    let displayHeight = canvasHeight / resolution;
+    canvas.texture.setSize(displayWidth, displayHeight);
+    canvas.setSize(displayWidth, displayHeight);
     canvas.updateTexture();
 }
