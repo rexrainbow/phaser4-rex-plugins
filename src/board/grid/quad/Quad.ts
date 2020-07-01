@@ -1,24 +1,24 @@
 import { IGrid, PositionType } from '../IGrid';
-import { Quad as Base } from '../../../utils/grid/quad/Quad';
+import { QuadBase } from '../../../utils/grid/quad/QuadBase';
 
-import { DirectionBetween } from '../../../utils/grid/quad/DirectionBetween';
+import { DirectionBetween } from './DirectionBetween';
 import { DirectionNormalize } from '../utils/DirectionNormalize';
-import { GetDistance } from '../../../utils/grid/quad/GetDistance';
-import { GetNeighborTileDirection } from '../../../utils/grid/quad/GetNeighborTileDirection';
-import { GetNeighborTileXY } from '../../../utils/grid/quad/GetNeighborTileXY';
-import { GetOppositeDirection } from '../../../utils/grid/quad/GetOppositeDirection';
-import { GetTileXY } from '../../../utils/grid/quad/GetTileXY';
-import { GetTileXYAtDirection } from '../../../utils/grid/quad/GetTileXYAtDirection';
-import { GetWorldXY } from '../../../utils/grid/quad/GetWorldXY';
+import { GetDistance } from './GetDistance';
+import { GetNeighborTileDirection } from './GetNeighborTileDirection';
+import { GetNeighborTileXY } from './GetNeighborTileXY';
+import { GetOppositeDirection } from './GetOppositeDirection';
+import { GetTileXY } from './GetTileXY';
+import { GetTileXYAtDirection } from './GetTileXYAtDirection';
+import { GetWorldXY } from './GetWorldXY';
 import { MirrorMode, MirrorModeString } from '../IGrid';
-import { Mirror } from '../../../utils/grid/quad/Mirror';
-import { Offset } from '../../../utils/grid/quad/Offset';
-import { RingToTileXYArray } from '../../../utils/grid/quad/RingToTileXYArray';
-import { Rotate } from '../../../utils/grid/quad/Rotate';
+import { Mirror } from './Mirror';
+import { Offset } from './Offset';
+import { RingToTileXYArray } from './RingToTileXYArray';
+import { Rotate } from './Rotate';
 import { SaveOrigin, RestoreOrigin } from '../utils/SaveOrigin';
 
 
-export class Quad extends Base implements IGrid {
+export class Quad extends QuadBase implements IGrid {
 
     _savedOriginX: number;
     _savedOriginY: number;

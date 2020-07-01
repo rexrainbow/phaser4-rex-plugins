@@ -1,11 +1,11 @@
-import { IQuad } from './IQuad';
-import { IGetDistance } from '../IGrid';
+import { IQuadBase } from './IQuadBase';
+import { PositionType } from '../IGrid';
 
-export let GetDistance: IGetDistance = function (
-    quad: IQuad,
-    tileA,
-    tileB,
-    roughMode = false
+export let GetDistance = function (
+    quad: IQuadBase,
+    tileA: PositionType,
+    tileB: PositionType,
+    roughMode: boolean = false
 ) {
 
     let dx = tileB.x - tileA.x;

@@ -1,13 +1,13 @@
-import { IQuad, LayoutMode, PositionType } from './IQuad';
-import { IGetTileXAtDirection } from '../IGrid';
+import { IQuadBase, LayoutMode } from './IQuadBase';
+import { PositionType } from '../IGrid';
 import { OrthogonalMap, IsometricMap } from './DirectionToDeltaXY';
 
-export let GetTileXYAtDirection: IGetTileXAtDirection = function (
-    quad: IQuad,
-    srcTileXY,
-    direction,
-    distance,
-    out = { x: 0, y: 0 }
+export let GetTileXYAtDirection = function (
+    quad: IQuadBase,
+    srcTileXY: PositionType,
+    direction: number,
+    distance: number,
+    out: PositionType | true = { x: 0, y: 0 }
 ): PositionType {
 
     if (out === true) {

@@ -1,12 +1,12 @@
-import { IQuad, PositionType } from './IQuad';
-import { IOffset } from '../IGrid';
+import { IQuadBase } from './IQuadBase';
+import { PositionType } from '../IGrid';
 
-export let Offset: IOffset = function (
-    quad: IQuad,
-    srcTileXY,
-    offsetTileX,
-    offsetTileY,
-    out = { x: 0, y: 0 }
+export let Offset = function (
+    quad: IQuadBase,
+    srcTileXY: PositionType,
+    offsetTileX: number,
+    offsetTileY: number,
+    out: PositionType | true = { x: 0, y: 0 }
 ) {
 
     if (out === true) {

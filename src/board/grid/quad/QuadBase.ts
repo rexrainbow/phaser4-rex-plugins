@@ -1,10 +1,10 @@
 import {
-    IQuad, IConfig, IState,
+    IQuadBase, IConfig, IState,
     LayoutMode, LayoutModeString,
     DirMode, DirModeString
-} from './IQuad';
+} from './IQuadBase';
 
-export class Quad implements IQuad {
+export class QuadBase implements IQuadBase {
     x: number;
     y: number;
 

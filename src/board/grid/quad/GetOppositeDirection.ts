@@ -1,11 +1,11 @@
-import { IQuad } from './IQuad';
-import { IGetOppositeDirection } from '../IGrid';
+import { IQuadBase } from './IQuadBase';
+import { PositionType } from '../IGrid';
 
-export let GetOppositeDirection: IGetOppositeDirection = function (
-    quad: IQuad,
-    tileX,
-    tileY,
-    direction
+export let GetOppositeDirection = function (
+    quad: IQuadBase,
+    tileX: number | PositionType,
+    tileY: number,
+    direction: number
 ): number {
 
     return oppositeDirectionMap[direction];

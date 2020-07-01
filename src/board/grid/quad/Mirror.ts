@@ -1,12 +1,11 @@
-import { IQuad, PositionType } from './IQuad';
-import { IMirror } from '../IGrid';
-import { MirrorMode, MirrorModeString } from '../MirrorMode';
+import { IQuadBase } from './IQuadBase';
+import { PositionType, MirrorMode, MirrorModeString } from '../IGrid';
 
-export let Mirror: IMirror = function (
-    quad: IQuad,
-    srcTileXY,
+export let Mirror = function (
+    quad: IQuadBase,
+    srcTileXY: PositionType,
     mode: MirrorMode | MirrorModeString,
-    out = { x: 0, y: 0 }
+    out: PositionType | true = { x: 0, y: 0 }
 ) {
 
     if (typeof (mode) === 'string') {

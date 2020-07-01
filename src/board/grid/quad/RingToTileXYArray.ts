@@ -1,12 +1,12 @@
-import { IQuad } from './IQuad';
-import { IRingToTileXYArray } from '../IGrid';
+import { IQuadBase } from './IQuadBase';
+import { PositionType } from '../IGrid';
 import { Offset } from './Offset';
 
-export let RingToTileXYArray: IRingToTileXYArray = function (
-    quad: IQuad,
-    centerTileXY,
-    radius,
-    out = []
+export let RingToTileXYArray = function (
+    quad: IQuadBase,
+    centerTileXY: PositionType,
+    radius: number,
+    out: PositionType[] = []
 ) {
 
     let i: number, j: number;

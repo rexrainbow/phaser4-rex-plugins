@@ -1,11 +1,11 @@
-import { IQuad, LayoutMode, PositionType } from './IQuad';
-import { IGetTileXY } from '../IGrid';
+import { IQuadBase, LayoutMode } from './IQuadBase';
+import { PositionType } from '../IGrid';
 
-export let GetTileXY: IGetTileXY = function (
-    quad: IQuad,
-    worldX,
-    worldY,
-    out = { x: 0, y: 0 }
+export let GetTileXY = function (
+    quad: IQuadBase,
+    worldX: number | PositionType,
+    worldY: number,
+    out: PositionType | true = { x: 0, y: 0 }
 ) {
 
     if (typeof (worldX) === 'object') {

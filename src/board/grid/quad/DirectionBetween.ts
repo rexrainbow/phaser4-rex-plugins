@@ -1,13 +1,13 @@
-import { IQuad, LayoutMode, DirMode } from './IQuad';
-import { IDirectionBetween } from '../IGrid';
-import { Between as GetAngle } from '../../math/angle/Between';
-import { RadToDeg } from '../../math/angle/RadToDeg';
+import { IQuadBase, LayoutMode, DirMode } from './IQuadBase';
+import { PositionType } from '../IGrid';
+import { Between as GetAngle } from '../../../utils/math/angle/Between';
+import { RadToDeg } from '../../../utils/math/angle/RadToDeg';
 
-export let DirectionBetween: IDirectionBetween = function (
-    quad: IQuad,
-    tileA,
-    tileB,
-    round = true
+export let DirectionBetween = function (
+    quad: IQuadBase,
+    tileA: PositionType,
+    tileB: PositionType,
+    round: boolean = true
 ) {
 
     let direction: number;

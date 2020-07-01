@@ -1,12 +1,12 @@
-import { IQuad, PositionType } from './IQuad';
-import { IRotate } from '../IGrid';
-import { Wrap } from '../../math/Wrap';
+import { IQuadBase } from './IQuadBase';
+import { PositionType } from '../IGrid';
+import { Wrap } from '../../../utils/math/Wrap';
 
-export let Rotate: IRotate = function (
-    quad: IQuad,
-    srcTileXY,
-    dir,
-    out = {x:0, y:0}
+export let Rotate = function (
+    quad: IQuadBase,
+    srcTileXY: PositionType,
+    dir: number,
+    out: PositionType | true = { x: 0, y: 0 }
 ) {
 
     if (out === true) {
