@@ -12,7 +12,7 @@ class Demo extends Scene {
         CreateCircleTexture(
             'circle',
             100,
-            'blue' // Color            
+            'yellow', // Color            
             // function (canvas, context) {  // Return gradient
             //     let w = canvas.width,
             //         h = canvas.height,
@@ -23,6 +23,8 @@ class Demo extends Scene {
             //     grd.addColorStop(1, 'black');
             //     return grd;
             // }
+            'red',
+            10
         )
 
         const world = new StaticWorld(this);

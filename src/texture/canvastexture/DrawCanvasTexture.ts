@@ -2,6 +2,15 @@ import { TextureManagerInstance } from '@phaserjs/phaser/textures/TextureManager
 import { Texture } from '@phaserjs/phaser/textures/Texture';
 import { CanvasTexture } from '@phaserjs/phaser/textures/types/CanvasTexture';
 
+/**
+ * Draw on canvas texture.
+ *
+ * @param {(string | Texture)} key Texture key, or texture object.
+ * @param {(canvas: HTMLCanvasElement, context: CanvasRenderingContext2D) => void} callback Drawing callback.
+ * @param {*} [scope] Context of drawing callback.
+ * @param {number} [resolution=1] Resolution of canvas.
+ * @returns {Texture} Texture object.
+ */
 export let DrawCanvasTexture = function (
     key: string | Texture,
     callback: (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D) => void,
