@@ -1,5 +1,9 @@
 # List of demos
 
+## Board
+
+- [Fill tiles](https://rexrainbow.github.io/phaser4-rex-plugins/public/board-fill-tiles/)
+
 ## Canvas
 
 - [Gradient filling](https://rexrainbow.github.io/phaser4-rex-plugins/public/canvas-fill/)
