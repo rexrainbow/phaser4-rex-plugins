@@ -63,25 +63,25 @@ import { WorldXYToChess } from './worldposition/WorldXYToChess';
 import { WorldXYToTileXY } from './worldposition/WorldXYToTileXY';
 
 export class LogicBoard implements ILogicBoard {
-    isBoard: boolean;
+    
     grid: IGrid;
     wrapMode: boolean;
     infinityMode: boolean;
     width: number | undefined;
     height: number | undefined;
     boardData: IBoardData;
+    _isBoard: boolean;
 
     constructor({
         grid = undefined,
         wrap = false,
         inifinity = false,
         width = 0,
-        height = 0,
-        isBoard = true,
+        height = 0
     }: IConfig = {}) {
 
         this.boardData = new BoardData();
-        this.isBoard = isBoard;
+        this._isBoard = true;
         this.setGrid(grid);
         this.setWrapMode(wrap);
         this.setInfinityMode(inifinity);

@@ -33,7 +33,6 @@ export interface IConfig {
     inifinity?: boolean;
     width?: number;
     height?: number;
-    isBoard?: boolean;
 }
 
 // ForEachTileXY
@@ -56,13 +55,13 @@ export type DistanceConfig = {
 export { MirrorMode, MirrorModeString };
 
 export interface ILogicBoard {
-    isBoard: boolean;
     boardData: IBoardData;
     grid: IGrid;
     wrapMode: boolean;
     infinityMode: boolean;
     width: number | undefined;
     height: number | undefined;
+    _isBoard: boolean; // Set to false for miniboard
 
     destroy(): void;
     setWrapMode(

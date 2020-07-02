@@ -37,7 +37,7 @@ export let RemoveChess = function (
     if (!fromBoardRemove) {
         board.boardData.removeChess(tileX, tileY, tileZ);
     }
-    if (board.isBoard) {
+    if (board._isBoard) {
         GetChessData(chess).setBoard(null);
     }
 
