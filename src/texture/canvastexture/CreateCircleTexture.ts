@@ -3,13 +3,14 @@ import { DrawCanvasTexture } from './DrawCanvasTexture';
 import { GetCanvasGradientCallbackType } from '../../utils/types/GetCanvasGradientCallbackType';
 import { GetStyle } from '../../utils/canvas/GetStyle';
 
-type IConfig = {
+export interface IConfig {
     width?: number,
     height?: number,
     fillStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
     strokeStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
     lineWidth?: number
 }
+
 export let CreateCircleTexture = function (
     key: string | Texture,
     {
