@@ -1,11 +1,11 @@
-import { ILogicBoard, PositionType } from '../ILogicBoard';
+import { ILogicBoard, Vec2Type } from '../ILogicBoard';
 
 export let WorldXYSnapToGrid = function (
     board: ILogicBoard,
     worldX: number,
     worldY: number,
-    out: PositionType | true = { x: 0, y: 0 }
-): PositionType {
+    out: Vec2Type | true = { x: 0, y: 0 }
+): Vec2Type {
 
     if (out === true) {
         out = globWorldXY;
@@ -16,4 +16,4 @@ export let WorldXYSnapToGrid = function (
     return out;
 };
 
-var globWorldXY: PositionType = { x: 0, y: 0 };
+var globWorldXY: Vec2Type = { x: 0, y: 0 };

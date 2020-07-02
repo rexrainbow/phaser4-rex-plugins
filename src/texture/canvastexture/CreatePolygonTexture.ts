@@ -1,11 +1,11 @@
 import { Texture } from '@phaserjs/phaser/textures/Texture';
 import { DrawCanvasTexture } from './DrawCanvasTexture';
-import { PositionType } from '../../utils/types/PositionType';
+import { Vec2Type } from '../../utils/types/VectorType';
 import { GetCanvasGradientCallbackType } from '../../utils/types/GetCanvasGradientCallbackType';
 import { GetStyle } from '../../utils/canvas/GetStyle';
 
 export interface IConfig {
-    points: PositionType[],
+    points: Vec2Type[],
     fillStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
     strokeStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
     lineWidth?: number,
@@ -18,7 +18,7 @@ export let CreatePolygonTexture = function (
         points,
         fillStyle,
         strokeStyle,
-        lineWidth = 3,
+        lineWidth = 2,
         lineJoin = 'round'
     }: IConfig = { points: [] }
 ): Texture {

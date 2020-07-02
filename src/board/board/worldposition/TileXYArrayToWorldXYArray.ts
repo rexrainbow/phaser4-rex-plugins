@@ -1,13 +1,13 @@
 import {
     ILogicBoard,
-    XYType, PositionType
+    XYType, Vec2Type
 } from '../ILogicBoard';
 
 export let TileXYArrayToWorldXYArray = function (
     board: ILogicBoard,
     tileXYArray: XYType[],
-    out: PositionType[] = []
-): PositionType[] {
+    out: Vec2Type[] = []
+): Vec2Type[] {
 
     for (let i = 0, cnt = tileXYArray.length; i < cnt; i++) {
         let tileXY = tileXYArray[i];

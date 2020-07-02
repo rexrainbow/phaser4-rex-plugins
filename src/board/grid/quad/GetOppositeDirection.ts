@@ -1,9 +1,9 @@
 import { IQuadBase } from './IQuadBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 
 export let GetOppositeDirection = function (
     quad: IQuadBase,
-    tileX: number | PositionType,
+    tileX: number | Vec2Type,
     tileY: number | undefined | null,
     direction: number
 ): number {

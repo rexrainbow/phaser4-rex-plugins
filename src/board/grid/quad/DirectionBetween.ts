@@ -1,12 +1,12 @@
 import { IQuadBase, LayoutMode, DirMode } from './IQuadBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import { Between as GetAngle } from '../../../utils/math/angle/Between';
 import { RadToDeg } from '../../../utils/math/angle/RadToDeg';
 
 export let DirectionBetween = function (
     quad: IQuadBase,
-    tileA: PositionType,
-    tileB: PositionType,
+    tileA: Vec2Type,
+    tileB: Vec2Type,
     round: boolean = true
 ): number {
 

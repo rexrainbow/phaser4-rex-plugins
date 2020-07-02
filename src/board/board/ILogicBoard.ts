@@ -1,6 +1,6 @@
 import {
     IGrid,
-    PositionType,
+    Vec2Type,
     MirrorMode, MirrorModeString
 } from '../grid/IGrid';
 import { IBoardData } from './boarddata/IBoardData';
@@ -18,7 +18,7 @@ export type XYZType = {
     y: YType,
     z: ZType
 }
-export { PositionType };
+export { Vec2Type };
 export interface IChess {
     rexChess?: IChessData;
     x: number,
@@ -159,10 +159,10 @@ export interface ILogicBoard {
     ): XYType[];
 
     getGridPoints(
-        tileX?: number | PositionType,
+        tileX?: number | Vec2Type,
         tileY?: number,
-        out?: PositionType[] | true
-    ): PositionType[];
+        out?: Vec2Type[] | true
+    ): Vec2Type[];
 
     getNeighborChess(
         chess: IChess | XYType,
@@ -319,8 +319,8 @@ export interface ILogicBoard {
 
     tileXYArrayToWorldXYArray(
         tileXYArray: XYType[],
-        out?: PositionType[]
-    ): PositionType[];
+        out?: Vec2Type[]
+    ): Vec2Type[];
 
     tileXYToChessArray(
         tileX: XType,
@@ -342,14 +342,14 @@ export interface ILogicBoard {
     tileXYToWorldXY(
         tileX: XType,
         tileY: YType,
-        out?: PositionType | true
-    ): PositionType;
+        out?: Vec2Type | true
+    ): Vec2Type;
 
     worldXYSnapToGrid(
         worldX: number,
         worldY: number,
-        out: PositionType | true
-    ): PositionType;
+        out: Vec2Type | true
+    ): Vec2Type;
 
     worldXYToChess(
         worldX: number,

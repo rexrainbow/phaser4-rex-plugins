@@ -1,5 +1,5 @@
 import { IQuadBase, LayoutMode } from './IQuadBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import {
     OrthogonalMap,
     IsometricMap,
@@ -8,8 +8,8 @@ import {
 
 export let GetNeighborTileDirection = function (
     quad: IQuadBase,
-    srcTileXY: PositionType,
-    neighborTileXY: PositionType
+    srcTileXY: Vec2Type,
+    neighborTileXY: Vec2Type
 ): number | null {
 
     let deltaTileXYToDirMap: DeltaXYToDirectionType;

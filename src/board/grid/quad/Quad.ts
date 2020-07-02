@@ -1,4 +1,4 @@
-import { IGrid, PositionType } from '../IGrid';
+import { IGrid, Vec2Type } from '../IGrid';
 import { QuadBase } from './QuadBase';
 
 import { DirectionBetween } from './DirectionBetween';
@@ -39,8 +39,8 @@ export class Quad extends QuadBase implements IGrid {
     }
 
     directionBetween(
-        tileA: PositionType,
-        tileB: PositionType,
+        tileA: Vec2Type,
+        tileB: Vec2Type,
         round: boolean = true
     ): number {
 
@@ -55,8 +55,8 @@ export class Quad extends QuadBase implements IGrid {
     }
 
     getDistance(
-        tileA: PositionType,
-        tileB: PositionType,
+        tileA: Vec2Type,
+        tileB: Vec2Type,
         roughMode: boolean = false
     ): number {
 
@@ -64,33 +64,33 @@ export class Quad extends QuadBase implements IGrid {
     }
 
     getGridPoints(
-        tileX: number | PositionType = 0,
+        tileX: number | Vec2Type = 0,
         tileY: number = 0,
-        out: PositionType[] | true = []
-    ): PositionType[] {
+        out: Vec2Type[] | true = []
+    ): Vec2Type[] {
 
         return GetGridPoints(this, tileX, tileY, out);
     }
 
     getNeighborTileDirection(
-        srcTileXY: PositionType,
-        neighborTileXY: PositionType
+        srcTileXY: Vec2Type,
+        neighborTileXY: Vec2Type
     ): number | null {
 
         return GetNeighborTileDirection(this, srcTileXY, neighborTileXY);
     }
 
     getNeighborTileXY(
-        srcTileXY: PositionType,
+        srcTileXY: Vec2Type,
         direction: number,
-        out: PositionType | true = { x: 0, y: 0 }
-    ): PositionType {
+        out: Vec2Type | true = { x: 0, y: 0 }
+    ): Vec2Type {
 
         return GetNeighborTileXY(this, srcTileXY, direction, out);
     }
 
     getOppositeDirection(
-        tileX: number | PositionType,
+        tileX: number | Vec2Type,
         tileY: number | undefined | null,
         direction: number
     ): number {
@@ -99,65 +99,65 @@ export class Quad extends QuadBase implements IGrid {
     }
 
     getTileXY(
-        worldX: number | PositionType,
+        worldX: number | Vec2Type,
         worldY?: number,
-        out: PositionType | true = { x: 0, y: 0 }
-    ): PositionType {
+        out: Vec2Type | true = { x: 0, y: 0 }
+    ): Vec2Type {
 
         return GetTileXY(this, worldX, worldY, out);
     }
 
     getTileXYAtDirection(
-        srcTileXY: PositionType,
+        srcTileXY: Vec2Type,
         direction: number,
         distance: number,
-        out: PositionType | true = { x: 0, y: 0 }
-    ): PositionType {
+        out: Vec2Type | true = { x: 0, y: 0 }
+    ): Vec2Type {
 
         return GetTileXYAtDirection(this, srcTileXY, direction, distance, out);
     }
 
     getWorldXY(
-        tileX: number | PositionType,
+        tileX: number | Vec2Type,
         tileY?: number,
-        out: PositionType | true = { x: 0, y: 0 }
-    ): PositionType {
+        out: Vec2Type | true = { x: 0, y: 0 }
+    ): Vec2Type {
 
         return GetWorldXY(this, tileX, tileY, out);
     }
 
     mirror(
-        srcTileXY: PositionType,
+        srcTileXY: Vec2Type,
         mode: MirrorMode | MirrorModeString,
-        out: PositionType | true = { x: 0, y: 0 }
-    ): PositionType {
+        out: Vec2Type | true = { x: 0, y: 0 }
+    ): Vec2Type {
 
         return Mirror(this, srcTileXY, mode, out);
     }
 
     offset(
-        srcTileXY: PositionType,
+        srcTileXY: Vec2Type,
         offsetTileX: number,
         offsetTileY: number,
-        out: PositionType | true = { x: 0, y: 0 }
-    ): PositionType {
+        out: Vec2Type | true = { x: 0, y: 0 }
+    ): Vec2Type {
 
         return Offset(this, srcTileXY, offsetTileX, offsetTileY, out);
     }
 
     ringToTileXYArray(
-        centerTileXY: PositionType,
+        centerTileXY: Vec2Type,
         radius: number,
-        out: PositionType[] = []
-    ): PositionType[] {
+        out: Vec2Type[] = []
+    ): Vec2Type[] {
 
         return RingToTileXYArray(this, centerTileXY, radius, out);
     }
 
-    rotate(srcTileXY: PositionType,
+    rotate(srcTileXY: Vec2Type,
         dir: number,
-        out: PositionType | true = { x: 0, y: 0 }
-    ): PositionType {
+        out: Vec2Type | true = { x: 0, y: 0 }
+    ): Vec2Type {
 
         return Rotate(this, srcTileXY, dir, out);
     }

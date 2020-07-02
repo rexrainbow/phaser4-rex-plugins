@@ -1,10 +1,10 @@
 import { IQuadBase } from './IQuadBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 
 export let GetDistance = function (
     quad: IQuadBase,
-    tileA: PositionType,
-    tileB: PositionType,
+    tileA: Vec2Type,
+    tileB: Vec2Type,
     roughMode: boolean = false
 ): number {
 

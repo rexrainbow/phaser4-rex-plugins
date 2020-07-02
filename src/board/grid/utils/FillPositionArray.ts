@@ -1,9 +1,9 @@
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 
 export let FillPositionArray = function (
     length: number,
-    out: PositionType[] = []
-): PositionType[] {
+    out: Vec2Type[] = []
+): Vec2Type[] {
 
     if (out.length === length) {
         // Do nothing

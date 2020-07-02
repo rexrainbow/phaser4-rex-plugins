@@ -1,7 +1,7 @@
 import {
     ILogicBoard,
     IConfig,
-    XType, YType, ZType, XYType, PositionType,
+    XType, YType, ZType, XYType, Vec2Type,
     ForEachTileXYCallback,
     DistanceConfig,
     MirrorMode, MirrorModeString
@@ -246,10 +246,10 @@ export class LogicBoard implements ILogicBoard {
     }
 
     getGridPoints(
-        tileX?: number | PositionType,
+        tileX?: number | Vec2Type,
         tileY?: number,
-        out?: PositionType[] | true
-    ): PositionType[] {
+        out?: Vec2Type[] | true
+    ): Vec2Type[] {
 
         return GetGridPoints(this, tileX, tileY, out);
     }
@@ -512,8 +512,8 @@ export class LogicBoard implements ILogicBoard {
 
     tileXYArrayToWorldXYArray(
         tileXYArray: XYType[],
-        out: PositionType[] = []
-    ): PositionType[] {
+        out: Vec2Type[] = []
+    ): Vec2Type[] {
 
         return TileXYArrayToWorldXYArray(this, tileXYArray, out);
     }
@@ -521,8 +521,8 @@ export class LogicBoard implements ILogicBoard {
     tileXYToWorldXY(
         tileX: XType,
         tileY: YType,
-        out: PositionType | true = { x: 0, y: 0 }
-    ): PositionType {
+        out: Vec2Type | true = { x: 0, y: 0 }
+    ): Vec2Type {
 
         return TileXYToWorldXY(this, tileX, tileY, out);
     }
@@ -530,8 +530,8 @@ export class LogicBoard implements ILogicBoard {
     worldXYSnapToGrid(
         worldX: number,
         worldY: number,
-        out: PositionType | true = { x: 0, y: 0 }
-    ): PositionType {
+        out: Vec2Type | true = { x: 0, y: 0 }
+    ): Vec2Type {
 
         return WorldXYSnapToGrid(this, worldX, worldY, out);
     }

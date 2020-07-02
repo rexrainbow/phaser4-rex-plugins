@@ -1,12 +1,12 @@
 import { IHexagonBase, LayoutMode } from './IHexagonBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 
 export let GetWorldXY = function (
     hexagon: IHexagonBase,
-    tileX: number | PositionType,
+    tileX: number | Vec2Type,
     tileY: number,
-    out: PositionType | true = { x: 0, y: 0 }
-): PositionType {
+    out: Vec2Type | true = { x: 0, y: 0 }
+): Vec2Type {
 
     if (typeof (tileX) === 'object') {
         tileY = tileX.y;
@@ -55,4 +55,4 @@ export let GetWorldXY = function (
     return out;
 }
 
-var globWorldXY: PositionType = { x: 0, y: 0 };
+var globWorldXY: Vec2Type = { x: 0, y: 0 };

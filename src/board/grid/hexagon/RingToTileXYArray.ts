@@ -1,13 +1,13 @@
 import { IHexagonBase } from './IHexagonBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import { cr2cube, cube2cr } from './CubeTransfer';
 
 export let RingToTileXYArray = function (
     hexagon: IHexagonBase,
-    centerTileXY: PositionType,
+    centerTileXY: Vec2Type,
     radius: number,
-    out: PositionType[] = []
-): PositionType[] {
+    out: Vec2Type[] = []
+): Vec2Type[] {
 
     let centerCube = cr2cube(hexagon.mode, centerTileXY.x, centerTileXY.y, true);
     let cx = centerCube.x,

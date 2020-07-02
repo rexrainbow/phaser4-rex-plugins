@@ -1,12 +1,12 @@
 import { IHexagonBase } from './IHexagonBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import { DeltaTileXYToDirection } from './DeltaTileXYToDirection';
 import { GetParity } from './GetParity';
 
 export let GetNeighborTileDirection = function (
     hexagon: IHexagonBase,
-    srcTileXY: PositionType,
-    neighborTileXY: PositionType
+    srcTileXY: Vec2Type,
+    neighborTileXY: Vec2Type
 ): number | null {
 
     let mode = hexagon.mode;

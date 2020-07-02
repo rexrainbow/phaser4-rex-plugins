@@ -1,5 +1,5 @@
-import { PositionType } from '../../utils/types/PositionType';
-export { PositionType };
+import { Vec2Type } from '../../utils/types/VectorType';
+export { Vec2Type };
 
 export interface IGrid {
     x: number,
@@ -16,8 +16,8 @@ export interface IGrid {
     _savedOriginY: number;
 
     directionBetween(
-        tileA: PositionType,
-        tileB: PositionType,
+        tileA: Vec2Type,
+        tileB: Vec2Type,
         round?: boolean
     ): number;
 
@@ -26,79 +26,79 @@ export interface IGrid {
     ): number;
 
     getDistance(
-        tileA: PositionType,
-        tileB: PositionType,
+        tileA: Vec2Type,
+        tileB: Vec2Type,
         roughMode?: boolean
     ): number;
 
     getGridPoints(
-        tileX?: number | PositionType,
+        tileX?: number | Vec2Type,
         tileY?: number,
-        out?: PositionType[] | true
-    ): PositionType[];
+        out?: Vec2Type[] | true
+    ): Vec2Type[];
 
     getNeighborTileDirection(
-        srcTileXY: PositionType,
-        neighborTileXY: PositionType
+        srcTileXY: Vec2Type,
+        neighborTileXY: Vec2Type
     ): number | null;
 
     getNeighborTileXY(
-        srcTileXY: PositionType,
+        srcTileXY: Vec2Type,
         direction: number,
-        out?: PositionType | true
-    ): PositionType;
+        out?: Vec2Type | true
+    ): Vec2Type;
 
     getOppositeDirection(
-        tileX: number | PositionType,
+        tileX: number | Vec2Type,
         tileY: number | undefined | null,
         direction: number
     ): number;
 
     getTileXY(
-        worldX: number | PositionType,
+        worldX: number | Vec2Type,
         worldY?: number,
-        out?: PositionType | true
-    ): PositionType;
+        out?: Vec2Type | true
+    ): Vec2Type;
 
     getTileXYAtDirection(
-        srcTileXY: PositionType,
+        srcTileXY: Vec2Type,
         direction: number,
         distance: number,
-        out?: PositionType | true
-    ): PositionType;
+        out?: Vec2Type | true
+    ): Vec2Type;
 
     getWorldXY(
-        tileX: number | PositionType,
+        tileX: number | Vec2Type,
         tileY?: number,
-        out?: PositionType | true
-    ): PositionType;
+        out?: Vec2Type | true
+    ): Vec2Type;
 
     mirror(
-        srcTileXY: PositionType,
+        srcTileXY: Vec2Type,
         mode: MirrorMode | MirrorModeString,
-        out?: PositionType | true
-    ): PositionType;
+        out?: Vec2Type | true
+    ): Vec2Type;
 
     offset(
-        srcTileXY: PositionType,
+        srcTileXY: Vec2Type,
         offsetTileX: number,
         offsetTileY: number,
-        out?: PositionType | true
-    ): PositionType;
+        out?: Vec2Type | true
+    ): Vec2Type;
 
     restoreOrigin(): this;
 
     ringToTileXYArray(
-        centerTileXY: PositionType,
+        centerTileXY: Vec2Type,
         radius: number,
-        out?: PositionType[]
-    ): PositionType[];
+        out?: Vec2Type[]
+    ): Vec2Type[];
 
     rotate(
-        srcTileXY: PositionType,
+        srcTileXY: Vec2Type,
         dir: number,
-        out?: PositionType | true
-    ): PositionType
+        out?: Vec2Type | true
+    ): Vec2Type
 
     saveOrigin(): this;
 }

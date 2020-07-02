@@ -1,4 +1,4 @@
-export type BoundsType = {
+export interface BoundsType {
     left: number,
     right: number,
     top: number,

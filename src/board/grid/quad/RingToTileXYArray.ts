@@ -1,13 +1,13 @@
 import { IQuadBase } from './IQuadBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import { Offset } from './Offset';
 
 export let RingToTileXYArray = function (
     quad: IQuadBase,
-    centerTileXY: PositionType,
+    centerTileXY: Vec2Type,
     radius: number,
-    out: PositionType[] = []
-): PositionType[] {
+    out: Vec2Type[] = []
+): Vec2Type[] {
 
     let i: number, j: number;
     // Top-right to bottom-right

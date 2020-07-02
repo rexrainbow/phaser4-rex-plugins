@@ -1,13 +1,13 @@
 import { IQuadBase } from './IQuadBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import { Wrap } from '../../../utils/math/Wrap';
 
 export let Rotate = function (
     quad: IQuadBase,
-    srcTileXY: PositionType,
+    srcTileXY: Vec2Type,
     dir: number,
-    out: PositionType | true = { x: 0, y: 0 }
-): PositionType {
+    out: Vec2Type | true = { x: 0, y: 0 }
+): Vec2Type {
 
     if (out === true) {
         out = globTileXY;
@@ -39,4 +39,4 @@ export let Rotate = function (
     return out;
 }
 
-var globTileXY: PositionType = { x: 0, y: 0 };
+var globTileXY: Vec2Type = { x: 0, y: 0 };

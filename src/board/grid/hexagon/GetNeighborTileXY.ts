@@ -1,13 +1,13 @@
 import { IHexagonBase } from './IHexagonBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import { GetTileXYAtDirection } from './GetTileXYAtDirection';
 
 export let GetNeighborTileXY = function (
     hexragon: IHexagonBase,
-    srcTileXY: PositionType,
+    srcTileXY: Vec2Type,
     direction: number,
-    out: PositionType | true = { x: 0, y: 0 }
-): PositionType {
+    out: Vec2Type | true = { x: 0, y: 0 }
+): Vec2Type {
 
     return GetTileXYAtDirection(hexragon, srcTileXY, direction, 1, out);
 };

@@ -1,5 +1,5 @@
 import { IHexagonBase, LayoutMode } from './IHexagonBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import { qr2cube, roundcube, cube2cr, CubeType } from './CubeTransfer';
 
 const C_4div3 = (4 / 3);
@@ -7,10 +7,10 @@ const C_2div3 = (2 / 3);
 
 export let GetTileXY = function (
     hexagon: IHexagonBase,
-    worldX: number | PositionType,
+    worldX: number | Vec2Type,
     worldY?: number,
-    out: PositionType | true = { x: 0, y: 0 }
-): PositionType {
+    out: Vec2Type | true = { x: 0, y: 0 }
+): Vec2Type {
 
     if (typeof (worldX) === 'object') {
         worldY = worldX.y;
@@ -47,4 +47,4 @@ export let GetTileXY = function (
 }
 
 var globCube: CubeType = { x: 0, y: 0, z: 0 };
-var globTileXY: PositionType = { x: 0, y: 0 };
+var globTileXY: Vec2Type = { x: 0, y: 0 };

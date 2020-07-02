@@ -1,11 +1,11 @@
 import { IHexagonBase } from './IHexagonBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import { cr2cube, CubeType } from './CubeTransfer';
 
 export let DirectionBetween = function (
     hexagon: IHexagonBase,
-    tileA: PositionType,
-    tileB: PositionType,
+    tileA: Vec2Type,
+    tileB: Vec2Type,
     round: boolean = true
 ): number {
 

@@ -26,7 +26,7 @@ export let CreateTriangleTexture = function (
         height = width,
         fillStyle,
         strokeStyle,
-        lineWidth = 3
+        lineWidth = 2
     }: IConfig = {}
 ): Texture {
 

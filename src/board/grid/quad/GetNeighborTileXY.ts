@@ -1,13 +1,13 @@
 import { IQuadBase } from './IQuadBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import { GetTileXYAtDirection } from './GetTileXYAtDirection';
 
 export let GetNeighborTileXY = function (
     quad: IQuadBase,
-    srcTileXY: PositionType,
+    srcTileXY: Vec2Type,
     direction: number,
-    out: PositionType | true = { x: 0, y: 0 }
-): PositionType {
+    out: Vec2Type | true = { x: 0, y: 0 }
+): Vec2Type {
 
     return GetTileXYAtDirection(quad, srcTileXY, direction, 1, out);
 }

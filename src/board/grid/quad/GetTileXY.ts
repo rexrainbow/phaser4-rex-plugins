@@ -1,12 +1,12 @@
 import { IQuadBase, LayoutMode } from './IQuadBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 
 export let GetTileXY = function (
     quad: IQuadBase,
-    worldX: number | PositionType,
+    worldX: number | Vec2Type,
     worldY?: number,
-    out: PositionType | true = { x: 0, y: 0 }
-): PositionType {
+    out: Vec2Type | true = { x: 0, y: 0 }
+): Vec2Type {
 
     if (typeof (worldX) === 'object') {
         worldY = worldX.y;
@@ -34,4 +34,4 @@ export let GetTileXY = function (
     return out;
 };
 
-var globTileXY: PositionType = { x: 0, y: 0 };
+var globTileXY: Vec2Type = { x: 0, y: 0 };

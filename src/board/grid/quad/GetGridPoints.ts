@@ -1,14 +1,14 @@
 import { IQuadBase, LayoutMode } from './IQuadBase';
-import { PositionType } from '../IGrid';
+import { Vec2Type } from '../IGrid';
 import { FillPositionArray } from '../utils/FillPositionArray';
 import { GetWorldXY } from './GetWorldXY';
 
 export let GetGridPoints = function (
     quad: IQuadBase,
-    tileX: number | PositionType = 0,
+    tileX: number | Vec2Type = 0,
     tileY: number = 0,
-    out: PositionType[] | true = []
-): PositionType[] {
+    out: Vec2Type[] | true = []
+): Vec2Type[] {
 
     if (typeof (tileX) === 'object') {
         let tileXY = tileX;
@@ -61,4 +61,4 @@ export let GetGridPoints = function (
     return out;
 }
 
-var globPoints: PositionType[] = []
+var globPoints: Vec2Type[] = []
