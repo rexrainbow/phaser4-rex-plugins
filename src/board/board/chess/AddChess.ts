@@ -42,7 +42,7 @@ export let AddChess = function (
 
     board.boardData.addChess(chess, tileX, tileY, tileZ);
 
-    if (this.isBoard) {
+    if (board.isBoard) {
         GetChessData(chess).setBoard(board);
     }
 

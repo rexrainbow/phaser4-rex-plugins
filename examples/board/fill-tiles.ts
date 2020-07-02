@@ -27,9 +27,10 @@ class Demo extends Scene {
         })
 
         board.forEachTileXY(function (tileXY) {
-            let worldXY = board.tileXYToWorldXY(tileXY.x, tileXY.y, true);
-            let image = new Sprite(worldXY.x, worldXY.y, 'tile');
-            AddChild(world, image);
+            let tile = new Sprite(0, 0, 'tile');
+            AddChild(world, tile);
+
+            board.addChess(tile, tileXY.x, tileXY.y, 0);
         })
     }
 }
