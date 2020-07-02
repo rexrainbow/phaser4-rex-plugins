@@ -29,7 +29,7 @@ import { GetAllChess } from './chess/GetAllChess';
 import { GetChessData } from '../chess/GetChessData';
 import { GetDistance } from './tileposition/GetDistance';
 import { GetEmptyTileXYArray } from './empty/GetEmptyTileXYArray';
-import { GetGridPoints } from './gridpoints/GetGridPoints';
+import { GetGridPoints } from './worldposition/GetGridPoints';
 import { GetNeighborChess } from './neighbors/GetNeighborChess';
 import { GetNeighborChessDirection } from './neighbors/GetNeighborChessDirection';
 import { GetNeighborTileDirection } from './neighbors/GetNeighborTileDirection';
