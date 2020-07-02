@@ -15,15 +15,17 @@ class Demo extends Scene {
         const board = new Board({
             grid: (new HexagonGrid({
                 x: 80, y: 80,
-                cellWidth: 42, cellHeight: 48
+                cellWidth: 60, cellHeight: 68
             })),
 
-            width: 10, height: 10
+            width: 8, height: 8
         })
 
         CreatePolygonTexture('tile', {
             points: board.getGridPoints(),
-            strokeStyle: 'white'
+            strokeStyle: 'white',
+            lineWidth: 2,
+            lineJoin: 'miter'
         })
 
         board.forEachTileXY(function (tileXY) {
