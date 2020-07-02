@@ -1,7 +1,7 @@
 import { GetCanvasGradientCallbackType } from '../types/GetCanvasGradientCallbackType';
 
 export let GetStyle = function (
-    style: string | number | GetCanvasGradientCallbackType | CanvasGradient,
+    style: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
     canvas: HTMLCanvasElement,
     context: CanvasRenderingContext2D
 ): string | CanvasGradient | CanvasPattern {

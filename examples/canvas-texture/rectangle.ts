@@ -11,11 +11,13 @@ class Demo extends Scene {
 
         CreateRectangleTexture(
             'rectangle',
-            100,
-            100,
-            '#DC143C',
-            '#00FFFF',
-            10
+            {
+                width: 100,
+                height: 100,
+                fillStyle: '#DC143C',
+                strokeStyle: '#00FFFF',
+                lineWidth: 10
+            }
         )
 
         const world = new StaticWorld(this);

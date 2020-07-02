@@ -11,21 +11,22 @@ class Demo extends Scene {
 
         CreateCircleTexture(
             'circle',
-            100,
-            100,
-            'yellow', // Color            
-            // function (canvas, context) {  // Return gradient
-            //     let w = canvas.width,
-            //         h = canvas.height,
-            //         x = w / 2,
-            //         y = h / 2;
-            //     let grd = context.createRadialGradient(x, y, 0, x, y, w);
-            //     grd.addColorStop(0, 'white');
-            //     grd.addColorStop(1, 'black');
-            //     return grd;
-            // }
-            'red',
-            10
+            {
+                width: 100,
+                fillStyle: 'yellow',
+                // fillStyle: function (canvas, context) {  // Return gradient
+                //     let w = canvas.width,
+                //         h = canvas.height,
+                //         x = w / 2,
+                //         y = h / 2;
+                //     let grd = context.createRadialGradient(x, y, 0, x, y, w);
+                //     grd.addColorStop(0, 'white');
+                //     grd.addColorStop(1, 'black');
+                //     return grd;
+                // },
+                strokeStyle: 'red',
+                lineWidth: 10
+            }
         )
 
         const world = new StaticWorld(this);
