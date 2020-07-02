@@ -28,13 +28,12 @@ export interface IChess {
 export { EdgeBlockerType };
 
 export interface IConfig {
-    isBoard?: boolean;
     grid?: IGrid;
     wrap?: boolean;
     inifinity?: boolean;
     width?: number;
     height?: number;
-
+    isBoard?: boolean;
 }
 
 // ForEachTileXY
@@ -159,6 +158,12 @@ export interface ILogicBoard {
         tileZ?: ZType,
         out?: XYType[]
     ): XYType[];
+
+    getGridPoints(
+        tileX?: number | PositionType,
+        tileY?: number,
+        out?: PositionType[] | true
+    ): PositionType[];
 
     getNeighborChess(
         chess: IChess | XYType,

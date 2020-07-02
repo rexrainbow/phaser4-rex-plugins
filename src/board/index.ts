@@ -1,8 +1,14 @@
+// Boards
+import { LogicBoard, Board } from './board';
+
+// Grids
 import {
     Quad as QuadGrid,
     Hexagon as HexagonGrid
-} from './grid/index'
+} from './grid'
 
 export {
-    QuadGrid, HexagonGrid, // grid
+    LogicBoard, Board,
+
+    QuadGrid, HexagonGrid, // Grids
 }

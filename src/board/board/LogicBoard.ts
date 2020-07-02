@@ -29,6 +29,7 @@ import { GetAllChess } from './chess/GetAllChess';
 import { GetChessData } from '../chess/GetChessData';
 import { GetDistance } from './tileposition/GetDistance';
 import { GetEmptyTileXYArray } from './empty/GetEmptyTileXYArray';
+import { GetGridPoints } from './gridpoints/GetGridPoints';
 import { GetNeighborChess } from './neighbors/GetNeighborChess';
 import { GetNeighborChessDirection } from './neighbors/GetNeighborChessDirection';
 import { GetNeighborTileDirection } from './neighbors/GetNeighborTileDirection';
@@ -71,12 +72,12 @@ export class LogicBoard implements ILogicBoard {
     boardData: IBoardData;
 
     constructor({
-        isBoard = true,
         grid = undefined,
         wrap = false,
         inifinity = false,
         width = 0,
-        height = 0
+        height = 0,
+        isBoard = true,
     }: IConfig = {}) {
 
         this.boardData = new BoardData();
@@ -205,7 +206,7 @@ export class LogicBoard implements ILogicBoard {
 
     forEachTileXY(
         callback: ForEachTileXYCallback,
-        scope: any,
+        scope?: any,
         order: number = 0
     ): this {
 
@@ -242,6 +243,15 @@ export class LogicBoard implements ILogicBoard {
     ): XYType[] {
 
         return GetEmptyTileXYArray(this, tileZ, out);
+    }
+
+    getGridPoints(
+        tileX?: number | PositionType,
+        tileY?: number,
+        out?: PositionType[] | true
+    ): PositionType[] {
+
+        return GetGridPoints(this, tileX, tileY, out);
     }
 
     getNeighborChess(

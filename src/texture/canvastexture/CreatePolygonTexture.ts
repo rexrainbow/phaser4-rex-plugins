@@ -16,7 +16,7 @@ export let CreatePolygonTexture = function (
     key: string | Texture,
     {
         points,
-        fillStyle = '#fff',
+        fillStyle,
         strokeStyle,
         lineWidth = 3,
         lineJoin = 'round'
