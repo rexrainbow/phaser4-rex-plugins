@@ -5,10 +5,18 @@ import { LogicBoard, Board } from './board';
 import {
     Quad as QuadGrid,
     Hexagon as HexagonGrid
-} from './grid'
+} from './grid';
+
+// Match
+import { Match } from './match';
 
 export {
+    // Board
     LogicBoard, Board,
 
-    QuadGrid, HexagonGrid, // Grids
+    // Grids
+    QuadGrid, HexagonGrid,
+
+    // Match
+    Match
 }

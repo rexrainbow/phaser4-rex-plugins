@@ -101,6 +101,10 @@ export interface IGrid {
     ): Vec2Type
 
     saveOrigin(): this;
+
+    setDirectionMode(
+        mode: number
+    ): this;
 }
 
 export enum MirrorMode {

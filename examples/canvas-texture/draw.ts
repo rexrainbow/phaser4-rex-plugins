@@ -3,7 +3,7 @@ import { Game, Scene } from '@phaserjs/phaser';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { StaticWorld } from '@phaserjs/phaser/world';
 import { DrawCanvasTexture } from '../../src/texture/canvastexture';
-import { Sprite } from '@phaserjs/phaser/gameobjects/sprite/Sprite';
+import { Sprite } from '@phaserjs/phaser/gameobjects/sprite';
 
 class Demo extends Scene {
     constructor() {

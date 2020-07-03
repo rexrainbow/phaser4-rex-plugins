@@ -183,7 +183,7 @@ export interface ILogicBoard {
 
     getNeighborTileXY(
         srcTileXY: XYType,
-        directions: number | number[] | string | null,
+        directions?: number | number[] | string | null,
         out?: XYType | true
     ): XYType | XYType[] | null;
 

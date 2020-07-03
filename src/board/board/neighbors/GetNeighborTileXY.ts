@@ -6,7 +6,7 @@ import {
 export let GetNeighborTileXY = function (
     board: ILogicBoard,
     srcTileXY: XYType,
-    directions: number | number[] | string | null,
+    directions: number | number[] | string | null = null,
     out: XYType | true = { x: 0, y: 0 }
 ): XYType | XYType[] | null {
 

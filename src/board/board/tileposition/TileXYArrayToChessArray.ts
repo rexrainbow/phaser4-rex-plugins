@@ -10,18 +10,19 @@ export let TileXYArrayToChessArray = function (
     board: ILogicBoard,
     tileXYArray: XYType[],
     tileZ?: ZType,
-    out?: IChess[]
+    out: IChess[] = []
 ): IChess[] {
 
-    if (out === undefined) {
-        out = [];
-    }
     let tileZMode = (tileZ != null);
-    let tileXY: XYType;
+    let tileXY: XYType,
+        chess: IChess;
     for (let i = 0, cnt = tileXYArray.length; i < cnt; i++) {
         tileXY = tileXYArray[i];
         if (tileZMode) {
-            out.push(TileXYZToChess(board, tileXY.x, tileXY.y, tileZ as ZType));
+            chess = TileXYZToChess(board, tileXY.x, tileXY.y, tileZ as ZType);
+            if (chess !== null) {
+                out.push(chess);
+            }
         } else {
             TileXYToChessArray(board, tileXY.x, tileXY.y, out);
         }

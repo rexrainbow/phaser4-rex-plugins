@@ -162,16 +162,16 @@ export class Quad extends QuadBase implements IGrid {
         return Rotate(this, srcTileXY, dir, out);
     }
 
-    saveOrigin() {
-
-        SaveOrigin(this);
-        return this;
-    }
-
-    restoreOrigin() {
+    restoreOrigin(): this {
 
         RestoreOrigin(this);
         return this
+    }
+
+    saveOrigin(): this {
+
+        SaveOrigin(this);
+        return this;
     }
 }
 

@@ -63,7 +63,7 @@ import { WorldXYToChess } from './worldposition/WorldXYToChess';
 import { WorldXYToTileXY } from './worldposition/WorldXYToTileXY';
 
 export class LogicBoard implements ILogicBoard {
-    
+
     grid: IGrid;
     wrapMode: boolean;
     infinityMode: boolean;
@@ -282,7 +282,7 @@ export class LogicBoard implements ILogicBoard {
 
     getNeighborTileXY(
         srcTileXY: XYType,
-        directions: number | number[] | string | null,
+        directions: number | number[] | string | null = null,
         out: XYType | true = { x: 0, y: 0 }
     ): XYType | XYType[] | null {
 

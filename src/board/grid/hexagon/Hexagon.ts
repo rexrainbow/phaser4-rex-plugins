@@ -161,16 +161,16 @@ export class Hexagon extends HexagonBase implements IGrid {
         return Rotate(this, srcTileXY, dir, out);
     }
 
-    saveOrigin() {
-
-        SaveOrigin(this);
-        return this;
-    }
-
-    restoreOrigin() {
+    restoreOrigin(): this {
 
         RestoreOrigin(this);
         return this
+    }
+
+    saveOrigin(): this {
+
+        SaveOrigin(this);
+        return this;
     }
 }
 

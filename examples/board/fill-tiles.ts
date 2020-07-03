@@ -2,7 +2,7 @@ import { BackgroundColor, Parent, Scenes, Size, WebGLRenderer } from '@phaserjs/
 import { Game, Scene } from '@phaserjs/phaser';
 import { StaticWorld } from '@phaserjs/phaser/world';
 import { AddChild } from '@phaserjs/phaser/display/';
-import { Sprite } from '@phaserjs/phaser/gameobjects/sprite/Sprite';
+import { Sprite } from '@phaserjs/phaser/gameobjects/sprite';
 import { Board, HexagonGrid } from '../../src/board';
 import { CreatePolygonTexture } from '../../src/texture/canvastexture'
 
