@@ -5,6 +5,7 @@ import { AddChild } from '@phaserjs/phaser/display/';
 import { Sprite } from '@phaserjs/phaser/gameobjects/sprite';
 import { Board, HexagonGrid } from '../../src/board';
 import { CreatePolygonTexture } from '../../src/texture/canvastexture';
+import { GetHexagonMap } from '../../src/board/hexagonmap'
 
 class Demo extends Scene {
     constructor() {
@@ -28,12 +29,15 @@ class Demo extends Scene {
             lineJoin: 'miter'
         })
 
-        board.forEachTileXY(function (tileXY) {
+        let tileXYArray = board.fit(GetHexagonMap(board, 4)),
+            tileXY;
+        for (let i = 0, cnt = tileXYArray.length; i < cnt; i++) {
+            tileXY = tileXYArray[i];
             let tile = new Sprite(0, 0, 'tile');
             AddChild(world, tile);
 
             board.addChess(tile, tileXY.x, tileXY.y, 0);
-        })
+        }
     }
 }
 

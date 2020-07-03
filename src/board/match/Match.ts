@@ -1,7 +1,7 @@
 import {
     IMatch, IConfig,
     ILogicBoard, SymbolType, DirMaskType, XYType,
-    MatchCallbackType, ForEachSymbolCallback, MatchResult
+    GetSymbolCallback, MatchCallbackType, ForEachSymbolCallback, MatchResult
 } from './IMatch';
 import { MatchAll, MatchAny } from './MatchBoard';
 import { MatchAtDir } from './MatchAtDir';
@@ -124,7 +124,7 @@ export class Match implements IMatch {
     }
 
     refreshSymbols(
-        callback: SymbolType | ((tileXY: XYType, board: ILogicBoard) => SymbolType),
+        callback: SymbolType | GetSymbolCallback,
         scope?: any
     ): this {
 

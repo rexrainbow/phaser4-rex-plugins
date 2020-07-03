@@ -7,6 +7,7 @@ export interface IGrid {
     width: number,
     height: number
 
+    mode: number;
     directions: number;
     readonly sides: number;
     readonly allDirections: number[];
