@@ -25,7 +25,7 @@ export interface IChess {
     y: number,
     destroy?: () => any;
 };
-export { EdgeBlockerType };
+export { IChessData, EdgeBlockerType };
 
 export interface IConfig {
     grid?: IGrid;

@@ -2,13 +2,13 @@ import {
     ILogicBoard,
     IConfig,
     XType, YType, ZType, XYType, Vec2Type,
+    IChessData,
     ForEachTileXYCallback,
     DistanceConfig,
     MirrorMode, MirrorModeString
 } from './ILogicBoard';
 import { IGrid } from '../grid/IGrid';
 import { IBoardData, IChess, XYZType } from './boarddata/IBoardData';
-import { IChessData } from '../chess/IChessData';
 
 import { BoardData } from './boarddata/BoardData';
 import { SetBoardWidth } from './boarddata/SetBoardWidth';
