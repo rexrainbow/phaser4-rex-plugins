@@ -27,8 +27,7 @@ export let MatchAtDir = function (
         wildcard = match.wildcard;
     let curTileXY: XYType;
     let board = match.board;
-    let matchedTileXY = result.tileXY;
-    matchedTileXY.length = 0;
+    let matchedTileXY: XYType[] = [];
     for (let i = 0; i < patternLength; i++) {
         if (curTileXY === undefined) {
             curTileXY = {
@@ -65,13 +64,9 @@ export let MatchAtDir = function (
         });
     }
 
-    result.direction = direction;
-    result.pattern = pattern;
-    return result;
-};
-
-var result: MatchResult = {
-    tileXY: [],
-    direction: undefined,
-    pattern: undefined
+    return {
+        tileXY: matchedTileXY,
+        direction: direction,
+        pattern: pattern
+    };
 };
