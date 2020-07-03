@@ -29,15 +29,12 @@ class Demo extends Scene {
             lineJoin: 'miter'
         })
 
-        let tileXYArray = board.fit(GetHexagonMap(board, 4)),
-            tileXY;
-        for (let i = 0, cnt = tileXYArray.length; i < cnt; i++) {
-            tileXY = tileXYArray[i];
+        let tileXYArray = board.fit(GetHexagonMap(board, 4));
+        tileXYArray.forEach((tileXY) => {
             let tile = new Sprite(0, 0, 'tile');
             AddChild(world, tile);
-
             board.addChess(tile, tileXY.x, tileXY.y, 0);
-        }
+        });
     }
 }
 
