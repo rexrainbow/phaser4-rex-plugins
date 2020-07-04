@@ -1,25 +1,42 @@
-import { INode } from './INode';
+import { PathFinderType, CreateNodeCallbackType } from './IAstar';
 import {NodeBase} from './NodeBase';
+import { Stack } from '../../utils/struct/Stack';
 
-export class NodeManager {
-    nodes: Map<any, INode>;
+export class NodeManager<KEY, NODE extends NodeBase>{
+    pathFinder: PathFinderType;
+    createNodeCallback: CreateNodeCallbackType;
+    nodePool: Stack;
+    nodes: Map<KEY, NODE>;
     sn: number;
 
-    constructor() {
+    constructor(
+        pathFinder: PathFinderType,
+        createNodeCallback: CreateNodeCallbackType
+    ) {
+        this.pathFinder = pathFinder;
+        this.createNodeCallback = createNodeCallback;
+        this.nodePool = new Stack();
         this.nodes = new Map();
         this.sn = 0;
     }
 
     getNode(
-        key: any,
-        createNewNode: boolean = false
-    ): INode | null {
+        key: KEY,
+        createNode: boolean = false
+    ): NodeBase | null {
 
         if (!this.nodes.has(key)) {
-            if (!createNewNode) {
+            if (!createNode) {
                 return null;
             }
 
+            let node: NodeBase = this.nodePool.pop();
+            if (node === null) {
+                node = this.createNodeCallback(this.pathFinder);
+            }
+            node.sn = this.sn;
+            node.reset(key);
+            this.nodes.set(key, node as NODE);
         }
         this.sn++;
         let node = this.nodes.get(key);
@@ -27,13 +44,21 @@ export class NodeManager {
         return node;
     }
 
-    freeAllNodes() {
+    freeAllNodes(
+    ): this {
+
+        let pool = this.nodePool;
+        for (const [key, node] of this.nodes) {
+            node.shutdown();
+            pool.push(node);
+        }
         this.nodes.clear();
         this.sn = 0;
         return this;
     }
 
-    getAllNodes() {
+    getAllNodes(): Map<KEY, NODE> {
+
         return this.nodes;
     }
 }

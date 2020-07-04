@@ -14,9 +14,14 @@ export interface INode {
 
     preNodes: INode[];
     sn: number; // For sorting by created order
+    pathCost: number;
 
-    reset(): void;
+    // Override
+    reset(key: any): void;
 
+    shutdown(): void;
+
+    // Override
     heuristic(
         baseNode: INode,
         pathMode: PathMode,
@@ -28,16 +33,20 @@ export interface INode {
         baseNode?: INode
     ): void;
 
+    // Override
     getNextNodes(): INode[];
 
+    // Override
     getCost(
         preNode: INode
     ): CostValueType;
 
+    // Override
     distanceBetween(
         node: INode
     ): number;
 
+    // Override
     angleTo(
         node: INode
     ): number;

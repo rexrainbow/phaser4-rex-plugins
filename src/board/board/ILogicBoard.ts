@@ -229,6 +229,10 @@ export interface ILogicBoard {
         tileZ?: ZType
     ): boolean;
 
+    hasChess(
+        chess: IChess
+    ): boolean;
+
     hasEdgeBlocker(
         tileX: XType,
         tileY: YType,

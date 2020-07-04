@@ -41,6 +41,7 @@ import { GetTileXYAtDirection } from './neighbors/GetTileXYAtDirection'
 import { GetWrapTileXY } from './tileposition/GetWrapTileXY';
 import { GridAlign } from './worldposition/GridAlign';
 import { HasBlocker } from './blocker/HasBlocker';
+import { HasChess } from './chess/HasChess';
 import { HasEdgeBlocker } from './blocker/HasEdgeBlocker';
 import { IsAngleInCone } from './worldposition/IsAngleInCone';
 import { IsDirectionInCone } from './tileposition/IsDirectionInCone';
@@ -351,6 +352,13 @@ export class LogicBoard implements ILogicBoard {
     ): boolean {
 
         return HasBlocker(this, tileX, tileY, tileZ);
+    }
+
+    hasChess(
+        chess: IChess
+    ): boolean {
+
+        return HasChess(this, chess);
     }
 
     hasEdgeBlocker(

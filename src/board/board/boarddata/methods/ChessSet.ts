@@ -3,6 +3,7 @@ import {
     IChess,
     AnyKeyType
 } from '../IBoardData';
+import { FreeEmptySet, GetEmptySet } from '../../../../utils/pool/EmptySet';
 
 export let AddChessToSet = function (
     chess: IChess,
@@ -19,6 +20,7 @@ export let AddChessToSet = function (
         if (chessSet) {
             chessSet.delete(chess);
             if (chessSet.size === 0) {
+                FreeEmptySet(chessSet); // Add to EmptySet pool
                 chessMap.delete(prevKey);
             }
         }
@@ -29,7 +31,7 @@ export let AddChessToSet = function (
         if (chessSet) {
             chessSet.add(chess);
         } else {
-            chessSet = new Set();
+            chessSet = GetEmptySet(); // Request an empty set
             chessSet.add(chess);
             chessMap.set(currKey, chessSet);
         }
@@ -46,6 +48,7 @@ export let RemoveChessFromSet = function (
     if (chessSet) {
         chessSet.delete(chess);
         if (chessSet.size === 0) {
+            FreeEmptySet(chessSet); // Add to EmptySet pool
             chessMap.delete(key);
         }
     }

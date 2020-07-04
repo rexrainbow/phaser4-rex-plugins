@@ -1,11 +1,15 @@
 import {
+    PathFinderType,
     PathMode,
     CostValueType,
     BLOCKER
 } from './IAstar';
-import { INode } from './INode';
+import { INodeManager } from './INodeManager';
 
-export class NodeBase implements INode {
+export abstract class NodeBase {
+    pathFinder: PathFinderType;
+    manager: INodeManager;
+
     f: number;
     g: number;
     h: number;
@@ -14,16 +18,31 @@ export class NodeBase implements INode {
     visited: boolean;
     closed: boolean;
 
-    preNodes: INode[];
+    preNodes: NodeBase[];
+    key: any; // string, number or an object
     sn: number; // For sorting by created order
 
-    constructor() {
+    constructor(
+        pathFinder: PathFinderType
+    ) {
+
+        this.pathFinder = pathFinder;
         this.preNodes = [];
     }
 
-    reset(): void {
+    shutdown():void {
+        this.key = undefined;
+    }
+
+    destroy() {
+        this.shutdown();
+    }
+
+    // Override
+    reset(key: any): void {
+        this.key = key;
         this.f = 0;
-        this.g = 0;
+        this.g = 0; // path cost
         this.h = 0;
         this.closerH = 0;
         this.visited = false;
@@ -31,10 +50,11 @@ export class NodeBase implements INode {
         this.preNodes.length = 0;
     }
 
+    // Override
     heuristic(
-        baseNode: INode,
+        baseNode: NodeBase,
         pathMode: PathMode,
-        endNode?: INode,
+        endNode?: NodeBase,
     ): number {
 
         return 0;
@@ -42,37 +62,50 @@ export class NodeBase implements INode {
 
     updateCloserH(
         pathMode: PathMode,
-        baseNode?: INode
+        baseNode?: NodeBase,
+        endNode?: NodeBase
     ): void {
-
+        if ((pathMode === PathMode.astar) ||
+            (pathMode === PathMode['astar-line']) ||
+            (pathMode === PathMode['astar-random'])) {
+            this.closerH = this.h;
+        } else {
+            this.closerH = this.closerH || this.heuristic(endNode, pathMode, baseNode);
+        }
     }
 
-
+    // Override
     getNextNodes(
-
-    ): INode[] {
+    ): NodeBase[] {
 
         return [];
     }
 
+    // Override
     getCost(
-        preNode: INode
+        preNode: NodeBase
     ): CostValueType {
 
         return BLOCKER;
     }
 
+    // Override
     distanceBetween(
-        node: INode
+        node: NodeBase
     ): number {
 
         return 0;
     }
 
+    // Override
     angleTo(
-        node: INode
+        node: NodeBase
     ): number {
-        return 0;
 
+        return 0;
+    }
+
+    get pathCost() {
+        return this.g;
     }
 }

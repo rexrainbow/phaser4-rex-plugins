@@ -4,6 +4,7 @@ import {
     ZMapType
 } from '../IBoardData';
 import { GetXYKey } from './Key';
+import { FreeEmptyMap, GetEmptyMap } from '../../../../utils/pool/EmptyMap';
 
 export let AddChessToZMap = function (
     chess: IChess,
@@ -27,6 +28,7 @@ export let AddChessToZMap = function (
             zMap.set(currZ, chess);
             return;
         } else if (zMap.size === 0) {
+            FreeEmptyMap(zMap); // Add to EmptyMap pool
             chessMap.delete(prevKey);
         }
     }
@@ -35,7 +37,7 @@ export let AddChessToZMap = function (
         if (zMap) {
             zMap.set(currZ, chess);
         } else {
-            zMap = new Map();
+            zMap = GetEmptyMap(); // Request an empty map
             zMap.set(currZ, chess);
             chessMap.set(currKey, zMap);
         }
@@ -54,10 +56,12 @@ export let RemoveChessFromZMap = function (
         if (z !== undefined) {
             zMap.delete(z);
             if (zMap.size === 0) {
+                FreeEmptyMap(zMap); // Add to EmptyMap pool
                 chessMap.delete(key);
             }
         } else {
             zMap.clear();
+            FreeEmptyMap(zMap); // Add to EmptyMap pool
             chessMap.delete(key);
         }
     }

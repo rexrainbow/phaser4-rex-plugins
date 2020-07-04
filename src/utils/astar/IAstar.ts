@@ -14,11 +14,35 @@ export enum PathMode {
 
 export type PathModeString = 'all' | 'astar' | 'astar-line' | 'astar-random';
 
+import { INode } from './INode';
+export { INode };
+import { NodeBase } from './NodeBase';
+export { NodeBase };
+
+export type PathFinderType = object;
+export type CreateNodeCallbackType = (pathFinder: PathFinderType) => NodeBase;
+
 export type CostValueType = number | null;
 export const BLOCKER = null;
-export const InfinityPoints = undefined;
 
-export interface IConfig {
-    searchMode?: SearchMode | SearchModeString,
-    pathMode?: PathMode | PathModeString
+export interface IAStar {
+    searchMode: SearchMode;
+    pathMode: PathMode;
+    nodeManager: INodeManager;
+
+    setSearchMode(
+        mode: SearchMode | SearchModeString
+    ): this;
+
+    setPathMode(
+        mode: PathMode | PathModeString
+    ): this;
+
+    search(
+        startNodeKey: any,
+        endNodeKey: any,
+        movingPoints?: number
+    ): this;
+
+    getAllNodes(): NodeMapType;
 }
