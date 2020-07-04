@@ -7,6 +7,9 @@ import {
     Hexagon as HexagonGrid
 } from './grid';
 
+// Path finder
+import { PathFinder } from './pathfinder';
+
 // Match
 import { Match } from './match';
 
@@ -16,6 +19,9 @@ export {
 
     // Grids
     QuadGrid, HexagonGrid,
+
+    // Path finder
+    PathFinder,
 
     // Match
     Match

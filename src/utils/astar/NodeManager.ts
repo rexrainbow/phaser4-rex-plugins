@@ -1,16 +1,16 @@
-import { PathFinderType, CreateNodeCallbackType } from './Astar';
-import { NodeBase } from './NodeBase';
+import { CreateNodeCallbackType } from './types/CreateNodeCallbackType';
+import { INodeBase } from './INodeBase';
 import { Stack } from '../../utils/struct/Stack';
 
 export class NodeManager {
-    pathFinder: PathFinderType;
+    pathFinder: object;
     createNodeCallback: CreateNodeCallbackType;
     nodePool: Stack;
-    nodes: Map<any, NodeBase>;
+    nodes: Map<any, INodeBase>;
     sn: number;
 
     constructor(
-        pathFinder: PathFinderType,
+        pathFinder: object,
         createNodeCallback: CreateNodeCallbackType
     ) {
         this.pathFinder = pathFinder;
@@ -23,14 +23,14 @@ export class NodeManager {
     getNode(
         key: any,
         createNode: boolean = false
-    ): NodeBase | null {
+    ): INodeBase | null {
 
         if (!this.nodes.has(key)) {
             if (!createNode) {
                 return null;
             }
 
-            let node: NodeBase = this.nodePool.pop();
+            let node: INodeBase = this.nodePool.pop();
             if (node === null) {
                 node = this.createNodeCallback(this.pathFinder);
             }
@@ -44,8 +44,7 @@ export class NodeManager {
         return node;
     }
 
-    freeAllNodes(
-    ): this {
+    freeAllNodes(): this {
 
         let pool = this.nodePool;
         for (const [key, node] of this.nodes) {
@@ -57,7 +56,7 @@ export class NodeManager {
         return this;
     }
 
-    getAllNodes(): Map<any, NodeBase> {
+    getAllNodes(): Map<any, INodeBase> {
 
         return this.nodes;
     }

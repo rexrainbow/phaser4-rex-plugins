@@ -1,38 +1,38 @@
-import { IChess, XYType, XYZType } from '../board/ILogicBoard';
-import {
-    IPathFinder,
-    SearchResult
-} from './IPathFinder';
+import { IChess, XYZType } from '../board/ILogicBoard';
+import { IPathFinder, SearchResultType } from './IPathFinder';
 import { XYToKey } from './astar/Key';
-import { AStarNode } from './astar/AStarNode';
-import { SearchMode } from '../../utils/astar/Astar';
+import { IAStarNode } from './astar/IAStarNode';
+import { SearchMode } from '../../utils/astar/IAStar';
 
 export let FindArea = function (
     pathFinder: IPathFinder,
-    chess: IChess,
+    startChess: IChess,
     movingPoints?: number | undefined,
-    out: SearchResult = []
-): SearchResult {
+    out: SearchResultType = []
+): SearchResultType {
 
     let board = pathFinder.board;
-    if (
-        (!board.hasChess(chess)) ||
-        ((movingPoints !== undefined) && (movingPoints <= 0))) {
+    // Chess not at board
+    if (!board.hasChess(startChess)) {
+        return out;
+    }
+    // Negative moving points
+    if ((movingPoints !== undefined) && (movingPoints <= 0)) {
         return out;
     }
 
     let astar = pathFinder.astar;
-    let startTileXYZ = board.chessToTileXYZ(chess) as XYZType,
+    let startTileXYZ = board.chessToTileXYZ(startChess) as XYZType,
         startTileX = startTileXYZ.x,
         startTileY = startTileXYZ.y;
     pathFinder.searchTileZ = startTileXYZ.z;
     astar.setSearchMode(SearchMode.area).search(
         XYToKey(startTileX, startTileY),
-        undefined,
+        null,
         movingPoints
     );
-    let nodesMap = astar.getAllNodes() as Map<string, AStarNode>,
-        nodesList: AStarNode[] = [];
+    let nodesMap = astar.getAllNodes() as Map<string, IAStarNode>,
+        nodesList: IAStarNode[] = [];
     for (const [key, node] of nodesMap) {
         // Not include start node
         if ((node.x === startTileX) && (node.y === startTileY)) {

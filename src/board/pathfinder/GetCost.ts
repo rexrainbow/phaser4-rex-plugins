@@ -1,14 +1,12 @@
 import {
     IPathFinder,
-    CostValueType, BLOCKER
+    CostNodeType, CostValueType, BLOCKER
 } from './IPathFinder';
-import { AStarNode } from './astar/AStarNode';
-export { AStarNode };
 
 export let GetCost = function (
     pathFinder: IPathFinder,
-    currNode: AStarNode,
-    prevNode: AStarNode
+    currNode: CostNodeType,
+    prevNode: CostNodeType
 ): CostValueType {
 
     // Occupied test

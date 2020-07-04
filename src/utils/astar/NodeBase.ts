@@ -1,14 +1,12 @@
-import {
-    PathFinderType,
-    PathMode,
-    CostValueType,
-    BLOCKER
-} from './Astar';
-import { NodeManager } from './NodeManager';
+import { PathMode } from './types/PathMode';
+import { CostValueType } from './types/CostValueType';
+import { BLOCKER } from './Const';
+import { INodeBase } from './INodeBase';
+import { INodeManager } from './INodeManager';
 
 export abstract class NodeBase {
-    pathFinder: PathFinderType;
-    manager: NodeManager;
+    pathFinder: object;
+    manager: INodeManager;
 
     f: number;
     g: number;
@@ -18,12 +16,12 @@ export abstract class NodeBase {
     visited: boolean;
     closed: boolean;
 
-    preNodes: NodeBase[];
+    preNodes: INodeBase[];
     key: any; // string, number or an object
     sn: number; // For sorting by created order
 
     constructor(
-        pathFinder: PathFinderType
+        pathFinder: object
     ) {
 
         this.pathFinder = pathFinder;
@@ -34,7 +32,7 @@ export abstract class NodeBase {
         this.key = undefined;
     }
 
-    destroy() {
+    destroy(): void {
         this.shutdown();
     }
 
@@ -52,9 +50,9 @@ export abstract class NodeBase {
 
     // Override
     heuristic(
-        baseNode: NodeBase,
+        baseNode: INodeBase,
         pathMode: PathMode,
-        endNode?: NodeBase,
+        endNode?: INodeBase,
     ): number {
 
         return 0;
@@ -62,8 +60,8 @@ export abstract class NodeBase {
 
     updateCloserH(
         pathMode: PathMode,
-        baseNode?: NodeBase,
-        endNode?: NodeBase
+        baseNode?: INodeBase,
+        endNode?: INodeBase
     ): void {
         if ((pathMode === PathMode.astar) ||
             (pathMode === PathMode['astar-line']) ||
@@ -75,15 +73,14 @@ export abstract class NodeBase {
     }
 
     // Override
-    getNextNodes(
-    ): NodeBase[] {
+    getNextNodes(): INodeBase[] {
 
         return [];
     }
 
     // Override
     getCost(
-        preNode: NodeBase
+        preNode: INodeBase
     ): CostValueType {
 
         return BLOCKER;
@@ -91,7 +88,7 @@ export abstract class NodeBase {
 
     // Override
     distanceBetween(
-        node: NodeBase
+        node: INodeBase
     ): number {
 
         return 0;
@@ -99,7 +96,7 @@ export abstract class NodeBase {
 
     // Override
     angleTo(
-        node: NodeBase
+        node: INodeBase
     ): number {
 
         return 0;
@@ -108,7 +105,7 @@ export abstract class NodeBase {
     getNode(
         key: any,
         createNode: boolean = false
-    ): NodeBase {
+    ): INodeBase {
 
         return this.manager.getNode(key, createNode);
     }

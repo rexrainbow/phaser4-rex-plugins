@@ -3,10 +3,9 @@ import {
     ZType
 } from '../board/ILogicBoard';
 import {
-    AStar,
+    IAStar,
     CostValueType, BLOCKER
-} from '../../utils/astar/Astar';
-import { AStarNode } from './astar/AStarNode';
+} from '../../utils/astar/IAStar';
 
 export { CostValueType, BLOCKER };
 export type CostNodeType = {
@@ -16,7 +15,7 @@ export type CostNodeType = {
 };
 export type GetCostCallbackType = (currNode: CostNodeType, prevNode: CostNodeType, pathFinder: IPathFinder) => CostValueType;
 
-export type SearchResult = {
+export type SearchResultType = {
     x: number,
     y: number,
     cost: number
@@ -45,7 +44,7 @@ export interface IConfig {
 
 export interface IPathFinder {
     board: ILogicBoard;
-    astar: AStar;
+    astar: IAStar;
 
     constCost: number;
     costCallback: GetCostCallbackType | null;
@@ -64,7 +63,7 @@ export interface IPathFinder {
     BLOCKER: CostValueType;
 
     getCost(
-        currNode: AStarNode,
-        prevNode: AStarNode
+        currNode: CostNodeType,
+        prevNode: CostNodeType
     ): CostValueType;
 }

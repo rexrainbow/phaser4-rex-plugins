@@ -1,12 +1,11 @@
 import { IPathFinder } from '../IPathFinder';
-import { AStar } from '../../../utils/astar/Astar';
+import { IAStar } from '../../../utils/astar/IAStar';
+import { AStar } from '../../../utils/astar/AStar';
 import { AStarNode } from './AStarNode';
-
-export { AStar };
 
 export let CreateAStar = function (
     pathFinder: IPathFinder
-): AStar {
+): IAStar {
 
     let CreateNodeCallback = function (pathFinder: IPathFinder) {
         return new AStarNode(pathFinder);

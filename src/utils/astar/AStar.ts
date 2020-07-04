@@ -1,37 +1,21 @@
-export enum SearchMode {
-    path = 0,
-    area = 1
-}
+import {
+    SearchMode, SearchModeString,
+    PathMode, PathModeString,
+    CreateNodeCallbackType
+} from './IAStar';
 
-export type SearchModeString = 'path' | 'area';
-
-export enum PathMode {
-    'all' = 0,
-    'astar' = 1,
-    'astar-line' = 2,
-    'astar-random' = 3
-}
-
-export type PathModeString = 'all' | 'astar' | 'astar-line' | 'astar-random';
-
-export type PathFinderType = object;
-export type CreateNodeCallbackType = (pathFinder: PathFinderType) => NodeBase;
-
-export type CostValueType = number | null;
-export const BLOCKER = null;
-
-import { NodeBase } from './NodeBase';
-export { NodeBase };
+import { INodeBase } from './INodeBase';
+import { INodeManager } from './INodeManager';
 import { NodeManager } from './NodeManager';
-import { Search } from './Search';
+// import { Search } from './Search';
 
 export class AStar {
     searchMode: SearchMode;
     pathMode: PathMode;
-    nodeManager: NodeManager;
+    nodeManager: INodeManager;
 
     constructor(
-        pathFinder: PathFinderType,
+        pathFinder: object,
         createNodeCallback: CreateNodeCallbackType
     ) {
 
@@ -66,11 +50,11 @@ export class AStar {
         movingPoints?: number
     ): this {
 
-        Search(this, startNodeKey, endNodeKey, movingPoints);
+        // Search(this, startNodeKey, endNodeKey, movingPoints);
         return this;
     }
 
-    getAllNodes(): Map<any, NodeBase> {
+    getAllNodes(): Map<any, INodeBase> {
 
         return this.nodeManager.getAllNodes();
     }

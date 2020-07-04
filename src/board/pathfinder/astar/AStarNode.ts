@@ -1,4 +1,6 @@
-import { NodeBase, PathMode, CostValueType } from '../../../utils/astar/Astar';
+import { IAStarNode } from './IAStarNode';
+import { PathMode, CostValueType } from '../../../utils/astar/IAstar';
+import { NodeBase } from '../../../utils/astar/NodeBase';
 import { IPathFinder } from '../IPathFinder';
 import { Shuffle } from '../../../utils/array/Shuffle';
 import { XYZType } from '../../board/ILogicBoard';
@@ -29,9 +31,9 @@ export class AStarNode extends NodeBase {
     }
 
     heuristic(
-        baseNode: AStarNode,
+        baseNode: IAStarNode,
         pathMode: PathMode,
-        endNode?: AStarNode,
+        endNode?: IAStarNode,
     ): number {
 
         return 0;
@@ -39,7 +41,7 @@ export class AStarNode extends NodeBase {
 
     getNextNodes(
 
-    ): AStarNode[] {
+    ): IAStarNode[] {
 
         let neighborsTileXY = this.board.getNeighborTileXY(this) as XYZType[];
         if (this.pathFinder.shuffleNeighbors) {
@@ -55,7 +57,7 @@ export class AStarNode extends NodeBase {
     }
 
     getCost(
-        preNode: AStarNode
+        preNode: IAStarNode
     ): CostValueType {
 
         if (this.pathFinder.cacheCost) {
@@ -69,17 +71,17 @@ export class AStarNode extends NodeBase {
     }
 
     distanceBetween(
-        node: AStarNode
+        node: IAStarNode
     ): number {
 
         return 0;
     }
 
     angleTo(
-        node: AStarNode
+        node: IAStarNode
     ): number {
 
-        return AngleBetween(this.worldX, this.wroldY, node.worldX, node.wroldY);
+        return AngleBetween(this.worldX, this.wroldY, node.worldX, node.worldX);
     }
 
     get board() {

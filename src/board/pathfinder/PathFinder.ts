@@ -1,18 +1,20 @@
 import {
     IPathFinder, IConfig,
-    GetCostCallbackType, BLOCKER,
-    CostValueType
+    GetCostCallbackType, CostNodeType, CostValueType, BLOCKER,
+    SearchResultType
 } from './IPathFinder';
 import {
     ILogicBoard,
-    ZType
+    ZType, IChess
 } from '../board/ILogicBoard'
-import { CreateAStar, AStar } from './astar/CreateAStar';
-import { GetCost, AStarNode } from './GetCost';
+import { IAStar } from '../../utils/astar/IAStar';
+import { CreateAStar } from './astar/CreateAStar';
+import { GetCost } from './GetCost';
+import { FindArea } from './FindArea';
 
 export class PathFinder implements IPathFinder {
     board: ILogicBoard;
-    astar: AStar;
+    astar: IAStar;
 
     constCost: number;
     costCallback: GetCostCallbackType | null;
@@ -143,11 +145,20 @@ export class PathFinder implements IPathFinder {
     }
 
     getCost(
-        currNode: AStarNode,
-        prevNode: AStarNode
+        currNode: CostNodeType,
+        prevNode: CostNodeType
     ): CostValueType {
 
         return GetCost(this, currNode, prevNode);
+    }
+
+    findArea(
+        startChess: IChess,
+        movingPoints?: number,
+        out: SearchResultType = []
+    ): SearchResultType {
+
+        return FindArea(this, startChess, movingPoints, out);
     }
 
     get BLOCKER(): CostValueType {
