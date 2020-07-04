@@ -1,15 +1,18 @@
-import { IChess, XYType } from '../board/ILogicBoard';
-import { IPathFinder } from './IPathFinder';
+import { IChess, XYType, XYZType } from '../board/ILogicBoard';
+import {
+    IPathFinder,
+    SearchResult
+} from './IPathFinder';
 import { XYToKey } from './astar/Key';
 import { AStarNode } from './astar/AStarNode';
-import { SearchMode } from '../../utils/astar/IAstar';
+import { SearchMode } from '../../utils/astar/Astar';
 
 export let FindArea = function (
     pathFinder: IPathFinder,
     chess: IChess,
     movingPoints?: number | undefined,
-    out: XYType[] = []
-): XYType[] {
+    out: SearchResult = []
+): SearchResult {
 
     let board = pathFinder.board;
     if (
@@ -19,34 +22,29 @@ export let FindArea = function (
     }
 
     let astar = pathFinder.astar;
-    let startTileXYZ = board.chessToTileXYZ(chess),
+    let startTileXYZ = board.chessToTileXYZ(chess) as XYZType,
         startTileX = startTileXYZ.x,
         startTileY = startTileXYZ.y;
+    pathFinder.searchTileZ = startTileXYZ.z;
     astar.setSearchMode(SearchMode.area).search(
         XYToKey(startTileX, startTileY),
         undefined,
         movingPoints
     );
-    let nodeMap = astar.getAllNodes(),
+    let nodesMap = astar.getAllNodes() as Map<string, AStarNode>,
         nodesList: AStarNode[] = [];
-    for (const [key, node] of nodeMap) {
+    for (const [key, node] of nodesMap) {
+        // Not include start node
         if ((node.x === startTileX) && (node.y === startTileY)) {
             continue;
         }
-    }
-    for (let key in nodes) {
-        node = nodes[key];
-        // not include start node
-        if ((node.x === startTileX) && (node.y === startTileY)) {
-            continue;
-        }
-        // not include open node
+
         if (!node.closed) {
             continue;
         }
         nodesList.push(node);
     }
-    // sort by sn (creating order)
+    // Sort by sn (creating order)
     nodesList.sort(function (nodeA, nodeB) {
         let snA = nodeA.sn;
         let snB = nodeB.sn;

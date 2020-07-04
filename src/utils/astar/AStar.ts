@@ -1,16 +1,34 @@
-import {
-    IAStar,
-    PathFinderType, CreateNodeCallbackType, SearchMode, SearchModeString,
-    PathMode, PathModeString
-} from './IAstar';
+export enum SearchMode {
+    path = 0,
+    area = 1
+}
+
+export type SearchModeString = 'path' | 'area';
+
+export enum PathMode {
+    'all' = 0,
+    'astar' = 1,
+    'astar-line' = 2,
+    'astar-random' = 3
+}
+
+export type PathModeString = 'all' | 'astar' | 'astar-line' | 'astar-random';
+
+export type PathFinderType = object;
+export type CreateNodeCallbackType = (pathFinder: PathFinderType) => NodeBase;
+
+export type CostValueType = number | null;
+export const BLOCKER = null;
+
 import { NodeBase } from './NodeBase';
+export { NodeBase };
 import { NodeManager } from './NodeManager';
 import { Search } from './Search';
 
-export class AStar<K, V extends NodeBase> implements IAStar {
+export class AStar {
     searchMode: SearchMode;
     pathMode: PathMode;
-    nodeManager: NodeManager<K, V>;
+    nodeManager: NodeManager;
 
     constructor(
         pathFinder: PathFinderType,
@@ -52,7 +70,7 @@ export class AStar<K, V extends NodeBase> implements IAStar {
         return this;
     }
 
-    getAllNodes(): Map<K, V> {
+    getAllNodes(): Map<any, NodeBase> {
 
         return this.nodeManager.getAllNodes();
     }

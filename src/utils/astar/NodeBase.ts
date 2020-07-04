@@ -3,12 +3,12 @@ import {
     PathMode,
     CostValueType,
     BLOCKER
-} from './IAstar';
-import { INodeManager } from './INodeManager';
+} from './Astar';
+import { NodeManager } from './NodeManager';
 
 export abstract class NodeBase {
     pathFinder: PathFinderType;
-    manager: INodeManager;
+    manager: NodeManager;
 
     f: number;
     g: number;
@@ -30,7 +30,7 @@ export abstract class NodeBase {
         this.preNodes = [];
     }
 
-    shutdown():void {
+    shutdown(): void {
         this.key = undefined;
     }
 
@@ -103,6 +103,14 @@ export abstract class NodeBase {
     ): number {
 
         return 0;
+    }
+
+    getNode(
+        key: any,
+        createNode: boolean = false
+    ): NodeBase {
+
+        return this.manager.getNode(key, createNode);
     }
 
     get pathCost() {

@@ -1,18 +1,20 @@
 import {
-    IAStar, INode,
+    AStar,
     SearchMode, PathMode,
     CostValueType, BLOCKER
-} from './IAstar';
+} from './Astar';
+import { NodeBase } from './NodeBase';
 import { BinaryHeap } from '../struct/BinaryHeap';
 
-var gOpenHeap = new BinaryHeap((node: INode) => node.f);
+var gOpenHeap = new BinaryHeap((node: NodeBase) => node.f);
 
 export let Search = function (
-    astar: IAStar,
+    astar: AStar,
     startNodeKey: any,
     endNodeKey: any,
     movingPoints?: number
 ): void {
+
     const isPathSearch = (astar.searchMode === SearchMode.path);
     const isShortestPathMode = isPathSearch && (astar.pathMode === PathMode.all);
     const astarHeuristicMode = (isPathSearch) ? astar.pathMode : null;
@@ -32,7 +34,7 @@ export let Search = function (
     gOpenHeap.push(startNode);
     while (gOpenHeap.size > 0) {
         // Grab the lowest f(x) to process next.  Heap keeps this sorted for us.
-        let currNode = gOpenHeap.pop() as INode;
+        let currNode = gOpenHeap.pop() as NodeBase;
 
         // End case -- result has been found, return the traced path.
         if (isPathSearch && (currNode === endNode)) {
@@ -44,8 +46,8 @@ export let Search = function (
         currNode.closed = true;
 
         // Find all next-nodes for the current node.
-        let nextNodes: INode[] = currNode.getNextNodes();
-        let nextNode: INode,
+        let nextNodes: NodeBase[] = currNode.getNextNodes();
+        let nextNode: NodeBase,
             neighborCost: CostValueType,
             isNeighborMoreCloser: boolean;
         for (let i = 0, cnt = nextNodes.length; i < cnt; ++i) {

@@ -3,13 +3,16 @@ import {
     GetCostCallbackType, BLOCKER,
     CostValueType
 } from './IPathFinder';
-import { ILogicBoard } from '../board/ILogicBoard'
-import { CreateAStar, IAStar } from './astar/CreateAStar';
+import {
+    ILogicBoard,
+    ZType
+} from '../board/ILogicBoard'
+import { CreateAStar, AStar } from './astar/CreateAStar';
 import { GetCost, AStarNode } from './GetCost';
 
 export class PathFinder implements IPathFinder {
     board: ILogicBoard;
-    astar: IAStar;
+    astar: AStar;
 
     constCost: number;
     costCallback: GetCostCallbackType | null;
@@ -19,12 +22,10 @@ export class PathFinder implements IPathFinder {
     blockerTest: boolean;
     edgeBlockerTest: boolean;
 
+    searchTileZ: ZType;
     pathMode: number;
-
     cacheCost: boolean;
-
     weight: number;
-
     shuffleNeighbors: boolean;
 
     constructor({

@@ -13,7 +13,7 @@ export let GetCost = function (
 
     // Occupied test
     if (pathFinder.occupiedTest) {
-        if (pathFinder.board.contains(currNode.x, currNode.y, pathFinder.chessData.tileXYZ.z)) {
+        if (pathFinder.board.contains(currNode.x, currNode.y, pathFinder.searchTileZ)) {
             return BLOCKER;
         }
     }
@@ -29,7 +29,7 @@ export let GetCost = function (
     }
 
     let callback = pathFinder.costCallback;
-    if (callback) {        
+    if (callback) {
         let scope = pathFinder.costCallbackScope;
         let cost: CostValueType;
         if (scope) {

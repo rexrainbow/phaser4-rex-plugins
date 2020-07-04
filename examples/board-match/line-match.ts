@@ -13,6 +13,20 @@ const Colors: number[] = [0xff0000, 0x00ff00, 0x0000ff, 0x800080, 0x808000, 0x00
 
 class MyChess extends Sprite {
     __symbol: number;
+
+    constructor() {
+        super(0, 0, 'chess');
+    }
+
+    setSymbol(symbol: number): this {
+        this.__symbol = symbol;
+        SetTint(Colors[symbol], this);
+        return this;
+    }
+
+    getSymbol(): number {
+        return this.__symbol;
+    }
 }
 
 class MyBoard extends Board {
@@ -57,10 +71,8 @@ class MyBoard extends Board {
     ): this {
 
         this.forEachTileXY((tileXY) => {
-            let chess = new MyChess(0, 0, 'chess');
-            let index = RandomInt(0, Colors.length - 1);
-            SetTint(Colors[index], chess);
-            chess.__symbol = index;
+            let chess = new MyChess();
+            chess.setSymbol(RandomInt(0, Colors.length - 1));
 
             AddChild(world, chess);
             this.addChess(chess, tileXY.x, tileXY.y, 0);
@@ -71,7 +83,7 @@ class MyBoard extends Board {
     refreshSymbols(): this {
         this.match.refreshSymbols(function (tileXY, board) {
             var chess = board.tileXYZToChess(tileXY.x, tileXY.y, 0) as MyChess;
-            return (chess === null) ? null : chess.__symbol;
+            return (chess === null) ? null : chess.getSymbol();
         });
         return this;
     }

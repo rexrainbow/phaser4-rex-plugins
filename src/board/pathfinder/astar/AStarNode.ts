@@ -1,8 +1,4 @@
-import {
-    NodeBase,
-    INode, PathMode,
-    CostValueType, BLOCKER
-} from '../../../utils/astar/IAstar';
+import { NodeBase, PathMode, CostValueType } from '../../../utils/astar/Astar';
 import { IPathFinder } from '../IPathFinder';
 import { Shuffle } from '../../../utils/array/Shuffle';
 import { XYZType } from '../../board/ILogicBoard';
@@ -33,9 +29,9 @@ export class AStarNode extends NodeBase {
     }
 
     heuristic(
-        baseNode: INode,
+        baseNode: AStarNode,
         pathMode: PathMode,
-        endNode?: INode,
+        endNode?: AStarNode,
     ): number {
 
         return 0;
@@ -51,8 +47,8 @@ export class AStarNode extends NodeBase {
         }
 
         let neighborNodes = [];
-        neighborsTileXY.forEach(function (tileXY) {
-            let node = this.manager.getNode(XYToKey(tileXY.x, tileXY.y), true);
+        neighborsTileXY.forEach((tileXY) => {
+            let node = this.getNode(XYToKey(tileXY.x, tileXY.y), true);
             neighborNodes.push(node);
         })
         return neighborNodes;

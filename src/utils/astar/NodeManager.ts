@@ -1,12 +1,12 @@
-import { PathFinderType, CreateNodeCallbackType } from './IAstar';
-import {NodeBase} from './NodeBase';
+import { PathFinderType, CreateNodeCallbackType } from './Astar';
+import { NodeBase } from './NodeBase';
 import { Stack } from '../../utils/struct/Stack';
 
-export class NodeManager<KEY, NODE extends NodeBase>{
+export class NodeManager {
     pathFinder: PathFinderType;
     createNodeCallback: CreateNodeCallbackType;
     nodePool: Stack;
-    nodes: Map<KEY, NODE>;
+    nodes: Map<any, NodeBase>;
     sn: number;
 
     constructor(
@@ -21,7 +21,7 @@ export class NodeManager<KEY, NODE extends NodeBase>{
     }
 
     getNode(
-        key: KEY,
+        key: any,
         createNode: boolean = false
     ): NodeBase | null {
 
@@ -36,7 +36,7 @@ export class NodeManager<KEY, NODE extends NodeBase>{
             }
             node.sn = this.sn;
             node.reset(key);
-            this.nodes.set(key, node as NODE);
+            this.nodes.set(key, node);
         }
         this.sn++;
         let node = this.nodes.get(key);
@@ -57,7 +57,7 @@ export class NodeManager<KEY, NODE extends NodeBase>{
         return this;
     }
 
-    getAllNodes(): Map<KEY, NODE> {
+    getAllNodes(): Map<any, NodeBase> {
 
         return this.nodes;
     }
