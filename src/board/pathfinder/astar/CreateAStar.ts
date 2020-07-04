@@ -7,8 +7,8 @@ export let CreateAStar = function (
     pathFinder: IPathFinder
 ): IAStar {
 
-    let CreateNodeCallback = function (pathFinder: IPathFinder) {
+    let CreateNodeCallback = function () {
         return new AStarNode(pathFinder);
     }
-    return new AStar(pathFinder, CreateNodeCallback);
+    return new AStar(CreateNodeCallback);
 }

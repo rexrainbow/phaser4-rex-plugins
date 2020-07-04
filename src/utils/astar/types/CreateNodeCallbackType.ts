@@ -1,2 +1,2 @@
 import { INodeBase } from '../INodeBase';
-export type CreateNodeCallbackType = (pathFinder: object) => INodeBase;
+export type CreateNodeCallbackType = () => INodeBase;

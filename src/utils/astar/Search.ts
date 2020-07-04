@@ -1,5 +1,4 @@
 import { IAStar } from './IAstar';
-import { SearchMode } from './types/SearchMode';
 import { PathMode } from './types/PathMode';
 import { CostValueType } from './types/CostValueType';
 import { BLOCKER, INFINITY } from './Const';
@@ -15,7 +14,7 @@ export let Search = function (
     movingPoints?: number
 ): void {
 
-    const isPathSearch = (astar.searchMode === SearchMode.path);
+    const isPathSearch = (endNodeKey !== null);
     const isShortestPathMode = isPathSearch && (astar.pathMode === PathMode.all);
     const astarHeuristicMode = (isPathSearch) ? astar.pathMode : null;
 
@@ -23,7 +22,7 @@ export let Search = function (
     nodeManager.freeAllNodes();
 
     let startNode = nodeManager.getNode(startNodeKey, true);
-    let endNode = (endNodeKey !== null) ? nodeManager.getNode(endNodeKey) : null;
+    let endNode = (isPathSearch) ? nodeManager.getNode(endNodeKey, true) : null;
     startNode.h = startNode.heuristic(endNodeKey, astarHeuristicMode);
 
     let closestNode = startNode;

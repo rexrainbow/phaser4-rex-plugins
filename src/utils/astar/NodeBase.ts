@@ -5,7 +5,6 @@ import { INodeBase } from './INodeBase';
 import { INodeManager } from './INodeManager';
 
 export abstract class NodeBase {
-    pathFinder: object;
     manager: INodeManager;
 
     f: number;
@@ -20,16 +19,14 @@ export abstract class NodeBase {
     key: any; // string, number or an object
     sn: number; // For sorting by created order
 
-    constructor(
-        pathFinder: object
-    ) {
+    constructor() {
 
-        this.pathFinder = pathFinder;
         this.preNodes = [];
     }
 
     shutdown(): void {
         this.key = undefined;
+        this.preNodes.length = 0;
     }
 
     destroy(): void {
@@ -45,17 +42,31 @@ export abstract class NodeBase {
         this.closerH = 0;
         this.visited = false;
         this.closed = false;
-        this.preNodes.length = 0;
     }
 
-    // Override
     heuristic(
         baseNode: INodeBase,
         pathMode: PathMode,
         endNode?: INodeBase,
     ): number {
 
-        return 0;
+        if (pathMode === null) {
+            return 0;
+        }
+
+        let h: number;
+        let dist = this.distanceTo(endNode) * this.manager.weight;
+
+        if ((pathMode === 1) && (baseNode !== undefined)) {
+            let deltaAngle = endNode.angleTo(baseNode) - this.angleTo(baseNode);
+            h = dist + Math.abs(deltaAngle);
+        } else if (pathMode === 2) {
+            h = dist + Math.random();
+        } else {
+            h = dist;
+        }
+
+        return h;
     }
 
     updateCloserH(
@@ -87,7 +98,7 @@ export abstract class NodeBase {
     }
 
     // Override
-    distanceBetween(
+    distanceTo(
         node: INodeBase
     ): number {
 

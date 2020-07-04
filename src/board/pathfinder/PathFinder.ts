@@ -27,7 +27,7 @@ export class PathFinder implements IPathFinder {
     searchTileZ: ZType;
     pathMode: number;
     cacheCost: boolean;
-    weight: number;
+    _weight: number;
     shuffleNeighbors: boolean;
 
     constructor({
@@ -134,6 +134,15 @@ export class PathFinder implements IPathFinder {
 
         this.weight = value;
         return this;
+    }
+
+    set weight(value) {
+        this._weight = value;
+        this.astar.setWeight(value);
+    }
+
+    get weight() {
+        return this._weight;
     }
 
     setShuffleNeighborsMode(

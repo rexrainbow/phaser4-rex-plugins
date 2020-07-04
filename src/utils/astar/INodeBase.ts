@@ -3,7 +3,6 @@ import { PathMode } from './types/PathMode';
 import { INodeManager } from './INodeManager';
 
 export interface INodeBase {
-    pathFinder: object;
     manager: INodeManager;
 
     f: number;
@@ -25,7 +24,6 @@ export interface INodeBase {
     // Override
     reset(key: any): void;
 
-    // Override
     heuristic(
         baseNode: INodeBase,
         pathMode: PathMode,
@@ -45,10 +43,12 @@ export interface INodeBase {
         preNode: INodeBase
     ): CostValueType;
 
-    distanceBetween(
+    // Override
+    distanceTo(
         node: INodeBase
     ): number;
 
+    // Override
     angleTo(
         node: INodeBase
     ): number;

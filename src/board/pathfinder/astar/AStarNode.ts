@@ -17,6 +17,12 @@ export class AStarNode extends NodeBase {
     _px: number; // For worldX
     _py: number; // For worldY
 
+    constructor(pathFinder: IPathFinder) {
+
+        super();
+        this.pathFinder = pathFinder;
+    }
+
     reset(
         key: string
     ) {
@@ -28,15 +34,6 @@ export class AStarNode extends NodeBase {
         this._px = undefined;
         this._py = undefined;
         this.cost = undefined; // cost cache
-    }
-
-    heuristic(
-        baseNode: IAStarNode,
-        pathMode: PathMode,
-        endNode?: IAStarNode,
-    ): number {
-
-        return 0;
     }
 
     getNextNodes(
@@ -70,11 +67,11 @@ export class AStarNode extends NodeBase {
         return this.cost;
     }
 
-    distanceBetween(
+    distanceTo(
         node: IAStarNode
     ): number {
 
-        return 0;
+        return this.board.getDistance(this, node, true);
     }
 
     angleTo(

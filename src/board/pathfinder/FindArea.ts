@@ -2,7 +2,6 @@ import { IChess, XYZType } from '../board/ILogicBoard';
 import { IPathFinder, SearchResultType } from './IPathFinder';
 import { XYToKey } from './astar/Key';
 import { IAStarNode } from './astar/IAStarNode';
-import { SearchMode } from '../../utils/astar/IAStar';
 
 export let FindArea = function (
     pathFinder: IPathFinder,
@@ -26,7 +25,7 @@ export let FindArea = function (
         startTileX = startTileXYZ.x,
         startTileY = startTileXYZ.y;
     pathFinder.searchTileZ = startTileXYZ.z;
-    astar.setSearchMode(SearchMode.area).search(
+    astar.search(
         XYToKey(startTileX, startTileY),
         null,
         movingPoints

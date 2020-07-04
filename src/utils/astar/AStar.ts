@@ -1,5 +1,4 @@
 import {
-    SearchMode, SearchModeString,
     PathMode, PathModeString,
     CreateNodeCallbackType
 } from './IAStar';
@@ -10,27 +9,14 @@ import { NodeManager } from './NodeManager';
 import { Search } from './Search';
 
 export class AStar {
-    searchMode: SearchMode;
     pathMode: PathMode;
     nodeManager: INodeManager;
 
     constructor(
-        pathFinder: object,
         createNodeCallback: CreateNodeCallbackType
     ) {
 
-        this.nodeManager = new NodeManager(pathFinder, createNodeCallback);
-    }
-
-    setSearchMode(
-        mode: SearchMode | SearchModeString
-    ): this {
-
-        if (typeof (mode) === 'string') {
-            mode = SearchMode[mode];
-        }
-        this.searchMode = mode;
-        return this;
+        this.nodeManager = new NodeManager(createNodeCallback);
     }
 
     setPathMode(
@@ -41,6 +27,14 @@ export class AStar {
             mode = PathMode[mode];
         }
         this.pathMode = mode;
+        return this;
+    }
+
+    setWeight(
+        weight: number
+    ): this {
+
+        this.nodeManager.weight = weight;
         return this;
     }
 

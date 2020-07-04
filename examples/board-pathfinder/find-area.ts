@@ -3,8 +3,6 @@ import { Game, Scene } from '@phaserjs/phaser';
 import { StaticWorld } from '@phaserjs/phaser/world';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { Sprite, SetTint, SetAlpha } from '@phaserjs/phaser/gameobjects/sprite';
-import { Text } from '@phaserjs/phaser/gameobjects/text'
-import { Between as RandomInt } from '@phaserjs/phaser/math'
 
 import { Board, HexagonGrid, PathFinder } from '../../src/board';
 import { CreatePolygonTexture } from '../../src/texture/canvastexture';

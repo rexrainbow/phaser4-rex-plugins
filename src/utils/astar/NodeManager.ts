@@ -3,17 +3,15 @@ import { INodeBase } from './INodeBase';
 import { Stack } from '../../utils/struct/Stack';
 
 export class NodeManager {
-    pathFinder: object;
     createNodeCallback: CreateNodeCallbackType;
+    weight: number;
     nodePool: Stack;
     nodes: Map<any, INodeBase>;
     sn: number;
 
     constructor(
-        pathFinder: object,
         createNodeCallback: CreateNodeCallbackType
     ) {
-        this.pathFinder = pathFinder;
         this.createNodeCallback = createNodeCallback;
         this.nodePool = new Stack();
         this.nodes = new Map();
@@ -32,7 +30,7 @@ export class NodeManager {
 
             let node: INodeBase = this.nodePool.pop();
             if (node === null) {
-                node = this.createNodeCallback(this.pathFinder);
+                node = this.createNodeCallback();
                 node.manager = this;
             }
             node.sn = this.sn;
