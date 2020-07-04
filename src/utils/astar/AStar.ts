@@ -7,7 +7,7 @@ import {
 import { INodeBase } from './INodeBase';
 import { INodeManager } from './INodeManager';
 import { NodeManager } from './NodeManager';
-// import { Search } from './Search';
+import { Search } from './Search';
 
 export class AStar {
     searchMode: SearchMode;
@@ -50,7 +50,7 @@ export class AStar {
         movingPoints?: number
     ): this {
 
-        // Search(this, startNodeKey, endNodeKey, movingPoints);
+        Search(this, startNodeKey, endNodeKey, movingPoints);
         return this;
     }
 

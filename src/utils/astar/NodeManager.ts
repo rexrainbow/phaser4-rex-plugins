@@ -33,6 +33,7 @@ export class NodeManager {
             let node: INodeBase = this.nodePool.pop();
             if (node === null) {
                 node = this.createNodeCallback(this.pathFinder);
+                node.manager = this;
             }
             node.sn = this.sn;
             node.reset(key);

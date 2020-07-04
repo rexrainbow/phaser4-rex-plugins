@@ -22,7 +22,7 @@ class MyBoard extends Board {
         CreatePolygonTexture('tile', {
             points: this.getGridPoints(),
             strokeStyle: 'white',
-            lineWidth: 2,
+            lineWidth: 1,
             lineJoin: 'miter'
         })
 
@@ -48,16 +48,25 @@ class MyBoard extends Board {
         world: StaticWorld,
         x: number,
         y: number,
+        z: number,
         color?: number
-    ): this {
+    ) {
 
         let chess = new Sprite(0, 0, 'chess');
         AddChild(world, chess);
         if (color !== undefined) {
             SetTint(color, chess);
         }
-        this.addChess(chess, x, y);
-        return this;
+        this.addChess(chess, x, y, z);
+        return chess;
+    }
+
+    findArea(
+        chess,
+        movingPoint: number
+    ) {
+
+        return this.pathFinder.findArea(chess, movingPoint);
     }
 }
 
@@ -76,9 +85,13 @@ class Demo extends Scene {
             width: 16, height: 16
         })
 
-        board
-            .strokeGrid(world)
-            .createChess(world, 4, 4)
+        board.strokeGrid(world);
+        let chess = board.createChess(world, 8, 8, 1);
+        let tileXYArray = board.findArea(chess, 4);
+        tileXYArray.forEach((tileXY) => {
+            let marker = board.createChess(world, tileXY.x, tileXY.y, -1, 0x400000);
+            SetAlpha(0.5, marker);
+        })
     }
 }
 
