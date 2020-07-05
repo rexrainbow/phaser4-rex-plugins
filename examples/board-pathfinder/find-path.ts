@@ -105,9 +105,8 @@ class Demo extends Scene {
             let marker = board.createChess(world, tileXY.x, tileXY.y, -1, 0x004000);
             SetAlpha(0.5, marker);
 
-            let pathCost = board.pathFinder.tileXYToCost(tileXY.x, tileXY.y);
             let worldXY = board.tileXYToWorldXY(tileXY.x, tileXY.y, true);
-            let text = new Text(worldXY.x, worldXY.y, pathCost.toString());
+            let text = new Text(worldXY.x, worldXY.y, tileXY.cost.toString());
             AddChild(world, text);
         })
     }
