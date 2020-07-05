@@ -12,7 +12,7 @@ export let Clone = function (
     out?: any[] | { [name: string]: any }
 ): any[] | { [name: string]: any } {
 
-    var objIsArray = Array.isArray(obj);
+    let objIsArray = Array.isArray(obj);
 
     if (out === undefined) {
         out = (objIsArray) ? [] : {};

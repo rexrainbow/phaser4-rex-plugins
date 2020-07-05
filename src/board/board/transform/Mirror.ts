@@ -29,4 +29,4 @@ export let Mirror = function (
     return out;
 };
 
-var globTileXY: XYType = { x: 0, y: 0 };
+let globTileXY: XYType = { x: 0, y: 0 };

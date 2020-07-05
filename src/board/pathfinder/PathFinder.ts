@@ -1,16 +1,19 @@
 import {
     IPathFinder, IConfig,
+    PathMode, PathModeString,
     GetCostCallbackType, CostNodeType, CostValueType, BLOCKER,
     SearchResultType
 } from './IPathFinder';
 import {
     ILogicBoard,
-    ZType, IChess
+    IChess, XYZType, XYType
 } from '../board/ILogicBoard'
 import { IAStar } from '../../utils/astar/IAStar';
 import { CreateAStar } from './astar/CreateAStar';
 import { GetCost } from './GetCost';
 import { FindArea } from './FindArea';
+import { FindPath } from './FindPath';
+import { GetPath } from './GetPath';
 
 export class PathFinder implements IPathFinder {
     board: ILogicBoard;
@@ -19,15 +22,14 @@ export class PathFinder implements IPathFinder {
     constCost: number;
     costCallback: GetCostCallbackType | null;
     costCallbackScope: any;
-
+    pathMode: PathMode;
     occupiedTest: boolean;
     blockerTest: boolean;
     edgeBlockerTest: boolean;
 
-    searchTileZ: ZType;
-    pathMode: number;
+    startTileXYZ: XYZType;
     cacheCost: boolean;
-    _weight: number;
+    weight: number;
     shuffleNeighbors: boolean;
 
     constructor({
@@ -41,7 +43,7 @@ export class PathFinder implements IPathFinder {
         blockerTest = false,
         edgeBlockerTest = false,
 
-        pathMode = 0,
+        pathMode = PathMode['astar'],
 
         cacheCost = true,
 
@@ -59,6 +61,7 @@ export class PathFinder implements IPathFinder {
             this.setCostFunction(null);
         }
 
+        this.setPathMode(pathMode);
         this.setOccupiedTest(occupiedTest);
         this.setBlockerTest(blockerTest);
         this.setEdgeBlockerTest(edgeBlockerTest);
@@ -93,6 +96,17 @@ export class PathFinder implements IPathFinder {
 
         this.costCallback = callback;
         this.costCallbackScope = scope;
+        return this;
+    }
+
+    setPathMode(
+        mode: PathMode | PathModeString
+    ): this {
+
+        if (typeof (mode) === 'string') {
+            mode = PathMode[mode];
+        }
+        this.pathMode = mode;
         return this;
     }
 
@@ -136,15 +150,6 @@ export class PathFinder implements IPathFinder {
         return this;
     }
 
-    set weight(value) {
-        this._weight = value;
-        this.astar.setWeight(value);
-    }
-
-    get weight() {
-        return this._weight;
-    }
-
     setShuffleNeighborsMode(
         enable: boolean = true
     ): this {
@@ -172,5 +177,24 @@ export class PathFinder implements IPathFinder {
 
     get BLOCKER(): CostValueType {
         return BLOCKER;
+    }
+
+    findPath(
+        startChess: IChess,
+        endChess: IChess | XYType,
+        movingPoints?: number,
+        isClosest: boolean = true,
+        out: SearchResultType = []
+    ): SearchResultType {
+
+        return FindPath(this, startChess, endChess, movingPoints, isClosest, out);
+    }
+
+    getPath(
+        endChess: IChess | XYZType | XYType,
+        out: SearchResultType = []
+    ): SearchResultType {
+
+        return GetPath(this, endChess, out);
     }
 }

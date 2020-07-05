@@ -1,12 +1,14 @@
 import {
     ILogicBoard,
-    ZType
+    XYZType
 } from '../board/ILogicBoard';
 import {
     IAStar,
+    PathMode, PathModeString,
     CostValueType, BLOCKER
 } from '../../utils/astar/IAStar';
 
+export { PathMode, PathModeString };
 export { CostValueType, BLOCKER };
 export type CostNodeType = {
     x: number,
@@ -32,7 +34,7 @@ export interface IConfig {
     blockerTest?: boolean;
     edgeBlockerTest?: boolean;
 
-    pathMode?: number;
+    pathMode?: PathMode | PathModeString;
 
     cacheCost?: boolean;
 
@@ -49,13 +51,12 @@ export interface IPathFinder {
     constCost: number;
     costCallback: GetCostCallbackType | null;
     costCallbackScope: any;
-
+    pathMode: PathMode;
     occupiedTest: boolean;
     blockerTest: boolean;
     edgeBlockerTest: boolean;
 
-    searchTileZ: ZType;
-    pathMode: number;
+    startTileXYZ: XYZType;
     cacheCost: boolean;
     weight: number;
     shuffleNeighbors: boolean;

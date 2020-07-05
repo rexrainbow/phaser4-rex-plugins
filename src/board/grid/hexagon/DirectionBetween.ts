@@ -41,5 +41,5 @@ export let DirectionBetween = function (
     return direction;
 }
 
-var globCubeA: CubeType = { x: 0, y: 0, z: 0 };
-var globCubeB: CubeType = { x: 0, y: 0, z: 0 };
+let globCubeA: CubeType = { x: 0, y: 0, z: 0 };
+let globCubeB: CubeType = { x: 0, y: 0, z: 0 };

@@ -81,6 +81,13 @@ export class AStarNode extends NodeBase {
         return AngleBetween(this.worldX, this.wroldY, node.worldX, node.worldX);
     }
 
+    logicDirTo(
+        node: IAStarNode
+    ): number {
+
+        return this.board.getNeighborTileDirection(this, node);
+    }
+
     get board() {
 
         return this.pathFinder.board;

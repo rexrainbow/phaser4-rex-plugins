@@ -11,7 +11,7 @@ export let GetCost = function (
 
     // Occupied test
     if (pathFinder.occupiedTest) {
-        if (pathFinder.board.contains(currNode.x, currNode.y, pathFinder.searchTileZ)) {
+        if (pathFinder.board.contains(currNode.x, currNode.y, pathFinder.startTileXYZ.z)) {
             return BLOCKER;
         }
     }

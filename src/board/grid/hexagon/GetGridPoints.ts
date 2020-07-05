@@ -37,10 +37,10 @@ export let GetGridPoints = function (
         }
 
     } else {
-        var halfW = hexagon._halfWidth;
-        var quarterW = halfW / 2;
-        var halfH = hexagon._halfHeight;
-        var quarterH = halfH / 2;
+        let halfW = hexagon._halfWidth;
+        let quarterW = halfW / 2;
+        let halfH = hexagon._halfHeight;
+        let quarterH = halfH / 2;
         if (hexagon.staggerAxis === StaggerAxis.flat) {
             out[0].x = x + halfW;
             out[0].y = y;
@@ -83,4 +83,4 @@ export let GetGridPoints = function (
     return out;
 }
 
-var globPoints: Vec2Type[] = []
+let globPoints: Vec2Type[] = []

@@ -39,4 +39,4 @@ export let Rotate = function (
     return out;
 }
 
-var globTileXY: Vec2Type = { x: 0, y: 0 };
+let globTileXY: Vec2Type = { x: 0, y: 0 };

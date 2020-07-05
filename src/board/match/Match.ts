@@ -225,4 +225,4 @@ export class Match implements IMatch {
 
 }
 
-var globTileXY: XYType = { x: 0, y: 0 };
+let globTileXY: XYType = { x: 0, y: 0 };

@@ -1,8 +1,18 @@
 export enum PathMode {
-    'all' = 0,
-    'astar' = 1,
-    'astar-line' = 2,
-    'astar-random' = 3
+    'random' = 0,
+    'diagonal' = 1,
+    'straight' = 2,
+    'line' = 3,
+    'astar' = 10,
+    'astar-random' = 11,
+    'astar-line' = 12
 }
 
-export type PathModeString = 'all' | 'astar' | 'astar-line' | 'astar-random';
+export type PathModeString = 'random' | 'diagonal' | 'straight' | 'line' |
+    'astar' | 'astar-line' | 'astar-random';
+
+export let IsAStarMode = function (pathMode: PathMode) {
+    return (pathMode === PathMode.astar) ||
+        (pathMode === PathMode['astar-line']) ||
+        (pathMode === PathMode['astar-random']);
+}

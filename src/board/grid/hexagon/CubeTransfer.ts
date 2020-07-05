@@ -155,6 +155,6 @@ export function cube2qr(
     return out;
 }
 
-var globCube: CubeType = { x: 0, y: 0, z: 0 };
-var globCR: ColRowType = { x: 0, y: 0 };
-var globQR: QRType = { q: 0, r: 0 };
+let globCube: CubeType = { x: 0, y: 0, z: 0 };
+let globCR: ColRowType = { x: 0, y: 0 };
+let globQR: QRType = { q: 0, r: 0 };

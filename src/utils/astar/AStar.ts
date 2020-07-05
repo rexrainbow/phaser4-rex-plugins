@@ -7,6 +7,7 @@ import { INodeBase } from './INodeBase';
 import { INodeManager } from './INodeManager';
 import { NodeManager } from './NodeManager';
 import { Search } from './Search';
+import { GetNodePath } from './getnodepath/GetNodePath';
 
 export class AStar {
     pathMode: PathMode;
@@ -51,5 +52,23 @@ export class AStar {
     getAllNodes(): Map<any, INodeBase> {
 
         return this.nodeManager.getAllNodes();
+    }
+
+    getNode(key: any): INodeBase {
+
+        return this.nodeManager.getNode(key);
+    }
+
+    getClosestNode(): INodeBase | null {
+
+        return this.nodeManager.closestNode;
+    }
+
+    getNodePath(
+        startNodeKey: any,
+        endNodeKey: any
+    ): INodeBase[] {
+
+        return GetNodePath(this, startNodeKey, endNodeKey);
     }
 }

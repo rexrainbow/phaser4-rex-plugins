@@ -15,18 +15,18 @@ export abstract class NodeBase {
     visited: boolean;
     closed: boolean;
 
-    preNodes: INodeBase[];
+    prevNodes: INodeBase[];
     key: any; // string, number or an object
     sn: number; // For sorting by created order
 
     constructor() {
 
-        this.preNodes = [];
+        this.prevNodes = [];
     }
 
     shutdown(): void {
         this.key = undefined;
-        this.preNodes.length = 0;
+        this.prevNodes.length = 0;
     }
 
     destroy(): void {
@@ -38,49 +38,44 @@ export abstract class NodeBase {
         this.key = key;
         this.f = 0;
         this.g = 0; // path cost
-        this.h = 0;
-        this.closerH = 0;
+        this.h = undefined;
+        this.closerH = undefined;
         this.visited = false;
         this.closed = false;
     }
 
     heuristic(
-        baseNode: INodeBase,
-        pathMode: PathMode,
-        endNode?: INodeBase,
+        endNode: INodeBase,
+        astarMode: PathMode | null,
+        baseNode?: INodeBase,
     ): number {
 
-        if (pathMode === null) {
+        if (astarMode === null) {
             return 0;
         }
 
         let h: number;
         let dist = this.distanceTo(endNode) * this.manager.weight;
 
-        if ((pathMode === 1) && (baseNode !== undefined)) {
-            let deltaAngle = endNode.angleTo(baseNode) - this.angleTo(baseNode);
-            h = dist + Math.abs(deltaAngle);
-        } else if (pathMode === 2) {
-            h = dist + Math.random();
-        } else {
-            h = dist;
+        switch (astarMode) {
+            case PathMode.astar:
+                h = dist;
+                break;
+            case PathMode['astar-line']:
+                if (baseNode !== undefined) {
+                    let deltaAngle = endNode.angleTo(baseNode) - this.angleTo(baseNode);
+                    h = dist + Math.abs(deltaAngle);
+                } else {
+                    h = dist;
+                }
+            case PathMode['astar-random']:
+                h = dist + Math.random();
+                break;
+            default:
+                h = dist;
+                break;
         }
-
         return h;
-    }
-
-    updateCloserH(
-        pathMode: PathMode,
-        baseNode?: INodeBase,
-        endNode?: INodeBase
-    ): void {
-        if ((pathMode === PathMode.astar) ||
-            (pathMode === PathMode['astar-line']) ||
-            (pathMode === PathMode['astar-random'])) {
-            this.closerH = this.h;
-        } else {
-            this.closerH = this.closerH || this.heuristic(endNode, pathMode, baseNode);
-        }
     }
 
     // Override
@@ -113,15 +108,19 @@ export abstract class NodeBase {
         return 0;
     }
 
+    // Override
+    logicDirTo(
+        node: INodeBase
+    ): number {
+
+        return 0;
+    }
+
     getNode(
         key: any,
         createNode: boolean = false
     ): INodeBase {
 
         return this.manager.getNode(key, createNode);
-    }
-
-    get pathCost() {
-        return this.g;
     }
 }

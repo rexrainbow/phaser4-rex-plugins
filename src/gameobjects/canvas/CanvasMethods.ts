@@ -45,7 +45,7 @@ export let LoadFromURL = function (
     callback?: () => void
 ): void {
 
-    var img = new Image();
+    let img = new Image();
     img.onload = function () {
         let resolution = canvas.resolution;
         let displayWidth = img.width / resolution,
@@ -109,7 +109,7 @@ export let SetPixel = function (
         a = ((r !== 0) || (g !== 0) || (b !== 0)) ? 255 : 0;
     }
 
-    var imgData = canvas.context.createImageData(1, 1);
+    let imgData = canvas.context.createImageData(1, 1);
     imgData.data[0] = r;
     imgData.data[1] = g;
     imgData.data[2] = b;

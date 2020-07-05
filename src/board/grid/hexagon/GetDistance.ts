@@ -17,7 +17,7 @@ export let GetDistance = function (
     return (Math.abs(dx) + Math.abs(dy) + Math.abs(dz)) / 2;
 }
 
-var globCubeA: CubeType = { x: 0, y: 0, z: 0 };
-var globCubeB: CubeType = { x: 0, y: 0, z: 0 };
+let globCubeA: CubeType = { x: 0, y: 0, z: 0 };
+let globCubeB: CubeType = { x: 0, y: 0, z: 0 };
 
 export default GetDistance;

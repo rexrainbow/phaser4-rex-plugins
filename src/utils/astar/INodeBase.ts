@@ -13,10 +13,9 @@ export interface INodeBase {
     visited: boolean;
     closed: boolean;
 
-    preNodes: INodeBase[];
+    prevNodes: INodeBase[];
     key: any; // string, number or an object
     sn: number; // For sorting by created order
-    pathCost: number;
 
     shutdown(): void;
     destroy(): void;
@@ -26,15 +25,9 @@ export interface INodeBase {
 
     heuristic(
         baseNode: INodeBase,
-        pathMode: PathMode,
+        astarMode: PathMode,
         endNode?: INodeBase,
     ): number;
-
-    updateCloserH(
-        pathMode: PathMode,
-        baseNode?: INodeBase,
-        endNode?: INodeBase
-    ): void;
 
     // Override
     getNextNodes(): INodeBase[];
@@ -50,6 +43,11 @@ export interface INodeBase {
 
     // Override
     angleTo(
+        node: INodeBase
+    ): number;
+
+    // Override
+    logicDirTo(
         node: INodeBase
     ): number;
 

@@ -154,7 +154,7 @@ export interface ILogicBoard {
     ): number;
 
     getEmptyTileXYArray(
-        tileZ?: ZType,
+        tileZ?: ZType | ZType[],
         out?: XYType[]
     ): XYType[];
 

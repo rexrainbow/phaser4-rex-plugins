@@ -239,7 +239,7 @@ export class LogicBoard implements ILogicBoard {
     }
 
     getEmptyTileXYArray(
-        tileZ: ZType = 0,
+        tileZ: ZType | ZType[] = 0,
         out: XYType[] = []
     ): XYType[] {
 

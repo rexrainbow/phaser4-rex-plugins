@@ -136,9 +136,9 @@ declare module PapaParse {
     }    
 }
 
-declare var Papa: PapaParse.Static;
+declare let Papa: PapaParse.Static;
 
 declare module "papaparse/papaparse.min.js" {
-    var Papa: PapaParse.Static;
+    let Papa: PapaParse.Static;
     export = Papa;
 }

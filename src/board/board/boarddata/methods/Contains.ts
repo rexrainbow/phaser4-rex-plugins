@@ -11,5 +11,5 @@ export let Contains = function (
     z: ZType
 ): boolean {
 
-    return (GetChess(boardData, x, y, z) !== undefined);
+    return (GetChess(boardData, x, y, z) !== null);
 }

@@ -36,4 +36,4 @@ export let GetWorldXY = function (
 
 };
 
-var globWorldXY: Vec2Type = { x: 0, y: 0 };
+let globWorldXY: Vec2Type = { x: 0, y: 0 };

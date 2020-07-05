@@ -1,11 +1,22 @@
+/* 
+
+javascript-astar 0.3.0
+http://github.com/bgrins/javascript-astar
+Freely distributable under the MIT License.
+Implements the astar search algorithm in javascript using a Binary Heap.
+Includes Binary Heap (with modifications) from Marijn Haverbeke.
+http://eloquentjavascript.net/appendix2.html
+
+*/
+
 import { IAStar } from './IAstar';
-import { PathMode } from './types/PathMode';
+import { PathMode, IsAStarMode } from './types/PathMode';
 import { CostValueType } from './types/CostValueType';
 import { BLOCKER, INFINITY } from './Const';
 import { INodeBase } from './INodeBase';
 import { BinaryHeap } from '../struct/BinaryHeap';
 
-var gOpenHeap = new BinaryHeap((node: INodeBase) => node.f);
+let gOpenHeap = new BinaryHeap((node: INodeBase) => node.f);
 
 export let Search = function (
     astar: IAStar,
@@ -15,25 +26,28 @@ export let Search = function (
 ): void {
 
     const isPathSearch = (endNodeKey !== null);
-    const isShortestPathMode = isPathSearch && (astar.pathMode === PathMode.all);
-    const astarHeuristicMode = (isPathSearch) ? astar.pathMode : null;
+    const isAStartMode = IsAStarMode(astar.pathMode);
+    const isShortestPathMode = isPathSearch && (!isAStartMode);
+    const astarMode = (isPathSearch && isAStartMode) ? astar.pathMode : null;
 
     let nodeManager = astar.nodeManager;
     nodeManager.freeAllNodes();
 
     let startNode = nodeManager.getNode(startNodeKey, true);
     let endNode = (isPathSearch) ? nodeManager.getNode(endNodeKey, true) : null;
-    startNode.h = startNode.heuristic(endNodeKey, astarHeuristicMode);
+    startNode.h = startNode.heuristic(endNode, astarMode);
 
-    let closestNode = startNode;
+    let closestNode: INodeBase = null;
     if (isPathSearch) {
-        closestNode.updateCloserH(astarHeuristicMode);
+        closestNode = startNode;
+        closestNode.closerH = closestNode.h || closestNode.heuristic(endNode, PathMode.astar);
     }
 
     gOpenHeap.push(startNode);
     while (gOpenHeap.size > 0) {
         // Grab the lowest f(x) to process next.  Heap keeps this sorted for us.
         let currNode = gOpenHeap.pop() as INodeBase;
+        // console.log(currNode.key);
 
         // End case -- result has been found, return the traced path.
         if (isPathSearch && (currNode === endNode)) {
@@ -47,19 +61,18 @@ export let Search = function (
         // Find all next-nodes for the current node.
         let nextNodes: INodeBase[] = currNode.getNextNodes();
         let nextNode: INodeBase,
-            neighborCost: CostValueType,
-            isNeighborMoreCloser: boolean;
+            nextNodeCost: CostValueType;
         for (let i = 0, cnt = nextNodes.length; i < cnt; ++i) {
             nextNode = nextNodes[i];
-            neighborCost = nextNode.getCost(currNode);
-            if (nextNode.closed || (neighborCost === BLOCKER)) {
+            nextNodeCost = nextNode.getCost(currNode);
+            if (nextNode.closed || (nextNodeCost === BLOCKER)) {
                 // Not a valid node to process, skip to next-node.
                 continue;
             }
 
             // The g score is the shortest distance from start to current node.
             // We need to check if the path we have arrived at this next-node is the shortest one we have seen yet.
-            let gScore = currNode.g + neighborCost,
+            let gScore = currNode.g + nextNodeCost,
                 beenVisited = nextNode.visited;
 
             if ((movingPoints !== INFINITY) && (gScore > movingPoints)) {
@@ -70,19 +83,23 @@ export let Search = function (
 
                 // Found an optimal (so far) path to this node.  Take score for node to see how good it is.
                 nextNode.visited = true;
-                nextNode.preNodes.length = 0;
-                nextNode.preNodes.push(currNode);
-                nextNode.h = nextNode.h || nextNode.heuristic(endNode, astarHeuristicMode, startNode);
+                nextNode.prevNodes.length = 0;
+                nextNode.prevNodes.push(currNode);
+                if (nextNode.h === undefined) {
+                    nextNode.h = nextNode.heuristic(endNode, astarMode, startNode);
+                }
                 nextNode.g = gScore;
                 nextNode.f = nextNode.g + nextNode.h;
 
                 // Nearest node
                 if (isPathSearch) {
-                    nextNode.updateCloserH(astarHeuristicMode, startNode);
-                    isNeighborMoreCloser = (nextNode.closerH < closestNode.closerH) ||
-                        ((nextNode.closerH === closestNode.closerH) && (nextNode.g < closestNode.g));
-
-                    if (isNeighborMoreCloser) {
+                    // If the next node is closer than the current closestNode or if it's equally close but has
+                    // a cheaper path than the current closest node then it becomes the closest node
+                    if (nextNode.closerH === undefined) {
+                        nextNode.closerH = nextNode.h || nextNode.heuristic(endNode, PathMode.astar);
+                    }
+                    if ((nextNode.closerH < closestNode.closerH) ||
+                        ((nextNode.closerH === closestNode.closerH) && (nextNode.g < closestNode.g))) {
                         closestNode = nextNode;
                     }
                 }
@@ -96,12 +113,13 @@ export let Search = function (
                     gOpenHeap.rescoreElement(nextNode);
                 }
             } else if (isShortestPathMode && (gScore == nextNode.g)) {
-                nextNode.preNodes.push(currNode);
 
+                nextNode.prevNodes.push(currNode);
             }
         }
 
     }
 
+    nodeManager.closestNode = closestNode;
     gOpenHeap.clear();
 }

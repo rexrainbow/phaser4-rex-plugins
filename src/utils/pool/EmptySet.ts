@@ -1,6 +1,6 @@
 import { Stack } from '../struct/Stack';
 
-var globEmptySetPool = new Stack();
+let globEmptySetPool = new Stack();
 
 export let GetEmptySet = function (): Set<any> {
     let newMap = globEmptySetPool.pop();

@@ -27,4 +27,4 @@ export let AngleToward = function (
     return board.angleBetween(tileXY, neighborTileXY); // -PI~PI
 }
 
-var zeroTileXY: XYType = { x: 0, y: 0 };
+let zeroTileXY: XYType = { x: 0, y: 0 };

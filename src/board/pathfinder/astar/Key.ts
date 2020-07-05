@@ -17,4 +17,4 @@ export let KeyToXY = function (key: string,
     return out;
 }
 
-var globXY: Vec2Type = { x: 0, y: 0 }
+let globXY: Vec2Type = { x: 0, y: 0 }

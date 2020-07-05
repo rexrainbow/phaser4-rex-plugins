@@ -16,7 +16,8 @@ export let GetRandomEmptyTileXY = function (
     }
 
     // Random picking a tileXY
-    for(let i =0; i< 20; i++) {
+    let retryCount = Math.floor(board.width * board.height * 0.1);
+    for(let i =0; i< retryCount; i++) {
         let tileX = RandomInt(0, board.width - 1) as XType;
         let tileY = RandomInt(0, board.height - 1) as YType;
         if (board.tileXYZToChess(tileX, tileY, tileZ) === null) {

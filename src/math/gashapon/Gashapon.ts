@@ -249,7 +249,7 @@ export class Gashapon implements IGashapon {
         count: number = 1
     ): this {
 
-        var prevValue = this.items.get(name) || 0;
+        let prevValue = this.items.get(name) || 0;
         this.items.set(name, prevValue + count);
 
         if (this._restartFlag) {
@@ -463,7 +463,7 @@ export class Gashapon implements IGashapon {
             return this;
         }
 
-        var prevValue = this.remainder.get(name) || 0,
+        let prevValue = this.remainder.get(name) || 0,
             newValue = prevValue + inc;
         if ((maxCount !== undefined) && (newValue > maxCount)) {
             newValue = maxCount;

@@ -8,6 +8,7 @@ export class NodeManager {
     nodePool: Stack;
     nodes: Map<any, INodeBase>;
     sn: number;
+    closestNode: INodeBase | null;
 
     constructor(
         createNodeCallback: CreateNodeCallbackType

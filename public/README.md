@@ -2,6 +2,10 @@
 
 ## Board
 
+### Path finder
+
+- [Find path](https://rexrainbow.github.io/phaser4-rex-plugins/public/board-pathfinder-find-path/)
+
 ### Match
 
 - [Match 3](https://rexrainbow.github.io/phaser4-rex-plugins/public/board-match-line-match/)

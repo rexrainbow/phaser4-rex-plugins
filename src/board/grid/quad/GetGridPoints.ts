@@ -61,4 +61,4 @@ export let GetGridPoints = function (
     return out;
 }
 
-var globPoints: Vec2Type[] = []
+let globPoints: Vec2Type[] = []

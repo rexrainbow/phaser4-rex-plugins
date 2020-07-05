@@ -31,5 +31,14 @@ export interface IAStar {
         movingPoints?: number
     ): this;
 
-    getAllNodes(): Map<any, INodeBase>
+    getAllNodes(): Map<any, INodeBase>;
+
+    getNode(key: any): INodeBase;
+
+    getClosestNode(): INodeBase;
+
+    getNodePath(
+        startNodeKey: any,
+        endNodeKey: any
+    ): INodeBase[];
 }

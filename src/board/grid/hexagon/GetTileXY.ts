@@ -46,5 +46,5 @@ export let GetTileXY = function (
     return out;
 }
 
-var globCube: CubeType = { x: 0, y: 0, z: 0 };
-var globTileXY: Vec2Type = { x: 0, y: 0 };
+let globCube: CubeType = { x: 0, y: 0, z: 0 };
+let globTileXY: Vec2Type = { x: 0, y: 0 };
