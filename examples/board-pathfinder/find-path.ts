@@ -10,6 +10,7 @@ import { CreatePolygonTexture } from '../../src/texture/canvastexture';
 import { Shuffle } from '../../src/utils/array/Shuffle';
 
 class MyBoard extends Board {
+    world: StaticWorld;
     pathFinder: PathFinder;
 
     constructor(config) {
@@ -34,20 +35,23 @@ class MyBoard extends Board {
         })
     }
 
-    strokeGrid(
-        world: StaticWorld
-    ): this {
+    setWorld(world: StaticWorld): this {
+
+        this.world = world;
+        return this;
+    }
+
+    strokeGrid(): this {
 
         this.forEachTileXY((tileXY, board) => {
             let worldXY = board.tileXYToWorldXY(tileXY.x, tileXY.y, true);
             let tile = new Sprite(worldXY.x, worldXY.y, 'tile');
-            AddChild(world, tile);
+            AddChild(this.world, tile);
         })
         return this;
     }
 
     createChess(
-        world: StaticWorld,
         x: number,
         y: number,
         z: number,
@@ -55,7 +59,7 @@ class MyBoard extends Board {
     ) {
 
         let chess = new Sprite(0, 0, 'chess');
-        AddChild(world, chess);
+        AddChild(this.world, chess);
         if (color !== undefined) {
             SetTint(color, chess);
         }
@@ -86,23 +90,25 @@ class Demo extends Scene {
 
             width: 10, height: 10
         })
+        board
+            .setWorld(world)
+            .strokeGrid();
 
-        board.strokeGrid(world);
         // Add start chess
-        let chessA = board.createChess(world, 2, 2, 1, 0xffffff);
+        let chessA = board.createChess(2, 2, 1, 0xffffff);
         // Add end chess
-        let chessB = board.createChess(world, 8, 8, 1, 0xff0000);
+        let chessB = board.createChess(8, 8, 1, 0xff0000);
         // Add some blockers (z=1, to block chessA)
         let emptyTileXYArray = Shuffle(board.getEmptyTileXYArray(1))
         for (let i = 0; i < 30; i++) {
             let emptyTileXY = emptyTileXYArray[i];
-            board.createChess(world, emptyTileXY.x, emptyTileXY.y, 1, 0x808080);
+            board.createChess(emptyTileXY.x, emptyTileXY.y, 1, 0x808080);
         }
         // Find (closest) path tileXY array
         let tileXYArray = board.findPath(chessA, chessB);
         // Draw markers
         tileXYArray.forEach((tileXY) => {
-            let marker = board.createChess(world, tileXY.x, tileXY.y, -1, 0x004000);
+            let marker = board.createChess(tileXY.x, tileXY.y, -1, 0x004000);
             SetAlpha(0.5, marker);
 
             let worldXY = board.tileXYToWorldXY(tileXY.x, tileXY.y, true);

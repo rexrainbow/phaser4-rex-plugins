@@ -30,6 +30,7 @@ class MyChess extends Sprite {
 }
 
 class MyBoard extends Board {
+    world: StaticWorld;
     match: Match;
     lastMatchedCount: number;
 
@@ -54,27 +55,29 @@ class MyBoard extends Board {
         })
     }
 
-    strokeGrid(
-        world: StaticWorld
-    ): this {
+    setWorld(world: StaticWorld): this {
+
+        this.world = world;
+        return this;
+    }
+
+    strokeGrid(): this {
 
         this.forEachTileXY((tileXY, board) => {
             let worldXY = board.tileXYToWorldXY(tileXY.x, tileXY.y, true);
             let tile = new Sprite(worldXY.x, worldXY.y, 'tile');
-            AddChild(world, tile);
+            AddChild(this.world, tile);
         })
         return this;
     }
 
-    fillChess(
-        world: StaticWorld
-    ): this {
+    fillChess(): this {
 
         this.forEachTileXY((tileXY) => {
             let chess = new MyChess();
             chess.setSymbol(RandomInt(0, Colors.length - 1));
 
-            AddChild(world, chess);
+            AddChild(this.world, chess);
             this.addChess(chess, tileXY.x, tileXY.y, 0);
         })
         return this;
@@ -119,8 +122,9 @@ class Demo extends Scene {
         })
 
         board
-            .strokeGrid(world)
-            .fillChess(world)
+            .setWorld(world)
+            .strokeGrid()
+            .fillChess()
             .match3();
 
         const text = new Text(0, 580, `Match count= ${board.lastMatchedCount}`);

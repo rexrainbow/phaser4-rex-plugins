@@ -8,6 +8,7 @@ import { Board, HexagonGrid, PathFinder } from '../../src/board';
 import { CreatePolygonTexture } from '../../src/texture/canvastexture';
 
 class MyBoard extends Board {
+    world: StaticWorld;
     pathFinder: PathFinder;
 
     constructor(config) {
@@ -30,20 +31,23 @@ class MyBoard extends Board {
         })
     }
 
-    strokeGrid(
-        world: StaticWorld
-    ): this {
+    setWorld(world: StaticWorld): this {
+
+        this.world = world;
+        return this;
+    }
+
+    strokeGrid(): this {
 
         this.forEachTileXY((tileXY, board) => {
             let worldXY = board.tileXYToWorldXY(tileXY.x, tileXY.y, true);
             let tile = new Sprite(worldXY.x, worldXY.y, 'tile');
-            AddChild(world, tile);
+            AddChild(this.world, tile);
         })
         return this;
     }
 
     createChess(
-        world: StaticWorld,
         x: number,
         y: number,
         z: number,
@@ -51,7 +55,7 @@ class MyBoard extends Board {
     ) {
 
         let chess = new Sprite(0, 0, 'chess');
-        AddChild(world, chess);
+        AddChild(this.world, chess);
         if (color !== undefined) {
             SetTint(color, chess);
         }
@@ -83,11 +87,13 @@ class Demo extends Scene {
             width: 16, height: 16
         })
 
-        board.strokeGrid(world);
-        let chess = board.createChess(world, 8, 8, 1);
+        board
+            .setWorld(world)
+            .strokeGrid();
+        let chess = board.createChess(8, 8, 1);
         let tileXYArray = board.findArea(chess, 4);
         tileXYArray.forEach((tileXY) => {
-            let marker = board.createChess(world, tileXY.x, tileXY.y, -1, 0x400000);
+            let marker = board.createChess(tileXY.x, tileXY.y, -1, 0x400000);
             SetAlpha(0.5, marker);
         })
     }
