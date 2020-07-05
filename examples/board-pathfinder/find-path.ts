@@ -3,6 +3,7 @@ import { Game, Scene } from '@phaserjs/phaser';
 import { StaticWorld } from '@phaserjs/phaser/world';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { Sprite, SetTint, SetAlpha } from '@phaserjs/phaser/gameobjects/sprite';
+import { Text } from '@phaserjs/phaser/gameobjects/text'
 
 import { Board, HexagonGrid, PathFinder } from '../../src/board';
 import { CreatePolygonTexture } from '../../src/texture/canvastexture';
@@ -103,6 +104,11 @@ class Demo extends Scene {
         tileXYArray.forEach((tileXY) => {
             let marker = board.createChess(world, tileXY.x, tileXY.y, -1, 0x004000);
             SetAlpha(0.5, marker);
+
+            let pathCost = board.pathFinder.tileXYToCost(tileXY.x, tileXY.y);
+            let worldXY = board.tileXYToWorldXY(tileXY.x, tileXY.y, true);
+            let text = new Text(worldXY.x, worldXY.y, pathCost.toString());
+            AddChild(world, text);
         })
     }
 }

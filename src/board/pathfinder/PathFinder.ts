@@ -6,7 +6,7 @@ import {
 } from './IPathFinder';
 import {
     ILogicBoard,
-    IChess, XYZType, XYType
+    IChess, XYZType, XYType, XType, YType
 } from '../board/ILogicBoard'
 import { IAStar } from '../../utils/astar/IAStar';
 import { CreateAStar } from './astar/CreateAStar';
@@ -14,6 +14,7 @@ import { GetCost } from './GetCost';
 import { FindArea } from './FindArea';
 import { FindPath } from './FindPath';
 import { GetPath } from './GetPath';
+import { TileXYToCost } from './TileXYToCost';
 
 export class PathFinder implements IPathFinder {
     board: ILogicBoard;
@@ -196,5 +197,14 @@ export class PathFinder implements IPathFinder {
     ): SearchResultType {
 
         return GetPath(this, endChess, out);
+    }
+
+    tileXYToCost(
+        tileX: XType,
+        tileY: YType,
+        pathCost: boolean = true
+    ): CostValueType {
+
+        return TileXYToCost(this, tileX, tileY, pathCost);
     }
 }
