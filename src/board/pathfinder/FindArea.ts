@@ -2,7 +2,8 @@ import { IPathFinder, SearchResultType } from './IPathFinder';
 import { IChess, XYZType } from '../types';
 import { XYToKey } from './astar/Key';
 import { IAStarNode } from './astar/IAStarNode';
-import { Chess, TileXY } from '../board'
+import { Chess, TileXY } from '../board';
+import { CopyTileXYZ } from '../board/utils/CopyTileXYZ';
 
 export let FindArea = function (
     pathFinder: IPathFinder,
@@ -25,7 +26,7 @@ export let FindArea = function (
     let startTileXYZ = TileXY.ChessToTileXYZ(board, startChess) as XYZType,
         startTileX = startTileXYZ.x,
         startTileY = startTileXYZ.y;
-    pathFinder.startTileXYZ = startTileXYZ;
+    CopyTileXYZ(startTileXYZ, pathFinder.startTileXYZ);
     let startNodeKey = XYToKey(startTileX, startTileY);
     astar.search(startNodeKey, null, movingPoints);
 

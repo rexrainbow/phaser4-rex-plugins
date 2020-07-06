@@ -7,6 +7,7 @@ import { XYToKey } from './astar/Key';
 import { IAStarNode } from './astar/IAStarNode';
 import { GetPath } from './GetPath'
 import { Chess, TileXY } from '../board';
+import { CopyTileXYZ } from '../board/utils/CopyTileXYZ';
 
 export let FindPath = function (
     pathFinder: IPathFinder,
@@ -30,7 +31,7 @@ export let FindPath = function (
     let astar = pathFinder.astar;
     let startTileXYZ = TileXY.ChessToTileXYZ(board, startChess) as XYZType;
     let endTileXY = TileXY.ChessToTileXYZ(board, endChess) as XYType;
-    pathFinder.startTileXYZ = startTileXYZ;
+    CopyTileXYZ(startTileXYZ, pathFinder.startTileXYZ);
     let startNodeKey = XYToKey(startTileXYZ.x, startTileXYZ.y),
         endNodeKey = XYToKey(endTileXY.x, endTileXY.y);
 
