@@ -1,11 +1,9 @@
+import { XYZType } from '../../types';
 import { IBaseBoard } from '../IBaseBoard';
-import { ZType, XYZType } from '../../types';
-
 import {
     IChessData,
     BlockerType, EdgeBlockerType
 } from './IChessData';
-import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 
 export class ChessData implements IChessData {
     parent: any;
@@ -27,7 +25,8 @@ export class ChessData implements IChessData {
 
     destroy() {
         if (this.board) {
-            this.board.removeChess(this.parent);
+            let tileXYZ = this.tileXYZ;
+            this.board.boardData.removeChess(tileXYZ.x, tileXYZ.y, tileXYZ.z);
         }
 
         this.parent = undefined;
@@ -44,18 +43,7 @@ export class ChessData implements IChessData {
         if (this.board == null) {
             return null;
         }
-        return ChessToTileXYZ(this.board, this.parent) as XYZType | null;
-    }
-
-    setTileZ(tileZ: ZType): this {
-
-        if (this.board == null) {
-            return this;
-        }
-
-        let tileXYZ = this.tileXYZ;
-        this.board.addChess(this.parent, tileXYZ.x, tileXYZ.y, tileZ, false);
-        return this;
+        return this.board.boardData.getXYZ(this.parent);
     }
 
     setBlocker(value: boolean = true): this {

@@ -1,7 +1,4 @@
-import {
-    IBoardData,
-    IChess, XType, YType, ZType
-} from './boarddata/IBoardData';
+import { IBoardData } from './boarddata/IBoardData';
 import { IGrid } from '../grid/IGrid';
 
 export interface IConfig {
@@ -35,22 +32,4 @@ export interface IBaseBoard {
         width?: number,
         height?: number
     ): this;
-
-    addChess(
-        chess: IChess,
-        tileX: XType,
-        tileY: YType,
-        tileZ?: ZType,
-        align?: boolean
-    ): this;
-
-    removeChess(
-        chess: IChess | null,
-        tileX?: XType,
-        tileY?: YType,
-        tileZ?: ZType,
-        destroy?: boolean,
-        fromBoardRemove?: boolean
-    ): this;
-
 }

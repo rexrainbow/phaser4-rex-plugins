@@ -11,6 +11,4 @@ export interface IChessData {
 
     setBoard(board: IBaseBoard | null): this;
     readonly tileXYZ: XYZType | null;
-    setTileZ(tileZ: ZType): this;
-
 }

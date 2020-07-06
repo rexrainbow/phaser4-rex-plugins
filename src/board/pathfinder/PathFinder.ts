@@ -26,7 +26,7 @@ export class PathFinder implements IPathFinder {
     blockerTest: boolean;
     edgeBlockerTest: boolean;
 
-    startTileXYZ: XYZType;
+    startTileXYZ: XYZType = { x: 0, y: 0, z: 0 };
     cacheCost: boolean;
     weight: number;
     shuffleNeighbors: boolean;
@@ -69,7 +69,7 @@ export class PathFinder implements IPathFinder {
         this.setWeight(weight);
         this.setShuffleNeighborsMode(shuffleNeighbors);
 
-        this.astar = CreateAStar(this);
+        this.astar = CreateAStar(this);        
     }
 
     setBoard(

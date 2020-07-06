@@ -20,7 +20,7 @@ export interface IConfig {
 }
 
 // ForEachTileXY
-import { ForEachTileXYCallback } from './tileposition/ForEachTileXY';
+import { ForEachTileXYCallback, ForEachTileXYOrder } from './tileposition/ForEachTileXY';
 
 // GetTileXYAtDirection
 import { DistanceConfig } from './tileposition/GetTileXYAtDirection';
@@ -30,6 +30,14 @@ import { MirrorMode, MirrorModeString } from './transform/Mirror';
 export { MirrorMode, MirrorModeString };
 
 export interface ILogicBoard extends IBaseBoard {
+
+    addChess(
+        chess: IChess,
+        tileX: XType,
+        tileY: YType,
+        tileZ?: ZType,
+        align?: boolean
+    ): this;
 
     angleBetween(
         chessA: IChess | XYType,
@@ -81,7 +89,7 @@ export interface ILogicBoard extends IBaseBoard {
     forEachTileXY(
         callback: ForEachTileXYCallback,
         scope: any,
-        order?: number
+        order?: ForEachTileXYOrder
     ): this;
 
     getAllChess(
@@ -224,6 +232,15 @@ export interface ILogicBoard extends IBaseBoard {
         fromBoardRemove?: boolean
     ): this;
 
+    removeChess(
+        chess: IChess | null,
+        tileX?: XType,
+        tileY?: YType,
+        tileZ?: ZType,
+        destroy?: boolean,
+        fromBoardRemove?: boolean
+    ): this;
+
     ringToTileXYArray(
         centerTileXY: XYType,
         radius?: number,
@@ -243,6 +260,11 @@ export interface ILogicBoard extends IBaseBoard {
 
     setBoardHeight(
         height?: number
+    ): this;
+
+    setTileZ(
+        chess: IChess,
+        tileZ: ZType
     ): this;
 
     swapChess(

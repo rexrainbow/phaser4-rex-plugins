@@ -2,9 +2,7 @@ import { BaseBoard } from './BaseBoard';
 import { XType, YType, ZType, XYType, XYZType, Vec2Type, IChess } from '../types';
 import { ILogicBoard, IChessData } from './ILogicBoard';
 
-import { SetBoardWidth } from './boarddata/SetBoardWidth';
-import { SetBoardHeight } from './boarddata/SetBoardHeight';
-
+import { AddChess } from './chess/AddChess';
 import { AngleBetween } from './worldposition/AngleBetween';
 import { AngleSnapToDirection } from './worldposition/AngleSnapToDirection';
 import { AngleToward } from './worldposition/AngleToward';
@@ -39,8 +37,12 @@ import { IsOverlappingPoint } from './worldposition/IsOverlappingPoint';
 import { Mirror, MirrorMode, MirrorModeString } from './transform/Mirror';
 import { Offset } from './transform/Offset';
 import { RemoveAllChess } from './chess/RemoveAllChess';
+import { RemoveChess } from './chess/RemoveChess';
 import { RingToTileXYArray } from './ring/RingToTileXYArray';
 import { Rotate } from './transform/Rotate';
+import { SetBoardHeight } from './boarddata/SetBoardHeight';
+import { SetBoardWidth } from './boarddata/SetBoardWidth';
+import { SetTileZ } from './chess/SetTileZ';
 import { SwapChess } from './chess/SwapChess';
 import { TileXYArrayToChessArray } from './tileposition/TileXYArrayToChessArray';
 import { TileXYToChessArray } from './tileposition/TileXYToChessArray';
@@ -53,6 +55,18 @@ import { WorldXYToChess } from './worldposition/WorldXYToChess';
 import { WorldXYToTileXY } from './worldposition/WorldXYToTileXY';
 
 export class LogicBoard extends BaseBoard implements ILogicBoard {
+
+    addChess(
+        chess: IChess,
+        tileX: XType,
+        tileY: YType,
+        tileZ?: ZType,
+        align: boolean = true
+    ): this {
+
+        AddChess(this, chess, tileX, tileY, tileZ, align);
+        return this;
+    }
 
     angleBetween(
         chessA: IChess | XYType,
@@ -99,7 +113,6 @@ export class LogicBoard extends BaseBoard implements ILogicBoard {
         tileZ?: ZType
     ): boolean {
 
-
         return Contains(this, tileX, tileY, tileZ);
     }
 
@@ -132,7 +145,7 @@ export class LogicBoard extends BaseBoard implements ILogicBoard {
     forEachTileXY(
         callback: ForEachTileXYCallback,
         scope?: any,
-        order: number = 0
+        order: ForEachTileXYOrder = 0
     ): this {
 
         ForEachTileXY(this, callback, scope, order);
@@ -353,6 +366,19 @@ export class LogicBoard extends BaseBoard implements ILogicBoard {
         return this;
     }
 
+    removeChess(
+        chess: IChess | null | undefined,
+        tileX?: XType,
+        tileY?: YType,
+        tileZ?: ZType,
+        destroy: boolean = false,
+        fromBoardRemove: boolean = false
+    ): this {
+
+        RemoveChess(this, chess, tileX, tileY, tileZ, destroy, fromBoardRemove);
+        return this;
+    }
+
     ringToTileXYArray(
         centerTileXY: XYType,
         radius: number = 1,
@@ -372,15 +398,28 @@ export class LogicBoard extends BaseBoard implements ILogicBoard {
         return Rotate(this, tileXY, direction, originTileXY, out);
     }
 
-    setBoardWidth(width: number = 0): this {
+    setBoardWidth(
+        width: number = 0
+    ): this {
 
         SetBoardWidth(this, width);
         return this
     }
 
-    setBoardHeight(height: number = 0): this {
+    setBoardHeight(
+        height: number = 0
+    ): this {
 
         SetBoardHeight(this, height);
+        return this;
+    }
+
+    setTileZ(
+        chess: IChess,
+        tileZ: ZType
+    ): this {
+
+        SetTileZ(this, chess, tileZ);
         return this;
     }
 
