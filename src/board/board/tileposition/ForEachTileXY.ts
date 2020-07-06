@@ -12,7 +12,7 @@ export enum ForEachTileXYOrder {
 export let ForEachTileXY = function (
     board: IBoardBase,
     callback: ForEachTileXYCallback,
-    scope: any,
+    scope?: any,
     order: ForEachTileXYOrder = ForEachTileXYOrder['x+,y+']
 ): void {
 
