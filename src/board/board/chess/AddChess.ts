@@ -3,8 +3,11 @@ import {
     IChess, XType, YType, ZType, XYZType
 } from '../ILogicBoard';
 import { TileXYZToChess } from '../tileposition/TileXYZToChess';
-import { GetChessData } from '../../chess/GetChessData';
+import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
+import { Contains } from '../tileposition/Contains';
+import { GetChessData } from '../chessdata/GetChessData';
 import { GridAlign } from '../worldposition/GridAlign';
+import { RemoveChess } from './RemoveChess'
 
 export let AddChess = function (
     board: ILogicBoard,
@@ -15,11 +18,11 @@ export let AddChess = function (
     align: boolean = true
 ) {
 
-    if (!board.contains(tileX, tileY)) {
+    if (!Contains(board, tileX, tileY)) {
         return;
     }
 
-    let curTileXYZ = board.chessToTileXYZ(chess) as XYZType;
+    let curTileXYZ = ChessToTileXYZ(board, chess) as XYZType;
     if (tileZ === undefined) {
         if (curTileXYZ) {
             tileZ = curTileXYZ.z;
@@ -37,7 +40,7 @@ export let AddChess = function (
     let occupiedChess = TileXYZToChess(board, tileX, tileY, tileZ);
     if (occupiedChess) {
         // board.emit('kickout', occupiedChess, chess, curTileXYZ);
-        board.removeChess(null, tileX, tileY, tileZ); // Clear up (tileX, tileY, tileZ)
+        RemoveChess(board, null, tileX, tileY, tileZ); // Clear up (tileX, tileY, tileZ)
     }
 
     board.boardData.addChess(chess, tileX, tileY, tileZ);

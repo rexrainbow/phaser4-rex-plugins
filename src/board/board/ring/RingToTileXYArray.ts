@@ -2,6 +2,7 @@ import {
     ILogicBoard,
     XYType
 } from '../ILogicBoard';
+import { Contains } from '../tileposition/Contains';
 
 export let RingToTileXYArray = function (
     board: ILogicBoard,
@@ -13,7 +14,7 @@ export let RingToTileXYArray = function (
     let tileArray = board.grid.ringToTileXYArray(centerTileXY, radius) as XYType[];
     for (let i = 0, cnt = tileArray.length; i < cnt; i++) {
         let tileXY = tileArray[i];
-        if (board.contains(tileXY.x, tileXY.y)) {
+        if (Contains(board, tileXY.x, tileXY.y)) {
             out.push(tileXY);
         }
     }

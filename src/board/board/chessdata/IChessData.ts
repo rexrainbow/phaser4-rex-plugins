@@ -1,7 +1,7 @@
 import {
     ILogicBoard,
     ZType, XYZType
-} from '../board/ILogicBoard';
+} from '../ILogicBoard';
 
 export type BlockerType = boolean;
 export type EdgeBlockerType = { [direction: number]: boolean };

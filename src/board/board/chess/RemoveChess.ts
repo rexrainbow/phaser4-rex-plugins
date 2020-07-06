@@ -3,7 +3,8 @@ import {
     IChess, XType, YType, ZType, XYZType
 } from '../ILogicBoard';
 import { TileXYZToChess } from '../tileposition/TileXYZToChess';
-import { GetChessData } from '../../chess/GetChessData';
+import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
+import { GetChessData } from '../chessdata/GetChessData';
 
 
 export let RemoveChess = function (
@@ -17,7 +18,7 @@ export let RemoveChess = function (
 ) {
 
     if (chess) {
-        let tileXYZ = board.chessToTileXYZ(chess) as XYZType;
+        let tileXYZ = ChessToTileXYZ(board, chess) as XYZType;
         if (tileXYZ) {
             tileX = tileXYZ.x;
             tileY = tileXYZ.y;

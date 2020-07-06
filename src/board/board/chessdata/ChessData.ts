@@ -2,7 +2,8 @@ import {
     IChessData,
     BlockerType, EdgeBlockerType
 } from './IChessData';
-import { ILogicBoard, ZType, XYZType } from '../board/ILogicBoard';
+import { ILogicBoard, ZType, XYZType } from '../ILogicBoard';
+import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 
 export class ChessData implements IChessData {
     parent: any;
@@ -41,7 +42,7 @@ export class ChessData implements IChessData {
         if (this.board == null) {
             return null;
         }
-        return this.board.chessToTileXYZ(this.parent) as XYZType | null;
+        return ChessToTileXYZ(this.board, this.parent) as XYZType | null;
     }
 
     setTileZ(tileZ: ZType): this {

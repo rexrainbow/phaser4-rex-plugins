@@ -2,6 +2,7 @@ import {
     ILogicBoard,
     IChess, XYType
 } from '../ILogicBoard';
+import { GetNeighborChessDirection } from './GetNeighborChessDirection'
 
 export let AreNeighbors = function (
     board: ILogicBoard,
@@ -9,5 +10,5 @@ export let AreNeighbors = function (
     chessB: IChess | XYType
 ): boolean {
 
-    return (board.getNeighborChessDirection(chessA, chessB) !== null);
+    return (GetNeighborChessDirection(board, chessA, chessB) !== null);
 }

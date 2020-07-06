@@ -2,6 +2,7 @@ import {
     ILogicBoard,
     IChess, XYType
 } from '../ILogicBoard';
+import { ChessToTileXYZ } from './ChessToTileXYZ'
 
 export let IsDirectionInCone = function (
     board: ILogicBoard,
@@ -11,8 +12,8 @@ export let IsDirectionInCone = function (
     cone: number
 ): boolean {
 
-    let tileXYA = board.chessToTileXYZ(chessA);
-    let tileXYB = board.chessToTileXYZ(chessB);
+    let tileXYA = ChessToTileXYZ(board, chessA);
+    let tileXYB = ChessToTileXYZ(board, chessB);
 
     let savedDirections = board.grid.directions; // Save directions
     board.grid.directions = board.grid.sides;

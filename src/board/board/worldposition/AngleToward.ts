@@ -1,7 +1,9 @@
 import {
     ILogicBoard,
     XYType
-} from '../ILogicBoard'
+} from '../ILogicBoard';
+import { GetNeighborTileXY } from '../neighbors/GetNeighborTileXY';
+import { AngleBetween } from './AngleBetween';
 
 export let AngleToward = function (
     board: ILogicBoard,
@@ -19,12 +21,12 @@ export let AngleToward = function (
     board.infinityMode = true;
 
     // Get neighborTileXY
-    let neighborTileXY = board.getNeighborTileXY(tileXY, direction, true) as XYType;
+    let neighborTileXY = GetNeighborTileXY(board, tileXY, direction, true) as XYType;
 
     // Restore wrapMode, infinityMode and clear them
     board.wrapMode = wrapModeSave;
     board.infinityMode = infinityModeSave;
-    return board.angleBetween(tileXY, neighborTileXY); // -PI~PI
+    return AngleBetween(board, tileXY, neighborTileXY); // -PI~PI
 }
 
 let zeroTileXY: XYType = { x: 0, y: 0 };

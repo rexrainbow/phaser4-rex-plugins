@@ -2,6 +2,9 @@ import {
     ILogicBoard,
     ZType
 } from '../ILogicBoard';
+import { WorldXYToTileXY } from './WorldXYToTileXY';
+import { Contains } from '../tileposition/Contains'
+
 
 export let IsOverlappingPoint = function (
     board: ILogicBoard,
@@ -14,6 +17,6 @@ export let IsOverlappingPoint = function (
         return true;
     }
 
-    let out = board.worldXYToTileXY(worldX, worldY, true);
-    return board.contains(out.x, out.y, tileZ);
+    let out = WorldXYToTileXY(board, worldX, worldY, true);
+    return Contains(board, out.x, out.y, tileZ);
 }

@@ -13,6 +13,9 @@ import { PathFinder } from './pathfinder';
 // Match
 import { Match } from './match';
 
+// HexagonMap
+import * as HexagonMap from './hexagonmap';
+
 export {
     // Board
     LogicBoard, Board,
@@ -24,5 +27,8 @@ export {
     PathFinder,
 
     // Match
-    Match
+    Match,
+
+    // HexagonMap
+    HexagonMap
 }

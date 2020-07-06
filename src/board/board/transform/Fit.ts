@@ -3,6 +3,9 @@ import {
     ILogicBoard,
     XYType
 } from '../ILogicBoard';
+import { Offset } from './Offset';
+import { SetBoardHeight } from '../boarddata/SetBoardHeight';
+import { SetBoardWidth } from '../boarddata/SetBoardWidth';
 
 export let Fit = function (
     board: ILogicBoard,
@@ -22,7 +25,7 @@ export let Fit = function (
     if ((minX !== 0) || (minY !== 0)) {
         for (let i = 0, cnt = tileXYArray.length; i < cnt; i++) {
             tileXY = tileXYArray[i];
-            board.offset(tileXY, -minX, -minY, tileXY);
+            Offset(board, tileXY, -minX, -minY, tileXY);
         }
     }
 
@@ -34,7 +37,10 @@ export let Fit = function (
         maxX = Math.max(maxX, tileXY.x);
         maxY = Math.max(maxY, tileXY.y);
     }
+
     // Set board size
-    board.setBoardSize(maxX + 1, maxY + 1);
+    SetBoardWidth(board, maxX + 1);
+    SetBoardHeight(board, maxY + 1);
+
     return tileXYArray;
 }

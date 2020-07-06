@@ -2,6 +2,7 @@ import {
     ILogicBoard,
     XYType
 } from '../ILogicBoard';
+import { GetNeighborTileXY } from './GetNeighborTileXY'
 
 export let GetNeighborTileDirection = function (
     board: ILogicBoard,
@@ -18,7 +19,7 @@ export let GetNeighborTileDirection = function (
 
     let direction = board.grid.getNeighborTileDirection(srcTileXY, neighborTileXY);
     if (board.wrapMode && (direction === null)) {
-        let tileXYArray = board.getNeighborTileXY(srcTileXY, null) as XYType[];
+        let tileXYArray = GetNeighborTileXY(board, srcTileXY, null) as XYType[];
         for (let i = 0, cnt = tileXYArray.length; i < cnt; i++) {
             let tileXY = tileXYArray[i];
             if ((neighborTileXY.x === tileXY.x) && (neighborTileXY.y === tileXY.y)) {

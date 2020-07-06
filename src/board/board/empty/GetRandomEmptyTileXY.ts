@@ -2,6 +2,8 @@ import {
     ILogicBoard,
     XType, YType, ZType, XYType
 } from '../ILogicBoard';
+import { TileXYZToChess } from '../tileposition/TileXYZToChess';
+import { GetEmptyTileXYArray } from './GetEmptyTileXYArray';
 import { RandomInt } from '../../../utils/math/RandomInt';
 import { GetRandomItem } from '../../../utils/array/GetRandom';
 
@@ -16,11 +18,11 @@ export let GetRandomEmptyTileXY = function (
     }
 
     // Random picking a tileXY
-    let retryCount = Math.floor(board.width * board.height * 0.1);
-    for(let i =0; i< retryCount; i++) {
+    let retryCount = Math.floor(board.width * board.height * 0.3);
+    for (let i = 0; i < retryCount; i++) {
         let tileX = RandomInt(0, board.width - 1) as XType;
         let tileY = RandomInt(0, board.height - 1) as YType;
-        if (board.tileXYZToChess(tileX, tileY, tileZ) === null) {
+        if (TileXYZToChess(board, tileX, tileY, tileZ) === null) {
             out.x = tileX;
             out.y = tileY;
             return out;
@@ -29,7 +31,7 @@ export let GetRandomEmptyTileXY = function (
 
     // Not found any empty tileXY
     // Get all empty tileXY
-    let tileXYArray = board.getEmptyTileXYArray(tileZ);
+    let tileXYArray = GetEmptyTileXYArray(board, tileZ);
     if (tileXYArray.length === 0) {
         return null;
     } else {

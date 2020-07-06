@@ -2,6 +2,7 @@ import {
     ILogicBoard,
     XYType
 } from '../ILogicBoard';
+import { Offset } from './Offset';
 
 export let Rotate = function (
     board: ILogicBoard,
@@ -16,14 +17,14 @@ export let Rotate = function (
     }
 
     if (originTileXY !== null) {
-        board.offset(tileXY, -originTileXY.x, -originTileXY.y, out);
+        Offset(board, tileXY, -originTileXY.x, -originTileXY.y, out);
     } else {
         out.x = tileXY.x;
         out.y = tileXY.y;
     }
     board.grid.rotate(out, direction, out);
     if (originTileXY !== null) {
-        board.offset(out, originTileXY.x, originTileXY.y, out);
+        Offset(board, out, originTileXY.x, originTileXY.y, out);
     }
     return out;
 };

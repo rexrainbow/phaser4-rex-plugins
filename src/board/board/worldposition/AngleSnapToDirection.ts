@@ -2,6 +2,7 @@ import {
     ILogicBoard,
     XYType
 } from '../ILogicBoard';
+import { AngleToward } from './AngleToward';
 import { RadToDeg } from '../../../utils/math/angle/RadToDeg';
 import { ShortestBetween } from '../../../utils/math/angle/ShortestBetween';
 
@@ -16,7 +17,7 @@ export let AngleSnapToDirection = function (
     let minDeltaAngle = Infinity,
         direction = undefined;
     for (let i = 0, cnt = directions.length; i < cnt; i++) {
-        let neighborAngle = RadToDeg(board.angleToward(tileXY, directions[i])); // -PI~PI -> -180~180
+        let neighborAngle = RadToDeg(AngleToward(board, tileXY, directions[i])); // -PI~PI -> -180~180
         let deltaAngle = Math.abs(ShortestBetween(angle, neighborAngle));
         if (deltaAngle < minDeltaAngle) {
             minDeltaAngle = deltaAngle;

@@ -2,6 +2,7 @@ import { IPathFinder, SearchResultType } from './IPathFinder';
 import { IChess, XYZType } from '../board/ILogicBoard';
 import { XYToKey } from './astar/Key';
 import { IAStarNode } from './astar/IAStarNode';
+import { Chess, TileXY } from '../board'
 
 export let FindArea = function (
     pathFinder: IPathFinder,
@@ -12,7 +13,7 @@ export let FindArea = function (
 
     let board = pathFinder.board;
     // Chess not at board
-    if (!board.hasChess(startChess)) {
+    if (!Chess.HasChess(board, startChess)) {
         return out;
     }
     // Negative moving points
@@ -21,7 +22,7 @@ export let FindArea = function (
     }
 
     let astar = pathFinder.astar;
-    let startTileXYZ = board.chessToTileXYZ(startChess) as XYZType,
+    let startTileXYZ = TileXY.ChessToTileXYZ(board, startChess) as XYZType,
         startTileX = startTileXYZ.x,
         startTileY = startTileXYZ.y;
     pathFinder.startTileXYZ = startTileXYZ;

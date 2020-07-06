@@ -1,4 +1,6 @@
 import { ILogicBoard, Vec2Type } from '../ILogicBoard';
+import { WorldXYToTileXY } from './WorldXYToTileXY';
+import { TileXYToWorldXY } from './TileXYToWorldXY';
 
 export let WorldXYSnapToGrid = function (
     board: ILogicBoard,
@@ -11,8 +13,8 @@ export let WorldXYSnapToGrid = function (
         out = globWorldXY;
     }
 
-    board.worldXYToTileXY(worldX, worldY, out);
-    board.tileXYToWorldXY(out.x, out.y, out);
+    WorldXYToTileXY(board, worldX, worldY, out);
+    TileXYToWorldXY(board, out.x, out.y, out);
     return out;
 };
 

@@ -2,6 +2,9 @@ import {
     ILogicBoard,
     IChess, XType, YType, XYZType
 } from '../ILogicBoard';
+import { GetAllChess } from '../chess/GetAllChess';
+import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
+import { TileXYToWorldXY } from './TileXYToWorldXY';
 
 export let GridAlign = function (
     board: ILogicBoard,
@@ -11,20 +14,20 @@ export let GridAlign = function (
 ): void {
 
     if (chess === undefined) {
-        let chessArray = board.getAllChess();
+        let chessArray = GetAllChess(board);
         for (let i = 0, cnt = chessArray.length; i < cnt; i++) {
             let chess = chessArray[i];
-            let tileXYZ = board.chessToTileXYZ(chess) as XYZType;
+            let tileXYZ = ChessToTileXYZ(board, chess) as XYZType;
 
-            board.tileXYToWorldXY(tileXYZ.x, tileXYZ.y, chess);
+            TileXYToWorldXY(board, tileXYZ.x, tileXYZ.y, chess);
         }
     } else {
         if (tileX === undefined) {
-            let tileXYZ = board.chessToTileXYZ(chess) as XYZType;
+            let tileXYZ = ChessToTileXYZ(board, chess) as XYZType;
             tileX = tileXYZ.x;
             tileY = tileXYZ.y;
         }
 
-        board.tileXYToWorldXY(tileX, tileY, chess);
+        TileXYToWorldXY(board, tileX, tileY, chess);
     }
 };

@@ -3,8 +3,8 @@ import {
     IChess, XYType,
     DistanceConfig
 } from '../ILogicBoard';
-import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
-import { GetWrapTileXY } from '../tileposition/GetWrapTileXY';
+import { ChessToTileXYZ } from './ChessToTileXYZ';
+import { GetWrapTileXY } from './GetWrapTileXY';
 
 export let GetTileXYAtDirection = function (
     board: ILogicBoard,

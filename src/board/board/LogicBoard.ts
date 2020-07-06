@@ -26,7 +26,7 @@ import { FilledRingToTileXYArray } from './ring/FilledRingToTileXYArray';
 import { Fit } from './transform/Fit';
 import { ForEachTileXY } from './tileposition/ForEachTileXY';
 import { GetAllChess } from './chess/GetAllChess';
-import { GetChessData } from '../chess/GetChessData';
+import { GetChessData } from './chessdata/GetChessData';
 import { GetDistance } from './tileposition/GetDistance';
 import { GetEmptyTileXYArray } from './empty/GetEmptyTileXYArray';
 import { GetGridPoints } from './worldposition/GetGridPoints';
@@ -37,7 +37,7 @@ import { GetNeighborTileXY } from './neighbors/GetNeighborTileXY';
 import { GetNeighborTileXYAtAngle } from './neighbors/GetNeighborTileXYAtAngle';
 import { GetOppositeDirection } from './tileposition/GetOppositeDirection';
 import { GetRandomEmptyTileXY } from './empty/GetRandomEmptyTileXY';
-import { GetTileXYAtDirection } from './neighbors/GetTileXYAtDirection'
+import { GetTileXYAtDirection } from './tileposition/GetTileXYAtDirection'
 import { GetWrapTileXY } from './tileposition/GetWrapTileXY';
 import { GridAlign } from './worldposition/GridAlign';
 import { HasBlocker } from './blocker/HasBlocker';

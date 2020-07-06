@@ -3,6 +3,7 @@ import {
     XYType,
     MirrorMode, MirrorModeString
 } from '../ILogicBoard';
+import { Offset } from './Offset';
 
 export let Mirror = function (
     board: ILogicBoard,
@@ -17,14 +18,14 @@ export let Mirror = function (
     }
 
     if (originTileXY !== null) {
-        board.offset(tileXY, -originTileXY.x, -originTileXY.y, out);
+        Offset(board, tileXY, -originTileXY.x, -originTileXY.y, out);
     } else {
         out.x = tileXY.x;
         out.y = tileXY.y;
     }
     board.grid.mirror(out, mode, out);
     if (originTileXY !== null) {
-        board.offset(out, originTileXY.x, originTileXY.y, out);
+        Offset(board, out, originTileXY.x, originTileXY.y, out);
     }
     return out;
 };

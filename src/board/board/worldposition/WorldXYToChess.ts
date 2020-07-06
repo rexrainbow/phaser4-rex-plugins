@@ -2,6 +2,9 @@ import {
     ILogicBoard,
     ZType, IChess
 } from '../ILogicBoard';
+import { WorldXYToTileXY } from './WorldXYToTileXY';
+import { TileXYZToChess } from '../tileposition/TileXYZToChess';
+import { TileXYToChessArray } from '../tileposition/TileXYToChessArray';
 
 export let WorldXYToChess = function (
     board: ILogicBoard,
@@ -11,10 +14,10 @@ export let WorldXYToChess = function (
     out?: IChess[]
 ): IChess | IChess[] {
 
-    let tileXY = board.worldXYToTileXY(worldX, worldY, true);
+    let tileXY = WorldXYToTileXY(board, worldX, worldY, true);
     if (tileZ !== undefined) {
-        return board.tileXYZToChess(tileXY.x, tileXY.y, tileZ)
+        return TileXYZToChess(board, tileXY.x, tileXY.y, tileZ)
     } else {
-        return board.tileXYToChessArray(tileXY.x, tileXY.y, out);
+        return TileXYToChessArray(board, tileXY.x, tileXY.y, out);
     }
 }

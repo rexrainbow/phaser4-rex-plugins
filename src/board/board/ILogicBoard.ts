@@ -3,8 +3,7 @@ import {
     Vec2Type,
     MirrorMode, MirrorModeString
 } from '../grid/IGrid';
-import { IBoardData } from './boarddata/IBoardData';
-import { IChessData, EdgeBlockerType } from '../chess/IChessData';
+import { IChessData, EdgeBlockerType } from './chessdata/IChessData';
 
 export type XType = number;
 export type YType = number;
@@ -54,37 +53,8 @@ export type DistanceConfig = {
 // Mirror
 export { MirrorMode, MirrorModeString };
 
-export interface ILogicBoard {
-    boardData: IBoardData;
-    grid: IGrid;
-    wrapMode: boolean;
-    infinityMode: boolean;
-    width: number | undefined;
-    height: number | undefined;
-    _isBoard: boolean; // Set to false for miniboard
-
-    destroy(): void;
-    setWrapMode(
-        mode?: boolean
-    ): this;
-
-    setInfinityMode(
-        mode?: boolean
-    ): this;
-
-    setBoardSize(
-        width?: number,
-        height?: number
-    ): this;
-
-
-    addChess(
-        chess: IChess,
-        tileX: XType,
-        tileY: YType,
-        tileZ?: ZType,
-        align?: boolean
-    ): this;
+import { IBoardBase } from './IBoardBase';
+export interface ILogicBoard extends IBoardBase {
 
     angleBetween(
         chessA: IChess | XYType,
@@ -275,15 +245,6 @@ export interface ILogicBoard {
     ): XYType;
 
     removeAllChess(
-        destroy?: boolean,
-        fromBoardRemove?: boolean
-    ): this;
-
-    removeChess(
-        chess: IChess | null,
-        tileX?: XType,
-        tileY?: YType,
-        tileZ?: ZType,
         destroy?: boolean,
         fromBoardRemove?: boolean
     ): this;

@@ -2,6 +2,7 @@ import {
     IPathFinder,
     CostNodeType, CostValueType, BLOCKER
 } from './IPathFinder';
+import { TileXY, Blocker } from '../board';
 
 export let GetCost = function (
     pathFinder: IPathFinder,
@@ -9,15 +10,16 @@ export let GetCost = function (
     prevNode: CostNodeType
 ): CostValueType {
 
+    let board = pathFinder.board;
     // Occupied test
     if (pathFinder.occupiedTest) {
-        if (pathFinder.board.contains(currNode.x, currNode.y, pathFinder.startTileXYZ.z)) {
+        if (TileXY.Contains(board, currNode.x, currNode.y, pathFinder.startTileXYZ.z)) {
             return BLOCKER;
         }
     }
     // Blocker test
     if (pathFinder.blockerTest) {
-        if (pathFinder.board.hasBlocker(currNode.x, currNode.y)) {
+        if (Blocker.HasBlocker(board, currNode.x, currNode.y)) {
             return BLOCKER;
         }
     }

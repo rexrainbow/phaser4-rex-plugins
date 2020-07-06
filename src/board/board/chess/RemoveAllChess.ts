@@ -1,4 +1,6 @@
 import { ILogicBoard } from '../ILogicBoard';
+import { GetAllChess } from './GetAllChess';
+import { RemoveChess } from './RemoveChess';
 
 export let RemoveAllChess = function (
     board: ILogicBoard,
@@ -6,8 +8,8 @@ export let RemoveAllChess = function (
     fromBoardRemove: boolean = false
 ): void {
 
-    let chessArray = board.getAllChess();
+    let chessArray = GetAllChess(board);
     for (let i = 0, cnt = chessArray.length; i < cnt; i++) {
-        board.removeChess(chessArray[i], undefined, undefined, undefined, destroy, fromBoardRemove);
+        RemoveChess(board, chessArray[i], undefined, undefined, undefined, destroy, fromBoardRemove);
     }
 }

@@ -5,6 +5,7 @@ import {
 import { XYType, IChess } from '../board/ILogicBoard';
 import { XYToKey } from './astar/Key';
 import { IAStarNode } from './astar/IAStarNode';
+import { TileXY } from '../board';
 
 export let GetPath = function (
     pathFinder: IPathFinder,
@@ -13,7 +14,7 @@ export let GetPath = function (
 ): SearchResultType {
 
     let board = pathFinder.board;
-    let endTileXY: XYType = board.chessToTileXYZ(endChess);
+    let endTileXY: XYType = TileXY.ChessToTileXYZ(board, endChess);
     let startTileXYZ = pathFinder.startTileXYZ;
     let nodesList = pathFinder.astar
         .setPathMode(pathFinder.pathMode)

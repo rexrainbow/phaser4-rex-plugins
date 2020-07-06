@@ -2,6 +2,9 @@ import {
     ILogicBoard,
     IChess, XYZType
 } from '../ILogicBoard';
+import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
+import { RemoveChess } from './RemoveChess';
+import { AddChess } from './AddChess';
 
 export let SwapChess = function (
     board: ILogicBoard,
@@ -10,13 +13,13 @@ export let SwapChess = function (
     align: boolean = true
 ): void {
 
-    let tileXYZA = board.chessToTileXYZ(chessA) as XYZType;
-    let tileXYZB = board.chessToTileXYZ(chessB) as XYZType;
+    let tileXYZA = ChessToTileXYZ(board, chessA) as XYZType;
+    let tileXYZB = ChessToTileXYZ(board, chessB) as XYZType;
     if ((tileXYZA == null) || (tileXYZB == null)) {
         return;
     }
-    board.removeChess(chessA);
-    board.removeChess(chessB);
-    board.addChess(chessA, tileXYZB.x, tileXYZB.y, tileXYZB.z, align);
-    board.addChess(chessB, tileXYZA.x, tileXYZA.y, tileXYZA.z, align);
+    RemoveChess(board, chessA);
+    RemoveChess(board, chessB);
+    AddChess(board, chessA, tileXYZB.x, tileXYZB.y, tileXYZB.z, align);
+    AddChess(board, chessB, tileXYZA.x, tileXYZA.y, tileXYZA.z, align);
 };

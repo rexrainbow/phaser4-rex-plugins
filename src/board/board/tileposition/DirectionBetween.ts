@@ -2,6 +2,7 @@ import {
     ILogicBoard,
     IChess, XYType
 } from '../ILogicBoard';
+import { ChessToTileXYZ } from './ChessToTileXYZ'
 
 export let DirectionBetween = function (
     board: ILogicBoard,
@@ -10,8 +11,8 @@ export let DirectionBetween = function (
     round: boolean = true
 ): number | null {
 
-    let tileA = board.chessToTileXYZ(chessA);
-    let tileB = board.chessToTileXYZ(chessB);
+    let tileA = ChessToTileXYZ(board, chessA);
+    let tileB = ChessToTileXYZ(board, chessB);
     if ((tileA === null) || (tileB === null)) {
         return null;
     }

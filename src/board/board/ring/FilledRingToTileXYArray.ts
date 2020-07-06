@@ -2,6 +2,7 @@ import {
     ILogicBoard,
     XYType,
 } from '../ILogicBoard';
+import { RingToTileXYArray } from './RingToTileXYArray'
 
 export let FilledRingToTileXYArray = function (
     board: ILogicBoard,
@@ -13,7 +14,7 @@ export let FilledRingToTileXYArray = function (
 
     for (let i = 0; i <= radius; i++) {
         let level = (nearToFar) ? i : (radius - i);
-        board.ringToTileXYArray(centerTileXY, level, out);
+        RingToTileXYArray(board, centerTileXY, level, out);
     }
     return out;
 }

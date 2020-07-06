@@ -2,7 +2,8 @@ import {
     IMatch,
     XYType,
     SymbolType
-} from './IMatch'
+} from './IMatch';
+import { Nieghbors } from '../board';
 
 export let Group = function (
     match: IMatch,
@@ -26,7 +27,7 @@ export let Group = function (
         symbol = match.getSymbol(curTileXY.x, curTileXY.y);
         if ((symbol === targetSymbol) || (symbol === wildcard)) {
             out.push(curTileXY);
-            globalQueue.push(board.getNeighborTileXY(curTileXY));
+            globalQueue.push(Nieghbors.GetNeighborTileXY(board, curTileXY));
         }
     }
 

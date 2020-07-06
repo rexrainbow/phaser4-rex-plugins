@@ -6,6 +6,7 @@ import { Shuffle } from '../../../utils/array/Shuffle';
 import { XYZType } from '../../board/ILogicBoard';
 import { XYToKey, KeyToXY } from './Key';
 import { Between as AngleBetween } from '../../../utils/math/angle/Between';
+import { Nieghbors, TileXY, WorldXY } from '../../board';
 
 export class AStarNode extends NodeBase {
     pathFinder: IPathFinder;
@@ -40,7 +41,7 @@ export class AStarNode extends NodeBase {
 
     ): IAStarNode[] {
 
-        let neighborsTileXY = this.board.getNeighborTileXY(this) as XYZType[];
+        let neighborsTileXY = Nieghbors.GetNeighborTileXY(this.board, this) as XYZType[];
         if (this.pathFinder.shuffleNeighbors) {
             Shuffle(neighborsTileXY);
         }
@@ -71,7 +72,7 @@ export class AStarNode extends NodeBase {
         node: IAStarNode
     ): number {
 
-        return this.board.getDistance(this, node, true);
+        return TileXY.GetDistance(this.board, this, node, true);
     }
 
     angleTo(
@@ -85,7 +86,7 @@ export class AStarNode extends NodeBase {
         node: IAStarNode
     ): number {
 
-        return this.board.getNeighborTileDirection(this, node);
+        return Nieghbors.GetNeighborTileDirection(this.board, this, node);
     }
 
     get board() {
@@ -95,7 +96,7 @@ export class AStarNode extends NodeBase {
 
     get worldX() {
         if (this._px === undefined) {
-            let worldXY = this.board.tileXYToWorldXY(this.x, this.y, true);
+            let worldXY = WorldXY.TileXYToWorldXY(this.board, this.x, this.y, true);
             this._px = worldXY.x;
             this._py = worldXY.y;
         }
@@ -104,7 +105,7 @@ export class AStarNode extends NodeBase {
 
     get wroldY() {
         if (this._py === undefined) {
-            let worldXY = this.board.tileXYToWorldXY(this.x, this.y, true);
+            let worldXY = WorldXY.TileXYToWorldXY(this.board, this.x, this.y, true);
             this._px = worldXY.x;
             this._py = worldXY.y;
         }

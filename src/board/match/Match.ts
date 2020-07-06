@@ -6,6 +6,7 @@ import {
 import { MatchAll, MatchAny } from './MatchBoard';
 import { MatchAtDir } from './MatchAtDir';
 import { Group } from './Group';
+import { TileXY } from '../board'
 
 export class Match implements IMatch {
     board: ILogicBoard;
@@ -86,8 +87,7 @@ export class Match implements IMatch {
         symbol: SymbolType
     ) {
 
-        let board = this.board;
-        if (!board.contains(tileX, tileY)) {
+        if (!TileXY.Contains(this.board, tileX, tileY)) {
             return this;
         }
 

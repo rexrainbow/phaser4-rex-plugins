@@ -2,7 +2,10 @@ import {
     ILogicBoard,
     XType, YType, ZType,
     EdgeBlockerType
-} from '../ILogicBoard'
+} from '../ILogicBoard';
+import { TileXYToChessArray } from '../tileposition/TileXYToChessArray';
+import { TileXYZToChess } from '../tileposition/TileXYZToChess';
+import { GetChessData } from '../chessdata/GetChessData';
 
 export let HasEdgeBlocker = function (
     board: ILogicBoard,
@@ -14,9 +17,9 @@ export let HasEdgeBlocker = function (
 
     if (tileZ === undefined) {
         // any chess at (tileX, tileY) has blocker
-        let chessArray = board.tileXYToChessArray(tileX, tileY);
+        let chessArray = TileXYToChessArray(board, tileX, tileY);
         for (let i = 0, cnt = chessArray.length; i < cnt; i++) {
-            if (IsEdgeBlocker(board.getChessData(chessArray[i]).blocker, direction)) {
+            if (IsEdgeBlocker(GetChessData(chessArray[i]).blocker, direction)) {
                 return true;
             }
         }
@@ -24,11 +27,11 @@ export let HasEdgeBlocker = function (
 
     } else {
         // chess at (tileX, tileY, tileZ) has blocker
-        let chess = board.tileXYZToChess(tileX, tileY, tileZ);
+        let chess = TileXYZToChess(board, tileX, tileY, tileZ);
         if (chess === null) {
             return false;
         }
-        return IsEdgeBlocker(board.getChessData(chess).blocker, direction);
+        return IsEdgeBlocker(GetChessData(chess).blocker, direction);
     }
 }
 

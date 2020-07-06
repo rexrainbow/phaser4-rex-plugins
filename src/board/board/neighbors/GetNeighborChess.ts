@@ -2,6 +2,11 @@ import {
     ILogicBoard,
     IChess, XYType, XYZType, ZType
 } from '../ILogicBoard';
+import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
+import { TileXYArrayToChessArray } from '../tileposition/TileXYArrayToChessArray';
+import { TileXYToChessArray } from '../tileposition/TileXYToChessArray';
+import { TileXYZToChess } from '../tileposition/TileXYZToChess';
+import { GetNeighborTileXY } from './GetNeighborTileXY';
 
 export let GetNeighborChess = function (
     board: ILogicBoard,
@@ -11,7 +16,7 @@ export let GetNeighborChess = function (
     out?: IChess[]
 ): IChess | IChess[] | null {
 
-    let tileXYZ = board.chessToTileXYZ(chess);
+    let tileXYZ = ChessToTileXYZ(board, chess);
     if (tileXYZ === null) { // chess is not on board
         return null;
     }
@@ -20,22 +25,22 @@ export let GetNeighborChess = function (
         neighborTileZ = (tileXYZ.hasOwnProperty('z')) ? (tileXYZ as XYZType).z : null;
     }
 
-    let neighborTileXY = board.getNeighborTileXY(tileXYZ, directions, true);
+    let neighborTileXY = GetNeighborTileXY(board, tileXYZ, directions, true);
     if (neighborTileXY === null) {
         return null;
     } else if (Array.isArray(neighborTileXY)) { // NeighborTileXY array -> chess array
         if (out === undefined) {
             out = [];
         }
-        return board.tileXYArrayToChessArray(neighborTileXY, neighborTileZ, out);
+        return TileXYArrayToChessArray(board, neighborTileXY, neighborTileZ, out);
     } else { // Single neighborTileXY -> single chess if tileZ, chess array if no tileZ
         if (neighborTileZ == null) {
             if (out === undefined) {
                 out = [];
             }
-            return board.tileXYToChessArray(neighborTileXY.x, neighborTileXY.y, out);
+            return TileXYToChessArray(board, neighborTileXY.x, neighborTileXY.y, out);
         } else {
-            return board.tileXYZToChess(neighborTileXY.x, neighborTileXY.y, neighborTileZ);
+            return TileXYZToChess(board, neighborTileXY.x, neighborTileXY.y, neighborTileZ);
         }
     }
 }
