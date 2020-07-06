@@ -1,9 +1,4 @@
-import { XType, YType, ZType, XYZType, IChess } from '../../types';
-export { XType, YType, ZType, XYZType, IChess };
-
-export type AnyKeyType = XType | YType | ZType;
-export type ChessSetType = Set<IChess>;
-export type ZMapType = Map<ZType, IChess>;
+import { XType, YType, ZType, XYZType, IChess, ZMapType, ChessSetType } from '../../types';
 
 export interface IBoardData {
     chessToXYZ: Map<IChess, XYZType>;

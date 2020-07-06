@@ -1,5 +1,5 @@
-import { IBoardData, ZMapType } from '../IBoardData';
-import { XType, YType, ZType, IChess } from '../../../types';
+import { IBoardData } from '../IBoardData';
+import { XType, YType, ZType, IChess, ZMapType } from '../../../types';
 import { GetXYKey } from './Key';
 
 export let GetChess = function (
