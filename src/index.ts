@@ -1,4 +1,5 @@
 import { AwayTime } from './time/awaytime';
+import * as Board from './board'
 import { Canvas } from './gameobjects/canvas';
 import { CSVToArray } from './data/csvtoarray';
 import { DrawCanvasTexture } from './texture/canvastexture'
@@ -10,6 +11,7 @@ import { XOR } from './string/xor';
 
 export {
     AwayTime,
+    Board,
     Canvas,
     CSVToArray,
     DrawCanvasTexture,
