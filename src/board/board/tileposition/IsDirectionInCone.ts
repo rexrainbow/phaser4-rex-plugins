@@ -1,11 +1,9 @@
-import {
-    ILogicBoard,
-    IChess, XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { IChess, XYType } from '../../types';
 import { ChessToTileXYZ } from './ChessToTileXYZ'
 
 export let IsDirectionInCone = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     chessA: IChess | XYType,
     chessB: IChess | XYType,
     face: number,

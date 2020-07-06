@@ -1,13 +1,11 @@
-import {
-    ILogicBoard,
-    ZType, IChess
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { ZType, IChess } from '../../types';
 import { WorldXYToTileXY } from './WorldXYToTileXY';
 import { TileXYZToChess } from '../tileposition/TileXYZToChess';
 import { TileXYToChessArray } from '../tileposition/TileXYToChessArray';
 
 export let WorldXYToChess = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     worldX: number,
     worldY: number,
     tileZ?: ZType,

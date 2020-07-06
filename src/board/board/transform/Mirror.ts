@@ -1,12 +1,12 @@
-import {
-    ILogicBoard,
-    XYType,
-    MirrorMode, MirrorModeString
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XYType } from '../../types';
+import { MirrorMode, MirrorModeString } from '../../grid/IGrid';
 import { Offset } from './Offset';
 
+export { MirrorMode, MirrorModeString };
+
 export let Mirror = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileXY: XYType,
     mode: MirrorMode | MirrorModeString,
     originTileXY: XYType | null = null,

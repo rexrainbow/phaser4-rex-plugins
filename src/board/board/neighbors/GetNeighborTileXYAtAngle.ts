@@ -1,12 +1,10 @@
-import {
-    ILogicBoard,
-    XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XYType } from '../../types';
 import { AngleSnapToDirection } from '../worldposition/AngleSnapToDirection';
 import { GetTileXYAtDirection } from '../tileposition/GetTileXYAtDirection';
 
 export let GetNeighborTileXYAtAngle = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     srcTileXY: XYType,
     angle: number,
     out: XYType | true = { x: 0, y: 0 }

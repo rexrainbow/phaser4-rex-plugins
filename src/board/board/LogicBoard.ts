@@ -2,10 +2,7 @@ import {
     ILogicBoard,
     IConfig,
     XType, YType, ZType, XYType, Vec2Type,
-    IChessData,
-    ForEachTileXYCallback,
-    DistanceConfig,
-    MirrorMode, MirrorModeString
+    IChessData
 } from './ILogicBoard';
 import { IGrid } from '../grid/IGrid';
 import { IBoardData, IChess, XYZType } from './boarddata/IBoardData';
@@ -24,7 +21,7 @@ import { Contains } from './tileposition/Contains';
 import { DirectionBetween } from './tileposition/DirectionBetween';
 import { FilledRingToTileXYArray } from './ring/FilledRingToTileXYArray';
 import { Fit } from './transform/Fit';
-import { ForEachTileXY } from './tileposition/ForEachTileXY';
+import { ForEachTileXY, ForEachTileXYCallback, ForEachTileXYOrder } from './tileposition/ForEachTileXY';
 import { GetAllChess } from './chess/GetAllChess';
 import { GetChessData } from './chessdata/GetChessData';
 import { GetDistance } from './tileposition/GetDistance';
@@ -37,7 +34,7 @@ import { GetNeighborTileXY } from './neighbors/GetNeighborTileXY';
 import { GetNeighborTileXYAtAngle } from './neighbors/GetNeighborTileXYAtAngle';
 import { GetOppositeDirection } from './tileposition/GetOppositeDirection';
 import { GetRandomEmptyTileXY } from './empty/GetRandomEmptyTileXY';
-import { GetTileXYAtDirection } from './tileposition/GetTileXYAtDirection'
+import { GetTileXYAtDirection, DistanceConfig } from './tileposition/GetTileXYAtDirection'
 import { GetWrapTileXY } from './tileposition/GetWrapTileXY';
 import { GridAlign } from './worldposition/GridAlign';
 import { HasBlocker } from './blocker/HasBlocker';
@@ -46,7 +43,7 @@ import { HasEdgeBlocker } from './blocker/HasEdgeBlocker';
 import { IsAngleInCone } from './worldposition/IsAngleInCone';
 import { IsDirectionInCone } from './tileposition/IsDirectionInCone';
 import { IsOverlappingPoint } from './worldposition/IsOverlappingPoint';
-import { Mirror } from './transform/Mirror';
+import { Mirror, MirrorMode, MirrorModeString } from './transform/Mirror';
 import { Offset } from './transform/Offset';
 import { RemoveAllChess } from './chess/RemoveAllChess';
 import { RemoveChess } from './chess/RemoveChess';

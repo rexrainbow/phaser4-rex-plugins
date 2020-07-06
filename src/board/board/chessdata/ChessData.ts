@@ -1,13 +1,15 @@
+import { IBoardBase } from '../IBoardBase';
+import { ZType, XYZType } from '../../types';
+
 import {
     IChessData,
     BlockerType, EdgeBlockerType
 } from './IChessData';
-import { ILogicBoard, ZType, XYZType } from '../ILogicBoard';
 import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 
 export class ChessData implements IChessData {
     parent: any;
-    board: ILogicBoard | null;
+    board: IBoardBase | null;
     blocker: BlockerType | EdgeBlockerType;
 
     constructor(parent: any) {
@@ -32,7 +34,7 @@ export class ChessData implements IChessData {
         this.board = null;
     }
 
-    setBoard(board: ILogicBoard | null): this {
+    setBoard(board: IBoardBase | null): this {
 
         this.board = board;
         return this;

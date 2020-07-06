@@ -1,13 +1,11 @@
-import {
-    ILogicBoard,
-    IChess, XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { IChess, XYType } from '../../types';
 import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 import { TileXYToWorldXY } from './TileXYToWorldXY';
 import { Between as GetAngle } from '../../../utils/math/angle/Between';
 
 export let AngleBetween = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     chessA: IChess | XYType,
     chessB: IChess | XYType
 ): number {

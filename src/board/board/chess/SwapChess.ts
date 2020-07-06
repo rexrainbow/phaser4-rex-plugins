@@ -1,13 +1,12 @@
-import {
-    ILogicBoard,
-    IChess, XYZType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { IChess, XYZType } from '../../types';
 import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 import { RemoveChess } from './RemoveChess';
 import { AddChess } from './AddChess';
 
+
 export let SwapChess = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     chessA: IChess,
     chessB: IChess,
     align: boolean = true

@@ -1,7 +1,7 @@
-import { ILogicBoard } from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
 
 export let SetBoardWidth = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     width: number
 ): void {
 

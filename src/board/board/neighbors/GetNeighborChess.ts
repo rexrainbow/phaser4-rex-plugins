@@ -1,7 +1,5 @@
-import {
-    ILogicBoard,
-    IChess, XYType, XYZType, ZType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { IChess, XYType, XYZType, ZType } from '../../types';
 import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 import { TileXYArrayToChessArray } from '../tileposition/TileXYArrayToChessArray';
 import { TileXYToChessArray } from '../tileposition/TileXYToChessArray';
@@ -9,7 +7,7 @@ import { TileXYZToChess } from '../tileposition/TileXYZToChess';
 import { GetNeighborTileXY } from './GetNeighborTileXY';
 
 export let GetNeighborChess = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     chess: IChess | XYType,
     directions: number | number[] | string | null,
     neighborTileZ?: ZType | null,

@@ -1,7 +1,8 @@
+import { IBoardBase } from './IBoardBase';
+
 import {
     IGrid,
-    Vec2Type,
-    MirrorMode, MirrorModeString
+    Vec2Type
 } from '../grid/IGrid';
 import { IChessData, EdgeBlockerType } from './chessdata/IChessData';
 
@@ -35,25 +36,15 @@ export interface IConfig {
 }
 
 // ForEachTileXY
-export type ForEachTileXYCallback = (tileXY: XYType, board: ILogicBoard) => void;
-export enum ForEachTileXYOrder {
-    'x+,y+' = 0,
-    'x-,y+' = 1,
-    'y+,x+' = 2,
-    'y-,x+' = 3
-}
+import { ForEachTileXYCallback } from './tileposition/ForEachTileXY';
 
 // GetTileXYAtDirection
-export type DistanceConfig = {
-    end?: number,
-    start?: number,
-    step?: number
-};
+import { DistanceConfig } from './tileposition/GetTileXYAtDirection';
 
 // Mirror
+import { MirrorMode, MirrorModeString } from './transform/Mirror';
 export { MirrorMode, MirrorModeString };
 
-import { IBoardBase } from './IBoardBase';
 export interface ILogicBoard extends IBoardBase {
 
     angleBetween(

@@ -1,11 +1,9 @@
-import {
-    ILogicBoard,
-    XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XYType } from '../../types';
 import { Contains } from '../tileposition/Contains';
 
 export let RingToTileXYArray = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     centerTileXY: XYType,
     radius: number = 1,
     out: XYType[] = []

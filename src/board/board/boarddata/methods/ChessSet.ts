@@ -1,8 +1,5 @@
-import {
-    ChessSetType,
-    IChess,
-    AnyKeyType
-} from '../IBoardData';
+import { ChessSetType, AnyKeyType } from '../IBoardData';
+import { IChess } from '../../../types';
 import { FreeEmptySet, GetEmptySet } from '../../../../utils/pool/EmptySet';
 
 export let AddChessToSet = function (

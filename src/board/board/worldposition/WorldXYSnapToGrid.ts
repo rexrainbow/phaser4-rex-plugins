@@ -1,9 +1,10 @@
-import { ILogicBoard, Vec2Type } from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { Vec2Type } from '../../types';
 import { WorldXYToTileXY } from './WorldXYToTileXY';
 import { TileXYToWorldXY } from './TileXYToWorldXY';
 
 export let WorldXYSnapToGrid = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     worldX: number,
     worldY: number,
     out: Vec2Type | true = { x: 0, y: 0 }

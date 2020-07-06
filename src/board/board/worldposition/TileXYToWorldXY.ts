@@ -1,10 +1,9 @@
-import {
-    ILogicBoard,
-    XType, YType, Vec2Type
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XType, YType, Vec2Type } from '../../types';
+
 
 export let TileXYToWorldXY = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileX: XType,
     tileY: YType,
     out?: Vec2Type | true

@@ -1,7 +1,5 @@
-import {
-    ILogicBoard,
-    IChess, XType, YType, ZType, XYZType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { IChess, XType, YType, ZType, XYZType } from '../../types';
 import { TileXYZToChess } from '../tileposition/TileXYZToChess';
 import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 import { Contains } from '../tileposition/Contains';
@@ -10,7 +8,7 @@ import { GridAlign } from '../worldposition/GridAlign';
 import { RemoveChess } from './RemoveChess'
 
 export let AddChess = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     chess: IChess,
     tileX: XType,
     tileY: YType,

@@ -1,11 +1,9 @@
-import {
-    ILogicBoard,
-    XYType, Vec2Type
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XYType, Vec2Type } from '../../types';
 import { TileXYToWorldXY } from './TileXYToWorldXY';
 
 export let TileXYArrayToWorldXYArray = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileXYArray: XYType[],
     out: Vec2Type[] = []
 ): Vec2Type[] {

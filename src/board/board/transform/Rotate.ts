@@ -1,11 +1,9 @@
-import {
-    ILogicBoard,
-    XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XYType } from '../../types';
 import { Offset } from './Offset';
 
 export let Rotate = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileXY: XYType,
     direction: number,
     originTileXY: XYType | null = null,

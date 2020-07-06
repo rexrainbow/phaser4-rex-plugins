@@ -1,10 +1,8 @@
-import {
-    ILogicBoard,
-    XType, YType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XType, YType } from '../../types';
 
 export let GetOppositeDirection = function (
-    baord: ILogicBoard,
+    baord: IBoardBase,
     tileX: XType,
     tileY: YType,
     direction: number

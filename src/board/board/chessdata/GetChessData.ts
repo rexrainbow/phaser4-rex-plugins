@@ -1,6 +1,6 @@
 import { IChessData } from './IChessData';
 import { ChessData } from './ChessData';
-import { IChess } from '../ILogicBoard';
+import { IChess } from '../../types';
 
 export let GetChessData = function (
     chess: IChess

@@ -1,14 +1,12 @@
-import {
-    ILogicBoard,
-    XType, YType, ZType, XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XType, YType, ZType, XYType } from '../../types';
 import { TileXYZToChess } from '../tileposition/TileXYZToChess';
 import { GetEmptyTileXYArray } from './GetEmptyTileXYArray';
 import { RandomInt } from '../../../utils/math/RandomInt';
 import { GetRandomItem } from '../../../utils/array/GetRandom';
 
 export let GetRandomEmptyTileXY = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileZ: ZType = 0,
     out: XYType | true = { x: 0, y: 0 }
 ): XYType | null {

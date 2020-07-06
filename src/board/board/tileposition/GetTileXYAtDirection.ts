@@ -1,13 +1,16 @@
-import {
-    ILogicBoard,
-    IChess, XYType,
-    DistanceConfig
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { IChess, XYType } from '../../types';
 import { ChessToTileXYZ } from './ChessToTileXYZ';
 import { GetWrapTileXY } from './GetWrapTileXY';
 
+export type DistanceConfig = {
+    end?: number,
+    start?: number,
+    step?: number
+};
+
 export let GetTileXYAtDirection = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     chess: IChess | XYType,
     directions: number | number[] | string | null,
     distance: number | number[] | DistanceConfig,

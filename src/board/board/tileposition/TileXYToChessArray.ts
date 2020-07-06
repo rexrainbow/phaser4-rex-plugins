@@ -1,12 +1,9 @@
-import {
-    ILogicBoard,
-    XType, YType,
-    IChess
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XType, YType, IChess } from '../../types';
 import { ZMapType } from '../boarddata/IBoardData';
 
 export let TileXYToChessArray = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileX: XType,
     tileY: YType,
     out: IChess[] = []

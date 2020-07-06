@@ -1,11 +1,9 @@
-import {
-    ILogicBoard,
-    ZType, XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { ZType, XYType } from '../../types';
 import { TileXYZToChess } from '../tileposition/TileXYZToChess';
 
 export let GetEmptyTileXYArray = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileZ: ZType | ZType[] = 0,
     out: XYType[] = []
 ): XYType[] {

@@ -1,12 +1,10 @@
-import {
-    ILogicBoard,
-    XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XYType } from '../../types';
 import { GetNeighborTileXY } from '../neighbors/GetNeighborTileXY';
 import { AngleBetween } from './AngleBetween';
 
 export let AngleToward = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileXY: XYType,
     direction: number
 ): number {

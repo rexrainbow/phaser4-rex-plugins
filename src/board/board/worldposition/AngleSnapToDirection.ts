@@ -1,13 +1,11 @@
-import {
-    ILogicBoard,
-    XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XYType } from '../../types';
 import { AngleToward } from './AngleToward';
 import { RadToDeg } from '../../../utils/math/angle/RadToDeg';
 import { ShortestBetween } from '../../../utils/math/angle/ShortestBetween';
 
 export let AngleSnapToDirection = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileXY: XYType,
     angle: number
 ): number {

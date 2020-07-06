@@ -1,10 +1,8 @@
-import {
-    ILogicBoard,
-    XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XYType } from '../../types';
 
 export let GetDistance = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileA: XYType,
     tileB: XYType,
     roughMode?: boolean

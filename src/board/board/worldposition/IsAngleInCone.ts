@@ -1,14 +1,12 @@
-import {
-    ILogicBoard,
-    IChess, XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { IChess, XYType } from '../../types';
 import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 import { AngleBetween } from './AngleBetween';
 import { Normalize as AngleNormalize } from '../../../utils/math/angle/Normalize';
 import { Equal } from '../../../utils/math/fuzzy/Equal';
 
 export let IsAngleInCone = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     chessA: IChess | XYType,
     chessB: IChess | XYType,
     face: number,

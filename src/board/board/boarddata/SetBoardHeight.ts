@@ -1,7 +1,7 @@
-import { ILogicBoard } from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
 
 export let SetBoardHeight = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     height: number
 ): void {
 

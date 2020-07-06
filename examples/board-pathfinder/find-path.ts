@@ -43,8 +43,8 @@ class MyBoard extends Board {
 
     strokeGrid(): this {
 
-        this.forEachTileXY((tileXY, board) => {
-            let worldXY = board.tileXYToWorldXY(tileXY.x, tileXY.y, true);
+        this.forEachTileXY((tileXY) => {
+            let worldXY = this.tileXYToWorldXY(tileXY.x, tileXY.y, true);
             let tile = new Sprite(worldXY.x, worldXY.y, 'tile');
             AddChild(this.world, tile);
         })

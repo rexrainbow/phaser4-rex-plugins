@@ -1,10 +1,9 @@
-import {
-    ILogicBoard,
-    XYType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XYType } from '../../types';
+
 
 export let Offset = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileXY: XYType,
     offsetTileX: number,
     offsetTileY: number,

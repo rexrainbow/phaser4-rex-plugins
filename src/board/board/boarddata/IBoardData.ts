@@ -1,4 +1,4 @@
-import { XType, YType, ZType, XYZType, IChess } from '../ILogicBoard';
+import { XType, YType, ZType, XYZType, IChess } from '../../types';
 export { XType, YType, ZType, XYZType, IChess };
 
 export type AnyKeyType = XType | YType | ZType;

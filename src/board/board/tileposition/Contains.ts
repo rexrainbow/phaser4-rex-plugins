@@ -1,10 +1,8 @@
-import {
-    ILogicBoard,
-    XType, YType, ZType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XType, YType, ZType } from '../../types';
 
 export let Contains = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileX: XType,
     tileY: YType,
     tileZ?: ZType

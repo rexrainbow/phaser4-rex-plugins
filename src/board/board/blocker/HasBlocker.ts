@@ -1,13 +1,11 @@
-import {
-    ILogicBoard,
-    XType, YType, ZType
-} from '../ILogicBoard';
+import { IBoardBase } from '../IBoardBase';
+import { XType, YType, ZType } from '../../types';
 import { TileXYToChessArray } from '../tileposition/TileXYToChessArray';
 import { TileXYZToChess } from '../tileposition/TileXYZToChess';
 import { GetChessData } from '../chessdata/GetChessData';
 
 export let HasBlocker = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     tileX: XType,
     tileY: YType,
     tileZ?: ZType

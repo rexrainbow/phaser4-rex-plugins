@@ -1,4 +1,4 @@
-import { XType, YType } from '../IBoardData';
+import { XType, YType } from '../../../types';
 
 export let GetXYKey = function (
     x: XType | undefined,
