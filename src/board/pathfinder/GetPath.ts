@@ -2,7 +2,7 @@ import {
     IPathFinder,
     SearchResultType
 } from './IPathFinder';
-import { XYType, IChess } from '../board/ILogicBoard';
+import { XYType, IChess } from '../types';
 import { XYToKey } from './astar/Key';
 import { IAStarNode } from './astar/IAStarNode';
 import { TileXY } from '../board';

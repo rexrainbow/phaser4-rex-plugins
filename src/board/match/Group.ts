@@ -1,8 +1,5 @@
-import {
-    IMatch,
-    XYType,
-    SymbolType
-} from './IMatch';
+import { IMatch, SymbolType } from './IMatch';
+import { XYType } from '../types';
 import { Nieghbors } from '../board';
 
 export let Group = function (

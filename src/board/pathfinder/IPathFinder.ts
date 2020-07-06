@@ -1,7 +1,5 @@
-import {
-    ILogicBoard,
-    XYZType
-} from '../board/ILogicBoard';
+import { XYZType } from '../types';
+import { IBoardBase } from '../board/IBoardBase';
 import {
     IAStar,
     PathMode, PathModeString,
@@ -24,7 +22,7 @@ export type SearchResultType = {
 }[];
 
 export interface IConfig {
-    board?: ILogicBoard;
+    board?: IBoardBase;
 
     cost?: number;
     costCallback?: GetCostCallbackType;
@@ -45,7 +43,7 @@ export interface IConfig {
 }
 
 export interface IPathFinder {
-    board: ILogicBoard;
+    board: IBoardBase;
     astar: IAStar;
 
     constCost: number;

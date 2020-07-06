@@ -4,10 +4,8 @@ import {
     GetCostCallbackType, CostNodeType, CostValueType, BLOCKER,
     SearchResultType
 } from './IPathFinder';
-import {
-    ILogicBoard,
-    IChess, XYZType, XYType, XType, YType
-} from '../board/ILogicBoard'
+import { IBoardBase } from '../board/IBoardBase';
+import { IChess, XYZType, XYType, XType, YType } from '../types';
 import { IAStar } from '../../utils/astar/IAStar';
 import { CreateAStar } from './astar/CreateAStar';
 import { GetCost } from './GetCost';
@@ -17,7 +15,7 @@ import { GetPath } from './GetPath';
 import { TileXYToCost } from './TileXYToCost';
 
 export class PathFinder implements IPathFinder {
-    board: ILogicBoard;
+    board: IBoardBase;
     astar: IAStar;
 
     constCost: number;
@@ -75,7 +73,7 @@ export class PathFinder implements IPathFinder {
     }
 
     setBoard(
-        board: ILogicBoard
+        board: IBoardBase
     ): this {
 
         this.board = board;

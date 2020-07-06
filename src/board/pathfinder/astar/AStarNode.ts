@@ -3,7 +3,7 @@ import { PathMode, CostValueType } from '../../../utils/astar/IAstar';
 import { NodeBase } from '../../../utils/astar/NodeBase';
 import { IPathFinder } from '../IPathFinder';
 import { Shuffle } from '../../../utils/array/Shuffle';
-import { XYZType } from '../../board/ILogicBoard';
+import { XYZType } from '../../types';
 import { XYToKey, KeyToXY } from './Key';
 import { Between as AngleBetween } from '../../../utils/math/angle/Between';
 import { Nieghbors, TileXY, WorldXY } from '../../board';

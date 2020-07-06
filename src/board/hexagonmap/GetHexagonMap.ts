@@ -1,11 +1,9 @@
-import {
-    ILogicBoard,
-    XYType
-} from '../board/ILogicBoard';
+import { IBoardBase } from '../board/IBoardBase';
+import { XYType } from '../types';
 import { cube2cr } from '../grid/hexagon/CubeTransfer';
 
 export let GetHexagonMap = function (
-    board: ILogicBoard,
+    board: IBoardBase,
     radius: number,
     out: XYType[] = []
 ): XYType[] {

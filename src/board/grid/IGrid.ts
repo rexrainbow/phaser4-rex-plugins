@@ -1,4 +1,4 @@
-import { Vec2Type } from '../../utils/types/VectorType';
+import { Vec2Type } from '../types';
 export { Vec2Type };
 
 export interface IGrid {

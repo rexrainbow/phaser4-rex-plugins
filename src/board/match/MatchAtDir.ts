@@ -1,10 +1,10 @@
 import {
     IMatch,
     SymbolType,
-    XYType,
     MatchResult
 } from './IMatch';
-import {Nieghbors} from '../board'
+import { XYType } from '../types';
+import { Nieghbors } from '../board'
 
 export let MatchAtDir = function (
     match: IMatch,
@@ -37,7 +37,7 @@ export let MatchAtDir = function (
             };
         } else {
             // Get next tileXY 
-            curTileXY = Nieghbors.GetNeighborTileXY(board, curTileXY, direction, curTileXY) as XYType;            
+            curTileXY = Nieghbors.GetNeighborTileXY(board, curTileXY, direction, curTileXY) as XYType;
             if (curTileXY === null) {
                 return false;
             }

@@ -1,9 +1,7 @@
-import {
-    ILogicBoard,
-    XYType
-} from '../board/ILogicBoard';
+import { IBoardBase } from '../board/IBoardBase';
+import { XYType } from '../types';
 
-export { ILogicBoard, XYType };
+export { IBoardBase, XYType };
 
 export type DirMaskType = { [dir: number]: boolean };
 
@@ -15,18 +13,18 @@ export type MatchResult = {
     pattern: number | SymbolType[]
 }
 
-export type GetSymbolCallback = (tileXY: XYType, board: ILogicBoard) => SymbolType;
-export type MatchCallbackType = (result: MatchResult, board: ILogicBoard) => void;
-export type ForEachSymbolCallback = (symbol: SymbolType, tileXY: XYType, board: ILogicBoard) => void
+export type GetSymbolCallback = (tileXY: XYType, board: IBoardBase) => SymbolType;
+export type MatchCallbackType = (result: MatchResult, board: IBoardBase) => void;
+export type ForEachSymbolCallback = (symbol: SymbolType, tileXY: XYType, board: IBoardBase) => void
 
 export interface IConfig {
-    board?: ILogicBoard;
+    board?: IBoardBase;
     wildcard?: SymbolType;
     dirMask?: DirMaskType;
 }
 
 export interface IMatch {
-    board: ILogicBoard;
+    board: IBoardBase;
     wildcard: SymbolType;
     dirMask: DirMaskType;
 

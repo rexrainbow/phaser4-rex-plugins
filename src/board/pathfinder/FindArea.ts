@@ -1,5 +1,5 @@
 import { IPathFinder, SearchResultType } from './IPathFinder';
-import { IChess, XYZType } from '../board/ILogicBoard';
+import { IChess, XYZType } from '../types';
 import { XYToKey } from './astar/Key';
 import { IAStarNode } from './astar/IAStarNode';
 import { Chess, TileXY } from '../board'

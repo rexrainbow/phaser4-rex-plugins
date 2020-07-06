@@ -84,8 +84,8 @@ class MyBoard extends Board {
     }
 
     refreshSymbols(): this {
-        this.match.refreshSymbols(function (tileXY, board) {
-            var chess = board.tileXYZToChess(tileXY.x, tileXY.y, 0) as MyChess;
+        this.match.refreshSymbols((tileXY) => {
+            var chess = this.tileXYZToChess(tileXY.x, tileXY.y, 0) as MyChess;
             return (chess === null) ? null : chess.getSymbol();
         });
         return this;
@@ -94,8 +94,8 @@ class MyBoard extends Board {
     match3(): this {
         let matchedCount = 0;
         this.refreshSymbols();
-        this.match.match(3, function (result, board) {
-            let chessArray = board.tileXYArrayToChessArray(result.tileXY, 0);
+        this.match.match(3, (result) => {
+            let chessArray = this.tileXYArrayToChessArray(result.tileXY, 0);
             for (let i = 0, cnt = chessArray.length; i < cnt; i++) {
                 SetAlpha(0.5, chessArray[i] as Sprite);
             }

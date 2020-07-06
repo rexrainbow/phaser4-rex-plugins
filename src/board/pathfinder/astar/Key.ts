@@ -1,4 +1,4 @@
-import { Vec2Type } from '../../../utils/types/VectorType';
+import { Vec2Type } from '../../types';
 
 export let XYToKey = function (x: number, y: number) {
     return `${x}|${y}`;
