@@ -1,4 +1,4 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XType, YType, ZType, XYZType } from '../../types';
 import { TileXYZToChess } from '../tileposition/TileXYZToChess';
 import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
@@ -8,7 +8,7 @@ import { GridAlign } from '../worldposition/GridAlign';
 import { RemoveChess } from './RemoveChess'
 
 export let AddChess = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     chess: IChess,
     tileX: XType,
     tileY: YType,

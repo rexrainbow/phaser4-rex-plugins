@@ -1,9 +1,9 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XYType } from '../../types';
 import { ChessToTileXYZ } from './ChessToTileXYZ'
 
 export let DirectionBetween = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     chessA: IChess | XYType,
     chessB: IChess | XYType,
     round: boolean = true

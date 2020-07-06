@@ -1,17 +1,10 @@
-import {
-    ILogicBoard,
-    IConfig,
-    XType, YType, ZType, XYType, Vec2Type,
-    IChessData
-} from './ILogicBoard';
-import { IGrid } from '../grid/IGrid';
-import { IBoardData, IChess, XYZType } from './boarddata/IBoardData';
+import { BaseBoard } from './BaseBoard';
+import { XType, YType, ZType, XYType, XYZType, Vec2Type, IChess } from '../types';
+import { ILogicBoard, IChessData } from './ILogicBoard';
 
-import { BoardData } from './boarddata/BoardData';
 import { SetBoardWidth } from './boarddata/SetBoardWidth';
 import { SetBoardHeight } from './boarddata/SetBoardHeight';
 
-import { AddChess } from './chess/AddChess';
 import { AngleBetween } from './worldposition/AngleBetween';
 import { AngleSnapToDirection } from './worldposition/AngleSnapToDirection';
 import { AngleToward } from './worldposition/AngleToward';
@@ -46,7 +39,6 @@ import { IsOverlappingPoint } from './worldposition/IsOverlappingPoint';
 import { Mirror, MirrorMode, MirrorModeString } from './transform/Mirror';
 import { Offset } from './transform/Offset';
 import { RemoveAllChess } from './chess/RemoveAllChess';
-import { RemoveChess } from './chess/RemoveChess';
 import { RingToTileXYArray } from './ring/RingToTileXYArray';
 import { Rotate } from './transform/Rotate';
 import { SwapChess } from './chess/SwapChess';
@@ -60,72 +52,7 @@ import { WorldXYSnapToGrid } from './worldposition/WorldXYSnapToGrid';
 import { WorldXYToChess } from './worldposition/WorldXYToChess';
 import { WorldXYToTileXY } from './worldposition/WorldXYToTileXY';
 
-export class LogicBoard implements ILogicBoard {
-
-    grid: IGrid;
-    wrapMode: boolean;
-    infinityMode: boolean;
-    width: number | undefined;
-    height: number | undefined;
-    boardData: IBoardData;
-    _isBoard: boolean;
-
-    constructor({
-        grid = undefined,
-        wrap = false,
-        inifinity = false,
-        width = 0,
-        height = 0
-    }: IConfig = {}) {
-
-        this.boardData = new BoardData();
-        this._isBoard = true;
-        this.setGrid(grid);
-        this.setWrapMode(wrap);
-        this.setInfinityMode(inifinity);
-        this.setBoardSize(width, height);
-    }
-
-    destroy() {
-
-    }
-
-    setGrid(grid?: IGrid): this {
-
-        this.grid = grid;
-        return this;
-    }
-
-    setWrapMode(mode: boolean = true): this {
-
-        this.wrapMode = mode;
-        return this;
-    }
-
-    setInfinityMode(mode: boolean = true): this {
-
-        this.infinityMode = mode;
-        return this;
-    }
-
-    setBoardSize(width: number = 0, height: number = 0): this {
-
-        SetBoardWidth(this, width);
-        SetBoardHeight(this, height);
-        return this;
-    }
-
-    addChess(
-        chess: IChess,
-        tileX: XType,
-        tileY: YType,
-        tileZ?: ZType,
-        align: boolean = true
-    ): this {
-
-        AddChess(this, chess, tileX, tileY, tileZ, align);
-        return this;
-    }
+export class LogicBoard extends BaseBoard implements ILogicBoard {
 
     angleBetween(
         chessA: IChess | XYType,
@@ -423,19 +350,6 @@ export class LogicBoard implements ILogicBoard {
     ): this {
 
         RemoveAllChess(this, destroy, fromBoardRemove);
-        return this;
-    }
-
-    removeChess(
-        chess: IChess | null | undefined,
-        tileX?: XType,
-        tileY?: YType,
-        tileZ?: ZType,
-        destroy: boolean = false,
-        fromBoardRemove: boolean = false
-    ): this {
-
-        RemoveChess(this, chess, tileX, tileY, tileZ, destroy, fromBoardRemove);
         return this;
     }
 

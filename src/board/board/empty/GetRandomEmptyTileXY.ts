@@ -1,4 +1,4 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { XType, YType, ZType, XYType } from '../../types';
 import { TileXYZToChess } from '../tileposition/TileXYZToChess';
 import { GetEmptyTileXYArray } from './GetEmptyTileXYArray';
@@ -6,7 +6,7 @@ import { RandomInt } from '../../../utils/math/RandomInt';
 import { GetRandomItem } from '../../../utils/array/GetRandom';
 
 export let GetRandomEmptyTileXY = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     tileZ: ZType = 0,
     out: XYType | true = { x: 0, y: 0 }
 ): XYType | null {

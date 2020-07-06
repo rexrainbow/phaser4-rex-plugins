@@ -1,9 +1,9 @@
-import { IBoardBase } from '../board/IBoardBase';
+import { IBaseBoard } from '../board/IBaseBoard';
 import { XYType } from '../types';
 import { cube2cr } from '../grid/hexagon/CubeTransfer';
 
 export let GetTriangleMap = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     type: number,
     height: number,
     out: XYType[] = []

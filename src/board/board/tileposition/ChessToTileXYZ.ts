@@ -1,9 +1,9 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XYZType, XYType } from '../../types';
 import { IsTileXYZ } from '../utils/IsTileXYZ';
 
 export let ChessToTileXYZ = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     chess: IChess | XYZType | XYType
 ): XYZType | XYType | null {
 

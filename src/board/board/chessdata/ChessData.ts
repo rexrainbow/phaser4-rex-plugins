@@ -1,4 +1,4 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { ZType, XYZType } from '../../types';
 
 import {
@@ -9,7 +9,7 @@ import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 
 export class ChessData implements IChessData {
     parent: any;
-    board: IBoardBase | null;
+    board: IBaseBoard | null;
     blocker: BlockerType | EdgeBlockerType;
 
     constructor(parent: any) {
@@ -34,7 +34,7 @@ export class ChessData implements IChessData {
         this.board = null;
     }
 
-    setBoard(board: IBoardBase | null): this {
+    setBoard(board: IBaseBoard | null): this {
 
         this.board = board;
         return this;

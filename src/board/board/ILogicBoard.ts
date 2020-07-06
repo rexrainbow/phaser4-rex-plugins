@@ -1,24 +1,8 @@
-import { IBoardBase } from './IBoardBase';
-
-import {
-    IGrid,
-    Vec2Type
-} from '../grid/IGrid';
+import { IBaseBoard } from './IBaseBoard';
+import { XType, YType, ZType, XYType, XYZType, Vec2Type } from '../types';
+import { IGrid } from '../grid/IGrid';
 import { IChessData, EdgeBlockerType } from './chessdata/IChessData';
 
-export type XType = number;
-export type YType = number;
-export type ZType = number | string;
-export type XYType = {
-    x: XType,
-    y: YType
-}
-export type XYZType = {
-    x: XType,
-    y: YType,
-    z: ZType
-}
-export { Vec2Type };
 export interface IChess {
     rexChess?: IChessData;
     x: number,
@@ -45,7 +29,7 @@ import { DistanceConfig } from './tileposition/GetTileXYAtDirection';
 import { MirrorMode, MirrorModeString } from './transform/Mirror';
 export { MirrorMode, MirrorModeString };
 
-export interface ILogicBoard extends IBoardBase {
+export interface ILogicBoard extends IBaseBoard {
 
     angleBetween(
         chessA: IChess | XYType,

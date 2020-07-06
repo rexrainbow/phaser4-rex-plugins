@@ -1,5 +1,5 @@
 import { XYZType } from '../types';
-import { IBoardBase } from '../board/IBoardBase';
+import { IBaseBoard } from '../board/IBaseBoard';
 import {
     IAStar,
     PathMode, PathModeString,
@@ -22,7 +22,7 @@ export type SearchResultType = {
 }[];
 
 export interface IConfig {
-    board?: IBoardBase;
+    board?: IBaseBoard;
 
     cost?: number;
     costCallback?: GetCostCallbackType;
@@ -43,7 +43,7 @@ export interface IConfig {
 }
 
 export interface IPathFinder {
-    board: IBoardBase;
+    board: IBaseBoard;
     astar: IAStar;
 
     constCost: number;

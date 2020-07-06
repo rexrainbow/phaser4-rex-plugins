@@ -1,4 +1,4 @@
-import { BoardBase } from './BoardBase';
+import { BaseBoard } from './BaseBoard';
 import { LogicBoard } from './LogicBoard';
 import { Board } from './Board';
 
@@ -12,7 +12,7 @@ import * as Transform from './transform';
 import * as Ring from './ring';
 
 export {
-    BoardBase,
+    BaseBoard,
     LogicBoard,
     Board,
 

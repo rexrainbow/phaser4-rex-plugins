@@ -1,8 +1,8 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { IChess } from '../../types';
 
 export let HasChess = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     chess: IChess
 ): boolean {
 

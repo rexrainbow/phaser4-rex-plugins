@@ -1,4 +1,4 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { XType, YType, ZType } from '../../types';
 import { EdgeBlockerType } from '../chessdata/IChessData';
 import { TileXYToChessArray } from '../tileposition/TileXYToChessArray';
@@ -6,7 +6,7 @@ import { TileXYZToChess } from '../tileposition/TileXYZToChess';
 import { GetChessData } from '../chessdata/GetChessData';
 
 export let HasEdgeBlocker = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     tileX: XType,
     tileY: YType,
     tileZ: ZType | undefined,

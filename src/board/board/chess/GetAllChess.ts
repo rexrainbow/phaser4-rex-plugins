@@ -1,9 +1,9 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { IChess } from '../../types';
 
 
 export let GetAllChess = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     out: IChess[] = []
 ): IChess[] {
 

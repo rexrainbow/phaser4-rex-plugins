@@ -1,10 +1,10 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { Vec2Type } from '../../types';
 import { WorldXYToTileXY } from './WorldXYToTileXY';
 import { TileXYToWorldXY } from './TileXYToWorldXY';
 
 export let WorldXYSnapToGrid = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     worldX: number,
     worldY: number,
     out: Vec2Type | true = { x: 0, y: 0 }

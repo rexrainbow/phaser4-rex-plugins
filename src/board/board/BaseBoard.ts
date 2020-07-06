@@ -1,15 +1,13 @@
-import { IBoardBase, IConfig } from './IBoardBase';
+import { IChess, XType, YType, ZType } from '../types';
+import { IBaseBoard, IConfig } from './IBaseBoard';
 import { IGrid } from '../grid/IGrid';
-import {
-    IBoardData,
-    IChess, XType, YType, ZType
-} from './boarddata/IBoardData';
+import { IBoardData } from './boarddata/IBoardData';
 import { BoardData, SetBoardWidth, SetBoardHeight } from './boarddata';
 
 import { AddChess } from './chess/AddChess';
 import { RemoveChess } from './chess/RemoveChess';
 
-export class BoardBase implements IBoardBase {
+export class BaseBoard implements IBaseBoard {
 
     grid: IGrid;
     wrapMode: boolean;
@@ -59,8 +57,8 @@ export class BoardBase implements IBoardBase {
 
     setBoardSize(width: number = 0, height: number = 0): this {
 
-        // SetBoardWidth(this, width);
-        // SetBoardHeight(this, height);
+        SetBoardWidth(this, width);
+        SetBoardHeight(this, height);
         return this;
     }
 
@@ -73,7 +71,7 @@ export class BoardBase implements IBoardBase {
         align: boolean = true
     ): this {
 
-        // AddChess(this, chess, tileX, tileY, tileZ, align);
+        AddChess(this, chess, tileX, tileY, tileZ, align);
         return this;
     }
 
@@ -86,7 +84,7 @@ export class BoardBase implements IBoardBase {
         fromBoardRemove: boolean = false
     ): this {
 
-        // RemoveChess(this, chess, tileX, tileY, tileZ, destroy, fromBoardRemove);
+        RemoveChess(this, chess, tileX, tileY, tileZ, destroy, fromBoardRemove);
         return this;
     }
 

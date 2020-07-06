@@ -1,11 +1,11 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XType, YType, XYZType } from '../../types';
 import { GetAllChess } from '../chess/GetAllChess';
 import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 import { TileXYToWorldXY } from './TileXYToWorldXY';
 
 export let GridAlign = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     chess?: IChess,
     tileX?: XType,
     tileY?: YType

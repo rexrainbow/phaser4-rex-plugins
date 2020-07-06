@@ -1,5 +1,5 @@
 // Boards
-import { BoardBase, LogicBoard, Board } from './board';
+import { BaseBoard, LogicBoard, Board } from './board';
 
 // Grids
 import {
@@ -18,7 +18,7 @@ import * as HexagonMap from './hexagonmap';
 
 export {
     // Board
-    BoardBase, LogicBoard, Board,
+    BaseBoard, LogicBoard, Board,
 
     // Grids
     QuadGrid, HexagonGrid,

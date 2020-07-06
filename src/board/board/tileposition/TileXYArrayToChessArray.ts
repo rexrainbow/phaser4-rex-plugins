@@ -1,11 +1,11 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { ZType, XYType, IChess } from '../../types';
 import { TileXYZToChess } from './TileXYZToChess';
 import { TileXYToChessArray } from './TileXYToChessArray';
 
 
 export let TileXYArrayToChessArray = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     tileXYArray: XYType[],
     tileZ?: ZType,
     out: IChess[] = []

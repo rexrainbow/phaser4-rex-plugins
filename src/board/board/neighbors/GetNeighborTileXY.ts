@@ -1,9 +1,9 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../types';
 import { GetTileXYAtDirection } from '../tileposition/GetTileXYAtDirection';
 
 export let GetNeighborTileXY = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     srcTileXY: XYType,
     directions: number | number[] | string | null = null,
     out: XYType | true = { x: 0, y: 0 }

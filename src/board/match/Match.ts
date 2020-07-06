@@ -1,6 +1,6 @@
 import {
     IMatch, IConfig,
-    IBoardBase, SymbolType, DirMaskType,
+    IBaseBoard, SymbolType, DirMaskType,
     GetSymbolCallback, MatchCallbackType, ForEachSymbolCallback, MatchResult
 } from './IMatch';
 import { XYType } from '../types';
@@ -10,7 +10,7 @@ import { Group } from './Group';
 import { TileXY } from '../board'
 
 export class Match implements IMatch {
-    board: IBoardBase;
+    board: IBaseBoard;
     wildcard: SymbolType;
     symbols: SymbolType[];
     dirMask: DirMaskType;
@@ -42,7 +42,7 @@ export class Match implements IMatch {
     }
 
     setBoard(
-        board: IBoardBase
+        board: IBaseBoard
     ): this {
 
         this.board = board;

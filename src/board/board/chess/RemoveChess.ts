@@ -1,4 +1,4 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XType, YType, ZType, XYZType } from '../../types';
 import { TileXYZToChess } from '../tileposition/TileXYZToChess';
 import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
@@ -6,7 +6,7 @@ import { GetChessData } from '../chessdata/GetChessData';
 
 
 export let RemoveChess = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     chess: IChess | null | undefined,
     tileX?: XType,
     tileY?: YType,

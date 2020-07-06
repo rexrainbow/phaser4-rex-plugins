@@ -1,12 +1,12 @@
 // Offset tileXYArray to (0,0), and set board size to fit tileXYArray
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../types';
 import { Offset } from './Offset';
 import { SetBoardHeight } from '../boarddata/SetBoardHeight';
 import { SetBoardWidth } from '../boarddata/SetBoardWidth';
 
 export let Fit = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     tileXYArray: XYType[]
 ): XYType[] {
 

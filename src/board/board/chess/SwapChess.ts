@@ -1,4 +1,4 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XYZType } from '../../types';
 import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
 import { RemoveChess } from './RemoveChess';
@@ -6,7 +6,7 @@ import { AddChess } from './AddChess';
 
 
 export let SwapChess = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     chessA: IChess,
     chessB: IChess,
     align: boolean = true

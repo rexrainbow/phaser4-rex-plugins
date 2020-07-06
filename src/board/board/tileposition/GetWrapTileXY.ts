@@ -1,9 +1,9 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { XType, YType, XYType } from '../../types';
 import { Wrap } from '../../../utils/math/Wrap';
 
 export let GetWrapTileXY = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     tileX: XType,
     tileY: YType,
     out: XYType | true = { x: 0, y: 0 }

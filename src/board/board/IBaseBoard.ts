@@ -12,7 +12,7 @@ export interface IConfig {
     height?: number;
 }
 
-export interface IBoardBase {
+export interface IBaseBoard {
     boardData: IBoardData;
     grid: IGrid;
     wrapMode: boolean;

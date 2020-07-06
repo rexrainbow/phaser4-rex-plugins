@@ -1,4 +1,4 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../types';
 import { MirrorMode, MirrorModeString } from '../../grid/IGrid';
 import { Offset } from './Offset';
@@ -6,7 +6,7 @@ import { Offset } from './Offset';
 export { MirrorMode, MirrorModeString };
 
 export let Mirror = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     tileXY: XYType,
     mode: MirrorMode | MirrorModeString,
     originTileXY: XYType | null = null,

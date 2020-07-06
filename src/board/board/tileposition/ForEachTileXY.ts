@@ -1,7 +1,7 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../types';
 
-export type ForEachTileXYCallback = (tileXY: XYType, board: IBoardBase) => void;
+export type ForEachTileXYCallback = (tileXY: XYType, board: IBaseBoard) => void;
 export enum ForEachTileXYOrder {
     'x+,y+' = 0,
     'x-,y+' = 1,
@@ -10,7 +10,7 @@ export enum ForEachTileXYOrder {
 }
 
 export let ForEachTileXY = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     callback: ForEachTileXYCallback,
     scope?: any,
     order: ForEachTileXYOrder = ForEachTileXYOrder['x+,y+']

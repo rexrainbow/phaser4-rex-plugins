@@ -1,9 +1,9 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../types';
 import { RingToTileXYArray } from './RingToTileXYArray'
 
 export let FilledRingToTileXYArray = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     centerTileXY: XYType,
     radius: number,
     nearToFar: boolean = true,

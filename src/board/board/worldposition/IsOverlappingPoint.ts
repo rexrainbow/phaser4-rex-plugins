@@ -1,11 +1,11 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { ZType } from '../../types';
 import { WorldXYToTileXY } from './WorldXYToTileXY';
 import { Contains } from '../tileposition/Contains'
 
 
 export let IsOverlappingPoint = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     worldX: number,
     worldY: number,
     tileZ?: ZType

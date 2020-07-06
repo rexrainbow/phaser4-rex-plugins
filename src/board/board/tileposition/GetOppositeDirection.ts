@@ -1,8 +1,8 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { XType, YType } from '../../types';
 
 export let GetOppositeDirection = function (
-    baord: IBoardBase,
+    baord: IBaseBoard,
     tileX: XType,
     tileY: YType,
     direction: number

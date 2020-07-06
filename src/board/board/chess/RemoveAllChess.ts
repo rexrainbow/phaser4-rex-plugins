@@ -1,9 +1,9 @@
-import { IBoardBase } from '../IBoardBase';
+import { IBaseBoard } from '../IBaseBoard';
 import { GetAllChess } from './GetAllChess';
 import { RemoveChess } from './RemoveChess';
 
 export let RemoveAllChess = function (
-    board: IBoardBase,
+    board: IBaseBoard,
     destroy: boolean = false,
     fromBoardRemove: boolean = false
 ): void {
