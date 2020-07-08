@@ -5,8 +5,6 @@ import { XYType } from '../../types';
 import { DistanceBetween } from '../../../utils/math/distance/DistanceBetween';
 import { Linear } from '../../../utils/math/Linear';
 
-type LineType = { x1: number, y1: number, x2: number, y2: number };
-
 export let LineToTileXYArray = function (
     board: IBaseBoard,
     startX: number,
