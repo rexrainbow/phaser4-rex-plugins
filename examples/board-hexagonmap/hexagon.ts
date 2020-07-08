@@ -1,5 +1,6 @@
 import { BackgroundColor, Parent, Scenes, Size, WebGLRenderer } from '@phaserjs/phaser/config';
-import { Game, Scene } from '@phaserjs/phaser';
+import { Game } from '@phaserjs/phaser/Game';
+import { Scene } from '@phaserjs/phaser/scenes/Scene';
 import { StaticWorld } from '@phaserjs/phaser/world';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { Sprite } from '@phaserjs/phaser/gameobjects/sprite';
