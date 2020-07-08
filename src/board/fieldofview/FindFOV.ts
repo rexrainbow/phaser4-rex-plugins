@@ -5,7 +5,7 @@ import { IsInLOS } from './IsInLOS';
 
 export let FindFOV = function (
     fov: IFieldOfView,
-    visiblePoints: number | undefined,
+    visiblePoints?: number,
     originTileXY: XYType = fov.startTileXYZ,
     out: XYType[] = []
 ): XYType[] {

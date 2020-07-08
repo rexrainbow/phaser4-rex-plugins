@@ -16,7 +16,7 @@ export let IsPathVisible = function (
         return false;
     }
 
-    if (fov.costCallback === undefined) {
+    if ((fov.costCallback === undefined) && (!fov.constCost)) {
         return true;
     }
 

@@ -57,7 +57,6 @@ export class PathFinder implements IPathFinder {
             this.setCostFunction(costCallback, costCallbackScope);
         } else {
             this.setConstCost(cost);
-            this.setCostFunction(null);
         }
 
         this.setPathMode(pathMode);
@@ -87,20 +86,28 @@ export class PathFinder implements IPathFinder {
     }
 
     setConstCost(
-        cost: number
+        cost?: number
     ): this {
 
         this.constCost = cost;
+
+        if (cost !== undefined) {
+            this.setCostFunction();
+        }
         return this;
     }
 
     setCostFunction(
-        callback: GetCostCallbackType | null,
+        callback?: GetCostCallbackType,
         scope?: any
     ): this {
 
         this.costCallback = callback;
         this.costCallbackScope = scope;
+
+        if (callback) {
+            this.setConstCost();
+        }
         return this;
     }
 

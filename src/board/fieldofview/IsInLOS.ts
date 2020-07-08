@@ -10,7 +10,7 @@ const LINEOFFSET = 0.001;
 export let IsInLOS = function (
     fov: IFieldOfView,
     chess: IChess | XYZType,
-    visiblePoints?: number | undefined,
+    visiblePoints?: number,
     originTileXY: XYType = fov.startTileXYZ
 ): boolean {
 

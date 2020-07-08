@@ -11,22 +11,6 @@ import { Shuffle } from '../../src/utils/array/Shuffle';
 
 class Chess extends Sprite {
     fov: FieldOfView;
-
-    constructor() {
-        super(0, 0, 'chess');
-
-        this.fov = new FieldOfView({
-            chess: this,
-            face: 3,
-            cone: 2,
-
-            occupiedTest: true
-        })
-    }
-
-    findFOV(visiblePoints: number) {
-        return this.fov.findFOV(visiblePoints);
-    }
 }
 
 class MyBoard extends Board {
@@ -72,7 +56,7 @@ class MyBoard extends Board {
         color?: number
     ) {
 
-        let chess = new Chess();
+        let chess = new Chess(0, 0, 'chess');
         AddChild(this.world, chess);
         if (color !== undefined) {
             SetTint(color, chess);
@@ -92,25 +76,31 @@ class Demo extends Scene {
         const board = new MyBoard({
             grid: (new HexagonGrid({
                 x: 40, y: 40,
-                cellWidth: 40, cellHeight: 48
+                cellWidth: 30, cellHeight: 36
             })),
 
-            width: 10, height: 10
+            width: 18, height: 18
         })
         board
             .setWorld(world)
             .strokeGrid();
 
         // Add chess
-        let chessA = board.createChess(5, 5, 1, 0xffffff);
+        let chessA = board.createChess(9, 9, 1, 0xffffff);
         // Add some blockers (z=1, to block chessA)
         let emptyTileXYArray = Shuffle(board.getEmptyTileXYArray(1))
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 30; i++) {
             let emptyTileXY = emptyTileXYArray[i];
             board.createChess(emptyTileXY.x, emptyTileXY.y, 1, 0x808080);
         }
 
-        let tileXYArray = chessA.fov.findFOV(4);
+        chessA.fov = new FieldOfView({
+            chess: chessA,
+            face: 3,
+            cone: 2,
+            occupiedTest: true
+        })
+        let tileXYArray = chessA.fov.findFOV();
         tileXYArray.forEach((tileXY) => {
             let marker = board.createChess(tileXY.x, tileXY.y, -1, 0x400000);
             SetAlpha(0.5, marker);

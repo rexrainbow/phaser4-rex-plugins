@@ -59,10 +59,12 @@ export class FieldOfView implements IFieldOfView {
             this.setCostFunction(costCallback, costCallbackScope);
         } else {
             this.setConstCost(cost);
-            this.setCostFunction();
         }
 
         this.setChess(chess);
+        this.setFace(face);
+        this.setConeMode(coneMode);
+        this.setCone(cone);
     }
 
     destroy() {
@@ -85,7 +87,7 @@ export class FieldOfView implements IFieldOfView {
     }
 
     set face(direction: number) {
-        if (this.chess === null) {
+        if (this.board === null) {
             return;
         }
 
@@ -171,13 +173,22 @@ export class FieldOfView implements IFieldOfView {
 
         this.costCallback = callback;
         this.costCallbackScope = scope;
+
+        if (callback) {
+            this.setConstCost();
+        }
         return this;
     }
+
     setConstCost(
-        cost: number
+        cost?: number
     ): this {
 
         this.constCost = cost;
+
+        if (cost !== undefined) {
+            this.setCostFunction();
+        }
         return this;
     }
 
@@ -237,7 +248,7 @@ export class FieldOfView implements IFieldOfView {
     }
 
     findFOV(
-        visiblePoints: number | undefined,
+        visiblePoints?: number,
         originTileXY: XYType = this.startTileXYZ,
         out: XYType[] = []
     ): XYType[] {
@@ -247,20 +258,12 @@ export class FieldOfView implements IFieldOfView {
 
     get board(): IBaseBoard {
 
-        if (this.chess === null) {
-            return null;
-        } else {
-            return this.chess.rexChess.board;
-        }
+        return (this.chess && this.chess.rexChess) ? this.chess.rexChess.board : null;
     }
 
     get startTileXYZ(): XYZType {
 
-        if (this.chess === null) {
-            return null;
-        } else {
-            return this.chess.rexChess.tileXYZ;
-        }
+        return (this.chess && this.chess.rexChess) ? this.chess.rexChess.tileXYZ : null;
     }
 
     get BLOCKER() {
