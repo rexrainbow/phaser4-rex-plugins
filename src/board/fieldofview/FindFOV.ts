@@ -8,7 +8,7 @@ export let FindFOV = function (
     visiblePoints: number | undefined,
     originTileXY: XYType = fov.startTileXYZ,
     out: XYType[] = []
-) {
+): XYType[] {
 
     let board = fov.board;
     let isAnyVisible: boolean,

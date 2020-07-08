@@ -13,6 +13,9 @@ import { PathFinder } from './pathfinder';
 // Match
 import { Match } from './match';
 
+// Field of view
+import { FieldOfView } from './fieldofview';
+
 // HexagonMap
 import * as HexagonMap from './hexagonmap';
 
@@ -28,6 +31,9 @@ export {
 
     // Match
     Match,
+
+    // Field of view
+    FieldOfView,
 
     // HexagonMap
     HexagonMap

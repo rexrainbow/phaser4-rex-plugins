@@ -5,11 +5,15 @@ import {
     ConeType, ConeTypeString,
     BLOCKER
 } from './IFieldOfView';
-import { XYZType, IChess } from '../types';
+import { IChess, XYZType, XYType } from '../types';
 import { IBaseBoard } from '../board/IBaseBoard';
 import { WorldXY } from '../board'
 import { DegToRad } from '../../utils/math/angle/DegToRad';
 import { Normalize as AngleNormalize } from '../../utils/math/angle/Normalize';
+import { IsInLOS } from './IsInLOS';
+import { LOS } from './LOS';
+import { FindFOV } from './FindFOV';
+
 
 export class FieldOfView implements IFieldOfView {
     occupiedTest: boolean;
@@ -212,6 +216,34 @@ export class FieldOfView implements IFieldOfView {
     //     }
     //     return this;
     // }
+
+    isInLos(
+        chess: IChess | XYZType,
+        visiblePoints?: number | undefined,
+        originTileXY: XYType = this.startTileXYZ
+    ): boolean {
+
+        return IsInLOS(this, chess, visiblePoints, originTileXY);
+    }
+
+    los(
+        chessArray: IChess[] | XYType[] | IChess | XYType,
+        visiblePoints: number | undefined,
+        originTileXY: XYType = this.startTileXYZ,
+        out?: IChess[] | XYType[]
+    ): IChess[] | XYType[] | boolean {
+
+        return LOS(this, chessArray, visiblePoints, originTileXY, out);
+    }
+
+    findFOV(
+        visiblePoints: number | undefined,
+        originTileXY: XYType = this.startTileXYZ,
+        out: XYType[] = []
+    ): XYType[] {
+
+        return FindFOV(this, visiblePoints, originTileXY, out);
+    }
 
     get board(): IBaseBoard {
 
