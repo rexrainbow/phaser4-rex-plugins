@@ -19,9 +19,6 @@ export class FieldOfView implements IFieldOfView {
     occupiedTest: boolean;
     blockerTest: boolean;
     edgeBlockerTest: boolean;
-    preTestCallback: PreTestCallbackType;
-    preTestCallbackScope: any;
-
     costCallback: GetCostCallbackType;
     costCallbackScope: any;
     constCost: number;
@@ -39,8 +36,6 @@ export class FieldOfView implements IFieldOfView {
         occupiedTest = false,
         blockerTest = false,
         edgeBlockerTest = false,
-        preTestCallback = undefined,
-        preTestCallbackScope = undefined,
 
         costCallback = undefined,
         costCallbackScope = undefined,
@@ -55,8 +50,6 @@ export class FieldOfView implements IFieldOfView {
         this.setOccupiedTest(occupiedTest);
         this.setBlockerTest(blockerTest);
         this.setEdgeBlockerTest(edgeBlockerTest);
-
-        this.setPreTestFunction(preTestCallback, preTestCallbackScope);
         if (costCallback) {
             this.setCostFunction(costCallback, costCallbackScope);
         } else {
@@ -193,16 +186,6 @@ export class FieldOfView implements IFieldOfView {
         if (cost !== undefined) {
             this.setCostFunction();
         }
-        return this;
-    }
-
-    setPreTestFunction(
-        callback?: PreTestCallbackType,
-        scope?: any
-    ): this {
-
-        this.preTestCallback = callback;
-        this.preTestCallbackScope = scope;
         return this;
     }
 

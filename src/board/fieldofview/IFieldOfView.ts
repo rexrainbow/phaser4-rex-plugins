@@ -19,9 +19,6 @@ export interface IConfig {
     occupiedTest?: boolean;
     blockerTest?: boolean;
     edgeBlockerTest?: boolean;
-    preTestCallback?: PreTestCallbackType,
-    preTestCallbackScope?: any;
-
     costCallback?: GetCostCallbackType,
     costCallbackScope?: any;
     cost?: number;
@@ -35,9 +32,6 @@ export interface IFieldOfView {
     occupiedTest: boolean;
     blockerTest: boolean;
     edgeBlockerTest: boolean;
-    preTestCallback: PreTestCallbackType,
-    preTestCallbackScope: any;
-
     costCallback: GetCostCallbackType,
     costCallbackScope: any;
     constCost: number;

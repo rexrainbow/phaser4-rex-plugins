@@ -3,7 +3,6 @@ import {
     BLOCKER
 } from './IFieldOfView';
 import { XYType } from '../types';
-import { PreTest } from './PreTest';
 import { GetCost } from './GetCost';
 
 export let IsPathVisible = function (
@@ -11,14 +10,6 @@ export let IsPathVisible = function (
     tileXYArray: XYType[],
     visiblePoints?: number
 ): boolean {
-
-    if (PreTest(fov, tileXYArray, visiblePoints) === false) {
-        return false;
-    }
-
-    if ((fov.costCallback === undefined) && (!fov.constCost)) {
-        return true;
-    }
 
     let behindBlocker = false;
     for (let i = 1, cnt = tileXYArray.length; i < cnt; i++) {

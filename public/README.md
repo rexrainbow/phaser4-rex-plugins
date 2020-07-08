@@ -12,7 +12,7 @@
 
 ### Field of view
 
-- [FOV](https://rexrainbow.github.io/phaser4-rex-plugins/public/board-fieldofview-field-of-view/)
+- [fov](https://rexrainbow.github.io/phaser4-rex-plugins/public/board-fieldofview-fov/)
 
 ### Hexagon map
 
