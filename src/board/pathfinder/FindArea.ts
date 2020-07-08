@@ -1,7 +1,7 @@
 import { IPathFinder, SearchResultType } from './IPathFinder';
 import { IChess, XYZType } from '../types';
 import { IsChess, IsTileXYZ } from '../utils';
-import { XYToKey } from './astar/Key';
+import { XYToKey } from '../utils/StringKey';
 import { IAStarNode } from './astar/IAStarNode';
 import { Chess, TileXY } from '../board';
 import { CopyTileXYZ } from '../utils/CopyTileXYZ';

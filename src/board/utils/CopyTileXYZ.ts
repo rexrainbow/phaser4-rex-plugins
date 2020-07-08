@@ -1,4 +1,4 @@
-import { XYZType } from '../../types';
+import { XYZType } from '../types';
 
 
 export let CopyTileXYZ = function (

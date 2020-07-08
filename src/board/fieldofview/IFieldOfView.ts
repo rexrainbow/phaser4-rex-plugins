@@ -50,4 +50,6 @@ export interface IFieldOfView {
     coneMode: ConeType;
     cone: number | undefined;
     coneRad: number;
+
+    costCache: Map<string, CostValueType>;
 }

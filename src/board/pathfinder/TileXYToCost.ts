@@ -1,6 +1,6 @@
 import { IPathFinder, CostValueType } from './IPathFinder';
 import { XType, YType } from '../types';
-import { XYToKey } from './astar/Key';
+import { XYToKey } from '../utils/StringKey';
 import { IAStarNode } from './astar/IAStarNode';
 
 export let TileXYToCost = function (

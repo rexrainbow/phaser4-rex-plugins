@@ -3,7 +3,7 @@ import {
     IConfig,
     PreTestCallbackType, GetCostCallbackType,
     ConeType, ConeTypeString,
-    BLOCKER
+    CostValueType, BLOCKER
 } from './IFieldOfView';
 import { IChess, XYZType, XYType } from '../types';
 import { IBaseBoard } from '../board/IBaseBoard';
@@ -32,6 +32,8 @@ export class FieldOfView implements IFieldOfView {
     coneMode: ConeType;
     _cone: number | undefined;
     coneRad: number;
+
+    costCache: Map<string, CostValueType>;
 
     constructor({
         occupiedTest = false,
@@ -65,6 +67,8 @@ export class FieldOfView implements IFieldOfView {
         this.setFace(face);
         this.setConeMode(coneMode);
         this.setCone(cone);
+
+        this.costCache = new Map();
     }
 
     destroy() {
@@ -234,7 +238,9 @@ export class FieldOfView implements IFieldOfView {
         originTileXY: XYType = this.startTileXYZ
     ): boolean {
 
-        return IsInLOS(this, chess, visiblePoints, originTileXY);
+        let result = IsInLOS(this, chess, visiblePoints, originTileXY);
+        this.costCache.clear();
+        return result;
     }
 
     los(
@@ -244,7 +250,9 @@ export class FieldOfView implements IFieldOfView {
         out?: IChess[] | XYType[]
     ): IChess[] | XYType[] | boolean {
 
-        return LOS(this, chessArray, visiblePoints, originTileXY, out);
+        let result = LOS(this, chessArray, visiblePoints, originTileXY, out);
+        this.costCache.clear();
+        return result;
     }
 
     findFOV(
@@ -253,7 +261,9 @@ export class FieldOfView implements IFieldOfView {
         out: XYType[] = []
     ): XYType[] {
 
-        return FindFOV(this, visiblePoints, originTileXY, out);
+        let result = FindFOV(this, visiblePoints, originTileXY, out);
+        this.costCache.clear();
+        return result;
     }
 
     get board(): IBaseBoard {

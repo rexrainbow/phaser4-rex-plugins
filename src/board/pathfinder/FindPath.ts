@@ -4,7 +4,7 @@ import {
 } from './IPathFinder';
 import { IChess, XYZType, XYType } from '../types';
 import { IsChess, IsTileXYZ } from '../utils';
-import { XYToKey } from './astar/Key';
+import { XYToKey } from '../utils/StringKey';
 import { IAStarNode } from './astar/IAStarNode';
 import { GetPath } from './GetPath'
 import { TileXY } from '../board';
