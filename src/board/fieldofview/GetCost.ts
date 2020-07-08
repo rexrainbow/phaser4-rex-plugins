@@ -14,7 +14,7 @@ export let GetCost = function (
 
     if (costCahce.has(key)) {
         cost = costCahce.get(key);
-
+        // console.log(`GetCost: ${key} in costCahe`);
     } else {
 
         let callback = fov.costCallback;

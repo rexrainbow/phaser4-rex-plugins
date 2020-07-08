@@ -21,7 +21,9 @@ export let PreTest = function (
             let tileX = tileXY.x,
                 tileY = tileXY.y;
 
-            if (costCahce.get(XYToKey(tileX, tileY)) != null) {
+            let key = XYToKey(tileX, tileY);
+            if (costCahce.get(key) != null) {
+                // console.log(`PreTest: ${key} in costCahe`);
                 continue;
             }
 
