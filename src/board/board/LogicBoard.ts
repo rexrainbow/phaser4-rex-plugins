@@ -34,6 +34,7 @@ import { HasEdgeBlocker } from './blocker/HasEdgeBlocker';
 import { IsAngleInCone } from './worldxy/IsAngleInCone';
 import { IsDirectionInCone } from './tilexy/IsDirectionInCone';
 import { IsOverlappingPoint } from './worldxy/IsOverlappingPoint';
+import { LineToTileXYArray } from './shape/LineToTileXYArray';
 import { Mirror, MirrorMode, MirrorModeString } from './transform/Mirror';
 import { Offset } from './transform/Offset';
 import { RemoveAllChess } from './chess/RemoveAllChess';
@@ -43,6 +44,7 @@ import { Rotate } from './transform/Rotate';
 import { SetBoardHeight } from './boarddata/SetBoardHeight';
 import { SetBoardWidth } from './boarddata/SetBoardWidth';
 import { SetTileZ } from './chess/SetTileZ';
+import { ShapeToTileXYArray, ShapeType, ContainsCallbackType } from './shape/ShapeToTileXYArray';
 import { SwapChess } from './chess/SwapChess';
 import { TileXYArrayToChessArray } from './tilexy/TileXYArrayToChessArray';
 import { TileXYToChessArray } from './tilexy/TileXYToChessArray';
@@ -337,6 +339,17 @@ export class LogicBoard extends BaseBoard implements ILogicBoard {
         return IsOverlappingPoint(this, worldX, worldY, tileZ);
     }
 
+    lineToTileXYArray(
+        startX: number,
+        startY: number,
+        endX: number,
+        endY: number,
+        out: XYType[] = []
+    ): XYType[] {
+
+        return LineToTileXYArray(this, startX, startY, endX, endY, out);
+    }
+
     mirror(
         tileXY: XYType,
         mode: MirrorMode | MirrorModeString,
@@ -421,6 +434,15 @@ export class LogicBoard extends BaseBoard implements ILogicBoard {
 
         SetTileZ(this, chess, tileZ);
         return this;
+    }
+
+    shapeToTileXYArray(
+        shape: ShapeType,
+        containsCallback: ContainsCallbackType,
+        out: XYType[] = []
+    ): XYType[] {
+
+        return ShapeToTileXYArray(this, shape, containsCallback, out);
     }
 
     swapChess(

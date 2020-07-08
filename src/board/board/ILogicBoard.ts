@@ -29,6 +29,9 @@ import { DistanceConfig } from './tilexy/GetTileXYAtDirection';
 import { MirrorMode, MirrorModeString } from './transform/Mirror';
 export { MirrorMode, MirrorModeString };
 
+// ShapeToTileXYArray
+import { ShapeType, ContainsCallbackType } from './shape/ShapeToTileXYArray';
+
 export interface ILogicBoard extends IBaseBoard {
 
     addChess(
@@ -213,6 +216,14 @@ export interface ILogicBoard extends IBaseBoard {
         tileZ?: ZType
     ): boolean;
 
+    lineToTileXYArray(
+        startX: number,
+        startY: number,
+        endX: number,
+        endY: number,
+        out?: XYType[]
+    ): XYType[];
+
     mirror(
         tileXY: XYType,
         mode: MirrorMode | MirrorModeString,
@@ -266,6 +277,12 @@ export interface ILogicBoard extends IBaseBoard {
         chess: IChess,
         tileZ: ZType
     ): this;
+
+    shapeToTileXYArray(
+        shape: ShapeType,
+        containsCallback: ContainsCallbackType,
+        out?: XYType[]
+    ): XYType[];
 
     swapChess(
         chessA: IChess,

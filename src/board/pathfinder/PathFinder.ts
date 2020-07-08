@@ -74,7 +74,7 @@ export class PathFinder implements IPathFinder {
 
     destroy() {
 
-        this.setBoard();
+        this.board = null;
         this.astar.destroy();
     }
 

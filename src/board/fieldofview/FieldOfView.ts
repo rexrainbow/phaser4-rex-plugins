@@ -1,6 +1,3 @@
-
-import AngleNormalize from '../../utils/math/angle/Normalize.js';
-
 import {
     IFieldOfView,
     IConfig,
@@ -8,25 +5,24 @@ import {
     ConeType, ConeTypeString,
     BLOCKER
 } from './IFieldOfView';
-import { XYZType } from '../types';
+import { XYZType, IChess } from '../types';
 import { IBaseBoard } from '../board/IBaseBoard';
 import { WorldXY } from '../board'
 import { DegToRad } from '../../utils/math/angle/DegToRad';
+import { Normalize as AngleNormalize } from '../../utils/math/angle/Normalize';
 
 export class FieldOfView implements IFieldOfView {
-    board: IBaseBoard;
-
     occupiedTest: boolean;
     blockerTest: boolean;
     edgeBlockerTest: boolean;
-    preTestCallback: PreTestCallbackType,
+    preTestCallback: PreTestCallbackType;
     preTestCallbackScope: any;
 
-    costCallback: GetCostCallbackType,
+    costCallback: GetCostCallbackType;
     costCallbackScope: any;
     constCost: number;
 
-    startTileXYZ: XYZType;
+    chess: IChess;
     _face: number;
     faceAngle: number;
     coneMode: ConeType;
@@ -34,8 +30,6 @@ export class FieldOfView implements IFieldOfView {
     coneRad: number;
 
     constructor({
-        board = undefined,
-
         occupiedTest = false,
         blockerTest = false,
         edgeBlockerTest = false,
@@ -46,11 +40,11 @@ export class FieldOfView implements IFieldOfView {
         costCallbackScope = undefined,
         cost = 1,
 
+        chess = undefined,
         face = 0,
         coneMode = ConeType.direction,
         cone = undefined
     }: IConfig = {}) {
-        this.setBoard(board);
 
         this.setOccupiedTest(occupiedTest);
         this.setBlockerTest(blockerTest);
@@ -63,18 +57,22 @@ export class FieldOfView implements IFieldOfView {
             this.setConstCost(cost);
             this.setCostFunction();
         }
+
+        this.setChess(chess);
     }
 
     destroy() {
-        this.shutdown();
-        return this;
     }
 
-    setBoard(
-        board?: IBaseBoard
+    setChess(
+        chess?: IChess
     ): this {
 
-        this.board = board;
+        if (chess === undefined) {
+            this.chess = null;
+        } else {
+            this.chess = chess;
+        }
         return this;
     }
 
@@ -83,12 +81,16 @@ export class FieldOfView implements IFieldOfView {
     }
 
     set face(direction: number) {
+        if (this.chess === null) {
+            return;
+        }
+
         direction = this.board.grid.directionNormalize(direction);
         this._face = direction;
         if (this.coneMode === 0) { // Direction
             // Do nothing
         } else { // Angle
-            var angle = WorldXY.AngleToward(this.board, this.chessData.tileXYZ, direction); // -PI~PI
+            var angle = WorldXY.AngleToward(this.board, this.startTileXYZ, direction); // -PI~PI
             this.faceAngle = AngleNormalize(angle); // 0~2PI
         }
     }
@@ -210,6 +212,24 @@ export class FieldOfView implements IFieldOfView {
     //     }
     //     return this;
     // }
+
+    get board(): IBaseBoard {
+
+        if (this.chess === null) {
+            return null;
+        } else {
+            return this.chess.rexChess.board;
+        }
+    }
+
+    get startTileXYZ(): XYZType {
+
+        if (this.chess === null) {
+            return null;
+        } else {
+            return this.chess.rexChess.tileXYZ;
+        }
+    }
 
     get BLOCKER() {
         return BLOCKER;
