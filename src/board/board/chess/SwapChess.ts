@@ -1,6 +1,6 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XYZType } from '../../types';
-import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
+import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
 import { RemoveChess } from './RemoveChess';
 import { AddChess } from './AddChess';
 

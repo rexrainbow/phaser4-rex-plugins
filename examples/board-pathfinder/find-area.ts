@@ -15,9 +15,7 @@ class MyBoard extends Board {
     constructor(config) {
         super(config);
 
-        this.pathFinder = new PathFinder({
-            board: this
-        });
+        this.pathFinder = new PathFinder();
 
         CreatePolygonTexture('tile', {
             points: this.getGridPoints(),

@@ -19,6 +19,12 @@ export class NodeManager {
         this.sn = 0;
     }
 
+    destroy() {
+
+        this.freeAllNodes();
+        this.nodePool.destroy();
+    }
+
     getNode(
         key: any,
         createNode: boolean = false

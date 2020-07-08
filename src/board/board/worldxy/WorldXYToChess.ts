@@ -1,8 +1,8 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { ZType, IChess } from '../../types';
 import { WorldXYToTileXY } from './WorldXYToTileXY';
-import { TileXYZToChess } from '../tileposition/TileXYZToChess';
-import { TileXYToChessArray } from '../tileposition/TileXYToChessArray';
+import { TileXYZToChess } from '../tilexy/TileXYZToChess';
+import { TileXYToChessArray } from '../tilexy/TileXYToChessArray';
 
 export let WorldXYToChess = function (
     board: IBaseBoard,

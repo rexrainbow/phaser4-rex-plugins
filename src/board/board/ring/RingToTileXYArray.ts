@@ -1,6 +1,6 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../types';
-import { Contains } from '../tileposition/Contains';
+import { Contains } from '../tilexy/Contains';
 
 export let RingToTileXYArray = function (
     board: IBaseBoard,

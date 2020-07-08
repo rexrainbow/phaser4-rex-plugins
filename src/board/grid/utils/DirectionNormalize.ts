@@ -1,5 +1,5 @@
 import { IGrid } from '../IGrid';
-import { Wrap } from '../../../utils/math/Wrap.js';
+import { Wrap } from '../../../utils/math/Wrap';
 
 export let DirectionNormalize = function (
     grid: IGrid,

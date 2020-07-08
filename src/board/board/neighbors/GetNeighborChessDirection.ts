@@ -1,6 +1,6 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XYType } from '../../types';
-import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
+import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
 import { GetNeighborTileDirection } from './GetNeighborTileDirection'
 
 export let GetNeighborChessDirection = function (

@@ -18,7 +18,6 @@ class MyBoard extends Board {
         super(config);
 
         this.pathFinder = new PathFinder({
-            board: this,
             pathMode: 'astar',
             occupiedTest: true
         });

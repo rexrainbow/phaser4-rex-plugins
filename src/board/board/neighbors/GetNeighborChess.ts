@@ -1,9 +1,9 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XYType, XYZType, ZType } from '../../types';
-import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
-import { TileXYArrayToChessArray } from '../tileposition/TileXYArrayToChessArray';
-import { TileXYToChessArray } from '../tileposition/TileXYToChessArray';
-import { TileXYZToChess } from '../tileposition/TileXYZToChess';
+import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
+import { TileXYArrayToChessArray } from '../tilexy/TileXYArrayToChessArray';
+import { TileXYToChessArray } from '../tilexy/TileXYToChessArray';
+import { TileXYZToChess } from '../tilexy/TileXYZToChess';
 import { GetNeighborTileXY } from './GetNeighborTileXY';
 
 export let GetNeighborChess = function (

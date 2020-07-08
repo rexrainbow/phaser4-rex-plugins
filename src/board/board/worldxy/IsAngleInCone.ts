@@ -1,6 +1,6 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XYType } from '../../types';
-import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
+import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
 import { AngleBetween } from './AngleBetween';
 import { Normalize as AngleNormalize } from '../../../utils/math/angle/Normalize';
 import { Equal } from '../../../utils/math/fuzzy/Equal';

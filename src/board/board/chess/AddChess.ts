@@ -1,10 +1,10 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XType, YType, ZType, XYZType } from '../../types';
-import { TileXYZToChess } from '../tileposition/TileXYZToChess';
-import { ChessToTileXYZ } from '../tileposition/ChessToTileXYZ';
-import { Contains } from '../tileposition/Contains';
+import { TileXYZToChess } from '../tilexy/TileXYZToChess';
+import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
+import { Contains } from '../tilexy/Contains';
 import { GetChessData } from '../chessdata/GetChessData';
-import { GridAlign } from '../worldposition/GridAlign';
+import { GridAlign } from '../worldxy/GridAlign';
 import { RemoveChess } from './RemoveChess'
 
 export let AddChess = function (

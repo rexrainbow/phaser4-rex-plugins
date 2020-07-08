@@ -1,27 +1,29 @@
 import { IPathFinder, SearchResultType } from './IPathFinder';
 import { IChess, XYZType } from '../types';
+import { IsChess, IsTileXYZ } from '../utils';
 import { XYToKey } from './astar/Key';
 import { IAStarNode } from './astar/IAStarNode';
 import { Chess, TileXY } from '../board';
-import { CopyTileXYZ } from '../board/utils/CopyTileXYZ';
+import { CopyTileXYZ } from '../utils/CopyTileXYZ';
 
 export let FindArea = function (
     pathFinder: IPathFinder,
-    startChess: IChess,
+    startChess: IChess | XYZType,
     movingPoints?: number | undefined,
     out: SearchResultType = []
 ): SearchResultType {
 
-    let board = pathFinder.board;
-    // Chess not at board
-    if (!Chess.HasChess(board, startChess)) {
-        return out;
-    }
     // Negative moving points
     if ((movingPoints !== undefined) && (movingPoints <= 0)) {
         return out;
     }
+    if (IsChess(startChess)) {
+        pathFinder.board = (startChess as IChess).rexChess.board;
+    } else if (!IsTileXYZ(startChess)) { // Not a chess, neither tileXYZ
+        return out;
+    }
 
+    let board = pathFinder.board;
     let astar = pathFinder.astar;
     let startTileXYZ = TileXY.ChessToTileXYZ(board, startChess) as XYZType,
         startTileX = startTileXYZ.x,

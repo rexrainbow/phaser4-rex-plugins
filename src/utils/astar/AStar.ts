@@ -20,6 +20,11 @@ export class AStar {
         this.nodeManager = new NodeManager(createNodeCallback);
     }
 
+    destroy() {
+
+        this.nodeManager.destroy();
+    }
+
     setPathMode(
         mode: PathMode | PathModeString
     ): this {

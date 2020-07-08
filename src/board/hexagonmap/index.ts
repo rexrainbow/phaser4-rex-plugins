@@ -1,6 +1,6 @@
-import { GetHexagonMap } from './GetHexagonMap.js';
-import { GetTriangleMap } from './GetTriangleMap.js';
-import { GetParallelogramMap } from './GetParallelogramMap.js';
+import { GetHexagonMap } from './GetHexagonMap';
+import { GetTriangleMap } from './GetTriangleMap';
+import { GetParallelogramMap } from './GetParallelogramMap';
 
 export {
     GetHexagonMap,

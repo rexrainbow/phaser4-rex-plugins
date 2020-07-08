@@ -1,6 +1,6 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../types';
-import { GetTileXYAtDirection } from '../tileposition/GetTileXYAtDirection';
+import { GetTileXYAtDirection } from '../tilexy/GetTileXYAtDirection';
 
 export let GetNeighborTileXY = function (
     board: IBaseBoard,

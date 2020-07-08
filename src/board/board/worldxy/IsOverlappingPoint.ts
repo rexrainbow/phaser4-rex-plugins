@@ -1,7 +1,7 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { ZType } from '../../types';
 import { WorldXYToTileXY } from './WorldXYToTileXY';
-import { Contains } from '../tileposition/Contains'
+import { Contains } from '../tilexy/Contains'
 
 
 export let IsOverlappingPoint = function (

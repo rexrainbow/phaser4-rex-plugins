@@ -1,6 +1,6 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { ZType, XYType } from '../../types';
-import { TileXYZToChess } from '../tileposition/TileXYZToChess';
+import { TileXYZToChess } from '../tilexy/TileXYZToChess';
 
 export let GetEmptyTileXYArray = function (
     board: IBaseBoard,

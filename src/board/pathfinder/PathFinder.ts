@@ -69,11 +69,17 @@ export class PathFinder implements IPathFinder {
         this.setWeight(weight);
         this.setShuffleNeighborsMode(shuffleNeighbors);
 
-        this.astar = CreateAStar(this);        
+        this.astar = CreateAStar(this);
+    }
+
+    destroy() {
+
+        this.setBoard();
+        this.astar.destroy();
     }
 
     setBoard(
-        board: IBaseBoard
+        board?: IBaseBoard
     ): this {
 
         this.board = board;

@@ -20,10 +20,10 @@ export interface IConfig {
 }
 
 // ForEachTileXY
-import { ForEachTileXYCallback, ForEachTileXYOrder } from './tileposition/ForEachTileXY';
+import { ForEachTileXYCallback, ForEachTileXYOrder } from './tilexy/ForEachTileXY';
 
 // GetTileXYAtDirection
-import { DistanceConfig } from './tileposition/GetTileXYAtDirection';
+import { DistanceConfig } from './tilexy/GetTileXYAtDirection';
 
 // Mirror
 import { MirrorMode, MirrorModeString } from './transform/Mirror';

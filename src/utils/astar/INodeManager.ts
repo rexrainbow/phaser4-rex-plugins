@@ -4,6 +4,8 @@ export interface INodeManager {
     weight: number;
     closestNode: INodeBase;
 
+    destroy():void
+
     getNode(
         key: any,
         createNode?: boolean

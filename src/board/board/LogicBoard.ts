@@ -3,37 +3,37 @@ import { XType, YType, ZType, XYType, XYZType, Vec2Type, IChess } from '../types
 import { ILogicBoard, IChessData } from './ILogicBoard';
 
 import { AddChess } from './chess/AddChess';
-import { AngleBetween } from './worldposition/AngleBetween';
-import { AngleSnapToDirection } from './worldposition/AngleSnapToDirection';
-import { AngleToward } from './worldposition/AngleToward';
+import { AngleBetween } from './worldxy/AngleBetween';
+import { AngleSnapToDirection } from './worldxy/AngleSnapToDirection';
+import { AngleToward } from './worldxy/AngleToward';
 import { AreNeighbors } from './neighbors/AreNeighbors';
-import { ChessToTileXYZ } from './tileposition/ChessToTileXYZ';
-import { Contains } from './tileposition/Contains';
-import { DirectionBetween } from './tileposition/DirectionBetween';
+import { ChessToTileXYZ } from './tilexy/ChessToTileXYZ';
+import { Contains } from './tilexy/Contains';
+import { DirectionBetween } from './tilexy/DirectionBetween';
 import { FilledRingToTileXYArray } from './ring/FilledRingToTileXYArray';
 import { Fit } from './transform/Fit';
-import { ForEachTileXY, ForEachTileXYCallback, ForEachTileXYOrder } from './tileposition/ForEachTileXY';
+import { ForEachTileXY, ForEachTileXYCallback, ForEachTileXYOrder } from './tilexy/ForEachTileXY';
 import { GetAllChess } from './chess/GetAllChess';
 import { GetChessData } from './chessdata/GetChessData';
-import { GetDistance } from './tileposition/GetDistance';
+import { GetDistance } from './tilexy/GetDistance';
 import { GetEmptyTileXYArray } from './empty/GetEmptyTileXYArray';
-import { GetGridPoints } from './worldposition/GetGridPoints';
+import { GetGridPoints } from './worldxy/GetGridPoints';
 import { GetNeighborChess } from './neighbors/GetNeighborChess';
 import { GetNeighborChessDirection } from './neighbors/GetNeighborChessDirection';
 import { GetNeighborTileDirection } from './neighbors/GetNeighborTileDirection';
 import { GetNeighborTileXY } from './neighbors/GetNeighborTileXY';
 import { GetNeighborTileXYAtAngle } from './neighbors/GetNeighborTileXYAtAngle';
-import { GetOppositeDirection } from './tileposition/GetOppositeDirection';
+import { GetOppositeDirection } from './tilexy/GetOppositeDirection';
 import { GetRandomEmptyTileXY } from './empty/GetRandomEmptyTileXY';
-import { GetTileXYAtDirection, DistanceConfig } from './tileposition/GetTileXYAtDirection'
-import { GetWrapTileXY } from './tileposition/GetWrapTileXY';
-import { GridAlign } from './worldposition/GridAlign';
+import { GetTileXYAtDirection, DistanceConfig } from './tilexy/GetTileXYAtDirection'
+import { GetWrapTileXY } from './tilexy/GetWrapTileXY';
+import { GridAlign } from './worldxy/GridAlign';
 import { HasBlocker } from './blocker/HasBlocker';
 import { HasChess } from './chess/HasChess';
 import { HasEdgeBlocker } from './blocker/HasEdgeBlocker';
-import { IsAngleInCone } from './worldposition/IsAngleInCone';
-import { IsDirectionInCone } from './tileposition/IsDirectionInCone';
-import { IsOverlappingPoint } from './worldposition/IsOverlappingPoint';
+import { IsAngleInCone } from './worldxy/IsAngleInCone';
+import { IsDirectionInCone } from './tilexy/IsDirectionInCone';
+import { IsOverlappingPoint } from './worldxy/IsOverlappingPoint';
 import { Mirror, MirrorMode, MirrorModeString } from './transform/Mirror';
 import { Offset } from './transform/Offset';
 import { RemoveAllChess } from './chess/RemoveAllChess';
@@ -44,15 +44,15 @@ import { SetBoardHeight } from './boarddata/SetBoardHeight';
 import { SetBoardWidth } from './boarddata/SetBoardWidth';
 import { SetTileZ } from './chess/SetTileZ';
 import { SwapChess } from './chess/SwapChess';
-import { TileXYArrayToChessArray } from './tileposition/TileXYArrayToChessArray';
-import { TileXYToChessArray } from './tileposition/TileXYToChessArray';
-import { TileXYZToChess } from './tileposition/TileXYZToChess';
-import { TileZToChessArray } from './tileposition/TileZToChessArray';
-import { TileXYArrayToWorldXYArray } from './worldposition/TileXYArrayToWorldXYArray';
-import { TileXYToWorldXY } from './worldposition/TileXYToWorldXY';
-import { WorldXYSnapToGrid } from './worldposition/WorldXYSnapToGrid';
-import { WorldXYToChess } from './worldposition/WorldXYToChess';
-import { WorldXYToTileXY } from './worldposition/WorldXYToTileXY';
+import { TileXYArrayToChessArray } from './tilexy/TileXYArrayToChessArray';
+import { TileXYToChessArray } from './tilexy/TileXYToChessArray';
+import { TileXYZToChess } from './tilexy/TileXYZToChess';
+import { TileZToChessArray } from './tilexy/TileZToChessArray';
+import { TileXYArrayToWorldXYArray } from './worldxy/TileXYArrayToWorldXYArray';
+import { TileXYToWorldXY } from './worldxy/TileXYToWorldXY';
+import { WorldXYSnapToGrid } from './worldxy/WorldXYSnapToGrid';
+import { WorldXYToChess } from './worldxy/WorldXYToChess';
+import { WorldXYToTileXY } from './worldxy/WorldXYToTileXY';
 
 export class LogicBoard extends BaseBoard implements ILogicBoard {
 

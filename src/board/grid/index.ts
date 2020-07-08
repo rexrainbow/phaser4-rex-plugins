@@ -1,5 +1,5 @@
-import { Quad } from './quad/Quad.js';
-import { Hexagon } from './hexagon/Hexagon.js';
+import { Quad } from './quad/Quad';
+import { Hexagon } from './hexagon/Hexagon';
 
 export {
     Quad,

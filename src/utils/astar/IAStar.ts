@@ -17,6 +17,8 @@ export interface IAStar {
     pathMode: PathMode;
     nodeManager: INodeManager;
 
+    destroy(): void;
+
     setPathMode(
         mode: PathMode | PathModeString
     ): this;
