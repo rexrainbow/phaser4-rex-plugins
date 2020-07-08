@@ -1,5 +1,6 @@
 @echo off
+set preview=1
 set main=./examples/twodtable/load-csv.ts
 cd ..
 cd ..
-npm run dev
+npm run build-project

@@ -17,9 +17,7 @@ const sourceCodeLink = (production) ?
     `<p><a href='https://github.com/rexrainbow/phaser4-rex-plugins/blob/master/${inputMain}'>Source code</a></p>` :
     '';
 
-const capitalize = (s) => {
-    return s.charAt(0).toUpperCase() + s.slice(1)
-}
+const capitalize = (s) => { return s.charAt(0).toUpperCase() + s.slice(1) }
 
 
 export default {

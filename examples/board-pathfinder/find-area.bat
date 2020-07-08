@@ -1,5 +1,6 @@
 @echo off
+set preview=1
 set main=./examples/board-pathfinder/find-area.ts
 cd ..
 cd ..
-npm run dev
+npm run build-project

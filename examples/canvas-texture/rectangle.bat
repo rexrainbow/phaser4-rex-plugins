@@ -1,5 +1,6 @@
 @echo off
+set preview=1
 set main=./examples/canvas-texture/rectangle.ts
 cd ..
 cd ..
-npm run dev
+npm run build-project
