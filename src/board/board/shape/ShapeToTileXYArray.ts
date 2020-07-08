@@ -1,16 +1,16 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { BoundsType } from '../../../utils/types/BoundsType';
+import { BoundsType as ShapeType } from '../../../utils/types/BoundsType';
 import { XYType } from '../../types';
 import { WorldXYToTileXY } from '../worldxy/WorldXYToTileXY';
 import { TileXYToWorldXY } from '../worldxy/TileXYToWorldXY';
 import { Clamp } from '../../../utils/math/Clamp.js';
 
-export {BoundsType as ShapeType};
-export type ContainsCallbackType = (shape: BoundsType, x: number, y: number) => boolean
+export { ShapeType };
+export type ContainsCallbackType = (shape: ShapeType, x: number, y: number) => boolean
 
 export let ShapeToTileXYArray = function (
     board: IBaseBoard,
-    shape: BoundsType,
+    shape: ShapeType,
     containsCallback: ContainsCallbackType,
     out: XYType[] = []
 ): XYType[] {
