@@ -3,7 +3,7 @@ import { BoundsType as ShapeType } from '../../../utils/types/BoundsType';
 import { XYType } from '../../types';
 import { WorldXYToTileXY } from '../worldxy/WorldXYToTileXY';
 import { TileXYToWorldXY } from '../worldxy/TileXYToWorldXY';
-import { Clamp } from '../../../utils/math/Clamp.js';
+import { Clamp } from '../../../utils/math/Clamp';
 
 export { ShapeType };
 export type ContainsCallbackType = (shape: ShapeType, x: number, y: number) => boolean
