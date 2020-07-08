@@ -10,6 +10,10 @@
 
 - [Match 3](https://rexrainbow.github.io/phaser4-rex-plugins/public/board-match-line-match/)
 
+### Field of view
+
+- [FOV](https://rexrainbow.github.io/phaser4-rex-plugins/public/board-fieldofview-field-of-view/)
+
 ### Hexagon map
 
 - [Hexagon](https://rexrainbow.github.io/phaser4-rex-plugins/public/board-hexagonmap-hexagon)
