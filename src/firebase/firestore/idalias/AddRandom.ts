@@ -3,7 +3,7 @@ import {
     IdAliasDataType
 } from './IIdAlias';
 import { GetAlias } from './GetAlias';
-import { GetRandomWord } from '../../utils/string/GetRandomWord';
+import { GetRandomWord } from '../../../utils/string/GetRandomWord';
 import { RetryAddRandomAliasTransaction } from './RetryAddRandomAliasTransaction';
 
 export let AddRandom = function (

@@ -11,8 +11,7 @@ export let AddAliasTransaction = function (
     alias: string
 ): Promise<IdAliasDataType> {
 
-    let self = this;
-    return this.database.runTransaction(function (transaction: firebase.firestore.Transaction): Promise<IdAliasDataType> {
+    return idAlias.database.runTransaction(function (transaction: firebase.firestore.Transaction): Promise<IdAliasDataType> {
 
         let aliasRef = GetAliasRef(idAlias, alias);
         return transaction.get(aliasRef)
