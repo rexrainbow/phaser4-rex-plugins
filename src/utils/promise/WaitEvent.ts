@@ -8,7 +8,7 @@ type EventEmitterType = {
 export let WaitEvent = function (
     eventEmitter: EventEmitterType,
     eventName: string
-): Promise<undefined> {
+): Promise<void> {
 
     return new Promise(function (resolve, reject) {
         eventEmitter.once(eventName, function () {
@@ -19,7 +19,7 @@ export let WaitEvent = function (
 
 export let WaitComplete = function (
     eventEmitter: EventEmitterType
-): Promise<undefined> {
+): Promise<void> {
 
     return WaitEvent(eventEmitter, 'complete');
 }

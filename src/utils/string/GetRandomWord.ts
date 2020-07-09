@@ -11,7 +11,7 @@ const CANDIDATES = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567
  * @param {string} [candidates=CANDIDATES]
  * @returns
  */
-export default function GetRandomWord(
+export let GetRandomWord = function (
     min: number,
     max?: number | undefined,
     candidates: string = CANDIDATES

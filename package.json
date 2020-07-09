@@ -50,6 +50,7 @@
         "webpack-cli": "^3.3.12"
     },
     "dependencies": {
+        "firebase": "^7.15.5",
         "lokijs": "^1.5.9",
         "papaparse": "^5.2.0",
         "webfontloader": "^1.6.28"
