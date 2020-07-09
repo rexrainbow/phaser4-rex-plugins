@@ -1,4 +1,5 @@
 import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 import { Firebase as rexFire } from '../../src'
 
 firebase.initializeApp({
