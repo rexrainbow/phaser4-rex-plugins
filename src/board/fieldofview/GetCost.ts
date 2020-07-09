@@ -21,37 +21,35 @@ export let GetCost = function (
         let tileX = tileXY.x,
             tileY = tileXY.y,
             tileZ = fov.startTileXYZ.z;
-        // Occupied test
-        if (fov.occupiedTest &&
+
+        if (fov.occupiedTest &&  // Occupied test
             TileXY.Contains(board, tileX, tileY, tileZ)
         ) {
 
-            return BLOCKER;
-        }
-        // Blocker test
-        if (fov.blockerTest &&
+            cost = BLOCKER;
+        } else if (fov.blockerTest &&  // Blocker test
             Blocker.HasBlocker(board, tileX, tileY)) {
 
-            return BLOCKER;
-        }
-        // Edge-blocker test
-        if (fov.edgeBlockerTest) {
+            cost = BLOCKER;
+        } else if (fov.edgeBlockerTest && // Edge-blocker test
+            false) {
             // TODO
-        }
-
-        let callback = fov.costCallback;
-        if (callback) {
-            let scope = fov.costCallbackScope;
-            if (scope) {
-                cost = callback.call(scope, tileXY, fov, lineTileXYArray);
-            } else {
-                cost = callback(tileXY, fov, lineTileXYArray);
-            }
-            if (cost === undefined) {
-                cost = BLOCKER;
-            }
+            cost = BLOCKER;
         } else {
-            cost = fov.constCost;
+            let callback = fov.costCallback;
+            if (callback) {
+                let scope = fov.costCallbackScope;
+                if (scope) {
+                    cost = callback.call(scope, tileXY, fov, lineTileXYArray);
+                } else {
+                    cost = callback(tileXY, fov, lineTileXYArray);
+                }
+                if (cost === undefined) {
+                    cost = BLOCKER;
+                }
+            } else {
+                cost = fov.constCost;
+            }
         }
 
         costCahce.set(key, cost);
