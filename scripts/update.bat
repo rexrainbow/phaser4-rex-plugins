@@ -1,3 +1,4 @@
 @echo off
 ehco Installing dependencies......
-npm install
+cd ..
+npm update
