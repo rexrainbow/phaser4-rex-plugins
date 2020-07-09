@@ -1,6 +1,6 @@
 import { IBoardData } from '../IBoardData';
 import { XType, YType, ZType, IChess, ZMapType } from '../../../types';
-import { GetXYKey } from './Key';
+import { XYToKey } from '../../../utils/StringKey';
 
 export let GetChess = function (
     boardData: IBoardData,
@@ -8,7 +8,7 @@ export let GetChess = function (
     y: YType,
     z?: ZType
 ): IChess | ZMapType | null {
-    let zMap = boardData.XYToZMap.get(GetXYKey(x, y));
+    let zMap = boardData.XYToZMap.get(XYToKey(x, y));
     if (zMap === undefined) {
         return null;
     }

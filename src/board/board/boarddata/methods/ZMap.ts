@@ -1,5 +1,5 @@
 import { XType, YType, ZType, IChess, ZMapType } from '../../../types';
-import { GetXYKey } from './Key';
+import { XYToKey } from '../../../utils/StringKey';
 import { FreeEmptyMap, GetEmptyMap } from '../../../../utils/pool/EmptyMap';
 
 export let AddChessToZMap = function (
@@ -15,8 +15,8 @@ export let AddChessToZMap = function (
     if ((prevX === currX) && (prevY === currY) && (prevZ === currZ)) {
         return;
     }
-    let prevKey = GetXYKey(prevX, prevY);
-    let currKey = GetXYKey(currX, currY);
+    let prevKey = XYToKey(prevX, prevY);
+    let currKey = XYToKey(currX, currY);
     if (prevKey) {
         let zMap = chessMap.get(prevKey);
         zMap.delete(prevZ);
@@ -46,7 +46,7 @@ export let RemoveChessFromZMap = function (
     y: YType,
     z?: ZType
 ) {
-    let key = GetXYKey(x, y);
+    let key = XYToKey(x, y);
     let zMap = chessMap.get(key);
     if (zMap) {
         if (z !== undefined) {
