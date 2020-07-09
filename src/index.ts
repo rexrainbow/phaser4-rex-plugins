@@ -3,7 +3,8 @@ import * as Board from './board'
 import { Canvas } from './gameobjects/canvas';
 import * as CanvasTexture from './texture/canvastexture';
 import { CSVToArray } from './data/csvtoarray';
-import { DrawCanvasTexture } from './texture/canvastexture'
+import { DrawCanvasTexture } from './texture/canvastexture';
+import * as Firebase from './firebase';
 import { Gashapon } from './math/gashapon';
 import { LZString } from './string/lzstring';
 import { RunCommands } from './logic/runcommands';
@@ -17,6 +18,7 @@ export {
     CanvasTexture,
     CSVToArray,
     DrawCanvasTexture,
+    Firebase,
     Gashapon,
     LZString,
     RunCommands,

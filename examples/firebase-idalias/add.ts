@@ -1,5 +1,5 @@
 import * as firebase from 'firebase/app';
-import { IdAlias } from '../../src/firebase'
+import { Firebase as rexFire } from '../../src'
 
 firebase.initializeApp({
     apiKey: 'AIzaSyAN_ejscIWn3z6XpOhhl2Okh_MuEXq4nSQ',
@@ -10,7 +10,7 @@ firebase.initializeApp({
     messagingSenderId: '322598340064'
 });
 
-let idAlias = new IdAlias({
+let idAlias = new rexFire.IdAlias({
     root: 'idalias-test'
 })
 
