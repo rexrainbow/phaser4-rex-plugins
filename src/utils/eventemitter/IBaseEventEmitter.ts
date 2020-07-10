@@ -28,7 +28,16 @@ export interface IBaseEventEmitter {
         ...args: unknown[]
     ): this;
 
+    removeAllListeners(
+        event?: string
+    ): this;
+
+
     getListenerCount(
         event: string
     ): number;
+
+    getEventNames(
+    ): string[];
+
 }
