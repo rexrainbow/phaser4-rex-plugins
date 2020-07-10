@@ -52,4 +52,10 @@ export interface IPageLoader {
         skip?: number
     ): Promise<firebase.firestore.DocumentData[]>;
 
+    // Override
+    _loadFirstPage(): Promise<firebase.firestore.DocumentData[]>;
+    _loadNextPage(): Promise<firebase.firestore.DocumentData[]>;
+    _loadPreviousPage(): Promise<firebase.firestore.DocumentData[]>;
+    _loadCurrentPage(): Promise<firebase.firestore.DocumentData[]>;
+
 }

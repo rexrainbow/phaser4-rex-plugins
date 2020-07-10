@@ -8,34 +8,22 @@ import { LoadStaticPage as LoadCurrentPage } from './LoadCurrentPage';
 
 export class StaticPageLoader extends BasePageLoader {
 
-    loadFirstPage(): Promise<firebase.firestore.DocumentData[]> {
+    _loadFirstPage(): Promise<firebase.firestore.DocumentData[]> {
 
         return LoadFirstPage(this);
     }
 
-    loadNextPage(): Promise<firebase.firestore.DocumentData[]> {
-
-        if (this.pageIndex == null) {
-            return LoadFirstPage(this);
-        }
+    _loadNextPage(): Promise<firebase.firestore.DocumentData[]> {
 
         return LoadNextPage(this);
     }
 
-    loadPreviousPage(): Promise<firebase.firestore.DocumentData[]> {
-
-        if ((this.pageIndex == null) || (this.pageIndex === 1)) {
-            return LoadFirstPage(this);
-        }
+    _loadPreviousPage(): Promise<firebase.firestore.DocumentData[]> {
 
         return LoadPreviousPage(this);
     }
 
-    loadCurrentPage(): Promise<firebase.firestore.DocumentData[]> {
-
-        if ((this.pageIndex == null) || (this.pageIndex === 0)) {
-            return LoadFirstPage(this);
-        }
+    _loadCurrentPage(): Promise<firebase.firestore.DocumentData[]> {
 
         return LoadCurrentPage(this);
     }

@@ -93,28 +93,42 @@ export abstract class BasePageLoader implements IPageLoader {
         return LoadInRange(this, count, skip);
     }
 
-    // Override
     loadFirstPage(): Promise<firebase.firestore.DocumentData[]> {
 
-        return Promise.resolve([]);
+        return this._loadFirstPage();
     }
 
-    // Override
     loadNextPage(): Promise<firebase.firestore.DocumentData[]> {
 
-        return Promise.resolve([]);
+        if (this.pageIndex == null) {
+            return this._loadFirstPage();
+        }
+
+        return this._loadNextPage();
     }
 
-    // Override
     loadPreviousPage(): Promise<firebase.firestore.DocumentData[]> {
 
-        return Promise.resolve([]);
+        if ((this.pageIndex == null) || (this.pageIndex === 1)) {
+            return this._loadFirstPage();
+        }
+
+        return this._loadPreviousPage();
     }
 
-    // Override
     loadCurrentPage(): Promise<firebase.firestore.DocumentData[]> {
 
-        return Promise.resolve([]);
+        if ((this.pageIndex == null) || (this.pageIndex === 0)) {
+            return this._loadFirstPage();
+        }
+
+        return this._loadCurrentPage();
     }
+
+    abstract _loadFirstPage(): Promise<firebase.firestore.DocumentData[]>;
+    abstract _loadNextPage(): Promise<firebase.firestore.DocumentData[]>;
+    abstract _loadPreviousPage(): Promise<firebase.firestore.DocumentData[]>;
+    abstract _loadCurrentPage(): Promise<firebase.firestore.DocumentData[]>;
+
 
 }
