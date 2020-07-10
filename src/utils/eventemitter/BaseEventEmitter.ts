@@ -2,8 +2,8 @@ import { IBaseEventEmitter } from './IBaseEventEmitter';
 import { IEventEmitter as IEE } from './events/IEventEmitter';
 import {
     EventEmitter as EE,
-    On, Once, Off, Emit, RemoveAllListeners,
-    GetListenerCount, GetEventNames
+    On, Once, Off, Emit, RemoveAllListeners, ClearEvent,
+    GetListenerCount, GetEventNames, GetListeners
 } from './events';
 
 export class BaseEventEmitter implements IBaseEventEmitter {
@@ -16,6 +16,12 @@ export class BaseEventEmitter implements IBaseEventEmitter {
 
         this.privateEE = (eventEmitter === undefined);
         this.eventEmitter = (this.privateEE) ? (new EE()) : eventEmitter;
+        return this;
+    }
+
+    clearEventEmitter(): this {
+
+        this.setEventEmitter(null);
         return this;
     }
 
@@ -76,6 +82,14 @@ export class BaseEventEmitter implements IBaseEventEmitter {
         return this;
     }
 
+    clearEvent(
+        event: string
+    ): this {
+
+        if (this.eventEmitter) { ClearEvent(this.eventEmitter, event); }
+        return this;
+    }
+
     getListenerCount(
         event: string
     ): number {
@@ -88,4 +102,12 @@ export class BaseEventEmitter implements IBaseEventEmitter {
 
         return (this.eventEmitter) ? GetEventNames(this.eventEmitter) : [];
     }
+
+    getListeners(
+        event: string
+    ): Function[] {
+
+        return (this.eventEmitter) ? GetListeners(this.eventEmitter, event) : [];
+    }
+
 }

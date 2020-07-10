@@ -20,7 +20,7 @@ export class PathFinder implements IPathFinder {
 
     constCost: number;
     costCallback: GetCostCallbackType | null;
-    costCallbackScope: any;
+    costCallbackScope: unknown;
     pathMode: PathMode;
     occupiedTest: boolean;
     blockerTest: boolean;
@@ -99,7 +99,7 @@ export class PathFinder implements IPathFinder {
 
     setCostFunction(
         callback?: GetCostCallbackType,
-        scope?: any
+        scope?: unknown
     ): this {
 
         this.costCallback = callback;

@@ -104,7 +104,7 @@ export class LogicBoard extends BaseBoard implements ILogicBoard {
 
     chessToTileXYZ(
         chess: IChess | XYZType | XYType
-    ): XYZType | any | null {
+    ): XYType | null {
 
         return ChessToTileXYZ(this, chess);
     }
@@ -146,7 +146,7 @@ export class LogicBoard extends BaseBoard implements ILogicBoard {
 
     forEachTileXY(
         callback: ForEachTileXYCallback,
-        scope?: any,
+        scope?: unknown,
         order: ForEachTileXYOrder = 0
     ): this {
 

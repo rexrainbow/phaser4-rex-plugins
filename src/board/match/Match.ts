@@ -106,7 +106,7 @@ export class Match implements IMatch {
 
     forEach(
         callback: ForEachSymbolCallback,
-        scope?: any
+        scope?: unknown
     ): this {
 
         let board = this.board;
@@ -126,7 +126,7 @@ export class Match implements IMatch {
 
     refreshSymbols(
         callback: SymbolType | GetSymbolCallback,
-        scope?: any
+        scope?: unknown
     ): this {
 
         let board = this.board;
@@ -199,7 +199,7 @@ export class Match implements IMatch {
 
     match(pattern: number | SymbolType[],
         callback?: MatchCallbackType,
-        scope?: any,
+        scope?: unknown,
         getFirst: boolean = false
     ): this {
 

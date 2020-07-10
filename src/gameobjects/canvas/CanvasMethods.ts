@@ -78,7 +78,7 @@ export let LoadFromURLPromise = function (
 export let GetDataURL = function (
     canvas: ICanvas,
     type?: string,
-    encoderOptions?: any
+    encoderOptions?: unknown
 ): string {
 
     return canvas.canvas.toDataURL(type, encoderOptions);

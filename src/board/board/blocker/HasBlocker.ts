@@ -12,7 +12,7 @@ export let HasBlocker = function (
 ): boolean {
 
     if (tileZ === undefined) {
-        // any chess at (tileX, tileY) has blocker
+        // Any chess at (tileX, tileY) has blocker
         let chessArray = TileXYToChessArray(board, tileX, tileY);
         for (let i = 0, cnt = chessArray.length; i < cnt; i++) {
             let blocker = GetChessData(chessArray[i]).blocker;

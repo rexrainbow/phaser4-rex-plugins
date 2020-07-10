@@ -5,7 +5,7 @@ export type BlockerType = boolean;
 export type EdgeBlockerType = { [direction: number]: boolean };
 
 export interface IChessData {
-    parent: any;
+    parent: unknown;
     board: IBaseBoard | null;
     blocker: BlockerType | EdgeBlockerType;
 

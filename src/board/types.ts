@@ -19,7 +19,7 @@ export interface IChess {
     rexChess?: IChessData;
     x: number,
     y: number,
-    destroy?: () => any;
+    destroy?: () => unknown;
 };
 export type ChessSetType = Set<IChess>;
 export type ZMapType = Map<ZType, IChess>;

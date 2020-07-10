@@ -10,7 +10,7 @@ export let DataToJSON = function (
     let rowKeys = table.rowKeys,
         colKeys = table.colKeys;
     rowKeys.forEach(function (rowKey) {
-        let row: { [key: string]: any } = {};
+        let row: { [key: string]: unknown } = {};
         obj[rowKey] = row;
         colKeys.forEach(function (colKey) {
             row[colKey] = data.get(GetKey(rowKey, colKey));

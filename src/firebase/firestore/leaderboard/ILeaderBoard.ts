@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app';
+import { IBase } from '../utils/IBase';
 
 export type TimeFiltersType = {
     d?: boolean,
@@ -54,7 +54,7 @@ export interface IRecord {
     scoreY?: number;
 
     // Other properties
-    [name: string]: any;
+    [name: string]: unknown;
 };
 
 export type UserInfoType = {
@@ -81,10 +81,7 @@ export interface IConfig {
 
 import { IPageLoader } from '../pageloader/IPageLoader';
 
-export interface ILeaderBoard {
-    database: firebase.firestore.Firestore;
-    rootPath: string;
-    rootRef: firebase.firestore.CollectionReference;
+export interface ILeaderBoard extends IBase {
 
     userInfo: UserInfoType;
     userID: string;

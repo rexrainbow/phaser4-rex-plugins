@@ -84,7 +84,8 @@ export class LeaderBoard implements ILeaderBoard {
     }
 
     setUser(
-        userID: string | UserInfoType, userName?: string
+        userID: string | UserInfoType, 
+        userName?: string
     ): this {
 
         if (typeof (userID) === 'string') {

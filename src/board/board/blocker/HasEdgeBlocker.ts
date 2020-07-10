@@ -14,7 +14,7 @@ export let HasEdgeBlocker = function (
 ): boolean {
 
     if (tileZ === undefined) {
-        // any chess at (tileX, tileY) has blocker
+        // Any chess at (tileX, tileY) has blocker
         let chessArray = TileXYToChessArray(board, tileX, tileY);
         for (let i = 0, cnt = chessArray.length; i < cnt; i++) {
             if (IsEdgeBlocker(GetChessData(chessArray[i]).blocker, direction)) {

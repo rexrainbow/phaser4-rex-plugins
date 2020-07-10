@@ -26,7 +26,7 @@ export interface IConfig {
 
     cost?: number;
     costCallback?: GetCostCallbackType;
-    costCallbackScope?: any;
+    costCallbackScope?: unknown;
 
     occupiedTest?: boolean;
     blockerTest?: boolean;
@@ -48,7 +48,7 @@ export interface IPathFinder {
 
     constCost: number;
     costCallback: GetCostCallbackType | null;
-    costCallbackScope: any;
+    costCallbackScope: unknown;
     pathMode: PathMode;
     occupiedTest: boolean;
     blockerTest: boolean;

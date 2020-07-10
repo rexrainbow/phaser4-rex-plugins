@@ -4,7 +4,7 @@ import { LoadHeader } from './LoadHeader';
 export let Delete = function (
     file: IFile,
     fileID: string
-): Promise<{ userID: string, fileID: string, error?: any }> {
+): Promise<{ userID: string, fileID: string, error?: unknown }> {
 
     const userID = file.userID;
     return LoadHeader(file, fileID) // Try load header

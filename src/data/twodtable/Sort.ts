@@ -29,7 +29,7 @@ export let SortRow = function (
         sortCallback = function (colKeyA: string, colKeyB: string) {
             let valA = data.get(GetKey(rowKey, colKeyA));
             let valB = data.get(GetKey(rowKey, colKeyB));
-            let retVal: any;
+            let retVal: number;
             if ((mode === SortMode.logical_ascending) || (mode === SortMode.logical_descending)) {
                 valA = parseFloat(valA);
                 valB = parseFloat(valB);

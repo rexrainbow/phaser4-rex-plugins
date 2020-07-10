@@ -1,5 +1,9 @@
 import { IEventEmitter as IEE } from './events/IEventEmitter';
 
+export interface IConfig {
+    eventEmitter?: IEE;
+}
+
 export interface IBaseEventEmitter {
     eventEmitter: IEE;
 
@@ -32,6 +36,9 @@ export interface IBaseEventEmitter {
         event?: string
     ): this;
 
+    clearEvent(
+        event: string
+    ): this;
 
     getListenerCount(
         event: string
@@ -39,5 +46,9 @@ export interface IBaseEventEmitter {
 
     getEventNames(
     ): string[];
+
+    getListeners(
+        event: string
+    ): Function[];
 
 }

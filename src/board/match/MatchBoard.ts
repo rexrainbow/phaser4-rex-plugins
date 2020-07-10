@@ -10,7 +10,7 @@ export let MatchAll = function (
     match: IMatch,
     pattern: number | SymbolType[],
     callback?: MatchCallbackType,
-    scope?: any,
+    scope?: unknown,
     getFirst: boolean = false
 ): MatchResult | void {
 

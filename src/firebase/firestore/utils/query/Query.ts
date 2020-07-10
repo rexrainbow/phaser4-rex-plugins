@@ -61,7 +61,7 @@ let QueryNextPage = function (
             done = done || result;
 
             if (done) {
-                let out: any;
+                let out: unknown;
                 if (config.resolveCallback) {
                     out = config.resolveCallback();
                 }

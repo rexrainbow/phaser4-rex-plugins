@@ -5,7 +5,7 @@ import { IsTileXYZ } from '../../utils/IsTileXYZ';
 export let ChessToTileXYZ = function (
     board: IBaseBoard,
     chess: IChess | XYZType | XYType
-): XYZType | XYType | null {
+): XYType | null {
 
     let xyz: XYZType | undefined = board.boardData.getXYZ(chess);
     if (xyz) {

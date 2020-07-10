@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app';
+import { IBase } from '../utils/IBase';
 
 export type UserInfoType = {
     userID: string
@@ -10,7 +10,7 @@ export interface IBaseData {
     type?: 'header' | 'content';
 
     // Other properties
-    [name: string]: any;
+    [name: string]: unknown;
 }
 
 export interface IHeader extends IBaseData {
@@ -41,10 +41,7 @@ export interface IConfig {
     userID?: string;
 }
 
-export interface IFile {
-    database: firebase.firestore.Firestore;
-    rootPath: string;
-    rootRef: firebase.firestore.CollectionReference;
+export interface IFile extends IBase {
 
     userInfo: UserInfoType;
     userID: string;

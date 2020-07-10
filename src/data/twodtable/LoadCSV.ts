@@ -42,7 +42,7 @@ export let LoadCSV = function (
     let data = table.data;
     let colKey: string,
         rowKey: string,
-        value: any;
+        value: unknown;
     for (let r = 0, rcnt = rowKeys.length; r < rcnt; r++) {
         rowKey = rowKeys[r];
 

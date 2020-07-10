@@ -39,6 +39,11 @@ export interface IPageLoader {
         prevQuery?: firebase.firestore.Query
     ): this;
 
+    setBaselineDoc(
+        doc: firebase.firestore.DocumentData,
+        mode: StartModeType
+    ): this;
+
     loadFirstPage(): Promise<firebase.firestore.DocumentData[]>;
 
     loadNextPage(): Promise<firebase.firestore.DocumentData[]>;

@@ -14,7 +14,7 @@ import { CanvasTexture } from '@phaserjs/phaser/textures/types/CanvasTexture';
 export let DrawCanvasTexture = function (
     key: string | Texture,
     callback: (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D) => void,
-    scope?: any,
+    scope?: unknown,
     resolution: number = 1
 ): Texture {
 

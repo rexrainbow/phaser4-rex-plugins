@@ -20,7 +20,7 @@ export class FieldOfView implements IFieldOfView {
     blockerTest: boolean;
     edgeBlockerTest: boolean;
     costCallback: GetCostCallbackType;
-    costCallbackScope: any;
+    costCallbackScope: unknown;
     constCost: number;
 
     chess: IChess;
@@ -166,7 +166,7 @@ export class FieldOfView implements IFieldOfView {
 
     setCostFunction(
         callback?: GetCostCallbackType,
-        scope?: any): this {
+        scope?: unknown): this {
 
         this.costCallback = callback;
         this.costCallbackScope = scope;

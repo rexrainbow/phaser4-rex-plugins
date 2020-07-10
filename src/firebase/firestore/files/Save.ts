@@ -9,7 +9,7 @@ export let Save = function (
     header: IHeader = {},
     content?: IContent | undefined,
     updateMode: boolean = false
-): Promise<{ userID: string, fileID: string, error?: any }> {
+): Promise<{ userID: string, fileID: string, error?: unknown }> {
 
     const userID = file.userID;
     header.userID = userID;

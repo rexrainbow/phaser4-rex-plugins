@@ -29,7 +29,7 @@ export class Canvas extends CanvasBase {
 
     getDataURL(
         type?: string,
-        encoderOptions?: any
+        encoderOptions?: unknown
     ): string {
 
         return GetDataURL(this, type, encoderOptions);

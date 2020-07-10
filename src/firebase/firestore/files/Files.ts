@@ -78,7 +78,7 @@ export class Files implements IFile {
         header: IHeader = {},
         content?: IContent,
         updateMode: boolean = false
-    ): Promise<{ userID: string, fileID: string, error?: any }> {
+    ): Promise<{ userID: string, fileID: string, error?: unknown }> {
 
         return Save(this, fileID, header, content, updateMode);
     }
@@ -98,13 +98,13 @@ export class Files implements IFile {
 
     delete(
         fileID: string
-    ): Promise<{ userID: string, fileID: string, error?: any }> {
+    ): Promise<{ userID: string, fileID: string, error?: unknown }> {
 
         return Delete(this, fileID);
     }
 
     Clear(
-    ): Promise<{ userID: string, error?: any }> {
+    ): Promise<{ userID: string, error?: unknown }> {
 
         return Clear(this);
     }

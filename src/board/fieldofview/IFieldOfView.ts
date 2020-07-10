@@ -20,7 +20,7 @@ export interface IConfig {
     blockerTest?: boolean;
     edgeBlockerTest?: boolean;
     costCallback?: GetCostCallbackType,
-    costCallbackScope?: any;
+    costCallbackScope?: unknown;
     cost?: number;
 
     face?: number;
@@ -33,7 +33,7 @@ export interface IFieldOfView {
     blockerTest: boolean;
     edgeBlockerTest: boolean;
     costCallback: GetCostCallbackType,
-    costCallbackScope: any;
+    costCallbackScope: unknown;
     constCost: number;
 
     chess: IChess;

@@ -335,7 +335,7 @@ export class Table implements ITable {
     appendRow(
         rowKey: string,
         callback?: AppendCallbackType | any,
-        scope?: object
+        scope?: unknown
     ): this {
 
         AppendRow(this, rowKey, callback, scope);
@@ -347,14 +347,14 @@ export class Table implements ITable {
      *
      * @param {string} colKey
      * @param {(AppendCallbackType | any)} [callback]
-     * @param {object} [scope]
+     * @param {unknown} [scope]
      * @returns {this}
      * @memberof Table
      */
     appendCol(
         colKey: string,
         callback?: AppendCallbackType | any,
-        scope?: object
+        scope?: unknown
     ): this {
 
         AppendCol(this, colKey, callback, scope);
@@ -558,11 +558,11 @@ export class Table implements ITable {
      * Dose a columns has a specific value?
      *
      * @param {string} colKey
-     * @param {*} value
+     * @param {unknown} value
      * @returns
      * @memberof Table
      */
-    isValueInCol(colKey: string, value: any) {
+    isValueInCol(colKey: string, value: unknown) {
 
         return IsValueInCol(this, colKey, value)
     }

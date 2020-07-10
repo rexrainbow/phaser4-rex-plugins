@@ -4,7 +4,7 @@ import { DocToHeader } from './DocToHeader';
 
 export let Clear = function (
     file: IFile
-): Promise<{ userID: string, error?: any }> {
+): Promise<{ userID: string, error?: unknown }> {
 
     const userID = file.userID;
     return GetFileQuery(file, userID, undefined, 'header')

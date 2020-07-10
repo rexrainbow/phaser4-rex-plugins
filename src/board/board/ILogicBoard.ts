@@ -7,7 +7,7 @@ export interface IChess {
     rexChess?: IChessData;
     x: number,
     y: number,
-    destroy?: () => any;
+    destroy?: () => unknown;
 };
 export { IChessData, EdgeBlockerType };
 
@@ -91,7 +91,7 @@ export interface ILogicBoard extends IBaseBoard {
 
     forEachTileXY(
         callback: ForEachTileXYCallback,
-        scope: any,
+        scope: unknown,
         order?: ForEachTileXYOrder
     ): this;
 

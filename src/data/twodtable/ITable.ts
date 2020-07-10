@@ -1,7 +1,7 @@
-export type RowType = { [colKey: string]: any };
+export type RowType = { [colKey: string]: unknown };
 export type JSONDataType = {
     [rowKey: string]: {
-        [colKey: string]: any
+        [colKey: string]: unknown
     }
 };
 export type MapDataType = Map<string, any>;
@@ -12,8 +12,8 @@ export type CursorType = {
     rowKey: string
 };
 
-export type CellValueCallbackType = (value?: any, rowKey?: string, colKey?: string, table?: ITable) => any
-export type AppendCallbackType = (table: ITable, rowKey: string, colKey: string) => any;
+export type CellValueCallbackType = (value?: unknown, rowKey?: string, colKey?: string, table?: ITable) => unknown
+export type AppendCallbackType = (table: ITable, rowKey: string, colKey: string) => unknown;
 export type EachKeyCallback = (key?: string, table?: ITable) => boolean;
 
 export enum SortMode {

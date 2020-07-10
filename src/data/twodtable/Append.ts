@@ -6,7 +6,7 @@ export let AppendRow = function (
     table: ITable,
     rowKey: string,
     callback: AppendCallbackType | any = 0,
-    scope?: object
+    scope?: unknown
 ): void {
 
     if (HasRowKey(table, rowKey)) {
@@ -21,7 +21,7 @@ export let AppendRow = function (
     let data = table.data;
     table.colKeys.forEach(function (colKey) {
         let key = GetKey(rowKey, colKey);
-        let value: any;
+        let value: unknown;
         if (isCallbackMode) {
             if (scope) {
                 value = callback.call(scope, table, rowKey, colKey);
@@ -40,7 +40,7 @@ export let AppendCol = function (
     table: ITable,
     colKey: string,
     callback: AppendCallbackType | any = 0,
-    scope?: object
+    scope?: unknown
 ): void {
 
     if (HasColKey(table, colKey)) {
@@ -56,7 +56,7 @@ export let AppendCol = function (
     let data = table.data;
     table.rowKeys.forEach(function (rowKey) {
         let key = GetKey(rowKey, colKey);
-        let value: any;
+        let value: unknown;
         if (isCallbackMode) {
             if (scope) {
                 value = callback.call(scope, table, rowKey, colKey);
