@@ -227,13 +227,14 @@ export class FieldOfView implements IFieldOfView {
     }
 
     los(
-        chessArray: IChess[] | XYType[] | IChess | XYType,
+        chessArray: IChess[] | XYType[],
         visiblePoints: number | undefined,
+        reverse: boolean = false,
         originTileXY: XYType = this.startTileXYZ,
         out?: IChess[] | XYType[]
-    ): IChess[] | XYType[] | boolean {
+    ): IChess[] | XYType[] {
 
-        let result = LOS(this, chessArray, visiblePoints, originTileXY, out);
+        let result = LOS(this, chessArray, visiblePoints, reverse, originTileXY, out);
         this.costCache.clear();
         return result;
     }
