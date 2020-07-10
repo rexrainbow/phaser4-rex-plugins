@@ -21,10 +21,10 @@ export interface IPageLoader {
     baselineMode: StartModeType;
 
     pageIndex: number | null;
-    baselineDocRef: firebase.firestore.DocumentData;
-    prevPageEndDocRef: firebase.firestore.DocumentData;
-    currPageStartDocRef: firebase.firestore.DocumentData;
-    currPageEndDocRef: firebase.firestore.DocumentData;
+    baselineDocRef: firebase.firestore.DocumentReference;
+    prevPageEndDocRef: firebase.firestore.DocumentReference;
+    currPageStartDocRef: firebase.firestore.DocumentReference;
+    currPageEndDocRef: firebase.firestore.DocumentReference;
     startItemIndex: number | null;
     endItemIndex: number | null;
     cacheItems: firebase.firestore.DocumentData[];

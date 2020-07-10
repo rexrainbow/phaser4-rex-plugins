@@ -6,13 +6,13 @@ export let LOS = function (
     fov: IFieldOfView,
     chessArray: IChess[] | XYType[],
     visiblePoints?: number,
-    reverse: boolean = false,
+    inverse: boolean = false,
     originTileXY: XYType = fov.startTileXYZ,
     out: IChess[] | XYType[] = []
 ): IChess[] | XYType[] {
 
     chessArray.forEach(function (chess) {
-        if (IsInLOS(fov, chess, visiblePoints, originTileXY) !== reverse) {
+        if (IsInLOS(fov, chess, visiblePoints, originTileXY) !== inverse) {
             out.push(chess);
         }
     })

@@ -52,6 +52,9 @@ export interface IRecord {
     scoreW?: number;
     scoreM?: number;
     scoreY?: number;
+
+    // Other properties
+    [name: string]: any;
 };
 
 export type UserInfoType = {
