@@ -6,7 +6,7 @@ export let Clear = function (
     file: IFile
 ): Promise<{ userID: string, error?: any }> {
 
-    let userID = file.userID;
+    const userID = file.userID;
     return GetFileQuery(file, userID, undefined, 'header')
         .get()
         .then(function (querySnapshot) {

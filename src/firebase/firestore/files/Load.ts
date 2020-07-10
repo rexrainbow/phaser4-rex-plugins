@@ -10,7 +10,7 @@ export let Load = function (
     fileID: string
 ): Promise<LoadResultType> {
 
-    let userID = file.userID;
+    const userID = file.userID;
     return GetFileQuery(file, userID, fileID).get()
         .then(function (querySnapshot) {
             let header: IHeader,

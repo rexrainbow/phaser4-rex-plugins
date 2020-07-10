@@ -11,7 +11,7 @@ export let Save = function (
     updateMode: boolean = false
 ): Promise<{ userID: string, fileID: string, error?: any }> {
 
-    let userID = file.userID;
+    const userID = file.userID;
     header.userID = userID;
     header.fileID = fileID;
     header.type = 'header';

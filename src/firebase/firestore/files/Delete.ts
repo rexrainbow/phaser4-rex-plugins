@@ -6,7 +6,7 @@ export let Delete = function (
     fileID: string
 ): Promise<{ userID: string, fileID: string, error?: any }> {
 
-    let userID = file.userID;
+    const userID = file.userID;
     return LoadHeader(file, fileID) // Try load header
         .then(function (prevHeader: IHeader) {
             if (!prevHeader) { // File dose not exist
