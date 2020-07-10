@@ -74,7 +74,7 @@ export interface IConfig {
     userName?: string;
     boardID?: string;
     tag?: string;
-    timeFilters?: false | TimeFiltersType;
+    timeFilters?: boolean | TimeFiltersType;
     timeFilterType?: TimeFilterTypeStringType;
     pageItemCount?: number;
 }

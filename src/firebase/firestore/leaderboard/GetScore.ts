@@ -6,7 +6,7 @@ import { GetMyRecordQuery } from './GetQueryMethods';
 
 export let GetScore = function (
     leaderBoard: ILeaderBoard,
-    userID: string
+    userID: string = leaderBoard.userID
 ): Promise<IRecord> {
 
     return GetMyRecordQuery(leaderBoard, userID).get()

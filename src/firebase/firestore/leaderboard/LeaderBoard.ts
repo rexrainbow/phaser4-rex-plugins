@@ -115,7 +115,7 @@ export class LeaderBoard implements ILeaderBoard {
     }
 
     setTimeFilters(
-        filters: false | TimeFiltersType
+        filters: boolean | TimeFiltersType
     ): this {
 
         if (filters === false) {
@@ -127,7 +127,7 @@ export class LeaderBoard implements ILeaderBoard {
                 w = true,
                 m = true,
                 y = true
-            } = filters)
+            } = (filters === true) ? {} : filters)
             this.timeFilters = {
                 d: d,
                 w: w,
@@ -170,14 +170,17 @@ export class LeaderBoard implements ILeaderBoard {
     post(
         score: number,
         extraData?: object | undefined | null,
-        timeStamp?: number
+        timeStamp?: number | Date
     ): Promise<void> {
 
+        if (timeStamp instanceof Date) {
+            timeStamp = timeStamp.getTime();
+        }
         return Post(this, score, extraData, timeStamp);
     }
 
     getScore(
-        userID: string
+        userID: string = this.userID
     ): Promise<IRecord> {
 
         return GetScore(this, userID);
