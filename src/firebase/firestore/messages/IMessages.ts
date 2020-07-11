@@ -29,7 +29,7 @@ export interface IConfig extends IEventEmitterConfig {
     pageItemCount?: number;
 }
 
-export interface IMessager extends IBaseEventEmitter, IBase {
+export interface IMessages extends IBaseEventEmitter, IBase {
 
     userInfo: UserInfoType;
     userID: string;

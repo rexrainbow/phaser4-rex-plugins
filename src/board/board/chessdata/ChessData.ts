@@ -10,7 +10,7 @@ export class ChessData implements IChessData {
     board: IBaseBoard | null;
     blocker: BlockerType | EdgeBlockerType;
 
-    constructor(parent: unknown) {
+    constructor(parent: any) {
         this.parent = parent;
         this.board = null;
         this.blocker = false;

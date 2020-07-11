@@ -1,11 +1,11 @@
 import * as firebase from 'firebase/app';
 import {
-    IMessager, MessageType
-} from './IMessager';
+    IMessages, MessageType
+} from './IMessages';
 
 
 export let Send = function (
-    messager: IMessager,
+    messager: IMessages,
     message: unknown
 ): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> {
 

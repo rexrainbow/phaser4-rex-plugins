@@ -6,7 +6,7 @@ import { GetKey } from './MapKey';
 export let IsValueInRow = function (
     table: ITable,
     rowKey: string,
-    value: unknown
+    value: any
 ): boolean {
 
     if (!HasRowKey(table, rowKey)) {
@@ -28,7 +28,7 @@ export let IsValueInRow = function (
 export let IsValueInCol = function (
     table: ITable,
     colKey: string,
-    value: unknown
+    value: any
 ): boolean {
 
     if (!HasColKey(table, colKey)) {

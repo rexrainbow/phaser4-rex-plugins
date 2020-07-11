@@ -10,7 +10,7 @@ import { CSVParser } from '../../utils/string/papaparse';
  *         delimiter = ',',
  *         convert = true
  *     }={}]
- * @returns {unknown[]}
+ * @returns {any[]}
  */
 export let CSVToArray = function (
     csvString: string,
@@ -18,9 +18,9 @@ export let CSVToArray = function (
         delimiter = ',',
         convert = true
     }: IConfig = {}
-): unknown[] {
+): any[] {
 
-    let arr: unknown[] = CSVParser.parse(csvString, {
+    let arr: any[] = CSVParser.parse(csvString, {
         delimiter: delimiter,
         dynamicTyping: convert
     }).data;

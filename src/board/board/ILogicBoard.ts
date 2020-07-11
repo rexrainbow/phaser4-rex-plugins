@@ -7,7 +7,7 @@ export interface IChess {
     rexChess?: IChessData;
     x: number,
     y: number,
-    destroy?: () => unknown;
+    destroy?: () => any;
 };
 export { IChessData, EdgeBlockerType };
 

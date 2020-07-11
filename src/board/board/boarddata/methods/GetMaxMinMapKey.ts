@@ -1,4 +1,4 @@
-export let GetMaxMapKey = function (map: Map<number, unknown>) {
+export let GetMaxMapKey = function (map: Map<number, any>) {
     let result = -Infinity;
     for (const [key, item] of map) {
         if (result < key) {
@@ -8,7 +8,7 @@ export let GetMaxMapKey = function (map: Map<number, unknown>) {
     return result;
 }
 
-export let GetMinMapKey = function (map: Map<number, unknown>) {
+export let GetMinMapKey = function (map: Map<number, any>) {
     let result = Infinity;
     for (const [key, item] of map) {
         if (result > key) {

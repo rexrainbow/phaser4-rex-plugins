@@ -6,7 +6,7 @@ export let Set = function (
     table: ITable,
     rowKey: string,
     colKey: string,
-    value: unknown
+    value: any
 ): void {
 
     if (!HasKey(table, rowKey, colKey)) {

@@ -41,7 +41,7 @@ export let Query = function ({
 
 let QueryNextPage = function (
     config: QueryNextPageConfig
-): Promise<any> {
+): Promise<unknown> {
 
     let query = config.query;
     if (config.startDocRef) {

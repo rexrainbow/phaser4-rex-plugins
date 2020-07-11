@@ -37,7 +37,7 @@ export class BaseEventEmitter implements IBaseEventEmitter {
         event: string,
         callback: Function,
         context: unknown = this,
-        once: boolean = true
+        once: boolean = false
     ): this {
 
         if (this.eventEmitter) { On(this.eventEmitter, event, callback, context, once); }

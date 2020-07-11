@@ -1,12 +1,12 @@
 import * as firebase from 'firebase/app';
 import {
-    IMessager,
+    IMessages,
     MessageType
-} from './IMessager';
+} from './IMessages';
 import { GetReceiverQuery, GetPageQuery } from './GetQueryMethods';
 
 export let StartReceiving = function (
-    messager: IMessager
+    messager: IMessages
 ):void {
 
     let query = GetReceiverQuery(messager).orderBy('timestamp', 'desc').limit(1);
@@ -46,7 +46,7 @@ export let StartReceiving = function (
 };
 
 export let StopReceiving = function (
-    messager: IMessager
+    messager: IMessages
 ): void {
 
     if (messager.unsubscribe) {
@@ -59,7 +59,7 @@ export let StopReceiving = function (
 };
 
 export let LoadPreviousMessages = function (
-    messager: IMessager
+    messager: IMessages
 ): Promise<MessageType[]> {
 
     ResetPageQuery(messager);
@@ -77,7 +77,7 @@ export let LoadPreviousMessages = function (
 
 
 let ResetPageQuery = function (
-    messager: IMessager,
+    messager: IMessages,
     receiverID: string = messager.receiverID,
     baselineDoc?: firebase.firestore.DocumentData
 ): void {

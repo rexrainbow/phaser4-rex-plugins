@@ -5,7 +5,7 @@ export let Get = function (
     table: ITable,
     rowKey: string,
     colKey: string
-): unknown {
+): any {
 
     return table.data.get(GetKey(rowKey, colKey));
 }

@@ -5,6 +5,7 @@ import * as CanvasTexture from './texture/canvastexture';
 import { CSVToArray } from './data/csvtoarray';
 import { DrawCanvasTexture } from './texture/canvastexture';
 import * as Firebase from './firebase';
+import { FSM } from './logic/fsm';
 import { Gashapon } from './math/gashapon';
 import { LZString } from './string/lzstring';
 import { RunCommands } from './logic/runcommands';
@@ -19,6 +20,7 @@ export {
     CSVToArray,
     DrawCanvasTexture,
     Firebase,
+    FSM,
     Gashapon,
     LZString,
     RunCommands,

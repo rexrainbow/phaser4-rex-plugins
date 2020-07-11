@@ -21,7 +21,7 @@ export let AppendRow = function (
     let data = table.data;
     table.colKeys.forEach(function (colKey) {
         let key = GetKey(rowKey, colKey);
-        let value: unknown;
+        let value: any;
         if (isCallbackMode) {
             if (scope) {
                 value = callback.call(scope, table, rowKey, colKey);
@@ -56,7 +56,7 @@ export let AppendCol = function (
     let data = table.data;
     table.rowKeys.forEach(function (rowKey) {
         let key = GetKey(rowKey, colKey);
-        let value: unknown;
+        let value: any;
         if (isCallbackMode) {
             if (scope) {
                 value = callback.call(scope, table, rowKey, colKey);

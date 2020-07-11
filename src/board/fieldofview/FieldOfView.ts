@@ -166,7 +166,8 @@ export class FieldOfView implements IFieldOfView {
 
     setCostFunction(
         callback?: GetCostCallbackType,
-        scope?: unknown): this {
+        scope?: unknown
+    ): this {
 
         this.costCallback = callback;
         this.costCallbackScope = scope;

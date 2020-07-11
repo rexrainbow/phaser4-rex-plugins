@@ -1,15 +1,15 @@
 import * as firebase from 'firebase/app';
 import {
-    IMessager,
+    IMessages,
     IConfig, UserInfoType, MessageType
-} from './IMessager';
+} from './IMessages';
 import { BaseEventEmitter } from '../../../utils/eventemitter/BaseEventEmitter';
 import { IPageLoader } from '../pageloader/IPageLoader';
 import { StaticPageLoader } from '../pageloader/StaticPageLoader';
 import { Send } from './Send';
 import { StartReceiving, StopReceiving, LoadPreviousMessages } from './ReceiveMethods';
 
-export class Messages extends BaseEventEmitter implements IMessager {
+export class Messages extends BaseEventEmitter implements IMessages {
     database: firebase.firestore.Firestore;
     rootPath: string;
     rootRef: firebase.firestore.CollectionReference;
