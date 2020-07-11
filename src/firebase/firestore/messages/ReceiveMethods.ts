@@ -98,7 +98,7 @@ let DocToMessage = function (
     doc: firebase.firestore.DocumentData
 ): MessageType {
 
-    let message = doc.data();
-    message.timestamp = message.timestamp.toDate();
+    let message = doc.data() as MessageType;
+    message.timestamp = (message.timestamp as firebase.firestore.Timestamp).toDate();
     return message;
 }

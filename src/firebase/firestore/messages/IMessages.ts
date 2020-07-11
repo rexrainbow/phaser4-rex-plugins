@@ -16,7 +16,8 @@ export type UserInfoType = {
 export type MessageType = {
     senderID: string,
     message: unknown,
-    timestamp: unknown,
+    timestamp: firebase.firestore.FieldValue | Date,
+    // Send (firebase.firestore.FieldValue), receive (firebase.firestore.Timestamp), transfer to (Date)
     senderName?: string,
     receiverID?: string
 }
