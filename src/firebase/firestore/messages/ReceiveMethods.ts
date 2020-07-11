@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import {
     IMessages,
-    MessageType
+    IMessage
 } from './IMessages';
 import { GetReceiverQuery, GetPageQuery } from './GetQueryMethods';
 
@@ -29,7 +29,7 @@ export let StartReceiving = function (
                 if (messager.skipFirst) {  // Load previos data
                     messager.skipFirst = false;
                 } else {
-                    let d: MessageType = DocToMessage(doc);
+                    let d: IMessage = DocToMessage(doc);
                     messager.cacheMessages.push(d);
                     messager.emit('receive', d);
                 }
@@ -60,12 +60,12 @@ export let StopReceiving = function (
 
 export let LoadPreviousMessages = function (
     messager: IMessages
-): Promise<MessageType[]> {
+): Promise<IMessage[]> {
 
     ResetPageQuery(messager);
     return messager.page.loadNextPage()
         .then(function (docs) {
-            let messages: MessageType[] = [];
+            let messages: IMessage[] = [];
             for (let i = 0, cnt = docs.length; i < cnt; i++) {
                 messages.push(DocToMessage(docs[i]));
             }
@@ -96,9 +96,9 @@ let ResetPageQuery = function (
 
 let DocToMessage = function (
     doc: firebase.firestore.DocumentData
-): MessageType {
+): IMessage {
 
-    let message = doc.data() as MessageType;
+    let message = doc.data() as IMessage;
     message.timestamp = (message.timestamp as firebase.firestore.Timestamp).toDate();
     return message;
 }

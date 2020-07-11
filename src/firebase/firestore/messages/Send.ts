@@ -1,6 +1,6 @@
 import * as firebase from 'firebase/app';
 import {
-    IMessages, MessageType
+    IMessages, IMessage
 } from './IMessages';
 
 
@@ -9,7 +9,7 @@ export let Send = function (
     message: unknown
 ): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> {
 
-    let d: MessageType = {
+    let d: IMessage = {
         senderID: messager.userID,
         message: message,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()

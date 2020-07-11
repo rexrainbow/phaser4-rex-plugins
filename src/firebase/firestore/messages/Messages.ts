@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import {
     IMessages,
-    IConfig, UserInfoType, MessageType
+    IConfig, UserInfoType, IMessage
 } from './IMessages';
 import { BaseEventEmitter } from '../../../utils/eventemitter/BaseEventEmitter';
 import { IPageLoader } from '../pageloader/IPageLoader';
@@ -22,7 +22,7 @@ export class Messages extends BaseEventEmitter implements IMessages {
 
     page: IPageLoader;
 
-    cacheMessages: MessageType[];
+    cacheMessages: IMessage[];
 
     constructor({
         eventEmitter,
@@ -142,7 +142,7 @@ export class Messages extends BaseEventEmitter implements IMessages {
     }
 
     loadPreviousMessages(
-    ): Promise<MessageType[]> {
+    ): Promise<IMessage[]> {
 
         return LoadPreviousMessages(this);
     }

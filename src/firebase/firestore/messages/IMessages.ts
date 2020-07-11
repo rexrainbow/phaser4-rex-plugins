@@ -13,7 +13,7 @@ export type UserInfoType = {
     userName: string
 }
 
-export type MessageType = {
+export interface IMessage {
     senderID: string,
     message: unknown,
     timestamp: firebase.firestore.FieldValue | Date,
@@ -43,5 +43,5 @@ export interface IMessages extends IBaseEventEmitter, IBase {
 
     page: IPageLoader;
 
-    cacheMessages: MessageType[];
+    cacheMessages: IMessage[];
 }
