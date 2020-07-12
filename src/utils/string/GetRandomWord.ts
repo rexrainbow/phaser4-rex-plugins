@@ -20,7 +20,7 @@ export let GetRandomWord = function (
     let count = (max === undefined) ? min : RandomInt(min, max);
     let word = '';
     for (let i = 0; i < count; i++) {
-        word += GetRandomItem(candidates);
+        word += GetRandomItem(Array.from(candidates));
     }
     return word;
 }

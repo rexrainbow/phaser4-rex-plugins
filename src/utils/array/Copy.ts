@@ -1,9 +1,9 @@
-export let Copy = function (
+export let Copy = function<T> (
     dest: any[],
-    src: any[],
+    src: T[],
     startIdx: number = 0,
     endIdx: number = src.length
-): any[] {
+): T[] {
 
     dest.length = endIdx - startIdx;
     for (let i = 0, cnt = dest.length; i < cnt; i++) {

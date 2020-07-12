@@ -1,6 +1,6 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import { Firebase as rexFire } from '../../src'
+import { Firebase as rexFire } from '../../src';
 
 firebase.initializeApp({
     apiKey: 'AIzaSyAN_ejscIWn3z6XpOhhl2Okh_MuEXq4nSQ',

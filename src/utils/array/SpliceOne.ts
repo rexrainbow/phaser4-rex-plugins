@@ -1,7 +1,7 @@
-export let SpliceOne = function (
-    array: any[],
+export let SpliceOne = function <T>(
+    array: T[],
     index: number
-): any {
+): T {
 
     if (index >= array.length) {
         return;
