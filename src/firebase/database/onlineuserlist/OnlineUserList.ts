@@ -18,6 +18,7 @@ import {
 export class OnlineUserList extends BaseEventEmitter implements IOnlineUserList {
     database: firebase.database.Database;
     rootPath: string;
+    rootRef: firebase.database.Reference;
 
     userInfo: UserInfoType;
 
@@ -124,11 +125,8 @@ export class OnlineUserList extends BaseEventEmitter implements IOnlineUserList 
 
     setRootPath(rootPath) {
         this.rootPath = rootPath;
+        this.rootRef = this.database.ref(this.rootPath);
         return this;
-    }
-
-    get rootRef() {
-        return this.database.ref(this.rootPath);
     }
 
     setUser(
