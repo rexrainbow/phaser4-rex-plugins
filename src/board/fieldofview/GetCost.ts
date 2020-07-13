@@ -1,6 +1,6 @@
 import { IFieldOfView, CostValueType, BLOCKER } from './IFieldOfView';
 import { TileXY, Blocker } from '../board';
-import { XYType } from '../types';
+import { XYType } from '../Types';
 import { XYToKey } from '../utils/StringKey';
 
 export let GetCost = function (

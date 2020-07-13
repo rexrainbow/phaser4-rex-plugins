@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { XYType } from '../../types';
+import { XYType } from '../../Types';
 import { GetNeighborTileXY } from './GetNeighborTileXY'
 
 export let GetNeighborTileDirection = function (

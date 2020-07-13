@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../board/IBaseBoard';
-import { XYType } from '../types';
+import { XYType } from '../Types';
 
 export { IBaseBoard, XYType };
 

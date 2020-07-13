@@ -1,5 +1,5 @@
 import { IPathFinder, CostValueType } from './IPathFinder';
-import { XType, YType } from '../types';
+import { XType, YType } from '../Types';
 import { XYToKey } from '../utils/StringKey';
 import { IAStarNode } from './astar/IAStarNode';
 

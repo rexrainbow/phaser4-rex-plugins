@@ -3,7 +3,7 @@ import {
     IBaseBoard, SymbolType, DirMaskType,
     GetSymbolCallback, MatchCallbackType, ForEachSymbolCallback, MatchResult
 } from './IMatch';
-import { XYType } from '../types';
+import { XYType } from '../Types';
 import { MatchAll, MatchAny } from './MatchBoard';
 import { MatchAtDir } from './MatchAtDir';
 import { Group } from './Group';

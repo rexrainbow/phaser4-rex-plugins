@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { IChess, XYType } from '../../types';
+import { IChess, XYType } from '../../Types';
 import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
 import { AngleBetween } from './AngleBetween';
 import { Normalize as AngleNormalize } from '../../../utils/math/angle/Normalize';

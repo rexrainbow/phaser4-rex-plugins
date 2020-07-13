@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { XYType } from '../../types';
+import { XYType } from '../../Types';
 import { MirrorMode, MirrorModeString } from '../../grid/IGrid';
 import { Offset } from './Offset';
 

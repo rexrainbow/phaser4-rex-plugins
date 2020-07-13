@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { XType, YType, ZType, IChess } from '../../types';
+import { XType, YType, ZType, IChess } from '../../Types';
 
 export let TileXYZToChess = function (
     board: IBaseBoard,

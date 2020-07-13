@@ -1,5 +1,5 @@
 import { IFieldOfView } from './IFieldOfView';
-import { IChess, XYZType, XYType } from '../types';
+import { IChess, XYZType, XYType } from '../Types';
 import { TileXY, WorldXY, Shape } from '../board';
 import { IsInCone } from './IsInCone';
 import { IsPathVisible } from './IsPathVisible';

@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { IChess, XYType } from '../../types';
+import { IChess, XYType } from '../../Types';
 import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
 import { TileXYToWorldXY } from './TileXYToWorldXY';
 import { Between as GetAngle } from '../../../utils/math/angle/Between';

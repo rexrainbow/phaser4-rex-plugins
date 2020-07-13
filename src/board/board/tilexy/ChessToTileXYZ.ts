@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { IChess, XYZType, XYType } from '../../types';
+import { IChess, XYZType, XYType } from '../../Types';
 import { IsTileXYZ } from '../../utils/IsTileXYZ';
 
 export let ChessToTileXYZ = function (

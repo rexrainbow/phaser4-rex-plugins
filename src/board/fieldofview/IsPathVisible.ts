@@ -2,7 +2,7 @@ import {
     IFieldOfView,
     BLOCKER
 } from './IFieldOfView';
-import { XYType } from '../types';
+import { XYType } from '../Types';
 import { GetCost } from './GetCost';
 
 export let IsPathVisible = function (

@@ -1,5 +1,5 @@
 import { IFieldOfView } from './IFieldOfView';
-import { IChess, XYType } from '../types';
+import { IChess, XYType } from '../Types';
 import { IsInLOS } from './IsInLOS';
 
 export let LOS = function (

@@ -1,5 +1,5 @@
 import { IBaseBoard } from './IBaseBoard';
-import { XType, YType, ZType, XYType, XYZType, Vec2Type } from '../types';
+import { XType, YType, ZType, XYType, XYZType, Vec2Type } from '../Types';
 import { IGrid } from '../grid/IGrid';
 import { IChessData, EdgeBlockerType } from './chessdata/IChessData';
 

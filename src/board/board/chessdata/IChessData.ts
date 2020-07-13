@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { ZType, XYZType } from '../../types';
+import { ZType, XYZType } from '../../Types';
 
 export type BlockerType = boolean;
 export type EdgeBlockerType = { [direction: number]: boolean };

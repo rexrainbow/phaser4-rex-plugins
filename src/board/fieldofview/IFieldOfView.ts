@@ -1,4 +1,4 @@
-import { XYType, XYZType, IChess } from '../types';
+import { XYType, XYZType, IChess } from '../Types';
 import { IBaseBoard } from '../board/IBaseBoard';
 
 export const BLOCKER = null;

@@ -1,5 +1,5 @@
 import { BaseBoard } from './BaseBoard';
-import { XType, YType, ZType, XYType, XYZType, Vec2Type, IChess } from '../types';
+import { XType, YType, ZType, XYType, XYZType, Vec2Type, IChess } from '../Types';
 import { ILogicBoard, IChessData } from './ILogicBoard';
 
 import { AddChess } from './chess/AddChess';

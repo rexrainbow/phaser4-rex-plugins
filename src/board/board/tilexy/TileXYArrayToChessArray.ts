@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { ZType, XYType, IChess } from '../../types';
+import { ZType, XYType, IChess } from '../../Types';
 import { TileXYZToChess } from './TileXYZToChess';
 import { TileXYToChessArray } from './TileXYToChessArray';
 

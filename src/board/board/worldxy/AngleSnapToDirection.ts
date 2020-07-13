@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { XYType } from '../../types';
+import { XYType } from '../../Types';
 import { AngleToward } from './AngleToward';
 import { RadToDeg } from '../../../utils/math/angle/RadToDeg';
 import { ShortestBetween } from '../../../utils/math/angle/ShortestBetween';

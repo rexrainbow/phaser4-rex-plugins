@@ -1,5 +1,5 @@
 import { IBoardData } from './IBoardData';
-import { XType, YType, ZType, XYZType, IChess, ZMapType, ChessSetType } from '../../types';
+import { XType, YType, ZType, XYZType, IChess, ZMapType, ChessSetType } from '../../Types';
 import { AddChess } from './methods/AddChess';
 import { GetChess } from './methods/GetChess';
 import { RemoveChess } from './methods/RemoveChess';

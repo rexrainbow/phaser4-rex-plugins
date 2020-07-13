@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { ZType, XYType } from '../../types';
+import { ZType, XYType } from '../../Types';
 import { TileXYZToChess } from '../tilexy/TileXYZToChess';
 
 export let GetEmptyTileXYArray = function (

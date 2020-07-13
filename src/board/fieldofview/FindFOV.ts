@@ -1,5 +1,5 @@
 import { IFieldOfView } from './IFieldOfView';
-import { XYType } from '../types';
+import { XYType } from '../Types';
 import { Ring } from '../board';
 import { IsInLOS } from './IsInLOS';
 

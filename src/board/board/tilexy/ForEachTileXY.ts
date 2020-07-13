@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { XYType } from '../../types';
+import { XYType } from '../../Types';
 
 export type ForEachTileXYCallback = (tileXY: XYType, board: IBaseBoard) => void;
 export enum ForEachTileXYOrder {

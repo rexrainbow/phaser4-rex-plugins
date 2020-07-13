@@ -1,4 +1,4 @@
-import { XType, YType, Vec2Type } from '../types';
+import { XType, YType, Vec2Type } from '../Types';
 
 export let XYToKey = function (
     x: XType | undefined,

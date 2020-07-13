@@ -1,7 +1,7 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { WorldXYToTileXY } from '../worldxy/WorldXYToTileXY';
 import { Contains } from '../tilexy/Contains';
-import { XYType } from '../../types';
+import { XYType } from '../../Types';
 import { DistanceBetween } from '../../../utils/math/distance/DistanceBetween';
 import { Linear } from '../../../utils/math/Linear';
 

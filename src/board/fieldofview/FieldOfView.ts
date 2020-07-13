@@ -5,7 +5,7 @@ import {
     ConeType, ConeTypeString,
     CostValueType, BLOCKER
 } from './IFieldOfView';
-import { IChess, XYZType, XYType } from '../types';
+import { IChess, XYZType, XYType } from '../Types';
 import { IBaseBoard } from '../board/IBaseBoard';
 import { WorldXY } from '../board'
 import { DegToRad } from '../../utils/math/angle/DegToRad';

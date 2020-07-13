@@ -1,4 +1,4 @@
-import { XYZType } from '../../types';
+import { XYZType } from '../../Types';
 import { IBaseBoard } from '../IBaseBoard';
 import {
     IChessData,

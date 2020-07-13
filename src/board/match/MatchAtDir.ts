@@ -3,7 +3,7 @@ import {
     SymbolType,
     MatchResult
 } from './IMatch';
-import { XYType } from '../types';
+import { XYType } from '../Types';
 import { Nieghbors } from '../board'
 
 export let MatchAtDir = function (

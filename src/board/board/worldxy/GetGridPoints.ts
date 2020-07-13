@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { Vec2Type } from '../../types';
+import { Vec2Type } from '../../Types';
 
 
 export let GetGridPoints = function (

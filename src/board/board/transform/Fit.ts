@@ -1,6 +1,6 @@
 // Offset tileXYArray to (0,0), and set board size to fit tileXYArray
 import { IBaseBoard } from '../IBaseBoard';
-import { XYType } from '../../types';
+import { XYType } from '../../Types';
 import { Offset } from './Offset';
 import { SetBoardHeight } from '../boarddata/SetBoardHeight';
 import { SetBoardWidth } from '../boarddata/SetBoardWidth';

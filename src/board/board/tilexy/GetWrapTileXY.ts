@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { XType, YType, XYType } from '../../types';
+import { XType, YType, XYType } from '../../Types';
 import { Wrap } from '../../../utils/math/Wrap';
 
 export let GetWrapTileXY = function (

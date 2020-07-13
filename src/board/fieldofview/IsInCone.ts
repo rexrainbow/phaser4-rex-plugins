@@ -1,5 +1,5 @@
 import { IFieldOfView, ConeType } from './IFieldOfView';
-import { XYType } from '../types';
+import { XYType } from '../Types';
 import { TileXY, WorldXY } from '../board';
 
 export let IsInCone = function (

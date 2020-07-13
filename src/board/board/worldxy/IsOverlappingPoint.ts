@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { ZType } from '../../types';
+import { ZType } from '../../Types';
 import { WorldXYToTileXY } from './WorldXYToTileXY';
 import { Contains } from '../tilexy/Contains'
 

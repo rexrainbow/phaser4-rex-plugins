@@ -1,5 +1,5 @@
 import { IBoardData } from '../IBoardData';
-import { XType, YType, ZType } from '../../../types';
+import { XType, YType, ZType } from '../../../Types';
 import { GetChess } from './GetChess';
 
 export let Contains = function (

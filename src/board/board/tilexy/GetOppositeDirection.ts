@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { XType, YType } from '../../types';
+import { XType, YType } from '../../Types';
 
 export let GetOppositeDirection = function (
     baord: IBaseBoard,

@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { IChess } from '../../types';
+import { IChess } from '../../Types';
 
 
 export let GetAllChess = function (

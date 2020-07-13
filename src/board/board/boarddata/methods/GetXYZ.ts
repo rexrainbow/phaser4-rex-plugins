@@ -1,5 +1,5 @@
 import { IBoardData } from '../IBoardData';
-import { IChess, XYZType } from '../../../types';
+import { IChess, XYZType } from '../../../Types';
 
 export let GetXYZ = function (
     boardData: IBoardData,

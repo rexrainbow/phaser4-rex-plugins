@@ -1,5 +1,5 @@
 import { IPathFinder, SearchResultType } from './IPathFinder';
-import { IChess, XYZType } from '../types';
+import { IChess, XYZType } from '../Types';
 import { IsChess, IsTileXYZ } from '../utils';
 import { XYToKey } from '../utils/StringKey';
 import { IAStarNode } from './astar/IAStarNode';

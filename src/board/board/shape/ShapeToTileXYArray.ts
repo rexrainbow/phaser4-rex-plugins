@@ -1,6 +1,6 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { BoundsType as ShapeType } from '../../../utils/types/BoundsType';
-import { XYType } from '../../types';
+import { XYType } from '../../Types';
 import { WorldXYToTileXY } from '../worldxy/WorldXYToTileXY';
 import { TileXYToWorldXY } from '../worldxy/TileXYToWorldXY';
 import { Clamp } from '../../../utils/math/Clamp';

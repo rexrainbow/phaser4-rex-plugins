@@ -1,4 +1,4 @@
-import { XType, YType, ZType, IChess, ZMapType } from '../../../types';
+import { XType, YType, ZType, IChess, ZMapType } from '../../../Types';
 import { XYToKey } from '../../../utils/StringKey';
 import { FreeEmptyMap, GetEmptyMap } from '../../../../utils/pool/EmptyMap';
 

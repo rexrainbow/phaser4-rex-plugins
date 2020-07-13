@@ -1,5 +1,5 @@
 import { IBoardData } from '../IBoardData';
-import { IChess } from '../../../types';
+import { IChess } from '../../../Types';
 
 export let HasChess = function (
     boardData: IBoardData,

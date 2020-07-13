@@ -1,5 +1,5 @@
 import { IBaseBoard } from '../IBaseBoard';
-import { IChess, XYType } from '../../types';
+import { IChess, XYType } from '../../Types';
 import { GetNeighborChessDirection } from './GetNeighborChessDirection'
 
 export let AreNeighbors = function (
