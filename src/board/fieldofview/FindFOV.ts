@@ -3,7 +3,7 @@ import { XYType } from '../Types';
 import { Ring } from '../board';
 import { IsInLOS } from './IsInLOS';
 
-export let FindFOV = function (
+export function FindFOV(
     fov: IFieldOfView,
     visiblePoints?: number,
     originTileXY: XYType = fov.startTileXYZ,

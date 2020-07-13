@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XYZType, XYType } from '../../Types';
 import { IsTileXYZ } from '../../utils/IsTileXYZ';
 
-export let ChessToTileXYZ = function (
+export function ChessToTileXYZ(
     board: IBaseBoard,
     chess: IChess | XYZType | XYType
 ): XYType | null {

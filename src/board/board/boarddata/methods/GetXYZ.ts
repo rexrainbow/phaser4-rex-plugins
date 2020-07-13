@@ -1,7 +1,7 @@
 import { IBoardData } from '../IBoardData';
 import { IChess, XYZType } from '../../../Types';
 
-export let GetXYZ = function (
+export function GetXYZ(
     boardData: IBoardData,
     chess: IChess
 ): XYZType | null {

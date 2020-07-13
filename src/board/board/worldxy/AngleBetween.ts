@@ -4,7 +4,7 @@ import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
 import { TileXYToWorldXY } from './TileXYToWorldXY';
 import { Between as GetAngle } from '../../../utils/math/angle/Between';
 
-export let AngleBetween = function (
+export function AngleBetween(
     board: IBaseBoard,
     chessA: IChess | XYType,
     chessB: IChess | XYType

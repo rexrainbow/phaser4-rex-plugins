@@ -3,8 +3,7 @@ import { ZType, XYType, IChess } from '../../Types';
 import { TileXYZToChess } from './TileXYZToChess';
 import { TileXYToChessArray } from './TileXYToChessArray';
 
-
-export let TileXYArrayToChessArray = function (
+export function TileXYArrayToChessArray(
     board: IBaseBoard,
     tileXYArray: XYType[],
     tileZ?: ZType,

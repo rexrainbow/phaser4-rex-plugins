@@ -1,7 +1,7 @@
 import { IHexagonBase, LayoutMode } from './IHexagonBase';
 import { Vec2Type } from '../IGrid';
 
-export let GetWorldXY = function (
+export function GetWorldXY(
     hexagon: IHexagonBase,
     tileX: number | Vec2Type,
     tileY: number,

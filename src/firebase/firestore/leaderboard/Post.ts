@@ -6,7 +6,7 @@ import {
 import { GetTime } from './GetTime';
 import { GetMyRecordQuery } from './GetQueryMethods';
 
-export let Post = function (
+export function Post(
     leaderBoard: ILeaderBoard,
     score: number,
     extraData?: object | undefined | null,

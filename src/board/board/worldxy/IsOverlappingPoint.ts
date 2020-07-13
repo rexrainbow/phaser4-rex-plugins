@@ -3,8 +3,7 @@ import { ZType } from '../../Types';
 import { WorldXYToTileXY } from './WorldXYToTileXY';
 import { Contains } from '../tilexy/Contains'
 
-
-export let IsOverlappingPoint = function (
+export function IsOverlappingPoint(
     board: IBaseBoard,
     worldX: number,
     worldY: number,

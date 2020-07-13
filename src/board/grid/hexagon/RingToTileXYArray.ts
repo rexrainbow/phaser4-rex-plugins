@@ -2,7 +2,7 @@ import { IHexagonBase } from './IHexagonBase';
 import { Vec2Type } from '../IGrid';
 import { cr2cube, cube2cr } from './CubeTransfer';
 
-export let RingToTileXYArray = function (
+export function RingToTileXYArray(
     hexagon: IHexagonBase,
     centerTileXY: Vec2Type,
     radius: number,

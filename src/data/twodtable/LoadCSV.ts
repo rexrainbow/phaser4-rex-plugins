@@ -5,7 +5,7 @@ import { Clear } from './Remove';
 import { Copy as ArrayCopy } from '../../utils/array/Copy';
 import { GetKey } from './MapKey';
 
-export let LoadCSV = function (
+export function LoadCSV(
     table: ITable,
     csvString: string,
     config?: ILoadCSVConfig

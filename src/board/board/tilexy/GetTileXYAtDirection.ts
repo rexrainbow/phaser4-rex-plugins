@@ -9,7 +9,7 @@ export type DistanceConfig = {
     step?: number
 };
 
-export let GetTileXYAtDirection = function (
+export function GetTileXYAtDirection(
     board: IBaseBoard,
     chess: IChess | XYType,
     directions: number | number[] | string | null,

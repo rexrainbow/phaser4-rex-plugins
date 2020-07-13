@@ -2,18 +2,27 @@ import { Stack } from '../struct/Stack';
 
 let globEmptySetPool = new Stack();
 
-export let GetEmptySet = function (): Set<any> {
-    let newMap = globEmptySetPool.pop();
-    if (newMap === null) {
-        newMap = new Set();
+export function GetEmptySet(
+
+): Set<any> {
+
+    let newSet = globEmptySetPool.pop();
+    if (newSet === null) {
+        newSet = new Set();
     }
-    return newMap;
+    return newSet;
 }
 
-export let FreeEmptySet = function (map: Set<any>): void {
-    globEmptySetPool.push(map);
+export function FreeEmptySet(
+    set: Set<any>
+): void {
+
+    globEmptySetPool.push(set);
 }
 
-export let FreeEmptySets = function (maps: Set<any>[]): void {
-    globEmptySetPool.pushMultiple(maps);
+export function FreeEmptySets(
+    sets: Set<any>[]
+): void {
+
+    globEmptySetPool.pushMultiple(sets);
 }

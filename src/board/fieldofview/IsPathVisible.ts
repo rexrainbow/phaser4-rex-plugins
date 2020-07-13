@@ -5,7 +5,7 @@ import {
 import { XYType } from '../Types';
 import { GetCost } from './GetCost';
 
-export let IsPathVisible = function (
+export function IsPathVisible(
     fov: IFieldOfView,
     tileXYArray: XYType[],
     visiblePoints?: number

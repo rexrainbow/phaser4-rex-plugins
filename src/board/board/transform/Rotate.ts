@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../Types';
 import { Offset } from './Offset';
 
-export let Rotate = function (
+export function Rotate(
     board: IBaseBoard,
     tileXY: XYType,
     direction: number,

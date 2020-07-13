@@ -1,4 +1,4 @@
-export let DistanceBetween = function (
+export function DistanceBetween(
     x1: number,
     y1: number,
     x2: number,

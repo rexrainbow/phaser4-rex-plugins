@@ -9,7 +9,7 @@ export enum ForEachTileXYOrder {
     'y-,x+' = 3
 }
 
-export let ForEachTileXY = function (
+export function ForEachTileXY(
     board: IBaseBoard,
     callback: ForEachTileXYCallback,
     scope?: unknown,

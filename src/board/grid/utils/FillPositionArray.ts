@@ -1,6 +1,6 @@
 import { Vec2Type } from '../IGrid';
 
-export let FillPositionArray = function (
+export function FillPositionArray(
     length: number,
     out: Vec2Type[] = []
 ): Vec2Type[] {

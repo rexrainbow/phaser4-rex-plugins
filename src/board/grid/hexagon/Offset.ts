@@ -1,7 +1,7 @@
 import { IHexagonBase, LayoutMode } from './IHexagonBase';
 import { Vec2Type } from '../IGrid';
 
-export let Offset = function (
+export function Offset(
     hexagon: IHexagonBase,
     srcTileXY: Vec2Type,
     offsetX: number,

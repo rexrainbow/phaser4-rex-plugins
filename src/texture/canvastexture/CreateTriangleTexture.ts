@@ -18,7 +18,7 @@ export interface IConfig {
     lineWidth?: number
 }
 
-export let CreateTriangleTexture = function (
+export function CreateTriangleTexture(
     key: string | Texture,
     {
         direction = Direction.right,

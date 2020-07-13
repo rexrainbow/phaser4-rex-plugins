@@ -1,6 +1,6 @@
 import { TimeDataType } from './ILeaderboard';
 
-export let GetTime = function (
+export function GetTime(
     timeStamp?: number
 ): TimeDataType {
 
@@ -12,7 +12,7 @@ export let GetTime = function (
     let w = Math.ceil(
         (((date.getTime() - Jan1st.getTime()) / 86400000) + Jan1st.getDay() + 1) / 7
     );
-    
+
     return {
         d: `${y}-${m}-${d}`,
         w: `${y}-${w}`,

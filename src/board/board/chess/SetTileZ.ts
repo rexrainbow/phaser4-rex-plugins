@@ -3,7 +3,7 @@ import { IChess, ZType, XType, YType } from '../../Types';
 import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
 import { AddChess } from './AddChess';
 
-export let SetTileZ = function (
+export function SetTileZ(
     board: IBaseBoard,
     chess: IChess,
     tileZ: ZType

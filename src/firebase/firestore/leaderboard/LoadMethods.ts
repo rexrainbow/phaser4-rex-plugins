@@ -7,7 +7,7 @@ import {
 import { GetPageQuery } from './GetQueryMethods';
 
 
-export let LoadFirstPage = function (
+export function LoadFirstPage(
     leaderBoard: ILeaderBoard
 ): Promise<IRecord[]> {
 
@@ -19,7 +19,7 @@ export let LoadFirstPage = function (
 };
 
 
-export let LoadNextPage = function (
+export function LoadNextPage(
     leaderBoard: ILeaderBoard
 ): Promise<IRecord[]> {
 
@@ -30,7 +30,7 @@ export let LoadNextPage = function (
         })
 };
 
-export let LoadPreviousPage = function (
+export function LoadPreviousPage(
     leaderBoard: ILeaderBoard,
 ): Promise<IRecord[]> {
 
@@ -42,7 +42,7 @@ export let LoadPreviousPage = function (
 };
 
 
-export let LoadCurrentPage = function (
+export function LoadCurrentPage(
     leaderBoard: ILeaderBoard
 ): Promise<IRecord[]> {
 
@@ -54,7 +54,7 @@ export let LoadCurrentPage = function (
 };
 
 
-export let Load = function (
+export function Load(
     leaderBoard: ILeaderBoard,
     count: number,
     skip: number = 0
@@ -67,7 +67,7 @@ export let Load = function (
         })
 };
 
-let ResetPageQuery = function (
+function ResetPageQuery(
     leaderBoard: ILeaderBoard
 ): void {
 
@@ -79,7 +79,7 @@ let ResetPageQuery = function (
     leaderBoard.page.setQuery(GetPageQuery(leaderBoard));
 }
 
-let DocsToDataArray = function (
+function DocsToDataArray(
     leaderBoard: ILeaderBoard,
     docs: firebase.firestore.DocumentData[]
 ): IRecord[] {

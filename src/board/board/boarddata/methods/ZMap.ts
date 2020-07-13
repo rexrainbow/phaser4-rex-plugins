@@ -2,7 +2,7 @@ import { XType, YType, ZType, IChess, ZMapType } from '../../../Types';
 import { XYToKey } from '../../../utils/StringKey';
 import { FreeEmptyMap, GetEmptyMap } from '../../../../utils/pool/EmptyMap';
 
-export let AddChessToZMap = function (
+export function AddChessToZMap(
     chess: IChess,
     chessMap: Map<string, ZMapType>,
     prevX: XType | undefined,
@@ -40,7 +40,7 @@ export let AddChessToZMap = function (
     }
 }
 
-export let RemoveChessFromZMap = function (
+export function RemoveChessFromZMap(
     chessMap: Map<string, ZMapType>,
     x: XType,
     y: YType,

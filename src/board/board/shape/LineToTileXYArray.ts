@@ -5,7 +5,7 @@ import { XYType } from '../../Types';
 import { DistanceBetween } from '../../../utils/math/distance/DistanceBetween';
 import { Linear } from '../../../utils/math/Linear';
 
-export let LineToTileXYArray = function (
+export function LineToTileXYArray(
     board: IBaseBoard,
     startX: number,
     startY: number,

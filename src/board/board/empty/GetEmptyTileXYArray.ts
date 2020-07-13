@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { ZType, XYType } from '../../Types';
 import { TileXYZToChess } from '../tilexy/TileXYZToChess';
 
-export let GetEmptyTileXYArray = function (
+export function GetEmptyTileXYArray(
     board: IBaseBoard,
     tileZ: ZType | ZType[] = 0,
     out: XYType[] = []

@@ -1,7 +1,7 @@
 import { ITable } from './ITable';
 import { GetKey } from './MapKey';
 
-export let Clear = function (
+export function Clear(
     table: ITable
 ) {
     table.data.clear();
@@ -9,7 +9,7 @@ export let Clear = function (
     table.colKeys.length = 0;
 }
 
-export let RemoveRow = function (
+export function RemoveRow(
     table: ITable,
     rowKey: string
 ): void {
@@ -25,7 +25,7 @@ export let RemoveRow = function (
     })
 }
 
-export let RemoveCol = function (
+export function RemoveCol(
     table: ITable,
     colKey: string
 ): void {

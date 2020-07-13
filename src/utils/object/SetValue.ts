@@ -1,11 +1,11 @@
 type KeyType = string | string[] | null | undefined;
 type DictType = { [key: string]: any };
 
-let IsInValidKey = function (keys: KeyType): boolean {
+function IsInValidKey(keys: KeyType): boolean {
     return (keys == null) || (keys === '') || (keys.length === 0);
 };
 
-let GetEntry = function (
+function GetEntry(
     target: any,
     keys: KeyType,
     defaultEntry = {}
@@ -40,7 +40,7 @@ let GetEntry = function (
     return entry;
 };
 
-export let SetValue = function (
+export function SetValue(
     target: any,
     keys: KeyType,
     value: any

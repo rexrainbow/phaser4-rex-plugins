@@ -1,7 +1,6 @@
 import { XYZType } from '../Types';
 
-
-export let CopyTileXYZ = function (
+export function CopyTileXYZ(
     src: XYZType,
     out: XYZType = { x: 0, y: 0, z: 0 }): XYZType {
 

@@ -4,7 +4,7 @@ import { FillPositionArray } from '../utils/FillPositionArray';
 import { GetWorldXY } from './GetWorldXY';
 import { DegToRad } from '../../../utils/math/angle/DegToRad';
 
-export let GetGridPoints = function (
+export function GetGridPoints(
     hexagon: IHexagonBase,
     tileX: number | Vec2Type = 0,
     tileY: number = 0,

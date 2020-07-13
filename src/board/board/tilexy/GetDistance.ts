@@ -1,7 +1,7 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../Types';
 
-export let GetDistance = function (
+export function GetDistance(
     board: IBaseBoard,
     tileA: XYType,
     tileB: XYType,

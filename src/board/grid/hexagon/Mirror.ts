@@ -5,7 +5,7 @@ import {
 } from '../IGrid';
 import { cr2cube, cube2cr } from './CubeTransfer';
 
-export let Mirror = function (
+export function Mirror(
     hexagon: IHexagonBase,
     srcTileXY: Vec2Type,
     mode: MirrorMode | MirrorModeString,

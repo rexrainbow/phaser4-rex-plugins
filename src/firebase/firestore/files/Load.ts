@@ -5,7 +5,7 @@ import {
 import { GetFileQuery } from './GetFileQuery';
 
 
-export let Load = function (
+export function Load(
     file: IFile,
     fileID: string
 ): Promise<LoadResultType> {

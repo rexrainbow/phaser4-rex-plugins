@@ -4,7 +4,7 @@ import { GetAllChess } from '../chess/GetAllChess';
 import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
 import { TileXYToWorldXY } from './TileXYToWorldXY';
 
-export let GridAlign = function (
+export function GridAlign(
     board: IBaseBoard,
     chess?: IChess,
     tileX?: XType,

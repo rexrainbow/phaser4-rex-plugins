@@ -5,7 +5,7 @@ import {
 import { GetAlias } from './GetAlias';
 import { GetAliasRef } from './GetAliasRef';
 
-export let Remove = function (
+export function Remove(
     idAlias: IIdAlias,
     id: string
 ): Promise<void> {

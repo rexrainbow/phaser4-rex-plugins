@@ -3,7 +3,7 @@ import { IChess, XYType } from '../../Types';
 import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
 import { GetNeighborTileDirection } from './GetNeighborTileDirection'
 
-export let GetNeighborChessDirection = function (
+export function GetNeighborChessDirection(
     board: IBaseBoard,
     chess: IChess | XYType,
     neighborChess: IChess | XYType

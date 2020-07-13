@@ -5,7 +5,7 @@ import {
 } from './ILeaderBoard';
 import { GetTime } from './GetTime';
 
-export let GetRecordQuery = function (
+export function GetRecordQuery(
     leaderboard: ILeaderBoard,
     boardID?: string | undefined,
     customTag?: string | undefined,
@@ -24,7 +24,7 @@ export let GetRecordQuery = function (
     return query;
 };
 
-export let GetMyRecordQuery = function (
+export function GetMyRecordQuery(
     leaderboard: ILeaderBoard,
     userID: string = leaderboard.userID
 ): firebase.firestore.Query {
@@ -34,7 +34,7 @@ export let GetMyRecordQuery = function (
 
 import { PageQueriesType } from '../pageloader/IPageLoader';
 
-export let GetPageQuery = function (
+export function GetPageQuery(
     leaderboard: ILeaderBoard
 ): PageQueriesType {
 

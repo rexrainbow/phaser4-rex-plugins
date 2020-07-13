@@ -76,7 +76,7 @@ const EVEN_Q: ParityToDeltaXYType = [
     ]
 ];
 
-export let DirectionToDeltaTileXY: DirectionToDeltaTileXYType = [
+export const DirectionToDeltaTileXY: DirectionToDeltaTileXYType = [
     ODD_R,
     EVEN_R,
     ODD_Q,

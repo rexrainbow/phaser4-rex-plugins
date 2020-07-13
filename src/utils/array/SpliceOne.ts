@@ -1,4 +1,4 @@
-export let SpliceOne = function <T>(
+export function SpliceOne<T>(
     array: T[],
     index: number
 ): T {

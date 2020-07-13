@@ -4,7 +4,7 @@ import { AngleToward } from './AngleToward';
 import { RadToDeg } from '../../../utils/math/angle/RadToDeg';
 import { ShortestBetween } from '../../../utils/math/angle/ShortestBetween';
 
-export let AngleSnapToDirection = function (
+export function AngleSnapToDirection(
     board: IBaseBoard,
     tileXY: XYType,
     angle: number

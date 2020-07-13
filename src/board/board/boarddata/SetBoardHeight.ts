@@ -1,6 +1,9 @@
 import { IBaseBoard } from '../IBaseBoard';
+import { GetAllChess } from '../chess/GetAllChess';
+import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
+import { RemoveChess } from '../chess/RemoveChess';
 
-export let SetBoardHeight = function (
+export function SetBoardHeight(
     board: IBaseBoard,
     height: number
 ): void {
@@ -13,13 +16,14 @@ export let SetBoardHeight = function (
         return;
     }
 
-    // board.height > height : collapse
-    for (let x = 0; x < board.width; x++) {
-        for (let y = height; y < board.height; y++) {
-
-            // TODO: RemoveChess
+    // this.height > height : collapse
+    let chessArray = GetAllChess(board);
+    chessArray.forEach((chess) => {
+        let tileXYZ = ChessToTileXYZ(board, chess);
+        if (tileXYZ.y > height) {
+            RemoveChess(board, chess);
         }
-    }
+    })
 
     board.height = height;
 }

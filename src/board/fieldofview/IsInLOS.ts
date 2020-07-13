@@ -7,7 +7,7 @@ import { Between as AngleBetween } from '../../utils/math/angle/Between';
 
 const LINEOFFSET = 0.001;
 
-export let IsInLOS = function (
+export function IsInLOS(
     fov: IFieldOfView,
     chess: IChess | XYZType,
     visiblePoints?: number,

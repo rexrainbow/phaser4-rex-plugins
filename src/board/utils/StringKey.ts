@@ -1,6 +1,6 @@
 import { XType, YType, Vec2Type } from '../Types';
 
-export let XYToKey = function (
+export function XYToKey(
     x: XType | undefined,
     y: YType | undefined
 ): string | undefined {
@@ -8,7 +8,7 @@ export let XYToKey = function (
     return ((x === undefined) || (y === undefined)) ? undefined : `${x}|${y}`;
 }
 
-export let KeyToXY = function (
+export function KeyToXY(
     key: string,
     out?: Vec2Type
 ): Vec2Type {

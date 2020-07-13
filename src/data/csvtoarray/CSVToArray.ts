@@ -12,7 +12,7 @@ import { CSVParser } from '../../utils/string/papaparse';
  *     }={}]
  * @returns {any[]}
  */
-export let CSVToArray = function (
+export function CSVToArray(
     csvString: string,
     {
         delimiter = ',',

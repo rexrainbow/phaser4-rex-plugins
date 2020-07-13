@@ -3,7 +3,7 @@ import { Vec2Type } from '../IGrid';
 import { Between as GetAngle } from '../../../utils/math/angle/Between';
 import { RadToDeg } from '../../../utils/math/angle/RadToDeg';
 
-export let DirectionBetween = function (
+export function DirectionBetween(
     quad: IQuadBase,
     tileA: Vec2Type,
     tileB: Vec2Type,

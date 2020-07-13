@@ -5,7 +5,7 @@ import { GetEmptyTileXYArray } from './GetEmptyTileXYArray';
 import { RandomInt } from '../../../utils/math/RandomInt';
 import { GetRandomItem } from '../../../utils/array/GetRandom';
 
-export let GetRandomEmptyTileXY = function (
+export function GetRandomEmptyTileXY(
     board: IBaseBoard,
     tileZ: ZType = 0,
     out: XYType | true = { x: 0, y: 0 }

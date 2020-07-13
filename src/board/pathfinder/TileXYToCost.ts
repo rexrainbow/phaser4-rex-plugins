@@ -3,7 +3,7 @@ import { XType, YType } from '../Types';
 import { XYToKey } from '../utils/StringKey';
 import { IAStarNode } from './astar/IAStarNode';
 
-export let TileXYToCost = function (
+export function TileXYToCost(
     pathFinder: IPathFinder,
     tileX: XType,
     tileY: YType,

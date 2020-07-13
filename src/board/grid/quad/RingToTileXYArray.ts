@@ -2,7 +2,7 @@ import { IQuadBase } from './IQuadBase';
 import { Vec2Type } from '../IGrid';
 import { Offset } from './Offset';
 
-export let RingToTileXYArray = function (
+export function RingToTileXYArray(
     quad: IQuadBase,
     centerTileXY: Vec2Type,
     radius: number,

@@ -2,7 +2,7 @@ import * as firebase from 'firebase/app';
 import { IIdAlias } from './IIdAlias';
 
 
-export let GetAliasRef = function (
+export function GetAliasRef(
     idAlias: IIdAlias,
     alias: string
 ): firebase.firestore.DocumentReference {

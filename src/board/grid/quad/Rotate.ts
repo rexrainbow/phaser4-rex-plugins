@@ -2,7 +2,7 @@ import { IQuadBase } from './IQuadBase';
 import { Vec2Type } from '../IGrid';
 import { Wrap } from '../../../utils/math/Wrap';
 
-export let Rotate = function (
+export function Rotate(
     quad: IQuadBase,
     srcTileXY: Vec2Type,
     dir: number,

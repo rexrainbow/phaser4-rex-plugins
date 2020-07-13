@@ -4,7 +4,7 @@ import {
 } from './IIdAlias';
 import { GetAliasRef } from './GetAliasRef';
 
-export let GetId = function (
+export function GetId(
     idAlias: IIdAlias,
     alias: string
 ): Promise<IdAliasDataType> {

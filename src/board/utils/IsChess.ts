@@ -1,4 +1,4 @@
-export let IsChess = function (obj) {
+export function IsChess(obj) {
     if (typeof (obj) === 'object') {
         return obj.hasOwnProperty('rexChess');
     } else {

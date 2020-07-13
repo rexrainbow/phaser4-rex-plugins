@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../Types';
 
 
-export let Offset = function (
+export function Offset(
     board: IBaseBoard,
     tileXY: XYType,
     offsetTileX: number,

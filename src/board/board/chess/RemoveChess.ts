@@ -5,7 +5,7 @@ import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
 import { GetChessData } from '../chessdata/GetChessData';
 
 
-export let RemoveChess = function (
+export function RemoveChess(
     board: IBaseBoard,
     chess: IChess | null | undefined,
     tileX?: XType,

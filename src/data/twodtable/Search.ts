@@ -3,7 +3,7 @@ import { HasRowKey, HasColKey } from './Get';
 import { GetKey } from './MapKey';
 
 
-export let IsValueInRow = function (
+export function IsValueInRow(
     table: ITable,
     rowKey: string,
     value: any
@@ -25,7 +25,7 @@ export let IsValueInRow = function (
     return found;
 }
 
-export let IsValueInCol = function (
+export function IsValueInCol(
     table: ITable,
     colKey: string,
     value: any

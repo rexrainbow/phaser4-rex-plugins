@@ -6,7 +6,9 @@ let FLOAT = /^\s*-?(\d*\.?\d+|\d+\.?\d*)(e[-+]?\d+)?\s*$/i;
  * @param {string} s Source string.
  * @returns {(string | number | boolean | null)} String, number, boolean value, or null(from empty string).
  */
-export let TypeConvert = function (s: string): string | number | boolean | null {
+export function TypeConvert(
+    s: string
+): string | number | boolean | null {
 
     let result: string | number | boolean | null;
     if (s === '') {

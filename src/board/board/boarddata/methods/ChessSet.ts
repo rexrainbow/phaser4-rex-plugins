@@ -1,7 +1,7 @@
 import { IChess, AnyKeyType, ChessSetType } from '../../../Types';
 import { FreeEmptySet, GetEmptySet } from '../../../../utils/pool/EmptySet';
 
-export let AddChessToSet = function (
+export function AddChessToSet(
     chess: IChess,
     chessMap: Map<AnyKeyType, ChessSetType>,
     prevKey: AnyKeyType | undefined,
@@ -34,7 +34,7 @@ export let AddChessToSet = function (
     }
 }
 
-export let RemoveChessFromSet = function (
+export function RemoveChessFromSet(
     chessMap: Map<AnyKeyType, ChessSetType>,
     key: AnyKeyType,
     chess: IChess

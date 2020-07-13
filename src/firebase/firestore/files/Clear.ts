@@ -2,7 +2,7 @@ import { IFile, IHeader } from './IFile';
 import { GetFileQuery } from './GetFileQuery';
 import { DocToHeader } from './DocToHeader';
 
-export let Clear = function (
+export function Clear(
     file: IFile
 ): Promise<{ userID: string, error?: unknown }> {
 

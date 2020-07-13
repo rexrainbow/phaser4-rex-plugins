@@ -6,7 +6,7 @@ import { TileXYToChessArray } from '../tilexy/TileXYToChessArray';
 import { TileXYZToChess } from '../tilexy/TileXYZToChess';
 import { GetNeighborTileXY } from './GetNeighborTileXY';
 
-export let GetNeighborChess = function (
+export function GetNeighborChess(
     board: IBaseBoard,
     chess: IChess | XYType,
     directions: number | number[] | string | null,

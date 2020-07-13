@@ -1,7 +1,7 @@
 import { IQuadBase } from './IQuadBase';
 import { Vec2Type } from '../IGrid';
 
-export let Offset = function (
+export function Offset(
     quad: IQuadBase,
     srcTileXY: Vec2Type,
     offsetTileX: number,

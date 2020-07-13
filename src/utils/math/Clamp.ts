@@ -1,4 +1,4 @@
-export let Clamp = function (
+export function Clamp(
     value: number,
     min: number,
     max: number

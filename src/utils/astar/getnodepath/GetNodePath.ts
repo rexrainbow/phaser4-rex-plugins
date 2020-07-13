@@ -8,7 +8,7 @@ import { GetLineNodePath } from './GetLineNodePath';
 import { GetDiagonalPath } from './GetDiagonalPath';
 import { GetStraightNodePath } from './GetStraightNodePath';
 
-export let GetNodePath = function (
+export function GetNodePath(
     astar: IAStar,
     startNodeKey: any,
     endNodeKey: any

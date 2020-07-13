@@ -3,7 +3,7 @@ import { XYType } from '../../Types';
 import { GetNeighborTileXY } from '../neighbors/GetNeighborTileXY';
 import { AngleBetween } from './AngleBetween';
 
-export let AngleToward = function (
+export function AngleToward(
     board: IBaseBoard,
     tileXY: XYType,
     direction: number

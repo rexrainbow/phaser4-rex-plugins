@@ -5,7 +5,7 @@ import {
 } from './IIdAlias';
 import { GetAliasRef } from './GetAliasRef';
 
-export let AddAliasTransaction = function (
+export function AddAliasTransaction(
     idAlias: IIdAlias,
     id: string,
     alias: string

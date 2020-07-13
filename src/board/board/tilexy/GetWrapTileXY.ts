@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { XType, YType, XYType } from '../../Types';
 import { Wrap } from '../../../utils/math/Wrap';
 
-export let GetWrapTileXY = function (
+export function GetWrapTileXY(
     board: IBaseBoard,
     tileX: XType,
     tileY: YType,

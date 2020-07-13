@@ -1,4 +1,7 @@
-export let IsPlainObject = function (obj: any): boolean {
+export function IsPlainObject(
+    obj: any
+): boolean {
+
     // Not plain objects:
     // - Any object or value whose internal [[Class]] property is not "[object Object]"
     // - DOM nodes

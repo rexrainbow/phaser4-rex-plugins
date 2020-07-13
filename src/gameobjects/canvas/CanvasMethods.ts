@@ -1,6 +1,6 @@
 import { ICanvas } from './ICanvas';
 
-export let Resize = function (
+export function Resize(
     canvas: ICanvas,
     width: number,
     height: number) {
@@ -20,7 +20,7 @@ export let Resize = function (
     canvas.updateTexture();
 }
 
-export let Clear = function (
+export function Clear(
     canvas: ICanvas
 ): void {
 
@@ -28,7 +28,7 @@ export let Clear = function (
     canvas.updateTexture();
 };
 
-export let Fill = function (
+export function Fill(
     canvas: ICanvas,
     fillStyle: string | CanvasGradient | CanvasPattern = '#fff'
 ): void {
@@ -39,7 +39,7 @@ export let Fill = function (
     canvas.updateTexture();
 };
 
-export let LoadFromURL = function (
+export function LoadFromURL(
     canvas: ICanvas,
     url: string,
     callback?: () => void
@@ -65,7 +65,7 @@ export let LoadFromURL = function (
     img.src = url;
 };
 
-export let LoadFromURLPromise = function (
+export function LoadFromURLPromise(
     canvas: ICanvas,
     url: string
 ): Promise<number> {
@@ -75,7 +75,7 @@ export let LoadFromURLPromise = function (
     });
 };
 
-export let GetDataURL = function (
+export function GetDataURL(
     canvas: ICanvas,
     type?: string,
     encoderOptions?: unknown
@@ -84,7 +84,7 @@ export let GetDataURL = function (
     return canvas.canvas.toDataURL(type, encoderOptions);
 };
 
-export let GetPixel = function (
+export function GetPixel(
     canvas: ICanvas,
     x: number,
     y: number,
@@ -99,7 +99,7 @@ export let GetPixel = function (
     return out;
 }
 
-export let SetPixel = function (
+export function SetPixel(
     canvas: ICanvas,
     x: number, y: number,
     r: number, g: number, b: number, a?: number

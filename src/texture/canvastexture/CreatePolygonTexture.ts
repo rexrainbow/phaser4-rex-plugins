@@ -12,7 +12,7 @@ export interface IConfig {
     lineJoin?: 'bevel' | 'round' | 'miter'
 }
 
-export let CreatePolygonTexture = function (
+export function CreatePolygonTexture(
     key: string | Texture,
     {
         points,
@@ -39,8 +39,8 @@ export let CreatePolygonTexture = function (
         let maxX = GetMaxProperty(points, 'x');
         let maxY = GetMaxProperty(points, 'y');
 
-        let width = maxX - minX ;
-        let height = maxY - minY ;
+        let width = maxX - minX;
+        let height = maxY - minY;
 
         let halfW = width / 2;
         let halfH = height / 2;

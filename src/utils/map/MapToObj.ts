@@ -1,4 +1,4 @@
-export let MapToObj = function (
+export function MapToObj(
     map: Map<string, any>,
     out: { [name: string]: any } = {}
 ): { [name: string]: any } {

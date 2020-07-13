@@ -7,7 +7,7 @@ import { GetChessData } from '../chessdata/GetChessData';
 import { GridAlign } from '../worldxy/GridAlign';
 import { RemoveChess } from './RemoveChess'
 
-export let AddChess = function (
+export function AddChess(
     board: IBaseBoard,
     chess: IChess,
     tileX: XType,

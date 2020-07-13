@@ -4,7 +4,7 @@ import { WorldXYToTileXY } from './WorldXYToTileXY';
 import { TileXYZToChess } from '../tilexy/TileXYZToChess';
 import { TileXYToChessArray } from '../tilexy/TileXYToChessArray';
 
-export let WorldXYToChess = function (
+export function WorldXYToChess(
     board: IBaseBoard,
     worldX: number,
     worldY: number,

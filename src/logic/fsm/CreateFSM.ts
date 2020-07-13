@@ -34,7 +34,7 @@ let config = {
     eventEmitter: true,
 };
 */
-export let CreateFSM = function ({
+export function CreateFSM({
     states,
     extend,
     eventEmitter = true,

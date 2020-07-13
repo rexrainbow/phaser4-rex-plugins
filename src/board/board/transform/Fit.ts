@@ -5,7 +5,7 @@ import { Offset } from './Offset';
 import { SetBoardHeight } from '../boarddata/SetBoardHeight';
 import { SetBoardWidth } from '../boarddata/SetBoardWidth';
 
-export let Fit = function (
+export function Fit(
     board: IBaseBoard,
     tileXYArray: XYType[]
 ): XYType[] {

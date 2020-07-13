@@ -1,4 +1,4 @@
-export let Shuffle = function <T>(
+export function Shuffle<T>(
     array: T[]
 ): T[] {
 

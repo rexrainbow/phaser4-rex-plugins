@@ -3,7 +3,7 @@ import { IAStar } from '../../../utils/astar/IAStar';
 import { AStar } from '../../../utils/astar/AStar';
 import { AStarNode } from './AStarNode';
 
-export let CreateAStar = function (
+export function CreateAStar(
     pathFinder: IPathFinder
 ): IAStar {
 

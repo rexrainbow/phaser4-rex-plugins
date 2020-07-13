@@ -5,7 +5,7 @@ type EventEmitterType = {
     ) => void
 }
 
-export let WaitEvent = function (
+export function WaitEvent(
     eventEmitter: EventEmitterType,
     eventName: string
 ): Promise<void> {
@@ -17,7 +17,7 @@ export let WaitEvent = function (
     });
 }
 
-export let WaitComplete = function (
+export function WaitComplete(
     eventEmitter: EventEmitterType
 ): Promise<void> {
 

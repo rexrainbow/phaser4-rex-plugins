@@ -1,7 +1,7 @@
 import { ITable, JSONDataType } from './ITable';
 import { GetKey } from './MapKey';
 
-export let DataToJSON = function (
+export function DataToJSON(
     table: ITable
 ): JSONDataType {
 

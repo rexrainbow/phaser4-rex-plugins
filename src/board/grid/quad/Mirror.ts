@@ -1,7 +1,7 @@
 import { IQuadBase } from './IQuadBase';
 import { Vec2Type, MirrorMode, MirrorModeString } from '../IGrid';
 
-export let Mirror = function (
+export function Mirror(
     quad: IQuadBase,
     srcTileXY: Vec2Type,
     mode: MirrorMode | MirrorModeString,

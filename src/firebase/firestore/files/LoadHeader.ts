@@ -3,7 +3,7 @@ import { GetFileQuery } from './GetFileQuery';
 import { DocToHeader } from './DocToHeader';
 
 
-export let LoadHeader = function (
+export function LoadHeader(
     file: IFile,
     fileID: string
 ): Promise<IHeader> {

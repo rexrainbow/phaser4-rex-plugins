@@ -3,7 +3,7 @@ import { Vec2Type } from '../IGrid';
 import { DeltaTileXYToDirection } from './DeltaTileXYToDirection';
 import { GetParity } from './GetParity';
 
-export let GetNeighborTileDirection = function (
+export function GetNeighborTileDirection(
     hexagon: IHexagonBase,
     srcTileXY: Vec2Type,
     neighborTileXY: Vec2Type

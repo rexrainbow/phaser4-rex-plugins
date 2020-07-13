@@ -6,7 +6,7 @@ import { GetAlias } from './GetAlias';
 import { AddAliasTransaction } from './AddAliasTransaction';
 
 
-export let Add = function (
+export function Add(
     idAlias: IIdAlias,
     id: string,
     alias: string

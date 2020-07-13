@@ -4,7 +4,7 @@ import {
 } from './IPathFinder';
 import { TileXY, Blocker } from '../board';
 
-export let GetCost = function (
+export function GetCost(
     pathFinder: IPathFinder,
     currNode: CostNodeType,
     prevNode: CostNodeType

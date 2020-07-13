@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { IChess } from '../../Types';
 
 
-export let GetAllChess = function (
+export function GetAllChess(
     board: IBaseBoard,
     out: IChess[] = []
 ): IChess[] {

@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../Types';
 import { GetTileXYAtDirection } from '../tilexy/GetTileXYAtDirection';
 
-export let GetNeighborTileXY = function (
+export function GetNeighborTileXY(
     board: IBaseBoard,
     srcTileXY: XYType,
     directions: number | number[] | string | null = null,

@@ -1,7 +1,7 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { XType, YType, ZType } from '../../Types';
 
-export let Contains = function (
+export function Contains(
     board: IBaseBoard,
     tileX: XType,
     tileY: YType,

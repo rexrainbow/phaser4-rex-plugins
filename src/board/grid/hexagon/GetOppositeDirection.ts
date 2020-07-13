@@ -1,7 +1,7 @@
 import { IHexagonBase } from './IHexagonBase';
 import { Vec2Type } from '../IGrid';
 
-export let GetOppositeDirection = function (
+export function GetOppositeDirection(
     hexagon: IHexagonBase,
     tileX: number | Vec2Type,
     tileY: number | undefined | null,

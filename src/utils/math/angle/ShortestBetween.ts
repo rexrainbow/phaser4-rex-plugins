@@ -1,4 +1,4 @@
-export let ShortestBetween = function (
+export function ShortestBetween(
     angle1: number,
     angle2: number
 ): number {

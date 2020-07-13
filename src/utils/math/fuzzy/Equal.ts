@@ -1,4 +1,4 @@
-export let Equal = function (
+export function Equal(
     a: number,
     b: number,
     epsilon: number = 0.0001

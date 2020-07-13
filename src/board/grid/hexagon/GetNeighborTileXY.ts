@@ -2,7 +2,7 @@ import { IHexagonBase } from './IHexagonBase';
 import { Vec2Type } from '../IGrid';
 import { GetTileXYAtDirection } from './GetTileXYAtDirection';
 
-export let GetNeighborTileXY = function (
+export function GetNeighborTileXY(
     hexragon: IHexagonBase,
     srcTileXY: Vec2Type,
     direction: number,

@@ -5,7 +5,7 @@ import { qr2cube, roundcube, cube2cr, CubeType } from './CubeTransfer';
 const C_4div3 = (4 / 3);
 const C_2div3 = (2 / 3);
 
-export let GetTileXY = function (
+export function GetTileXY(
     hexagon: IHexagonBase,
     worldX: number | Vec2Type,
     worldY?: number,

@@ -3,7 +3,7 @@ import { Vec2Type } from '../IGrid';
 import { FillPositionArray } from '../utils/FillPositionArray';
 import { GetWorldXY } from './GetWorldXY';
 
-export let GetGridPoints = function (
+export function GetGridPoints(
     quad: IQuadBase,
     tileX: number | Vec2Type = 0,
     tileY: number = 0,

@@ -6,7 +6,7 @@ import {
 } from './IMatch';
 import { MatchAtDir } from './MatchAtDir';
 
-export let MatchAll = function (
+export function MatchAll(
     match: IMatch,
     pattern: number | SymbolType[],
     callback?: MatchCallbackType,

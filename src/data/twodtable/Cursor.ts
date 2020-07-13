@@ -1,6 +1,6 @@
 import { ITable } from './ITable';
 
-export let SetCursor = function (
+export function SetCursor(
     table: ITable,
     rowKey: string = '',
     colKey: string = ''

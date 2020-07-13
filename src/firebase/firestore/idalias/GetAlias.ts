@@ -4,7 +4,7 @@ import {
     IdAliasDataType
 } from './IIdAlias';
 
-export let GetAlias = function (
+export function GetAlias(
     idAlias: IIdAlias,
     id: string
 ): Promise<IdAliasDataType> {

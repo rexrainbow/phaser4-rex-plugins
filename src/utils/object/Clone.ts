@@ -7,7 +7,7 @@ import { Clear } from './Clear';
  * @param {(any[] | { [name: string]: any })} [out]
  * @returns {(any[] | { [name: string]: any })}
  */
-export let Clone = function (
+export function Clone(
     obj: any[] | { [name: string]: any },
     out?: any[] | { [name: string]: any }
 ): any[] | { [name: string]: any } {

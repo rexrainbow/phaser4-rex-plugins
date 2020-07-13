@@ -2,7 +2,7 @@ import { IBaseBoard } from '../board/IBaseBoard';
 import { XYType } from '../Types';
 import { cube2cr } from '../grid/hexagon/CubeTransfer';
 
-export let GetParallelogramMap = function (
+export function GetParallelogramMap(
     board: IBaseBoard,
     type: number,
     width: number,

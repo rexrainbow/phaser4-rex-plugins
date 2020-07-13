@@ -5,7 +5,7 @@ import { RemoveChess } from './RemoveChess';
 import { AddChess } from './AddChess';
 
 
-export let SwapChess = function (
+export function SwapChess(
     board: IBaseBoard,
     chessA: IChess,
     chessB: IChess,

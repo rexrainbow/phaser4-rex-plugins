@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XYType } from '../../Types';
 import { ChessToTileXYZ } from './ChessToTileXYZ'
 
-export let DirectionBetween = function (
+export function DirectionBetween(
     board: IBaseBoard,
     chessA: IChess | XYType,
     chessB: IChess | XYType,

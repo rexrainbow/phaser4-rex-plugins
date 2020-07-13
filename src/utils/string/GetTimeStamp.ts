@@ -3,6 +3,6 @@
  *
  * @returns {string} Current time-stamp in string format.
  */
-export let GetTimeStamp = function (): string {
+export function GetTimeStamp(): string {
     return (new Date()).getTime().toString();
 }

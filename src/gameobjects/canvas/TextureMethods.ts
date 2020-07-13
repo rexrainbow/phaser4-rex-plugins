@@ -3,7 +3,7 @@ import { TextureManagerInstance } from '@phaserjs/phaser/textures/TextureManager
 import { DrawCanvasTexture } from '../../texture/canvastexture'
 import { DrawFrame } from '../../utils/texture/DrawFrameToCanvas';
 
-export let GenerateTexture = function (
+export function GenerateTexture(
     canvas: ICanvas,
     key: string,
     x: number = 0,
@@ -30,7 +30,7 @@ export let GenerateTexture = function (
     }, undefined, canvas.resolution);
 };
 
-export let LoadTexture = function (
+export function LoadTexture(
     canvas: ICanvas,
     key: string,
     frame?: string | number

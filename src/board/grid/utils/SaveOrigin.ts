@@ -1,13 +1,13 @@
 import { IGrid } from '../IGrid';
 
-export let SaveOrigin = function (
+export function SaveOrigin(
     grid: IGrid
 ): void {
     grid._savedOriginX = grid.x;
     grid._savedOriginY = grid.y;
 }
 
-export let RestoreOrigin = function (
+export function RestoreOrigin(
     grid: IGrid
 ): void {
     grid.x = grid._savedOriginX;

@@ -5,7 +5,7 @@ import {
 import { GetRandomWord } from '../../../utils/string/GetRandomWord';
 import { AddAliasTransaction } from './AddAliasTransaction';
 
-export let RetryAddRandomAliasTransaction = function (
+export function RetryAddRandomAliasTransaction(
     idAlias: IIdAlias,
     id: string,
     digits: number,

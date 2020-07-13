@@ -4,7 +4,7 @@ import { TileXYToChessArray } from '../tilexy/TileXYToChessArray';
 import { TileXYZToChess } from '../tilexy/TileXYZToChess';
 import { GetChessData } from '../chessdata/GetChessData';
 
-export let HasBlocker = function (
+export function HasBlocker(
     board: IBaseBoard,
     tileX: XType,
     tileY: YType,

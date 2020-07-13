@@ -5,7 +5,7 @@ import { Offset } from './Offset';
 
 export { MirrorMode, MirrorModeString };
 
-export let Mirror = function (
+export function Mirror(
     board: IBaseBoard,
     tileXY: XYType,
     mode: MirrorMode | MirrorModeString,

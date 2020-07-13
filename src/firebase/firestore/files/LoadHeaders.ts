@@ -6,7 +6,7 @@ import { GetFileQuery } from './GetFileQuery';
 import { DocToHeader } from './DocToHeader';
 
 
-export let LoadHeaders = function (
+export function LoadHeaders(
     file: IFile
 ): Promise<LoadHeadersResultType> {
 

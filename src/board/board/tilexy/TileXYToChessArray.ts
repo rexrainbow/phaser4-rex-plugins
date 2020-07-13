@@ -1,7 +1,7 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { XType, YType, IChess, ZMapType } from '../../Types';
 
-export let TileXYToChessArray = function (
+export function TileXYToChessArray(
     board: IBaseBoard,
     tileX: XType,
     tileY: YType,

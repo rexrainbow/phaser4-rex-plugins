@@ -1,7 +1,7 @@
 import { IQuadBase, LayoutMode } from './IQuadBase';
 import { Vec2Type } from '../IGrid';
 
-export let GetTileXY = function (
+export function GetTileXY(
     quad: IQuadBase,
     worldX: number | Vec2Type,
     worldY?: number,

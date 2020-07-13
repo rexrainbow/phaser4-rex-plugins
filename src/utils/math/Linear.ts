@@ -1,4 +1,4 @@
-export let Linear = function (
+export function Linear(
     p0: number,
     p1: number,
     t: number

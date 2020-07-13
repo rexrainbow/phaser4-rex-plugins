@@ -11,7 +11,7 @@ export interface IConfig {
     lineWidth?: number
 }
 
-export let CreateRectangleTexture = function (
+export function CreateRectangleTexture(
     key: string | Texture,
     {
         width = 32,

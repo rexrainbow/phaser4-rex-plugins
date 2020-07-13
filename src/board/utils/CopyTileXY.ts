@@ -1,7 +1,6 @@
 import { XYType } from '../Types';
 
-
-export let CopyTileXY = function (
+export function CopyTileXY(
     src: XYType,
     out: XYType = { x: 0, y: 0 }): XYType {
 

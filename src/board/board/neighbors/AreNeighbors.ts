@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { IChess, XYType } from '../../Types';
 import { GetNeighborChessDirection } from './GetNeighborChessDirection'
 
-export let AreNeighbors = function (
+export function AreNeighbors(
     board: IBaseBoard,
     chessA: IChess | XYType,
     chessB: IChess | XYType

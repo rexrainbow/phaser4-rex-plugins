@@ -1,7 +1,7 @@
 import { IQuadBase } from './IQuadBase';
 import { Vec2Type } from '../IGrid';
 
-export let GetDistance = function (
+export function GetDistance(
     quad: IQuadBase,
     tileA: Vec2Type,
     tileB: Vec2Type,

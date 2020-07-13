@@ -18,7 +18,7 @@ import { BinaryHeap } from '../struct/BinaryHeap';
 
 let gOpenHeap = new BinaryHeap((node: INodeBase) => node.f);
 
-export let Search = function (
+export function Search(
     astar: IAStar,
     startNodeKey: any,
     endNodeKey: any,

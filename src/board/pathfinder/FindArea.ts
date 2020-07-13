@@ -6,7 +6,7 @@ import { IAStarNode } from './astar/IAStarNode';
 import { Chess, TileXY } from '../board';
 import { CopyTileXYZ } from '../utils/CopyTileXYZ';
 
-export let FindArea = function (
+export function FindArea(
     pathFinder: IPathFinder,
     startChess: IChess | XYZType,
     movingPoints?: number | undefined,

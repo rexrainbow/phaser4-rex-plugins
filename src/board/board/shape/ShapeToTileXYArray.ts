@@ -8,7 +8,7 @@ import { Clamp } from '../../../utils/math/Clamp';
 export { ShapeType };
 export type ContainsCallbackType = (shape: ShapeType, x: number, y: number) => boolean
 
-export let ShapeToTileXYArray = function (
+export function ShapeToTileXYArray(
     board: IBaseBoard,
     shape: ShapeType,
     containsCallback: ContainsCallbackType,

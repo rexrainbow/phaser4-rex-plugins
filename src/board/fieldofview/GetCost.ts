@@ -3,7 +3,7 @@ import { TileXY, Blocker } from '../board';
 import { XYType } from '../Types';
 import { XYToKey } from '../utils/StringKey';
 
-export let GetCost = function (
+export function GetCost(
     fov: IFieldOfView,
     tileXY: XYType,
     lineTileXYArray: XYType[]

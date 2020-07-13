@@ -10,7 +10,7 @@ import { GetPath } from './GetPath'
 import { TileXY } from '../board';
 import { CopyTileXYZ } from '../utils/CopyTileXYZ';
 
-export let FindPath = function (
+export function FindPath(
     pathFinder: IPathFinder,
     startChess: IChess,
     endChess: IChess | XYType,

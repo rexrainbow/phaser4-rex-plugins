@@ -2,7 +2,7 @@ import { IMatch, SymbolType } from './IMatch';
 import { XYType } from '../Types';
 import { Nieghbors } from '../board';
 
-export let Group = function (
+export function Group(
     match: IMatch,
     startTileX: number,
     startTileY: number,

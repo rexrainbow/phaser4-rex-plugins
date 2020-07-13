@@ -2,7 +2,7 @@ import { IFieldOfView, ConeType } from './IFieldOfView';
 import { XYType } from '../Types';
 import { TileXY, WorldXY } from '../board';
 
-export let IsInCone = function (
+export function IsInCone(
     fov: IFieldOfView,
     targetTileXY: XYType
 ): boolean {

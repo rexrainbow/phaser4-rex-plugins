@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../Types';
 
 
-export let WorldXYToTileXY = function (
+export function WorldXYToTileXY(
     board: IBaseBoard,
     worldX: number,
     worldY: number,

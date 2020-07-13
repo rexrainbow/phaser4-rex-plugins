@@ -2,7 +2,7 @@ import { IBaseBoard } from '../board/IBaseBoard';
 import { XYType } from '../Types';
 import { cube2cr } from '../grid/hexagon/CubeTransfer';
 
-export let GetHexagonMap = function (
+export function GetHexagonMap(
     board: IBaseBoard,
     radius: number,
     out: XYType[] = []

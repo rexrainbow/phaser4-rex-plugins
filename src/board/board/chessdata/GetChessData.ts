@@ -2,7 +2,7 @@ import { IChessData } from './IChessData';
 import { ChessData } from './ChessData';
 import { IChess } from '../../Types';
 
-export let GetChessData = function (
+export function GetChessData(
     chess: IChess
 ): IChessData {
 

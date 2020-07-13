@@ -11,7 +11,7 @@ import { GetValue } from '../../utils/object/GetValue';
  * @param {IRunCommandConfig} [config={}]
  * @returns {*}
  */
-export let RunCommand = function (
+export function RunCommand(
     cmd: any[],
     scope: object,
     {

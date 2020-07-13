@@ -1,4 +1,4 @@
-export let GetKey = function (
+export function GetKey(
     rowKey: string,
     colKey: string
 ): string {

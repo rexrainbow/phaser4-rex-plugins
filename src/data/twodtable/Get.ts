@@ -1,7 +1,7 @@
 import { ITable } from './ITable';
 import { GetKey } from './MapKey';
 
-export let Get = function (
+export function Get(
     table: ITable,
     rowKey: string,
     colKey: string
@@ -10,7 +10,7 @@ export let Get = function (
     return table.data.get(GetKey(rowKey, colKey));
 }
 
-export let HasRowKey = function (
+export function HasRowKey(
     table: ITable,
     rowKey: string
 ): boolean {
@@ -18,7 +18,7 @@ export let HasRowKey = function (
     return (table.rowKeys.indexOf(rowKey) !== -1);
 }
 
-export let HasColKey = function (
+export function HasColKey(
     table: ITable,
     colKey: string
 ): boolean {
@@ -26,7 +26,7 @@ export let HasColKey = function (
     return (table.colKeys.indexOf(colKey) !== -1);
 }
 
-export let HasKey = function (
+export function HasKey(
     table: ITable,
     rowKey: string,
     colKey: string

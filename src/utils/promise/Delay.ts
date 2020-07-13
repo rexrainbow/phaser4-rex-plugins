@@ -1,4 +1,4 @@
-export let Delay = function (
+export function Delay(
     s: number = 0,
     result?: any)
     : Promise<any> {

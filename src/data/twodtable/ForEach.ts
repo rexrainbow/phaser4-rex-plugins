@@ -1,6 +1,6 @@
 import { ITable, EachKeyCallback } from './ITable';
 
-export let EachRow = function (
+export function EachRow(
     table: ITable,
     callback: EachKeyCallback,
     scope?: object
@@ -19,7 +19,7 @@ export let EachRow = function (
     }
 }
 
-export let EachCol = function (
+export function EachCol(
     table: ITable,
     callback: EachKeyCallback,
     scope?: object

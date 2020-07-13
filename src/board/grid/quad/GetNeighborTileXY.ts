@@ -2,7 +2,7 @@ import { IQuadBase } from './IQuadBase';
 import { Vec2Type } from '../IGrid';
 import { GetTileXYAtDirection } from './GetTileXYAtDirection';
 
-export let GetNeighborTileXY = function (
+export function GetNeighborTileXY(
     quad: IQuadBase,
     srcTileXY: Vec2Type,
     direction: number,

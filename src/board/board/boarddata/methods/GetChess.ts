@@ -2,7 +2,7 @@ import { IBoardData } from '../IBoardData';
 import { XType, YType, ZType, IChess, ZMapType } from '../../../Types';
 import { XYToKey } from '../../../utils/StringKey';
 
-export let GetChess = function (
+export function GetChess(
     boardData: IBoardData,
     x: XType,
     y: YType,

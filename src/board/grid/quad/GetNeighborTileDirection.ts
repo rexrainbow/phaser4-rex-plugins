@@ -6,7 +6,7 @@ import {
     DeltaXYToDirectionType
 } from './DeltaTileXYToDirection';
 
-export let GetNeighborTileDirection = function (
+export function GetNeighborTileDirection(
     quad: IQuadBase,
     srcTileXY: Vec2Type,
     neighborTileXY: Vec2Type

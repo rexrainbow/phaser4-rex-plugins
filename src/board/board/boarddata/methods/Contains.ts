@@ -2,7 +2,7 @@ import { IBoardData } from '../IBoardData';
 import { XType, YType, ZType } from '../../../Types';
 import { GetChess } from './GetChess';
 
-export let Contains = function (
+export function Contains(
     boardData: IBoardData,
     x: XType,
     y: YType,

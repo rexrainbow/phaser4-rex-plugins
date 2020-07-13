@@ -11,7 +11,7 @@ export interface IConfig {
     lineWidth?: number
 }
 
-export let CreateCircleTexture = function (
+export function CreateCircleTexture(
     key: string | Texture,
     {
         width = 32,

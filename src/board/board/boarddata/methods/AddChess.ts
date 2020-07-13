@@ -3,7 +3,7 @@ import { XType, YType, ZType, IChess } from '../../../Types';
 import { AddChessToZMap } from './ZMap';
 import { AddChessToSet } from './ChessSet';
 
-export let AddChess = function (
+export function AddChess(
     boardData: IBoardData,
     chess: IChess,
     x: XType,

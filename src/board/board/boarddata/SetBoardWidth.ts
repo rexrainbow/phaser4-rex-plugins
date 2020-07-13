@@ -1,6 +1,9 @@
 import { IBaseBoard } from '../IBaseBoard';
+import { GetAllChess } from '../chess/GetAllChess';
+import { ChessToTileXYZ } from '../tilexy/ChessToTileXYZ';
+import { RemoveChess } from '../chess/RemoveChess';
 
-export let SetBoardWidth = function (
+export function SetBoardWidth(
     board: IBaseBoard,
     width: number
 ): void {
@@ -14,11 +17,13 @@ export let SetBoardWidth = function (
     }
 
     // this.width > width : collapse
-    for (let x = width; x < board.width; x++) {
-        for (let y = 0; y < board.height; y++) {
-            // TODO: RemoveChess
+    let chessArray = GetAllChess(board);
+    chessArray.forEach((chess) => {
+        let tileXYZ = ChessToTileXYZ(board, chess);
+        if (tileXYZ.x > width) {
+            RemoveChess(board, chess);
         }
-    }
+    })
 
     board.width = width;
 }

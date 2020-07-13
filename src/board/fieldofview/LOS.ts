@@ -2,7 +2,7 @@ import { IFieldOfView } from './IFieldOfView';
 import { IChess, XYType } from '../Types';
 import { IsInLOS } from './IsInLOS';
 
-export let LOS = function (
+export function LOS(
     fov: IFieldOfView,
     chessArray: IChess[] | XYType[],
     visiblePoints?: number,

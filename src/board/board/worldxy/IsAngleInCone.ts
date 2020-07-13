@@ -5,7 +5,7 @@ import { AngleBetween } from './AngleBetween';
 import { Normalize as AngleNormalize } from '../../../utils/math/angle/Normalize';
 import { Equal } from '../../../utils/math/fuzzy/Equal';
 
-export let IsAngleInCone = function (
+export function IsAngleInCone(
     board: IBaseBoard,
     chessA: IChess | XYType,
     chessB: IChess | XYType,

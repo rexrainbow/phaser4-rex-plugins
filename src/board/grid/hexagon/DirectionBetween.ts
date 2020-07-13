@@ -2,7 +2,7 @@ import { IHexagonBase } from './IHexagonBase';
 import { Vec2Type } from '../IGrid';
 import { cr2cube, CubeType } from './CubeTransfer';
 
-export let DirectionBetween = function (
+export function DirectionBetween(
     hexagon: IHexagonBase,
     tileA: Vec2Type,
     tileB: Vec2Type,

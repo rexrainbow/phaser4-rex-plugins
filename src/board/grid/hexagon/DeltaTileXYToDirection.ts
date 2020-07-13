@@ -9,7 +9,7 @@ type DeltaXYToDirectionEntryType = {
     }
 }
 
-let ReverseDirMap = function (
+function ReverseDirMap(
     dirMap: DirectionToDeltaXYEntryType
 ): DeltaXYToDirectionEntryType {
 
@@ -27,7 +27,7 @@ let ReverseDirMap = function (
 
 type ParityToDirectionType = DeltaXYToDirectionEntryType[];
 export type DeltaTileXYToDirectionType = ParityToDirectionType[];
-export let DeltaTileXYToDirection: DeltaTileXYToDirectionType = [
+export const DeltaTileXYToDirection: DeltaTileXYToDirectionType = [
     [
         ReverseDirMap(DirectionToDeltaTileXY[0][0]),
         ReverseDirMap(DirectionToDeltaTileXY[0][1])

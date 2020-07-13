@@ -1,4 +1,4 @@
-export let Normalize = function (angle: number): number {
+export function Normalize(angle: number): number {
     angle = angle % PI2;
 
     if (angle >= 0) {

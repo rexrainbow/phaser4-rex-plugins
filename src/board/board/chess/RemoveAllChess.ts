@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { GetAllChess } from './GetAllChess';
 import { RemoveChess } from './RemoveChess';
 
-export let RemoveAllChess = function (
+export function RemoveAllChess(
     board: IBaseBoard,
     destroy: boolean = false,
     fromBoardRemove: boolean = false

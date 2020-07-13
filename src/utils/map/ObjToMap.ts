@@ -1,4 +1,4 @@
-export let ObjToMap = function (
+export function ObjToMap(
     obj: { [name: string]: any },
     out: Map<string, any> = new Map
 ): Map<string, any> {

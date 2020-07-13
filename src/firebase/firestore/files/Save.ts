@@ -3,7 +3,7 @@ import { IFile, IHeader, IContent } from './IFile';
 import { LoadHeader } from './LoadHeader';
 
 
-export let Save = function (
+export function Save(
     file: IFile,
     fileID: string,
     header: IHeader = {},

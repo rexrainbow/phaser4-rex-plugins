@@ -1,7 +1,7 @@
 import { IFile, IHeader } from './IFile';
 import { LoadHeader } from './LoadHeader';
 
-export let Delete = function (
+export function Delete(
     file: IFile,
     fileID: string
 ): Promise<{ userID: string, fileID: string, error?: unknown }> {

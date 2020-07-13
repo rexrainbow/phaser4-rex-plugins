@@ -1,6 +1,6 @@
 import { Frame } from '@phaserjs/phaser/textures/Frame';
 
-export let DrawFrame = function (
+export function DrawFrame(
     frame: Frame,
     canvas: HTMLCanvasElement
 ): void {

@@ -4,7 +4,7 @@ import { cr2cube, cube2cr } from './CubeTransfer';
 
 import { Wrap } from '../../../utils/math/Wrap';
 
-export let Rotate = function (
+export function Rotate(
     hexagon: IHexagonBase,
     srcTileXY: Vec2Type,
     dir: number,

@@ -6,7 +6,7 @@ import {
 import { XYType } from '../Types';
 import { Nieghbors } from '../board'
 
-export let MatchAtDir = function (
+export function MatchAtDir(
     match: IMatch,
     pattern: number | SymbolType[],
     startTileX: number,

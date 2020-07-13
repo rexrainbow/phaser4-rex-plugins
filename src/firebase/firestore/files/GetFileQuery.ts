@@ -1,6 +1,6 @@
 import { IFile } from './IFile';
 
-export let GetFileQuery = function (
+export function GetFileQuery(
     file: IFile,
     userID?: string,
     fileID?: string,

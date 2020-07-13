@@ -3,7 +3,7 @@ import { XYType } from '../../Types';
 import { AngleSnapToDirection } from '../worldxy/AngleSnapToDirection';
 import { GetTileXYAtDirection } from '../tilexy/GetTileXYAtDirection';
 
-export let GetNeighborTileXYAtAngle = function (
+export function GetNeighborTileXYAtAngle(
     board: IBaseBoard,
     srcTileXY: XYType,
     angle: number,

@@ -2,7 +2,7 @@ import { IQuadBase, LayoutMode } from './IQuadBase';
 import { Vec2Type } from '../IGrid';
 import { OrthogonalMap, IsometricMap } from './DirectionToDeltaXY';
 
-export let GetTileXYAtDirection = function (
+export function GetTileXYAtDirection(
     quad: IQuadBase,
     srcTileXY: Vec2Type,
     direction: number,

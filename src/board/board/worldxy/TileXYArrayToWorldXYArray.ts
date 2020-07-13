@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { XYType, Vec2Type } from '../../Types';
 import { TileXYToWorldXY } from './TileXYToWorldXY';
 
-export let TileXYArrayToWorldXYArray = function (
+export function TileXYArrayToWorldXYArray(
     board: IBaseBoard,
     tileXYArray: XYType[],
     out: Vec2Type[] = []

@@ -2,7 +2,7 @@ import { IBaseBoard } from '../IBaseBoard';
 import { XYType } from '../../Types';
 import { Contains } from '../tilexy/Contains';
 
-export let RingToTileXYArray = function (
+export function RingToTileXYArray(
     board: IBaseBoard,
     centerTileXY: XYType,
     radius: number = 1,

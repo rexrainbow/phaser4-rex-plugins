@@ -10,7 +10,7 @@ import { RunCommand } from './RunCommand';
  * @param {IRunCommandsConfig} [config={}]
  * @returns {*}
  */
-export let RunCommands = function (
+export function RunCommands(
     queue: any[],
     scope: object,
     {

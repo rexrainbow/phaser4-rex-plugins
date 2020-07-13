@@ -1,8 +1,7 @@
 import { IBaseBoard } from '../IBaseBoard';
 import { Vec2Type } from '../../Types';
 
-
-export let GetGridPoints = function (
+export function GetGridPoints(
     board: IBaseBoard,
     tileX?: number | Vec2Type,
     tileY?: number,

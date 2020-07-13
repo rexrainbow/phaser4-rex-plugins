@@ -1,4 +1,4 @@
-export let Copy = function<T> (
+export function Copy<T>(
     dest: any[],
     src: T[],
     startIdx: number = 0,

@@ -3,7 +3,7 @@ import { Vec2Type } from '../../Types';
 import { WorldXYToTileXY } from './WorldXYToTileXY';
 import { TileXYToWorldXY } from './TileXYToWorldXY';
 
-export let WorldXYSnapToGrid = function (
+export function WorldXYSnapToGrid(
     board: IBaseBoard,
     worldX: number,
     worldY: number,

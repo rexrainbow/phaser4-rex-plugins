@@ -1,4 +1,4 @@
-export let DeepClone = function <T>(
+export function DeepClone<T>(
     obj: T,
 ): T {
 

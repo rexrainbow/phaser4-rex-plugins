@@ -1,4 +1,4 @@
-export let GetRandomItem = function <T>(
+export function GetRandomItem<T>(
     array: T[],
     startIndex: number = 0,
     length: number = array.length

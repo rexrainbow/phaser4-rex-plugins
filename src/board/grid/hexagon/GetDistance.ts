@@ -2,7 +2,7 @@ import { IHexagonBase } from './IHexagonBase';
 import { Vec2Type } from '../IGrid';
 import { cr2cube, CubeType } from './CubeTransfer';
 
-export let GetDistance = function (
+export function GetDistance(
     hexagon: IHexagonBase,
     tileA: Vec2Type,
     tileB: Vec2Type,

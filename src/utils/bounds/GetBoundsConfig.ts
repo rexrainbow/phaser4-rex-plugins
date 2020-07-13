@@ -8,7 +8,7 @@ export interface IConfig {
     bottom?: number
 }
 
-export let GetBoundsConfig = function (
+export function GetBoundsConfig(
     config: number | IConfig = 0,
     out: BoundsType = { left: 0, right: 0, top: 0, bottom: 0 }
 ): BoundsType {

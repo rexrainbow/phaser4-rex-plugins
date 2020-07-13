@@ -6,7 +6,7 @@ import { GetPageQuery } from './GetQueryMethods';
 import { FindFirst, TestCallbackType } from '../utils/query/FindFirst';
 
 
-export let GetRank = function (
+export function GetRank(
     leaderboard: ILeaderBoard,
     userID: string = leaderboard.userID
 ): Promise<RankResultType> {

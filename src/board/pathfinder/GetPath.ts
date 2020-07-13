@@ -7,7 +7,7 @@ import { XYToKey } from '../utils/StringKey';
 import { IAStarNode } from './astar/IAStarNode';
 import { TileXY } from '../board';
 
-export let GetPath = function (
+export function GetPath(
     pathFinder: IPathFinder,
     endChess: IChess | XYType,
     out: SearchResultType = []

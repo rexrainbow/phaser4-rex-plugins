@@ -2,7 +2,7 @@ import { ILeaderBoard } from './ILeaderBoard';
 import { GetRecordQuery } from './GetQueryMethods';
 import { Delete } from '../utils/query/Delete';
 
-export let DeleteUser = function (
+export function DeleteUser(
     leaderBoard: ILeaderBoard,
     userID: string = leaderBoard.userID
 ): Promise<void> {
@@ -11,7 +11,7 @@ export let DeleteUser = function (
     return Delete(query);
 };
 
-export let DeleteBoard = function (
+export function DeleteBoard(
     leaderBoard: ILeaderBoard,
     boardID: string = leaderBoard.boardID,
     tag: string = leaderBoard.tag,

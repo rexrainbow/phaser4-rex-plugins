@@ -1,7 +1,7 @@
 import { IGrid } from '../IGrid';
 import { Wrap } from '../../../utils/math/Wrap';
 
-export let DirectionNormalize = function (
+export function DirectionNormalize(
     grid: IGrid,
     direction: number
 ): number {

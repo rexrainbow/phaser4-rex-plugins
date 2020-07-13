@@ -4,7 +4,7 @@ import { GetChess } from './GetChess';
 import { RemoveChessFromZMap } from './ZMap';
 import { RemoveChessFromSet } from './ChessSet';
 
-export let RemoveChess = function (
+export function RemoveChess(
     boardData: IBoardData,
     x: XType,
     y: YType,
