@@ -1,7 +1,12 @@
-import BaseUpdater from './BaseUpdater.js';
+import * as firebase from 'firebase/app';
+import { BaseUpdater } from './BaseUpdater';
+import { TableType } from '../../Types';
 
-class ColumnUpdater extends BaseUpdater {
+
+export class ColumnUpdater extends BaseUpdater {
+
     startUpdate() {
+
         this.rootRef.on('child_added', this.addCol, this);
         this.rootRef.on('child_removed', this.removeCol, this);
         this.rootRef.on('child_changed', this.changeColValue, this);
@@ -9,15 +14,20 @@ class ColumnUpdater extends BaseUpdater {
     }
 
     stopUpdate() {
+
         this.rootRef.off('child_added', this.addCol, this);
         this.rootRef.off('child_removed', this.removeCol, this);
         this.rootRef.off('child_changed', this.changeColValue, this);
         return this;
     }
 
-    addCol(snapshot) {
-        var key = snapshot.key,
+    addCol(
+        snapshot: firebase.database.DataSnapshot
+    ) {
+
+        const key = snapshot.key,
             value = snapshot.val();
+
         this.setData(key, value);
 
         switch (this.type) {
@@ -34,41 +44,49 @@ class ColumnUpdater extends BaseUpdater {
         this.emit(this.eventNames.update, this.table.data);
     }
 
-    removeCol(snapshot) {
-        var key = snapshot.key;
+    removeCol(
+        snapshot: firebase.database.DataSnapshot
+    ) {
+
+        const key = snapshot.key;
+
         this.removeChild(key);
 
         switch (this.type) {
-            case 1:
+            case TableType['1d']:
                 this.emit(this.eventNames.removekey0, key);
                 break;
-            case 2:
+            case TableType['2d']:
                 this.emit(this.eventNames.removekey1, this.key, key);
                 break;
             default: // 3
                 this.emit(this.eventNames.removekey2, this.pageKey, this.key, key);
                 break;
         }
-        this.emit(this.eventNames.update, this.table.data);        
+        this.emit(this.eventNames.update, this.table.data);
     }
 
-    changeColValue(snapshot) {
-        var key = snapshot.key,
+    changeColValue(
+        snapshot: firebase.database.DataSnapshot
+    ) {
+
+        const key = snapshot.key,
             value = snapshot.val();
+
         this.setData(key, value);
 
         switch (this.type) {
-            case 1:
+            case TableType['1d']:
                 this.emit(this.eventNames.changekey0, key, value);
                 break;
-            case 2:
+            case TableType['2d']:
                 this.emit(this.eventNames.changekey1, this.key, key, value);
                 break;
             default: // 3
                 this.emit(this.eventNames.changekey2, this.pageKey, this.key, key, value);
                 break;
         }
-        this.emit(this.eventNames.update, this.table.data);        
+        this.emit(this.eventNames.update, this.table.data);
     }
 
     get pageKey() {
@@ -76,5 +94,3 @@ class ColumnUpdater extends BaseUpdater {
     }
 
 }
-
-export default ColumnUpdater;

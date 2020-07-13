@@ -1,11 +1,11 @@
-import { SetValue } from '../object/SetValue';
-import { Clear } from '../object/Clear';
-import { DeepClone } from '../object/DeepClone';
+import { SetValue } from '../../object/SetValue';
+import { Clear } from '../../object/Clear';
+import { DeepClone } from '../../object/DeepClone';
+import { ITree, DataType, ValueType } from './ITree';
 
-type DataType = { [name: string]: DataType | string | number };
-type ValueType = DataType | string | number;
+export { DataType, ValueType };
 
-export class Tree {
+export class JSONTree implements ITree {
     data: DataType;
 
     constructor() {
@@ -17,7 +17,7 @@ export class Tree {
         value?: unknown
     ): this {
 
-        if (arguments.length === 0) {
+        if (keys == null) {
             this.clear(); // No argument
         } else if (typeof (keys) === 'object') {
             this.data = keys; // JSON keys
@@ -31,7 +31,7 @@ export class Tree {
         keys?: string | string[]
     ): ValueType {
 
-        if (arguments.length === 0) {
+        if (keys == null) {
             return this.data;
         } else {
             if (typeof (keys) === 'string') {
@@ -60,7 +60,7 @@ export class Tree {
         keys?: string | string[]
     ): this {
 
-        if (arguments.length === 0) {
+        if (keys == null) {
             this.clear();
         } else {
             if (typeof (keys) === 'string') {
@@ -85,7 +85,7 @@ export class Tree {
         return this;
     }
 
-    clear() {
+    clear(): this {
         Clear(this.data);
         return this;
     }

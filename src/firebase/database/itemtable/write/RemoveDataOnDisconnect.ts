@@ -3,22 +3,23 @@ import { GetItemRef } from '../GetItemRef';
 
 
 export let RemoveDataOnDisconnect = function (
-    itemTable: IItemTable
+    itemTable: IItemTable,
+    ...args: [string] | [string, string] | [string, string, string]
 ): Promise<any> {
 
     let key0: string,
         key1: string,
         key2: string;
 
-    switch (arguments.length) {
+    switch (args.length) {
         case 3:
-            [key0, key1, key2] = arguments;
+            [key0, key1, key2] = args;
             break;
         case 2:
-            [key0, key1] = arguments;
+            [key0, key1] = args;
             break;
         case 1:
-            key0 = arguments[0];
+            key0 = args[0];
             break;
     }
 

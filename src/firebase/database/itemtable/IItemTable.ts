@@ -4,23 +4,25 @@ import {
     IBaseEventEmitter,
     IConfig as IEventEmitterConfig
 } from '../../../utils/eventemitter/IBaseEventEmitter';
-import { Tree } from '../../../utils/struct/Tree';
-
-export enum TableType {
-    '1d' = 1,
-    '2d' = 2,
-    '3d' = 3
-}
-
-export type TableTypeString = '1d' | '2d' | '3d';
+import { JSONTree } from '../../../utils/struct/tree/JSONTree';
+import {
+    TableType, TableTypeString,
+    EventNameMapType
+} from './Types';
+import { IUpdater } from './read/updater/IUpdater';
 
 export interface IConfig extends IEventEmitterConfig {
+    root?: string;
 
+    type?:TableType | TableTypeString;
+    eventNames?: EventNameMapType;
 }
 
 export interface IItemTable extends IBaseEventEmitter, IBase {
-    table: Tree;
+    table: JSONTree;
     tableType: TableType;
     initialFlag: boolean;
-    // updater:
+    updater: IUpdater;
+
+    eventNames: EventNameMapType;
 }

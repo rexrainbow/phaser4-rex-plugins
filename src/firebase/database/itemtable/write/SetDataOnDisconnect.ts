@@ -2,7 +2,8 @@ import { IItemTable } from '../IItemTable';
 import { GetItemRef } from '../GetItemRef';
 
 export let SetDataOnDisconnect = function (
-    itemTable: IItemTable
+    itemTable: IItemTable,
+    ...args: [unknown] | [string, unknown] | [string, string, unknown] | [string, string, string, unknown]
 ): Promise<any> {
 
     let key0: string,
@@ -10,18 +11,18 @@ export let SetDataOnDisconnect = function (
         key2: string,
         value: unknown;
 
-    switch (arguments.length) {
+    switch (args.length) {
         case 4:
-            [key0, key1, key2, value] = arguments;
+            [key0, key1, key2, value] = args;
             break;
         case 3:
-            [key0, key1, value] = arguments;
+            [key0, key1, value] = args;
             break;
         case 2:
-            [key0, value] = arguments;
+            [key0, value] = args;
             break;
         default:
-            value = arguments[0];
+            value = args[0];
             break;
     }
 

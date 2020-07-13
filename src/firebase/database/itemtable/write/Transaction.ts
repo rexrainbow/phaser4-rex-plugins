@@ -1,28 +1,33 @@
 import { IItemTable } from '../IItemTable';
 import { GetItemRef } from '../GetItemRef';
+import { TransactionCallbackType } from '../Types';
 
 
 export var Transaction = function (
-    itemTable: IItemTable
+    itemTable: IItemTable,
+    ...args: [TransactionCallbackType] |
+        [string, TransactionCallbackType] |
+        [string, string, TransactionCallbackType] |
+        [string, string, string, TransactionCallbackType]
 ): Promise<any> {
 
     let key0: string,
         key1: string,
         key2: string,
-        callback: (preValue: any) => any;
+        callback: TransactionCallbackType;
 
-    switch (arguments.length) {
+    switch (args.length) {
         case 4:
-            [key0, key1, key2, callback] = arguments;
+            [key0, key1, key2, callback] = args;
             break;
         case 3:
-            [key0, key1, callback] = arguments;
+            [key0, key1, callback] = args;
             break;
         case 2:
-            [key0, callback] = arguments;
+            [key0, callback] = args;
             break;
         default:
-            callback = arguments[0];
+            callback = args[0];
             break;
     }
 
