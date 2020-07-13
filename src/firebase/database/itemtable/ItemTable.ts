@@ -121,6 +121,10 @@ export class ItemTable extends BaseEventEmitter implements IItemTable {
         return GetItemRef(this, key0, key1, key2);
     }
 
+    setData(value: unknown): Promise<any>;
+    setData(key0: string, value: unknown): Promise<any>;
+    setData(key0: string, key1: string, value: unknown): Promise<any>;
+    setData(key0: string, key1: string, key2: string, value: unknown): Promise<any>;
     setData(
         ...args: [unknown] | [string, unknown] | [string, string, unknown] | [string, string, string, unknown]
     ): Promise<any> {
@@ -128,6 +132,9 @@ export class ItemTable extends BaseEventEmitter implements IItemTable {
         return SetData(this, ...args);
     }
 
+    removeData(key0: string): Promise<any>;
+    removeData(key0: string, key1: string): Promise<any>;
+    removeData(key0: string, key1: string, key2: string): Promise<any>;
     removeData(
         ...args: [string] | [string, string] | [string, string, string]
     ): Promise<any> {
@@ -135,6 +142,10 @@ export class ItemTable extends BaseEventEmitter implements IItemTable {
         return RemoveData(this, ...args);
     }
 
+    incValue(value: unknown): Promise<any>;
+    incValue(key0: string, value: unknown): Promise<any>;
+    incValue(key0: string, key1: string, value: unknown): Promise<any>;
+    incValue(key0: string, key1: string, key2: string, value: unknown): Promise<any>;
     incValue(
         ...args: [unknown] | [string, unknown] | [string, string, unknown] | [string, string, string, unknown]
     ): Promise<any> {
@@ -142,6 +153,10 @@ export class ItemTable extends BaseEventEmitter implements IItemTable {
         return IncValue(this, ...args);
     }
 
+    transaction(callback: TransactionCallbackType): Promise<any>;
+    transaction(key0: string, callback: TransactionCallbackType): Promise<any>;
+    transaction(key0: string, key1: string, callback: TransactionCallbackType): Promise<any>;
+    transaction(key0: string, key1: string, key2: string, callback: TransactionCallbackType): Promise<any>;
     transaction(
         ...args: [TransactionCallbackType] |
             [string, TransactionCallbackType] |
@@ -159,6 +174,9 @@ export class ItemTable extends BaseEventEmitter implements IItemTable {
         return UpdateData(this, data);
     }
 
+    removeDataOnDisconnect(key0: string): Promise<any>;
+    removeDataOnDisconnect(key0: string, key1: string): Promise<any>;
+    removeDataOnDisconnect(key0: string, key1: string, key2: string): Promise<any>;
     removeDataOnDisconnect(
         ...args: [string] | [string, string] | [string, string, string]
     ): Promise<any> {
@@ -166,6 +184,10 @@ export class ItemTable extends BaseEventEmitter implements IItemTable {
         return RemoveDataOnDisconnect(this, ...args);
     }
 
+    setDataOnDisconnect(value: unknown): Promise<any>;
+    setDataOnDisconnect(key0: string, value: unknown): Promise<any>;
+    setDataOnDisconnect(key0: string, key1: string, value: unknown): Promise<any>;
+    setDataOnDisconnect(key0: string, key1: string, key2: string, value: unknown): Promise<any>;
     setDataOnDisconnect(
         ...args: [unknown] | [string, unknown] | [string, string, unknown] | [string, string, string, unknown]
     ): Promise<any> {
