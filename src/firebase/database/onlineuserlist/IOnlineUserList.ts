@@ -33,7 +33,7 @@ export const DefaultEventNames: EventNameMapType = {
 export interface IConfig extends IEventEmitterConfig {
     root?: string;
 
-    userID?: string;
+    userID?: string | UserInfoType;
     userName?: string;
     maxUsers?: number;
 

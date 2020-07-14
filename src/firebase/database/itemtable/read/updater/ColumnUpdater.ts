@@ -31,10 +31,10 @@ export class ColumnUpdater extends BaseUpdater {
         this.setData(key, value);
 
         switch (this.type) {
-            case 1:
+            case TableType['1d']:
                 this.emit(this.eventNames.addkey0, key, value);
                 break;
-            case 2:
+            case TableType['2d']:
                 this.emit(this.eventNames.addkey1, this.key, key, value);
                 break;
             default: // 3

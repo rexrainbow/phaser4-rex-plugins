@@ -30,7 +30,7 @@ export const DefaultEventNames: EventNameMapType = {
 export interface IConfig extends IEventEmitterConfig {
     root?: string;
 
-    senderID?: string;
+    senderID?: string | UserInfoType;
     senderName?: string;
     receiverID?: string;
     history?: number | boolean;
