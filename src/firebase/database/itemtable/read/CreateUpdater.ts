@@ -10,7 +10,7 @@ UpdaterClasses[TableType['2d']] = RowUpdater;
 UpdaterClasses[TableType['3d']] = PageUpdater;
 
 
-export let CreateUpdater = function (
+export function CreateUpdater(
     itemTable: IItemTable
 ): IUpdater {
 

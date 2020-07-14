@@ -4,7 +4,7 @@ import {
 } from './IMessages';
 
 
-export let Send = function (
+export function Send(
     messager: IMessages,
     message: unknown
 ): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> {

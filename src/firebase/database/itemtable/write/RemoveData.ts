@@ -2,7 +2,7 @@ import { IItemTable } from '../IItemTable';
 import { GetItemRef } from '../GetItemRef';
 
 
-export let RemoveData = function (
+export function RemoveData(
     itemTable: IItemTable,
     ...args: [string] | [string, string] | [string, string, string]
 ): Promise<any> {

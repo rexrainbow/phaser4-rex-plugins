@@ -1,7 +1,7 @@
 import { GetNodePathCallbackType } from './GetNodePathCallbackType';
 import { GetRandomItem } from '../../array/GetRandom';
 
-export let GetRandomNodePath: GetNodePathCallbackType = function (
+export const GetRandomNodePath: GetNodePathCallbackType = function (
     startNode,
     endNode,
     out = []

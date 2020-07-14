@@ -1,7 +1,8 @@
 import * as firebase from 'firebase/app';
 import {
     ILeaderBoard, IConfig,
-    UserInfoType, TimeFiltersType, TimeFilterTypeStringType,
+    UserInfoType,
+    TimeFiltersType, TimeFilterTypeString, TimeFilterTypeStringAlias, TimeFilterTypeStringAliasMap,
     IRecord, RankResultType
 } from './ILeaderBoard';
 import { Post } from './Post';
@@ -25,7 +26,7 @@ export class LeaderBoard implements ILeaderBoard {
     tag: string;
 
     timeFilters: false | TimeFiltersType;
-    timeFilterType: TimeFilterTypeStringType;
+    timeFilterType: TimeFilterTypeString;
 
     pageItemCount: number;
     page: IPageLoader;
@@ -84,7 +85,7 @@ export class LeaderBoard implements ILeaderBoard {
     }
 
     setUser(
-        userID: string | UserInfoType, 
+        userID: string | UserInfoType,
         userName?: string
     ): this {
 
@@ -140,11 +141,11 @@ export class LeaderBoard implements ILeaderBoard {
     }
 
     setTimeFilterType(
-        type: TimeFilterTypeStringType
+        type: TimeFilterTypeStringAlias
     ): this {
 
         this.resetQueryFlag = this.resetQueryFlag || (this.timeFilterType !== type);
-        this.timeFilterType = type;
+        this.timeFilterType = TimeFilterTypeStringAliasMap[type];
         return this;
     }
 

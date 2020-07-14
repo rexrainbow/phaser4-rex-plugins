@@ -18,7 +18,7 @@ type QueryNextPageConfig = QueryConfig & {
     remainderLines: number
 }
 
-export let Query = function ({
+export function Query({
     query,
     totalLines = Infinity,
     linesPerPage = 1000,
@@ -39,7 +39,7 @@ export let Query = function ({
     });
 }
 
-let QueryNextPage = function (
+function QueryNextPage(
     config: QueryNextPageConfig
 ): Promise<unknown> {
 

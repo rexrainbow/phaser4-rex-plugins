@@ -4,7 +4,7 @@ import {
     IMessage
 } from './IBroadcast';
 
-export let StartReceiving = function (
+export function StartReceiving(
     broadcast: IBroadcast
 ): void {
 
@@ -21,7 +21,7 @@ export let StartReceiving = function (
     broadcast.receiverRef.onDisconnect().remove();
 };
 
-export let StopReceiving = function (
+export function StopReceiving(
     broadcast: IBroadcast
 ): void {
 
@@ -35,7 +35,7 @@ export let StopReceiving = function (
     broadcast.receiverRef.onDisconnect().cancel();
 }
 
-let OnReceive = function (
+function OnReceive(
     this: IBroadcast,
     snapshot: firebase.database.DataSnapshot
 ): void {

@@ -5,7 +5,7 @@ import {
 } from './Query';
 
 
-export let Load = function (
+export function Load(
     query: firebase.firestore.Query,
     count: number = Infinity,
     skip: number = 0,

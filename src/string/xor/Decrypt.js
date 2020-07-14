@@ -31,7 +31,7 @@ let XORDecrypt = function (str, pwd) {
     return enc_str;
 }
 
-export let Decrypt = function (data, pwd) {
+export function Decrypt(data, pwd) {
     pwd = escape(pwd.toString());
     let result = XORDecrypt(data, pwd);
     if (result != null) {

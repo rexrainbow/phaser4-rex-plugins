@@ -63,7 +63,7 @@ export function Post(
 
                         let timeTagKey: string = TimeTagKeys[t];
                         if (prevRecord[timeTagKey] === newRecord[timeTagKey]) {
-                            let scoreKey: string = ScoreKeys[t];
+                            let scoreKey: ScoreKeys = ScoreKeys[t];
                             newRecord[scoreKey] = Math.max(prevRecord[scoreKey], newRecord[scoreKey]);
                         }
                     }

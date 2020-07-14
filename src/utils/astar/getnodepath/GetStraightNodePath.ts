@@ -1,7 +1,7 @@
 import { GetNodePathCallbackType } from './GetNodePathCallbackType';
 import { INodeBase } from '../INodeBase';
 
-export let GetStraightNodePath: GetNodePathCallbackType = function (
+export const GetStraightNodePath: GetNodePathCallbackType = function (
     startNode,
     endNode,
     out = []

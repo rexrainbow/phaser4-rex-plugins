@@ -4,7 +4,7 @@ import {
     UserInfoType
 } from './IOnlineUserList';
 
-export let Contains = function (
+export function Contains(
     onlineUserList: IOnlineUserList,
     userID: string = onlineUserList.userID
 ) {
@@ -12,7 +12,7 @@ export let Contains = function (
     return onlineUserList.userID2ItemID.has(userID);
 }
 
-export let GetUserRef = function (
+export function GetUserRef(
     onlineUserList: IOnlineUserList,
     userID: string = onlineUserList.userID
 ): firebase.database.Reference {
@@ -24,7 +24,7 @@ export let GetUserRef = function (
     return onlineUserList.rootRef.child(itemID);
 }
 
-export let GetUser = function (
+export function GetUser(
     onlineUserList: IOnlineUserList,
     userID: string = onlineUserList.userID
 ): UserInfoType {
@@ -36,21 +36,21 @@ export let GetUser = function (
     return onlineUserList.userList.getItemFromItemID(itemID);
 }
 
-export let GetUsers = function (
+export function GetUsers(
     onlineUserList: IOnlineUserList
 ): UserInfoType[] {
 
     return onlineUserList.userList.getItems();
 }
 
-export let Clear = function (
+export function Clear(
     onlineUserList: IOnlineUserList
 ): void {
 
     onlineUserList.userList.clear();
 }
 
-export let ForEach = function (
+export function ForEach(
     onlineUserList: IOnlineUserList,
     callback: ((value: UserInfoType, index: number, array: UserInfoType[]) => void),
     scope?: unknown
@@ -59,7 +59,7 @@ export let ForEach = function (
     onlineUserList.userList.forEach(callback, scope);
 }
 
-export let IsFirstUser = function (
+export function IsFirstUser(
     onlineUserList: IOnlineUserList,
     userID: string = onlineUserList.userID
 ): boolean {
@@ -68,7 +68,7 @@ export let IsFirstUser = function (
     return (user && (user.userID === userID));
 }
 
-export let IsFull = function (
+export function IsFull(
     onlineUserList: IOnlineUserList
 ): boolean {
 

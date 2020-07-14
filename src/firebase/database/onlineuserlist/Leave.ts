@@ -1,7 +1,7 @@
 import { IOnlineUserList } from './IOnlineUserList';
 import { Contains } from './UserMethods';
 
-export let Leave = function (
+export function Leave(
     onlineUserList: IOnlineUserList,
     userID: string = onlineUserList.userID
 ): Promise<any> {

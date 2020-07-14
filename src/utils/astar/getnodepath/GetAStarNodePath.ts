@@ -1,6 +1,6 @@
 import { GetNodePathCallbackType } from './GetNodePathCallbackType';
 
-export let GetAStarNodePath: GetNodePathCallbackType = function (
+export const GetAStarNodePath: GetNodePathCallbackType = function (
     startNode,
     endNode,
     out = []

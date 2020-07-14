@@ -8,7 +8,7 @@ export type FindFirstResultType = {
     index: number | undefined
 }
 
-export let FindFirst = function (
+export function FindFirst(
     query: firebase.firestore.Query,
     testCallback: TestCallbackType
 ): Promise<FindFirstResultType> {

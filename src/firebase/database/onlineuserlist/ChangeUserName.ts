@@ -2,7 +2,7 @@ import * as firebase from 'firebase/app';
 import { IOnlineUserList } from './IOnlineUserList';
 import { GetUserRef } from './UserMethods';
 
-export var ChangeUserName = function (
+export function ChangeUserName(
     onlineUserList: IOnlineUserList,
     userName: string
 ): Promise<any> {

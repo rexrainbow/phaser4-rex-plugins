@@ -3,7 +3,7 @@ import { GetItemRef } from '../GetItemRef';
 import { TransactionCallbackType } from '../Types';
 
 
-export var Transaction = function (
+export function Transaction(
     itemTable: IItemTable,
     ...args: [TransactionCallbackType] |
         [string, TransactionCallbackType] |

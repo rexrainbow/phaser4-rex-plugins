@@ -1,8 +1,8 @@
 import { IItemTable } from '../IItemTable';
 
-export let Load = function (
+export function Load(
     itemTable: IItemTable
-):Promise<any> {
+): Promise<any> {
 
     itemTable.updater.clear(); // Clear updater and table content
 

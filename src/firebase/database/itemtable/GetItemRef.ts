@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import { IItemTable } from './IItemTable';
 
-export let GetItemRef = function (
+export function GetItemRef(
     itemTable: IItemTable,
     key0?: string,
     key1?: string,

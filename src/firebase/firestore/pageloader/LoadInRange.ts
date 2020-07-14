@@ -1,8 +1,7 @@
 import { IPageLoader } from './IPageLoader';
 import { Load } from '../utils/query/Load';
 
-
-export let LoadInRange = function (
+export function LoadInRange(
     pageLoader: IPageLoader,
     count: number,
     skip: number = 0

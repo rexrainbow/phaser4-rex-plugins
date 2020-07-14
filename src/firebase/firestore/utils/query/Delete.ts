@@ -2,7 +2,7 @@ import * as firebase from 'firebase/app';
 import { Load } from './Load';
 
 
-export let Delete = function (
+export function Delete(
     query: firebase.firestore.Query
 ): Promise<void> {
 

@@ -3,7 +3,7 @@ import {
     IMessage
 } from './IBroadcast';
 
-export let Send = function (
+export function Send(
     broadcast: IBroadcast,
     message?: unknown
 ): Promise<any> {

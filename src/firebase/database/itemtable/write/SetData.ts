@@ -2,7 +2,7 @@ import { IItemTable } from '../IItemTable';
 import { GetItemRef } from '../GetItemRef';
 
 
-export let SetData = function (
+export function SetData(
     itemTable: IItemTable,
     ...args: [unknown] | [string, unknown] | [string, string, unknown] | [string, string, string, unknown]
 ): Promise<any> {

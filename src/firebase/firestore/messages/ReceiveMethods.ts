@@ -5,9 +5,9 @@ import {
 } from './IMessages';
 import { GetReceiverQuery, GetPageQuery } from './GetQueryMethods';
 
-export let StartReceiving = function (
+export function StartReceiving(
     messager: IMessages
-):void {
+): void {
 
     let query = GetReceiverQuery(messager).orderBy('timestamp', 'desc').limit(1);
     messager.unsubscribe = query.onSnapshot(
@@ -45,7 +45,7 @@ export let StartReceiving = function (
     )
 };
 
-export let StopReceiving = function (
+export function StopReceiving(
     messager: IMessages
 ): void {
 
@@ -58,7 +58,7 @@ export let StopReceiving = function (
     messager.cacheMessages.length = 0;
 };
 
-export let LoadPreviousMessages = function (
+export function LoadPreviousMessages(
     messager: IMessages
 ): Promise<IMessage[]> {
 
@@ -76,7 +76,7 @@ export let LoadPreviousMessages = function (
 }
 
 
-let ResetPageQuery = function (
+function ResetPageQuery(
     messager: IMessages,
     receiverID: string = messager.receiverID,
     baselineDoc?: firebase.firestore.DocumentData
@@ -94,7 +94,7 @@ let ResetPageQuery = function (
     return;
 }
 
-let DocToMessage = function (
+function DocToMessage(
     doc: firebase.firestore.DocumentData
 ): IMessage {
 

@@ -7,7 +7,18 @@ export type TimeFiltersType = {
     y?: boolean
 }
 
-export type TimeFilterTypeStringType = 'day' | 'd' | 'week' | 'w' | 'month' | 'm' | 'year' | 'y';
+export type TimeFilterTypeString = 'd' | 'w' | 'm' | 'y';
+export type TimeFilterTypeStringAlias = TimeFilterTypeString | 'day' | 'week' | 'month' | 'year';
+export enum TimeFilterTypeStringAliasMap {
+    d = 'd',
+    w = 'w',
+    m = 'm',
+    y = 'y',
+    day = 'd',
+    week = 'w',
+    month = 'm',
+    year = 'y'
+}
 
 export type TimeDataType = {
     d: string,
@@ -16,25 +27,25 @@ export type TimeDataType = {
     y: string
 }
 
-export const TimeTagKeys = {
-    d: 'tagD',
-    w: 'tagW',
-    m: 'tagM',
-    y: 'tagY'
+export enum TimeTagKeys {
+    d = 'tagD',
+    w = 'tagW',
+    m = 'tagM',
+    y = 'tagY'
 }
 
-export const ScoreKeys = {
-    d: 'scoreD',
-    w: 'scoreW',
-    m: 'scoreM',
-    y: 'scoreY'
+export enum ScoreKeys {
+    d = 'scoreD',
+    w = 'scoreW',
+    m = 'scoreM',
+    y = 'scoreY'
 }
 
-export const FullTimeName = {
-    d: 'day',
-    w: 'week',
-    m: 'month',
-    y: 'year'
+export enum FullTimeName {
+    d = 'day',
+    w = 'week',
+    m = 'month',
+    y = 'year'
 }
 
 export interface IRecord {
@@ -75,7 +86,7 @@ export interface IConfig {
     boardID?: string;
     tag?: string;
     timeFilters?: boolean | TimeFiltersType;
-    timeFilterType?: TimeFilterTypeStringType;
+    timeFilterType?: TimeFilterTypeStringAlias;
     pageItemCount?: number;
 }
 
@@ -92,7 +103,7 @@ export interface ILeaderBoard extends IBase {
     tag: string;
 
     timeFilters: false | TimeFiltersType;
-    timeFilterType: TimeFilterTypeStringType;
+    timeFilterType: TimeFilterTypeString;
 
     pageItemCount: number;
     page: IPageLoader;

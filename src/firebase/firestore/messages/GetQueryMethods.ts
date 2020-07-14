@@ -1,6 +1,6 @@
 import { IMessages } from './IMessages';
 
-export let GetReceiverQuery = function (
+export function GetReceiverQuery(
     messager: IMessages,
     receiverID: string = messager.receiverID
 ): firebase.firestore.Query {
@@ -12,7 +12,7 @@ export let GetReceiverQuery = function (
 
 import { PageQueriesType } from '../pageloader/IPageLoader';
 
-export let GetPageQuery = function (
+export function GetPageQuery(
     messager: IMessages,
     receiverID: string = messager.receiverID
 ): PageQueriesType {

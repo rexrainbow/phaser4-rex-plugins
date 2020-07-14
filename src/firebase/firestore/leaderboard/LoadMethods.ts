@@ -85,7 +85,7 @@ function DocsToDataArray(
 ): IRecord[] {
 
     let items: IRecord[] = [];
-    let scoreKey = ScoreKeys[leaderBoard.timeFilterType[0]];
+    let scoreKey: ScoreKeys = ScoreKeys[leaderBoard.timeFilterType[0]];
     for (let i = 0, cnt = docs.length; i < cnt; i++) {
         let item = docs[i].data() as IRecord;
 

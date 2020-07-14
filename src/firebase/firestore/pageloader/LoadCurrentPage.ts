@@ -1,8 +1,7 @@
 import { IPageLoader } from './IPageLoader';
 import { Load } from '../utils/query/Load';
 
-
-export let LoadStaticPage = function (
+export function LoadStaticPage(
     pageLoader: IPageLoader
 ): Promise<firebase.firestore.DocumentData[]> {
 
@@ -13,13 +12,13 @@ export let LoadStaticPage = function (
             pageLoader.endItemIndex = pageLoader.startItemIndex + docCount - 1;
             pageLoader.isFullPage = (docCount === pageLoader.itemCount);
             // Doc reference for paging
-            pageLoader.currPageStartDocRef = docs[0];
-            pageLoader.currPageEndDocRef = docs[docCount - 1];
+            pageLoader.currPageStartDocRef = docs[0].ref;
+            pageLoader.currPageEndDocRef = docs[docCount - 1].ref;
             return Promise.resolve(pageLoader.cacheItems);
         })
 }
 
-export let LoadDynamicPage = function (
+export function LoadDynamicPage(
     pageLoader: IPageLoader
 ): Promise<firebase.firestore.DocumentData[]> {
 

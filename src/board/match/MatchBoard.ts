@@ -50,7 +50,7 @@ export function MatchAll(
     }
 }
 
-export let MatchAny = function (
+export function MatchAny(
     match: IMatch,
     pattern: number | SymbolType[],
 ): MatchResult | false {

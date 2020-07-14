@@ -1,7 +1,7 @@
 import { IItemTable } from '../IItemTable';
 import { GetItemRef } from '../GetItemRef';
 
-export let SetDataOnDisconnect = function (
+export function SetDataOnDisconnect(
     itemTable: IItemTable,
     ...args: [unknown] | [string, unknown] | [string, string, unknown] | [string, string, string, unknown]
 ): Promise<any> {

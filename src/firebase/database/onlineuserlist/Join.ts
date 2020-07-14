@@ -7,7 +7,7 @@ import { Contains } from './UserMethods';
 import { Delay } from '../../../utils/promise/Delay';
 
 
-export let Join = function (
+export function Join(
     onlineUserList: IOnlineUserList,
     userID: string = onlineUserList.userID,
     userName: string = onlineUserList.userName

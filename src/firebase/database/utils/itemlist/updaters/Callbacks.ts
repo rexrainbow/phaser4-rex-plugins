@@ -6,7 +6,7 @@ import {
 import { UpdateItemID2Index, Clear } from '../ItemMethods';
 import { SpliceOne } from '../../../../../utils/array/SpliceOne';
 
-export let AddChildCallback = function (
+export function AddChildCallback(
     this: IItemList,
     snapshot: firebase.database.DataSnapshot,
     prevName: string
@@ -19,7 +19,7 @@ export let AddChildCallback = function (
     this.emit(this.eventNames.update, this.items);
 }
 
-export let ChangeChildCallback = function (
+export function ChangeChildCallback(
     this: IItemList,
     snapshot: firebase.database.DataSnapshot,
     prevName: string
@@ -34,7 +34,7 @@ export let ChangeChildCallback = function (
     this.emit(this.eventNames.update, this.items);
 }
 
-export let RemoveChildCallback = function (
+export function RemoveChildCallback(
     this: IItemList,
     snapshot: firebase.database.DataSnapshot
 ) {
@@ -46,13 +46,13 @@ export let RemoveChildCallback = function (
     this.emit(this.eventNames.update, this.items);
 }
 
-export let GetAllChildrenCallback = function (
+export function GetAllChildrenCallback(
     this: IItemList,
     snapshot: firebase.database.DataSnapshot
 ) {
 
     Clear(this);
-    snapshot.forEach((function (childSnapshot:firebase.database.DataSnapshot) {
+    snapshot.forEach((function (childSnapshot: firebase.database.DataSnapshot) {
         AddItem.call(this, childSnapshot, null, true);
     }).bind(this));
     UpdateItemID2Index(this);
@@ -60,7 +60,7 @@ export let GetAllChildrenCallback = function (
     this.emit(this.eventNames.update, this.items);
 }
 
-export let AddItem = function (
+export function AddItem(
     this: IItemList,
     snapshot: firebase.database.DataSnapshot,
     prevName: string,
@@ -94,7 +94,7 @@ export let AddItem = function (
     return item;
 }
 
-export let RemoveItem = function (
+export function RemoveItem(
     this: IItemList,
     snapshot: firebase.database.DataSnapshot
 ): ItemType {

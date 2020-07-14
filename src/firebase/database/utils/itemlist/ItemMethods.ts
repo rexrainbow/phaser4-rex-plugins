@@ -3,7 +3,7 @@ import {
     ItemType
 } from './IItemList';
 
-export let Clear = function (
+export function Clear(
     itemList: IItemList
 ): void {
 
@@ -11,14 +11,14 @@ export let Clear = function (
     itemList.itemID2Index.clear();
 };
 
-export let GetItems = function (
+export function GetItems(
     itemList: IItemList
 ): ItemType[] {
 
     return itemList.items;
 };
 
-export let HasItem = function (
+export function HasItem(
     itemList: IItemList,
     itemID: string
 ): boolean {
@@ -26,7 +26,7 @@ export let HasItem = function (
     return itemList.itemID2Index.has(itemID);
 }
 
-export let GetItemIndexFromItemID = function (
+export function GetItemIndexFromItemID(
     itemList: IItemList,
     itemID: string
 ): number {
@@ -38,7 +38,7 @@ export let GetItemIndexFromItemID = function (
     return itemList.itemID2Index.get(itemID);
 };
 
-export let GetItemFromItemID = function (
+export function GetItemFromItemID(
     itemList: IItemList,
     itemID: string
 ): ItemType {
@@ -54,7 +54,7 @@ export let GetItemFromItemID = function (
     return itemList.items[index];
 };
 
-export let ForEach = function (
+export function ForEach(
     itemList: IItemList,
     callback: ((value: ItemType, index: number, array: ItemType[]) => void),
     scope?: unknown
@@ -63,7 +63,7 @@ export let ForEach = function (
     itemList.items.forEach(callback, scope);
 };
 
-export let UpdateItemID2Index = function (
+export function UpdateItemID2Index(
     itemList: IItemList
 ): void {
 

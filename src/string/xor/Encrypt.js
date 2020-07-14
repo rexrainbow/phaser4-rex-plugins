@@ -39,7 +39,7 @@ let XOREncrypt = function (str, pwd) {
     return enc_str;
 }
 
-export let Encrypt = function (src, pwd) {
+export function Encrypt(src, pwd) {
     src = escape(src);
     pwd = escape(pwd.toString());
     return XOREncrypt(src, pwd);

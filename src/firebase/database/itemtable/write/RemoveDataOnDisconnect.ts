@@ -2,7 +2,7 @@ import { IItemTable } from '../IItemTable';
 import { GetItemRef } from '../GetItemRef';
 
 
-export let RemoveDataOnDisconnect = function (
+export function RemoveDataOnDisconnect(
     itemTable: IItemTable,
     ...args: [string] | [string, string] | [string, string, string]
 ): Promise<any> {
