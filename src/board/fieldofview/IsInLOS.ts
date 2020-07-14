@@ -101,7 +101,7 @@ export function IsInLOS(
     return isVisivle;
 }
 
-// let drawLine = function (graphics, color, startX, startY, endX, endY) {
+// function drawLine(graphics, color, startX, startY, endX, endY) {
 //     if (graphics && (color !== undefined)) {
 //         graphics.lineStyle(1, color, 1).lineBetween(startX, startY, endX, endY);
 //     }

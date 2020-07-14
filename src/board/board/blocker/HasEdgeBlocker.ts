@@ -33,7 +33,7 @@ export function HasEdgeBlocker(
     }
 }
 
-let IsEdgeBlocker = function (
+function IsEdgeBlocker(
     blocker: EdgeBlockerType | boolean,
     direction: number
 ): boolean {

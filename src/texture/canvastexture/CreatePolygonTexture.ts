@@ -83,7 +83,7 @@ export function CreatePolygonTexture(
     });
 }
 
-let GetMaxProperty = function (
+function GetMaxProperty(
     items: object[],
     key: string
 ): number {
@@ -95,7 +95,7 @@ let GetMaxProperty = function (
     return result;
 }
 
-let GetMinProperty = function (
+function GetMinProperty(
     items: object[],
     key: string
 ): number {
@@ -107,7 +107,7 @@ let GetMinProperty = function (
     return result;
 }
 
-let Indent = function (
+function Indent(
     value: number,
     halfBound: number,
     offset: number

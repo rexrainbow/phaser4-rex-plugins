@@ -1,4 +1,4 @@
-let XOREncrypt = function (str, pwd) {
+function XOREncrypt(str, pwd) {
     if (pwd == null || pwd.length <= 0) {
         return null;
     }

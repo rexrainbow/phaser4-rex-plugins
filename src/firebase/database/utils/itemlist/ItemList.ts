@@ -13,7 +13,7 @@ import {
 } from './ItemMethods';
 
 
-export class ItemList <T> extends BaseEventEmitter implements IItemList {
+export class ItemList<T> extends BaseEventEmitter implements IItemList {
     mode: UpdateMode;
     updater: UpdaterType;
     query: firebase.database.Query;

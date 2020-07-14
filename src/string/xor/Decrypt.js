@@ -1,4 +1,4 @@
-let XORDecrypt = function (str, pwd) {
+function XORDecrypt(str, pwd) {
     if (str == null || str.length < 8) {
         return null;
     }

@@ -91,7 +91,7 @@ export class JSONTree implements ITree {
     }
 }
 
-let IsObject = function (obj: unknown) {
+function IsObject(obj: unknown) {
 
     return (obj != null) && (typeof (obj) === 'object')
 }

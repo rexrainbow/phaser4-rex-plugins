@@ -500,7 +500,7 @@ export class Gashapon implements IGashapon {
 
 }
 
-let GetTotalItemCount = function (items: ItemMapType) {
+function GetTotalItemCount(items: ItemMapType) {
     let result = 0;
     for (const [name, count] of items) {
         result += count;

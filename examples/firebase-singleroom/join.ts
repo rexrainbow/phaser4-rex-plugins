@@ -5,19 +5,6 @@ import { GetRandomWord } from '../../src/utils/string/GetRandomWord';
 import { Delay } from '../../src/utils/promise/Delay';
 import { Clone } from '../../src/utils/object/Clone';
 
-firebase.initializeApp({
-    apiKey: 'AIzaSyAN_ejscIWn3z6XpOhhl2Okh_MuEXq4nSQ',
-    authDomain: 'my-3x-test.firebaseapp.com',
-    databaseURL: 'https://my-3x-test.firebaseio.com',
-    projectId: 'my-3x-test',
-    storageBucket: 'my-3x-test.appspot.com',
-    messagingSenderId: '322598340064'
-});
-
-for (var i = 0; i < 2; i++) {
-    JoinRoom()
-}
-
 function CreateRoomInstance() {
     const room = new rexFire.SingleRoom({
         root: 'test-single-room'
@@ -47,4 +34,17 @@ function JoinRoom() {
         .then(function () {
             return room.broadcast.send('Hello world');
         })
+}
+
+firebase.initializeApp({
+    apiKey: 'AIzaSyAN_ejscIWn3z6XpOhhl2Okh_MuEXq4nSQ',
+    authDomain: 'my-3x-test.firebaseapp.com',
+    databaseURL: 'https://my-3x-test.firebaseio.com',
+    projectId: 'my-3x-test',
+    storageBucket: 'my-3x-test.appspot.com',
+    messagingSenderId: '322598340064'
+});
+
+for (var i = 0; i < 2; i++) {
+    JoinRoom()
 }

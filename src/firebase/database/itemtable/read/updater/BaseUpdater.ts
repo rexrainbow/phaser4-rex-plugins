@@ -175,7 +175,7 @@ export abstract class BaseUpdater extends BaseEventEmitter {
     }
 }
 
-let ExtendKeyPath = function (
+function ExtendKeyPath(
     baseKeyPath: string,
     newKey: string
 ): string {

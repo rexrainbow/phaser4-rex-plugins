@@ -62,7 +62,7 @@ export function Join(
         })
 };
 
-let IsInSnapshot = function (
+function IsInSnapshot(
     snapshot: firebase.database.DataSnapshot,
     userID: string
 ): boolean {
