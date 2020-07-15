@@ -1,8 +1,12 @@
-import { ISingleRoom, BroadcastConfig } from './ISingleRoom';
+import {
+    IRoom,
+    BroadcastConfig, RoomInfoType
+} from './IRoom';
 import { Broadcast } from '../broadcast';
+import { GetRoomDataPath } from './GetRefMethods';
 
 export function CreateBroadcast(
-    room: ISingleRoom,
+    room: IRoom,
     broadcast: boolean | BroadcastConfig
 ): Broadcast {
 
@@ -20,22 +24,25 @@ export function CreateBroadcast(
             receive: 'broadcast.receive'
         },
 
-        root: room.rootPath,
-        receiverID: 'broadcast',
+        receiverID: 'boradcast',
         senderID: room.userInfo,
         history: broadcast.history
     });
 
     room
-        .on('room.join', function () {
+        .on('room.join', function (roomInfo: RoomInfoType) {
+
             broadcastInstance
+                .setRootPath(GetRoomDataPath(room, roomInfo.roomID))
                 .startReceiving();
         })
         .on('room.leave', function () {
+
             broadcastInstance
-                .stopReceiving();
+                .stopReceiving()
         })
         .on('userlist.changename', function (userID: string, userName: string) {
+
             broadcastInstance
                 .changeUserName(userID, userName);
         })

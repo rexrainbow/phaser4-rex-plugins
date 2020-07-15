@@ -50,10 +50,13 @@ function CreateTable(
 
     room
         .on('room.join', function () {
-            table.startUpdate();
+            table
+                .startUpdate();
         })
         .on('room.leave', function () {
-            table.clear().stopUpdate();
+            table
+                .clear()
+                .stopUpdate();
         })
 
     return table;

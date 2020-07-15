@@ -1,10 +1,12 @@
-import { ISingleRoom, IConfig } from './ISingleRoom';
+import {
+    IRoom,
+    IConfig
+} from './IRoom';
 import { OnlineUserList } from '../onlineuserlist';
-import { GetUserListPath } from './GetRefMethods';
 
 export function CreateUserList(
-    room: ISingleRoom,
-    maxUsers: number = 0
+    room: IRoom,
+    { }: IConfig = {}
 ): OnlineUserList {
 
     const userListInstance = new OnlineUserList({
@@ -18,9 +20,7 @@ export function CreateUserList(
             changename: 'userlist.changename'
         },
 
-        root: GetUserListPath(room),
-        userID: room.userInfo,
-        maxUsers: maxUsers
+        userID: room.userInfo
     });
 
     userListInstance
@@ -32,26 +32,26 @@ export function CreateUserList(
 
     room
         .on('room.join', function () {
-            userListInstance
-                .startUpdate();
+            userListInstance.startUpdate()
         })
         .on('room.leave', function () {
-            userListInstance
-                .stopUpdate()
-                .clear();
+            userListInstance.stopUpdate().clear()
         })
 
     return userListInstance;
 }
 
 function OnLeftRoom(
-    room: ISingleRoom
+    room: IRoom
 ): void {
 
     room.emit('room.leave');
 
     // Clear room info later
     setTimeout(function () {
+        room.roomID = undefined;
+        room.roomName = undefined;
+        room.doorState = undefined;
         room.leftRoomFlag = false;
     }, 0);
 }
