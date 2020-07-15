@@ -1,6 +1,7 @@
 import {
     IRoom,
-    ICreateRoomConfig, ICreateRandomRoomCongfig
+    ICreateRoomConfig, ICreateRandomRoomCongfig,
+    RoomInfoType
 } from './IRoom';
 import { GetRandomWord } from '../../../utils/string/GetRandomWord';
 import { CreateRoom } from './CreateRoom';
@@ -11,7 +12,8 @@ export function CreateRandomRoom(
         digits = 10,
         candidates = '0123456789',
         retry = 1000
-    }: ICreateRandomRoomCongfig) {
+    }: ICreateRandomRoomCongfig
+): Promise<RoomInfoType> {
 
     let config: ICreateRoomConfig = arguments[1];
     return TryCreateRandomRoom(room, digits, candidates, retry, config);

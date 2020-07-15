@@ -5,7 +5,7 @@ import { GetRandomWord } from '../../src/utils/string/GetRandomWord';
 import { Delay } from '../../src/utils/promise/Delay';
 import { Clone } from '../../src/utils/object/Clone';
 
-function CreateRoomInstance() {
+const CreateRoomInstance = function () {
     const room = new rexFire.SingleRoom({
         root: 'test-single-room'
     });
@@ -24,7 +24,7 @@ function CreateRoomInstance() {
     return room;
 }
 
-function JoinRoom() {
+const JoinRoom = function () {
     const room = CreateRoomInstance();
     return room
         .joinRoom()

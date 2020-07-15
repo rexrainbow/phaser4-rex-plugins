@@ -1,12 +1,11 @@
 import {
     IRoom,
-    IConfig, RoomFilterDataType
+    RoomFilterDataType
 } from './IRoom';
 import { ItemList } from '../utils/itemlist/ItemList';
 
 export function CreateRoomList(
-    room: IRoom,
-    { }: IConfig = {}
+    room: IRoom
 ): ItemList<RoomFilterDataType> {
 
     const roomListInstance = new ItemList<RoomFilterDataType>({

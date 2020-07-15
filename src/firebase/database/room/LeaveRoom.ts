@@ -2,7 +2,7 @@ import {
     IRoom,
     RoomInfoType
 } from './IRoom';
-import { IsInRoom } from './IsInRoom';
+import { IsInRoom } from './RoomMethods';
 import { RemoveRoom } from './RemoveRoom';
 import { GetRoomInfo } from './GetRoomInfo';
 

@@ -80,7 +80,7 @@ export interface IConfig extends IEventEmitterConfig {
     userID?: string | UserInfoType;
     userName?: string;
     broadcast?: boolean | BroadcastConfig;  // Broadcast
-    tables?: ItemTableConfig[];
+    tables?: ItemTableConfig[] | false; // Item Table
 }
 
 export interface IRoom extends IBaseEventEmitter, IBase {

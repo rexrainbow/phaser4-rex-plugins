@@ -1,10 +1,13 @@
-import { ISingleRoom, ItemTableConfig } from './ISingleRoom';
+import {
+    IRoom,
+    ItemTableConfig, RoomInfoType
+} from './IRoom';
 import { ItemTable } from '../itemtable';
 import { TableType } from '../itemtable/Types';
 import { GetItemTablePath } from './GetRefMethods';
 
 export function CreateTables(
-    room: ISingleRoom,
+    room: IRoom,
     tables: ItemTableConfig[] | false
 ): Map<string, ItemTable> {
 
@@ -18,11 +21,11 @@ export function CreateTables(
     })
 
     room
-        .on('room.join', function () {
+        .on('room.join', function (roomInfo: RoomInfoType) {
 
             for (const [key, tableInstance] of tableInstances) {
                 tableInstance
-                    .setRootPath(GetItemTablePath(room, key))
+                    .setRootPath(GetItemTablePath(room, roomInfo.roomID, key))
                     .startUpdate();
             }
         })
@@ -39,7 +42,7 @@ export function CreateTables(
 }
 
 function CreateTable(
-    room: ISingleRoom,
+    room: IRoom,
     {
         key,
         type = TableType['1d']
@@ -64,7 +67,6 @@ function CreateTable(
             changekey2: `tables.${key}.changekey2`
         }
     });
-
 
     return table;
 }

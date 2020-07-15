@@ -110,10 +110,14 @@ export function GetUserListPath(
 export function GetItemTablePath(
     room: IRoom,
     roomID: string,
-    key: string
+    key?: string
 ): string {
 
-    return `${GetRoomDataPath(room, roomID, 'tables')}/${key}`;
+    let path = GetRoomDataPath(room, roomID, 'tables');
+    if (key) {
+        path += `/${key}`;
+    }
+    return path;
 };
 
 export function GetRoomListQuery(

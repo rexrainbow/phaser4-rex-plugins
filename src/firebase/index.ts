@@ -6,6 +6,7 @@ import { LeaderBoard } from './firestore/leaderboard';
 import { DynamicPageLoader, StaticPageLoader } from './firestore/pageloader';
 import { Messages } from './firestore/messages';
 import { OnlineUserList } from './database/onlineuserlist';
+import { Room } from './database/room'
 import { SingleRoom } from './database/singleroom'
 
 
@@ -18,6 +19,7 @@ export {
     LeaderBoard,
     Messages,
     OnlineUserList,
+    Room,
     SingleRoom,
     StaticPageLoader,
 }

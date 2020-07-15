@@ -1,5 +1,6 @@
 import {
     IRoom,
+    RoomInfoType,
     IJoinRandomRoomConfig, IJoinRoomConfig, RoomFilterDataType
 } from './IRoom';
 import { Shuffle } from '../../../utils/array/Shuffle';
@@ -12,7 +13,7 @@ export function JoinRandomRoom(
         roomType = '',
         leftThenJoin = true
     }: IJoinRandomRoomConfig = {}
-) {
+): Promise<RoomInfoType> {
 
     return GetRoomList(room, roomType, 'open')
         .then(function (rooms: RoomFilterDataType[]) {
@@ -30,7 +31,7 @@ function JoinNextRoom(
     config: IJoinRoomConfig,
     rooms: RoomFilterDataType[],
     index: number = 0
-) {
+): Promise<RoomInfoType> {
 
     if (index === rooms.length) {
         return Promise.reject();

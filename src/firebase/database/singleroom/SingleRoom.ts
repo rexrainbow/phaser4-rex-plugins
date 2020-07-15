@@ -107,7 +107,6 @@ export class SingleRoom extends BaseEventEmitter implements ISingleRoom {
         return this;
     }
 
-
     isInRoom(): boolean {
 
         return IsInRoom(this);

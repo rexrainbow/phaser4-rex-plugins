@@ -6,7 +6,7 @@ import { HasRoom } from './HasRoom';
 import { GetFilterString } from './RoomFilterMethods';
 import { GetRootRef } from './GetRefMethods';
 
-export function SetRoomState(
+export function ChangeRoomState(
     room: IRoom,
     roomState: RoomStateType,
     roomID: string = room.roomID
@@ -32,7 +32,7 @@ export function OpenRoom(
     roomID: string = room.roomID
 ): Promise<any> {
 
-    return SetRoomState(room, 'open', roomID);
+    return ChangeRoomState(room, 'open', roomID);
 }
 
 export function CloseRoom(
@@ -40,5 +40,5 @@ export function CloseRoom(
     roomID: string = room.roomID
 ): Promise<any> {
 
-    return SetRoomState(room, 'closed', roomID);
+    return ChangeRoomState(room, 'closed', roomID);
 }

@@ -5,8 +5,7 @@ import {
 import { OnlineUserList } from '../onlineuserlist';
 
 export function CreateUserList(
-    room: IRoom,
-    { }: IConfig = {}
+    room: IRoom
 ): OnlineUserList {
 
     const userListInstance = new OnlineUserList({

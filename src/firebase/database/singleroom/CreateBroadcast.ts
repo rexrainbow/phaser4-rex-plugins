@@ -20,7 +20,6 @@ export function CreateBroadcast(
             receive: 'broadcast.receive'
         },
 
-        root: room.rootPath,
         receiverID: 'broadcast',
         senderID: room.userInfo,
         history: broadcast.history
@@ -29,6 +28,7 @@ export function CreateBroadcast(
     room
         .on('room.join', function () {
             broadcastInstance
+                .setRootPath(room.rootPath)                
                 .startReceiving();
         })
         .on('room.leave', function () {
