@@ -35,6 +35,9 @@ export class SingleRoom extends BaseEventEmitter implements ISingleRoom {
         root = '',
         userID = '',
         userName = '',
+        maxUsers = 0,
+        broadcast = true,
+        tables = false
     }: IConfig = {}) {
 
         const config = arguments[0] as IConfig;
@@ -53,11 +56,11 @@ export class SingleRoom extends BaseEventEmitter implements ISingleRoom {
         // Room properties
         this.leftRoomFlag = false;
         // User list
-        this.userList = CreateUserList(this, config);
+        this.userList = CreateUserList(this,maxUsers);
         // Broadcast
-        this.broadcast = CreateBroadcast(this, config);
+        this.broadcast = CreateBroadcast(this, broadcast);
         // Item tables
-        this.tables = CreateTables(this, config);
+        this.tables = CreateTables(this, tables);
     }
 
     shutdown() {

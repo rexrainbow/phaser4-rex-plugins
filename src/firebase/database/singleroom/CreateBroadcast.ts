@@ -1,11 +1,9 @@
-import { ISingleRoom, IConfig } from './ISingleRoom';
+import { ISingleRoom, BroadcastConfig } from './ISingleRoom';
 import { Broadcast } from '../broadcast';
 
 export function CreateBroadcast(
     room: ISingleRoom,
-    {
-        broadcast = true
-    }: IConfig = {}
+    broadcast: boolean | BroadcastConfig
 ): Broadcast {
 
     if (!broadcast) {

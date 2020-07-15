@@ -4,9 +4,7 @@ import { GetUserListPath } from './GetRefMethods';
 
 export function CreateUserList(
     room: ISingleRoom,
-    {
-        maxUsers = 0
-    }: IConfig = {}
+    maxUsers: number = 0
 ): OnlineUserList {
 
     const userListInstance = new OnlineUserList({
@@ -30,23 +28,22 @@ export function CreateUserList(
             if (user.userID === room.userID) {
                 OnLeftRoom(room);  // Current user is left or kicked
             }
-        }, room)
+        })
 
     room
         .on('room.join', function () {
-            userListInstance
-                .startUpdate()
+            userListInstance.startUpdate()
         })
         .on('room.leave', function () {
-            userListInstance
-                .stopUpdate()
-                .clear()
+            userListInstance.stopUpdate().clear()
         })
 
     return userListInstance;
 }
 
-function OnLeftRoom(room: ISingleRoom) {
+function OnLeftRoom(
+    room: ISingleRoom
+): void {
 
     room.emit('room.leave');
 

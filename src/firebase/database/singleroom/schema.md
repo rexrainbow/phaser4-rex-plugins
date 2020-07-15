@@ -12,7 +12,7 @@ rooms/
             - `message` - Message
             - `senderID` - Unique ID of sender
 	        - `senderName` - Name of sender
-	        - `stamp` - Toggle between true and false        
+	        - `stamp` - Toggle between true and false
 
         table/
             - <key0>

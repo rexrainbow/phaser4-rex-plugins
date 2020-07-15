@@ -4,7 +4,7 @@ import {
     IBaseEventEmitter,
     IConfig as IEventEmitterConfig
 } from '../../../utils/eventemitter/IBaseEventEmitter';
-import { ItemList } from '../utils/itemlist/ItemList';
+import { ItemList } from '../utils/itemlist';
 
 export type UserInfoType = {
     userID: string,

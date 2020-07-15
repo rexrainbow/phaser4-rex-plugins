@@ -1,13 +1,11 @@
-import { ISingleRoom, IConfig, ItemTableConfig } from './ISingleRoom';
+import { ISingleRoom, ItemTableConfig } from './ISingleRoom';
 import { ItemTable } from '../itemtable';
 import { TableType } from '../itemtable/Types';
 import { GetItemTablePath } from './GetRefMethods';
 
 export function CreateTables(
     room: ISingleRoom,
-    {
-        tables
-    }: IConfig = {}
+    tables: ItemTableConfig[] | false
 ): Map<string, ItemTable> {
 
     const tableInstances: Map<string, ItemTable> = new Map();

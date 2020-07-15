@@ -5,7 +5,7 @@ import {
     UserInfoType,
     EventNameMapType, DefaultEventNames
 } from './IOnlineUserList';
-import { ItemList } from '../utils/itemlist/ItemList';
+import { ItemList } from '../utils/itemlist';
 import { Join } from './Join';
 import { Leave } from './Leave';
 import { ChangeUserName } from './ChangeUserName';
