@@ -17,6 +17,10 @@ export function JoinRandomRoom(
 
     return GetRoomList(room, roomType, 'open')
         .then(function (rooms: RoomFilterDataType[]) {
+            if (rooms.length === 0) {
+                return Promise.reject('No filtered room');
+            }
+
             Shuffle(rooms);
             const config = {
                 leftThenJoin: leftThenJoin,
@@ -34,7 +38,7 @@ function JoinNextRoom(
 ): Promise<RoomInfoType> {
 
     if (index === rooms.length) {
-        return Promise.reject();
+        return Promise.reject('Can\'t join any room');
     }
 
     config.roomID = rooms[index].roomID;

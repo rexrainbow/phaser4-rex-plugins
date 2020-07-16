@@ -65,7 +65,7 @@ export class ItemTable extends BaseEventEmitter implements IItemTable {
     ): this {
 
         this.rootPath = rootPath;
-        this.rootRef = this.database.ref(this.rootPath);
+        this.rootRef = (rootPath !== '') ? this.database.ref(this.rootPath) : null;
         this.updater.setRootPath(rootPath);
         return this;
     }

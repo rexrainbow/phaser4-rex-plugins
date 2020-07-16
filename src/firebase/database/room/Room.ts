@@ -120,10 +120,12 @@ export class Room extends BaseEventEmitter implements IRoom {
         this.userInfo.userName = value;
     }
 
-    setRootPath(rootPath: string): this {
+    setRootPath(
+        rootPath: string
+    ): this {
 
         this.rootPath = rootPath;
-        this.rootRef = this.database.ref(this.rootPath);
+        this.rootRef = (rootPath !== '') ? this.database.ref(this.rootPath) : undefined;
         return this;
     }
 

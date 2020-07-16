@@ -123,9 +123,12 @@ export class OnlineUserList extends BaseEventEmitter implements IOnlineUserList 
         this.userInfo.userName = value;
     }
 
-    setRootPath(rootPath) {
+    setRootPath(
+        rootPath?: string
+    ): this {
+
         this.rootPath = rootPath;
-        this.rootRef = this.database.ref(this.rootPath);
+        this.rootRef = (rootPath !== '') ? this.database.ref(this.rootPath) : undefined;
         return this;
     }
 

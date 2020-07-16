@@ -68,7 +68,7 @@ export abstract class BaseUpdater extends BaseEventEmitter {
             rootPath = `${parentRootPath}/${this.key}`;
         }
         this.rootPath = rootPath;
-        this.rootRef = this.database.ref(rootPath);
+        this.rootRef = (rootPath !== '') ? this.database.ref(rootPath) : undefined;
 
         for (const [key, child] of this.children) {
             if (child instanceof BaseUpdater) {

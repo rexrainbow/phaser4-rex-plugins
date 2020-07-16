@@ -56,7 +56,7 @@ export class SingleRoom extends BaseEventEmitter implements ISingleRoom {
         // Room properties
         this.leftRoomFlag = false;
         // User list
-        this.userList = CreateUserList(this,maxUsers);
+        this.userList = CreateUserList(this, maxUsers);
         // Broadcast
         this.broadcast = CreateBroadcast(this, broadcast);
         // Item tables
@@ -86,10 +86,12 @@ export class SingleRoom extends BaseEventEmitter implements ISingleRoom {
         this.userInfo.userName = value;
     }
 
-    setRootPath(rootPath: string): this {
+    setRootPath(
+        rootPath: string
+    ): this {
 
         this.rootPath = rootPath;
-        this.rootRef = this.database.ref(this.rootPath);
+        this.rootRef = (rootPath !== '') ? this.database.ref(this.rootPath) : undefined;
         return this;
     }
 
