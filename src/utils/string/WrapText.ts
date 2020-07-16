@@ -20,7 +20,7 @@ const splitRegExp = /(?:\r\n|\r|\n)/;
 
 export function WrapText(
     text: string,
-    getTextWidth: ((string) => number),
+    getTextWidth: ((text: string) => number),
     wrapMode: WrapMode,
     wrapWidth: number,
     offset: number
