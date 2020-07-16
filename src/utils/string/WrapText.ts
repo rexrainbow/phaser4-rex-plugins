@@ -16,11 +16,13 @@ export type LineInfo = {
     newLineMode: NewLineMode;
 }
 
+export type GetTextWidthCallback = (text: string) => number;
+
 const splitRegExp = /(?:\r\n|\r|\n)/;
 
 export function WrapText(
     text: string,
-    getTextWidth: ((text: string) => number),
+    getTextWidth: GetTextWidthCallback,
     wrapMode: WrapMode,
     wrapWidth: number,
     offset: number

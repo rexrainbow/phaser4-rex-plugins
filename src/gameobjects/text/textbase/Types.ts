@@ -23,5 +23,5 @@ export type ContextStyleType = {
     image: string
 }
 
-import { WrapMode, NewLineMode } from '../../../utils/string/WrapText';
-export { WrapMode, NewLineMode };
+import { WrapMode, NewLineMode, GetTextWidthCallback } from '../../../utils/string/WrapText';
+export { WrapMode, NewLineMode, GetTextWidthCallback };
