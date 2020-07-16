@@ -23,14 +23,5 @@ export type ContextStyleType = {
     image: string
 }
 
-export enum NewLineMode {
-    none = 0,
-    raw = 1,
-    wrapped = 2
-}
-
-export enum WrapMode {
-    none = 0,
-    word = 1,
-    char = 2
-}
+import { WrapMode, NewLineMode } from '../../../utils/string/WrapText';
+export { WrapMode, NewLineMode };

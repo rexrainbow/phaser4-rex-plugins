@@ -1,15 +1,22 @@
-import {
-    WrapMode,
-    NewLineMode
-} from '../Types';
+export enum WrapMode {
+    none = 0,
+    word = 1,
+    char = 2
+}
 
-const splitRegExp = /(?:\r\n|\r|\n)/;
+export enum NewLineMode {
+    none = 0,
+    raw = 1,
+    wrapped = 2
+}
 
 export type LineInfo = {
     text: string,
     width: number,
     newLineMode: NewLineMode;
 }
+
+const splitRegExp = /(?:\r\n|\r|\n)/;
 
 export function WrapText(
     text: string,
@@ -125,9 +132,5 @@ let CreateLineInfo = function (
     width: number,
     newLineMode: NewLineMode
 ): LineInfo {
-    return {
-        text: text,
-        width: width,
-        newLineMode: newLineMode
-    }
+    return { text: text, width: width, newLineMode: newLineMode }
 }
