@@ -25,6 +25,7 @@ export abstract class BaseParser<PropType> {
 }
 
 export const ContextStyleResult: ContextStyleType = {
+    font: undefined,
     fontFamily: undefined,
     fontStyle: undefined,
     fontSize: undefined,

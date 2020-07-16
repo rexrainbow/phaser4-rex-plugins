@@ -39,7 +39,7 @@ export function WrapText(
     }
 
     let lines = text.split(splitRegExp),
-        remainWidth;
+        remainWidth: number;
     for (let i = 0, lineCnt = lines.length; i < lineCnt; i++) {
         let line = lines[i];
         let newLineMode = (i === (lineCnt - 1)) ? NewLineMode.none : NewLineMode.raw;
@@ -49,17 +49,16 @@ export function WrapText(
                 CreateLineInfo(line, getTextWidth(line), newLineMode)
             );
             continue;
+        }
+
+        if (i === 0) {
+            remainWidth = wrapWidth - offset;
         } else {
-            if (i === 0) {
-                remainWidth = wrapWidth - offset;
-            } else {
-                remainWidth = wrapWidth;
-            }
+            remainWidth = wrapWidth;
         }
 
         // Short string testing
         if (line.length <= 100) {
-
             let textWidth = getTextWidth(line);
             if (textWidth <= remainWidth) {
                 result.push(
@@ -70,7 +69,7 @@ export function WrapText(
         }
 
         // character mode
-        let tokenArray;
+        let tokenArray: string[] | string;
         if (wrapMode === WrapMode.word) { // Word mode            
             tokenArray = line.split(' ');
         } else {

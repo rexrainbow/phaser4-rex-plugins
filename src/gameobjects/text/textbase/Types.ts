@@ -1,6 +1,7 @@
 export type ColorType = string;
 
 export type ContextStyleType = {
+    font: string,
     fontFamily: string,
     fontStyle: string,
     fontSize: string,
