@@ -90,7 +90,7 @@ class CanvasText {
                 // wrap text to lines
                 // Save the current context.
                 this.context.save();
-                curStyle = this.parser.propToContextStyle(
+                curStyle = this.parser.propToStyle(
                     this.defatultStyle,
                     curProp
                 );

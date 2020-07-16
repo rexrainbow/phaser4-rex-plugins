@@ -1,6 +1,6 @@
 import { ContextStyleType } from '../Types';
 
-export abstract class BaseParser<PropType> {
+export abstract class BaseParser {
 
     abstract splitText(
         text: string,
@@ -9,18 +9,18 @@ export abstract class BaseParser<PropType> {
 
     abstract tagTextToProp(
         text: string,
-        prevProp: PropType
-    ): { plainText: string, prop: PropType };
+        prevProp: object
+    ): { plainText: string, prop: object };
 
-    abstract propToContextStyle(
+    abstract propToStyle(
         defaultStyle: ContextStyleType,
-        prop: PropType
+        prop: object
     ): ContextStyleType;
 
     abstract propToTagText(
         text: string,
-        prop: PropType,
-        prevProp: PropType
+        prop: object,
+        prevProp: object
     ): string;
 }
 

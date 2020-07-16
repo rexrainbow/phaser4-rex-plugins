@@ -99,7 +99,7 @@ class parser {
         return result;
     }
 
-    propToContextStyle(defaultStyle, prop) {
+    propToStyle(defaultStyle, prop) {
         var result = STYLE_RESULT;
         if (!prop.hasOwnProperty('img')) {
             result.image = null;

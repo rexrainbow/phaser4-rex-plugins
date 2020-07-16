@@ -2,7 +2,7 @@ import {
     BaseParser,
     ContextStyleResult
 } from '../textbase/parser/BaseParser';
-import { ContextStyleType, ColorType } from '../textbase/Types';
+import { StyleType, ColorType } from '../textbase/Types';
 
 type PropType = {
     b?: true,
@@ -16,7 +16,7 @@ type PropType = {
     area?: string
 }
 
-export class Parser extends BaseParser<PropType> {
+export class Parser extends BaseParser {
     splitText(
         text: string,
         isPlainTextMode: boolean = false
@@ -155,10 +155,10 @@ export class Parser extends BaseParser<PropType> {
         return result;
     }
 
-    propToContextStyle(
-        defaultStyle: ContextStyleType,
+    propToStyle(
+        defaultStyle: StyleType,
         prop: PropType
-    ): ContextStyleType {
+    ): StyleType {
 
         let result = ContextStyleResult;
         if (!prop.hasOwnProperty('img')) {
@@ -178,6 +178,8 @@ export class Parser extends BaseParser<PropType> {
                 result.fontSize = defaultStyle.fontSize;
             }
             result.fontStyle = GetFontStyle(prop.b, prop.i);
+
+            result.font = `${result.fontStyle} ${result.fontSize} ${result.fontFamily}`;
 
             if (prop.hasOwnProperty('color')) {
                 result.color = prop.color;
