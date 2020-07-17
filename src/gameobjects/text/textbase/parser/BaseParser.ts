@@ -1,4 +1,6 @@
-import { ContextStyleType } from '../Types';
+import { StyleType } from '../Types';
+
+export type PropType = { [key: string]: any };
 
 export abstract class BaseParser {
 
@@ -9,22 +11,22 @@ export abstract class BaseParser {
 
     abstract tagTextToProp(
         text: string,
-        prevProp: object
-    ): { plainText: string, prop: object };
+        prevProp: PropType
+    ): { text: string, prop: PropType };
 
     abstract propToStyle(
-        defaultStyle: ContextStyleType,
-        prop: object
-    ): ContextStyleType;
+        defaultStyle: StyleType,
+        prop: PropType
+    ): StyleType;
 
     abstract propToTagText(
         text: string,
-        prop: object,
-        prevProp: object
+        prop: PropType,
+        prevProp: PropType
     ): string;
 }
 
-export const ContextStyleResult: ContextStyleType = {
+export const ContextStyleResult: StyleType = {
     font: undefined,
     fontFamily: undefined,
     fontStyle: undefined,

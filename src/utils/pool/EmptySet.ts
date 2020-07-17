@@ -1,10 +1,11 @@
 import { Stack } from '../struct/Stack';
 
-let globEmptySetPool = new Stack();
+type T = Set<any>;
+let globEmptySetPool = new Stack<T>();
 
 export function GetEmptySet(
 
-): Set<any> {
+): T {
 
     let newSet = globEmptySetPool.pop();
     if (newSet === null) {
@@ -14,14 +15,14 @@ export function GetEmptySet(
 }
 
 export function FreeEmptySet(
-    set: Set<any>
+    set: T
 ): void {
 
     globEmptySetPool.push(set);
 }
 
 export function FreeEmptySets(
-    sets: Set<any>[]
+    sets: T[]
 ): void {
 
     globEmptySetPool.pushMultiple(sets);

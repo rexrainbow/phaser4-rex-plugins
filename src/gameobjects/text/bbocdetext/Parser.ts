@@ -55,7 +55,7 @@ export class Parser extends BaseParser {
     tagTextToProp(
         text: string,
         prevProp: PropType
-    ): { plainText: string, prop: PropType } {
+    ): { text: string, prop: PropType } {
 
         let plainText: string,
             innerMatch: RegExpMatchArray;
@@ -150,7 +150,7 @@ export class Parser extends BaseParser {
         }
 
         let result = TagTextToPropResult;
-        result.plainText = plainText;
+        result.text = plainText;
         result.prop = prevProp;
         return result;
     }
@@ -345,7 +345,7 @@ var GetFontStyle = function (
 };
 
 
-const TagTextToPropResult: { plainText: string, prop: PropType } = { plainText: null, prop: null };
+const TagTextToPropResult: { text: string, prop: PropType } = { text: null, prop: null };
 const EmptyProp: PropType = {};
 
 const RE_SPLITTEXT = /\[b\]|\[\/b\]|\[i\]|\[\/i\]|\[size=(\d+)\]|\[\/size\]|\[color=([a-z]+|#[0-9abcdef]+)\]|\[\/color\]|\[u\]|\[u=([a-z]+|#[0-9abcdef]+)\]|\[\/u\]|\[shadow\]|\[\/shadow\]|\[stroke\]|\[stroke=([a-z]+|#[0-9abcdef]+)\]|\[\/stroke\]|\[img=([^\]]+)\]|\[\/img\]|\[area=([^\]]+)\]|\[\/area\]/ig;

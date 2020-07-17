@@ -1,5 +1,5 @@
-export class Stack {
-    items: any[];
+export class Stack<T> {
+    items: T[];
 
     constructor() {
         this.items = [];
@@ -10,16 +10,16 @@ export class Stack {
         this.items = undefined;
     }
 
-    pop(): any {
+    pop(): T {
         return (this.items.length > 0) ? this.items.pop() : null;
     }
 
-    push(l: any): this {
+    push(l: T): this {
         this.items.push(l);
         return this;
     }
 
-    pushMultiple(arr: any[]): this {
+    pushMultiple(arr: T[]): this {
         this.items.push.apply(this.items, arr);
         arr.length = 0;
         return this;

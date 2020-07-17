@@ -1,5 +1,6 @@
 import { ICanvasText } from './ICanvasText';
-import { StyleType } from '../Types';
+import { Pen } from '../penmanger/Pen';
+import { StyleType, HAlignMode, VAlignMode } from '../Types';
 import { SyncFont, SyncStyle, SyncShadow } from './SyncContextMethods';
 import { HitAreaManager } from '../hitareamanager/HitAreaManager';
 
@@ -11,32 +12,38 @@ export function Draw(
     boxHeight: number
 ) {
 
-    var penManager = this.penManager;
-    this.hitAreaManager.clear();
+    let penManager = canvasText.penManager;
+    if (canvasText.hitAreaManager) {
+        canvasText.hitAreaManager.clear();
+    }
 
-    var context = this.context;
+    let context = canvasText.context;
     context.save();
 
+    let defatultStyle = canvasText.defatultStyle;
+
     // this.clear();
-    this.drawBackground(this.defatultStyle.backgroundColor);
+    DrawBackground(canvasText, defatultStyle.backgroundColor);
 
     // draw lines
-    var defatultStyle = this.defatultStyle;
     startX += this.startXOffset;
     startY += this.startYOffset;
-    var halign = defatultStyle.halign,
+    let halign = defatultStyle.halign,
         valign = defatultStyle.valign;
 
-    var lineWidth, lineHeight = defatultStyle.lineHeight;
-    var lines = penManager.lines;
-    var totalLinesNum = lines.length,
+    let lineWidth: number,
+        lineHeight = defatultStyle.lineHeight;
+    let lines = penManager.lines;
+    let totalLinesNum = lines.length,
         maxLines = defatultStyle.maxLines;
-    var drawLinesNum, drawLineStartIdx, drawLineEndIdx;
+    let drawLinesNum: number,
+        drawLineStartIdx: number,
+        drawLineEndIdx: number;
     if ((maxLines > 0) && (totalLinesNum > maxLines)) {
         drawLinesNum = maxLines;
-        if (valign === 'center') { // center
+        if (valign === VAlignMode.center) {
             drawLineStartIdx = Math.floor((totalLinesNum - drawLinesNum) / 2);
-        } else if (valign === 'bottom') { // bottom
+        } else if (valign === VAlignMode.bottom) {
             drawLineStartIdx = totalLinesNum - drawLinesNum;
         } else {
             drawLineStartIdx = 0;
@@ -47,33 +54,34 @@ export function Draw(
     }
     drawLineEndIdx = drawLineStartIdx + drawLinesNum;
 
-    var offsetX, offsetY;
-    if (valign === 'center') { // center
+    let offsetX: number,
+        offsetY: number;
+    if (valign === VAlignMode.center) { // center
         offsetY = Math.max((boxHeight - (drawLinesNum * lineHeight)) / 2, 0);
-    } else if (valign === 'bottom') { // bottom
+    } else if (valign === VAlignMode.bottom) { // bottom
         offsetY = Math.max(boxHeight - (drawLinesNum * lineHeight) - 2, 0);
     } else {
         offsetY = 0;
     }
     offsetY += startY;
-    for (var lineIdx = drawLineStartIdx; lineIdx < drawLineEndIdx; lineIdx++) {
+    for (let lineIdx = drawLineStartIdx; lineIdx < drawLineEndIdx; lineIdx++) {
         lineWidth = penManager.getLineWidth(lineIdx);
         if (lineWidth === 0) {
             continue;
         }
 
-        if (halign === 'center') { // center
+        if (halign === HAlignMode.center) {
             offsetX = (boxWidth - lineWidth) / 2;
-        } else if (halign === 'right') { // right
+        } else if (halign === HAlignMode.right) {
             offsetX = boxWidth - lineWidth;
         } else {
             offsetX = 0;
         }
         offsetX += startX;
 
-        var pens = lines[lineIdx];
-        for (var penIdx = 0, pensLen = pens.length; penIdx < pensLen; penIdx++) {
-            this.drawPen(pens[penIdx], offsetX, offsetY);
+        let pens = lines[lineIdx];
+        for (let penIdx = 0, penCnt = pens.length; penIdx < penCnt; penIdx++) {
+            DrawPen(canvasText, pens[penIdx], offsetX, offsetY);
         }
     }
 
@@ -82,7 +90,7 @@ export function Draw(
 
 export function DrawPen(
     canvasText: ICanvasText,
-    pen,
+    pen: Pen,
     offsetX: number,
     offsetY: number
 ): void {
@@ -116,7 +124,6 @@ export function DrawPen(
 
     context.restore();
 
-    // TODO
     if (pen.hasAreaMarker && (pen.width > 0)) {
         if (!canvasText.hitAreaManager) {
             canvasText.hitAreaManager = new HitAreaManager();
@@ -197,7 +204,6 @@ export function DrawText(
     }
 };
 
-// TODO
 export function DrawImage(
     canvasText: ICanvasText,
     x: number,
@@ -206,21 +212,21 @@ export function DrawImage(
     style: StyleType
 ): void {
 
-    var imageManager = this.parent.imageManager;
-    var imgData = imageManager.get(imgKey);
-    var frame = imageManager.getFrame(imgKey);
-
-    x += imgData.left;
-    y += - this.startYOffset + imgData.y;
-    if (this.autoRound) {
-        x = Math.round(x);
-        y = Math.round(y);
+    let imageManager = canvasText.imageManager;
+    if (!imageManager) {
+        return;
     }
 
-    var context = this.context;
+    let imgInfo = imageManager.get(imgKey);
+    let frame = imageManager.getFrame(imgKey);
+
+    x += imgInfo.left;
+    y += - canvasText.startYOffset + imgInfo.y;
+
+    let context = canvasText.context;
     context.drawImage(
-        frame.source.image,
-        frame.cutX, frame.cutY, frame.cutWidth, frame.cutHeight,
-        x, y, imgData.width, imgData.height
+        frame.texture.image as HTMLCanvasElement,
+        frame.x, frame.y, frame.width, frame.height,
+        x, y, imgInfo.width, imgInfo.height
     );
 };

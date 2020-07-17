@@ -1,5 +1,7 @@
 import { StyleType } from '../Types';
 import { BaseParser } from '../parser/BaseParser';
+import { PenManager } from '../penmanger/PenManager';
+import { ImageManager } from '../imagemanager/ImageManager';
 import { HitAreaManager } from '../hitareamanager/HitAreaManager'
 
 export interface ICanvasText {
@@ -10,6 +12,8 @@ export interface ICanvasText {
 
     defatultStyle: StyleType;
     parser: BaseParser;
+    penManager: PenManager;
+    imageManager: ImageManager;
     hitAreaManager: HitAreaManager;
 
     startYOffset: number

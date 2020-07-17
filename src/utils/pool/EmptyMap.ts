@@ -1,10 +1,11 @@
 import { Stack } from '../struct/Stack';
 
-let globEmptyMapPool = new Stack();
+type T = Map<any, any>;
+let globEmptyMapPool = new Stack<T>();
 
 export function GetEmptyMap(
 
-): Map<any, any> {
+): T {
 
     let newMap = globEmptyMapPool.pop();
     if (newMap === null) {
@@ -14,14 +15,14 @@ export function GetEmptyMap(
 }
 
 export function FreeEmptyMap(
-    map: Map<any, any>
+    map: T
 ): void {
 
     globEmptyMapPool.push(map);
 }
 
 export function FreeEmptyMaps(
-    maps: Map<any, any>[]
+    maps: T[]
 ): void {
 
     globEmptyMapPool.pushMultiple(maps);
