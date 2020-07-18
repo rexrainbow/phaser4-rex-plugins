@@ -1,12 +1,17 @@
-import { Rectangle, Contains } from '@phaserjs/phaser/geom/rectangle';
+import { Rectangle } from '@phaserjs/phaser/geom/rectangle';
+
+export class HitArea extends Rectangle {
+    name: string;
+
+    constructor(x: number, y: number, width: number, height: number, name: string) {
+
+        super(x, y, width, height);
+        this.name = name;
+    }
+}
 
 export class HitAreaManager {
-    hitAreas: Map<string, Rectangle>;
-
-    constructor() {
-
-        this.hitAreas = new Map();
-    }
+    hitAreas: HitArea[] = [];
 
     destroy(): void {
 
@@ -15,7 +20,7 @@ export class HitAreaManager {
 
     clear(): this {
 
-        this.hitAreas.clear();
+        this.hitAreas.length = 0;
         return this;
     }
 
@@ -27,29 +32,20 @@ export class HitAreaManager {
         height: number
     ): this {
 
-        if (this.hitAreas.has(key)) {
-            this.hitAreas.get(key).set(x, y, width, height);
-        } else {
-            let area = new Rectangle(x, y, width, height);
-            this.hitAreas.set(key, area)
-        }
-
+        let area = new HitArea(x, y, width, height, key);
+        this.hitAreas.push(area);
         return this;
-    }
-
-    get(key: string): Rectangle {
-
-        return this.hitAreas.get(key);
     }
 
     getFirstHitArea(
         x: number,
         y: number
-    ): string {
+    ): HitArea {
 
-        for (const [key, rect] of this.hitAreas) {
-            if (Contains(rect, x, y)) {
-                return key;
+        for (let i = 0, cnt = this.hitAreas.length; i < cnt; i++) {
+            let area = this.hitAreas[i];
+            if (area.contains(x, y)) {
+                return area;
             }
         }
 

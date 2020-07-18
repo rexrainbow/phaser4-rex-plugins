@@ -5,7 +5,9 @@ export type ImageInfo = {
     height?: number,
     y?: number,
     left?: number,
-    right?: number
+    right?: number,
+    top?: number,
+    bottom?: number
 }
 
 export interface IImageManager {

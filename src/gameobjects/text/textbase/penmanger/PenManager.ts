@@ -1,26 +1,27 @@
 import { Stack as Pool } from '../../../../utils/struct/Stack';
+import { Line } from './Line';
 import { Pen } from './Pen';
-import { GetEmptyArray, FreeEmptyArrays } from '../../../../utils/pool/EmptyArray';
 import { PropType } from '../parser/BaseParser';
-import { NewLineMode } from '../Types'
-import { Clone } from '../../../../utils/object/Clone';
+import { NewLineMode } from '../Types';
+
+export type PenPoolType = Pool<Pen>;
 
 export class PenManager {
     pens: Pen[] = [];
-    lines: Pen[][] = [];
+    lines: Line[] = [];
     maxLinesWidth: number;
 
-    penPool: Pool<Pen>;
+    penPool: PenPoolType;
 
     constructor({
-        pensPool
-    }: { pensPool: Pool<Pen> }) {
+        penPool
+    }: { penPool: PenPoolType }) {
 
         this.pens = []; // all pens
-        this.lines = []; // pens in lines [ [],[],[],.. ]
+        this.lines = [];
         this.maxLinesWidth = undefined;
 
-        this.penPool = pensPool;
+        this.penPool = penPool;
     }
 
     destroy() {
@@ -31,8 +32,7 @@ export class PenManager {
 
         this.penPool.pushMultiple(this.pens);
 
-        this.lines.forEach((l) => { l.length = 0 });
-        FreeEmptyArrays(this.lines);
+        this.lines.forEach((l) => { l.destroy(); });
         this.lines.length = 0;
 
         this.maxLinesWidth = undefined;
@@ -41,11 +41,12 @@ export class PenManager {
     }
 
     addTextPen(
-        text: string = '',
-        x: number = 0,
-        y: number = 0,
-        width: number = 0,
-        prop: PropType = {},
+        text: string,
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        prop: PropType,
         newLineMode: NewLineMode = NewLineMode.none
     ): this {
 
@@ -53,32 +54,31 @@ export class PenManager {
         if (pen == null) {
             pen = new Pen();
         }
-        pen.set(text, x, y, width, prop, newLineMode);
+        pen.set(text, x, y, width, height, prop, newLineMode);
         this.addPen(pen);
 
         return this;
     }
 
     addImagePen(
-        x: number = 0,
-        y: number = 0,
-        width: number = 0,
-        prop: PropType = {},
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        prop: PropType,
     ): this {
 
-        this.addTextPen('', x, y, width, prop, NewLineMode.none);
+        this.addTextPen(null, x, y, width, height, prop, NewLineMode.none);
 
         return this;
     }
 
     addNewLinePen(): this {
 
-        let previousPen = this.lastPen;
-        let x = (previousPen) ? previousPen.lastX : 0;
-        let y = (previousPen) ? previousPen.y : 0;
-        let prop = (previousPen) ? Clone(previousPen.prop) : {};
-        this.addTextPen('', x, y, 0, prop, NewLineMode.wrapped);
-
+        let lastPen = this.lastPen;
+        if (lastPen) {
+            lastPen.newLineMode = NewLineMode.wrapped;
+        }
         return this;
     }
 
@@ -97,14 +97,14 @@ export class PenManager {
         // Maintan lines
         let line = this.lastLine;
         if (line == null) {
-            line = GetEmptyArray() || [];
+            line = new Line();
             this.lines.push(line);
         }
-        line.push(pen);
+        line.addPen(pen);
 
-        // new line, add an empty line
+        // New line, add an empty line
         if (pen.newLineMode !== NewLineMode.none) {
-            line = GetEmptyArray() || [];
+            line = new Line();
             this.lines.push(line);
         }
         this.maxLinesWidth = undefined;
@@ -118,7 +118,7 @@ export class PenManager {
 
         if (targetPenManager == null) {
             targetPenManager = new PenManager({
-                pensPool: this.penPool
+                penPool: this.penPool
             });
         }
 
@@ -136,7 +136,7 @@ export class PenManager {
         return this.pens[this.pens.length - 1];
     }
 
-    get lastLine(): Pen[] {
+    get lastLine(): Line {
 
         return this.lines[this.lines.length - 1];
     }
@@ -149,7 +149,11 @@ export class PenManager {
             return this.getLineEndIndex(i);
         } else {
             let line = this.lines[i];
-            return (line && line[0]) ? line[0].startIndex : 0;
+            if (!line) {
+                return 0;
+            }
+            let firstPen = line.firstPen;
+            return (firstPen) ? firstPen.startIndex : 0;
         }
     }
 
@@ -157,24 +161,19 @@ export class PenManager {
         i: number
     ): number {
 
-        if (i >= this.lines.length) {
-            i = this.lines.length - 1;
-        }
-        let hasLastPen = false,
-            line: Pen[];
-        for (let li = i; li >= 0; li--) {
-            line = this.lines[li];
-            hasLastPen = (line != null) && (line.length > 0);
-            if (hasLastPen) {
-                break;
-            }
-        }
-        if (!hasLastPen) {
-            return 0;
+        let lineCount = this.lines.length
+        if (i >= lineCount) {
+            i = lineCount - 1;
         }
 
-        let lastPen = line[line.length - 1];
-        return lastPen.endIndex;
+        for (let li = i; li >= 0; li--) {
+            let line = this.lines[li];
+            if (line && line.hasPen()) {
+                return line.lastPen.endIndex;
+            }
+        }
+
+        return 0;
     }
 
     getLineWidth(
@@ -182,16 +181,7 @@ export class PenManager {
     ): number {
 
         let line = this.lines[i];
-        if (!line) {
-            return 0;
-        }
-
-        let lastPen = line[line.length - 1];
-        if (lastPen == null) {
-            return 0;
-        }
-
-        return lastPen.lastX; // start from 0
+        return (line) ? line.width : 0; // start from 0
     }
 
     getMaxLineWidth(): number {
@@ -201,23 +191,21 @@ export class PenManager {
         }
 
         let maxW = 0;
-        for (let i = 0, cnt = this.lines.length; i < cnt; i++) {
-            let w = this.getLineWidth(i);
-            if (w > maxW) {
-                maxW = w;
-            }
-        }
+        this.lines.forEach(function (line) {
+            maxW = Math.max(maxW, line.width);
+        })
         this.maxLinesWidth = maxW;
         return maxW;
     }
 
-    getLineWidths(): number[] {
+    getLineWidths(
+        out: number[] = []
+    ): number[] {
 
-        var result = [];
-        for (var i = 0, cnt = this.lines.length; i < cnt; i++) {
-            result.push(this.getLineWidth(i));
-        }
-        return result;
+        this.lines.forEach(function (line) {
+            out.push(line.width);
+        })
+        return out;
     }
 
     get linesCount(): number {
@@ -256,7 +244,7 @@ export class PenManager {
 
         if (end === undefined) {
             let lastPen = this.lastPen;
-            if (lastPen == null) {
+            if (!lastPen) {
                 return "";
             }
 

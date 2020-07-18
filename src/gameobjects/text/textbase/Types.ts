@@ -39,13 +39,8 @@ export type StyleType = {
     underlineThickness?: number,
     underlineOffset?: number,
 
-    image?: string,
-
-    lineHeight?: number,
-    maxLines?: number,
-    halign?: HAlignMode,
-    valign?: VAlignMode
+    image?: string
 }
 
-import { WrapMode, NewLineMode, GetTextWidthCallback } from '../../../utils/string/WrapText';
-export { WrapMode, NewLineMode, GetTextWidthCallback };
+import { WrapMode, NewLineMode, GetTextWidthCallbackType } from '../../../utils/string/WrapText';
+export { WrapMode, NewLineMode, GetTextWidthCallbackType };

@@ -22,20 +22,19 @@ export function Draw(
 
     let defatultStyle = canvasText.defatultStyle;
 
-    // this.clear();
     DrawBackground(canvasText, defatultStyle.backgroundColor);
 
     // draw lines
     startX += this.startXOffset;
     startY += this.startYOffset;
-    let halign = defatultStyle.halign,
-        valign = defatultStyle.valign;
+    let halign = this.halign,
+        valign = this.valign;
 
     let lineWidth: number,
         lineHeight = defatultStyle.lineHeight;
     let lines = penManager.lines;
     let totalLinesNum = lines.length,
-        maxLines = defatultStyle.maxLines;
+        maxLines = this.maxLines;
     let drawLinesNum: number,
         drawLineStartIdx: number,
         drawLineEndIdx: number;
@@ -79,7 +78,7 @@ export function Draw(
         }
         offsetX += startX;
 
-        let pens = lines[lineIdx];
+        let pens = lines[lineIdx].pens;
         for (let penIdx = 0, penCnt = pens.length; penIdx < penCnt; penIdx++) {
             DrawPen(canvasText, pens[penIdx], offsetX, offsetY);
         }
@@ -138,28 +137,20 @@ export function DrawPen(
     }
 };
 
-export function Clear(
-    canvasText: ICanvasText
-): void {
-
-    let canvas = canvasText.canvas,
-        context = canvasText.context;
-    context.clearRect(0, 0, canvas.width, canvas.height);
-};
-
 export function DrawBackground(
     canvasText: ICanvasText,
     color: string
 ): void {
 
-    if (color === null) {
-        return;
-    }
-
     let canvas = canvasText.canvas,
         context = canvasText.context;
-    context.fillStyle = color;
-    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (color == null) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+        context.fillStyle = color;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    }
 };
 
 export function DrawUnderline(

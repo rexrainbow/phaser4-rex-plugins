@@ -10,6 +10,11 @@ export class ImageManager implements IImageManager {
         this.images = new Map();
     }
 
+    destroy() {
+
+        this.images.clear();
+    }
+
     add(
         key: string | string[] | { [key: string]: ImageInfo },
         config?: ImageInfo
@@ -52,6 +57,14 @@ export class ImageManager implements IImageManager {
 
         let imageInfo = this.images.get(key);
         return (imageInfo) ? (imageInfo.width + imageInfo.left + imageInfo.right) : 0;
+    }
+
+    getOuterHeight(
+        key: string
+    ): number {
+
+        let imageInfo = this.images.get(key);
+        return (imageInfo) ? (imageInfo.height + imageInfo.top + imageInfo.bottom) : 0;
     }
 
     getFrame(

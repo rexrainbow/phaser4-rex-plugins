@@ -7,6 +7,7 @@ export class Pen {
     x: number = 0;
     y: number = 0;
     width: number = 0;
+    height: number = 0;
     prop: PropType = {};
     newLineMode: NewLineMode = NewLineMode.none;
     startIndex: number = 0;
@@ -16,6 +17,7 @@ export class Pen {
         x: number = 0,
         y: number = 0,
         width: number = 0,
+        height: number = 0,
         prop: PropType = {},
         newLineMode: NewLineMode = NewLineMode.none,
         startIndex: number = 0
@@ -24,6 +26,7 @@ export class Pen {
         this.x = x;
         this.y = y;
         this.width = width;
+        this.height = height;
         this.prop = prop;
         this.newLineMode = newLineMode;
         this.startIndex = startIndex;
@@ -34,7 +37,14 @@ export class Pen {
     clone(): Pen {
 
         let result = new Pen();
-        result.set(this.text, this.x, this.y, this.width, Clone(this.prop), this.newLineMode, this.startIndex);
+        result.set(
+            this.text,
+            this.x, this.y,
+            this.width, this.height,
+            Clone(this.prop),
+            this.newLineMode,
+            this.startIndex
+        );
         return result;
     }
 

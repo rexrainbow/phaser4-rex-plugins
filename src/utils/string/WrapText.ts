@@ -16,16 +16,17 @@ export type LineInfo = {
     newLineMode: NewLineMode;
 }
 
-export type GetTextWidthCallback = (text: string) => number;
+export type GetTextWidthCallbackType = (text: string, context: unknown) => number;
 
 const splitRegExp = /(?:\r\n|\r|\n)/;
 
 export function WrapText(
     text: string,
-    getTextWidth: GetTextWidthCallback,
+    getTextWidthCallback: GetTextWidthCallbackType,
+    context: unknown,
     wrapMode: WrapMode,
     wrapWidth: number,
-    offset: number
+    offset: number = 0
 ): LineInfo[] {
 
     if (wrapWidth <= 0) {
@@ -46,7 +47,7 @@ export function WrapText(
 
         if (wrapMode === WrapMode.none) {
             result.push(
-                CreateLineInfo(line, getTextWidth(line), newLineMode)
+                CreateLineInfo(line, getTextWidthCallback(line, context), newLineMode)
             );
             continue;
         }
@@ -59,7 +60,7 @@ export function WrapText(
 
         // Short string testing
         if (line.length <= 100) {
-            let textWidth = getTextWidth(line);
+            let textWidth = getTextWidthCallback(line, context);
             if (textWidth <= remainWidth) {
                 result.push(
                     CreateLineInfo(line, textWidth, newLineMode)
@@ -91,7 +92,7 @@ export function WrapText(
                 curLineText += token;
             }
 
-            let currLineWidth = getTextWidth(curLineText);
+            let currLineWidth = getTextWidthCallback(curLineText, context);
             if (currLineWidth > remainWidth) {
                 // new line
                 if (j === 0) {
@@ -108,7 +109,7 @@ export function WrapText(
                             curLineText += ' ';
                         }
                     }
-                    currLineWidth = getTextWidth(curLineText);
+                    currLineWidth = getTextWidthCallback(curLineText, context);
                 }
 
                 remainWidth = wrapWidth;

@@ -98,7 +98,7 @@ class Text extends GameObject {
             context: this.context,
             parser: parser,
             style: this.style,
-            pensPool: PensPools[type]
+            penPool: PensPools[type]
         });
 
         //this.initRTL();
@@ -310,8 +310,7 @@ class Text extends GameObject {
             canvasText.updatePenManager(
                 this._text,
                 style.wrapMode,
-                style.wrapWidth,
-                style.lineHeight
+                style.wrapWidth
             );
         }
 
@@ -319,25 +318,25 @@ class Text extends GameObject {
         var padding = this.padding;
         var textWidth, textHeight;
         if (style.fixedWidth === 0) {
-            this.width = canvasText.linesWidth + padding.left + padding.right;
-            textWidth = canvasText.linesWidth;
+            this.width = canvasText.textWidth + padding.left + padding.right;
+            textWidth = canvasText.textWidth;
         }
         else {
             this.width = style.fixedWidth;
             textWidth = this.width - padding.left - padding.right;
-            if (textWidth < canvasText.linesWidth) {
-                textWidth = canvasText.linesWidth;
+            if (textWidth < canvasText.textWidth) {
+                textWidth = canvasText.textWidth;
             }
         }
         if (style.fixedHeight === 0) {
-            this.height = canvasText.linesHeight + padding.top + padding.bottom;
-            textHeight = canvasText.linesHeight;
+            this.height = canvasText.textHeight + padding.top + padding.bottom;
+            textHeight = canvasText.textHeight;
         }
         else {
             this.height = style.fixedHeight;
             textHeight = this.height - padding.top - padding.bottom;
-            if (textHeight < canvasText.linesHeight) {
-                textHeight = canvasText.linesHeight;
+            if (textHeight < canvasText.textHeight) {
+                textHeight = canvasText.textHeight;
             }
         }
 
@@ -452,8 +451,8 @@ class Text extends GameObject {
         return this.getText(text, start, end);
     }
 
-    copyPenManager(penManager) {
-        return this.canvasText.copyPenManager(penManager);
+    clonePenManager(penManager) {
+        return this.canvasText.clonePenManager(penManager);
     }
 
     getPenManager(text, penManager) {
