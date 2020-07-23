@@ -22,7 +22,6 @@ export interface ICanvasText {
     wrapMode: WrapMode;
     wrapWidth: number;
     lineSpacing: number;
-    maxLines: number;
     halign: HAlignMode,
     valign: VAlignMode,
 

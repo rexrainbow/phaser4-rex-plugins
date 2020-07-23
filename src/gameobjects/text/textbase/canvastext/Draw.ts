@@ -8,8 +8,8 @@ export function Draw(
     canvasText: ICanvasText,
     startX: number,
     startY: number,
-    boxWidth: number,
-    boxHeight: number
+    textWidth: number,
+    textHeight: number
 ) {
 
     let penManager = canvasText.penManager;
@@ -54,9 +54,9 @@ export function Draw(
 
     let offsetY: number;
     if (valign === VAlignMode.center) { // center
-        offsetY = Math.max((boxHeight - (drawLinesNum * lineHeight)) / 2, 0);
+        offsetY = Math.max((textHeight - (drawLinesNum * lineHeight)) / 2, 0);
     } else if (valign === VAlignMode.bottom) { // bottom
-        offsetY = Math.max(boxHeight - (drawLinesNum * lineHeight) - 2, 0);
+        offsetY = Math.max(textHeight - (drawLinesNum * lineHeight) - 2, 0);
     } else {
         offsetY = 0;
     }
@@ -69,9 +69,9 @@ export function Draw(
 
         let offsetX:number;
         if (halign === HAlignMode.center) {
-            offsetX = (boxWidth - lineWidth) / 2;
+            offsetX = (textWidth - lineWidth) / 2;
         } else if (halign === HAlignMode.right) {
-            offsetX = boxWidth - lineWidth;
+            offsetX = textWidth - lineWidth;
         } else {
             offsetX = 0;
         }

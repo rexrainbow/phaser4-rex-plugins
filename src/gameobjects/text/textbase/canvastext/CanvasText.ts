@@ -24,7 +24,6 @@ export class CanvasText implements ICanvasText {
     wrapMode: WrapMode;
     wrapWidth: number;
     lineSpacing: number;
-    maxLines: number;
     halign: HAlignMode;
     valign: VAlignMode;
 
@@ -102,12 +101,7 @@ export class CanvasText implements ICanvasText {
     }
 
     get displayLinesCount() {
-        let linesCount = this.penManager.linesCount,
-            maxLines = this.maxLines;
-        if ((maxLines > 0) && (linesCount > maxLines)) {
-            linesCount = maxLines;
-        }
-        return linesCount;
+        return this.penManager.linesCount;
     }
 
     get textWidth() {

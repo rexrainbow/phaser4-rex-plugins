@@ -1,8 +1,8 @@
-import { ContextStyleType } from '../Types';
+import { StyleType } from '../Types';
 
 export function SyncFont(
     context: CanvasRenderingContext2D,
-    style: ContextStyleType
+    style: StyleType
 ): void {
 
     context.font = style.font;
@@ -10,7 +10,7 @@ export function SyncFont(
 
 export function SyncStyle(
     context: CanvasRenderingContext2D,
-    style: ContextStyleType
+    style: StyleType
 ): void {
 
     context.textBaseline = 'alphabetic';
@@ -22,11 +22,12 @@ export function SyncStyle(
     context.lineWidth = style.strokeThickness;
     context.lineCap = 'round';
     context.lineJoin = 'round';
+    context.imageSmoothingEnabled = style.antialias;
 }
 
 export function SyncShadow(
     context: CanvasRenderingContext2D,
-    style: ContextStyleType,
+    style: StyleType,
     enable: boolean
 ): void {
 

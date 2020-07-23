@@ -19,6 +19,8 @@ export type VAlignModeString = 'top' | 'center' | 'bottom';
 export type StyleType = {
     backgroundColor?: string,
 
+    antialias?: boolean,
+
     font?: string,
     fontFamily?: string,
     fontStyle?: string,
