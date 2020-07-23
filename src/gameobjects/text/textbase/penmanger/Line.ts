@@ -2,6 +2,7 @@ import { Pen } from './Pen';
 
 export class Line {
     pens: Pen[];
+    y: number;
     height: number;
 
     destroy() {
@@ -46,19 +47,5 @@ export class Line {
 
         let lastPen = this.lastPen;
         return (lastPen) ? lastPen.lastX : 0;
-    }
-
-    setHeight(
-        height?: number
-    ): this {
-
-        if (height === undefined) {
-            height = 0;
-            this.pens.forEach(function (pen) {
-                height = Math.max(height, pen.height);
-            })
-        }
-        this.height = height;
-        return this;
     }
 }

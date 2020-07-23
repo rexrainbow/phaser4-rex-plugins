@@ -9,7 +9,8 @@ export type PenPoolType = Pool<Pen>;
 export class PenManager {
     pens: Pen[] = [];
     lines: Line[] = [];
-    maxLinesWidth: number;
+    maxLineWidth: number;
+    totalLineHeight: number;
 
     penPool: PenPoolType;
 
@@ -19,7 +20,6 @@ export class PenManager {
 
         this.pens = []; // all pens
         this.lines = [];
-        this.maxLinesWidth = undefined;
 
         this.penPool = penPool;
     }
@@ -35,17 +35,16 @@ export class PenManager {
         this.lines.forEach((l) => { l.destroy(); });
         this.lines.length = 0;
 
-        this.maxLinesWidth = undefined;
-
         return this;
     }
 
     addTextPen(
         text: string,
         x: number,
-        y: number,
+        y: number,        
         width: number,
         height: number,
+        ascent: number,
         prop: PropType,
         newLineMode: NewLineMode = NewLineMode.none
     ): this {
@@ -54,7 +53,7 @@ export class PenManager {
         if (pen == null) {
             pen = new Pen();
         }
-        pen.set(text, x, y, width, height, prop, newLineMode);
+        pen.set(text, x, y, width, height, ascent, prop, newLineMode);
         this.addPen(pen);
 
         return this;
@@ -68,7 +67,7 @@ export class PenManager {
         prop: PropType,
     ): this {
 
-        this.addTextPen(null, x, y, width, height, prop, NewLineMode.none);
+        this.addTextPen(null, x, y, width, height, 0, prop, NewLineMode.none);
 
         return this;
     }
@@ -107,7 +106,6 @@ export class PenManager {
             line = new Line();
             this.lines.push(line);
         }
-        this.maxLinesWidth = undefined;
 
         return this;
     }
@@ -184,26 +182,25 @@ export class PenManager {
         return (line) ? line.width : 0; // start from 0
     }
 
-    getMaxLineWidth(): number {
+    getTotalLineHeight(): number {
 
-        if (this.maxLinesWidth !== undefined) {
-            return this.maxLinesWidth;
+        if (this.totalLineHeight !== undefined) {
+            return this.totalLineHeight;
         }
-
-        let maxW = 0;
+        let totalLineHeight = 0;
         this.lines.forEach(function (line) {
-            maxW = Math.max(maxW, line.width);
+            totalLineHeight += line.height;
         })
-        this.maxLinesWidth = maxW;
-        return maxW;
+        this.totalLineHeight = totalLineHeight;
+        return totalLineHeight;
     }
 
-    getLineWidths(
+    getLineHeights(
         out: number[] = []
     ): number[] {
 
         this.lines.forEach(function (line) {
-            out.push(line.width);
+            out.push(line.height);
         })
         return out;
     }

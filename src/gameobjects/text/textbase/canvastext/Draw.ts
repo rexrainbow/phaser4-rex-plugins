@@ -30,8 +30,7 @@ export function Draw(
     let halign = this.halign,
         valign = this.valign;
 
-    let lineWidth: number,
-        lineHeight = defatultStyle.lineHeight;
+    let lineHeight = defatultStyle.lineHeight;
     let lines = penManager.lines;
     let totalLinesNum = lines.length,
         maxLines = this.maxLines;
@@ -53,8 +52,7 @@ export function Draw(
     }
     drawLineEndIdx = drawLineStartIdx + drawLinesNum;
 
-    let offsetX: number,
-        offsetY: number;
+    let offsetY: number;
     if (valign === VAlignMode.center) { // center
         offsetY = Math.max((boxHeight - (drawLinesNum * lineHeight)) / 2, 0);
     } else if (valign === VAlignMode.bottom) { // bottom
@@ -64,11 +62,12 @@ export function Draw(
     }
     offsetY += startY;
     for (let lineIdx = drawLineStartIdx; lineIdx < drawLineEndIdx; lineIdx++) {
-        lineWidth = penManager.getLineWidth(lineIdx);
+        let lineWidth = penManager.getLineWidth(lineIdx);
         if (lineWidth === 0) {
             continue;
         }
 
+        let offsetX:number;
         if (halign === HAlignMode.center) {
             offsetX = (boxWidth - lineWidth) / 2;
         } else if (halign === HAlignMode.right) {
@@ -132,7 +131,7 @@ export function DrawPen(
             offsetX, // x
             (offsetY - canvasText.startYOffset), // y
             pen.width, // width
-            defaultStyle.lineHeight // height
+            pen.height // height
         );
     }
 };
