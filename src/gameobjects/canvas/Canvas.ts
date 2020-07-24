@@ -1,4 +1,4 @@
-import { CanvasBase } from './CanvasBase';
+import { BaseCanvas } from './BaseCanvas';
 import {
     Fill,
     LoadFromURL, LoadFromURLPromise, GetDataURL,
@@ -9,7 +9,7 @@ import {
 } from './TextureMethods';
 
 
-export class Canvas extends CanvasBase {
+export class Canvas extends BaseCanvas {
 
     fill(
         fillStyle: string | CanvasGradient | CanvasPattern = '#fff'

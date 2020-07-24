@@ -5,7 +5,7 @@ import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
 import { Sprite } from '@phaserjs/phaser/gameobjects/sprite/Sprite';
 import { Resize, Clear } from './CanvasMethods';
 
-export class CanvasBase extends Sprite {
+export class BaseCanvas extends Sprite {
 
     canvas: HTMLCanvasElement;
     context: CanvasRenderingContext2D;
