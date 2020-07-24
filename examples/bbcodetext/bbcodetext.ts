@@ -17,8 +17,6 @@ class Demo extends Scene {
         text.padding = { left: 10, right: 10, top: 10, bottom: 10 };
         text.font = '40px monospace';
         text.text = `[color=red]A[color=blue]B[color=green]C[/color]`;
-
-        AddChild(world, text);
     }
 }
 
