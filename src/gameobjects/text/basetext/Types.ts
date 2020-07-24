@@ -1,4 +1,4 @@
-export type ColorType = string;
+export type FillStyleType = string | CanvasGradient | CanvasPattern;
 
 export enum HAlignMode {
     left = 0,
@@ -17,29 +17,37 @@ export enum VAlignMode {
 export type VAlignModeString = 'top' | 'center' | 'bottom';
 
 export type StyleType = {
-    backgroundColor?: string,
+    backgroundStyle?: FillStyleType,
 
     antialias?: boolean,
+
 
     font?: string,
     fontFamily?: string,
     fontStyle?: string,
     fontSize?: string,
-    color?: ColorType,
+    fillStyle?: FillStyleType,
 
-    stroke?: ColorType,
+    strokeStyle?: FillStyleType,
     strokeThickness?: number,
 
-    shadowColor?: ColorType,
+    shadowColor?: string,
     shadowOffsetX?: number,
     shadowOffsetY?: number,
     shadowBlur?: number,
     shadowStroke?: boolean,
     shadowFill?: boolean,
 
-    underlineColor?: ColorType,
+    underlineStyle?: FillStyleType,
     underlineThickness?: number,
     underlineOffset?: number,
+
+
+    lineSpacing?: number,
+    wrapMode?: WrapMode,
+    wrapWidth?: number,
+    halign?: HAlignMode,
+    valign?: VAlignMode,
 
     image?: string
 }

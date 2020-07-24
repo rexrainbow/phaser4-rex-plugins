@@ -53,9 +53,9 @@ export class HitAreaManager {
     }
 
     //TODO
-    //drawBounds(graphics, color, parent) {
-    //    if (color === undefined) {
-    //        color = 0xffffff;
+    //drawBounds(graphics, fillStyle, parent) {
+    //    if (fillStyle === undefined) {
+    //        fillStyle = 0xffffff;
     //    }
     //
     //    if (parent) {
@@ -69,7 +69,7 @@ export class HitAreaManager {
     //    var hitAreas = this.hitAreas, hitArea;
     //    for (var i = 0, cnt = hitAreas.length; i < cnt; i++) {
     //        hitArea = hitAreas[i];
-    //        graphics.lineStyle(1, color).strokeRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
+    //        graphics.lineStyle(1, fillStyle).strokeRect(hitArea.x, hitArea.y, hitArea.width, hitArea.height);
     //    }
     //
     //    if (parent) {

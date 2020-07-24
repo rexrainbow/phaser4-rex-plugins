@@ -3,7 +3,7 @@ import { Game } from '@phaserjs/phaser/Game';
 import { Scene } from '@phaserjs/phaser/scenes/Scene';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { StaticWorld } from '@phaserjs/phaser/world';
-import { CanvasBase, Fill, GenerateTexture } from '../../src/gameobjects/canvas';
+import { BaseCanvas, Fill, GenerateTexture } from '../../src/gameobjects/canvas';
 import { Sprite } from '@phaserjs/phaser/gameobjects/sprite';
 
 class Demo extends Scene {
@@ -12,7 +12,7 @@ class Demo extends Scene {
 
         const world = new StaticWorld(this);
 
-        const canvas = new CanvasBase(400, 300, 200, 100);
+        const canvas = new BaseCanvas(400, 300, 200, 100);
         AddChild(world, canvas);
 
         const grd = canvas.context.createLinearGradient(0, 50, 200, 50);

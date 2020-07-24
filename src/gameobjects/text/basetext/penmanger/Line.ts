@@ -1,7 +1,7 @@
 import { Pen } from './Pen';
 
 export class Line {
-    pens: Pen[];
+    pens: Pen[] = [];
     y: number;
     height: number;
 

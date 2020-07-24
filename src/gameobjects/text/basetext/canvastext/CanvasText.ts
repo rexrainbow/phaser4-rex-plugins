@@ -9,23 +9,21 @@ import {
 import { BaseParser } from '../parser/BaseParser';
 import { Stack as Pool } from '../../../../utils/struct/Stack';
 import { PenManager, PenPoolType } from '../penmanger/PenManager';
+import { Line } from '../penmanger/Line';
 import { ImageManager } from '../imagemanager/ImageManager';
 import { HitAreaManager } from '../hitareamanager/HitAreaManager';
 // import SetInteractive from './SetInteractive';
 import { Pen } from '../penmanger/Pen';
-import { SetText } from '../penmanger/SetText'
+import { UpdatePenManager } from '../penmanger/UpdatePenManager';
+import { Draw } from './Draw';
 
 export class CanvasText implements ICanvasText {
+
     canvas: HTMLCanvasElement;
     context: CanvasRenderingContext2D;
     resolution: number;
 
     defatultStyle: StyleType;
-    wrapMode: WrapMode;
-    wrapWidth: number;
-    lineSpacing: number;
-    halign: HAlignMode;
-    valign: VAlignMode;
 
     parser: BaseParser;
     penManager: PenManager;
@@ -37,6 +35,7 @@ export class CanvasText implements ICanvasText {
     constructor({
         canvas,
         context,
+        defatultStyle,
         parser,
         penPool = new Pool<Pen>()
     }: IConfig) {
@@ -44,7 +43,7 @@ export class CanvasText implements ICanvasText {
         this.canvas = canvas;
         this.context = context;
         this.parser = parser;
-        this.defatultStyle = null; // TODO
+        this.defatultStyle = defatultStyle;
 
         this.penPool = penPool;
         this.penManager = new PenManager({
@@ -76,6 +75,14 @@ export class CanvasText implements ICanvasText {
         }
     }
 
+    get textWidth() {
+        return this.penManager.maxLineWidth;
+    }
+
+    get textHeight() {
+        return this.penManager.totalLineHeight;
+    }
+
     updatePenManager(
         text: string,
         wrapMode: WrapMode,
@@ -83,33 +90,34 @@ export class CanvasText implements ICanvasText {
         penManager: PenManager = this.penManager
     ): PenManager {
 
-        return SetText(penManager, text, this, wrapMode, wrapWidth);
+        return UpdatePenManager(penManager, text, this, wrapMode, wrapWidth);
+    }
+
+    draw(
+        startX: number = 0,
+        startY: number = 0,
+        textWidth: number = this.textWidth,
+        textHeight: number = this.textHeight
+    ): this {
+
+        Draw(this, startX, startY, textWidth, textHeight, this.penManager);
+        return this;
     }
 
     get startXOffset() {
-        let defatultStyle = this.defatultStyle;
-        return (defatultStyle.strokeThickness / 2);
+        let strokeStyle = this.defatultStyle.strokeStyle;
+        let strokeThickness = this.defatultStyle.strokeThickness;
+        return ((strokeStyle != null) && (strokeThickness != null)) ? (strokeThickness / 2) : 0;
     }
 
     get startYOffset() {
-        let defatultStyle = this.defatultStyle;
-        return (defatultStyle.strokeThickness / 2);
+        let strokeStyle = this.defatultStyle.strokeStyle;
+        let strokeThickness = this.defatultStyle.strokeThickness;
+        return ((strokeStyle != null) && (strokeThickness != null)) ? (strokeThickness / 2) : 0;
     }
 
-    get lines() {
+    get lines(): Line[] {
         return this.penManager.lines;
-    }
-
-    get displayLinesCount() {
-        return this.penManager.linesCount;
-    }
-
-    get textWidth() {
-        return this.penManager.maxLineWidth;
-    }
-
-    get textHeight() {
-        return this.penManager.totalLineHeight;
     }
 
     get tmpPenManager() {
@@ -164,8 +172,8 @@ export class CanvasText implements ICanvasText {
 
         this.updatePenManager(
             text,
-            this.wrapMode,
-            this.wrapWidth,
+            this.defatultStyle.wrapMode,
+            this.defatultStyle.wrapWidth,
             retPenManager
         );
         return retPenManager;
@@ -188,8 +196,8 @@ export class CanvasText implements ICanvasText {
         let penManager = this.tmpPenManager;
         this.updatePenManager(
             text,
-            this.wrapMode,
-            this.wrapWidth,
+            this.defatultStyle.wrapMode,
+            this.defatultStyle.wrapWidth,
             penManager
         );
 

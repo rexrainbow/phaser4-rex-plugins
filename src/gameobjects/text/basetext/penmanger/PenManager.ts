@@ -35,13 +35,15 @@ export class PenManager {
         this.lines.forEach((l) => { l.destroy(); });
         this.lines.length = 0;
 
+        this.totalLineHeight = 0;
+
         return this;
     }
 
     addTextPen(
         text: string,
         x: number,
-        y: number,        
+        y: number,
         width: number,
         height: number,
         ascent: number,
@@ -182,19 +184,6 @@ export class PenManager {
         return (line) ? line.width : 0; // start from 0
     }
 
-    getTotalLineHeight(): number {
-
-        if (this.totalLineHeight !== undefined) {
-            return this.totalLineHeight;
-        }
-        let totalLineHeight = 0;
-        this.lines.forEach(function (line) {
-            totalLineHeight += line.height;
-        })
-        this.totalLineHeight = totalLineHeight;
-        return totalLineHeight;
-    }
-
     getLineHeights(
         out: number[] = []
     ): number[] {
@@ -205,7 +194,7 @@ export class PenManager {
         return out;
     }
 
-    get linesCount(): number {
+    get lineCount(): number {
 
         return this.lines.length;
     }

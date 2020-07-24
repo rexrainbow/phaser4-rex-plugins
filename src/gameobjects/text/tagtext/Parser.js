@@ -141,12 +141,12 @@ class parser {
                 result.color = defaultStyle.color;
             }
 
-            if (prop.hasOwnProperty('stroke')) {
-                var stroke = prop.stroke; // {color, thinkness}
-                result.stroke = (stroke.hasOwnProperty('color')) ? stroke.color : defaultStyle.stroke;
-                result.strokeThickness = (stroke.hasOwnProperty('thinkness')) ? stroke.thinkness : defaultStyle.strokeThickness;
+            if (prop.hasOwnProperty('strokeStyle')) {
+                var strokeStyle = prop.strokeStyle; // {color, thinkness}
+                result.strokeStyle = (strokeStyle.hasOwnProperty('color')) ? strokeStyle.color : defaultStyle.strokeStyle;
+                result.strokeThickness = (strokeStyle.hasOwnProperty('thinkness')) ? strokeStyle.thinkness : defaultStyle.strokeThickness;
             } else {
-                result.stroke = defaultStyle.stroke;
+                result.strokeStyle = defaultStyle.strokeStyle;
                 result.strokeThickness = defaultStyle.strokeThickness;
             }
         } else {
@@ -172,11 +172,11 @@ class parser {
 
         if (prop.hasOwnProperty('u') || prop.hasOwnProperty('underline')) {
             var u = (prop.hasOwnProperty('u')) ? prop.u : prop.underline; // {color, thinkness, offset}
-            result.underlineColor = (u.hasOwnProperty('color')) ? u.color : defaultStyle.underlineColor;
+            result.underlineStyle = (u.hasOwnProperty('color')) ? u.color : defaultStyle.underlineStyle;
             result.underlineThickness = (u.hasOwnProperty('thinkness')) ? u.thinkness : defaultStyle.underlineThickness;
             result.underlineOffset = (u.hasOwnProperty('offset')) ? u.offset : defaultStyle.underlineOffset;
         } else {
-            result.underlineColor = defaultStyle.underlineColor;
+            result.underlineStyle = defaultStyle.underlineStyle;
             result.underlineThickness = defaultStyle.underlineThickness;
             result.underlineOffset = defaultStyle.underlineOffset;
         }
@@ -224,15 +224,15 @@ var styleToProp = function (s) {
         }
 
         switch (k) {
-            case 'stroke':
-                var stroke = v.split(' '); // stroke:blue 1px
-                var len = stroke.length;
+            case 'strokeStyle':
+                var strokeStyle = v.split(' '); // strokeStyle:blue 1px
+                var len = strokeStyle.length;
                 v = {};
                 if (len >= 1) {
-                    v.color = stroke[0];
+                    v.color = strokeStyle[0];
                 }
                 if (len >= 2) {
-                    v.thinkness = parseInt(stroke[1].replace('px', ''));
+                    v.thinkness = parseInt(strokeStyle[1].replace('px', ''));
                 }
                 break;
             case 'shadow':

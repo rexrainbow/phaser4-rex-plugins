@@ -1,6 +1,6 @@
 import { Canvas } from './Canvas';
 
-import { CanvasBase } from './CanvasBase';
+import { BaseCanvas } from './BaseCanvas';
 import {
     Resize, Clear, Fill,
     LoadFromURL, LoadFromURLPromise, GetDataURL,
@@ -13,7 +13,7 @@ import {
 export {
     Canvas,
 
-    CanvasBase,
+    BaseCanvas,
     Clear,
     Fill,
     GenerateTexture,

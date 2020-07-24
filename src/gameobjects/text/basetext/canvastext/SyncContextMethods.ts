@@ -16,8 +16,8 @@ export function SyncStyle(
     context.textBaseline = 'alphabetic';
     context.textAlign = 'start';
 
-    context.fillStyle = style.color;
-    context.strokeStyle = style.stroke;
+    context.fillStyle = style.fillStyle;
+    context.strokeStyle = style.strokeStyle;
 
     context.lineWidth = style.strokeThickness;
     context.lineCap = 'round';

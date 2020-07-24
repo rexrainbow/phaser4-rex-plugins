@@ -31,9 +31,9 @@ export const ContextStyleResult: StyleType = {
     fontFamily: undefined,
     fontStyle: undefined,
     fontSize: undefined,
-    color: undefined,
+    fillStyle: undefined,
 
-    stroke: undefined,
+    strokeStyle: undefined,
     strokeThickness: undefined,
 
     shadowColor: undefined,
@@ -43,7 +43,7 @@ export const ContextStyleResult: StyleType = {
     shadowStroke: undefined,
     shadowFill: undefined,
 
-    underlineColor: undefined,
+    underlineStyle: undefined,
     underlineThickness: undefined,
     underlineOffset: undefined,
 

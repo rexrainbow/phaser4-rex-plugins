@@ -25,20 +25,20 @@ const GetValue = Phaser.Utils.Objects.GetValue;
 
 var propertyMap = {
     // background
-    backgroundColor: ['backgroundColor', null],
+    backgroundStyle: ['backgroundStyle', null],
 
     // font
     fontFamily: ['fontFamily', 'Courier'],
     fontSize: ['fontSize', '16px'],
     fontStyle: ['fontStyle', ''],
     color: ['color', '#fff'],
-    stroke: ['stroke', '#fff'],
+    strokeStyle: ['strokeStyle', '#fff'],
     strokeThickness: ['strokeThickness', 0],
     shadowOffsetX: ['shadow.offsetX', 0],
     shadowOffsetY: ['shadow.offsetY', 0],
     shadowColor: ['shadow.color', '#000'],
     shadowBlur: ['shadow.blur', 0],
-    shadowStroke: ['shadow.stroke', false],
+    shadowStroke: ['shadow.strokeStyle', false],
     shadowFill: ['shadow.fill', false],
 
     // underline
@@ -73,13 +73,13 @@ class TextStyle {
     constructor(text, style) {
         this.parent = text;
 
-        this.backgroundColor;
+        this.backgroundStyle;
 
         this.fontFamily;
         this.fontSize;
         this.fontStyle;
         this.color;
-        this.stroke;
+        this.strokeStyle;
         this.strokeThickness;
         this.shadowOffsetX;
         this.shadowOffsetY;
@@ -192,7 +192,7 @@ class TextStyle {
         context.textBaseline = 'alphabetic';
 
         context.fillStyle = this.color;
-        context.strokeStyle = this.stroke;
+        context.strokeStyle = this.strokeStyle;
 
         context.lineWidth = this.strokeThickness;
         context.lineCap = 'round';
@@ -302,7 +302,7 @@ class TextStyle {
     }
 
     setBackgroundColor(color) {
-        this.backgroundColor = color;
+        this.backgroundStyle = color;
 
         return this.update(false);
     }
@@ -321,14 +321,14 @@ class TextStyle {
 
     setStroke(color, thickness) {
         if (color === undefined) {
-            //  Reset the stroke to zero (disabling it)
+            //  Reset the strokeStyle to zero (disabling it)
             this.strokeThickness = 0;
         } else {
             if (thickness === undefined) {
                 thickness = this.strokeThickness;
             }
 
-            this.stroke = color;
+            this.strokeStyle = color;
             this.strokeThickness = thickness;
         }
 

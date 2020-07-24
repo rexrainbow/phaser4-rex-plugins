@@ -1,20 +1,29 @@
 import { ICanvasText } from './ICanvasText';
 import { Pen } from '../penmanger/Pen';
-import { StyleType, HAlignMode, VAlignMode } from '../Types';
+import {
+    StyleType, FillStyleType,
+    HAlignMode, VAlignMode
+} from '../Types';
 import { SyncFont, SyncStyle, SyncShadow } from './SyncContextMethods';
 import { HitAreaManager } from '../hitareamanager/HitAreaManager';
+import { PenManager } from '../penmanger/PenManager';
 
 export function Draw(
     canvasText: ICanvasText,
-    startX: number,
-    startY: number,
-    textWidth: number,
-    textHeight: number
+    startX: number = 0,
+    startY: number = 0,
+    textWidth: number = canvasText.textWidth,
+    textHeight: number = canvasText.textHeight,
+    penManager: PenManager = canvasText.penManager
 ) {
 
-    let penManager = canvasText.penManager;
     if (canvasText.hitAreaManager) {
         canvasText.hitAreaManager.clear();
+    }
+
+    let totalLineHeight = penManager.totalLineHeight;
+    if (totalLineHeight === 0) {
+        return;
     }
 
     let context = canvasText.context;
@@ -22,62 +31,49 @@ export function Draw(
 
     let defatultStyle = canvasText.defatultStyle;
 
-    DrawBackground(canvasText, defatultStyle.backgroundColor);
+    DrawBackground(canvasText, defatultStyle.backgroundStyle);
 
-    // draw lines
-    startX += this.startXOffset;
-    startY += this.startYOffset;
-    let halign = this.halign,
-        valign = this.valign;
+    startX += canvasText.startXOffset;
+    startY += canvasText.startYOffset;
 
-    let lineHeight = defatultStyle.lineHeight;
+    let halign = defatultStyle.halign,
+        valign = defatultStyle.valign;
+
+    // Shift offsetY
+    let offsetY = startY;
+    switch (valign) {
+        case VAlignMode.center:
+            offsetY += (textHeight - totalLineHeight) / 2;
+            break;
+
+        case VAlignMode.bottom:
+            offsetY += textHeight - totalLineHeight - 2;
+            break;
+    }
+
+    // Draw each line
     let lines = penManager.lines;
-    let totalLinesNum = lines.length,
-        maxLines = this.maxLines;
-    let drawLinesNum: number,
-        drawLineStartIdx: number,
-        drawLineEndIdx: number;
-    if ((maxLines > 0) && (totalLinesNum > maxLines)) {
-        drawLinesNum = maxLines;
-        if (valign === VAlignMode.center) {
-            drawLineStartIdx = Math.floor((totalLinesNum - drawLinesNum) / 2);
-        } else if (valign === VAlignMode.bottom) {
-            drawLineStartIdx = totalLinesNum - drawLinesNum;
-        } else {
-            drawLineStartIdx = 0;
-        }
-    } else {
-        drawLinesNum = totalLinesNum;
-        drawLineStartIdx = 0;
-    }
-    drawLineEndIdx = drawLineStartIdx + drawLinesNum;
-
-    let offsetY: number;
-    if (valign === VAlignMode.center) { // center
-        offsetY = Math.max((textHeight - (drawLinesNum * lineHeight)) / 2, 0);
-    } else if (valign === VAlignMode.bottom) { // bottom
-        offsetY = Math.max(textHeight - (drawLinesNum * lineHeight) - 2, 0);
-    } else {
-        offsetY = 0;
-    }
-    offsetY += startY;
-    for (let lineIdx = drawLineStartIdx; lineIdx < drawLineEndIdx; lineIdx++) {
-        let lineWidth = penManager.getLineWidth(lineIdx);
+    for (let lineIdx = 0, lineCnt = lines.length; lineIdx < lineCnt; lineIdx++) {
+        let line = lines[lineIdx];
+        let lineWidth = line.width;
         if (lineWidth === 0) {
             continue;
         }
 
-        let offsetX:number;
-        if (halign === HAlignMode.center) {
-            offsetX = (textWidth - lineWidth) / 2;
-        } else if (halign === HAlignMode.right) {
-            offsetX = textWidth - lineWidth;
-        } else {
-            offsetX = 0;
-        }
-        offsetX += startX;
+        // Shift offsetX
+        let offsetX = startX;
+        switch (halign) {
+            case HAlignMode.center:
+                offsetX += (textWidth - lineWidth) / 2;
+                break;
 
-        let pens = lines[lineIdx].pens;
+            case HAlignMode.right:
+                offsetX += textWidth - lineWidth;
+                break;
+        }
+
+        // Draw each pen in this line
+        let pens = line.pens;
         for (let penIdx = 0, penCnt = pens.length; penIdx < penCnt; penIdx++) {
             DrawPen(canvasText, pens[penIdx], offsetX, offsetY);
         }
@@ -138,16 +134,16 @@ export function DrawPen(
 
 export function DrawBackground(
     canvasText: ICanvasText,
-    color: string
+    fillStyle: FillStyleType
 ): void {
 
     let canvas = canvasText.canvas,
         context = canvasText.context;
 
-    if (color == null) {
+    if (fillStyle == null) {
         context.clearRect(0, 0, canvas.width, canvas.height);
     } else {
-        context.fillStyle = color;
+        context.fillStyle = fillStyle;
         context.fillRect(0, 0, canvas.width, canvas.height);
     }
 };
@@ -166,7 +162,7 @@ export function DrawUnderline(
     let savedLineCap = context.lineCap;
     context.lineCap = 'butt';
     context.beginPath();
-    context.strokeStyle = style.underlineColor;
+    context.strokeStyle = style.underlineStyle;
     context.lineWidth = style.underlineThickness;
     context.moveTo(x, y);
     context.lineTo((x + width), y);
@@ -188,7 +184,7 @@ export function DrawText(
         context.strokeText(text, x, y);
     }
 
-    if (style.color && (style.color !== 'none')) {
+    if (style.fillStyle && (style.fillStyle !== 'none')) {
         SyncShadow(context, style, style.shadowFill);
         context.fillText(text, x, y);
     }

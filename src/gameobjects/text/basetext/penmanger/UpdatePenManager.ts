@@ -7,7 +7,7 @@ import { SyncFont, SyncStyle } from '../canvastext/SyncContextMethods';
 import { Clone } from '../../../../utils/object/Clone';
 import { GetTextWidth, GetTextHeightMetrics } from './TextMetrics';
 
-export function SetText(
+export function UpdatePenManager(
     penManager: PenManager,
     text: string,
     canvasText: ICanvasText,
@@ -109,7 +109,7 @@ export function SetText(
 
     // Update cursorY of each pen in each line
     // Update maxLineWidth, totalLineHeight
-    let lineSpacing = canvasText.lineSpacing;
+    let lineSpacing = canvasText.defatultStyle.lineSpacing;
     let currLineHeight = 0,
         cursorY = 0,
         maxLineWidth = 0,
@@ -121,6 +121,8 @@ export function SetText(
     });
 
     penManager.lines.forEach(function (line) {
+
+        currLineHeight = 0;
         line.pens.forEach(function (pen) {
             pen.y += cursorY;
             currLineHeight = Math.max(currLineHeight, pen.height);
@@ -129,7 +131,6 @@ export function SetText(
         line.y = cursorY;
         line.height = currLineHeight;
         cursorY += (currLineHeight + lineSpacing);
-        currLineHeight = 0;
 
         maxLineWidth = Math.max(maxLineWidth, line.width);
         totalLineHeight += (currLineHeight + lineSpacing);

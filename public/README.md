@@ -1,5 +1,9 @@
 # List of demos
 
+## BBCode text
+
+- [BBCode](https://rexrainbow.github.io/phaser4-rex-plugins/public/bbcodetext-bbcodetext/)
+
 ## Board
 
 ### Path finder

@@ -42,8 +42,8 @@ class Text extends GameObject {
                 delete style.align;
                 style.halign = halign;
             }
-            // Has Stroke color but stroke thinkness, set stroke thinkness to 1
-            if (style.hasOwnProperty('stroke') && !style.hasOwnProperty('strokeThickness')) {
+            // Has Stroke color but strokeStyle thinkness, set strokeStyle thinkness to 1
+            if (style.hasOwnProperty('strokeStyle') && !style.hasOwnProperty('strokeThickness')) {
                 style.strokeThickness = 1;
             }
         }

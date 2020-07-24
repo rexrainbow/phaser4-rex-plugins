@@ -1,16 +1,16 @@
 import {
     BaseParser,
     ContextStyleResult
-} from '../textbase/parser/BaseParser';
-import { StyleType, ColorType } from '../textbase/Types';
+} from '../basetext/parser/BaseParser';
+import { StyleType } from '../basetext/Types';
 
 type PropType = {
     b?: true,
     i?: true,
     size?: string,
-    color?: ColorType,
-    stroke?: ColorType | true,
-    u?: ColorType | true,
+    color?: string,
+    stroke?: string | true,
+    u?: string | true,
     shadow?: true,
     img?: string,
     area?: string
@@ -179,24 +179,24 @@ export class Parser extends BaseParser {
             }
             result.fontStyle = GetFontStyle(prop.b, prop.i);
 
-            result.font = `${result.fontStyle} ${result.fontSize} ${result.fontFamily}`;
+            result.font = defaultStyle.font;// `${result.fontStyle} ${result.fontSize} ${result.fontFamily}`;
 
             if (prop.hasOwnProperty('color')) {
-                result.color = prop.color;
+                result.fillStyle = prop.color;
             } else {
-                result.color = defaultStyle.color;
+                result.fillStyle = defaultStyle.fillStyle;
             }
 
             if (prop.hasOwnProperty('stroke')) {
                 if (prop.stroke === true) {
-                    result.stroke = defaultStyle.stroke;
+                    result.strokeStyle = defaultStyle.strokeStyle;
                     result.strokeThickness = defaultStyle.strokeThickness;
                 } else {
-                    result.stroke = prop.stroke;
+                    result.strokeStyle = prop.stroke;
                     result.strokeThickness = defaultStyle.strokeThickness;
                 }
             } else {
-                result.stroke = defaultStyle.stroke;
+                result.strokeStyle = defaultStyle.strokeStyle;
                 result.strokeThickness = 0;
             }
         } else {
@@ -230,16 +230,16 @@ export class Parser extends BaseParser {
 
         if (prop.hasOwnProperty('u')) {
             if (prop.u === true) {
-                result.underlineColor = defaultStyle.underlineColor;
+                result.underlineStyle = defaultStyle.underlineStyle;
                 result.underlineThickness = defaultStyle.underlineThickness;
                 result.underlineOffset = defaultStyle.underlineOffset;
             } else {
-                result.underlineColor = prop.u;
+                result.underlineStyle = prop.u;
                 result.underlineThickness = defaultStyle.underlineThickness;
                 result.underlineOffset = defaultStyle.underlineOffset;
             }
         } else {
-            result.underlineColor = '#000';
+            result.underlineStyle = '#000';
             result.underlineThickness = 0;
             result.underlineOffset = 0;
         }
