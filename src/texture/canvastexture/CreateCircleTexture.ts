@@ -1,6 +1,7 @@
 import { Texture } from '@phaserjs/phaser/textures/Texture';
 import { DrawCanvasTexture } from './DrawCanvasTexture';
 import { GetCanvasGradientCallbackType } from '../../utils/types/GetCanvasGradientCallbackType';
+import { DrawCircle } from '../../utils/canvas/DrawCircle';
 import { GetStyle } from '../../utils/canvas/GetStyle';
 
 export interface IConfig {
@@ -23,31 +24,26 @@ export function CreateCircleTexture(
 ): Texture {
 
     return DrawCanvasTexture(key, function (canvas, context) {
-        if (!strokeStyle) {
-            lineWidth = 0;
-        }
 
         canvas.width = Math.ceil(width);
         canvas.height = Math.ceil(height);
 
-        let x = canvas.width / 2;
-        let y = canvas.height / 2;
-        let rx = (width - lineWidth) / 2;
-        let ry = (height - lineWidth) / 2;
-
-        context.beginPath();
-        context.ellipse(x, y, rx, ry, 0, 0, (2 * Math.PI));
-
-        if (fillStyle) {
-            context.fillStyle = GetStyle(fillStyle, canvas, context);
-            context.fill();
+        if (!strokeStyle) {
+            lineWidth = 0;
         }
 
-        if (strokeStyle) {
-            context.strokeStyle = GetStyle(strokeStyle, canvas, context);
-            context.lineWidth = lineWidth;
-            context.stroke();
-        }
+        const x = canvas.width / 2,
+            y = canvas.height / 2,
+            rx = (width - lineWidth) / 2,
+            ry = (height - lineWidth) / 2;
+
+        DrawCircle(
+            canvas, context,
+            x, y, rx, ry,
+            GetStyle(fillStyle, canvas, context),
+            GetStyle(strokeStyle, canvas, context),
+            lineWidth
+        );
 
     });
 }

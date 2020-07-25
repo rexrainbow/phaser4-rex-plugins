@@ -1,6 +1,7 @@
 import { Texture } from '@phaserjs/phaser/textures/Texture';
 import { DrawCanvasTexture } from './DrawCanvasTexture';
 import { GetCanvasGradientCallbackType } from '../../utils/types/GetCanvasGradientCallbackType';
+import { DrawRectangle } from '../../utils/canvas/DrawRectangle';
 import { GetStyle } from '../../utils/canvas/GetStyle';
 
 export interface IConfig {
@@ -23,33 +24,28 @@ export function CreateRectangleTexture(
 ): Texture {
 
     return DrawCanvasTexture(key, function (canvas, context) {
-        if (!strokeStyle) {
-            lineWidth = 0;
-        }
 
         canvas.width = Math.ceil(width);
         canvas.height = Math.ceil(height);
 
-        context.beginPath();
+        if (!strokeStyle) {
+            lineWidth = 0;
+        }
+        const halfLineWidth = lineWidth / 2;
+        const x = halfLineWidth,
+            y = halfLineWidth;
 
-        let halfLineWidth = lineWidth / 2;
-        context.rect(
-            halfLineWidth,
-            halfLineWidth,
-            (width - lineWidth),
-            (height - lineWidth)
+        width -= lineWidth;
+        height -= lineWidth;
+
+        DrawRectangle(
+            canvas, context,
+            x, y,
+            width, height,
+            GetStyle(fillStyle, canvas, context),
+            GetStyle(strokeStyle, canvas, context),
+            lineWidth
         );
-
-        if (fillStyle) {
-            context.fillStyle = GetStyle(fillStyle, canvas, context);
-            context.fill();
-        }
-
-        if (strokeStyle) {
-            context.strokeStyle = GetStyle(strokeStyle, canvas, context);
-            context.lineWidth = lineWidth;
-            context.stroke();
-        }
 
     });
 }
