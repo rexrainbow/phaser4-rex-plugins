@@ -2,7 +2,7 @@ import {
     BaseParser,
     ContextStyleResult
 } from '../basetext/parser/BaseParser';
-import { StyleType } from '../basetext/Types';
+import { IStyle } from '../basetext/Types';
 
 type PropType = {
     b?: true,
@@ -156,9 +156,9 @@ export class Parser extends BaseParser {
     }
 
     propToStyle(
-        defaultStyle: StyleType,
+        defaultStyle: IStyle,
         prop: PropType
-    ): StyleType {
+    ): IStyle {
 
         let result = ContextStyleResult;
         if (!prop.hasOwnProperty('img')) {
@@ -179,7 +179,7 @@ export class Parser extends BaseParser {
             }
             result.fontStyle = GetFontStyle(prop.b, prop.i);
 
-            result.font = defaultStyle.font;// `${result.fontStyle} ${result.fontSize} ${result.fontFamily}`;
+            result.font = `${result.fontStyle} ${result.fontSize} ${result.fontFamily}`;
 
             if (prop.hasOwnProperty('color')) {
                 result.fillStyle = prop.color;

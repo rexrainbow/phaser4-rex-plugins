@@ -13,10 +13,12 @@ class Demo extends Scene {
         const text = new BBCodeText(400, 300);
         AddChild(world, text);
 
-        text.backgroundStyle = 'aliceblue';
-        text.padding = { left: 10, right: 10, top: 10, bottom: 10 };
-        text.font = '40px monospace';
-        text.text = `[color=red]A[color=blue]B[color=green]C[/color]`;
+        text
+            .setBackgroundStyle(null, 'BurlyWood', 4, 20)
+            .setPadding(10)
+            .setFont('monospace', 40)
+            .setText(`[color=red]A[color=blue]B[color=green]C[/color]`)
+
     }
 }
 

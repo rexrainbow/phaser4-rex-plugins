@@ -1,4 +1,5 @@
 import { BaseText } from '../basetext/BaseText';
+import { IStyle } from '../basetext/Types'
 import { Parser } from './Parser';
 
 export class BBCodeText extends BaseText {
@@ -7,11 +8,10 @@ export class BBCodeText extends BaseText {
         x: number,
         y: number,
         text: string | string[] = '',
-        font?: string,
-        fillStyle?: string | CanvasGradient | CanvasPattern
+        style?: IStyle
     ) {
 
-        super(x, y, text, font, fillStyle, (new Parser()));
+        super(x, y, text, style, (new Parser()));
 
         this.type = 'rexBBcodeText';
     }

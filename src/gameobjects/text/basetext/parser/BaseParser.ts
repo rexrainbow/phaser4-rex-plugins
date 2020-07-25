@@ -1,4 +1,4 @@
-import { StyleType } from '../Types';
+import { IStyle } from '../Types';
 
 export type PropType = { [key: string]: any };
 
@@ -15,9 +15,9 @@ export abstract class BaseParser {
     ): { text: string, prop: PropType };
 
     abstract propToStyle(
-        defaultStyle: StyleType,
+        defaultStyle: IStyle,
         prop: PropType
-    ): StyleType;
+    ): IStyle;
 
     abstract propToTagText(
         text: string,
@@ -26,7 +26,7 @@ export abstract class BaseParser {
     ): string;
 }
 
-export const ContextStyleResult: StyleType = {
+export const ContextStyleResult: IStyle = {
     font: undefined,
     fontFamily: undefined,
     fontStyle: undefined,

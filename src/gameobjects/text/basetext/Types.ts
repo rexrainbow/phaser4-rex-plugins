@@ -16,40 +16,39 @@ export enum VAlignMode {
 
 export type VAlignModeString = 'top' | 'center' | 'bottom';
 
-export type StyleType = {
-    backgroundStyle?: FillStyleType,
+import { IRadiusConfig } from '../../../utils/geom/roundrectangle/IRoundRectangle';
+export { IRadiusConfig };
 
-    antialias?: boolean,
+export interface IStyle {
 
+    backgroundFillStyle?: FillStyleType;
+    backgroundStrokeStyle?: FillStyleType;
+    backgroundStrokeThickness?: number;
+    cornerRadius?: IRadiusConfig | number;
 
-    font?: string,
-    fontFamily?: string,
-    fontStyle?: string,
-    fontSize?: string,
-    fillStyle?: FillStyleType,
+    antialias?: boolean;
 
-    strokeStyle?: FillStyleType,
-    strokeThickness?: number,
+    font?: string;
+    fontStyle?: string;
+    fontFamily?: string;
+    fontSize?: string | number;
+    fillStyle?: FillStyleType;
 
-    shadowColor?: string,
-    shadowOffsetX?: number,
-    shadowOffsetY?: number,
-    shadowBlur?: number,
-    shadowStroke?: boolean,
-    shadowFill?: boolean,
+    strokeStyle?: FillStyleType;
+    strokeThickness?: number;
 
-    underlineStyle?: FillStyleType,
-    underlineThickness?: number,
-    underlineOffset?: number,
+    shadowColor?: string;
+    shadowOffsetX?: number;
+    shadowOffsetY?: number;
+    shadowBlur?: number;
+    shadowStroke?: boolean;
+    shadowFill?: boolean;
 
+    underlineStyle?: FillStyleType;
+    underlineThickness?: number;
+    underlineOffset?: number;
 
-    lineSpacing?: number,
-    wrapMode?: WrapMode,
-    wrapWidth?: number,
-    halign?: HAlignMode,
-    valign?: VAlignMode,
-
-    image?: string
+    image?: string;
 }
 
 import { WrapMode, NewLineMode, GetTextWidthCallbackType } from '../../../utils/string/WrapText';

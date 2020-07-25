@@ -1,12 +1,13 @@
 import { ICanvasText } from './ICanvasText';
 import { Pen } from '../penmanger/Pen';
 import {
-    StyleType, FillStyleType,
+    IStyle, FillStyleType,
     HAlignMode, VAlignMode
 } from '../Types';
 import { SyncFont, SyncStyle, SyncShadow } from './SyncContextMethods';
 import { HitAreaManager } from '../hitareamanager/HitAreaManager';
 import { PenManager } from '../penmanger/PenManager';
+import { DrawRoundRectangle } from '../../../../utils/canvas/DrawRoundRectangle'
 
 export function Draw(
     canvasText: ICanvasText,
@@ -29,15 +30,15 @@ export function Draw(
     let context = canvasText.context;
     context.save();
 
-    let defatultStyle = canvasText.defatultStyle;
+    let parent = canvasText.parent;
 
-    DrawBackground(canvasText, defatultStyle.backgroundStyle);
+    DrawBackground(canvasText, parent);
 
     startX += canvasText.startXOffset;
     startY += canvasText.startYOffset;
 
-    let halign = defatultStyle.halign,
-        valign = defatultStyle.valign;
+    let halign = parent.halign,
+        valign = parent.valign;
 
     // Shift offsetY
     let offsetY = startY;
@@ -94,7 +95,7 @@ export function DrawPen(
 
     let canvas = canvasText.canvas,
         context = canvasText.context,
-        defaultStyle = canvasText.defatultStyle;
+        defaultStyle = canvasText.parent;
 
     context.save();
     let curStyle = canvasText.parser.propToStyle(defaultStyle, pen.prop);
@@ -134,17 +135,35 @@ export function DrawPen(
 
 export function DrawBackground(
     canvasText: ICanvasText,
-    fillStyle: FillStyleType
+    style: IStyle
 ): void {
 
     let canvas = canvasText.canvas,
         context = canvasText.context;
 
-    if (fillStyle == null) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
+    const fillStyle = style.backgroundFillStyle,
+        strokeStyle = style.backgroundStrokeStyle;
+    if (fillStyle || strokeStyle) {
+        const lineWidth = style.backgroundStrokeThickness,
+            halfLineWidth = lineWidth / 2,
+            radius = style.cornerRadius,
+            x = halfLineWidth,
+            y = halfLineWidth,
+            width = canvas.width - lineWidth,
+            height = canvas.height - lineWidth;
+
+        DrawRoundRectangle(
+            canvas, context,
+            x, y,
+            width, height,
+            radius,
+            fillStyle, strokeStyle,
+            lineWidth
+        )
+
     } else {
-        context.fillStyle = fillStyle;
-        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
     }
 };
 
@@ -153,7 +172,7 @@ export function DrawUnderline(
     x: number,
     y: number,
     width: number,
-    style: StyleType
+    style: IStyle
 ): void {
 
     y += style.underlineOffset - (style.underlineThickness / 2);
@@ -175,7 +194,7 @@ export function DrawText(
     x: number,
     y: number,
     text: string,
-    style: StyleType
+    style: IStyle
 ): void {
 
     let context = canvasText.context;
@@ -195,7 +214,7 @@ export function DrawImage(
     x: number,
     y: number,
     imgKey: string,
-    style: StyleType
+    style: IStyle
 ): void {
 
     let imageManager = canvasText.imageManager;

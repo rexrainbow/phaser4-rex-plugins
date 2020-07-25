@@ -22,7 +22,7 @@ export function UpdatePenManager(
 
     let canvas = canvasText.canvas,
         context = canvasText.context,
-        defatultStyle = canvasText.defatultStyle;
+        parent = canvasText.parent;
 
     let match = canvasText.parser.splitText(text),
         curProp: PropType,
@@ -64,7 +64,7 @@ export function UpdatePenManager(
             // Save the current context.
             context.save();
             let curStyle = canvasText.parser.propToStyle(
-                defatultStyle,
+                parent,
                 curProp
             );
             SyncFont(context, curStyle);
@@ -109,7 +109,7 @@ export function UpdatePenManager(
 
     // Update cursorY of each pen in each line
     // Update maxLineWidth, totalLineHeight
-    let lineSpacing = canvasText.defatultStyle.lineSpacing;
+    let lineSpacing = canvasText.parent.lineSpacing;
     let currLineHeight = 0,
         cursorY = 0,
         maxLineWidth = 0,

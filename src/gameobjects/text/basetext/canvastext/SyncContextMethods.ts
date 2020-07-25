@@ -1,8 +1,8 @@
-import { StyleType } from '../Types';
+import { IStyle } from '../Types';
 
 export function SyncFont(
     context: CanvasRenderingContext2D,
-    style: StyleType
+    style: IStyle
 ): void {
 
     context.font = style.font;
@@ -10,7 +10,7 @@ export function SyncFont(
 
 export function SyncStyle(
     context: CanvasRenderingContext2D,
-    style: StyleType
+    style: IStyle
 ): void {
 
     context.textBaseline = 'alphabetic';
@@ -27,7 +27,7 @@ export function SyncStyle(
 
 export function SyncShadow(
     context: CanvasRenderingContext2D,
-    style: StyleType,
+    style: IStyle,
     enable: boolean
 ): void {
 

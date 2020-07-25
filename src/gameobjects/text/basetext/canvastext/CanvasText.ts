@@ -3,7 +3,7 @@ import {
     IConfig
 } from './ICanvasText';
 import {
-    StyleType, HAlignMode, VAlignMode,
+    IStyle, HAlignMode, VAlignMode,
     WrapMode
 } from '../Types';
 import { BaseParser } from '../parser/BaseParser';
@@ -23,7 +23,7 @@ export class CanvasText implements ICanvasText {
     context: CanvasRenderingContext2D;
     resolution: number;
 
-    defatultStyle: StyleType;
+    parent: IStyle;
 
     parser: BaseParser;
     penManager: PenManager;
@@ -35,7 +35,7 @@ export class CanvasText implements ICanvasText {
     constructor({
         canvas,
         context,
-        defatultStyle,
+        parent,
         parser,
         penPool = new Pool<Pen>()
     }: IConfig) {
@@ -43,7 +43,7 @@ export class CanvasText implements ICanvasText {
         this.canvas = canvas;
         this.context = context;
         this.parser = parser;
-        this.defatultStyle = defatultStyle;
+        this.parent = parent;
 
         this.penPool = penPool;
         this.penManager = new PenManager({
@@ -55,7 +55,7 @@ export class CanvasText implements ICanvasText {
         this.canvas = null;
         this.context = null;
         this.parser = null;
-        this.defatultStyle = null;
+        this.parent = null;
 
         if (this.penManager) {
             this.penManager.destroy();
@@ -105,14 +105,14 @@ export class CanvasText implements ICanvasText {
     }
 
     get startXOffset() {
-        let strokeStyle = this.defatultStyle.strokeStyle;
-        let strokeThickness = this.defatultStyle.strokeThickness;
+        let strokeStyle = this.parent.strokeStyle;
+        let strokeThickness = this.parent.strokeThickness;
         return ((strokeStyle != null) && (strokeThickness != null)) ? (strokeThickness / 2) : 0;
     }
 
     get startYOffset() {
-        let strokeStyle = this.defatultStyle.strokeStyle;
-        let strokeThickness = this.defatultStyle.strokeThickness;
+        let strokeStyle = this.parent.strokeStyle;
+        let strokeThickness = this.parent.strokeThickness;
         return ((strokeStyle != null) && (strokeThickness != null)) ? (strokeThickness / 2) : 0;
     }
 
@@ -172,8 +172,8 @@ export class CanvasText implements ICanvasText {
 
         this.updatePenManager(
             text,
-            this.defatultStyle.wrapMode,
-            this.defatultStyle.wrapWidth,
+            this.parent.wrapMode,
+            this.parent.wrapWidth,
             retPenManager
         );
         return retPenManager;
@@ -196,8 +196,8 @@ export class CanvasText implements ICanvasText {
         let penManager = this.tmpPenManager;
         this.updatePenManager(
             text,
-            this.defatultStyle.wrapMode,
-            this.defatultStyle.wrapWidth,
+            this.parent.wrapMode,
+            this.parent.wrapWidth,
             penManager
         );
 

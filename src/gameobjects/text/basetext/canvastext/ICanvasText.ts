@@ -1,4 +1,4 @@
-import { StyleType } from '../Types';
+import {IBaseText} from '../IBaseText';
 import { BaseParser } from '../parser/BaseParser';
 import { PenManager, PenPoolType } from '../penmanger/PenManager';
 import { ImageManager } from '../imagemanager/ImageManager';
@@ -7,7 +7,7 @@ import { HitAreaManager } from '../hitareamanager/HitAreaManager'
 export interface IConfig {
     canvas?: HTMLCanvasElement;
     context?: CanvasRenderingContext2D;
-    defatultStyle?: StyleType;
+    parent?: IBaseText;
     parser?: BaseParser;
     penPool?: PenPoolType;
 }
@@ -19,7 +19,7 @@ export interface ICanvasText {
     resolution: number;
 
 
-    defatultStyle: StyleType;
+    parent: IBaseText;
 
     parser: BaseParser;
     penManager: PenManager;
