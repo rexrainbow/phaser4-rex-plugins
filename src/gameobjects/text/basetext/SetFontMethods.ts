@@ -57,18 +57,18 @@ export function SetStrokeStyle(
 
 export function SetShadow(
     baseText: IBaseText,
-    enableFillShadow: boolean,
-    enableStrokeShadow: boolean,
     color: string = '#000',
     blur: number = 5,
     offsetX: number = 0,
-    offsetY: number = 0
+    offsetY: number = 0,
+    enableFillShadow: boolean = false,
+    enableStrokeShadow: boolean = false
 ) {
 
-    baseText.shadowFill = enableFillShadow;
-    baseText.shadowStroke = enableStrokeShadow;
     baseText.shadowColor = color;
     baseText.shadowBlur = blur;
     baseText.shadowOffsetX = offsetX;
     baseText.shadowOffsetY = offsetY;
+    baseText.shadowFill = enableFillShadow;
+    baseText.shadowStroke = enableStrokeShadow;
 }

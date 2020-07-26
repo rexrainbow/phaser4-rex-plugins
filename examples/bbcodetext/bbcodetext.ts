@@ -20,8 +20,8 @@ class Demo extends Scene {
 
     create() {
 
-        const s = `[color=red][size=30][i][u]Phaser[/i][img=dude][/u]
-[color=blue][size=20][shadow=yellow]is[/shadow]
+        const s = `[size=30][color=red][i][u]Phaser[/i][img=dude][/u]
+[size=20][color=blue][shadow=yellow][b]is[/b][/shadow]
 [size=40][color=none][stroke=green]Fun`;
 
         const text = new BBCodeText(400, 300, s,

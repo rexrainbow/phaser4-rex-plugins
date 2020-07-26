@@ -87,6 +87,13 @@ export class BaseText extends Sprite implements IBaseText {
             strokeStyle,
             strokeThickness = 1,
 
+            shadowColor = '#000',
+            shadowBlur = 4,
+            shadowOffsetX = 0,
+            shadowOffsetY = 0,
+            shadowFill = false,
+            shadowStroke = false,
+
             underlineStyle,
             underlineThickness = 1,
             underlineOffsetY = 0,
@@ -134,6 +141,8 @@ export class BaseText extends Sprite implements IBaseText {
         if (strokeStyle) {
             SetStrokeStyle(this, strokeStyle, strokeThickness);
         }
+
+        SetShadow(this, shadowColor, shadowBlur, shadowOffsetX, shadowOffsetY, shadowFill, shadowStroke);
 
         if (underlineStyle) {
             SetUnderline(this, underlineStyle, underlineThickness, underlineOffsetY);
@@ -245,15 +254,15 @@ export class BaseText extends Sprite implements IBaseText {
     }
 
     setShadow(
-        enableFillShadow: boolean,
-        enableStrokeShadow: boolean,
         color: string = '#000',
         blur: number = 5,
         offsetX: number = 0,
-        offsetY: number = 0
+        offsetY: number = 0,
+        enableFillShadow: boolean = false,
+        enableStrokeShadow: boolean = false,
     ): this {
 
-        SetShadow(this, enableFillShadow, enableStrokeShadow, color, blur, offsetX, offsetY);
+        SetShadow(this, color, blur, offsetX, offsetY, enableFillShadow, enableStrokeShadow);
 
         return this;
     }
