@@ -232,16 +232,16 @@ export class Parser extends BaseParser {
             if (prop.u === true) {
                 result.underlineStyle = defaultStyle.underlineStyle;
                 result.underlineThickness = defaultStyle.underlineThickness;
-                result.underlineOffset = defaultStyle.underlineOffset;
+                result.underlineOffsetY = defaultStyle.underlineOffsetY;
             } else {
                 result.underlineStyle = prop.u;
                 result.underlineThickness = defaultStyle.underlineThickness;
-                result.underlineOffset = defaultStyle.underlineOffset;
+                result.underlineOffsetY = defaultStyle.underlineOffsetY;
             }
         } else {
             result.underlineStyle = '#000';
             result.underlineThickness = 0;
-            result.underlineOffset = 0;
+            result.underlineOffsetY = 0;
         }
 
         return result;

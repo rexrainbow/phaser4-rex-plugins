@@ -7,16 +7,27 @@ import { IBaseText, IConfig, PaddingConfigType } from './IBaseText';
 import {
     IStyle, IRadiusConfig,
     FillStyleType,
-    WrapMode,
+    WrapMode, WrapModeString,
     HAlignMode, VAlignMode
 } from './Types';
 import { CanvasText } from './canvastext/CanvasText';
+import { ImageInfo } from './imagemanager/IImageManager';
+import { PenManager } from './penmanger/PenManager';
 import { BaseParser } from './parser/BaseParser';
+
 import { UpdateText } from './UpdateText';
 import { SetBackgroundStyle } from './SetBackgroundStyle';
-import { SetFont, SetFontFamily, SetFontSize } from './SetFont';
-import { SetFixedSize } from './SetFixedSize';
 import { SetPadding } from './SetPadding';
+import {
+    SetFont, SetFontFamily, SetFontSize,
+    SetFillStyle, SetStrokeStyle
+} from './SetFontMethods';
+import { SetFixedSize } from './SetFixedSize';
+import { SetWrapMode } from './SetWrapMode';
+import { SetUnderline } from './SetUnderline';
+import { AddImageInfo } from './AddImageInfo';
+import { GetWrappedText, GetPlainText, GetText, GetSubString } from './GetTextMethods';
+import { ClonePenManager, GetPenManager } from './PenManagerMethods';
 
 export class BaseText extends Sprite implements IBaseText {
 
@@ -36,7 +47,7 @@ export class BaseText extends Sprite implements IBaseText {
     fontSize: string = '16px';
     fillStyle: FillStyleType = '#fff';
     strokeStyle: FillStyleType;
-    strokeThickness: number;
+    strokeThickness: number = 1;
 
     shadowColor: string;
     shadowOffsetX: number;
@@ -45,9 +56,9 @@ export class BaseText extends Sprite implements IBaseText {
     shadowStroke: boolean;
     shadowFill: boolean;
 
-    underlineStyle: FillStyleType;
-    underlineThickness: number;
-    underlineOffset: number;
+    underlineStyle: FillStyleType = '#fff';
+    underlineThickness: number = 1;
+    underlineOffsetY: number = 0;
 
     halign: HAlignMode = HAlignMode.left;
     valign: VAlignMode = VAlignMode.top;
@@ -69,11 +80,18 @@ export class BaseText extends Sprite implements IBaseText {
             backgroundStrokeThickness,
             cornerRadius = 0,
             padding,
-            fontStyle,
+
             fontFamily,
             fontSize,
             fillStyle,
-            strokeStyle
+            strokeStyle,
+            strokeThickness = 1,
+
+            underlineStyle,
+            underlineThickness = 1,
+            underlineOffsetY = 0,
+
+            images
         }: IConfig = {},
         parser?: BaseParser
     ) {
@@ -110,7 +128,19 @@ export class BaseText extends Sprite implements IBaseText {
         }
 
         if (fillStyle) {
-            this.fillStyle = fillStyle;
+            SetFillStyle(this, fillStyle);
+        }
+
+        if (strokeStyle) {
+            SetStrokeStyle(this, strokeStyle, strokeThickness);
+        }
+
+        if (underlineStyle) {
+            SetUnderline(this, underlineStyle, underlineThickness, underlineOffsetY);
+        }
+
+        if (images) {
+            AddImageInfo(this, images);
         }
 
         this.setText(text);
@@ -173,12 +203,43 @@ export class BaseText extends Sprite implements IBaseText {
         return this;
     }
 
+    setPadding(
+        left: number | PaddingConfigType,
+        right?: number,
+        top?: number,
+        bottom?: number
+    ): this {
+
+        SetPadding(this, left, right, top, bottom);
+
+        return this;
+    }
+
     setFont(
         fontFamily: string,
         fontSize: string | number
     ): this {
 
         SetFont(this, fontFamily, fontSize);
+
+        return this;
+    }
+
+    setFillStyle(
+        style?: FillStyleType
+    ): this {
+
+        SetFillStyle(this, style);
+
+        return this;
+    }
+
+    setStrokeStyle(
+        style?: FillStyleType,
+        thickness: number = 2
+    ) {
+
+        SetStrokeStyle(this, style, thickness);
 
         return this;
     }
@@ -193,15 +254,92 @@ export class BaseText extends Sprite implements IBaseText {
         return this;
     }
 
-    setPadding(
-        left: number | PaddingConfigType,
-        right?: number,
-        top?: number,
-        bottom?: number
+    resize(
+        width: number,
+        height: number
     ): this {
 
-        SetPadding(this, left, right, top, bottom);
+        SetFixedSize(this, width, height);
 
         return this;
+    }
+
+    setWrapMode(
+        wrapMode: WrapMode | WrapModeString,
+        wrapWidth: number = 0
+    ): this {
+
+        SetWrapMode(this, wrapMode, wrapWidth);
+        return this;
+    }
+
+    setUnderline(
+        style: FillStyleType,
+        thickness: number = 2,
+        offsetY: number = 0
+    ): this {
+
+        SetUnderline(this, style, thickness, offsetY);
+        return this;
+    }
+
+    addImageInfo(
+        key: string | string[] | { [key: string]: ImageInfo },
+        config?: ImageInfo
+    ): this {
+
+        AddImageInfo(this, key, config);
+        return this;
+    }
+
+    getWrappedText(
+        text?: string,
+        start?: number,
+        end?: number
+    ): string[] {
+
+        return GetWrappedText(this, text, start, end);
+    }
+
+    getPlainText(
+        text?: string,
+        start?: number,
+        end?: number
+    ): string {
+
+        return GetPlainText(this, text, start, end);
+    }
+
+    getText(
+        text?: string,
+        start?: number,
+        end?: number
+    ): string {
+
+        return GetText(this, text, start, end);
+    }
+
+    getSubString(
+        text?: string,
+        start?: number,
+        end?: number
+    ): string {
+
+        return GetSubString(this, text, start, end);
+    }
+
+    clonePenManager(
+        penManager?: PenManager
+    ): PenManager {
+
+        return ClonePenManager(this, penManager);
+    }
+
+    getPenManager(
+        text?: string,
+        penManager?: PenManager
+    ): PenManager {
+
+        return GetPenManager(this, text, penManager);
     }
 }

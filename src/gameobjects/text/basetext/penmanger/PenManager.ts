@@ -47,6 +47,7 @@ export class PenManager {
         width: number,
         height: number,
         ascent: number,
+        descent: number,
         prop: PropType,
         newLineMode: NewLineMode = NewLineMode.none
     ): this {
@@ -55,7 +56,11 @@ export class PenManager {
         if (pen == null) {
             pen = new Pen();
         }
-        pen.set(text, x, y, width, height, ascent, prop, newLineMode);
+        pen.set(text,
+            x, y,
+            width, height,
+            ascent, descent,
+            prop, newLineMode);
         this.addPen(pen);
 
         return this;
@@ -69,7 +74,7 @@ export class PenManager {
         prop: PropType,
     ): this {
 
-        this.addTextPen(null, x, y, width, height, 0, prop, NewLineMode.none);
+        this.addTextPen('', x, y, width, height, height, 0, prop, NewLineMode.none);
 
         return this;
     }
@@ -127,9 +132,21 @@ export class PenManager {
 
         targetPenManager.freePens();
 
-        this.pens.forEach((pen) => {
-            targetPenManager.addPen(pen.clone());
-        })
+        const pens = this.pens;
+        for (let i = 0, cnt = pens.length; i < cnt; i++) {
+            targetPenManager.addPen(pens[i].clone());
+        }
+
+        const srcLines = this.lines,
+            targetLines = targetPenManager.lines;
+        for (let i = 0, cnt = srcLines.length; i < cnt; i++) {
+
+            const srcLine = srcLines[i],
+                targetLine = targetLines[i];
+
+            targetLine.y = srcLine.y;
+            targetLine.height = srcLine.height;
+        }
 
         return targetPenManager;
     }

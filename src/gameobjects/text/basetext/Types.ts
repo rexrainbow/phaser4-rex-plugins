@@ -46,10 +46,11 @@ export interface IStyle {
 
     underlineStyle?: FillStyleType;
     underlineThickness?: number;
-    underlineOffset?: number;
+    underlineOffsetY?: number;
 
     image?: string;
 }
 
 import { WrapMode, NewLineMode, GetTextWidthCallbackType } from '../../../utils/string/WrapText';
 export { WrapMode, NewLineMode, GetTextWidthCallbackType };
+export type WrapModeString = 'none' | 'word' | 'char';

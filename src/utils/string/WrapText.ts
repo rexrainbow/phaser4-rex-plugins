@@ -18,7 +18,7 @@ export type LineInfo = {
 
 export type GetTextWidthCallbackType = (text: string, context: unknown) => number;
 
-const splitRegExp = /(?:\r\n|\r|\n)/;
+export const SplitTextRegExp = /(?:\r\n|\r|\n)/;
 
 export function WrapText(
     text: string,
@@ -39,7 +39,7 @@ export function WrapText(
         return result;
     }
 
-    let lines = text.split(splitRegExp);
+    let lines = text.split(SplitTextRegExp);
     let lastLineIdx = lines.length - 1;
     if (text.slice(-1) === '\n') {
         lines.length -= 1;
@@ -74,7 +74,7 @@ export function WrapText(
             }
         }
 
-        // character mode
+        // Character mode
         let tokenArray: string[] | string;
         if (wrapMode === WrapMode.word) { // Word mode            
             tokenArray = line.split(' ');
@@ -122,14 +122,14 @@ export function WrapText(
 
             lineText = curLineText;
             lineWidth = currLineWidth;
-        } // for token in tokenArray
+        } // For token in tokenArray
 
-        // flush remain text
+        // Flush remain text
         result.push(
             CreateLineInfo(lineText, lineWidth, newLineMode)
         );
 
-    } // for each line in lines
+    } // For each line in lines
 
     return result;
 };

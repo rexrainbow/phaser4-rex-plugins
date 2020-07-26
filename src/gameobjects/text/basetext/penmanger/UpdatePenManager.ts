@@ -80,9 +80,10 @@ export function UpdatePenManager(
             // Add pens
             for (let j = 0, jcnt = wrapLines.length; j < jcnt; j++) {
 
-                let n = wrapLines[j];
-                let textHeight = textHeightResult.height + strokeThickness;
-                let ascent = textHeightResult.ascent + halfStrokeThickness;
+                const n = wrapLines[j];
+                const textHeight = textHeightResult.height + strokeThickness;
+                const ascent = textHeightResult.ascent + halfStrokeThickness;
+                const descent = textHeightResult.descent + halfStrokeThickness;
 
                 penManager.addTextPen(
                     n.text,              // text
@@ -91,6 +92,7 @@ export function UpdatePenManager(
                     n.width,        // width
                     textHeight,     // height
                     ascent,         // ascent
+                    descent,        // descent
                     Clone(curProp), // prop
                     n.newLineMode   // new-line mode
                 );
@@ -112,10 +114,7 @@ export function UpdatePenManager(
     // Update maxLineWidth, totalLineHeight
     let lines = penManager.lines;
     let lineSpacing = canvasText.parent.lineSpacing;
-    let currLineHeight = 0,
-        ascentY = 0,
-        cursorY = 0,
-        maxLineWidth = 0,
+    let maxLineWidth = 0,
         totalLineHeight = 0;
 
     for (let lIdx = 0, lcnt = lines.length; lIdx < lcnt; lIdx++) {
@@ -125,16 +124,17 @@ export function UpdatePenManager(
             penCnt = pens.length;
 
         // Get lineHeight and ascentY
-        currLineHeight = 0;
-        ascentY = 0;
+        let ascent = 0;
+        let descent = 0;
         for (let pIdx = 0; pIdx < penCnt; pIdx++) {
 
             const pen = pens[pIdx];
-            currLineHeight = Math.max(currLineHeight, pen.height);
-            ascentY = Math.max(ascentY, pen.ascent);
+            ascent = Math.max(ascent, pen.ascent);
+            descent = Math.max(descent, pen.descent);
         }
 
-        cursorY = totalLineHeight + ascentY;
+        const currLineHeight = ascent + descent;
+        const cursorY = totalLineHeight + ascent;
 
         // Set pen.y
         for (let pIdx = 0; pIdx < penCnt; pIdx++) {

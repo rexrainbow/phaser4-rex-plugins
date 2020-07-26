@@ -45,7 +45,7 @@ export const ContextStyleResult: IStyle = {
 
     underlineStyle: undefined,
     underlineThickness: undefined,
-    underlineOffset: undefined,
+    underlineOffsetY: undefined,
 
     image: undefined,
 }

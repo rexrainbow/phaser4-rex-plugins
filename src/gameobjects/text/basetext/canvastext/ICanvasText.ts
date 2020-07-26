@@ -1,4 +1,4 @@
-import {IBaseText} from '../IBaseText';
+import { IBaseText } from '../IBaseText';
 import { BaseParser } from '../parser/BaseParser';
 import { PenManager, PenPoolType } from '../penmanger/PenManager';
 import { ImageManager } from '../imagemanager/ImageManager';

@@ -5,6 +5,7 @@ import {
     FillStyleType, IRadiusConfig,
     WrapMode, HAlignMode, VAlignMode
 } from './Types';
+import { ImageInfo } from './imagemanager/IImageManager';
 
 export type PaddingConfigType = {
     left?: number,
@@ -16,6 +17,7 @@ export type PaddingConfigType = {
 
 export interface IConfig extends IStyle {
     padding?: PaddingConfigType | number;
+    images?: string[] | { [key: string]: ImageInfo }
 }
 
 export interface IBaseText extends ISprite {
@@ -35,7 +37,6 @@ export interface IBaseText extends ISprite {
     fontFamily: string;
     fontSize: string;
     fillStyle: FillStyleType;
-
     strokeStyle: FillStyleType;
     strokeThickness: number;
 
@@ -48,7 +49,7 @@ export interface IBaseText extends ISprite {
 
     underlineStyle: FillStyleType;
     underlineThickness: number;
-    underlineOffset: number;
+    underlineOffsetY: number;
 
     halign: HAlignMode;
     valign: VAlignMode;

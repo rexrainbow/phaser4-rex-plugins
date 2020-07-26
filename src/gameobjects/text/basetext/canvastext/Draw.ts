@@ -114,7 +114,12 @@ export function DrawPen(
 
     // Image
     if (pen.isImagePen) {
-        DrawImage(canvasText, offsetX, offsetY, pen.prop.img, curStyle);
+        DrawImage(canvasText,
+            offsetX,
+            offsetY,
+            pen.prop.img,
+            curStyle
+        );
     }
 
     context.restore();
@@ -175,7 +180,7 @@ export function DrawUnderline(
     style: IStyle
 ): void {
 
-    y += style.underlineOffset - (style.underlineThickness / 2);
+    y += style.underlineOffsetY - (style.underlineThickness / 2);
 
     let context = canvasText.context;
     let savedLineCap = context.lineCap;
@@ -226,7 +231,7 @@ export function DrawImage(
     let frame = imageManager.getFrame(imgKey);
 
     x += imgInfo.left;
-    y += - canvasText.startYOffset + imgInfo.y;
+    y += imgInfo.y - imgInfo.height;
 
     let context = canvasText.context;
     context.drawImage(

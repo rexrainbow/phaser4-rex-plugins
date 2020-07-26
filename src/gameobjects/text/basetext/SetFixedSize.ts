@@ -4,7 +4,7 @@ import { WrapMode } from './Types';
 export function SetFixedSize(
     baseText: IBaseText,
     width: number,
-    height: number
+    height?: number
 ): void {
 
     baseText.fixedWidth = width;
@@ -12,7 +12,7 @@ export function SetFixedSize(
 
     if (baseText.wrapMode !== WrapMode.none) {
         const padding = baseText.padding;
-        let wrapWidth = width - padding.left - padding.right;
+        const wrapWidth = width - padding.left - padding.right;
         baseText.wrapWidth = Math.max(wrapWidth, 0);
     }
 }

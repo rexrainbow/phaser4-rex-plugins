@@ -2,15 +2,14 @@ import {
     ICanvasText,
     IConfig
 } from './ICanvasText';
-import {
-    IStyle, HAlignMode, VAlignMode,
-    WrapMode
-} from '../Types';
+import { IStyle, WrapMode } from '../Types';
+import { IBaseText } from '../IBaseText';
 import { BaseParser } from '../parser/BaseParser';
 import { Stack as Pool } from '../../../../utils/struct/Stack';
 import { PenManager, PenPoolType } from '../penmanger/PenManager';
 import { Line } from '../penmanger/Line';
 import { ImageManager } from '../imagemanager/ImageManager';
+import { ImageInfo } from '../imagemanager/IImageManager';
 import { HitAreaManager } from '../hitareamanager/HitAreaManager';
 // import SetInteractive from './SetInteractive';
 import { Pen } from '../penmanger/Pen';
@@ -23,7 +22,7 @@ export class CanvasText implements ICanvasText {
     context: CanvasRenderingContext2D;
     resolution: number;
 
-    parent: IStyle;
+    parent: IBaseText;
 
     parser: BaseParser;
     penManager: PenManager;
@@ -220,5 +219,18 @@ export class CanvasText implements ICanvasText {
     ): Pen {
 
         return penManager.lastPen;
+    }
+
+    addImageInfo(
+        key: string | string[] | { [key: string]: ImageInfo },
+        config?: ImageInfo
+    ): this {
+
+        if (this.imageManager === undefined) {
+            this.imageManager = new ImageManager();
+        }
+
+        this.imageManager.add(key, config);
+        return this;
     }
 };

@@ -3,15 +3,26 @@ import { Game } from '@phaserjs/phaser/Game';
 import { Scene } from '@phaserjs/phaser/scenes/Scene';
 import { StaticWorld } from '@phaserjs/phaser/world';
 import { AddChild } from '@phaserjs/phaser/display/';
+import { ImageFile } from '@phaserjs/phaser/loader/files/ImageFile';
+
 import { BBCodeText } from '../../src'
 
 class Demo extends Scene {
     constructor() {
         super();
 
-        const s = `[color=red][size=30]Phaser
+        ImageFile('dude', '../assets/phaser-dude.png')
+            .load()
+            .then(() => {
+                this.create();
+            });
+    }
+
+    create() {
+
+        const s = `[color=red][size=30][i][u]Phaser[/i][img=dude][/u]
 [color=blue][size=20]is
-[size=40][color=green]Fun[/color]`;
+[size=40][color=none][stroke=green]Fun`;
 
         const text = new BBCodeText(400, 300, s,
             {
@@ -19,9 +30,7 @@ class Demo extends Scene {
                 backgroundStrokeThickness: 4,
                 cornerRadius: 20,
                 padding: 10,
-
-                fontFamily: 'monospace',
-                fontSize: 40
+                images: ['dude']
             }
         );
 

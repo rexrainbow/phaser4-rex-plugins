@@ -33,3 +33,24 @@ export function SetFontSize(
     }
     baseText.fontSize = fontSize;
 }
+
+
+import { FillStyleType } from './Types';
+
+export function SetFillStyle(
+    baseText: IBaseText,
+    style?: FillStyleType
+) {
+
+    baseText.fillStyle = style;
+}
+
+export function SetStrokeStyle(
+    baseText: IBaseText,
+    style?: FillStyleType,
+    thickness: number = 2
+) {
+
+    baseText.strokeStyle = style;
+    baseText.strokeThickness = thickness;
+}
