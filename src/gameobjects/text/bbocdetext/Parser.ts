@@ -114,6 +114,10 @@ export class Parser extends BaseParser {
         } else if (RE_SHADOW_OPEN.test(text)) {
             UpdateProp(prevProp, PROP_ADD, 'shadow', true);
             plainText = '';
+        } else if (RE_SHADOW_OPENC.test(text)) {
+            innerMatch = text.match(RE_SHADOW_OPENC);
+            UpdateProp(prevProp, PROP_ADD, 'shadow', innerMatch[1]);
+            plainText = '';
         } else if (RE_SHADOW_CLOSE.test(text)) {
             UpdateProp(prevProp, PROP_REMOVE, 'shadow');
             plainText = '';
@@ -348,7 +352,7 @@ var GetFontStyle = function (
 const TagTextToPropResult: { text: string, prop: PropType } = { text: null, prop: null };
 const EmptyProp: PropType = {};
 
-const RE_SPLITTEXT = /\[b\]|\[\/b\]|\[i\]|\[\/i\]|\[size=(\d+)\]|\[\/size\]|\[color=([a-z]+|#[0-9abcdef]+)\]|\[\/color\]|\[u\]|\[u=([a-z]+|#[0-9abcdef]+)\]|\[\/u\]|\[shadow\]|\[\/shadow\]|\[stroke\]|\[stroke=([a-z]+|#[0-9abcdef]+)\]|\[\/stroke\]|\[img=([^\]]+)\]|\[\/img\]|\[area=([^\]]+)\]|\[\/area\]/ig;
+const RE_SPLITTEXT = /\[b\]|\[\/b\]|\[i\]|\[\/i\]|\[size=(\d+)\]|\[\/size\]|\[color=([a-z]+|#[0-9abcdef]+)\]|\[\/color\]|\[u\]|\[u=([a-z]+|#[0-9abcdef]+)\]|\[\/u\]|\[shadow\]|\[shadow=([a-z]+|#[0-9abcdef]+)\]|\[\/shadow\]|\[stroke\]|\[stroke=([a-z]+|#[0-9abcdef]+)\]|\[\/stroke\]|\[img=([^\]]+)\]|\[\/img\]|\[area=([^\]]+)\]|\[\/area\]/ig;
 
 var RE_BLOD_OPEN = /\[b\]/i;
 var RE_BLOD_CLOSE = /\[\/b\]/i;
@@ -362,6 +366,7 @@ var RE_UNDERLINE_OPEN = /\[u\]/i;
 var RE_UNDERLINE_OPENC = /\[u=([a-z]+|#[0-9abcdef]+)\]/i;
 var RE_UNDERLINE_CLOSE = /\[\/u\]/i;
 var RE_SHADOW_OPEN = /\[shadow\]/i;
+var RE_SHADOW_OPENC = /\[shadow=([a-z]+|#[0-9abcdef]+)\]/i;
 var RE_SHADOW_CLOSE = /\[\/shadow\]/i;
 var RE_STROKE_OPEN = /\[stroke\]/i;
 var RE_STROKE_OPENC = /\[stroke=([a-z]+|#[0-9abcdef]+)\]/i;

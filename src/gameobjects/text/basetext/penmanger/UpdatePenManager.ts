@@ -120,8 +120,8 @@ export function UpdatePenManager(
     for (let lIdx = 0, lcnt = lines.length; lIdx < lcnt; lIdx++) {
 
         const line = lines[lIdx];
-        const pens = line.pens,
-            penCnt = pens.length;
+        const pens = line.pens;
+        const penCnt = pens.length;
 
         // Get lineHeight and ascentY
         let ascent = 0;

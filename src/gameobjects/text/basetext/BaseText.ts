@@ -20,7 +20,7 @@ import { SetBackgroundStyle } from './SetBackgroundStyle';
 import { SetPadding } from './SetPadding';
 import {
     SetFont, SetFontFamily, SetFontSize,
-    SetFillStyle, SetStrokeStyle
+    SetFillStyle, SetStrokeStyle, SetShadow
 } from './SetFontMethods';
 import { SetFixedSize } from './SetFixedSize';
 import { SetWrapMode } from './SetWrapMode';
@@ -49,12 +49,12 @@ export class BaseText extends Sprite implements IBaseText {
     strokeStyle: FillStyleType;
     strokeThickness: number = 1;
 
-    shadowColor: string;
-    shadowOffsetX: number;
-    shadowOffsetY: number;
-    shadowBlur: number;
-    shadowStroke: boolean;
-    shadowFill: boolean;
+    shadowStroke: boolean = false;
+    shadowFill: boolean = false;
+    shadowColor: string = '#000';
+    shadowBlur: number = 4;
+    shadowOffsetX: number = 0;
+    shadowOffsetY: number = 0;
 
     underlineStyle: FillStyleType = '#fff';
     underlineThickness: number = 1;
@@ -240,6 +240,20 @@ export class BaseText extends Sprite implements IBaseText {
     ) {
 
         SetStrokeStyle(this, style, thickness);
+
+        return this;
+    }
+
+    setShadow(
+        enableFillShadow: boolean,
+        enableStrokeShadow: boolean,
+        color: string = '#000',
+        blur: number = 5,
+        offsetX: number = 0,
+        offsetY: number = 0
+    ): this {
+
+        SetShadow(this, enableFillShadow, enableStrokeShadow, color, blur, offsetX, offsetY);
 
         return this;
     }

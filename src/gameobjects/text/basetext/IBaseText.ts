@@ -40,12 +40,12 @@ export interface IBaseText extends ISprite {
     strokeStyle: FillStyleType;
     strokeThickness: number;
 
-    shadowColor: string;
-    shadowOffsetX: number;
-    shadowOffsetY: number;
-    shadowBlur: number;
     shadowStroke: boolean;
     shadowFill: boolean;
+    shadowColor: string;
+    shadowBlur: number;
+    shadowOffsetX: number;
+    shadowOffsetY: number;
 
     underlineStyle: FillStyleType;
     underlineThickness: number;

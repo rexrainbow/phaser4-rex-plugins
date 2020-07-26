@@ -32,14 +32,16 @@ export function SyncShadow(
 ): void {
 
     if (enable) {
-        context.shadowOffsetX = style.shadowOffsetX;
-        context.shadowOffsetY = style.shadowOffsetY;
         context.shadowColor = style.shadowColor;
         context.shadowBlur = style.shadowBlur;
+        context.shadowOffsetX = style.shadowOffsetX;
+        context.shadowOffsetY = style.shadowOffsetY;
+
     } else {
-        context.shadowOffsetX = 0;
-        context.shadowOffsetY = 0;
         context.shadowColor = '#000';
         context.shadowBlur = 0;
+        context.shadowOffsetX = 0;
+        context.shadowOffsetY = 0;
+
     }
 }
