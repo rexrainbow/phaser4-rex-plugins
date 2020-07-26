@@ -35,10 +35,18 @@ export function CreatePolygonTexture(
             lineWidth = 0;
         }
 
-        const minX = GetMinProperty(points, 'x');
-        const minY = GetMinProperty(points, 'y');
-        const maxX = GetMaxProperty(points, 'x');
-        const maxY = GetMaxProperty(points, 'y');
+        let minX = Infinity,
+            minY = Infinity,
+            maxX = -Infinity,
+            maxY = -Infinity;
+        for (let i = 0, cnt = points.length; i < cnt; i++) {
+
+            const p = points[i], px = p.x, py = p.y;
+            minX = Math.min(minX, px);
+            minY = Math.min(minY, py);
+            maxX = Math.max(maxX, px);
+            maxY = Math.max(maxY, py);
+        }
 
         const width = maxX - minX;
         const height = maxY - minY;
@@ -69,30 +77,6 @@ export function CreatePolygonTexture(
         )
 
     });
-}
-
-function GetMaxProperty(
-    items: object[],
-    key: string
-): number {
-
-    let result = -Infinity;
-    for (let i = 0, cnt = items.length; i < cnt; i++) {
-        result = Math.max(result, items[i][key]);
-    }
-    return result;
-}
-
-function GetMinProperty(
-    items: object[],
-    key: string
-): number {
-
-    let result = Infinity;
-    for (let i = 0, cnt = items.length; i < cnt; i++) {
-        result = Math.min(result, items[i][key]);
-    }
-    return result;
 }
 
 function Indent(
