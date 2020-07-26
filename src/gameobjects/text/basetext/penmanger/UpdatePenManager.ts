@@ -46,7 +46,7 @@ export function UpdatePenManager(
 
             if ((wrapWidth > 0) && (wrapMode !== WrapMode.none)) {  // Wrap mode
                 if (wrapWidth < (cursorX + imgWidth)) { // Image at next new line
-                    penManager.addNewLinePen();
+                    penManager.addNewLinePen(NewLineMode.wrapped);
                     cursorX = 0;
                 }
             }
@@ -79,12 +79,13 @@ export function UpdatePenManager(
 
             // Add pens
             for (let j = 0, jcnt = wrapLines.length; j < jcnt; j++) {
+
                 let n = wrapLines[j];
                 let textHeight = textHeightResult.height + strokeThickness;
                 let ascent = textHeightResult.ascent + halfStrokeThickness;
 
                 penManager.addTextPen(
-                    n.text,         // text
+                    n.text,              // text
                     cursorX,        // x
                     0,              // y : Add line offsetY later
                     n.width,        // width
@@ -109,32 +110,44 @@ export function UpdatePenManager(
 
     // Update cursorY of each pen in each line
     // Update maxLineWidth, totalLineHeight
+    let lines = penManager.lines;
     let lineSpacing = canvasText.parent.lineSpacing;
     let currLineHeight = 0,
+        ascentY = 0,
         cursorY = 0,
         maxLineWidth = 0,
         totalLineHeight = 0;
 
-    // Count cursorY of 1st line by max ascent of pens
-    penManager.lines[0].pens.forEach(function (pen) {
-        cursorY = Math.max(cursorY, pen.ascent);
-    });
+    for (let lIdx = 0, lcnt = lines.length; lIdx < lcnt; lIdx++) {
 
-    penManager.lines.forEach(function (line) {
+        const line = lines[lIdx];
+        const pens = line.pens,
+            penCnt = pens.length;
 
+        // Get lineHeight and ascentY
         currLineHeight = 0;
-        line.pens.forEach(function (pen) {
-            pen.y += cursorY;
+        ascentY = 0;
+        for (let pIdx = 0; pIdx < penCnt; pIdx++) {
+
+            const pen = pens[pIdx];
             currLineHeight = Math.max(currLineHeight, pen.height);
-        })
+            ascentY = Math.max(ascentY, pen.ascent);
+        }
+
+        cursorY = totalLineHeight + ascentY;
+
+        // Set pen.y
+        for (let pIdx = 0; pIdx < penCnt; pIdx++) {
+
+            pens[pIdx].y += cursorY;
+        }
 
         line.y = cursorY;
         line.height = currLineHeight;
-        cursorY += (currLineHeight + lineSpacing);
 
         maxLineWidth = Math.max(maxLineWidth, line.width);
-        totalLineHeight += (currLineHeight + lineSpacing);
-    });
+        totalLineHeight += currLineHeight + lineSpacing;
+    }
 
     penManager.maxLineWidth = maxLineWidth;
     penManager.totalLineHeight = totalLineHeight - lineSpacing;

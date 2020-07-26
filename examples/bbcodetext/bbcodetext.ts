@@ -9,16 +9,24 @@ class Demo extends Scene {
     constructor() {
         super();
 
+        const s = `[color=red][size=30]Phaser
+[color=blue][size=20]is
+[size=40][color=green]Fun[/color]`;
+
+        const text = new BBCodeText(400, 300, s,
+            {
+                backgroundStrokeStyle: 'BurlyWood',
+                backgroundStrokeThickness: 4,
+                cornerRadius: 20,
+                padding: 10,
+
+                fontFamily: 'monospace',
+                fontSize: 40
+            }
+        );
+
         const world = new StaticWorld(this);
-        const text = new BBCodeText(400, 300);
         AddChild(world, text);
-
-        text
-            .setBackgroundStyle(null, 'BurlyWood', 4, 20)
-            .setPadding(10)
-            .setFont('monospace', 40)
-            .setText(`[color=red]A[color=blue]B[color=green]C[/color]`)
-
     }
 }
 

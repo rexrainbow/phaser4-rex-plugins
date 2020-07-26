@@ -39,11 +39,16 @@ export function WrapText(
         return result;
     }
 
-    let lines = text.split(splitRegExp),
-        remainWidth: number;
+    let lines = text.split(splitRegExp);
+    let lastLineIdx = lines.length - 1;
+    if (text.slice(-1) === '\n') {
+        lines.length -= 1;
+    }
+
+    let remainWidth: number;
     for (let i = 0, lineCnt = lines.length; i < lineCnt; i++) {
         let line = lines[i];
-        let newLineMode = (i === (lineCnt - 1)) ? NewLineMode.none : NewLineMode.raw;
+        let newLineMode = (i === lastLineIdx) ? NewLineMode.none : NewLineMode.raw;
 
         if (wrapMode === WrapMode.none) {
             result.push(

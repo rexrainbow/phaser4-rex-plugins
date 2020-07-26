@@ -74,12 +74,15 @@ export class PenManager {
         return this;
     }
 
-    addNewLinePen(): this {
+    addNewLinePen(
+        newLineMode: NewLineMode
+    ): this {
 
         let lastPen = this.lastPen;
-        if (lastPen) {
-            lastPen.newLineMode = NewLineMode.wrapped;
+        if (lastPen && (lastPen.newLineMode === NewLineMode.none)) {
+            lastPen.newLineMode = newLineMode;
         }
+
         return this;
     }
 

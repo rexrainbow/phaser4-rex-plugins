@@ -1,5 +1,5 @@
 import { BaseText } from '../basetext/BaseText';
-import { IStyle } from '../basetext/Types'
+import { IConfig } from '../basetext/IBaseText'
 import { Parser } from './Parser';
 
 export class BBCodeText extends BaseText {
@@ -8,7 +8,7 @@ export class BBCodeText extends BaseText {
         x: number,
         y: number,
         text: string | string[] = '',
-        style?: IStyle
+        style?: IConfig
     ) {
 
         super(x, y, text, style, (new Parser()));

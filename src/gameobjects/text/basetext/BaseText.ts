@@ -3,7 +3,7 @@ import { GameInstance } from '@phaserjs/phaser/GameInstance';
 import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
 import { Sprite } from '@phaserjs/phaser/gameobjects/sprite/Sprite';
 
-import { IBaseText } from './IBaseText';
+import { IBaseText, IConfig, PaddingConfigType } from './IBaseText';
 import {
     IStyle, IRadiusConfig,
     FillStyleType,
@@ -68,12 +68,13 @@ export class BaseText extends Sprite implements IBaseText {
             backgroundStrokeStyle,
             backgroundStrokeThickness,
             cornerRadius = 0,
+            padding,
             fontStyle,
             fontFamily,
             fontSize,
             fillStyle,
             strokeStyle
-        }: IStyle = {},
+        }: IConfig = {},
         parser?: BaseParser
     ) {
 
@@ -96,6 +97,10 @@ export class BaseText extends Sprite implements IBaseText {
         });
 
         SetBackgroundStyle(this, backgroundFillStyle, backgroundStrokeStyle, backgroundStrokeThickness, cornerRadius);
+
+        if (padding) {
+            SetPadding(this, padding)
+        }
 
         if (fontFamily) {
             SetFontFamily(this, fontFamily);
@@ -189,10 +194,10 @@ export class BaseText extends Sprite implements IBaseText {
     }
 
     setPadding(
-        left: number,
-        right: number = left,
-        top: number = left,
-        bottom: number = left
+        left: number | PaddingConfigType,
+        right?: number,
+        top?: number,
+        bottom?: number
     ): this {
 
         SetPadding(this, left, right, top, bottom);
