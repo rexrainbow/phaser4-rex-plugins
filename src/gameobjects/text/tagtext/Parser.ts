@@ -5,8 +5,6 @@ import {
 } from '../basetext/parser/BaseParser';
 import { IStyle } from '../basetext/Types';
 
-type FontStyleTypeString = '' | 'bold' | 'italic' | 'bold italic' | 'italic bold'
-
 type StrokeStyleType = {
     color?: string,
     thinkness?: number
@@ -35,9 +33,9 @@ export type PropType = {
     fontSize?: string | number,
     'font-size'?: string | number,
 
-    style?: FontStyleTypeString,
-    fontStyle?: FontStyleTypeString,
-    'font-style'?: FontStyleTypeString,
+    style?: string,
+    fontStyle?: string,
+    'font-style'?: string,
 
     color?: string,
     'font-color'?: string,
