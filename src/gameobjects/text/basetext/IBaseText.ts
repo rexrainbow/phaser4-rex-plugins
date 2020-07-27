@@ -3,7 +3,7 @@ import { CanvasText } from './canvastext/CanvasText';
 import {
     IStyle,
     FillStyleType, IRadiusConfig,
-    WrapMode, HAlignMode, VAlignMode
+    WrapMode, HAlignMode, HAlignModeString, VAlignMode, VAlignModeString
 } from './Types';
 import { ImageInfo } from './imagemanager/IImageManager';
 
@@ -16,7 +16,12 @@ export type PaddingConfigType = {
 
 
 export interface IConfig extends IStyle {
+    width?: number;
+    height?: number;
     padding?: PaddingConfigType | number;
+    hAlign?: HAlignMode | HAlignModeString;
+    vAlign?: VAlignMode | VAlignModeString;
+    lineSpacing?: number;
     images?: string[] | { [key: string]: ImageInfo }
 }
 
@@ -51,8 +56,8 @@ export interface IBaseText extends ISprite {
     underlineThickness: number;
     underlineOffsetY: number;
 
-    halign: HAlignMode;
-    valign: VAlignMode;
+    hAlign: HAlignMode;
+    vAlign: VAlignMode;
     lineSpacing: number;
     wrapMode: WrapMode;
     wrapWidth: number;

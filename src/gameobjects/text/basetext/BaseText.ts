@@ -8,7 +8,7 @@ import {
     IStyle, IRadiusConfig,
     FillStyleType,
     WrapMode, WrapModeString,
-    HAlignMode, VAlignMode
+    HAlignMode, HAlignModeString, VAlignMode, VAlignModeString
 } from './Types';
 import { CanvasText } from './canvastext/CanvasText';
 import { ImageInfo } from './imagemanager/IImageManager';
@@ -16,13 +16,14 @@ import { PenManager } from './penmanger/PenManager';
 import { BaseParser } from './parser/BaseParser';
 
 import { UpdateText } from './UpdateText';
+import { SetFixedSize, SetPadding } from './SetSizeMethods';
+import { SetHAlign, SetVAlign } from './SetAlignMethods';
+import { SetLineSpacing } from './SetLineSpacing';
 import { SetBackgroundStyle } from './SetBackgroundStyle';
-import { SetPadding } from './SetPadding';
 import {
     SetFont, SetFontFamily, SetFontSize,
     SetFillStyle, SetStrokeStyle, SetShadow
 } from './SetFontMethods';
-import { SetFixedSize } from './SetFixedSize';
 import { SetWrapMode } from './SetWrapMode';
 import { SetUnderline } from './SetUnderline';
 import { AddImageInfo } from './AddImageInfo';
@@ -60,8 +61,8 @@ export class BaseText extends Sprite implements IBaseText {
     underlineThickness: number = 1;
     underlineOffsetY: number = 0;
 
-    halign: HAlignMode = HAlignMode.left;
-    valign: VAlignMode = VAlignMode.top;
+    hAlign: HAlignMode = HAlignMode.left;
+    vAlign: VAlignMode = VAlignMode.top;
     lineSpacing: number = 0;
     wrapMode: WrapMode = WrapMode.none;
     wrapWidth: number = 0;
@@ -75,15 +76,23 @@ export class BaseText extends Sprite implements IBaseText {
         y: number,
         text: string | string[] = '',
         {
+            width = 0,
+            height = 0,
+            padding,
+
             backgroundFillStyle,
             backgroundStrokeStyle,
             backgroundStrokeThickness,
             cornerRadius = 0,
-            padding,
 
-            fontFamily,
-            fontSize,
-            fillStyle,
+            hAlign = HAlignMode.left,
+            vAlign = VAlignMode.top,
+
+            lineSpacing = 0,
+
+            fontFamily = 'monospace',
+            fontSize = '16px',
+            fillStyle = '#fff',
             strokeStyle,
             strokeThickness = 1,
 
@@ -94,7 +103,7 @@ export class BaseText extends Sprite implements IBaseText {
             shadowFill = false,
             shadowStroke = false,
 
-            underlineStyle,
+            underlineStyle = '#fff',
             underlineThickness = 1,
             underlineOffsetY = 0,
 
@@ -121,22 +130,28 @@ export class BaseText extends Sprite implements IBaseText {
             parser: parser
         });
 
-        SetBackgroundStyle(this, backgroundFillStyle, backgroundStrokeStyle, backgroundStrokeThickness, cornerRadius);
+        SetFixedSize(this, width, height);
 
         if (padding) {
             SetPadding(this, padding)
         }
 
-        if (fontFamily) {
-            SetFontFamily(this, fontFamily);
-        }
-        if (fontSize) {
-            SetFontSize(this, fontSize);
-        }
+        SetHAlign(this, hAlign);
+        SetVAlign(this, vAlign);
 
-        if (fillStyle) {
-            SetFillStyle(this, fillStyle);
-        }
+        SetLineSpacing(this, lineSpacing);
+
+        SetBackgroundStyle(this,
+            backgroundFillStyle,
+            backgroundStrokeStyle, backgroundStrokeThickness,
+            cornerRadius
+        );
+
+        SetFontFamily(this, fontFamily);
+
+        SetFontSize(this, fontSize);
+
+        SetFillStyle(this, fillStyle);
 
         if (strokeStyle) {
             SetStrokeStyle(this, strokeStyle, strokeThickness);
@@ -144,9 +159,7 @@ export class BaseText extends Sprite implements IBaseText {
 
         SetShadow(this, shadowColor, shadowBlur, shadowOffsetX, shadowOffsetY, shadowFill, shadowStroke);
 
-        if (underlineStyle) {
-            SetUnderline(this, underlineStyle, underlineThickness, underlineOffsetY);
-        }
+        SetUnderline(this, underlineStyle, underlineThickness, underlineOffsetY);
 
         if (images) {
             AddImageInfo(this, images);
@@ -212,6 +225,16 @@ export class BaseText extends Sprite implements IBaseText {
         return this;
     }
 
+    setFixedSize(
+        width: number,
+        height: number
+    ): this {
+
+        SetFixedSize(this, width, height);
+
+        return this;
+    }
+
     setPadding(
         left: number | PaddingConfigType,
         right?: number,
@@ -220,6 +243,33 @@ export class BaseText extends Sprite implements IBaseText {
     ): this {
 
         SetPadding(this, left, right, top, bottom);
+
+        return this;
+    }
+
+    setHAlign(
+        hAlign: HAlignMode | HAlignModeString = HAlignMode.left
+    ): this {
+
+        SetHAlign(this, hAlign);
+
+        return this;
+    }
+
+    setVAlign(
+        vAlign: VAlignMode | VAlignModeString = VAlignMode.top
+    ): this {
+
+        SetVAlign(this, vAlign);
+
+        return this;
+    }
+
+    setLineSpacing(
+        lineSpacing: number = 0
+    ): this {
+
+        SetLineSpacing(this, lineSpacing);
 
         return this;
     }
@@ -267,22 +317,13 @@ export class BaseText extends Sprite implements IBaseText {
         return this;
     }
 
-    setFixedSize(
-        width: number,
-        height: number
-    ): this {
-
-        SetFixedSize(this, width, height);
-
-        return this;
-    }
-
     resize(
         width: number,
         height: number
     ): this {
 
         SetFixedSize(this, width, height);
+        UpdateText(this);
 
         return this;
     }

@@ -38,9 +38,9 @@ class Text extends GameObject {
         if (style) {
             // Override align
             if (style.hasOwnProperty('align')) {
-                var halign = style.align;
+                var hAlign = style.align;
                 delete style.align;
-                style.halign = halign;
+                style.hAlign = hAlign;
             }
             // Has Stroke color but strokeStyle thinkness, set strokeStyle thinkness to 1
             if (style.hasOwnProperty('strokeStyle') && !style.hasOwnProperty('strokeThickness')) {

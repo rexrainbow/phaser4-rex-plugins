@@ -1,4 +1,17 @@
 import { IBaseText, PaddingConfigType } from './IBaseText';
+import { WrapMode } from './Types';
+
+export function SetFixedSize(
+    baseText: IBaseText,
+    width: number = 0,
+    height: number = 0
+): void {
+
+    baseText.fixedWidth = width;
+    baseText.fixedHeight = height;
+
+    UpdateWrapWidth(baseText);
+}
 
 export function SetPadding(
     baseText: IBaseText,
@@ -20,5 +33,19 @@ export function SetPadding(
         padding.right = paddingConfig.right || 0;
         padding.top = paddingConfig.top || 0;
         padding.bottom = paddingConfig.bottom || 0;
+    }
+
+    UpdateWrapWidth(baseText);
+}
+
+function UpdateWrapWidth(
+    baseText: IBaseText
+) {
+
+    const width = baseText.fixedWidth;
+    if ((baseText.wrapMode !== WrapMode.none) && (width > 0)) {
+        const padding = baseText.padding;
+        const wrapWidth = width - padding.left - padding.right;
+        baseText.wrapWidth = Math.max(wrapWidth, 0);
     }
 }

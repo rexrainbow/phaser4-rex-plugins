@@ -37,12 +37,12 @@ export function Draw(
     startX += canvasText.startXOffset;
     startY += canvasText.startYOffset;
 
-    let halign = parent.halign,
-        valign = parent.valign;
+    let hAlign = parent.hAlign,
+        vAlign = parent.vAlign;
 
     // Shift offsetY
     let offsetY = startY;
-    switch (valign) {
+    switch (vAlign) {
         case VAlignMode.center:
             offsetY += (textHeight - totalLineHeight) / 2;
             break;
@@ -63,7 +63,7 @@ export function Draw(
 
         // Shift offsetX
         let offsetX = startX;
-        switch (halign) {
+        switch (hAlign) {
             case HAlignMode.center:
                 offsetX += (textWidth - lineWidth) / 2;
                 break;
