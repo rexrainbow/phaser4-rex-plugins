@@ -1,5 +1,6 @@
 import {
     BaseParser,
+    TagTextToPropResult,
     ContextStyleResult
 } from '../basetext/parser/BaseParser';
 import { IStyle } from '../basetext/Types';
@@ -22,7 +23,7 @@ export class Parser extends BaseParser {
         isPlainTextMode: boolean = false
     ): string[] {
 
-        let result: string[] = [];
+        const result: string[] = [];
 
         let charIdx = 0;
         while (true) {
@@ -45,7 +46,7 @@ export class Parser extends BaseParser {
             charIdx = RE_SPLITTEXT.lastIndex;
         }
 
-        let totalLen = text.length;
+        const totalLen = text.length;
         if (charIdx < totalLen) {
             result.push(text.substring(charIdx, totalLen));
         }
@@ -153,7 +154,7 @@ export class Parser extends BaseParser {
             plainText = text
         }
 
-        let result = TagTextToPropResult;
+        const result = TagTextToPropResult;
         result.text = plainText;
         result.prop = prevProp;
         return result;
@@ -164,7 +165,7 @@ export class Parser extends BaseParser {
         prop: PropType
     ): IStyle {
 
-        let result = ContextStyleResult;
+        const result = ContextStyleResult;
         if (!prop.hasOwnProperty('img')) {
             result.image = null;
 
@@ -348,8 +349,6 @@ var GetFontStyle = function (
     }
 };
 
-
-const TagTextToPropResult: { text: string, prop: PropType } = { text: null, prop: null };
 const EmptyProp: PropType = {};
 
 const RE_SPLITTEXT = /\[b\]|\[\/b\]|\[i\]|\[\/i\]|\[size=(\d+)\]|\[\/size\]|\[color=([a-z]+|#[0-9abcdef]+)\]|\[\/color\]|\[u\]|\[u=([a-z]+|#[0-9abcdef]+)\]|\[\/u\]|\[shadow\]|\[shadow=([a-z]+|#[0-9abcdef]+)\]|\[\/shadow\]|\[stroke\]|\[stroke=([a-z]+|#[0-9abcdef]+)\]|\[\/stroke\]|\[img=([^\]]+)\]|\[\/img\]|\[area=([^\]]+)\]|\[\/area\]/ig;

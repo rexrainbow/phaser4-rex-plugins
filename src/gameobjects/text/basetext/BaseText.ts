@@ -170,6 +170,8 @@ export class BaseText extends Sprite implements IBaseText {
 
     destroy(reparentChildren?: IContainer): void {
 
+        this.canvasText.destroy();
+
         this.texture.destroy();
 
         this.canvas = null;

@@ -203,7 +203,7 @@ export function DrawText(
 ): void {
 
     let context = canvasText.context;
-    if (style.strokeThickness) {
+    if (style.strokeStyle && (style.strokeStyle !== 'none') && (style.strokeThickness > 0)) {
         SyncShadow(context, style, style.shadowStroke);
         context.strokeText(text, x, y);
     }

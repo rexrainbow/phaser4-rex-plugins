@@ -9,7 +9,7 @@ import { FSM, CreateFSM } from './logic/fsm';
 import { Gashapon } from './math/gashapon';
 import { LZString } from './string/lzstring';
 import { RunCommands } from './logic/runcommands';
-import { BBCodeText } from './gameobjects/text';
+import { BBCodeText, TagText } from './gameobjects/text';
 import { TwoDTable } from './data/twodtable';
 import { XOR } from './string/xor';
 
@@ -27,6 +27,7 @@ export {
     Gashapon,
     LZString,
     RunCommands,
+    TagText,
     TwoDTable,
     XOR
 }

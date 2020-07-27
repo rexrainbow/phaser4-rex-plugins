@@ -19,6 +19,7 @@ class Demo extends Scene {
     }
 
     create() {
+        const world = new StaticWorld(this);
 
         const s = `[size=30][color=red][i][u]Phaser[/i][img=dude][/u]
 [size=20][color=blue][shadow=yellow][b]is[/b][/shadow]
@@ -33,8 +34,6 @@ class Demo extends Scene {
                 images: ['dude']
             }
         );
-
-        const world = new StaticWorld(this);
         AddChild(world, text);
     }
 }

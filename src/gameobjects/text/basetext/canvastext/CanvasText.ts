@@ -51,6 +51,8 @@ export class CanvasText implements ICanvasText {
     }
 
     destroy() {
+        this.parser.destroy();
+
         this.canvas = null;
         this.context = null;
         this.parser = null;

@@ -24,7 +24,11 @@ export abstract class BaseParser {
         prop: PropType,
         prevProp: PropType
     ): string;
+
+    destroy() { }
 }
+
+export const TagTextToPropResult: { text: string, prop: PropType } = { text: null, prop: null };
 
 export const ContextStyleResult: IStyle = {
     font: undefined,
