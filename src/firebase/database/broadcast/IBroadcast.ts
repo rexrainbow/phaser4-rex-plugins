@@ -19,13 +19,7 @@ export interface IMessage {
     stamp?: boolean;
 }
 
-export type EventNameMapType = {
-    receive?: string
-}
-
-export const DefaultEventNames: EventNameMapType = {
-    receive: 'receive'
-}
+import {EventNameMapType, DefaultEventNames} from './events/DefaultEventNames';
 
 export interface IConfig extends IEventEmitterConfig {
     root?: string;

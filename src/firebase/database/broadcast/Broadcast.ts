@@ -1,9 +1,9 @@
 import * as firebase from 'firebase/app';
 import {
-    IBroadcast,
-    IConfig, EventNameMapType, DefaultEventNames,
+    IBroadcast, IConfig,
     UserInfoType, IMessage,
 } from './IBroadcast';
+import { EventNameMapType, DefaultEventNames } from './events/DefaultEventNames';
 import { BaseEventEmitter } from '../../../utils/eventemitter/BaseEventEmitter';
 import { Send } from './Send';
 import { StartReceiving, StopReceiving } from './ReceiveMethods';
