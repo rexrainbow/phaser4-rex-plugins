@@ -1,4 +1,5 @@
 import { ISingleRoom } from './ISingleRoom';
+import { JoinRoomEvent } from './events/JoinRoomEvent';
 
 export function JoinRoom(
     room: ISingleRoom
@@ -6,7 +7,7 @@ export function JoinRoom(
 
     return room.userList.join()
         .then(function () {
-            room.emit('room.join');
+            room.emit(JoinRoomEvent);
             return Promise.resolve();
         })
 }

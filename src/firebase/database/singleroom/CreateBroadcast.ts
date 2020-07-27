@@ -1,5 +1,9 @@
 import { ISingleRoom, BroadcastConfig } from './ISingleRoom';
 import { Broadcast } from '../broadcast';
+import {
+    JoinRoomEvent, LeaveRoomEvent, UserChangeNameEvent,
+    ReceiveBroadcastMessageEvent
+} from './events'
 
 export function CreateBroadcast(
     room: ISingleRoom,
@@ -17,7 +21,7 @@ export function CreateBroadcast(
     const broadcastInstance = new Broadcast({
         eventEmitter: room.eventEmitter,
         eventNames: {
-            receive: 'broadcast.receive'
+            receive: ReceiveBroadcastMessageEvent
         },
 
         receiverID: 'broadcast',
@@ -26,16 +30,16 @@ export function CreateBroadcast(
     });
 
     room
-        .on('room.join', function () {
+        .on(JoinRoomEvent, function () {
             broadcastInstance
-                .setRootPath(room.rootPath)                
+                .setRootPath(room.rootPath)
                 .startReceiving();
         })
-        .on('room.leave', function () {
+        .on(LeaveRoomEvent, function () {
             broadcastInstance
                 .stopReceiving();
         })
-        .on('userlist.changename', function (userID: string, userName: string) {
+        .on(UserChangeNameEvent, function (userID: string, userName: string) {
             broadcastInstance
                 .changeUserName(userID, userName);
         })
