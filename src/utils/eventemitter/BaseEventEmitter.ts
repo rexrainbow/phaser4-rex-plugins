@@ -1,5 +1,6 @@
 import { IBaseEventEmitter } from './IBaseEventEmitter';
 import { IEventEmitter as IEE } from './events/IEventEmitter';
+import { IEventInstance } from './events/IEventInstance';
 import {
     EventEmitter as EE,
     On, Once, Off, Emit, RemoveAllListeners, ClearEvent,
@@ -9,6 +10,7 @@ import {
 export class BaseEventEmitter implements IBaseEventEmitter {
     eventEmitter: IEE;
     privateEE: boolean;
+    lastEventInstance: IEventInstance;
 
     setEventEmitter(
         eventEmitter?: IEE
@@ -16,20 +18,26 @@ export class BaseEventEmitter implements IBaseEventEmitter {
 
         this.privateEE = (eventEmitter === undefined);
         this.eventEmitter = (this.privateEE) ? (new EE()) : eventEmitter;
+        this.lastEventInstance = null;
+
         return this;
     }
 
     clearEventEmitter(): this {
 
         this.setEventEmitter(null);
+
         return this;
     }
 
     destroyEventEmitter(): this {
+
+        this.lastEventInstance = null;
         if (this.eventEmitter && this.privateEE) {
             RemoveAllListeners(this.eventEmitter);
             this.eventEmitter = null;
         }
+
         return this;
     }
 
@@ -40,7 +48,9 @@ export class BaseEventEmitter implements IBaseEventEmitter {
         once: boolean = false
     ): this {
 
-        if (this.eventEmitter) { On(this.eventEmitter, event, callback, context, once); }
+        this.lastEventInstance = null;
+        if (this.eventEmitter) { this.lastEventInstance = On(this.eventEmitter, event, callback, context, once); }
+
         return this;
     }
 
@@ -50,18 +60,22 @@ export class BaseEventEmitter implements IBaseEventEmitter {
         context: unknown = this
     ): this {
 
-        if (this.eventEmitter) { Once(this.eventEmitter, event, callback, context); }
+        this.lastEventInstance = null;
+        if (this.eventEmitter) { this.lastEventInstance = Once(this.eventEmitter, event, callback, context); }
+
         return this;
     }
 
     off(
         event: string,
-        callback?: Function,
+        callback?: Function | IEventInstance,
         context?: unknown,
         once?: boolean
     ): this {
 
+        this.lastEventInstance = null;
         if (this.eventEmitter) { Off(this.eventEmitter, event, callback, context, once); }
+
         return this;
     }
 
@@ -70,7 +84,9 @@ export class BaseEventEmitter implements IBaseEventEmitter {
         ...args: unknown[]
     ): this {
 
+        this.lastEventInstance = null;
         if (this.eventEmitter) { Emit(this.eventEmitter, event, ...args); }
+
         return this;
     }
 
@@ -78,7 +94,9 @@ export class BaseEventEmitter implements IBaseEventEmitter {
         event?: string
     ): this {
 
+        this.lastEventInstance = null;
         if (this.eventEmitter) { RemoveAllListeners(this.eventEmitter, event); }
+
         return this;
     }
 
@@ -86,7 +104,9 @@ export class BaseEventEmitter implements IBaseEventEmitter {
         event: string
     ): this {
 
+        this.lastEventInstance = null;
         if (this.eventEmitter) { ClearEvent(this.eventEmitter, event); }
+        
         return this;
     }
 
@@ -94,12 +114,14 @@ export class BaseEventEmitter implements IBaseEventEmitter {
         event: string
     ): number {
 
+        this.lastEventInstance = null;
         return (this.eventEmitter) ? GetListenerCount(this.eventEmitter, event) : 0;
     }
 
     getEventNames(
     ): string[] {
 
+        this.lastEventInstance = null;
         return (this.eventEmitter) ? GetEventNames(this.eventEmitter) : [];
     }
 
@@ -107,6 +129,7 @@ export class BaseEventEmitter implements IBaseEventEmitter {
         event: string
     ): Function[] {
 
+        this.lastEventInstance = null;
         return (this.eventEmitter) ? GetListeners(this.eventEmitter, event) : [];
     }
 

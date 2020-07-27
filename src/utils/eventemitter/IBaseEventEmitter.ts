@@ -1,4 +1,5 @@
 import { IEventEmitter as IEE } from './events/IEventEmitter';
+import { IEventInstance } from './events/IEventInstance';
 
 export interface IConfig {
     eventEmitter?: IEE;
@@ -6,6 +7,7 @@ export interface IConfig {
 
 export interface IBaseEventEmitter {
     eventEmitter: IEE;
+    lastEventInstance: IEventInstance;
 
     on(
         event: string,
