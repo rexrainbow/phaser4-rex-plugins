@@ -4,7 +4,7 @@ import {
     IConfig,
     StateDefineType, StatesDefineType
 } from './IFSM';
-
+import { StateChangeEvent, ExitStateEvent, EnterStateEvent } from './events';
 
 export class FSM extends BaseEventEmitter implements IFSM {
     _stateLock: boolean;
@@ -57,10 +57,10 @@ export class FSM extends BaseEventEmitter implements IFSM {
 
         this._stateLock = true; // lock state
 
-        this.emit('statechange', this);
+        this.emit(StateChangeEvent, this);
 
         if (this._prevState != null) {
-            let exitEventName = `exit_${this._prevState}`;
+            let exitEventName = ExitStateEvent(this._prevState);
             let exitCallback: (() => void) = this[exitEventName];
             if (exitCallback) {
                 exitCallback.call(this);
@@ -71,7 +71,7 @@ export class FSM extends BaseEventEmitter implements IFSM {
         this._stateLock = false;
 
         if (this._state != null) {
-            let enterEventName = `enter_${this._state}`;
+            let enterEventName = EnterStateEvent(this._state);
             let enterCallback: (() => void) = this[enterEventName];
             if (enterCallback) {
                 enterCallback.call(this);
