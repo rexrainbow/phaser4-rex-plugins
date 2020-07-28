@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import { BaseUpdater } from './BaseUpdater';
 import { TableType } from '../../Types';
-import {ColumnUpdater} from './ColumnUpdater';
+import { ColumnUpdater } from './ColumnUpdater';
 
 export class RowUpdater extends BaseUpdater {
 
@@ -21,7 +21,7 @@ export class RowUpdater extends BaseUpdater {
 
     addRow(
         snapshot: firebase.database.DataSnapshot
-        ) {
+    ) {
 
         const key = snapshot.key,
             value = snapshot.val();
@@ -30,7 +30,7 @@ export class RowUpdater extends BaseUpdater {
 
         switch (this.type) {
             case TableType['2d']:
-                this.emit(this.eventNames.addkey0, this.key, key, value);
+                this.emit(this.eventNames.addkey0, key, value);
                 break;
             default: // 3
                 this.emit(this.eventNames.addkey1, this.key, key, value);
@@ -40,12 +40,12 @@ export class RowUpdater extends BaseUpdater {
 
     removeRow(
         snapshot: firebase.database.DataSnapshot
-        ) {
+    ) {
 
         const key = snapshot.key;
 
         this.removeChild(key);
-        
+
         switch (this.type) {
             case TableType['2d']:
                 this.emit(this.eventNames.removekey0, key);

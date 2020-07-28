@@ -2,9 +2,9 @@ import * as firebase from 'firebase/app';
 import { BaseEventEmitter } from '../../../../utils/eventemitter/BaseEventEmitter';
 import {
     IItemList, IConfig,
-    UpdateMode, UpdateModeString, UpdaterType, GetItemCallbackType, ItemType,
-    EventNameMapType, DefaultEventNames
+    UpdateMode, UpdateModeString, UpdaterType, GetItemCallbackType, ItemType
 } from './IItemList';
+import { EventNameMapType, DefaultEventNames } from './events/DefaultEventNames';
 import { Updaters } from './updaters';
 import {
     Clear, GetItems, HasItem,

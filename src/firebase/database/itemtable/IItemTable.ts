@@ -5,16 +5,14 @@ import {
     IConfig as IEventEmitterConfig
 } from '../../../utils/eventemitter/IBaseEventEmitter';
 import { JSONTree } from '../../../utils/struct/tree/JSONTree';
-import {
-    TableType, TableTypeString,
-    EventNameMapType
-} from './Types';
+import { TableType, TableTypeString } from './Types';
+import { EventNameMapType } from './events/DefaultEventNames';
 import { IUpdater } from './read/updater/IUpdater';
 
 export interface IConfig extends IEventEmitterConfig {
     root?: string;
 
-    type?:TableType | TableTypeString;
+    type?: TableType | TableTypeString;
     eventNames?: EventNameMapType;
 }
 

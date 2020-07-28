@@ -5,7 +5,8 @@ import {
 } from './IUpdater';
 import { BaseEventEmitter } from '../../../../../utils/eventemitter/BaseEventEmitter';
 import { JSONTree, DataType, ValueType } from '../../../../../utils/struct/tree/JSONTree';
-import { TableType, EventNameMapType, } from '../../Types';
+import { TableType, } from '../../Types';
+import { EventNameMapType } from '../../events/DefaultEventNames';
 
 
 export abstract class BaseUpdater extends BaseEventEmitter {

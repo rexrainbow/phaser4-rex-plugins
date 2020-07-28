@@ -1,10 +1,7 @@
 import * as firebase from 'firebase/app';
 import { BaseEventEmitter } from '../../../utils/eventemitter/BaseEventEmitter';
-import {
-    IOnlineUserList, IConfig,
-    UserInfoType,
-    EventNameMapType, DefaultEventNames
-} from './IOnlineUserList';
+import { IOnlineUserList, IConfig, UserInfoType } from './IOnlineUserList';
+import { EventNameMapType, DefaultEventNames } from './events/DefaultEventNames';
 import { ItemList } from '../utils/itemlist';
 import { Join } from './Join';
 import { Leave } from './Leave';

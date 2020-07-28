@@ -12,19 +12,7 @@ export enum UpdateMode {
 
 export type UpdateModeString = 'once' | 'child' | 'all';
 
-export type EventNameMapType = {
-    update?: string,
-    add?: string,
-    remove?: string,
-    change?: string
-};
-
-export const DefaultEventNames: EventNameMapType = {
-    update: 'update',
-    add: 'add',
-    remove: 'remove',
-    change: 'change'
-};
+import { EventNameMapType } from './events/DefaultEventNames';
 
 export type ItemType = { [key: string]: any };
 

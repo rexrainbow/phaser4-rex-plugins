@@ -12,23 +12,7 @@ export type UserInfoType = {
     joinAt?: string
 };
 
-export type EventNameMapType = {
-    join?: string,
-    leave?: string,
-    update?: string,
-    change?: string,
-    init?: string,
-    changename?: string
-};
-
-export const DefaultEventNames: EventNameMapType = {
-    join: 'join',
-    leave: 'leave',
-    update: 'update',
-    change: 'change',
-    init: 'init',
-    changename: 'changename'
-};
+import { EventNameMapType } from './events/DefaultEventNames';
 
 export interface IConfig extends IEventEmitterConfig {
     root?: string;
