@@ -59,7 +59,7 @@ export class LZString implements ILZString {
     setEncoding(m: EncodeType | EncodeTypeString = EncodeType.none): this {
 
         if (typeof (m) === 'string') {
-            m = (EncodeType[m] || 0) as number;
+            m = EncodeType[m];
         }
         this.encoding = m;
         return this;
