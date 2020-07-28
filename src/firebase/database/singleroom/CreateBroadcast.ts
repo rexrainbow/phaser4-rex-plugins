@@ -3,7 +3,7 @@ import { Broadcast } from '../broadcast';
 import {
     JoinRoomEvent, LeaveRoomEvent, UserChangeNameEvent,
     ReceiveBroadcastMessageEvent
-} from './events'
+} from './events';
 
 export function CreateBroadcast(
     room: ISingleRoom,

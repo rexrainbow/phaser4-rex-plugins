@@ -4,6 +4,7 @@ import {
     IMessage
 } from './IMessages';
 import { GetReceiverQuery, GetPageQuery } from './GetQueryMethods';
+import { ReceiveMessageEvent } from './events'
 
 export function StartReceiving(
     messager: IMessages
@@ -31,7 +32,7 @@ export function StartReceiving(
                 } else {
                     let d: IMessage = DocToMessage(doc);
                     messager.cacheMessages.push(d);
-                    messager.emit('receive', d);
+                    messager.emit(ReceiveMessageEvent, d);
                 }
             } else {
                 if (messager.skipFirst) {  // Start from an empty collection
