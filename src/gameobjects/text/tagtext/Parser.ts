@@ -152,11 +152,7 @@ export class Parser extends BaseParser {
             if (innerMatch != null) {
                 const name = innerMatch[1];
                 const tags = this.tags;
-                if (tags.has(name)) {
-                    propOut = tags.get(name);
-                } else {
-                    propOut = {};
-                }
+                propOut = tags.get(name) ?? {};
                 propOut._class = name;
                 plainText = innerMatch[2];
             }
@@ -193,49 +189,33 @@ export class Parser extends BaseParser {
         if (!prop.hasOwnProperty('img')) {
             result.image = null;
 
-            if (prop.hasOwnProperty('family') || prop.hasOwnProperty('fontFamily') || prop.hasOwnProperty('font-family')) {
-                const family = (prop.hasOwnProperty('family')) ? prop.family :
-                    (prop.hasOwnProperty('fontFamily')) ? prop.fontFamily :
-                        prop['font-family'];
-                result.fontFamily = family;
-            } else {
-                result.fontFamily = defaultStyle.fontFamily;
-            }
+            result.fontFamily = prop.family ??
+                prop.fontFamily ??
+                prop['font-family'] ??
+                defaultStyle.fontFamily;
 
-            if (prop.hasOwnProperty('size') || prop.hasOwnProperty('fontSize') || prop.hasOwnProperty('font-size')) {
-                let size = (prop.hasOwnProperty('size')) ? prop.size :
-                    (prop.hasOwnProperty('fontSize')) ? prop.fontSize :
-                        prop['font-size'];
-                if (typeof (size) === 'number') {
-                    size = `${size}px`
-                }
-                result.fontSize = size;
-            } else {
-                result.fontSize = defaultStyle.fontSize;
+            let size: string | number = prop.size ??
+                prop.fontSize ?? prop['font-size'] ?? defaultStyle.fontSize;
+            if (typeof (size) === 'number') {
+                size = `${size}px`
             }
+            result.fontSize = size;
 
-            if (prop.hasOwnProperty('style') || prop.hasOwnProperty('fontStyle') || prop.hasOwnProperty('font-style')) {
-                const fontStyle = (prop.hasOwnProperty('style')) ? prop.style :
-                    (prop.hasOwnProperty('fontStyle')) ? prop.fontStyle :
-                        prop['font-style'];
-                result.fontStyle = fontStyle;
-            } else {
-                result.fontStyle = '';
-            }
+            result.fontStyle = prop.style ??
+                prop.fontStyle ??
+                prop['font-style'] ??
+                '';
 
             result.font = `${result.fontStyle} ${result.fontSize} ${result.fontFamily}`;
 
-            if (prop.hasOwnProperty('color') || prop.hasOwnProperty('font-color')) {
-                const color = (prop.color) ? prop.color : prop['font-color'];
-                result.fillStyle = color;
-            } else {
-                result.fillStyle = defaultStyle.fillStyle;
-            }
+            result.fillStyle = prop.color ??
+                prop['font-color'] ??
+                defaultStyle.fillStyle;
 
             if (prop.hasOwnProperty('stroke')) {
                 const stroke = prop.stroke; // {color, thinkness}
-                result.strokeStyle = (stroke.hasOwnProperty('color')) ? stroke.color : defaultStyle.strokeStyle;
-                result.strokeThickness = (stroke.hasOwnProperty('thinkness')) ? stroke.thinkness : defaultStyle.strokeThickness;
+                result.strokeStyle = stroke.color ?? defaultStyle.strokeStyle;
+                result.strokeThickness = stroke.thinkness ?? defaultStyle.strokeThickness;
             } else {
                 result.strokeStyle = defaultStyle.strokeStyle;
                 result.strokeThickness = defaultStyle.strokeThickness;
@@ -246,10 +226,10 @@ export class Parser extends BaseParser {
 
         if (prop.hasOwnProperty('shadow')) {
             const shadow = prop.shadow; // {color, blur, offsetX, offsetY}
-            result.shadowColor = (shadow.hasOwnProperty('color')) ? shadow.color : defaultStyle.shadowColor;
-            result.shadowOffsetX = (shadow.hasOwnProperty('offsetX')) ? shadow.offsetX : defaultStyle.shadowOffsetX;
-            result.shadowOffsetY = (shadow.hasOwnProperty('offsetY')) ? shadow.offsetY : defaultStyle.shadowOffsetY;
-            result.shadowBlur = (shadow.hasOwnProperty('blur')) ? shadow.blur : defaultStyle.shadowBlur;
+            result.shadowColor = shadow.color ?? defaultStyle.shadowColor;
+            result.shadowOffsetX = shadow.offsetX ?? defaultStyle.shadowOffsetX;
+            result.shadowOffsetY = shadow.offsetY ?? defaultStyle.shadowOffsetY;
+            result.shadowBlur = shadow.blur ?? defaultStyle.shadowBlur;
             result.shadowStroke = true;
             result.shadowFill = true;
         } else {
@@ -262,10 +242,10 @@ export class Parser extends BaseParser {
         }
 
         if (prop.hasOwnProperty('u') || prop.hasOwnProperty('underline')) {
-            const u = (prop.u) ? prop.u : prop.underline; // {color, thinkness, offset}
-            result.underlineStyle = (u.hasOwnProperty('color')) ? u.color : defaultStyle.underlineStyle;
-            result.underlineThickness = (u.hasOwnProperty('thinkness')) ? u.thinkness : defaultStyle.underlineThickness;
-            result.underlineOffsetY = (u.hasOwnProperty('offset')) ? u.offset : defaultStyle.underlineOffsetY;
+            const u = prop.u ?? prop.underline; // {color, thinkness, offset}
+            result.underlineStyle = u.color ?? defaultStyle.underlineStyle;
+            result.underlineThickness = u.thinkness ?? defaultStyle.underlineThickness;
+            result.underlineOffsetY = u.offset ?? defaultStyle.underlineOffsetY;
         } else {
             result.underlineStyle = '#000';
             result.underlineThickness = 0;

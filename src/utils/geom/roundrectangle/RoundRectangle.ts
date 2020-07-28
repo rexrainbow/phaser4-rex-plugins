@@ -56,8 +56,8 @@ export class RoundRectangle implements IRoundRectangle {
             radius.bl = GetRadius(undefined, defaultRadiusX, defaultRadiusY);
             radius.br = GetRadius(undefined, defaultRadiusX, defaultRadiusY);
         } else {
-            const defaultRadiusX = config.x || 0;
-            const defaultRadiusY = config.y || 0;
+            const defaultRadiusX = config.x ?? 0;
+            const defaultRadiusY = config.y ?? 0;
             radius.tl = GetRadius(config.tl, defaultRadiusX, defaultRadiusY);
             radius.tr = GetRadius(config.tr, defaultRadiusX, defaultRadiusY);
             radius.bl = GetRadius(config.bl, defaultRadiusX, defaultRadiusY);

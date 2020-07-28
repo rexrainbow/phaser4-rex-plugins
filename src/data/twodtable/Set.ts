@@ -29,6 +29,6 @@ export function Add(
 
     let key = GetKey(rowKey, colKey);
     let data = table.data;
-    let prevValue = data.get(key) || 0;
+    let prevValue = data.get(key) ?? 0;
     data.set(key, prevValue + value);
 }

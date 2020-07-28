@@ -3,7 +3,7 @@ import { DIRTY_CONST } from '@phaserjs/phaser/gameobjects/DIRTY_CONST';
 
 export function UpdateText(
     baseText: IBaseText
-):void {
+): void {
 
     let canvasText = baseText.canvasText;
     baseText.canvasText.updatePenManager(
@@ -45,7 +45,7 @@ export function UpdateText(
     let canvasWidth = Math.ceil(displayWidth * resolution);
     let canvasHeight = Math.ceil(displayHeight * resolution);
     let canvas = baseText.canvas;
-    if (canvas.width !== canvasWidth || canvas.height !== canvasHeight) {
+    if ((canvas.width !== canvasWidth) || (canvas.height !== canvasHeight)) {
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
 

@@ -10,7 +10,7 @@ export function Load(
     return itemTable.rootRef.once('value')
         .then(function (snapshot) {
             // Won't add any child to updater
-            let value = snapshot.val() || {};
+            let value = snapshot.val() ?? {};
             itemTable.table.setValue(value); // Store table content
             itemTable.emit(itemTable.eventNames.init, value);
             itemTable.initialFlag = true;

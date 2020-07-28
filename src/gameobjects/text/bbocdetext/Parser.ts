@@ -177,20 +177,13 @@ export class Parser extends BaseParser {
             // }
             result.fontFamily = defaultStyle.fontFamily;
 
-            if (prop.hasOwnProperty('size')) {
-                result.fontSize = prop.size;
-            } else {
-                result.fontSize = defaultStyle.fontSize;
-            }
+            result.fontSize = prop.size ?? defaultStyle.fontSize;
+
             result.fontStyle = GetFontStyle(prop.b, prop.i);
 
             result.font = `${result.fontStyle} ${result.fontSize} ${result.fontFamily}`;
 
-            if (prop.hasOwnProperty('color')) {
-                result.fillStyle = prop.color;
-            } else {
-                result.fillStyle = defaultStyle.fillStyle;
-            }
+            result.fillStyle = prop.color ?? defaultStyle.fillStyle;
 
             if (prop.hasOwnProperty('stroke')) {
                 if (prop.stroke === true) {

@@ -29,10 +29,10 @@ export function SetPadding(
         padding.bottom = (bottom === undefined) ? left : bottom;
     } else {
         let paddingConfig = left;
-        padding.left = paddingConfig.left || 0;
-        padding.right = paddingConfig.right || 0;
-        padding.top = paddingConfig.top || 0;
-        padding.bottom = paddingConfig.bottom || 0;
+        padding.left = paddingConfig.left ?? 0;
+        padding.right = paddingConfig.right ?? 0;
+        padding.top = paddingConfig.top ?? 0;
+        padding.bottom = paddingConfig.bottom ?? 0;
     }
 
     UpdateWrapWidth(baseText);

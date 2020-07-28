@@ -4,11 +4,8 @@ import {
     IConfig
 } from './IItemTable';
 import { BaseEventEmitter } from '../../../utils/eventemitter/BaseEventEmitter';
-import {
-    TableType, TableTypeString,
-    EventNameMapType, DefaultEventNames,
-    TransactionCallbackType
-} from './Types';
+import { TableType, TableTypeString, TransactionCallbackType } from './Types';
+import { EventNameMapType, DefaultEventNames } from './events/DefaultEventNames';
 import { JSONTree } from '../../../utils/struct/tree/JSONTree';
 import { IUpdater } from './read/updater/IUpdater';
 import { CreateUpdater } from './read/CreateUpdater';

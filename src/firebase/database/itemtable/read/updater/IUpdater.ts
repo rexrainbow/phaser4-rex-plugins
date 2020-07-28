@@ -3,7 +3,8 @@ import {
     IConfig as IEventEmitterConfig
 } from '../../../../../utils/eventemitter/IBaseEventEmitter';
 import { IBase } from '../../../utils/IBase';
-import { TableType, EventNameMapType } from '../../Types';
+import { TableType } from '../../Types';
+import { EventNameMapType } from '../../events/DefaultEventNames';
 import { JSONTree } from '../../../../../utils/struct/tree/JSONTree';
 
 export interface IConfig extends IEventEmitterConfig {

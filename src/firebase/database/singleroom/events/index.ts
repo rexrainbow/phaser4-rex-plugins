@@ -6,6 +6,17 @@ import { UserListInitEvent } from './UserListInitEvent';
 import { UserListUpdateEvent } from './UserListUpdateEvent';
 import { UserChangeNameEvent } from './UserChangeNameEvent';
 import { ReceiveBroadcastMessageEvent } from './ReceiveBroadcastMessageEvent';
+import { TableInitEvent } from './TableInitEvent';
+import { TableUpdateEvent } from './TableUpdateEvent';
+import { TableAddKey0Event } from './TableAddKey0Event';
+import { TableAddKey1Event } from './TableAddKey1Event';
+import { TableAddKey2Event } from './TableAddKey2Event';
+import { TableRemoveKey0Event } from './TableRemoveKey0Event';
+import { TableRemoveKey1Event } from './TableRemoveKey1Event';
+import { TableRemoveKey2Event } from './TableRemoveKey2Event';
+import { TableChangeKey0Event } from './TableChangeKey0Event';
+import { TableChangeKey1Event } from './TableChangeKey1Event';
+import { TableChangeKey2Event } from './TableChangeKey2Event';
 
 export {
     JoinRoomEvent,
@@ -15,5 +26,16 @@ export {
     UserListInitEvent,
     UserListUpdateEvent,
     UserChangeNameEvent,
-    ReceiveBroadcastMessageEvent
+    ReceiveBroadcastMessageEvent,
+    TableInitEvent,
+    TableUpdateEvent,
+    TableAddKey0Event,
+    TableAddKey1Event,
+    TableAddKey2Event,
+    TableRemoveKey0Event,
+    TableRemoveKey1Event,
+    TableRemoveKey2Event,
+    TableChangeKey0Event,
+    TableChangeKey1Event,
+    TableChangeKey2Event,
 }
