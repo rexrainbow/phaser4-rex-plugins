@@ -10,13 +10,12 @@ export function SetTextOffsetY(
 
     if (isPercent) {
         const t = Clamp(offsetY, 0, 1);
-        const padding = baseText.padding;
-        const displayHeight = baseText.height - padding.top - padding.bottom;
-        const textHeight = baseText.canvasText.textHeight;
-        if (textHeight <= displayHeight) {
+        const displayHeight = baseText.displayTextHeight;
+        const totalTextHeight = baseText.totalTextHeight;
+        if (totalTextHeight <= displayHeight) {
             offsetY = 0
         } else {
-            offsetY = - (textHeight - displayHeight) * t;
+            offsetY = - (totalTextHeight - displayHeight) * t;
         }
 
     }

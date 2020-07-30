@@ -71,8 +71,7 @@ export class BaseText extends Sprite implements IBaseText {
     fixedHeight: number = 0;
     resolution: number;
     padding = { left: 0, right: 0, top: 0, bottom: 0 };
-    textOffsetX: number = 0;
-    textOffsetY: number = 0;
+    _textOffsetY: number = 0;
 
     constructor(
         x: number,
@@ -422,5 +421,36 @@ export class BaseText extends Sprite implements IBaseText {
     ): PenManager {
 
         return GetPenManager(this, text, penManager);
+    }
+
+    get textOffsetY(): number {
+
+        return this._textOffsetY;
+    }
+
+    set textOffsetY(value: number) {
+
+        this._textOffsetY = value;
+    }
+
+    get totalTextHeight(): number {
+
+        return this.canvasText.textHeight;
+    }
+
+    get displayTextHeight(): number {
+
+        const padding = this.padding;
+        return this.height - padding.top - padding.bottom;
+    }
+
+    get textOffsetYPercentage(): number {
+
+        return -this.textOffsetY / (this.totalTextHeight - this.displayTextHeight);
+    }
+
+    set textOffsetYPercentage(value: number) {
+
+        SetTextOffsetY(this, value, true);
     }
 }

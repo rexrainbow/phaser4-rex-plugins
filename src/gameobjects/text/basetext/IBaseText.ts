@@ -72,7 +72,10 @@ export interface IBaseText extends ISprite {
         top: number,
         bottom: number
     },
-    textOffsetX: number;
+
+    totalTextHeight: number;
+    displayTextHeight: number;
     textOffsetY: number;
+    textOffsetYPercentage: number;
 
 }
