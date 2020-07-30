@@ -31,6 +31,9 @@ export class CanvasText implements ICanvasText {
     imageManager: ImageManager;
     hitAreaManager: HitAreaManager;
 
+    textOffsetX: number = 0;
+    textOffsetY: number = 0;
+
     constructor({
         canvas,
         context,
@@ -95,26 +98,21 @@ export class CanvasText implements ICanvasText {
     }
 
     draw(
-        startX: number = 0,
-        startY: number = 0,
-        textWidth: number = this.textWidth,
-        textHeight: number = this.textHeight
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        textOffsetX: number = 0,
+        textOffsetY: number = 0
     ): this {
 
-        Draw(this, startX, startY, textWidth, textHeight, this.penManager);
+        Draw(this,
+            x, y, width, height,
+            textOffsetX, textOffsetY,
+            this.penManager
+        );
+
         return this;
-    }
-
-    get startXOffset() {
-        let strokeStyle = this.parent.strokeStyle;
-        let strokeThickness = this.parent.strokeThickness;
-        return ((strokeStyle != null) && (strokeThickness != null)) ? (strokeThickness / 2) : 0;
-    }
-
-    get startYOffset() {
-        let strokeStyle = this.parent.strokeStyle;
-        let strokeThickness = this.parent.strokeThickness;
-        return ((strokeStyle != null) && (strokeThickness != null)) ? (strokeThickness / 2) : 0;
     }
 
     get lines(): Line[] {

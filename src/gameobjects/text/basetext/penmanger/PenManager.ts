@@ -35,6 +35,7 @@ export class PenManager {
         this.lines.forEach((l) => { l.destroy(); });
         this.lines.length = 0;
 
+        this.maxLineWidth = 0;
         this.totalLineHeight = 0;
 
         return this;

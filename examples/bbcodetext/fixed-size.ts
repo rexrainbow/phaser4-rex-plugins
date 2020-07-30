@@ -22,9 +22,7 @@ class Demo extends Scene {
     create() {
         const world = new StaticWorld(this);
 
-        const s = GetRandomWord(1000);
-
-        const text = new BBCodeText(400, 300, s,
+        const text = new BBCodeText(400, 300, '',
             {
                 width: 140, height: 140,
                 padding: 20,
@@ -35,6 +33,15 @@ class Demo extends Scene {
                 cornerRadius: 20
             }
         );
+
+        const sArr = [];
+        for (let i = 0; i < 100; i++) {
+            sArr.push(i.toString());
+        }
+        text
+            .setTextOffsetY(-100)
+            .setText(sArr);
+
         AddChild(world, text);
     }
 }

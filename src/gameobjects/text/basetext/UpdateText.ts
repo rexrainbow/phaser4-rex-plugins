@@ -62,7 +62,9 @@ export function UpdateText(
         padding.left,
         padding.top,
         textWidth,
-        textHeight
+        textHeight,
+        baseText.textOffsetX,
+        baseText.textOffsetY
     );
 
     context.restore();

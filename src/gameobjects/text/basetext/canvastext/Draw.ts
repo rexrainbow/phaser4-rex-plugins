@@ -11,10 +11,12 @@ import { DrawRoundRectangle } from '../../../../utils/canvas/DrawRoundRectangle'
 
 export function Draw(
     canvasText: ICanvasText,
-    startX: number,
-    startY: number,
-    textWidth: number,
-    textHeight: number,
+    drawBoundX: number,
+    drawBoundY: number,
+    drawBoundWidth: number,
+    drawBoundHeight: number,
+    textOffsetX: number = 0,
+    textOffsetY: number = 0,
     penManager: PenManager = canvasText.penManager
 ) {
 
@@ -27,56 +29,75 @@ export function Draw(
         return;
     }
 
-    const clipMode = (textWidth < canvasText.textWidth) || (textHeight < canvasText.textHeight);
+    const clipMode = (drawBoundWidth < canvasText.textWidth) || (drawBoundHeight < canvasText.textHeight);
 
     let context = canvasText.context;
     context.save();
 
     let parent = canvasText.parent;
 
+    Clear(canvasText, parent);
+
     DrawBackground(canvasText, parent);
 
     if (clipMode) {
         context.beginPath();
-        context.rect(startX, startY, textWidth, textHeight);
+        context.rect(drawBoundX, drawBoundY, drawBoundWidth, drawBoundHeight);
         context.clip();
     }
 
     const hAlign = parent.hAlign;
     const vAlign = parent.vAlign;
-    const lineStartX = startX + canvasText.startXOffset;
-    const lineStartY = startY + canvasText.startYOffset;
 
     // Shift offsetY
-    let offsetY = lineStartY;
+    let offsetY = drawBoundY + textOffsetY;
     switch (vAlign) {
         case VAlignMode.center:
-            offsetY += (textHeight - totalLineHeight) / 2;
+            offsetY += (drawBoundHeight - totalLineHeight) / 2;
             break;
 
         case VAlignMode.bottom:
-            offsetY += textHeight - totalLineHeight - 2;
+            offsetY += drawBoundHeight - totalLineHeight - 2;
             break;
     }
 
     // Draw each line
     let lines = penManager.lines;
+    let lineTop = offsetY;
+    const drawBoundBottom = drawBoundX + drawBoundHeight;
     for (let lineIdx = 0, lineCnt = lines.length; lineIdx < lineCnt; lineIdx++) {
         let line = lines[lineIdx];
+
+        if (lineTop > drawBoundBottom) {
+            // Remainder lines are below draw bound
+            break;
+        }
+
+        const lineBottom = lineTop + line.height;
+        if (lineBottom < drawBoundY) {
+            // Lines above draw bound
+            lineTop = lineBottom;
+            continue;
+
+        }
+
         let lineWidth = line.width;
         if (lineWidth === 0) {
+            // Line has no valid text pen
+            lineTop = lineBottom;
             continue;
         }
 
+
         // Shift offsetX
-        let offsetX = lineStartX;
+        let offsetX = drawBoundX + textOffsetX;
         switch (hAlign) {
             case HAlignMode.center:
-                offsetX += (textWidth - lineWidth) / 2;
+                offsetX += (drawBoundWidth - lineWidth) / 2;
                 break;
 
             case HAlignMode.right:
-                offsetX += textWidth - lineWidth;
+                offsetX += drawBoundWidth - lineWidth;
                 break;
         }
 
@@ -85,6 +106,8 @@ export function Draw(
         for (let penIdx = 0, penCnt = pens.length; penIdx < penCnt; penIdx++) {
             DrawPen(canvasText, pens[penIdx], offsetX, offsetY);
         }
+
+        lineTop = lineBottom;
     }
 
     context.restore();
@@ -138,20 +161,33 @@ export function DrawPen(
         canvasText.hitAreaManager.add(
             pen.prop.area, // key
             offsetX, // x
-            (offsetY - canvasText.startYOffset), // y
+            offsetY, // y
             pen.width, // width
             pen.height // height
         );
     }
 };
 
-export function DrawBackground(
+function Clear(
     canvasText: ICanvasText,
     style: IStyle
 ): void {
 
     let canvas = canvasText.canvas,
         context = canvasText.context;
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function DrawBackground(
+    canvasText: ICanvasText,
+    style: IStyle
+): void {
+
+    let canvas = canvasText.canvas,
+        context = canvasText.context;
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
     const fillStyle = style.backgroundFillStyle,
         strokeStyle = style.backgroundStrokeStyle;
@@ -179,7 +215,7 @@ export function DrawBackground(
     }
 };
 
-export function DrawUnderline(
+function DrawUnderline(
     canvasText: ICanvasText,
     x: number,
     y: number,
@@ -201,7 +237,7 @@ export function DrawUnderline(
     context.lineCap = savedLineCap;
 };
 
-export function DrawText(
+function DrawText(
     canvasText: ICanvasText,
     x: number,
     y: number,
@@ -221,7 +257,7 @@ export function DrawText(
     }
 };
 
-export function DrawImage(
+function DrawImage(
     canvasText: ICanvasText,
     x: number,
     y: number,

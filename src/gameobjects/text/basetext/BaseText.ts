@@ -17,6 +17,7 @@ import { BaseParser } from './parser/BaseParser';
 
 import { UpdateText } from './UpdateText';
 import { SetFixedSize, SetPadding } from './SetSizeMethods';
+import { SetTextOffsetY } from './SetTextOffset';
 import { SetHAlign, SetVAlign } from './SetAlignMethods';
 import { SetLineSpacing } from './SetLineSpacing';
 import { SetBackgroundStyle } from './SetBackgroundStyle';
@@ -70,6 +71,8 @@ export class BaseText extends Sprite implements IBaseText {
     fixedHeight: number = 0;
     resolution: number;
     padding = { left: 0, right: 0, top: 0, bottom: 0 };
+    textOffsetX: number = 0;
+    textOffsetY: number = 0;
 
     constructor(
         x: number,
@@ -249,6 +252,14 @@ export class BaseText extends Sprite implements IBaseText {
 
         SetPadding(this, left, right, top, bottom);
 
+        return this;
+    }
+
+    setTextOffsetY(
+        offsetY: number
+    ): this {
+
+        SetTextOffsetY(this, offsetY);
         return this;
     }
 
