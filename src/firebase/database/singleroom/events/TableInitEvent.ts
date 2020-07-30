@@ -1,4 +1,4 @@
-export function TableInitEvent(name) {
+export function TableInitEvent(name: string) {
     return `tables.${name}.init`;
 }
 

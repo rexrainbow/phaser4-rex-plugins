@@ -1,4 +1,4 @@
-export function TableUpdateEvent(name) {
+export function TableUpdateEvent(name: string) {
     return `tables.${name}.update`;
 }
 

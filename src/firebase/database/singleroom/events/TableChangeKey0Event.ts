@@ -1,4 +1,4 @@
-export function TableChangeKey0Event(name) {
+export function TableChangeKey0Event(name: string) {
     return `tables.${name}.changekey0`;
 }
 

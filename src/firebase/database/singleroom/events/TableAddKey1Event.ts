@@ -1,4 +1,4 @@
-export function TableAddKey1Event(name) {
+export function TableAddKey1Event(name: string) {
     return `tables.${name}.addkey1`;
 }
 

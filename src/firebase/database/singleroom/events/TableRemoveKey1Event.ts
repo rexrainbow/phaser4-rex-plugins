@@ -1,4 +1,4 @@
-export function TableRemoveKey1Event(name) {
+export function TableRemoveKey1Event(name: string) {
     return `tables.${name}.removekey1`;
 }
 
