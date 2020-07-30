@@ -3,7 +3,8 @@ import { CanvasText } from './canvastext/CanvasText';
 import {
     IStyle,
     FillStyleType, IRadiusConfig,
-    WrapMode, HAlignMode, HAlignModeString, VAlignMode, VAlignModeString
+    WrapMode, WrapModeString,
+    HAlignMode, HAlignModeString, VAlignMode, VAlignModeString
 } from './Types';
 import { ImageInfo } from './imagemanager/IImageManager';
 
@@ -19,6 +20,7 @@ export interface IConfig extends IStyle {
     width?: number;
     height?: number;
     padding?: PaddingConfigType | number;
+    wrapMode?: WrapMode | WrapModeString;
     hAlign?: HAlignMode | HAlignModeString;
     vAlign?: VAlignMode | VAlignModeString;
     lineSpacing?: number;

@@ -1,10 +1,11 @@
 import { IBaseText } from './IBaseText';
 import { WrapMode, WrapModeString } from './Types';
+import { UpdateWrapWidth } from './SetSizeMethods';
 
 export function SetWrapMode(
     baseText: IBaseText,
     wrapMode: WrapMode | WrapModeString,
-    wrapWidth: number = 0
+    wrapWidth?: number
 ): void {
 
     if (typeof (wrapMode) === 'string') {
@@ -12,12 +13,10 @@ export function SetWrapMode(
     }
     baseText.wrapMode = wrapMode;
 
-    if (wrapMode !== WrapMode.none) {
-        const width = baseText.fixedWidth;
-        if (width > 0) {
-            const padding = baseText.padding;
-            wrapWidth = width - padding.left - padding.right;
-        }
+    if (wrapWidth === undefined) {
+        UpdateWrapWidth(baseText);
+    } else {
+        baseText.wrapWidth = wrapWidth;
     }
-    baseText.wrapWidth = wrapWidth;
+
 }

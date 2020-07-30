@@ -25,7 +25,7 @@ export function UpdateText(
     else {
         displayWidth = baseText.fixedWidth;
         textWidth = displayWidth - padding.left - padding.right;
-        if (textWidth < canvasText.textWidth) {
+        if (textWidth > canvasText.textWidth) {
             textWidth = canvasText.textWidth;
         }
     }
@@ -36,7 +36,7 @@ export function UpdateText(
     else {
         displayHeight = baseText.fixedHeight;
         textHeight = displayHeight - padding.top - padding.bottom;
-        if (textHeight < canvasText.textHeight) {
+        if (textHeight > canvasText.textHeight) {
             textHeight = canvasText.textHeight;
         }
     }

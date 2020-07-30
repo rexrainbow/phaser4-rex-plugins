@@ -79,6 +79,7 @@ export class BaseText extends Sprite implements IBaseText {
             width = 0,
             height = 0,
             padding,
+            wrapMode = WrapMode.none,
 
             backgroundFillStyle,
             backgroundStrokeStyle,
@@ -135,6 +136,8 @@ export class BaseText extends Sprite implements IBaseText {
         if (padding) {
             SetPadding(this, padding)
         }
+
+        SetWrapMode(this, wrapMode);
 
         SetHAlign(this, hAlign);
         SetVAlign(this, vAlign);

@@ -38,14 +38,16 @@ export function SetPadding(
     UpdateWrapWidth(baseText);
 }
 
-function UpdateWrapWidth(
+export function UpdateWrapWidth(
     baseText: IBaseText
 ) {
 
     const width = baseText.fixedWidth;
-    if ((baseText.wrapMode !== WrapMode.none) && (width > 0)) {
+    if (baseText.wrapMode !== WrapMode.none) {
         const padding = baseText.padding;
         const wrapWidth = width - padding.left - padding.right;
         baseText.wrapWidth = Math.max(wrapWidth, 0);
+    } else {
+        baseText.wrapWidth = 0;
     }
 }

@@ -7,14 +7,14 @@ import {
 import { SyncFont, SyncStyle, SyncShadow } from './SyncContextMethods';
 import { HitAreaManager } from '../hitareamanager/HitAreaManager';
 import { PenManager } from '../penmanger/PenManager';
-import { DrawRoundRectangle } from '../../../../utils/canvas/DrawRoundRectangle'
+import { DrawRoundRectangle } from '../../../../utils/canvas/DrawRoundRectangle';
 
 export function Draw(
     canvasText: ICanvasText,
-    startX: number = 0,
-    startY: number = 0,
-    textWidth: number = canvasText.textWidth,
-    textHeight: number = canvasText.textHeight,
+    startX: number,
+    startY: number,
+    textWidth: number,
+    textHeight: number,
     penManager: PenManager = canvasText.penManager
 ) {
 
@@ -27,6 +27,8 @@ export function Draw(
         return;
     }
 
+    const clipMode = (textWidth < canvasText.textWidth) || (textHeight < canvasText.textHeight);
+
     let context = canvasText.context;
     context.save();
 
@@ -34,14 +36,19 @@ export function Draw(
 
     DrawBackground(canvasText, parent);
 
-    startX += canvasText.startXOffset;
-    startY += canvasText.startYOffset;
+    if (clipMode) {
+        context.beginPath();
+        context.rect(startX, startY, textWidth, textHeight);
+        context.clip();
+    }
 
-    let hAlign = parent.hAlign,
-        vAlign = parent.vAlign;
+    const hAlign = parent.hAlign;
+    const vAlign = parent.vAlign;
+    const lineStartX = startX + canvasText.startXOffset;
+    const lineStartY = startY + canvasText.startYOffset;
 
     // Shift offsetY
-    let offsetY = startY;
+    let offsetY = lineStartY;
     switch (vAlign) {
         case VAlignMode.center:
             offsetY += (textHeight - totalLineHeight) / 2;
@@ -62,7 +69,7 @@ export function Draw(
         }
 
         // Shift offsetX
-        let offsetX = startX;
+        let offsetX = lineStartX;
         switch (hAlign) {
             case HAlignMode.center:
                 offsetX += (textWidth - lineWidth) / 2;
