@@ -256,10 +256,11 @@ export class BaseText extends Sprite implements IBaseText {
     }
 
     setTextOffsetY(
-        offsetY: number
+        offsetY: number,
+        isPercent: boolean = false
     ): this {
 
-        SetTextOffsetY(this, offsetY);
+        SetTextOffsetY(this, offsetY, isPercent);
         return this;
     }
 

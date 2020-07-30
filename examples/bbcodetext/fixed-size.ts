@@ -39,8 +39,9 @@ class Demo extends Scene {
             sArr.push(i.toString());
         }
         text
-            .setTextOffsetY(-100)
-            .setText(sArr);
+            .setText(sArr)
+            .setTextOffsetY(1, true)
+            .updateText();
 
         AddChild(world, text);
     }
