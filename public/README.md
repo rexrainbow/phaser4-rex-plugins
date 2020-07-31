@@ -3,6 +3,7 @@
 ## BBCode text
 
 - [BBCode](https://rexrainbow.github.io/phaser4-rex-plugins/public/bbcodetext-bbcodetext/)
+- [Scroll text](https://rexrainbow.github.io/phaser4-rex-plugins/public/bbcodetext-scroll-text/)
 
 ## Board
 

@@ -4,9 +4,9 @@ import { Scene } from '@phaserjs/phaser/scenes/Scene';
 import { StaticWorld } from '@phaserjs/phaser/world';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { ImageFile } from '@phaserjs/phaser/loader/files/ImageFile';
+import { On } from '@phaserjs/phaser/events';
 
 import { BBCodeText } from '../../src';
-import { GetRandomWord } from '../../src/utils/string/GetRandomWord';
 
 class Demo extends Scene {
     constructor() {
@@ -24,7 +24,7 @@ class Demo extends Scene {
 
         const text = new BBCodeText(400, 300, '',
             {
-                width: 140, height: 140,
+                width: 140, height: 240,
                 padding: 20,
                 wrapMode: 'char',
 
@@ -34,16 +34,33 @@ class Demo extends Scene {
             }
         );
 
+        AddChild(world, text);
+
         const sArr = [];
         for (let i = 0; i < 100; i++) {
-            sArr.push(i.toString());
+            let s = (i % 5 === 0) ? `[size=30][color=red]${i}` : `[size=20][color=green]${i}`
+            sArr.push(s);
         }
-        text
-            .setText(sArr)
-            .setTextOffsetY(1, true)
-            .updateText();
+        text.setText(sArr);
 
-        AddChild(world, text);
+        // TODO: Replace scrolling by tween
+        let duration = 20 * 1000;
+        let reverse = false;
+        let progress = 0;
+        On(world, 'update', function (delta: number) {
+            progress += (reverse) ? -delta : delta;
+
+            if (progress < 0) {
+                progress = 0;
+                reverse = false;
+            } else if (progress > duration) {
+                progress = duration;
+                reverse = true;
+            }
+            text
+                .setTextOffsetY(progress / duration, true)
+                .updateText();
+        })
     }
 }
 

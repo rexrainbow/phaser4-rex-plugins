@@ -2,6 +2,7 @@ import { CanvasTexture } from '@phaserjs/phaser/textures/types/CanvasTexture';
 import { GameInstance } from '@phaserjs/phaser/GameInstance';
 import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
 import { Sprite } from '@phaserjs/phaser/gameobjects/sprite/Sprite';
+import { Clamp } from '@phaserjs/phaser/math/Clamp'
 
 import { IBaseText, IConfig, PaddingConfigType } from './IBaseText';
 import {
@@ -433,6 +434,23 @@ export class BaseText extends Sprite implements IBaseText {
         this._textOffsetY = value;
     }
 
+    get textOffsetYPercentage(): number {
+
+        return -this._textOffsetY / (this.totalTextHeight - this.displayTextHeight);
+    }
+
+    set textOffsetYPercentage(value: number) {
+
+        const t = Clamp(value, 0, 1);
+        const displayHeight = this.displayTextHeight;
+        const totalTextHeight = this.totalTextHeight;
+        if (totalTextHeight <= displayHeight) {
+            this._textOffsetY = 0
+        } else {
+            this._textOffsetY = - (totalTextHeight - displayHeight) * t;
+        }
+    }
+
     get totalTextHeight(): number {
 
         return this.canvasText.textHeight;
@@ -444,13 +462,4 @@ export class BaseText extends Sprite implements IBaseText {
         return this.height - padding.top - padding.bottom;
     }
 
-    get textOffsetYPercentage(): number {
-
-        return -this.textOffsetY / (this.totalTextHeight - this.displayTextHeight);
-    }
-
-    set textOffsetYPercentage(value: number) {
-
-        SetTextOffsetY(this, value, true);
-    }
 }
