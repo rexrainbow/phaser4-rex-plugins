@@ -63,7 +63,7 @@ export function UpdateText(
         padding.top,
         textWidth,
         textHeight,
-        baseText.textOffsetX,
+        0,
         baseText.textOffsetY
     );
 
