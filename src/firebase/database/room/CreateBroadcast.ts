@@ -4,6 +4,10 @@ import {
 } from './IRoom';
 import { Broadcast } from '../broadcast';
 import { GetRoomDataPath } from './GetRefMethods';
+import {
+    JoinRoomEvent, LeaveRoomEvent, UserChangeNameEvent,
+    ReceiveBroadcastMessageEvent
+} from './events';
 
 export function CreateBroadcast(
     room: IRoom,
@@ -21,7 +25,7 @@ export function CreateBroadcast(
     const broadcastInstance = new Broadcast({
         eventEmitter: room.eventEmitter,
         eventNames: {
-            receive: 'broadcast.receive'
+            receive: ReceiveBroadcastMessageEvent
         },
 
         receiverID: 'boradcast',
@@ -30,18 +34,18 @@ export function CreateBroadcast(
     });
 
     room
-        .on('room.join', function (roomInfo: RoomInfoType) {
+        .on(JoinRoomEvent, function (roomInfo: RoomInfoType) {
 
             broadcastInstance
                 .setRootPath(GetRoomDataPath(room, roomInfo.roomID))
                 .startReceiving();
         })
-        .on('room.leave', function () {
+        .on(LeaveRoomEvent, function () {
 
             broadcastInstance
                 .stopReceiving()
         })
-        .on('userlist.changename', function (userID: string, userName: string) {
+        .on(UserChangeNameEvent, function (userID: string, userName: string) {
 
             broadcastInstance
                 .changeUserName(userID, userName);

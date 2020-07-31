@@ -3,6 +3,11 @@ import {
     IConfig
 } from './IRoom';
 import { OnlineUserList } from '../onlineuserlist';
+import {
+    JoinRoomEvent, LeaveRoomEvent,
+    UserJoinRoomEvent, UserLeaveRoomEvent, UserChangeNameEvent,
+    UserListUpdateEvent, UserListInitEvent
+} from './events';
 
 export function CreateUserList(
     room: IRoom
@@ -11,12 +16,12 @@ export function CreateUserList(
     const userListInstance = new OnlineUserList({
         eventEmitter: room.eventEmitter,
         eventNames: {
-            join: 'userlist.join',
-            leave: 'userlist.leave',
-            update: 'userlist.update',
+            join: UserJoinRoomEvent,
+            leave: UserLeaveRoomEvent,
+            update: UserListUpdateEvent,
             change: 'userlist.change',
-            init: 'userlist.init',
-            changename: 'userlist.changename'
+            init: UserListInitEvent,
+            changename: UserChangeNameEvent
         },
 
         userID: room.userInfo
@@ -30,10 +35,10 @@ export function CreateUserList(
         })
 
     room
-        .on('room.join', function () {
+        .on(JoinRoomEvent, function () {
             userListInstance.startUpdate()
         })
-        .on('room.leave', function () {
+        .on(LeaveRoomEvent, function () {
             userListInstance.stopUpdate().clear()
         })
 
@@ -44,7 +49,7 @@ function OnLeftRoom(
     room: IRoom
 ): void {
 
-    room.emit('room.leave');
+    room.emit(LeaveRoomEvent);
 
     // Clear room info later
     setTimeout(function () {

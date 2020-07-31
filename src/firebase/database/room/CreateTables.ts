@@ -5,6 +5,13 @@ import {
 import { ItemTable } from '../itemtable';
 import { TableType } from '../itemtable/Types';
 import { GetItemTablePath } from './GetRefMethods';
+import {
+    JoinRoomEvent, LeaveRoomEvent,
+    TableInitEvent, TableUpdateEvent,
+    TableAddKey0Event, TableAddKey1Event, TableAddKey2Event,
+    TableRemoveKey0Event, TableRemoveKey1Event, TableRemoveKey2Event,
+    TableChangeKey0Event, TableChangeKey1Event, TableChangeKey2Event
+} from './events';
 
 export function CreateTables(
     room: IRoom,
@@ -21,7 +28,7 @@ export function CreateTables(
     })
 
     room
-        .on('room.join', function (roomInfo: RoomInfoType) {
+        .on(JoinRoomEvent, function (roomInfo: RoomInfoType) {
 
             for (const [key, tableInstance] of tableInstances) {
                 tableInstance
@@ -29,7 +36,7 @@ export function CreateTables(
                     .startUpdate();
             }
         })
-        .on('room.leave', function () {
+        .on(LeaveRoomEvent, function () {
 
             for (const [key, tableInstance] of tableInstances) {
                 tableInstance
@@ -54,17 +61,17 @@ function CreateTable(
 
         type: type,
         eventNames: {
-            init: `tables.${key}.init`,
-            update: `tables.${key}.update`,
-            addkey0: `tables.${key}.addkey0`,
-            removekey0: `tables.${key}.removekey0`,
-            changekey0: `tables.${key}.changekey0`,
-            addkey1: `tables.${key}.addkey1`,
-            removekey1: `tables.${key}.removekey1`,
-            changekey1: `tables.${key}.changekey1`,
-            addkey2: `tables.${key}.addkey2`,
-            removekey2: `tables.${key}.removekey2`,
-            changekey2: `tables.${key}.changekey2`
+            init: TableInitEvent(key),
+            update: TableUpdateEvent(key),
+            addkey0: TableAddKey0Event(key),
+            removekey0: TableRemoveKey0Event(key),
+            changekey0: TableChangeKey0Event(key),
+            addkey1: TableAddKey1Event(key),
+            removekey1: TableRemoveKey1Event(key),
+            changekey1: TableChangeKey1Event(key),
+            addkey2: TableAddKey2Event(key),
+            removekey2: TableRemoveKey2Event(key),
+            changekey2: TableChangeKey2Event(key)
         }
     });
 

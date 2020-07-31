@@ -3,6 +3,7 @@ import {
     RoomFilterDataType
 } from './IRoom';
 import { ItemList } from '../utils/itemlist/ItemList';
+import { AddRoomEvent, RemoveRoomEvent, RoomListUpdateEvent } from './events'
 
 export function CreateRoomList(
     room: IRoom
@@ -12,9 +13,9 @@ export function CreateRoomList(
         eventEmitter: room.eventEmitter,
         itemIDKey: 'roomID',
         eventNames: {
-            update: 'roomlist.update',
-            add: 'roomlist.add',
-            remove: 'roomlist.remove',
+            update: RoomListUpdateEvent,
+            add: AddRoomEvent,
+            remove: RemoveRoomEvent,
             change: 'roomlist.change'
         },
         mode: 'once'
