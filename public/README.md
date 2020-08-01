@@ -31,6 +31,10 @@
 
 - [Draw](https://rexrainbow.github.io/phaser4-rex-plugins/public/canvas-texture-draw/)
 
+## Masked image
+
+- [Masked image](https://rexrainbow.github.io/phaser4-rex-plugins/public/maskedimage-maskedimage/)
+
 ## Tag text
 
 - [TagText](https://rexrainbow.github.io/phaser4-rex-plugins/public/tagtext-tagtext/)

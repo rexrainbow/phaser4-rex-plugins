@@ -8,6 +8,7 @@ import * as Firebase from './firebase';
 import { FSM, CreateFSM } from './logic/fsm';
 import { Gashapon } from './math/gashapon';
 import { LZString } from './string/lzstring';
+import { MaskedImage } from './gameobjects/maskedimage';
 import { RunCommands } from './logic/runcommands';
 import { BBCodeText, TagText } from './gameobjects/text';
 import { TwoDTable } from './data/twodtable';
@@ -26,6 +27,7 @@ export {
     FSM,
     Gashapon,
     LZString,
+    MaskedImage,
     RunCommands,
     TagText,
     TwoDTable,

@@ -5,9 +5,9 @@ export function Resize(
     width: number,
     height: number) {
 
-    let newCanvasWidth = Math.ceil(width * canvas.resolution);
-    let newCanvasHeight = Math.ceil(height * canvas.resolution);
-    let srcCanvas = canvas.canvas;
+    const newCanvasWidth = Math.ceil(width * canvas.resolution);
+    const newCanvasHeight = Math.ceil(height * canvas.resolution);
+    const srcCanvas = canvas.canvas;
     if ((srcCanvas.width === newCanvasWidth) || (srcCanvas.height === newCanvasHeight)) {
         Clear(canvas);
         return;
@@ -45,11 +45,11 @@ export function LoadFromURL(
     callback?: () => void
 ): void {
 
-    let img = new Image();
+    const img = new Image();
     img.onload = function () {
-        let resolution = canvas.resolution;
-        let displayWidth = img.width / resolution,
-            displayHeight = img.height / resolution;
+        const resolution = canvas.resolution;
+        const displayWidth = img.width / resolution;
+        const displayHeight = img.height / resolution;
         Resize(canvas, displayWidth, displayHeight);
         canvas.context.drawImage(img, 0, 0);
         canvas.updateTexture();
@@ -91,7 +91,7 @@ export function GetPixel(
     out: [number, number, number, number] = [0, 0, 0, 0]
 ): [number, number, number, number] {
 
-    let data = canvas.context.getImageData(x, y, 1, 1).data;
+    const data = canvas.context.getImageData(x, y, 1, 1).data;
     out[0] = data[0];
     out[1] = data[1];
     out[2] = data[2];
@@ -109,7 +109,7 @@ export function SetPixel(
         a = ((r !== 0) || (g !== 0) || (b !== 0)) ? 255 : 0;
     }
 
-    let imgData = canvas.context.createImageData(1, 1);
+    const imgData = canvas.context.createImageData(1, 1);
     imgData.data[0] = r;
     imgData.data[1] = g;
     imgData.data[2] = b;
