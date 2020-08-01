@@ -30,7 +30,9 @@ class Demo extends Scene {
 
                 backgroundStrokeStyle: 'BurlyWood',
                 backgroundStrokeThickness: 4,
-                cornerRadius: 20
+                cornerRadius: 20,
+
+                images: ['dude']
             }
         );
 
@@ -38,7 +40,7 @@ class Demo extends Scene {
 
         const sArr = [];
         for (let i = 0; i < 100; i++) {
-            let s = (i % 5 === 0) ? `[size=30][color=red]${i}` : `[size=20][color=green]${i}`
+            let s = (i % 5 === 0) ? `[size=30][color=red]${i}[img=dude]` : `[size=20][color=green]${i}`
             sArr.push(s);
         }
         text.setText(sArr);
