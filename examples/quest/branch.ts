@@ -65,8 +65,7 @@ class Demo extends Scene {
         const keyboard = new Keyboard.Keyboard();
 
         // Create quest instance
-        const questionManager = new Quest.QuestionManager({ questions: csvString });
-        const quest = new Quest.Quest(questionManager);
+        const quest = new Quest.Quest({ questions: csvString });
 
         // Register input event
         const KeyMap = ['Z', 'X', 'C', 'V'];

@@ -1,6 +1,12 @@
 import { IQuest, IConfig } from './IQuest';
-import { IQuestionManager, QuestionType, OptionType } from '../questions/IQuestionManager';
+import {
+    IQuestionManager,
+    IConfig as IQuestionManagerConfig,
+    QuestionType, OptionType
+} from '../questions/IQuestionManager';
+import {QuestionManager} from '../questions/QuestionManager';
 import { BaseEventEmitter } from '../../../utils/eventemitter/BaseEventEmitter';
+import {IsPlainObject} from '../../../utils/object/IsPlainObject';
 import { Shuffle } from '../../../utils/array/Shuffle';
 
 export class Quest extends BaseEventEmitter implements IQuest {
@@ -12,7 +18,7 @@ export class Quest extends BaseEventEmitter implements IQuest {
     nextKey: string;
 
     constructor(
-        questionsManager: IQuestionManager,
+        questionsManager: IQuestionManager | IQuestionManagerConfig,
         {
             eventEmitter,
             shuffleQuestions = false,
@@ -25,7 +31,10 @@ export class Quest extends BaseEventEmitter implements IQuest {
         // Event emitter
         this.setEventEmitter(eventEmitter);
 
-        this.questionsManager = questionsManager;
+        if (IsPlainObject(questionsManager)) {
+            questionsManager = new QuestionManager(questionsManager as IQuestionManagerConfig);
+        }
+        this.questionsManager = questionsManager as IQuestionManager;
         this.setShuffleQuestionsEnable(shuffleQuestions);
         this.setShuffleOptionsEnable(shuffleOptions);
     }

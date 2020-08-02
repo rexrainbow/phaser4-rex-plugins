@@ -37,8 +37,8 @@ class Demo extends Scene {
         const keyboard = new Keyboard.Keyboard();
 
         // Create quest instance
-        const questionManager = new Quest.QuestionManager({ questions: csvString });
-        const quest = new Quest.Quest(questionManager, { shuffleQuestions: true, shuffleOptions: true });
+        const quest = new Quest.Quest({ questions: csvString },
+            { shuffleQuestions: true, shuffleOptions: true });
 
         // Quest result
         const answers = new Map();
