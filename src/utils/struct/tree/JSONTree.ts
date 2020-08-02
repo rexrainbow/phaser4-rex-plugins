@@ -89,6 +89,32 @@ export class JSONTree implements ITree {
         Clear(this.data);
         return this;
     }
+
+    incValue(
+        key: string,
+        inc: number = 1
+    ): this {
+
+        let value = this.getValue(key);
+        if (typeof (value) !== 'number') {
+            value = 0;
+        }
+        this.setValue(key, value + inc);
+        return this;
+    }
+
+    mulValue(
+        key: string,
+        mul: number
+    ): this {
+
+        let value = this.getValue(key);
+        if (typeof (value) !== 'number') {
+            value = 1;
+        }
+        this.setValue(key, value * mul);
+        return this;
+    }
 }
 
 function IsObject(obj: unknown) {

@@ -1,0 +1,143 @@
+import { IQuest, IConfig } from './IQuest';
+import { IQuestionManager, QuestionType, OptionType } from '../questions/IQuestionManager';
+import { BaseEventEmitter } from '../../../utils/eventemitter/BaseEventEmitter';
+import { Shuffle } from '../../../utils/array/Shuffle';
+
+export class Quest extends BaseEventEmitter implements IQuest {
+    questionsManager: IQuestionManager;
+    shuffleQuestionsEnable: boolean;
+    shuffleOptionsEnable: boolean;
+    questionKeys: string[] = [];
+    nextIndex: number;
+    nextKey: string;
+
+    constructor(
+        questionsManager: IQuestionManager,
+        {
+            eventEmitter,
+            shuffleQuestions = false,
+            shuffleOptions = false
+        }: IConfig = {}
+    ) {
+
+        super();
+
+        // Event emitter
+        this.setEventEmitter(eventEmitter);
+
+        this.questionsManager = questionsManager;
+        this.setShuffleQuestionsEnable(shuffleQuestions);
+        this.setShuffleOptionsEnable(shuffleOptions);
+    }
+
+    setShuffleQuestionsEnable(
+        enabled: boolean = true
+    ): this {
+
+        this.shuffleQuestionsEnable = enabled;
+        return this;
+    }
+
+    setShuffleOptionsEnable(
+        enabled: boolean = true
+    ): this {
+
+        this.shuffleOptionsEnable = enabled;
+        return this;
+    }
+
+    start(): this {
+        // Reload keys
+        this.questionKeys.length = 0;
+        this.questionsManager.getKeys(this.questionKeys);
+        if (this.shuffleQuestionsEnable) {
+            Shuffle(this.questionKeys);
+        }
+
+        this.nextIndex = -1;
+        this.nextKey = undefined;
+        return this;
+    }
+
+    setNextKey(
+        key?: string
+    ): this {
+
+        if (key === undefined) {
+            this.nextIndex++;
+            this.nextKey = this.questionKeys[this.nextIndex];
+        } else if (this.questionsManager.has(key)) {
+            this.nextKey = key;
+            this.nextIndex = this.questionKeys.indexOf(key);
+        } else {
+            // Error
+        }
+        return this;
+    }
+
+    setPrevKey(): this {
+
+        this.nextIndex--;
+        this.nextKey = this.questionKeys[this.nextIndex];
+        return this;
+    }
+
+    getQuestion(): QuestionType {
+
+        const question = this.questionsManager.get(this.nextKey);
+        if (question && this.shuffleOptionsEnable) {
+            const options = question.options;
+            if (options) {
+                Shuffle(options);
+            }
+        }
+        return question;
+    }
+
+    getNextQuestion(
+        key?: string
+    ): QuestionType {
+
+        return this.setNextKey(key).getQuestion();
+    }
+
+    getPrevQuestion(): QuestionType {
+
+        return this.setPrevKey().getQuestion();
+    }
+
+    getOption(
+        question: QuestionType | string,
+        optionKey?: string
+    ): OptionType {
+
+        if (optionKey === undefined) {
+            optionKey = question as string;
+            question = this.getQuestion();
+        }
+        return this.questionsManager.getOption(question, optionKey);
+    }
+
+    next(key?: string): this {
+
+        const question = this.getNextQuestion(key);
+        if (question) {
+            this.emit('quest', question, this, this.questionsManager);
+        }
+        return this;
+    }
+
+    prev(): this {
+
+        const question = this.getPrevQuestion();
+        if (question) {
+            this.emit('quest', question, this, this.questionsManager);
+        }
+        return this;
+    }
+
+    get isLastQuestion(): boolean {
+
+        return this.nextIndex === (this.questionKeys.length - 1);
+    }
+}

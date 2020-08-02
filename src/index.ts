@@ -1,4 +1,5 @@
 import { AwayTime } from './time/awaytime';
+import { BBCodeText, TagText } from './gameobjects/text';
 import * as Board from './board'
 import { Canvas } from './gameobjects/canvas';
 import * as CanvasTexture from './texture/canvastexture';
@@ -9,8 +10,8 @@ import { FSM, CreateFSM } from './logic/fsm';
 import { Gashapon } from './math/gashapon';
 import { LZString } from './string/lzstring';
 import { MaskedImage } from './gameobjects/maskedimage';
+import * as Quest from './logic/quest';
 import { RunCommands } from './logic/runcommands';
-import { BBCodeText, TagText } from './gameobjects/text';
 import { TwoDTable } from './data/twodtable';
 import { XOR } from './string/xor';
 
@@ -28,6 +29,7 @@ export {
     Gashapon,
     LZString,
     MaskedImage,
+    Quest,
     RunCommands,
     TagText,
     TwoDTable,

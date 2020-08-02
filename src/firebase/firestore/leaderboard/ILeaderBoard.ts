@@ -65,7 +65,7 @@ export interface IRecord {
     scoreY?: number;
 
     // Other properties
-    [name: string]: unknown;
+    [name: string]: any;
 };
 
 export type UserInfoType = {
