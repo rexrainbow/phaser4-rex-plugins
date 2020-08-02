@@ -18,10 +18,11 @@ export interface IQuest {
 
     setShuffleQuestionsEnable(enabled?: boolean): this;
     setShuffleOptionsEnable(enabled?: boolean): this
+    init(): this;
 
-    start(): this;
     next(key?: string): this;
     prev(): this;
+    restart(key?: string): this;
 
     getQuestion(): QuestionType;
     getNextQuestion(key?: string): QuestionType;

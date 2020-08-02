@@ -4,10 +4,11 @@ import {
     IConfig as IQuestionManagerConfig,
     QuestionType, OptionType
 } from '../questions/IQuestionManager';
-import {QuestionManager} from '../questions/QuestionManager';
+import { QuestionManager } from '../questions/QuestionManager';
 import { BaseEventEmitter } from '../../../utils/eventemitter/BaseEventEmitter';
-import {IsPlainObject} from '../../../utils/object/IsPlainObject';
+import { IsPlainObject } from '../../../utils/object/IsPlainObject';
 import { Shuffle } from '../../../utils/array/Shuffle';
+import { QuestEvent } from './events'
 
 export class Quest extends BaseEventEmitter implements IQuest {
     questionsManager: IQuestionManager;
@@ -37,6 +38,7 @@ export class Quest extends BaseEventEmitter implements IQuest {
         this.questionsManager = questionsManager as IQuestionManager;
         this.setShuffleQuestionsEnable(shuffleQuestions);
         this.setShuffleOptionsEnable(shuffleOptions);
+        this.init();
     }
 
     setShuffleQuestionsEnable(
@@ -55,7 +57,7 @@ export class Quest extends BaseEventEmitter implements IQuest {
         return this;
     }
 
-    start(): this {
+    init(): this {
         // Reload keys
         this.questionKeys.length = 0;
         this.questionsManager.getKeys(this.questionKeys);
@@ -131,7 +133,7 @@ export class Quest extends BaseEventEmitter implements IQuest {
 
         const question = this.getNextQuestion(key);
         if (question) {
-            this.emit('quest', question, this, this.questionsManager);
+            this.emit(QuestEvent, question, this, this.questionsManager);
         }
         return this;
     }
@@ -140,8 +142,15 @@ export class Quest extends BaseEventEmitter implements IQuest {
 
         const question = this.getPrevQuestion();
         if (question) {
-            this.emit('quest', question, this, this.questionsManager);
+            this.emit(QuestEvent, question, this, this.questionsManager);
         }
+        return this;
+    }
+
+    restart(key?: string): this {
+
+        this.init();
+        this.next(key);
         return this;
     }
 

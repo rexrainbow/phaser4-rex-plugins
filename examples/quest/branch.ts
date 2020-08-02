@@ -98,7 +98,6 @@ class Demo extends Scene {
                 // TODO: Register keydown event (Once) during this QuestEvent
 
             })
-            .start()
             .next();
     }
 }
