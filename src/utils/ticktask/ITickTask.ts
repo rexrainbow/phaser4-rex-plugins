@@ -16,6 +16,8 @@ export interface IConfig extends IEventEmitterConfig {
 }
 
 export interface ITickTask {
+    tickingMode: TickingMode;
+
     start(): this;
     pause(): this;
     resume(): this;

@@ -3,6 +3,7 @@ import { BBCodeText, TagText } from './gameobjects/text';
 import * as Board from './board'
 import { Canvas } from './gameobjects/canvas';
 import * as CanvasTexture from './texture/canvastexture';
+import { Clock } from './time/clock';
 import { CSVToArray } from './data/csvtoarray';
 import { DrawCanvasTexture } from './texture/canvastexture';
 import * as Firebase from './firebase';
@@ -22,6 +23,7 @@ export {
     Board,
     Canvas,
     CanvasTexture,
+    Clock,
     CreateFSM,
     CSVToArray,
     DrawCanvasTexture,

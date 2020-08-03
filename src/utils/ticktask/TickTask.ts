@@ -8,10 +8,13 @@ export abstract class TickTask extends BaseEventEmitter {
     tickingState: boolean = false;
     tickingMode: TickingMode;
 
-    constructor(parent: any, {
-        eventEmitter,
-        tickingMode = TickingMode.lazy
-    }: IConfig = {}) {
+    constructor(
+        parent: any,
+        {
+            eventEmitter,
+            tickingMode = TickingMode.lazy
+        }: IConfig = {}
+    ) {
 
         super();
 
