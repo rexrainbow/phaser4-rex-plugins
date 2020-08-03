@@ -1,4 +1,0 @@
-digraph {
-  a -> b -> C;
-  a -> d -> c;
-}
