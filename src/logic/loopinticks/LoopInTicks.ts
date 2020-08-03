@@ -1,15 +1,16 @@
-import { IWorld } from '@phaserjs/phaser/world/IWorld';
+import { IScene } from '@phaserjs/phaser/scenes/IScene';
 import { Once, On, Off } from '@phaserjs/phaser/events';
 
 import { TickTask } from '../../utils/ticktask/TickTask';
 import { IConfig, TickCallbackType } from './ILoopInTicks';
-import { LoopIndexGenerator } from '../loopindexgenerator/LoopIndexGenerator.js';
+import { LoopIndexGenerator } from '../loopindexgenerator/LoopIndexGenerator';
 import { CurrentIndexesType, AddLoopConfig } from '../loopindexgenerator/ILoopIndexGenerator';
 import { TickStartEvent, TickEndEvent } from './events';
 
-class LoopInTicks extends TickTask {
-    world: IWorld;
-    deltaPeriod: number = 1000 / 60; // TODO
+const DeltaPeriod = 1000 / 60;
+
+export class LoopInTicks extends TickTask {
+    scene: IScene;
     deltaPercentage: number = 1;
     loopIndexGenerator = new LoopIndexGenerator();
     currentIndexes: CurrentIndexesType = {};
@@ -17,17 +18,17 @@ class LoopInTicks extends TickTask {
     scope: unknown;
 
     constructor(
-        world: IWorld,
+        scene: IScene,
         {
             callback,
             scope,
             deltaPercentage = 1
-        }: IConfig
+        }: IConfig = {}
     ) {
 
-        super(world, arguments[1]);
+        super(scene, arguments[1]);
 
-        this.world = world;
+        this.scene = scene;
         this.setCallback(callback, scope);
         this.setDeltaPercentage(deltaPercentage);
         this.boot();
@@ -35,12 +36,12 @@ class LoopInTicks extends TickTask {
 
     boot() {
         super.boot();
-        Once(this.world, 'shutdown', this.destroy, this); // TODO: Check world events
+        Once(this.scene, 'shutdown', this.destroy, this);
     }
 
     shutdown() {
         super.shutdown();
-        this.world = undefined;
+        this.scene = undefined;
     }
 
     destroy() {
@@ -49,19 +50,19 @@ class LoopInTicks extends TickTask {
 
     startTicking() {
         super.startTicking();
-        On(this.world, 'update', this.preupdate, this);  // TODO: Check world events
+        On(this.scene, 'update', this.preupdate, this);
     }
 
     stopTicking() {
         super.stopTicking();
-        if (this.world) { // World might be destoryed
-            Off(this.world, 'update', this.preupdate, this);  // TODO: Check world events
+        if (this.scene) { // Scene might be destoryed
+            Off(this.scene, 'update', this.preupdate, this);
         }
     }
 
     setCallback(
         callback: TickCallbackType,
-        scope: unknown
+        scope?: unknown
     ): this {
 
         this.callback = callback;
@@ -120,10 +121,10 @@ class LoopInTicks extends TickTask {
         }
 
         const startTime = this.curTime;
-        const totalTime = this.deltaPeriod * this.deltaPercentage;
+        const totalTime = DeltaPeriod * this.deltaPercentage;
         let isTimeOut: boolean;
 
-        this.emit(TickStartEvent, this);
+        this.emit(TickStartEvent);
 
         do {
             if (this.loopIndexGenerator.isEnd) {
@@ -140,8 +141,6 @@ class LoopInTicks extends TickTask {
             isTimeOut = (this.curTime - startTime) >= totalTime;
         } while (!isTimeOut)
 
-        this.emit(TickEndEvent, this);
+        this.emit(TickEndEvent);
     }
 }
-
-export default LoopInTicks;

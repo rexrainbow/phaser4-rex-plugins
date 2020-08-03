@@ -15,7 +15,10 @@ export interface IConfig extends IEventEmitterConfig {
     tickingMode?: TickingMode | TickingModeString;
 }
 
-// TODO
 export interface ITickTask {
-    
+    start(): this;
+    pause(): this;
+    resume(): this;
+    stop(): this;
+    complete();
 }

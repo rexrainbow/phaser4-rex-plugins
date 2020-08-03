@@ -1,6 +1,9 @@
 import { CurrentIndexesType } from '../loopindexgenerator/ILoopIndexGenerator';
 
-export type TickCallbackType = (currentIndexes: CurrentIndexesType, loopInTicks: ILoopInTicks) => void
+export type TickCallbackType = (
+    currentIndexes: CurrentIndexesType,
+    loopInTicks: ILoopInTicks
+) => void
 
 export interface IConfig {
     callback?: TickCallbackType,
@@ -8,7 +11,6 @@ export interface IConfig {
     deltaPercentage?: number
 }
 
-// TODO
 export interface ILoopInTicks {
-
+    progress: number;
 }

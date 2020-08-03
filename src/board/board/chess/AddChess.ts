@@ -36,9 +36,9 @@ export function AddChess(
     }
 
     let occupiedChess = TileXYZToChess(board, tileX, tileY, tileZ);
-    if (occupiedChess) {
-        // board.emit('kickout', occupiedChess, chess, curTileXYZ);
+    if (occupiedChess) {        
         RemoveChess(board, null, tileX, tileY, tileZ); // Clear up (tileX, tileY, tileZ)
+        console.warn(`Chess at (${tileX},${tileY},${tileZ}) has been removed because of overlapped`);
     }
 
     board.boardData.addChess(chess, tileX, tileY, tileZ);

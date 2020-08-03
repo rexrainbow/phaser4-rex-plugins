@@ -8,6 +8,7 @@ import { DrawCanvasTexture } from './texture/canvastexture';
 import * as Firebase from './firebase';
 import { FSM, CreateFSM } from './logic/fsm';
 import { Gashapon } from './math/gashapon';
+import { LoopInTicks } from './logic/loopinticks';
 import { LZString } from './string/lzstring';
 import { MaskedImage } from './gameobjects/maskedimage';
 import * as Quest from './logic/quest';
@@ -27,6 +28,7 @@ export {
     Firebase,
     FSM,
     Gashapon,
+    LoopInTicks,
     LZString,
     MaskedImage,
     Quest,
