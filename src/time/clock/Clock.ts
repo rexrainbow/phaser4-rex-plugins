@@ -5,7 +5,6 @@ import { TickTask } from '../../utils/ticktask/TickTask';
 import { IConfig, IState } from './IClock';
 import { TickingMode } from '../../utils/ticktask/ITickTask';
 import { GetSceneObject } from '../../utils/system/GetSceneObject';
-import { GetEventEmitter } from '../../utils/system/GetEventEmitter';
 
 export class Clock extends TickTask {
     scene: IScene;
@@ -61,10 +60,7 @@ export class Clock extends TickTask {
     boot() {
         super.boot();
 
-        const ee = GetEventEmitter(this.parent);
-        if (ee) {
-            On(ee, 'destroy', this.destroy, this);
-        }
+        On(this.parent, 'destroy', this.destroy, this);
     }
 
     shutdown() {

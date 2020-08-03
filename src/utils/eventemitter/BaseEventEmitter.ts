@@ -2,22 +2,31 @@ import { IBaseEventEmitter } from './IBaseEventEmitter';
 import { IEventEmitter as IEE } from './events/IEventEmitter';
 import { IEventInstance } from './events/IEventInstance';
 import {
-    EventEmitter as EE,
     On, Once, Off, Emit, RemoveAllListeners, ClearEvent,
     GetListenerCount, GetEventNames, GetListeners
 } from './events';
 
 export class BaseEventEmitter implements IBaseEventEmitter {
-    eventEmitter: IEE;
+    events: Map<string, Set<IEventInstance>> = null;
     privateEE: boolean;
     lastEventInstance: IEventInstance;
 
     setEventEmitter(
-        eventEmitter?: IEE
+        eventEmitter?: undefined | IEE | false | null
     ) {
 
+        this.destroyEventEmitter();
+
         this.privateEE = (eventEmitter === undefined);
-        this.eventEmitter = (this.privateEE) ? (new EE()) : eventEmitter;
+
+        if (this.privateEE) {
+            this.events = new Map();
+        } else if (eventEmitter) {
+            this.events = eventEmitter.events;
+        } else {
+            this.events = null;
+        }
+
         this.lastEventInstance = null;
 
         return this;
@@ -33,9 +42,9 @@ export class BaseEventEmitter implements IBaseEventEmitter {
     destroyEventEmitter(): this {
 
         this.lastEventInstance = null;
-        if (this.eventEmitter && this.privateEE) {
-            RemoveAllListeners(this.eventEmitter);
-            this.eventEmitter = null;
+        if (this.events && this.privateEE) {
+            RemoveAllListeners(this);
+            this.events = null;
         }
 
         return this;
@@ -49,7 +58,7 @@ export class BaseEventEmitter implements IBaseEventEmitter {
     ): this {
 
         this.lastEventInstance = null;
-        if (this.eventEmitter) { this.lastEventInstance = On(this.eventEmitter, event, callback, context, once); }
+        if (this.events) { this.lastEventInstance = On(this, event, callback, context, once); }
 
         return this;
     }
@@ -61,7 +70,7 @@ export class BaseEventEmitter implements IBaseEventEmitter {
     ): this {
 
         this.lastEventInstance = null;
-        if (this.eventEmitter) { this.lastEventInstance = Once(this.eventEmitter, event, callback, context); }
+        if (this.events) { this.lastEventInstance = Once(this, event, callback, context); }
 
         return this;
     }
@@ -74,7 +83,7 @@ export class BaseEventEmitter implements IBaseEventEmitter {
     ): this {
 
         this.lastEventInstance = null;
-        if (this.eventEmitter) { Off(this.eventEmitter, event, callback, context, once); }
+        if (this.events) { Off(this, event, callback, context, once); }
 
         return this;
     }
@@ -85,7 +94,7 @@ export class BaseEventEmitter implements IBaseEventEmitter {
     ): this {
 
         this.lastEventInstance = null;
-        if (this.eventEmitter) { Emit(this.eventEmitter, event, ...args); }
+        if (this.events) { Emit(this, event, ...args); }
 
         return this;
     }
@@ -95,7 +104,7 @@ export class BaseEventEmitter implements IBaseEventEmitter {
     ): this {
 
         this.lastEventInstance = null;
-        if (this.eventEmitter) { RemoveAllListeners(this.eventEmitter, event); }
+        if (this.events) { RemoveAllListeners(this, event); }
 
         return this;
     }
@@ -105,8 +114,8 @@ export class BaseEventEmitter implements IBaseEventEmitter {
     ): this {
 
         this.lastEventInstance = null;
-        if (this.eventEmitter) { ClearEvent(this.eventEmitter, event); }
-        
+        if (this.events) { ClearEvent(this, event); }
+
         return this;
     }
 
@@ -115,14 +124,14 @@ export class BaseEventEmitter implements IBaseEventEmitter {
     ): number {
 
         this.lastEventInstance = null;
-        return (this.eventEmitter) ? GetListenerCount(this.eventEmitter, event) : 0;
+        return (this.events) ? GetListenerCount(this, event) : 0;
     }
 
     getEventNames(
     ): string[] {
 
         this.lastEventInstance = null;
-        return (this.eventEmitter) ? GetEventNames(this.eventEmitter) : [];
+        return (this.events) ? GetEventNames(this) : [];
     }
 
     getListeners(
@@ -130,7 +139,7 @@ export class BaseEventEmitter implements IBaseEventEmitter {
     ): Function[] {
 
         this.lastEventInstance = null;
-        return (this.eventEmitter) ? GetListeners(this.eventEmitter, event) : [];
+        return (this.events) ? GetListeners(this, event) : [];
     }
 
 }

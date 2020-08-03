@@ -2,11 +2,11 @@ import { IEventEmitter as IEE } from './events/IEventEmitter';
 import { IEventInstance } from './events/IEventInstance';
 
 export interface IConfig {
-    eventEmitter?: IEE;
+    eventEmitter?: undefined | IEE | false | null;
 }
 
 export interface IBaseEventEmitter {
-    eventEmitter: IEE;
+    events: Map<string, Set<IEventInstance>>;
     lastEventInstance: IEventInstance;
 
     on(

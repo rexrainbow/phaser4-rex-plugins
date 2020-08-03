@@ -47,9 +47,17 @@ class Demo extends Scene {
         const KeyMap = ['Z', 'X', 'C', 'V'];
         const keyDownEventInstance = On(keyboard, 'keydown', function (event: KeyboardEvent) {
 
-            const optionIdx = KeyMap.indexOf(event.key.toUpperCase());
+            const keyName = event.key.toUpperCase();
             const question = quest.getQuestion();
-            const selectedOptions = question.options[optionIdx];
+            const options = question.options;
+            let selectedOptions;
+            for (let i = 0, cnt = options.length; i < cnt; i++) {
+                const option = options[i];
+                if (option.name === keyName) {
+                    selectedOptions = option;
+                    break;
+                }
+            }
 
             if (selectedOptions) {
                 answers.set(question.name, selectedOptions.name);
@@ -80,7 +88,6 @@ class Demo extends Scene {
 
                 // TODO: Register keydown event (Once) during this QuestEvent
             })
-            .start()
             .next();
     }
 }
