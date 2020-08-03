@@ -25,7 +25,7 @@ export class Clock extends TickTask {
         super(parent, arguments[1]);
 
         this.parent = parent;
-        this.scene = GetSceneObject(parent);
+        this.scene = GetSceneObject(parent); // TODO: Clock in game object which not put on World
 
         this.isRunning = isRunning;
         this.timeScale = timeScale;
@@ -61,7 +61,10 @@ export class Clock extends TickTask {
     boot() {
         super.boot();
 
-        On(GetEventEmitter(this.parent), 'destroy', this.destroy, this);
+        const ee = GetEventEmitter(this.parent);
+        if (ee) {
+            On(ee, 'destroy', this.destroy, this);
+        }
     }
 
     shutdown() {

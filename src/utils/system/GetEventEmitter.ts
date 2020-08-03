@@ -1,10 +1,6 @@
 export function GetEventEmitter(object: any): any {
 
-    if (object?.eventEmitter) { // BaseEventEmitter: '../eventemitter/BaseEmitter.ts'
-        object = object.eventEmitter;
-    }
-
-    if (object?.events) {
-        return object;
-    }
+    // BaseEventEmitter: '../eventemitter/BaseEmitter.ts'
+    const eventEmitter = object.eventEmitter ?? object;
+    return (eventEmitter.events) ? eventEmitter : null;
 }

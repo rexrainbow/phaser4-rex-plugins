@@ -1,6 +1,6 @@
 import { BaseEventEmitter } from '../eventemitter/BaseEventEmitter';
 import { IConfig, TickingMode, TickingModeString } from './ITickTask';
-import { CompleteEvent } from './events';
+import { CompleteEvent } from './events'
 
 export abstract class TickTask extends BaseEventEmitter {
     parent: any;
@@ -21,6 +21,7 @@ export abstract class TickTask extends BaseEventEmitter {
         this.parent = parent;
         // Event emitter
         this.setEventEmitter(eventEmitter);
+
         this.setTickingMode(tickingMode);
     }
 
@@ -101,9 +102,9 @@ export abstract class TickTask extends BaseEventEmitter {
         return this;
     }
 
-    complete() {
+    complete(eventName: string = CompleteEvent) {
 
         this.isRunning = false;
-        this.emit(CompleteEvent, this.parent, this);
+        this.emit(eventName, this.parent, this);
     }
 }

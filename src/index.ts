@@ -9,6 +9,7 @@ import { DrawCanvasTexture } from './texture/canvastexture';
 import * as Firebase from './firebase';
 import { FSM, CreateFSM } from './logic/fsm';
 import { Gashapon } from './math/gashapon';
+import { LifeTime } from './time/lifetime';
 import { LoopInTicks } from './logic/loopinticks';
 import { LZString } from './string/lzstring';
 import { MaskedImage } from './gameobjects/maskedimage';
@@ -30,6 +31,7 @@ export {
     Firebase,
     FSM,
     Gashapon,
+    LifeTime,
     LoopInTicks,
     LZString,
     MaskedImage,
