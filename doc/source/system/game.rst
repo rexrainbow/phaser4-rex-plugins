@@ -16,9 +16,9 @@ Hierarchy
 
         * World instances receive 'update' and 'render' events fired from scene
 
-            * World contains child game objects
+            * World contains children game objects
 
-                * Game object can have child game objects
+                * Game object can have children game objects
 
 
 Update loop

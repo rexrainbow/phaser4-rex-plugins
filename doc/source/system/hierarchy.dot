@@ -2,7 +2,6 @@ digraph Game {
     graph [rankdir=TD,splines=line]
     node[shape=record]
     
-    App
     Game[label="{Game|Scene manager}"]
 
     Scene0[label="Scene"]
@@ -12,19 +11,23 @@ digraph Game {
     World0[label="World"]
     World1[label="World"]
         
-    GO00[label="GO"]
-    GO01[label="GO"]
-    GO02[label="GO"]
+    subgraph cluster_go {
+        color="gray"
         
-    GO10[label="GO"]
-    GO11[label="GO"]
-    GO12[label="GO"]
+        GO00[label="GO",shape="ellipse"]
+        GO01[label="GO",shape="ellipse"]
+        GO02[label="GO",shape="ellipse"]
+            
+        GO10[label="GO",shape="ellipse"]
+        GO11[label="GO",shape="ellipse"]
+        GO12[label="GO",shape="ellipse"]
+        
+        GO000[label="GO",shape="ellipse"]
+        GO001[label="GO",shape="ellipse"]
+    }
     
-    GO000[label="GO"]
-    GO001[label="GO"] 
-    
-    App -> Game -> { Scene0, Scene1, Scene2 }
-    Scene0 -> { World0, World1 }
+    Game -> { Scene0, Scene1, Scene2 }
+    Scene0 -> { World0, World1 } [style="dashed"]
     World0 -> { GO00, GO01, GO02 }
     World1 -> { GO10, GO11, GO12 }
     

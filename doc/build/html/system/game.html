@@ -159,12 +159,11 @@
 <div class="section" id="hierarchy">
 <h2>Hierarchy<a class="headerlink" href="#hierarchy" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="id1">
-<div class="graphviz"><object data="../images/graphviz-cce4dff09674d9c7249575a4ed6e75ef69692016.svg" type="image/svg+xml" class="graphviz">
+<div class="graphviz"><object data="../images/graphviz-c91b81929fce18828e882bdd853e40b05b7dfffd.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph Game {
     graph [rankdir=TD,splines=line]
     node[shape=record]
     
-    App
     Game[label=&quot;{Game|Scene manager}&quot;]
 
     Scene0[label=&quot;Scene&quot;]
@@ -174,19 +173,23 @@
     World0[label=&quot;World&quot;]
     World1[label=&quot;World&quot;]
         
-    GO00[label=&quot;GO&quot;]
-    GO01[label=&quot;GO&quot;]
-    GO02[label=&quot;GO&quot;]
+    subgraph cluster_go {
+        color=&quot;gray&quot;
         
-    GO10[label=&quot;GO&quot;]
-    GO11[label=&quot;GO&quot;]
-    GO12[label=&quot;GO&quot;]
+        GO00[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        GO01[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        GO02[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+            
+        GO10[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        GO11[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        GO12[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        
+        GO000[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        GO001[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+    }
     
-    GO000[label=&quot;GO&quot;]
-    GO001[label=&quot;GO&quot;] 
-    
-    App -&gt; Game -&gt; { Scene0, Scene1, Scene2 }
-    Scene0 -&gt; { World0, World1 }
+    Game -&gt; { Scene0, Scene1, Scene2 }
+    Scene0 -&gt; { World0, World1 } [style=&quot;dashed&quot;]
     World0 -&gt; { GO00, GO01, GO02 }
     World1 -&gt; { GO10, GO11, GO12 }
     
@@ -204,10 +207,10 @@
 <li><p>World instances receive ‘update’ and ‘render’ events fired from scene</p>
 <blockquote>
 <div><ul>
-<li><p>World contains child game objects</p>
+<li><p>World contains children game objects</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Game object can have child game objects</p></li>
+<li><p>Game object can have children game objects</p></li>
 </ul>
 </div></blockquote>
 </li>
