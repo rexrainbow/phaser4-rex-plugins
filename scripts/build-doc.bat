@@ -1,3 +1,3 @@
 cd ..
 cd doc
-make html
+make clean && make html && python rename.py
