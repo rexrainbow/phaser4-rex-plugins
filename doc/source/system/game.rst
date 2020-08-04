@@ -6,6 +6,10 @@ Game
 Hierarchy
 =============================================================================
 
+.. graphviz:: hierarchy.dot
+    :caption: From Game to Game object
+
+
 * Application has a Game instance
 
     * Game has a scene manager
@@ -17,10 +21,6 @@ Hierarchy
                 * World contains child game objects
 
                     * Game object can have child game objects
-
-
-.. graphviz:: hierarchy.dot
-    :caption: From Game to Game object
 
 
 Update loop

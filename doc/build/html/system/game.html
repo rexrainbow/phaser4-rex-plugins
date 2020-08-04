@@ -153,39 +153,6 @@
 <h1>Game<a class="headerlink" href="#game" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="hierarchy">
 <h2>Hierarchy<a class="headerlink" href="#hierarchy" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p>Application has a Game instance</p>
-<blockquote>
-<div><ul>
-<li><p>Game has a scene manager</p>
-<blockquote>
-<div><ul>
-<li><p>Scene manager contains many scenes</p>
-<blockquote>
-<div><ul>
-<li><p>World instances receive ‘update’ and ‘render’ events fired from scene</p>
-<blockquote>
-<div><ul>
-<li><p>World contains child game objects</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Game object can have child game objects</p></li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
 <div class="figure align-default" id="id1">
 <div class="graphviz"><object data="../_images/graphviz-a8ba0e7619c301dcaf529c3c5e26ebc2d4527bce.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph Game {
@@ -223,6 +190,39 @@
 }</p></object></div>
 <p class="caption"><span class="caption-text">From Game to Game object</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
+<ul>
+<li><p>Application has a Game instance</p>
+<blockquote>
+<div><ul>
+<li><p>Game has a scene manager</p>
+<blockquote>
+<div><ul>
+<li><p>Scene manager contains many scenes</p>
+<blockquote>
+<div><ul>
+<li><p>World instances receive ‘update’ and ‘render’ events fired from scene</p>
+<blockquote>
+<div><ul>
+<li><p>World contains child game objects</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Game object can have child game objects</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
 </div>
 <div class="section" id="update-loop">
 <h2>Update loop<a class="headerlink" href="#update-loop" title="Permalink to this headline">¶</a></h2>
