@@ -34,7 +34,8 @@ release = '0.0.1'
 extensions = [
     'sphinx_rtd_theme',
     'sphinx_copybutton',    
-    'sphinx.ext.graphviz'
+    'sphinx.ext.graphviz',
+    'sphinx.ext.githubpages'
 ]
 
 graphviz_dot = 'dot'
@@ -71,7 +72,6 @@ html_theme_options = {
 html_css_files = [
     'custom.css',
 ]
-
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
