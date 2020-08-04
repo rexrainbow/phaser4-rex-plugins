@@ -43,6 +43,13 @@ graphviz_dot_args = ['-Gfontname=Georgia',
                      '-Efontname=Georgia']
 graphviz_output_format = 'svg'
 
+
+# TODO
+todo_include_todos = True
+
+html_show_sourcelink = False
+
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -51,18 +58,19 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
-
 html_theme_options = {
     'collapse_navigation': False,
     'titles_only': True
 }
+html_css_files = [
+    'custom.css',
+]
 
 
 # Add any paths that contain custom static files (such as style sheets) here,

@@ -5,4 +5,4 @@ Home
 .. toctree::
    :hidden:
 
-   game/update-loop.rst
+   system/game.rst

@@ -1,4 +1,28 @@
 =============================================================================
+Game
+=============================================================================
+
+    
+Hierarchy
+=============================================================================
+
+* Application has a Game instance
+
+    * Game has a scene manager
+
+        * Scene manager contains many scenes
+
+            * World instances receive 'update' and 'render' events fired from scene
+
+                * World contains child game objects
+
+                    * Game object can have child game objects
+
+
+.. graphviz:: hierarchy.dot
+    :caption: From Game to Game object
+
+
 Update loop
 =============================================================================
 

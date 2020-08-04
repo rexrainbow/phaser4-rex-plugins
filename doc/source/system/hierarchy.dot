@@ -1,0 +1,33 @@
+digraph Game {
+    graph [rankdir=TD,splines=line]
+    node[shape=record]
+    
+    App
+    Game
+    SceneManager[label="Scene manager"]
+
+    Scene0[label="Scene"]
+    Scene1[label="Scene"]
+    Scene2[label="Scene"]
+
+    World0[label="World"]
+    World1[label="World"]
+        
+    GO00[label="GO"]
+    GO01[label="GO"]
+    GO02[label="GO"]
+        
+    GO10[label="GO"]
+    GO11[label="GO"]
+    GO12[label="GO"]
+    
+    GO000[label="GO"]
+    GO001[label="GO"] 
+    
+    App -> Game -> SceneManager -> { Scene0, Scene1, Scene2 }
+    Scene0 -> { World0, World1 }
+    World0 -> { GO00, GO01, GO02 }
+    World1 -> { GO10, GO11, GO12 }
+    
+    GO00 -> { GO000, GO001 }
+}
