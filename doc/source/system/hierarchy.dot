@@ -3,8 +3,7 @@ digraph Game {
     node[shape=record]
     
     App
-    Game
-    SceneManager[label="Scene manager"]
+    Game[label="{Game|Scene manager}"]
 
     Scene0[label="Scene"]
     Scene1[label="Scene"]
@@ -24,7 +23,7 @@ digraph Game {
     GO000[label="GO"]
     GO001[label="GO"] 
     
-    App -> Game -> SceneManager -> { Scene0, Scene1, Scene2 }
+    App -> Game -> { Scene0, Scene1, Scene2 }
     Scene0 -> { World0, World1 }
     World0 -> { GO00, GO01, GO02 }
     World1 -> { GO10, GO11, GO12 }

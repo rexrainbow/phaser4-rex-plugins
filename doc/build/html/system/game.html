@@ -154,14 +154,13 @@
 <div class="section" id="hierarchy">
 <h2>Hierarchy<a class="headerlink" href="#hierarchy" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="id1">
-<div class="graphviz"><object data="../images/graphviz-a8ba0e7619c301dcaf529c3c5e26ebc2d4527bce.svg" type="image/svg+xml" class="graphviz">
+<div class="graphviz"><object data="../images/graphviz-cce4dff09674d9c7249575a4ed6e75ef69692016.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph Game {
     graph [rankdir=TD,splines=line]
     node[shape=record]
     
     App
-    Game
-    SceneManager[label=&quot;Scene manager&quot;]
+    Game[label=&quot;{Game|Scene manager}&quot;]
 
     Scene0[label=&quot;Scene&quot;]
     Scene1[label=&quot;Scene&quot;]
@@ -181,7 +180,7 @@
     GO000[label=&quot;GO&quot;]
     GO001[label=&quot;GO&quot;] 
     
-    App -&gt; Game -&gt; SceneManager -&gt; { Scene0, Scene1, Scene2 }
+    App -&gt; Game -&gt; { Scene0, Scene1, Scene2 }
     Scene0 -&gt; { World0, World1 }
     World0 -&gt; { GO00, GO01, GO02 }
     World1 -&gt; { GO10, GO11, GO12 }
