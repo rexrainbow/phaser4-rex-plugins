@@ -12,15 +12,13 @@ Hierarchy
 
 * Application has a Game instance
 
-    * Game has a scene manager
+    * Game has a scene manager, scene manager contains many scenes
 
-        * Scene manager contains many scenes
+        * World instances receive 'update' and 'render' events fired from scene
 
-            * World instances receive 'update' and 'render' events fired from scene
+            * World contains child game objects
 
-                * World contains child game objects
-
-                    * Game object can have child game objects
+                * Game object can have child game objects
 
 
 Update loop
