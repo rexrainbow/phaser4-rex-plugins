@@ -5,4 +5,4 @@ Home
 .. toctree::
    :hidden:
 
-   system/game.rst
+   system/index
