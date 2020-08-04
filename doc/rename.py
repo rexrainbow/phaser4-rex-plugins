@@ -1,5 +1,6 @@
 import os
 
+RootPath = 'build/html/'
 NamesMap = {
     '_images': 'images',
     '_sources': 'sources',
@@ -7,7 +8,7 @@ NamesMap = {
 }
 
 # Rename files
-for dname, dirs, files in os.walk('build/html'):
+for dname, dirs, files in os.walk(RootPath):
     for fname in files:
         if not os.path.splitext(fname)[1] in ['.html', '.js', '.css']:
             continue
@@ -24,4 +25,7 @@ for dname, dirs, files in os.walk('build/html'):
 
 # Rename folders
 for oldString, newString in NamesMap.items():
-    os.rename('build/html/' + oldString, 'build/html/' + newString)
+    os.rename(
+        RootPath + oldString,
+        RootPath + newString
+    )
