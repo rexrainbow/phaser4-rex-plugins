@@ -6,3 +6,4 @@ Home
    :hidden:
 
    system/index
+   input/index

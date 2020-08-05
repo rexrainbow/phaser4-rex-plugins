@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Keyboard &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../static/documentation_options.js"></script>
+        <script src="../static/jquery.js"></script>
+        <script src="../static/underscore.js"></script>
+        <script src="../static/doctools.js"></script>
+        <script src="../static/language_data.js"></script>
+        <script src="../static/clipboard.min.js"></script>
+        <script src="../static/copybutton.js"></script>
+        <script >var copybuttonSkipText = '>>> ';</script>
+    
+    <script type="text/javascript" src="../static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Input" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Phaser4-rex-notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../system/game.html">Game</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Input</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Keyboard</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Phaser4-rex-notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Input</a> &raquo;</li>
+        
+      <li>Keyboard</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="keyboard">
+<h1>Keyboard<a class="headerlink" href="#keyboard" title="Permalink to this headline">¶</a></h1>
+<p>Keyboard events.</p>
+<div class="section" id="import-modules">
+<h2>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Keyboard</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/input&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">On</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/events&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-keyboard-instance">
+<h2>Create keyboard instance<a class="headerlink" href="#create-keyboard-instance" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">keyboard</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">Keyboard</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="keyboard-events">
+<h2>Keyboard events<a class="headerlink" href="#keyboard-events" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>On any keydown</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>
+<span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>On any keyup</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>
+<span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>On a keydown</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keydown-&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>On a keyup</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keyup-&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="key-object-and-events">
+<h2>Key object and events<a class="headerlink" href="#key-object-and-events" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Create key object</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">keyA</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">Keys</span><span class="p">.</span><span class="nx">AKey</span><span class="p">();</span>
+<span class="nx">keyboard</span><span class="p">.</span><span class="nx">addKeys</span><span class="p">(</span><span class="nx">keyA</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Is keydown</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">isKeyADown</span> <span class="o">=</span> <span class="nx">keyA</span><span class="p">.</span><span class="nx">isDown</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Set keydown/keyup callback</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">keyA</span><span class="p">.</span><span class="nx">downCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">keyA</span><span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+<span class="nx">keyA</span><span class="p">.</span><span class="nx">upCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">keyA</span><span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>On keydown</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyA</span><span class="p">,</span> <span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>On keyup</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyA</span><span class="p">,</span> <span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Remove all key objects</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">clearKeys</span><span class="p">();</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Input" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Rex
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
