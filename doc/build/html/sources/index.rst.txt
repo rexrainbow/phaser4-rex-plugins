@@ -6,4 +6,5 @@ Home
    :hidden:
 
    system/index
+   events/index
    input/index

@@ -90,6 +90,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../system/game.html">Game</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../events/events.html">General event emitter</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Input</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Keyboard</a></li>
 </ul>
@@ -164,7 +168,7 @@
 <div class="section" id="import-modules">
 <h2>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Keyboard</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/input&#39;</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">On</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/events&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Events</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -179,7 +183,7 @@
 <ul>
 <li><p>On any keydown</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>
 <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
@@ -188,7 +192,7 @@
 </li>
 <li><p>On any keyup</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>
 <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
@@ -197,19 +201,25 @@
 </li>
 <li><p>On a keydown</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keydown-&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keydown-&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>On a keyup</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keyup-&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keyup-&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 </ul>
+</div>
+<div class="section" id="destroy-keyboard">
+<h2>Destroy keyboard<a class="headerlink" href="#destroy-keyboard" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="key-object-and-events">
 <h2>Key object and events<a class="headerlink" href="#key-object-and-events" title="Permalink to this headline">¶</a></h2>
@@ -239,14 +249,14 @@
 </li>
 <li><p>On keydown</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyA</span><span class="p">,</span> <span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyA</span><span class="p">,</span> <span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>On keyup</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">On</span><span class="p">(</span><span class="nx">keyA</span><span class="p">,</span> <span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyA</span><span class="p">,</span> <span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span>: <span class="kt">KeyboardEvent</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>

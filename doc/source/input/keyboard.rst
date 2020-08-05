@@ -11,7 +11,7 @@ Import modules
 .. code-block:: typescript
 
     import { Keyboard } from '@phaserjs/phaser/input';
-    import { On } from '@phaserjs/phaser/events';
+    import { Events } from '@phaserjs/phaser';
 
 
 Create keyboard instance
@@ -29,7 +29,7 @@ Keyboard events
 
     .. code-block:: typescript
     
-        On(keyboard, 'keydown', function (event: KeyboardEvent) { 
+        Events.On(keyboard, 'keydown', function (event: KeyboardEvent) { 
             const keyCode = event.key;
         }, context);
 
@@ -37,7 +37,7 @@ Keyboard events
 
     .. code-block:: typescript
     
-        On(keyboard, 'keyup', function (event: KeyboardEvent) { 
+        Events.On(keyboard, 'keyup', function (event: KeyboardEvent) { 
             const keyCode = event.key;
         }, context);
 
@@ -45,13 +45,21 @@ Keyboard events
 
     .. code-block:: typescript
     
-        On(keyboard, 'keydown-' + key, function (event: KeyboardEvent) { }, context);
+        Events.On(keyboard, 'keydown-' + key, function (event: KeyboardEvent) { }, context);
 
 * On a keyup
 
     .. code-block:: typescript
     
-        On(keyboard, 'keyup-' + key, function (event: KeyboardEvent) { }, context);
+        Events.On(keyboard, 'keyup-' + key, function (event: KeyboardEvent) { }, context);
+
+
+Destroy keyboard
+=============================================================================
+
+.. code-block:: typescript
+
+    keyboard.destroy();
 
 
 Key object and events
@@ -81,13 +89,13 @@ Key object and events
 
     .. code-block:: typescript
 
-        On(keyA, 'keydown', function (event: KeyboardEvent) { }, context);
+        Events.On(keyA, 'keydown', function (event: KeyboardEvent) { }, context);
 
 * On keyup
 
     .. code-block:: typescript
 
-        On(keyA, 'keyup', function (event: KeyboardEvent) { }, context);
+        Events.On(keyA, 'keyup', function (event: KeyboardEvent) { }, context);
 
 * Remove all key objects
 

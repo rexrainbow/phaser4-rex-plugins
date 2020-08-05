@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Game &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
+  <title>Events &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
   
 
   
@@ -41,8 +41,8 @@
   <link rel="stylesheet" href="../static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Events" href="../events/index.html" />
-    <link rel="prev" title="System" href="index.html" /> 
+    <link rel="next" title="General event emitter" href="events.html" />
+    <link rel="prev" title="Game" href="../system/game.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,12 +87,12 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">System</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Game</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../system/game.html">Game</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../events/events.html">General event emitter</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="events.html">General event emitter</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../input/index.html">Input</a><ul>
@@ -144,9 +144,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">System</a> &raquo;</li>
-        
-      <li>Game</li>
+      <li>Events</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -163,117 +161,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="game">
-<h1>Game<a class="headerlink" href="#game" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="hierarchy">
-<h2>Hierarchy<a class="headerlink" href="#hierarchy" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="id1">
-<div class="graphviz"><object data="../images/graphviz-c91b81929fce18828e882bdd853e40b05b7dfffd.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph Game {
-    graph [rankdir=TD,splines=line]
-    node[shape=record]
-    
-    Game[label=&quot;{Game|Scene manager}&quot;]
-
-    Scene0[label=&quot;Scene&quot;]
-    Scene1[label=&quot;Scene&quot;]
-    Scene2[label=&quot;Scene&quot;]
-
-    World0[label=&quot;World&quot;]
-    World1[label=&quot;World&quot;]
-        
-    subgraph cluster_go {
-        color=&quot;gray&quot;
-        
-        GO00[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
-        GO01[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
-        GO02[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
-            
-        GO10[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
-        GO11[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
-        GO12[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
-        
-        GO000[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
-        GO001[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
-    }
-    
-    Game -&gt; { Scene0, Scene1, Scene2 }
-    Scene0 -&gt; { World0, World1 } [style=&quot;dashed&quot;]
-    World0 -&gt; { GO00, GO01, GO02 }
-    World1 -&gt; { GO10, GO11, GO12 }
-    
-    GO00 -&gt; { GO000, GO001 }
-}</p></object></div>
-<p class="caption"><span class="caption-text">From Game to Game object</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+  <div class="section" id="events">
+<h1>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
 <ul>
-<li><p>Application has a Game instance</p>
-<blockquote>
-<div><ul>
-<li><p>Game has a scene manager, scene manager contains many scenes</p>
-<blockquote>
-<div><ul>
-<li><p>World instances receive ‘update’ and ‘render’ events fired from scene</p>
-<blockquote>
-<div><ul>
-<li><p>World contains children game objects</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Game object can have children game objects</p></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">General event emitter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="events.html#import-methods">Import methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html#register-event">Register event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html#remove-event">Remove event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html#remove-all-events">Remove all events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html#emit-event">Emit event</a></li>
 </ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div>
-<div class="section" id="update-loop">
-<h2>Update loop<a class="headerlink" href="#update-loop" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p>Game.step()</p>
-<blockquote>
-<div><ul>
-<li><p>SceneManager.update(delta)</p>
-<blockquote>
-<div><ul>
-<li><p>For each scene -&gt; Emit scene’s <em>‘update’</em> event -&gt; World.update(delta)</p>
-<blockquote>
-<div><ul>
-<li><p>World.update(delta) :</p>
-<blockquote>
-<div><ul>
-<li><p>Emit world’s <em>‘update’</em> event</p></li>
-<li><p>For each child game object -&gt; child.update(delta)</p>
-<blockquote>
-<div><ul>
-<li><p>Child.update(delta)</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>For each child game object -&gt; child.update(delta)</p></li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
 </li>
 </ul>
 </div>
@@ -287,10 +185,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../events/index.html" class="btn btn-neutral float-right" title="Events" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="events.html" class="btn btn-neutral float-right" title="General event emitter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../system/game.html" class="btn btn-neutral float-left" title="Game" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
