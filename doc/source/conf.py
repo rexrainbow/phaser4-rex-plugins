@@ -66,7 +66,8 @@ exclude_patterns = []
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'collapse_navigation': False,
-    'titles_only': True
+    'titles_only': True,
+    'prev_next_buttons_location': None
 }
 html_css_files = [
     'custom.css',
