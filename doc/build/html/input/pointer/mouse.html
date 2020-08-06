@@ -245,6 +245,25 @@
 <div class="section" id="hit-test">
 <h2>Hit test<a class="headerlink" href="#hit-test" title="Permalink to this headline">¶</a></h2>
 <ul>
+<li><p>Get hit children</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">hitChildren</span> <span class="o">=</span> <span class="nx">mouse</span><span class="p">.</span><span class="nx">hitTestChildren</span><span class="p">(</span><span class="nx">parentGameObject</span><span class="p">);</span>
+<span class="c1">// let hitChildren = mouse.hitTestChildren(parentGameObject, topOnly = true);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">parentGameObject</dt>
+<dd class="field-odd"><p>A world, or a game object.</p>
+</dd>
+<dt class="field-even">topOnly</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">true</span></code> : Return top most hit game object, default value.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">false</span></code> : Return all hit game objects</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</li>
 <li><p>Hit test</p>
 <blockquote>
 <div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">isHit</span> <span class="o">=</span> <span class="nx">mouse</span><span class="p">.</span><span class="nx">hitTest</span><span class="p">(</span><span class="nx">gameObject0</span><span class="p">,</span> <span class="nx">gameObject1</span><span class="p">,</span> <span class="p">...</span> <span class="p">);</span>
@@ -264,25 +283,6 @@
 <dl class="field-list simple">
 <dt class="field-odd">hitPoint</dt>
 <dd class="field-odd"><p>Local position <code class="code docutils literal notranslate"><span class="pre">{x,</span> <span class="pre">y}</span></code> of hit point.</p>
-</dd>
-</dl>
-</div></blockquote>
-</li>
-<li><p>Get hit children</p>
-<blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">hitChildren</span> <span class="o">=</span> <span class="nx">mouse</span><span class="p">.</span><span class="nx">hitTestChildren</span><span class="p">(</span><span class="nx">parentGameObject</span><span class="p">);</span>
-<span class="c1">// let hitChildren = mouse.hitTestChildren(parentGameObject, topOnly = true);</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">parentGameObject</dt>
-<dd class="field-odd"><p>A world, or a game object.</p>
-</dd>
-<dt class="field-even">topOnly</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><code class="code docutils literal notranslate"><span class="pre">true</span></code> : Return top most hit game object, default value.</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">false</span></code> : Return all hit game objects</p></li>
-</ul>
 </dd>
 </dl>
 </div></blockquote>

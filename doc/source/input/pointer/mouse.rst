@@ -77,6 +77,19 @@ Mouse events
 Hit test
 =============================================================================
 
+* Get hit children
+
+    .. code-block:: typescript
+
+        let hitChildren = mouse.hitTestChildren(parentGameObject);
+        // let hitChildren = mouse.hitTestChildren(parentGameObject, topOnly = true);
+
+    :parentGameObject: A world, or a game object.
+    :topOnly:
+
+        * :code:`true` : Return top most hit game object, default value.
+        * :code:`false` : Return all hit game objects
+
 * Hit test
 
     .. code-block:: typescript
@@ -92,16 +105,3 @@ Hit test
         let hitPoint = mouse.hitPoint;
 
     :hitPoint: Local position :code:`{x, y}` of hit point.
-
-* Get hit children
-
-    .. code-block:: typescript
-
-        let hitChildren = mouse.hitTestChildren(parentGameObject);
-        // let hitChildren = mouse.hitTestChildren(parentGameObject, topOnly = true);
-
-    :parentGameObject: A world, or a game object.
-    :topOnly:
-
-        * :code:`true` : Return top most hit game object, default value.
-        * :code:`false` : Return all hit game objects
