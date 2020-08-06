@@ -3,5 +3,7 @@ Input
 =============================================================================
 
 .. toctree::
+   :titlesonly:
 
-   keyboard.rst
+   keyboard/keyboard.rst
+   pointer/mouse.rst

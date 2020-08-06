@@ -14,7 +14,7 @@ Hierarchy
 
     * Game has a scene manager, scene manager contains many scenes
 
-        * World instances receive 'update' and 'render' events fired from scene
+        * World instances receive :code:`'update'` and :code:`'render'` events fired from scene
 
             * World contains children game objects
 
@@ -26,16 +26,16 @@ Update loop
 
 * Game.step()
 
-    * SceneManager.update(delta)
+    * :code:`SceneManager.update(delta)`
 
-        * For each scene -> Emit scene's *'update'* event -> World.update(delta)
+        * For each scene -> Emit scene's :code:`'update'` event -> :code:`World.update(delta)`
 
-            * World.update(delta) : 
+            * :code:`World.update(delta)` : 
 
-                * Emit world's *'update'* event
+                * Emit world's :code:`'update'` event
 
-                * For each child game object -> child.update(delta)
+                * For each child game object -> :code:`child.update(delta)`
 
-                    * Child.update(delta)
+                    * :code:`Child.update(delta)`
                     
-                        * For each child game object -> child.update(delta)
+                        * For each child game object -> :code:`child.update(delta)`

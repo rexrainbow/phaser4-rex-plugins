@@ -25,33 +25,35 @@ Create keyboard instance
 Keyboard events
 =============================================================================
 
-* On any keydown
+* On any key down
 
     .. code-block:: typescript
     
-        Events.On(keyboard, 'keydown', function (event: KeyboardEvent) { 
+        Events.On(keyboard, 'keydown', function (event) { 
             const keyCode = event.key;
         }, context);
 
-* On any keyup
+    * Key code : :code:`event.key`
+
+* On any key up
 
     .. code-block:: typescript
     
-        Events.On(keyboard, 'keyup', function (event: KeyboardEvent) { 
+        Events.On(keyboard, 'keyup', function (event) { 
             const keyCode = event.key;
         }, context);
 
-* On a keydown
+* On a key down
 
     .. code-block:: typescript
     
-        Events.On(keyboard, 'keydown-' + key, function (event: KeyboardEvent) { }, context);
+        Events.On(keyboard, 'keydown-' + key, function (event) { }, context);
 
-* On a keyup
+* On a key up
 
     .. code-block:: typescript
     
-        Events.On(keyboard, 'keyup-' + key, function (event: KeyboardEvent) { }, context);
+        Events.On(keyboard, 'keyup-' + key, function (event) { }, context);
 
 
 Destroy keyboard
@@ -72,30 +74,30 @@ Key object and events
         const keyA = new Keyboard.Keys.AKey();
         keyboard.addKeys(keyA);
 
-* Is keydown
+* Is key down
 
     .. code-block:: typescript
 
         let isKeyADown = keyA.isDown;
 
-* Set keydown/keyup callback
+* Set key down/key up callback
 
     .. code-block:: typescript
 
        keyA.downCallback = function(keyA) { };
        keyA.upCallback = function(keyA) { };
 
-* On keydown
+* On key down
 
     .. code-block:: typescript
 
-        Events.On(keyA, 'keydown', function (event: KeyboardEvent) { }, context);
+        Events.On(keyA, 'keydown', function (event) { }, context);
 
-* On keyup
+* On key up
 
     .. code-block:: typescript
 
-        Events.On(keyA, 'keyup', function (event: KeyboardEvent) { }, context);
+        Events.On(keyA, 'keyup', function (event) { }, context);
 
 * Remove all key objects
 

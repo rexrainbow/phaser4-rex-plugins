@@ -96,7 +96,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../input/index.html">Input</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../input/keyboard.html">Keyboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../input/keyboard/keyboard.html">Keyboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../input/pointer/mouse.html">Mouse</a></li>
 </ul>
 </li>
 </ul>
@@ -213,7 +214,7 @@
 <li><p>Game has a scene manager, scene manager contains many scenes</p>
 <blockquote>
 <div><ul>
-<li><p>World instances receive ‘update’ and ‘render’ events fired from scene</p>
+<li><p>World instances receive <code class="code docutils literal notranslate"><span class="pre">'update'</span></code> and <code class="code docutils literal notranslate"><span class="pre">'render'</span></code> events fired from scene</p>
 <blockquote>
 <div><ul>
 <li><p>World contains children game objects</p>
@@ -240,23 +241,23 @@
 <li><p>Game.step()</p>
 <blockquote>
 <div><ul>
-<li><p>SceneManager.update(delta)</p>
+<li><p><code class="code docutils literal notranslate"><span class="pre">SceneManager.update(delta)</span></code></p>
 <blockquote>
 <div><ul>
-<li><p>For each scene -&gt; Emit scene’s <em>‘update’</em> event -&gt; World.update(delta)</p>
+<li><p>For each scene -&gt; Emit scene’s <code class="code docutils literal notranslate"><span class="pre">'update'</span></code> event -&gt; <code class="code docutils literal notranslate"><span class="pre">World.update(delta)</span></code></p>
 <blockquote>
 <div><ul>
-<li><p>World.update(delta) :</p>
+<li><p><code class="code docutils literal notranslate"><span class="pre">World.update(delta)</span></code> :</p>
 <blockquote>
 <div><ul>
-<li><p>Emit world’s <em>‘update’</em> event</p></li>
-<li><p>For each child game object -&gt; child.update(delta)</p>
+<li><p>Emit world’s <code class="code docutils literal notranslate"><span class="pre">'update'</span></code> event</p></li>
+<li><p>For each child game object -&gt; <code class="code docutils literal notranslate"><span class="pre">child.update(delta)</span></code></p>
 <blockquote>
 <div><ul>
-<li><p>Child.update(delta)</p>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Child.update(delta)</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>For each child game object -&gt; child.update(delta)</p></li>
+<li><p>For each child game object -&gt; <code class="code docutils literal notranslate"><span class="pre">child.update(delta)</span></code></p></li>
 </ul>
 </div></blockquote>
 </li>
