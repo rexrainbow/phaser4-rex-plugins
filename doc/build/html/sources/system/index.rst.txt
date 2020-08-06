@@ -6,3 +6,4 @@ System
    :titlesonly:
    
    game.rst
+   scene.rst

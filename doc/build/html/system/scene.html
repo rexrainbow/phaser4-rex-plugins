@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>System &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
+  <title>Scene &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
   
 
   
@@ -41,8 +41,8 @@
   <link rel="stylesheet" href="../static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Game" href="game.html" />
-    <link rel="prev" title="Home" href="../index.html" /> 
+    <link rel="next" title="Events" href="../events/index.html" />
+    <link rel="prev" title="Game" href="game.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,9 +87,9 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">System</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">System</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scene.html">Scene</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scene</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a><ul>
@@ -146,7 +146,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>System</li>
+          <li><a href="index.html">System</a> &raquo;</li>
+        
+      <li>Scene</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -163,12 +165,57 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="system">
-<h1>System<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
+  <div class="section" id="scene">
+<h1>Scene<a class="headerlink" href="#scene" title="Permalink to this headline">¶</a></h1>
+<p>Scene class.</p>
+<ul class="simple">
+<li><p>Load assets.</p></li>
+<li><p>Create world.</p></li>
+<li><p>Create game objects, add to world.</p></li>
+</ul>
+<div class="section" id="import-modules">
+<h2>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Scene</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/scenes/Scene&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="define-scene-class">
+<h2>Define Scene class<a class="headerlink" href="#define-scene-class" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">MyScene</span> <span class="kr">extends</span> <span class="nx">Scene</span> <span class="p">{</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">();</span>
+
+        <span class="c1">// Load assets, or create world and game objects</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="events">
+<h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="game.html">Game</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scene.html">Scene</a></li>
+<li><p>On update</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Each world fires <code class="code docutils literal notranslate"><span class="pre">'update'</span></code> event under scene’s <code class="code docutils literal notranslate"><span class="pre">'update'</span></code> event,
+and run <code class="code docutils literal notranslate"><span class="pre">world.update(delta,</span> <span class="pre">time)</span></code> to invoke <code class="code docutils literal notranslate"><span class="pre">gameObject.update(delta,</span> <span class="pre">time)</span></code>
+of all children.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>On render</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="s1">&#39;render&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">renderResult</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Each world prepare renderable game object list under scene’s <code class="code docutils literal notranslate"><span class="pre">'render'</span></code> event.</p></li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </div>
 </div>
@@ -181,10 +228,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="game.html" class="btn btn-neutral float-right" title="Game" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../events/index.html" class="btn btn-neutral float-right" title="Events" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral float-left" title="Home" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="game.html" class="btn btn-neutral float-left" title="Game" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

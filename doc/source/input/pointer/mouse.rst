@@ -33,7 +33,11 @@ Mouse events
             // const primaryDown = mouse.primaryDown;
             // const auxDown = mouse.auxDown;
             // const secondaryDown = mouse.secondaryDown;
+
+            let hitGameObjects = mouse.hitTestChildren(world);
         }, context);
+
+    * Get hit game object of a World : :code:`mouse.hitTestChildren(world)`
 
     * State of buttons
 
@@ -49,6 +53,8 @@ Mouse events
             // const primaryDown = mouse.primaryDown;
             // const auxDown = mouse.auxDown;
             // const secondaryDown = mouse.secondaryDown;
+
+            let hitGameObjects = mouse.hitTestChildren(world);
         }, context);
 
 * On pointer move
@@ -59,6 +65,8 @@ Mouse events
             // const primaryDown = mouse.primaryDown;
             // const auxDown = mouse.auxDown;
             // const secondaryDown = mouse.secondaryDown;
+
+            let hitGameObjects = mouse.hitTestChildren(world);
         }, context);
 
 * On mouse wheel
@@ -77,12 +85,12 @@ Mouse events
 Hit test
 =============================================================================
 
-* Get hit children
+* Get hit game objects
 
     .. code-block:: typescript
 
-        let hitChildren = mouse.hitTestChildren(parentGameObject);
-        // let hitChildren = mouse.hitTestChildren(parentGameObject, topOnly = true);
+        let hitGameObjects = mouse.hitTestChildren(parentGameObject);
+        // let hitGameObjects = mouse.hitTestChildren(parentGameObject, topOnly = true);
 
     :parentGameObject: A world, or a game object.
     :topOnly:
