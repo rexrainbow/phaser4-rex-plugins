@@ -61,7 +61,7 @@ class Demo extends Scene {
             }
             text
                 .setTextOffsetY(progress / duration, true)
-                .updateText();
+                .updateText(false); // Don't wrap text, only draw text
         })
     }
 }

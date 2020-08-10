@@ -185,9 +185,12 @@ export class BaseText extends Sprite implements IBaseText {
         super.destroy(reparentChildren);
     }
 
-    updateText(): this {
+    updateText(
+        runWrap: boolean = true,
+        draw: boolean = true
+    ): this {
 
-        UpdateText(this);
+        UpdateText(this, runWrap, draw);
 
         return this;
     }
