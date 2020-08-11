@@ -24,18 +24,5 @@ Hierarchy
 Update loop
 =============================================================================
 
-* Game.step()
-
-    * :code:`SceneManager.update(delta)`
-
-        * For each scene -> Emit scene's :code:`'update'` event -> :code:`World.update(delta)`
-
-            * :code:`World.update(delta)` : 
-
-                * Emit world's :code:`'update'` event
-
-                * For each child game object -> :code:`child.update(delta)`
-
-                    * :code:`Child.update(delta)`
-                    
-                        * For each child game object -> :code:`child.update(delta)`
+.. graphviz:: update-loop.dot
+    :caption: Every tick

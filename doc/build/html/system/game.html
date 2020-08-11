@@ -90,6 +90,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">System</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene.html">Scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="static-world.html">Static world</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a><ul>
@@ -238,46 +239,59 @@
 </div>
 <div class="section" id="update-loop">
 <h2>Update loop<a class="headerlink" href="#update-loop" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p>Game.step()</p>
-<blockquote>
-<div><ul>
-<li><p><code class="code docutils literal notranslate"><span class="pre">SceneManager.update(delta)</span></code></p>
-<blockquote>
-<div><ul>
-<li><p>For each scene -&gt; Emit scene’s <code class="code docutils literal notranslate"><span class="pre">'update'</span></code> event -&gt; <code class="code docutils literal notranslate"><span class="pre">World.update(delta)</span></code></p>
-<blockquote>
-<div><ul>
-<li><p><code class="code docutils literal notranslate"><span class="pre">World.update(delta)</span></code> :</p>
-<blockquote>
-<div><ul>
-<li><p>Emit world’s <code class="code docutils literal notranslate"><span class="pre">'update'</span></code> event</p></li>
-<li><p>For each child game object -&gt; <code class="code docutils literal notranslate"><span class="pre">child.update(delta)</span></code></p>
-<blockquote>
-<div><ul>
-<li><p><code class="code docutils literal notranslate"><span class="pre">Child.update(delta)</span></code></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>For each child game object -&gt; <code class="code docutils literal notranslate"><span class="pre">child.update(delta)</span></code></p></li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
+<div class="figure align-default" id="id2">
+<div class="graphviz"><object data="../images/graphviz-b4d3d64e5e047c30c1e2fca6286761dde515bd14.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph UpdateLoop {
+    graph [rankdir=TD]
+    
+    subgraph cluster_gamestep {
+        label=&quot;Game.step()&quot;
+        color=&quot;gray&quot;
+    
+        subgraph cluster_sceneupdate {
+            label=&quot;Scene.update()&quot;
+            color=&quot;gray&quot;
+                
+            SceneUpdateEvent[label=&quot;Scene's 'update' event&quot;,fontcolor=&quot;blue&quot;]
+        
+            subgraph cluster_worldupdate {
+                label=&quot;World.update()&quot;
+                color=&quot;gray&quot;
+            
+                WorldUpdateEvent[label=&quot;World's 'update' event&quot;,fontcolor=&quot;blue&quot;]
+                ChildrenUpdate[label=&quot;Child.update()&quot;]
+                WorldPostUpdateEvent[label=&quot;World's 'postupdate' event&quot;,fontcolor=&quot;blue&quot;]
+            }
+        }
+    
+        subgraph cluster_scenerender {
+            label=&quot;Scene.render()&quot;
+            color=&quot;gray&quot;
+            
+            subgraph cluster_worldrender {
+                label=&quot;World.render()&quot;
+                color=&quot;gray&quot;
+            
+                BuildRenderList[label=&quot;BuildRenderList&quot;]
+                WorldRenderEvent[label=&quot;World's 'worldrender' event&quot;,fontcolor=&quot;blue&quot;]
+                
+            }
+        }
+    
+        GameRendererRender[label=&quot;Game.renderer.render()&quot;]
+    }
+    
+    
+    SceneUpdateEvent -&gt; WorldUpdateEvent
+    WorldUpdateEvent -&gt; ChildrenUpdate -&gt; WorldPostUpdateEvent
+    
+    WorldPostUpdateEvent -&gt; BuildRenderList -&gt; WorldRenderEvent
+    
+    WorldRenderEvent -&gt; GameRendererRender
+
+}</p></object></div>
+<p class="caption"><span class="caption-text">Every tick</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 

@@ -7,3 +7,4 @@ System
    
    game.rst
    scene.rst
+   static-world.rst

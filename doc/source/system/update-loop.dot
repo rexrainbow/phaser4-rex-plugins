@@ -1,0 +1,49 @@
+digraph UpdateLoop {
+    graph [rankdir=TD]
+    
+    subgraph cluster_gamestep {
+        label="Game.step()"
+        color="gray"
+    
+        subgraph cluster_sceneupdate {
+            label="Scene.update()"
+            color="gray"
+                
+            SceneUpdateEvent[label="Scene's 'update' event",fontcolor="blue"]
+        
+            subgraph cluster_worldupdate {
+                label="World.update()"
+                color="gray"
+            
+                WorldUpdateEvent[label="World's 'update' event",fontcolor="blue"]
+                ChildrenUpdate[label="Child.update()"]
+                WorldPostUpdateEvent[label="World's 'postupdate' event",fontcolor="blue"]
+            }
+        }
+    
+        subgraph cluster_scenerender {
+            label="Scene.render()"
+            color="gray"
+            
+            subgraph cluster_worldrender {
+                label="World.render()"
+                color="gray"
+            
+                BuildRenderList[label="BuildRenderList"]
+                WorldRenderEvent[label="World's 'worldrender' event",fontcolor="blue"]
+                
+            }
+        }
+    
+        GameRendererRender[label="Game.renderer.render()"]
+    }
+    
+    
+    SceneUpdateEvent -> WorldUpdateEvent
+    WorldUpdateEvent -> ChildrenUpdate -> WorldPostUpdateEvent
+    
+    WorldPostUpdateEvent -> BuildRenderList -> WorldRenderEvent
+    
+    WorldRenderEvent -> GameRendererRender
+
+}
