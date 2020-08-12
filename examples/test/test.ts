@@ -3,25 +3,49 @@ import { Game } from '@phaserjs/phaser/Game';
 import { Scene } from '@phaserjs/phaser/scenes/Scene';
 
 import { AddChild } from '@phaserjs/phaser/display/';
-import { ImageFile } from '@phaserjs/phaser/loader/files/ImageFile';
-import { Sprite } from '@phaserjs/phaser/gameobjects/sprite/Sprite';
 import { StaticWorld } from '@phaserjs/phaser/world';
+
+import { CreateRectangleTexture } from '../../src/texture/canvastexture';
+import { Sprite } from '@phaserjs/phaser/gameobjects/sprite';
+
+import { DegToRad } from '@phaserjs/phaser/math/DegToRad'
+import { On } from '@phaserjs/phaser/events'
 
 class Demo extends Scene {
     constructor() {
         super();
 
-        ImageFile('logo', '../assets/logo.png')
-            .load()
-            .then(() => {
-                this.create();
-            });
-    }
 
-    create() {
+        CreateRectangleTexture(
+            'rect0',
+            {
+                width: 100,
+                height: 100,
+                strokeStyle: 'aliceblue',
+                lineWidth: 10
+            }
+        )
+
+        CreateRectangleTexture(
+            'rect1',
+            {
+                width: 20,
+                height: 20,
+                fillStyle:'red'
+            }
+        )
+
         const world = new StaticWorld(this);
-        const logo = new Sprite(400, 300, 'logo');
-        AddChild(world, logo);
+        const img0 = new Sprite(400, 300, 'rect0');
+        AddChild(world, img0);
+
+        const img1 = new Sprite(450, 300, 'rect1');
+        AddChild(img0, img1);
+
+        // On(world, 'update', function (delta: number) {
+        //     img0.rotation += DegToRad(delta * 100 / 1000);
+        // })
+
     }
 }
 
