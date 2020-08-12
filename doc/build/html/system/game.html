@@ -240,7 +240,7 @@
 <div class="section" id="update-loop">
 <h2>Update loop<a class="headerlink" href="#update-loop" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="id2">
-<div class="graphviz"><object data="../images/graphviz-b4d3d64e5e047c30c1e2fca6286761dde515bd14.svg" type="image/svg+xml" class="graphviz">
+<div class="graphviz"><object data="../images/graphviz-8a096265bb53a8bae0edf73ab2b6d3d48e3c7e6c.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph UpdateLoop {
     graph [rankdir=TD]
     
@@ -259,7 +259,7 @@
                 color=&quot;gray&quot;
             
                 WorldUpdateEvent[label=&quot;World's 'update' event&quot;,fontcolor=&quot;blue&quot;]
-                ChildrenUpdate[label=&quot;Child.update()&quot;]
+                GameObjectUpdate[label=&quot;GameObject.update()&quot;,shape=&quot;rectangle&quot;,width=2.5]
                 WorldPostUpdateEvent[label=&quot;World's 'postupdate' event&quot;,fontcolor=&quot;blue&quot;]
             }
         }
@@ -268,26 +268,35 @@
             label=&quot;Scene.render()&quot;
             color=&quot;gray&quot;
             
+            SceneRenderEvent[label=&quot;Scene's 'render' event&quot;,fontcolor=&quot;blue&quot;]
+            
             subgraph cluster_worldrender {
                 label=&quot;World.render()&quot;
                 color=&quot;gray&quot;
-            
-                BuildRenderList[label=&quot;BuildRenderList&quot;]
+                
+                BuildRenderList[label=&quot;BuildRenderList()&quot;,shape=&quot;rectangle&quot;,width=2.5]
                 WorldRenderEvent[label=&quot;World's 'worldrender' event&quot;,fontcolor=&quot;blue&quot;]
                 
             }
         }
     
-        GameRendererRender[label=&quot;Game.renderer.render()&quot;]
+        subgraph cluster_gamerendererrender {
+            label=&quot;Game.renderer.render()&quot;
+            color=&quot;gray&quot;
+            
+            WorldRender[label=&quot;World.renderGL()&quot;,shape=&quot;rectangle&quot;,width=2.5]
+            GameObjectRender[label=&quot;GameObject.renderGL()&quot;,shape=&quot;rectangle&quot;,width=2.5]
+            WorldPostRender[label=&quot;World.postRenderGL()&quot;,shape=&quot;rectangle&quot;,width=2.5]
+        }
     }
     
     
     SceneUpdateEvent -&gt; WorldUpdateEvent
-    WorldUpdateEvent -&gt; ChildrenUpdate -&gt; WorldPostUpdateEvent
+    WorldUpdateEvent -&gt; GameObjectUpdate -&gt; WorldPostUpdateEvent
     
-    WorldPostUpdateEvent -&gt; BuildRenderList -&gt; WorldRenderEvent
+    WorldPostUpdateEvent -&gt; SceneRenderEvent -&gt; BuildRenderList -&gt; WorldRenderEvent
     
-    WorldRenderEvent -&gt; GameRendererRender
+    WorldRenderEvent -&gt; WorldRender -&gt; GameObjectRender -&gt; WorldPostRender
 
 }</p></object></div>
 <p class="caption"><span class="caption-text">Every tick</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>

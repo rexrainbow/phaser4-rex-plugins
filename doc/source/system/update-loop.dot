@@ -16,7 +16,7 @@ digraph UpdateLoop {
                 color="gray"
             
                 WorldUpdateEvent[label="World's 'update' event",fontcolor="blue"]
-                ChildrenUpdate[label="Child.update()"]
+                GameObjectUpdate[label="GameObject.update()",shape="rectangle",width=2.5]
                 WorldPostUpdateEvent[label="World's 'postupdate' event",fontcolor="blue"]
             }
         }
@@ -25,25 +25,34 @@ digraph UpdateLoop {
             label="Scene.render()"
             color="gray"
             
+            SceneRenderEvent[label="Scene's 'render' event",fontcolor="blue"]
+            
             subgraph cluster_worldrender {
                 label="World.render()"
                 color="gray"
-            
-                BuildRenderList[label="BuildRenderList"]
+                
+                BuildRenderList[label="BuildRenderList()",shape="rectangle",width=2.5]
                 WorldRenderEvent[label="World's 'worldrender' event",fontcolor="blue"]
                 
             }
         }
     
-        GameRendererRender[label="Game.renderer.render()"]
+        subgraph cluster_gamerendererrender {
+            label="Game.renderer.render()"
+            color="gray"
+            
+            WorldRender[label="World.renderGL()",shape="rectangle",width=2.5]
+            GameObjectRender[label="GameObject.renderGL()",shape="rectangle",width=2.5]
+            WorldPostRender[label="World.postRenderGL()",shape="rectangle",width=2.5]
+        }
     }
     
     
     SceneUpdateEvent -> WorldUpdateEvent
-    WorldUpdateEvent -> ChildrenUpdate -> WorldPostUpdateEvent
+    WorldUpdateEvent -> GameObjectUpdate -> WorldPostUpdateEvent
     
-    WorldPostUpdateEvent -> BuildRenderList -> WorldRenderEvent
+    WorldPostUpdateEvent -> SceneRenderEvent -> BuildRenderList -> WorldRenderEvent
     
-    WorldRenderEvent -> GameRendererRender
+    WorldRenderEvent -> WorldRender -> GameObjectRender -> WorldPostRender
 
 }
