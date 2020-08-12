@@ -171,14 +171,14 @@
 <p>Keyboard events.</p>
 <div class="section" id="import-modules">
 <h2>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Keyboard</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/input&#39;</span><span class="p">;</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Keyboard</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/input&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">Events</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="create-keyboard-instance">
 <h2>Create keyboard instance<a class="headerlink" href="#create-keyboard-instance" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">keyboard</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">Keyboard</span><span class="p">();</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">keyboard</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">Keyboard</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -187,7 +187,7 @@
 <ul>
 <li><p>On any key down</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>
 <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
@@ -199,7 +199,7 @@
 </li>
 <li><p>On any key up</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>
 <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
@@ -208,14 +208,14 @@
 </li>
 <li><p>On a key down</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keydown-&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keydown-&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>On a key up</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keyup-&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">,</span> <span class="s1">&#39;keyup-&#39;</span> <span class="o">+</span> <span class="nx">key</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -224,7 +224,7 @@
 </div>
 <div class="section" id="destroy-keyboard">
 <h2>Destroy keyboard<a class="headerlink" href="#destroy-keyboard" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -233,7 +233,7 @@
 <ul>
 <li><p>Create key object</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">keyA</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">Keys</span><span class="p">.</span><span class="nx">AKey</span><span class="p">();</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">keyA</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">Keys</span><span class="p">.</span><span class="nx">AKey</span><span class="p">();</span>
 <span class="nx">keyboard</span><span class="p">.</span><span class="nx">addKeys</span><span class="p">(</span><span class="nx">keyA</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -241,14 +241,14 @@
 </li>
 <li><p>Is key down</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">isKeyADown</span> <span class="o">=</span> <span class="nx">keyA</span><span class="p">.</span><span class="nx">isDown</span><span class="p">;</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">isKeyADown</span> <span class="o">=</span> <span class="nx">keyA</span><span class="p">.</span><span class="nx">isDown</span><span class="p">;</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Set key down/key up callback</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">keyA</span><span class="p">.</span><span class="nx">downCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">keyA</span><span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">keyA</span><span class="p">.</span><span class="nx">downCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">keyA</span><span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
 <span class="nx">keyA</span><span class="p">.</span><span class="nx">upCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">keyA</span><span class="p">)</span> <span class="p">{</span> <span class="p">};</span>
 </pre></div>
 </div>
@@ -256,21 +256,21 @@
 </li>
 <li><p>On key down</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyA</span><span class="p">,</span> <span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyA</span><span class="p">,</span> <span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>On key up</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyA</span><span class="p">,</span> <span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">keyA</span><span class="p">,</span> <span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Remove all key objects</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">clearKeys</span><span class="p">();</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">clearKeys</span><span class="p">();</span>
 </pre></div>
 </div>
 </div></blockquote>

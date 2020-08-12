@@ -14,7 +14,7 @@ Scene class.
 Import modules
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     import { Scene } from '@phaserjs/phaser/scenes/Scene';
 
@@ -22,7 +22,7 @@ Import modules
 Define Scene class
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     class MyScene extends Scene {
         constructor() {
@@ -38,7 +38,7 @@ Events
 
 * On update
 
-    .. code-block:: typescript
+    .. code-block:: javascript
 
         Events.On(scene, 'update', function(delta, time) { }, context);
 
@@ -48,7 +48,7 @@ Events
 
 * On render
 
-    .. code-block:: typescript
+    .. code-block:: javascript
 
         Events.On(scene, 'render', function(renderResult) { }, context);
 

@@ -8,7 +8,7 @@ Mouse events, touch events are not included.
 Import modules
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     import { Mouse } from '@phaserjs/phaser/input';
     import { Events } from '@phaserjs/phaser';
@@ -17,7 +17,7 @@ Import modules
 Create mouse instance
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     const mouse = new Mouse.Mouse();
 
@@ -27,7 +27,7 @@ Mouse events
 
 * On pointer down
 
-    .. code-block:: typescript
+    .. code-block:: javascript
     
         Events.On(mouse, 'pointerdown', function (localX, localY, button, event) { 
             // const primaryDown = mouse.primaryDown;
@@ -47,7 +47,7 @@ Mouse events
 
 * On pointer up
 
-    .. code-block:: typescript
+    .. code-block:: javascript
     
         Events.On(mouse, 'pointerup', function (localX, localY, button, event) { 
             // const primaryDown = mouse.primaryDown;
@@ -59,7 +59,7 @@ Mouse events
 
 * On pointer move
 
-    .. code-block:: typescript
+    .. code-block:: javascript
 
         Events.On(mouse, 'pointermove', function (localX, localY, event) { 
             // const primaryDown = mouse.primaryDown;
@@ -71,13 +71,13 @@ Mouse events
 
 * On mouse wheel
 
-    .. code-block:: typescript
+    .. code-block:: javascript
 
         Events.On(mouse, 'wheel', function (deltaX, deltaY, deltaZ, event) { }, context);
 
 * On context menu
 
-    .. code-block:: typescript
+    .. code-block:: javascript
     
         Events.On(mouse, 'contextmenu', function (event) { }, context);
 
@@ -87,7 +87,7 @@ Hit test
 
 * Get hit game objects
 
-    .. code-block:: typescript
+    .. code-block:: javascript
 
         let hitGameObjects = mouse.hitTestChildren(parentGameObject);
         // let hitGameObjects = mouse.hitTestChildren(parentGameObject, topOnly = true);
@@ -100,7 +100,7 @@ Hit test
 
 * Hit test
 
-    .. code-block:: typescript
+    .. code-block:: javascript
     
         let isHit = mouse.hitTest(gameObject0, gameObject1, ... );
 
@@ -108,7 +108,7 @@ Hit test
 
         * Game object won't be checked if it is not added to any world.
 
-    .. code-block:: typescript
+    .. code-block:: javascript
 
         let hitPoint = mouse.hitPoint;
 

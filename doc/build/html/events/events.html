@@ -170,37 +170,37 @@
 <h1>General event emitter<a class="headerlink" href="#general-event-emitter" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="import-methods">
 <h2>Import methods<a class="headerlink" href="#import-methods" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Events</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser&#39;</span><span class="p">;</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Events</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser&#39;</span><span class="p">;</span>
 <span class="c1">// import { On, Off } from &#39;@phaserjs/phaser/events&#39;;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="register-event">
 <h2>Register event<a class="headerlink" href="#register-event" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 <span class="c1">// let eventInstance = Events.On(eventEmitter, eventName, function () { }, context);</span>
 </pre></div>
 </div>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">Once</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">Once</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="remove-event">
 <h2>Remove event<a class="headerlink" href="#remove-event" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">Off</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">Off</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 <span class="c1">// Events.Off(eventEmitter, eventInstance);</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="remove-all-events">
 <h2>Remove all events<a class="headerlink" href="#remove-all-events" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">RemoveAllListeners</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">RemoveAllListeners</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="emit-event">
 <h2>Emit event<a class="headerlink" href="#emit-event" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">Emit</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">arg0</span><span class="p">,</span> <span class="nx">arg1</span><span class="p">,</span> <span class="p">...);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">Emit</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">arg0</span><span class="p">,</span> <span class="nx">arg1</span><span class="p">,</span> <span class="p">...);</span>
 </pre></div>
 </div>
 </div>

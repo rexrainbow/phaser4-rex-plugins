@@ -174,14 +174,13 @@ and a camera that doesn’t move at all (no scrolling, rotation, etc)</p>
 <p>Games that use this kind of world include Pacman, Bejeweled and 2048.</p>
 <div class="section" id="import-modules">
 <h2>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">StaticWorld</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/world&#39;</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChild</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display/&#39;</span><span class="p">;</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">StaticWorld</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/world&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="create-world-instance">
 <h2>Create world instance<a class="headerlink" href="#create-world-instance" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">world</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StaticWorld</span><span class="p">(</span><span class="nx">scene</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">world</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StaticWorld</span><span class="p">(</span><span class="nx">scene</span><span class="p">);</span>
 </pre></div>
 </div>
 <ul>
@@ -196,15 +195,131 @@ this scene.</p>
 </li>
 </ul>
 </div>
-<div class="section" id="add-game-object-to-world">
-<h2>Add game object to World<a class="headerlink" href="#add-game-object-to-world" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">AddChild</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">gameObject</span><span class="p">);</span>
+<div class="section" id="children-game-objects">
+<h2>Children game objects<a class="headerlink" href="#children-game-objects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="list-of-game-objects">
+<h3>List of game objects<a class="headerlink" href="#list-of-game-objects" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">gameObjects</span> <span class="o">=</span> <span class="nx">world</span><span class="p">.</span><span class="nx">children</span><span class="p">;</span>
 </pre></div>
+</div>
+<ul class="simple">
+<li><p>Run <code class="code docutils literal notranslate"><span class="pre">gameObject.update(delta,</span> <span class="pre">time)</span></code> from first to last.</p></li>
+<li><p>Render game objects from first to last.</p></li>
+</ul>
+</div>
+<div class="section" id="add-game-object">
+<h3>Add game object<a class="headerlink" href="#add-game-object" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Add a game object</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChild</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">AddChild</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">gameObject</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Add game objects</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChildren</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">AddChildren</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">gameObject0</span><span class="p">,</span> <span class="nx">gameObject1</span><span class="p">,</span> <span class="nx">gameObject2</span><span class="p">,</span> <span class="p">...);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Add a game object at index</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChildAt</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">AddChildAt</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">gameObject</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Add game objects at index</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChildrenAt</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">AddChildrenAt</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">gameObject0</span><span class="p">,</span> <span class="nx">gameObject1</span><span class="p">,</span> <span class="nx">gameObject2</span><span class="p">,</span> <span class="p">...);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="arrange-list">
+<h3>Arrange list<a class="headerlink" href="#arrange-list" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Move game object down</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">MoveChildDown</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">MoveChildDown</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">gameObject</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Move game object up</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">MoveChildUp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">MoveChildUp</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">gameObject</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Move game object to index</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">MoveChildTo</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">MoveChildTo</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">gameObject</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Send game object to back (i.e. move game object to list[0])</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SendChildToBack</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">SendChildToBack</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">gameObject</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Bring game object to top (i.e. move game object to list[list.length - 1])</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">BringChildToTop</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">BringChildToTop</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">gameObject</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Swap 2 game objects</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SwapChildren</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">SwapChildren</span><span class="p">(</span><span class="nx">gameObject0</span><span class="p">,</span> <span class="nx">gameObject1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Shuffle game objects</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ShuffleChildren</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">ShuffleChildren</span><span class="p">(</span><span class="nx">world</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Sort by callback</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">world</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">gameObjectA</span><span class="p">,</span> <span class="nx">gameObjectB</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// return (-1);  // index of gameObjectA &lt; index of gameObjectB</span>
+    <span class="c1">// return 0;</span>
+    <span class="c1">// return 1;     // index of gameObjectA &gt; index of gameObjectB</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="shoutdown">
 <h2>Shoutdown<a class="headerlink" href="#shoutdown" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">world</span><span class="p">.</span><span class="nx">shutdown</span><span class="p">();</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">world</span><span class="p">.</span><span class="nx">shutdown</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Clear the display list and reset the camera, but leave everything in place
@@ -212,7 +327,7 @@ so we can return to this World again at a later stage.</p>
 </div>
 <div class="section" id="destroy">
 <h2>Destroy<a class="headerlink" href="#destroy" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">world</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">world</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -221,28 +336,28 @@ so we can return to this World again at a later stage.</p>
 <ul>
 <li><p>On update, triggered before <code class="code docutils literal notranslate"><span class="pre">child.update()</span></code></p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>On post update, triggered after <code class="code docutils literal notranslate"><span class="pre">child.update()</span></code></p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="s1">&#39;postupdate&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="s1">&#39;postupdate&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>On shutdown</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="s1">&#39;worldshutdown&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">world</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="s1">&#39;worldshutdown&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">world</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>On destroy</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="s1">&#39;destroy&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">world</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="s1">&#39;destroy&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">world</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>

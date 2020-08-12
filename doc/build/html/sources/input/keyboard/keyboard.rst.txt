@@ -8,7 +8,7 @@ Keyboard events.
 Import modules
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     import { Keyboard } from '@phaserjs/phaser/input';
     import { Events } from '@phaserjs/phaser';
@@ -17,7 +17,7 @@ Import modules
 Create keyboard instance
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     const keyboard = new Keyboard.Keyboard();
 
@@ -27,7 +27,7 @@ Keyboard events
 
 * On any key down
 
-    .. code-block:: typescript
+    .. code-block:: javascript
     
         Events.On(keyboard, 'keydown', function (event) { 
             const keyCode = event.key;
@@ -37,7 +37,7 @@ Keyboard events
 
 * On any key up
 
-    .. code-block:: typescript
+    .. code-block:: javascript
     
         Events.On(keyboard, 'keyup', function (event) { 
             const keyCode = event.key;
@@ -45,13 +45,13 @@ Keyboard events
 
 * On a key down
 
-    .. code-block:: typescript
+    .. code-block:: javascript
     
         Events.On(keyboard, 'keydown-' + key, function (event) { }, context);
 
 * On a key up
 
-    .. code-block:: typescript
+    .. code-block:: javascript
     
         Events.On(keyboard, 'keyup-' + key, function (event) { }, context);
 
@@ -59,7 +59,7 @@ Keyboard events
 Destroy keyboard
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     keyboard.destroy();
 
@@ -69,39 +69,39 @@ Key object and events
 
 * Create key object
 
-    .. code-block:: typescript
+    .. code-block:: javascript
     
         const keyA = new Keyboard.Keys.AKey();
         keyboard.addKeys(keyA);
 
 * Is key down
 
-    .. code-block:: typescript
+    .. code-block:: javascript
 
         let isKeyADown = keyA.isDown;
 
 * Set key down/key up callback
 
-    .. code-block:: typescript
+    .. code-block:: javascript
 
        keyA.downCallback = function(keyA) { };
        keyA.upCallback = function(keyA) { };
 
 * On key down
 
-    .. code-block:: typescript
+    .. code-block:: javascript
 
         Events.On(keyA, 'keydown', function (event) { }, context);
 
 * On key up
 
-    .. code-block:: typescript
+    .. code-block:: javascript
 
         Events.On(keyA, 'keyup', function (event) { }, context);
 
 * Remove all key objects
 
-    .. code-block:: typescript
+    .. code-block:: javascript
     
         keyboard.clearKeys();
 

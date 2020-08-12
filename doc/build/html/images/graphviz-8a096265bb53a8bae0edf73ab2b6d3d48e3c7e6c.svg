@@ -13,6 +13,14 @@
 <polygon fill="none" stroke="gray" points="8,-8 8,-814 304,-814 304,-8 8,-8"/>
 <text text-anchor="middle" x="156" y="-798.8" font-family="Georgia" font-size="14.00">Game.step()</text>
 </g>
+<g id="clust4" class="cluster"><title>cluster_scenerender</title>
+<polygon fill="none" stroke="gray" points="16,-243 16,-473 296,-473 296,-243 16,-243"/>
+<text text-anchor="middle" x="156" y="-457.8" font-family="Georgia" font-size="14.00">Scene.render()</text>
+</g>
+<g id="clust5" class="cluster"><title>cluster_worldrender</title>
+<polygon fill="none" stroke="gray" points="24,-251 24,-398 288,-398 288,-251 24,-251"/>
+<text text-anchor="middle" x="156" y="-382.8" font-family="Georgia" font-size="14.00">World.render()</text>
+</g>
 <g id="clust2" class="cluster"><title>cluster_sceneupdate</title>
 <polygon fill="none" stroke="gray" points="20,-481 20,-783 292,-783 292,-481 20,-481"/>
 <text text-anchor="middle" x="156" y="-767.8" font-family="Georgia" font-size="14.00">Scene.update()</text>
@@ -24,14 +32,6 @@
 <g id="clust6" class="cluster"><title>cluster_gamerendererrender</title>
 <polygon fill="none" stroke="gray" points="58,-16 58,-235 254,-235 254,-16 58,-16"/>
 <text text-anchor="middle" x="156" y="-219.8" font-family="Georgia" font-size="14.00">Game.renderer.render()</text>
-</g>
-<g id="clust4" class="cluster"><title>cluster_scenerender</title>
-<polygon fill="none" stroke="gray" points="16,-243 16,-473 296,-473 296,-243 16,-243"/>
-<text text-anchor="middle" x="156" y="-457.8" font-family="Georgia" font-size="14.00">Scene.render()</text>
-</g>
-<g id="clust5" class="cluster"><title>cluster_worldrender</title>
-<polygon fill="none" stroke="gray" points="24,-251 24,-398 288,-398 288,-251 24,-251"/>
-<text text-anchor="middle" x="156" y="-382.8" font-family="Georgia" font-size="14.00">World.render()</text>
 </g>
 <!-- SceneUpdateEvent -->
 <g id="node1" class="node"><title>SceneUpdateEvent</title>

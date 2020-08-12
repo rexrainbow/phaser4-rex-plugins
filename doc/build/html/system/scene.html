@@ -176,14 +176,14 @@
 </ul>
 <div class="section" id="import-modules">
 <h2>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Scene</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/scenes/Scene&#39;</span><span class="p">;</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Scene</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/scenes/Scene&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="define-scene-class">
 <h2>Define Scene class<a class="headerlink" href="#define-scene-class" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">MyScene</span> <span class="kr">extends</span> <span class="nx">Scene</span> <span class="p">{</span>
-    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">MyScene</span> <span class="kr">extends</span> <span class="nx">Scene</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
         <span class="kr">super</span><span class="p">();</span>
 
         <span class="c1">// Load assets, or create world and game objects</span>
@@ -197,7 +197,7 @@
 <ul>
 <li><p>On update</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -209,7 +209,7 @@ of all children.</p></li>
 </li>
 <li><p>On render</p>
 <blockquote>
-<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="s1">&#39;render&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">renderResult</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="s1">&#39;render&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">renderResult</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 <ul class="simple">

@@ -5,7 +5,7 @@ General event emitter
 Import methods
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     import { Events } from '@phaserjs/phaser';
     // import { On, Off } from '@phaserjs/phaser/events';
@@ -14,13 +14,13 @@ Import methods
 Register event
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     Events.On(eventEmitter, eventName, function () { }, context);
     // let eventInstance = Events.On(eventEmitter, eventName, function () { }, context);
 
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     Events.Once(eventEmitter, eventName, function () { }, context);
 
@@ -28,7 +28,7 @@ Register event
 Remove event
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     Events.Off(eventEmitter, eventName, function () { }, context);
     // Events.Off(eventEmitter, eventInstance);
@@ -37,7 +37,7 @@ Remove event
 Remove all events
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     Events.RemoveAllListeners(eventEmitter);
 
@@ -45,7 +45,7 @@ Remove all events
 Emit event
 =============================================================================
 
-.. code-block:: typescript
+.. code-block:: javascript
 
     Events.Emit(eventEmitter, eventName, arg0, arg1, ...);
 
