@@ -240,7 +240,7 @@
 <div class="section" id="update-loop">
 <h2>Update loop<a class="headerlink" href="#update-loop" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="id2">
-<div class="graphviz"><object data="../images/graphviz-8a096265bb53a8bae0edf73ab2b6d3d48e3c7e6c.svg" type="image/svg+xml" class="graphviz">
+<div class="graphviz"><object data="../images/graphviz-f62b0feed4d5585c8a75ae178075554ca9c26e77.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph UpdateLoop {
     graph [rankdir=TD]
     
@@ -252,15 +252,15 @@
             label=&quot;Scene.update()&quot;
             color=&quot;gray&quot;
                 
-            SceneUpdateEvent[label=&quot;Scene's 'update' event&quot;,fontcolor=&quot;blue&quot;]
+            SceneUpdateEvent[label=&quot;Scene event:\n'update'&quot;,fontcolor=&quot;blue&quot;]
         
             subgraph cluster_worldupdate {
                 label=&quot;World.update()&quot;
                 color=&quot;gray&quot;
             
-                WorldUpdateEvent[label=&quot;World's 'update' event&quot;,fontcolor=&quot;blue&quot;]
+                WorldUpdateEvent[label=&quot;World event:\n'update'&quot;,fontcolor=&quot;blue&quot;]
                 GameObjectUpdate[label=&quot;GameObject.update()&quot;,shape=&quot;rectangle&quot;,width=2.5]
-                WorldPostUpdateEvent[label=&quot;World's 'postupdate' event&quot;,fontcolor=&quot;blue&quot;]
+                WorldPostUpdateEvent[label=&quot;World event:\n'postupdate'&quot;,fontcolor=&quot;blue&quot;]
             }
         }
     
@@ -268,14 +268,14 @@
             label=&quot;Scene.render()&quot;
             color=&quot;gray&quot;
             
-            SceneRenderEvent[label=&quot;Scene's 'render' event&quot;,fontcolor=&quot;blue&quot;]
+            SceneRenderEvent[label=&quot;Scene event:\n'render'&quot;,fontcolor=&quot;blue&quot;]
             
             subgraph cluster_worldrender {
                 label=&quot;World.render()&quot;
                 color=&quot;gray&quot;
                 
                 BuildRenderList[label=&quot;BuildRenderList()&quot;,shape=&quot;rectangle&quot;,width=2.5]
-                WorldRenderEvent[label=&quot;World's 'worldrender' event&quot;,fontcolor=&quot;blue&quot;]
+                WorldRenderEvent[label=&quot;World event:\n'worldrender'&quot;,fontcolor=&quot;blue&quot;]
                 
             }
         }

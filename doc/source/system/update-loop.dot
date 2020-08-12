@@ -9,15 +9,15 @@ digraph UpdateLoop {
             label="Scene.update()"
             color="gray"
                 
-            SceneUpdateEvent[label="Scene's 'update' event",fontcolor="blue"]
+            SceneUpdateEvent[label="Scene event:\n'update'",fontcolor="blue"]
         
             subgraph cluster_worldupdate {
                 label="World.update()"
                 color="gray"
             
-                WorldUpdateEvent[label="World's 'update' event",fontcolor="blue"]
+                WorldUpdateEvent[label="World event:\n'update'",fontcolor="blue"]
                 GameObjectUpdate[label="GameObject.update()",shape="rectangle",width=2.5]
-                WorldPostUpdateEvent[label="World's 'postupdate' event",fontcolor="blue"]
+                WorldPostUpdateEvent[label="World event:\n'postupdate'",fontcolor="blue"]
             }
         }
     
@@ -25,14 +25,14 @@ digraph UpdateLoop {
             label="Scene.render()"
             color="gray"
             
-            SceneRenderEvent[label="Scene's 'render' event",fontcolor="blue"]
+            SceneRenderEvent[label="Scene event:\n'render'",fontcolor="blue"]
             
             subgraph cluster_worldrender {
                 label="World.render()"
                 color="gray"
                 
                 BuildRenderList[label="BuildRenderList()",shape="rectangle",width=2.5]
-                WorldRenderEvent[label="World's 'worldrender' event",fontcolor="blue"]
+                WorldRenderEvent[label="World event:\n'worldrender'",fontcolor="blue"]
                 
             }
         }
