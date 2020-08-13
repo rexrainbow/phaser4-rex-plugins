@@ -97,6 +97,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../events/events.html">General event emitter</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../gameobject/index.html">Game Object</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gameobject/gameobject.html">Game object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gameobject/container/container.html">Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gameobject/sprite/sprite.html">Sprite</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../input/index.html">Input</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../input/keyboard/keyboard.html">Keyboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../input/pointer/mouse.html">Mouse</a></li>
@@ -172,14 +178,30 @@
 and a camera that doesn’t move at all (no scrolling, rotation, etc)</p>
 <p>Because it has a fixed size, there is no camera culling enabled.</p>
 <p>Games that use this kind of world include Pacman, Bejeweled and 2048.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#import-modules" id="id1">Import modules</a></p></li>
+<li><p><a class="reference internal" href="#create-world-instance" id="id2">Create world instance</a></p></li>
+<li><p><a class="reference internal" href="#children-game-objects" id="id3">Children game objects</a></p>
+<ul>
+<li><p><a class="reference internal" href="#list-of-game-objects" id="id4">List of game objects</a></p></li>
+<li><p><a class="reference internal" href="#add-game-object" id="id5">Add game object</a></p></li>
+<li><p><a class="reference internal" href="#arrange-list" id="id6">Arrange list</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#shoutdown" id="id7">Shoutdown</a></p></li>
+<li><p><a class="reference internal" href="#destroy" id="id8">Destroy</a></p></li>
+<li><p><a class="reference internal" href="#events" id="id9">Events</a></p></li>
+</ul>
+</div>
 <div class="section" id="import-modules">
-<h2>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Import modules</a><a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">StaticWorld</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/world&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="create-world-instance">
-<h2>Create world instance<a class="headerlink" href="#create-world-instance" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Create world instance</a><a class="headerlink" href="#create-world-instance" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">world</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StaticWorld</span><span class="p">(</span><span class="nx">scene</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -196,9 +218,9 @@ this scene.</p>
 </ul>
 </div>
 <div class="section" id="children-game-objects">
-<h2>Children game objects<a class="headerlink" href="#children-game-objects" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Children game objects</a><a class="headerlink" href="#children-game-objects" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="list-of-game-objects">
-<h3>List of game objects<a class="headerlink" href="#list-of-game-objects" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">List of game objects</a><a class="headerlink" href="#list-of-game-objects" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">gameObjects</span> <span class="o">=</span> <span class="nx">world</span><span class="p">.</span><span class="nx">children</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -208,7 +230,7 @@ this scene.</p>
 </ul>
 </div>
 <div class="section" id="add-game-object">
-<h3>Add game object<a class="headerlink" href="#add-game-object" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Add game object</a><a class="headerlink" href="#add-game-object" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>Add a game object</p>
 <blockquote>
@@ -245,7 +267,7 @@ this scene.</p>
 </ul>
 </div>
 <div class="section" id="arrange-list">
-<h3>Arrange list<a class="headerlink" href="#arrange-list" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Arrange list</a><a class="headerlink" href="#arrange-list" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>Move game object down</p>
 <blockquote>
@@ -318,7 +340,7 @@ this scene.</p>
 </div>
 </div>
 <div class="section" id="shoutdown">
-<h2>Shoutdown<a class="headerlink" href="#shoutdown" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Shoutdown</a><a class="headerlink" href="#shoutdown" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">world</span><span class="p">.</span><span class="nx">shutdown</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -326,13 +348,13 @@ this scene.</p>
 so we can return to this World again at a later stage.</p>
 </div>
 <div class="section" id="destroy">
-<h2>Destroy<a class="headerlink" href="#destroy" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Destroy</a><a class="headerlink" href="#destroy" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">world</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="events">
-<h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">Events</a><a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>On update, triggered before <code class="code docutils literal notranslate"><span class="pre">child.update()</span></code></p>
 <blockquote>

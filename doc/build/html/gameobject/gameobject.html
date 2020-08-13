@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Game object &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../static/documentation_options.js"></script>
+        <script src="../static/jquery.js"></script>
+        <script src="../static/underscore.js"></script>
+        <script src="../static/doctools.js"></script>
+        <script src="../static/language_data.js"></script>
+        <script src="../static/clipboard.min.js"></script>
+        <script src="../static/copybutton.js"></script>
+        <script >var copybuttonSkipText = '>>> ';</script>
+    
+    <script type="text/javascript" src="../static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Container" href="container/container.html" />
+    <link rel="prev" title="Game Object" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Phaser4-rex-notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../system/game.html">Game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../system/scene.html">Scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../system/static-world.html">Static world</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../events/events.html">General event emitter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Game Object</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Game object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container/container.html">Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sprite/sprite.html">Sprite</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../input/index.html">Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../input/keyboard/keyboard.html">Keyboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../input/pointer/mouse.html">Mouse</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Phaser4-rex-notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Game Object</a> &raquo;</li>
+        
+      <li>Game object</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="game-object">
+<h1>Game object<a class="headerlink" href="#game-object" title="Permalink to this headline">¶</a></h1>
+<p>Common method and properties of game object.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#children-game-objects" id="id1">Children game objects</a></p>
+<ul>
+<li><p><a class="reference internal" href="#list-of-children-game-objects" id="id2">List of children game objects</a></p></li>
+<li><p><a class="reference internal" href="#add-child-game-object" id="id3">Add child game object</a></p></li>
+<li><p><a class="reference internal" href="#arrange-list" id="id4">Arrange list</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#destroy" id="id5">Destroy</a></p></li>
+</ul>
+</div>
+<div class="section" id="children-game-objects">
+<h2><a class="toc-backref" href="#id1">Children game objects</a><a class="headerlink" href="#children-game-objects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="list-of-children-game-objects">
+<h3><a class="toc-backref" href="#id2">List of children game objects</a><a class="headerlink" href="#list-of-children-game-objects" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">gameObjects</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">children</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run <code class="code docutils literal notranslate"><span class="pre">gameObject.update(delta,</span> <span class="pre">time)</span></code> from first to last.</p></li>
+<li><p>Render game objects from first to last.</p></li>
+</ul>
+</div>
+<div class="section" id="add-child-game-object">
+<h3><a class="toc-backref" href="#id3">Add child game object</a><a class="headerlink" href="#add-child-game-object" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Add a game object</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChild</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">AddChild</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Add game objects</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChildren</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">AddChildren</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">child0</span><span class="p">,</span> <span class="nx">child1</span><span class="p">,</span> <span class="nx">child2</span><span class="p">,</span> <span class="p">...);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Add a game object at index</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChildAt</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">AddChildAt</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Add game objects at index</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChildrenAt</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">AddChildrenAt</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">child0</span><span class="p">,</span> <span class="nx">child1</span><span class="p">,</span> <span class="nx">child2</span><span class="p">,</span> <span class="p">...);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="arrange-list">
+<h3><a class="toc-backref" href="#id4">Arrange list</a><a class="headerlink" href="#arrange-list" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Move game object down</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">MoveChildDown</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">MoveChildDown</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Move game object up</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">MoveChildUp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">MoveChildUp</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Move game object to index</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">MoveChildTo</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">MoveChildTo</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">child</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Send game object to back (i.e. move game object to list[0])</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SendChildToBack</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">SendChildToBack</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Bring game object to top (i.e. move game object to list[list.length - 1])</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">BringChildToTop</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">BringChildToTop</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Swap 2 game objects</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SwapChildren</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">SwapChildren</span><span class="p">(</span><span class="nx">child0</span><span class="p">,</span> <span class="nx">child1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Shuffle game objects</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ShuffleChildren</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
+<span class="nx">ShuffleChildren</span><span class="p">(</span><span class="nx">parent</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Sort by callback</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">world</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">childA</span><span class="p">,</span> <span class="nx">childB</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// return (-1);  // index of childA &lt; index of childB</span>
+    <span class="c1">// return 0;</span>
+    <span class="c1">// return 1;     // index of childA &gt; index of childB</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="destroy">
+<h2><a class="toc-backref" href="#id5">Destroy</a><a class="headerlink" href="#destroy" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Destroy game object and children game objects</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">gameObject</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Destroy game object , reparent children game objects</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">gameObject</span><span class="p">.</span><span class="nx">destroy</span><span class="p">(</span><span class="nx">newParent</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Rex
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

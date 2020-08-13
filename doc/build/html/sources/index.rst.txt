@@ -7,4 +7,5 @@ Home
 
    system/index
    events/index
+   gameobject/index
    input/index

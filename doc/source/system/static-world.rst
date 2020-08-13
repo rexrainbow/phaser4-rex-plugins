@@ -9,6 +9,8 @@ Because it has a fixed size, there is no camera culling enabled.
 
 Games that use this kind of world include Pacman, Bejeweled and 2048.
 
+.. contents:: :local:
+
 
 Import modules
 =============================================================================
@@ -36,6 +38,7 @@ Create world instance
 Children game objects
 =============================================================================
 
+
 List of game objects
 -----------------------------------------------------------------------------
 
@@ -46,6 +49,7 @@ List of game objects
 * Run :code:`gameObject.update(delta, time)` from first to last.
 
 * Render game objects from first to last.
+
 
 Add game object
 -----------------------------------------------------------------------------

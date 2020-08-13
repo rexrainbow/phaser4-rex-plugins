@@ -4,6 +4,8 @@ Keyboard
 
 Keyboard events.
 
+.. contents:: :local:
+
 
 Import modules
 =============================================================================

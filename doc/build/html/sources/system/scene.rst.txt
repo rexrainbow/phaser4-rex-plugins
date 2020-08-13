@@ -10,6 +10,8 @@ Scene class.
 
 * Create game objects, add to world.
 
+.. contents:: :local:
+
 
 Import modules
 =============================================================================

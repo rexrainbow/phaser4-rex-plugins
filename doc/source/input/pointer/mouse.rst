@@ -4,6 +4,8 @@ Mouse
 
 Mouse events, touch events are not included.
 
+.. contents:: :local:
+
 
 Import modules
 =============================================================================

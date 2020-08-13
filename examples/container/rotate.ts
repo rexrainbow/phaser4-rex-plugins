@@ -6,7 +6,7 @@ import { AddChild } from '@phaserjs/phaser/display/';
 import { StaticWorld } from '@phaserjs/phaser/world';
 
 import { CreateRectangleTexture } from '../../src/texture/canvastexture';
-import { Sprite } from '@phaserjs/phaser/gameobjects/sprite';
+import { Sprite } from '@phaserjs/phaser/gameobjects';
 
 import { DegToRad } from '@phaserjs/phaser/math/DegToRad'
 import { On } from '@phaserjs/phaser/events'

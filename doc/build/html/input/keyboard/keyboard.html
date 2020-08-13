@@ -97,6 +97,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../events/events.html">General event emitter</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../gameobject/index.html">Game Object</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../gameobject/gameobject.html">Game object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gameobject/container/container.html">Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gameobject/sprite/sprite.html">Sprite</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Input</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Keyboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pointer/mouse.html">Mouse</a></li>
@@ -169,21 +175,30 @@
   <div class="section" id="keyboard">
 <h1>Keyboard<a class="headerlink" href="#keyboard" title="Permalink to this headline">¶</a></h1>
 <p>Keyboard events.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#import-modules" id="id1">Import modules</a></p></li>
+<li><p><a class="reference internal" href="#create-keyboard-instance" id="id2">Create keyboard instance</a></p></li>
+<li><p><a class="reference internal" href="#keyboard-events" id="id3">Keyboard events</a></p></li>
+<li><p><a class="reference internal" href="#destroy-keyboard" id="id4">Destroy keyboard</a></p></li>
+<li><p><a class="reference internal" href="#key-object-and-events" id="id5">Key object and events</a></p></li>
+</ul>
+</div>
 <div class="section" id="import-modules">
-<h2>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Import modules</a><a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Keyboard</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/input&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">Events</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="create-keyboard-instance">
-<h2>Create keyboard instance<a class="headerlink" href="#create-keyboard-instance" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Create keyboard instance</a><a class="headerlink" href="#create-keyboard-instance" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">keyboard</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">Keyboard</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="keyboard-events">
-<h2>Keyboard events<a class="headerlink" href="#keyboard-events" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Keyboard events</a><a class="headerlink" href="#keyboard-events" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>On any key down</p>
 <blockquote>
@@ -223,13 +238,13 @@
 </ul>
 </div>
 <div class="section" id="destroy-keyboard">
-<h2>Destroy keyboard<a class="headerlink" href="#destroy-keyboard" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Destroy keyboard</a><a class="headerlink" href="#destroy-keyboard" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="key-object-and-events">
-<h2>Key object and events<a class="headerlink" href="#key-object-and-events" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Key object and events</a><a class="headerlink" href="#key-object-and-events" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>Create key object</p>
 <blockquote>
