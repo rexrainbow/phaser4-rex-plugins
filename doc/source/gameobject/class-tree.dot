@@ -2,13 +2,28 @@ digraph ClassTree {
     GameObject[label="GameObject\n(Children)"]
     Container[label="Container\n(Transform)"]
     Sprite[label="Sprite\n(Texture)"]
-    Text[label="Text\n(Draw text on canvas)"]
+    Text[label="Text\n(Text->Canvas\n->Texture)"]
+    AnimatedSprite[label="AnimatedSprite\n(Texture animation)"]
+    
+    GOLayer[label="Layer"]
+    RenderLayer[label="RenderLayer"]
+    EffectLayer[label="EffectLayer"]
+    SpriteBatch[label="SpriteBatch"]
+    
+    rexBBCodeText[label="rexBBCodeText\n(Text->Canvas\n->Texture)",fontcolor="blue"]
+    rexTagText[label="rexTagText\n(Text->Canvas\n->Texture)",fontcolor="blue"]
+    rexCanvas[label="rexCanvas\n(Canvas->Texture)",fontcolor="blue"]
+    rexMaskedImage[label="rexMaskedImage\n(Canvas->Texture)",fontcolor="blue"]
     
     World[label="World\n(Camera)"]
 
-    GameObject -> Container
-    Container -> Sprite
-    Sprite -> Text
+    GameObject -> Container -> Sprite 
+    -> {AnimatedSprite,Text,rexBBCodeText,rexTagText,rexCanvas}
+     
+    rexCanvas -> rexMaskedImage
+    
+    GameObject -> GOLayer -> RenderLayer -> EffectLayer
+    GOLayer -> SpriteBatch
     
     
     GameObject -> World
