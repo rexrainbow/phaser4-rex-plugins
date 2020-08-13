@@ -179,6 +179,25 @@
 <li class="toctree-l1"><a class="reference internal" href="sprite/sprite.html">Sprite</a></li>
 </ul>
 </div>
+<div class="figure align-default" id="id1">
+<div class="graphviz"><object data="../images/graphviz-3e63f71fc4bb6ed85c6af109cf25e11ccc32fcbb.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph ClassTree {
+    GameObject[label=&quot;GameObject\n(Children)&quot;]
+    Container[label=&quot;Container\n(Transform)&quot;]
+    Sprite[label=&quot;Sprite\n(Texture)&quot;]
+    Text[label=&quot;Text\n(Draw text on canvas)&quot;]
+    
+    World[label=&quot;World\n(Camera)&quot;]
+
+    GameObject -&gt; Container
+    Container -&gt; Sprite
+    Sprite -&gt; Text
+    
+    
+    GameObject -&gt; World
+}</p></object></div>
+<p class="caption"><span class="caption-text">Class tree of Game object classes</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 
 

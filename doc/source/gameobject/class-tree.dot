@@ -1,0 +1,15 @@
+digraph ClassTree {
+    GameObject[label="GameObject\n(Children)"]
+    Container[label="Container\n(Transform)"]
+    Sprite[label="Sprite\n(Texture)"]
+    Text[label="Text\n(Draw text on canvas)"]
+    
+    World[label="World\n(Camera)"]
+
+    GameObject -> Container
+    Container -> Sprite
+    Sprite -> Text
+    
+    
+    GameObject -> World
+}
