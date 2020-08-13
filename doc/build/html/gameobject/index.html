@@ -180,7 +180,7 @@
 </ul>
 </div>
 <div class="figure align-default" id="id1">
-<div class="graphviz"><object data="../images/graphviz-16d6efa49e2511c1add1fc7a45b8187f0cfe38cb.svg" type="image/svg+xml" class="graphviz">
+<div class="graphviz"><object data="../images/graphviz-b7e91524b09fa1c27e79014323269767a42859d2.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph ClassTree {
     GameObject[label=&quot;GameObject\n(Children)&quot;]
     Container[label=&quot;Container\n(Transform)&quot;]
@@ -193,18 +193,11 @@
     EffectLayer[label=&quot;EffectLayer&quot;]
     SpriteBatch[label=&quot;SpriteBatch&quot;]
     
-    rexBBCodeText[label=&quot;rexBBCodeText\n(Text-&gt;Canvas\n-&gt;Texture)&quot;,fontcolor=&quot;blue&quot;]
-    rexTagText[label=&quot;rexTagText\n(Text-&gt;Canvas\n-&gt;Texture)&quot;,fontcolor=&quot;blue&quot;]
-    rexCanvas[label=&quot;rexCanvas\n(Canvas-&gt;Texture)&quot;,fontcolor=&quot;blue&quot;]
-    rexMaskedImage[label=&quot;rexMaskedImage\n(Canvas-&gt;Texture)&quot;,fontcolor=&quot;blue&quot;]
-    
     World[label=&quot;World\n(Camera)&quot;]
 
-    GameObject -&gt; Container -&gt; Sprite 
-    -&gt; {AnimatedSprite,Text,rexBBCodeText,rexTagText,rexCanvas}
+
+    GameObject -&gt; Container -&gt; Sprite -&gt; {AnimatedSprite,Text}
      
-    rexCanvas -&gt; rexMaskedImage
-    
     GameObject -&gt; GOLayer -&gt; RenderLayer -&gt; EffectLayer
     GOLayer -&gt; SpriteBatch
     
