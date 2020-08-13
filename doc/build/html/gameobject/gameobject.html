@@ -177,20 +177,45 @@
 <p>Common method and properties of game object.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#children-game-objects" id="id1">Children game objects</a></p>
+<li><p><a class="reference internal" href="#destroy" id="id1">Destroy</a></p></li>
+<li><p><a class="reference internal" href="#children-game-objects" id="id2">Children game objects</a></p>
 <ul>
-<li><p><a class="reference internal" href="#list-of-children-game-objects" id="id2">List of children game objects</a></p></li>
-<li><p><a class="reference internal" href="#add-child-game-object" id="id3">Add child game object</a></p></li>
-<li><p><a class="reference internal" href="#arrange-list" id="id4">Arrange list</a></p></li>
+<li><p><a class="reference internal" href="#list-of-children-game-objects" id="id3">List of children game objects</a></p></li>
+<li><p><a class="reference internal" href="#add-child-game-object" id="id4">Add child game object</a></p></li>
+<li><p><a class="reference internal" href="#arrange-list" id="id5">Arrange list</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#destroy" id="id5">Destroy</a></p></li>
+<li><p><a class="reference internal" href="#world-position-local-position" id="id6">World position &lt;-&gt; Local position</a></p>
+<ul>
+<li><p><a class="reference internal" href="#world-local" id="id7">World -&gt; local</a></p></li>
+<li><p><a class="reference internal" href="#local-world" id="id8">Local -&gt; world</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="destroy">
+<h2><a class="toc-backref" href="#id1">Destroy</a><a class="headerlink" href="#destroy" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Destroy game object and children game objects</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">gameObject</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Destroy game object , reparent children game objects</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">gameObject</span><span class="p">.</span><span class="nx">destroy</span><span class="p">(</span><span class="nx">newParent</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
 </ul>
 </div>
 <div class="section" id="children-game-objects">
-<h2><a class="toc-backref" href="#id1">Children game objects</a><a class="headerlink" href="#children-game-objects" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Children game objects</a><a class="headerlink" href="#children-game-objects" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="list-of-children-game-objects">
-<h3><a class="toc-backref" href="#id2">List of children game objects</a><a class="headerlink" href="#list-of-children-game-objects" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">List of children game objects</a><a class="headerlink" href="#list-of-children-game-objects" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">gameObjects</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">children</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -200,9 +225,9 @@
 </ul>
 </div>
 <div class="section" id="add-child-game-object">
-<h3><a class="toc-backref" href="#id3">Add child game object</a><a class="headerlink" href="#add-child-game-object" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Add child game object</a><a class="headerlink" href="#add-child-game-object" title="Permalink to this headline">¶</a></h3>
 <ul>
-<li><p>Add a game object</p>
+<li><p>Add a game object.</p>
 <blockquote>
 <div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChild</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display&#39;</span><span class="p">;</span>
 <span class="nx">AddChild</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">child</span><span class="p">);</span>
@@ -237,7 +262,7 @@
 </ul>
 </div>
 <div class="section" id="arrange-list">
-<h3><a class="toc-backref" href="#id4">Arrange list</a><a class="headerlink" href="#arrange-list" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Arrange list</a><a class="headerlink" href="#arrange-list" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>Move game object down</p>
 <blockquote>
@@ -309,24 +334,20 @@
 </ul>
 </div>
 </div>
-<div class="section" id="destroy">
-<h2><a class="toc-backref" href="#id5">Destroy</a><a class="headerlink" href="#destroy" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p>Destroy game object and children game objects</p>
-<blockquote>
-<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">gameObject</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+<div class="section" id="world-position-local-position">
+<h2><a class="toc-backref" href="#id6">World position &lt;-&gt; Local position</a><a class="headerlink" href="#world-position-local-position" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="world-local">
+<h3><a class="toc-backref" href="#id7">World -&gt; local</a><a class="headerlink" href="#world-local" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">localXY</span> <span class="o">=</span> <span class="nx">gameObject</span><span class="p">.</span><span class="nx">transform</span><span class="p">.</span><span class="nx">globalToLocal</span><span class="p">(</span><span class="nx">worldX</span><span class="p">,</span> <span class="nx">worldY</span><span class="p">);</span>
 </pre></div>
 </div>
-</div></blockquote>
-</li>
-<li><p>Destroy game object , reparent children game objects</p>
-<blockquote>
-<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">gameObject</span><span class="p">.</span><span class="nx">destroy</span><span class="p">(</span><span class="nx">newParent</span><span class="p">);</span>
+</div>
+<div class="section" id="local-world">
+<h3><a class="toc-backref" href="#id8">Local -&gt; world</a><a class="headerlink" href="#local-world" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">worldXY</span> <span class="o">=</span> <span class="nx">gameObject</span><span class="p">.</span><span class="nx">transform</span><span class="p">.</span><span class="nx">localToGlobal</span><span class="p">(</span><span class="nx">localX</span><span class="p">,</span> <span class="nx">localY</span><span class="p">);</span>
 </pre></div>
 </div>
-</div></blockquote>
-</li>
-</ul>
+</div>
 </div>
 </div>
 

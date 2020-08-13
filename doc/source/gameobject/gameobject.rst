@@ -7,6 +7,22 @@ Common method and properties of game object.
 .. contents:: :local:
 
 
+Destroy
+=============================================================================
+
+* Destroy game object and children game objects
+
+    .. code-block:: javascript
+    
+        gameObject.destroy();
+
+* Destroy game object , reparent children game objects
+
+    .. code-block:: javascript
+    
+        gameObject.destroy(newParent);
+
+
 Children game objects
 =============================================================================
 
@@ -25,7 +41,7 @@ List of children game objects
 Add child game object
 -----------------------------------------------------------------------------
 
-* Add a game object
+* Add a game object.
 
     .. code-block:: javascript
     
@@ -117,17 +133,22 @@ Arrange list
         });
 
 
-Destroy
+World position <-> Local position
 =============================================================================
 
-* Destroy game object and children game objects
 
-    .. code-block:: javascript
-    
-        gameObject.destroy();
+World -> local
+-----------------------------------------------------------------------------
 
-* Destroy game object , reparent children game objects
+.. code-block:: javascript
 
-    .. code-block:: javascript
-    
-        gameObject.destroy(newParent);
+    let localXY = gameObject.transform.globalToLocal(worldX, worldY);
+
+
+Local -> world
+-----------------------------------------------------------------------------
+
+.. code-block:: javascript
+
+    let worldXY = gameObject.transform.localToGlobal(localX, localY);
+

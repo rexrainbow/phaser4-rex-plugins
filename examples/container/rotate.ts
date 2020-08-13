@@ -6,7 +6,7 @@ import { AddChild } from '@phaserjs/phaser/display/';
 import { StaticWorld } from '@phaserjs/phaser/world';
 
 import { CreateRectangleTexture } from '../../src/texture/canvastexture';
-import { Sprite } from '@phaserjs/phaser/gameobjects';
+import { Sprite, Text } from '@phaserjs/phaser/gameobjects';
 
 import { DegToRad } from '@phaserjs/phaser/math/DegToRad'
 import { On } from '@phaserjs/phaser/events'
@@ -39,16 +39,21 @@ class Demo extends Scene {
         const img0 = new Sprite(400, 300, 'rect0');
         AddChild(world, img0);
 
-        const img1 = new Sprite(50, 0, 'rect1'); // Related position
+        const localXY = img0.transform.globalToLocal(450, 300);
+        const img1 = new Sprite(localXY.x, localXY.y, 'rect1'); // Related position        
         AddChild(img0, img1);
+
+        const print = new Text(0, 600, '');
+        print.setOrigin(0, 1);
+        AddChild(world, print);
 
 
         // TODO: Replace rotation, moving by tween
-        const maxProgress = 1000;
+        const maxProgress = 3000;
         let progress = 0,
             reverse = false;
         On(world, 'update', function (delta: number) {
-            img0.rotation += DegToRad((delta / 1000) * 100);
+            img0.rotation += DegToRad((delta / 1000) * 50);
 
             progress += (!reverse) ? delta : -delta;
             if (progress >= maxProgress) {
@@ -59,6 +64,12 @@ class Demo extends Scene {
                 reverse = false;
             }
             img1.x = 50 + (progress / maxProgress) * 100;
+
+            let worldXY = img1.transform.localToGlobal(img1.x, img1.y);
+            print.setText([
+                `Local: ${Math.floor(img1.x)}|${Math.floor(img1.y)}`,
+                `World: ${Math.floor(worldXY.x)}|${Math.floor(worldXY.y)}`
+            ]);
         })
 
     }
