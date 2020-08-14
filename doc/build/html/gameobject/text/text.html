@@ -191,7 +191,24 @@
 <li><p><a class="reference internal" href="#custom-class" id="id2">Custom class</a></p></li>
 <li><p><a class="reference internal" href="#create-instance" id="id3">Create instance</a></p></li>
 <li><p><a class="reference internal" href="#content" id="id4">Content</a></p></li>
-<li><p><a class="reference internal" href="#color" id="id5">Color</a></p></li>
+<li><p><a class="reference internal" href="#font" id="id5">Font</a></p></li>
+<li><p><a class="reference internal" href="#fill-style" id="id6">Fill style</a></p></li>
+<li><p><a class="reference internal" href="#stroke-style" id="id7">Stroke style</a></p>
+<ul>
+<li><p><a class="reference internal" href="#line-width" id="id8">Line width</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#background-style" id="id9">Background style</a></p>
+<ul>
+<li><p><a class="reference internal" href="#corner-raduis" id="id10">Corner raduis</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#alignment" id="id11">Alignment</a></p></li>
+<li><p><a class="reference internal" href="#line-spacing" id="id12">Line spacing</a></p></li>
+<li><p><a class="reference internal" href="#padding" id="id13">Padding</a></p></li>
+<li><p><a class="reference internal" href="#fixed-size" id="id14">Fixed size</a></p></li>
+<li><p><a class="reference internal" href="#baseline" id="id15">Baseline</a></p></li>
+<li><p><a class="reference internal" href="#redraw-content" id="id16">Redraw content</a></p></li>
 </ul>
 </div>
 <div class="section" id="import-modules">
@@ -225,7 +242,7 @@
 <dd class="field-odd"><p>String, or string array.</p>
 </dd>
 <dt class="field-even">font</dt>
-<dd class="field-even"><p>Font string, e.x. <code class="code docutils literal notranslate"><span class="pre">'16px</span> <span class="pre">monospace'</span></code>.</p>
+<dd class="field-even"><p>Font string, include font size, font style, and font family. e.x. <code class="code docutils literal notranslate"><span class="pre">'16px</span> <span class="pre">monospace'</span></code>.</p>
 </dd>
 <dt class="field-odd">fillStyle</dt>
 <dd class="field-odd"><p>Color string, e.x. <code class="code docutils literal notranslate"><span class="pre">'white'</span></code>, or <code class="code docutils literal notranslate"><span class="pre">'#fff'</span></code>, or gradient.</p>
@@ -251,12 +268,33 @@
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">content</span><span class="p">;</span>
 </pre></div>
 </div>
+<p><code class="code docutils literal notranslate"><span class="pre">text.updateText()</span></code> has been invoked.</p>
 </div></blockquote>
 </li>
 </ul>
 </div>
-<div class="section" id="color">
-<h2><a class="toc-backref" href="#id5">Color</a><a class="headerlink" href="#color" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="font">
+<h2><a class="toc-backref" href="#id5">Font</a><a class="headerlink" href="#font" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetFont</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
+<span class="nx">SetFont</span><span class="p">(</span><span class="nx">font</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">font</dt>
+<dd class="field-odd"><p>Font string, include font size, font style, and font family. e.x. <code class="code docutils literal notranslate"><span class="pre">'16px</span> <span class="pre">monospace'</span></code>.</p>
+</dd>
+<dt class="field-even">text</dt>
+<dd class="field-even"><p>Text game object.</p>
+</dd>
+</dl>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">font</span> <span class="o">=</span> <span class="nx">font</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fill-style">
+<h2><a class="toc-backref" href="#id6">Fill style</a><a class="headerlink" href="#fill-style" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetFillStyle</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetFillStyle</span><span class="p">(</span><span class="nx">style</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -272,6 +310,185 @@
 <p>or</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">style</span><span class="p">;</span>
 <span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stroke-style">
+<h2><a class="toc-backref" href="#id7">Stroke style</a><a class="headerlink" href="#stroke-style" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetStrokeStyle</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
+<span class="nx">SetStrokeStyle</span><span class="p">(</span><span class="nx">style</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">style</dt>
+<dd class="field-odd"><p>Color string, e.x. <code class="code docutils literal notranslate"><span class="pre">'white'</span></code>, or <code class="code docutils literal notranslate"><span class="pre">'#fff'</span></code>, or gradient.</p>
+</dd>
+<dt class="field-even">text</dt>
+<dd class="field-even"><p>Text game object.</p>
+</dd>
+</dl>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">style</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">lineWidth</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="section" id="line-width">
+<h3><a class="toc-backref" href="#id8">Line width</a><a class="headerlink" href="#line-width" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetLineWidth</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
+<span class="nx">SetLineWidth</span><span class="p">(</span><span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">text</dt>
+<dd class="field-odd"><p>Text game object.</p>
+</dd>
+</dl>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">lineWidth</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="background-style">
+<h2><a class="toc-backref" href="#id9">Background style</a><a class="headerlink" href="#background-style" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetBackgroundStyle</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
+<span class="nx">SetBackgroundStyle</span><span class="p">(</span><span class="nx">style</span><span class="p">,</span> <span class="nx">cornerRadius</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">style</dt>
+<dd class="field-odd"><p>Color string, e.x. <code class="code docutils literal notranslate"><span class="pre">'white'</span></code>, or <code class="code docutils literal notranslate"><span class="pre">'#fff'</span></code>, or gradient.</p>
+</dd>
+<dt class="field-even">text</dt>
+<dd class="field-even"><p>Text game object.</p>
+</dd>
+</dl>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">backgroundStyle</span> <span class="o">=</span> <span class="nx">style</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">cornerRadius</span> <span class="o">=</span> <span class="nx">cornerRadius</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="section" id="corner-raduis">
+<h3><a class="toc-backref" href="#id10">Corner raduis</a><a class="headerlink" href="#corner-raduis" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetCornerRadius</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
+<span class="nx">SetCornerRadius</span><span class="p">(</span><span class="nx">cornerRadius</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">text</dt>
+<dd class="field-odd"><p>Text game object.</p>
+</dd>
+</dl>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">cornerRadius</span> <span class="o">=</span> <span class="nx">cornerRadius</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="alignment">
+<h2><a class="toc-backref" href="#id11">Alignment</a><a class="headerlink" href="#alignment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetTextAlign</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
+<span class="nx">SetTextAlign</span><span class="p">(</span><span class="nx">align</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">text</dt>
+<dd class="field-odd"><p>Text game object.</p>
+</dd>
+<dt class="field-even">align</dt>
+<dd class="field-even"><p><code class="code docutils literal notranslate"><span class="pre">'start'</span></code>, <code class="code docutils literal notranslate"><span class="pre">'end'</span></code>, <code class="code docutils literal notranslate"><span class="pre">'center'</span></code>,
+<code class="code docutils literal notranslate"><span class="pre">'left'</span></code>, <code class="code docutils literal notranslate"><span class="pre">'right'</span></code></p>
+</dd>
+</dl>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">textAlign</span> <span class="o">=</span> <span class="nx">align</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="line-spacing">
+<h2><a class="toc-backref" href="#id12">Line spacing</a><a class="headerlink" href="#line-spacing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetLineSpacing</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
+<span class="nx">SetLineSpacing</span><span class="p">(</span><span class="nx">spacing</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">text</dt>
+<dd class="field-odd"><p>Text game object.</p>
+</dd>
+</dl>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">lineSpacing</span> <span class="o">=</span> <span class="nx">spacing</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="padding">
+<h2><a class="toc-backref" href="#id13">Padding</a><a class="headerlink" href="#padding" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetPadding</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
+<span class="nx">SetPadding</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">,</span> <span class="nx">top</span><span class="p">,</span> <span class="nx">bottom</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">text</dt>
+<dd class="field-odd"><p>Text game object.</p>
+</dd>
+</dl>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">padding</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">padding</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">right</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">padding</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">top</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">padding</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">=</span> <span class="nx">bottom</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fixed-size">
+<h2><a class="toc-backref" href="#id14">Fixed size</a><a class="headerlink" href="#fixed-size" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetFixedSize</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
+<span class="nx">SetFixedSize</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">text</dt>
+<dd class="field-odd"><p>Text game object.</p>
+</dd>
+</dl>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">fixedWidth</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">fixedHeight</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="baseline">
+<h2><a class="toc-backref" href="#id15">Baseline</a><a class="headerlink" href="#baseline" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetTextBaseline</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
+<span class="nx">SetTextBaseline</span><span class="p">(</span><span class="nx">baseline</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">text</dt>
+<dd class="field-odd"><p>Text game object.</p>
+</dd>
+<dt class="field-even">baseline</dt>
+<dd class="field-even"><p><code class="code docutils literal notranslate"><span class="pre">'alphabetic'</span></code>, <code class="code docutils literal notranslate"><span class="pre">'top'</span></code>, <code class="code docutils literal notranslate"><span class="pre">'hanging'</span></code>,
+<code class="code docutils literal notranslate"><span class="pre">'middle'</span></code>, <code class="code docutils literal notranslate"><span class="pre">'ideographic'</span></code>, <code class="code docutils literal notranslate"><span class="pre">'bottom'</span></code></p>
+</dd>
+</dl>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">textBaseline</span> <span class="o">=</span> <span class="nx">baseline</span><span class="p">;</span>
+<span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="redraw-content">
+<h2><a class="toc-backref" href="#id16">Redraw content</a><a class="headerlink" href="#redraw-content" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
