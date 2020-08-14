@@ -8,6 +8,7 @@ Game Object
    gameobject
    container/container
    sprite/sprite
+   text/text
 
 
 .. graphviz:: class-tree.dot

@@ -47,7 +47,7 @@ Texture
 
         let texuture = textureManager.get(textureKey);
 
-    :texuture: Return *MISSING* texture if :code:`textureKey` is not existed.
+    :texuture: :doc:`Texture<texture>` object, return *MISSING* texture if :code:`textureKey` is not existed.
 
 * Add
 
