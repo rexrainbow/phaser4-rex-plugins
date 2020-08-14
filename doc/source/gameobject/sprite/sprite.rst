@@ -7,7 +7,6 @@ Display of static images, extended from :doc:`Container<../container/container>`
 .. contents:: :local:
 
 
-
 Import modules
 =============================================================================
 
@@ -39,6 +38,17 @@ Create instance
 
     let sprite = new Sprite(x, y, texture, frame);
     // let sprite = new Sprite(x, y, texture);
+
+
+Load texture
+=============================================================================
+
+.. code-block:: javascript
+
+    import { ImageFile } from '@phaserjs/phaser/loader/files/ImageFile';
+    ImageFile(textureKey, url)
+        .load()
+        .then(function(){ });
 
 
 Texture

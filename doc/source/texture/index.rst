@@ -1,14 +1,9 @@
 =============================================================================
-Game Object
+Texture
 =============================================================================
 
 .. toctree::
    :titlesonly:
 
-   gameobject
-   container/container
-   sprite/sprite
-
-
-.. graphviz:: class-tree.dot
-    :caption: Class inheritance tree of Game object classes
+   texture-manager
+   texture

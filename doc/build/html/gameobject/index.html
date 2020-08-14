@@ -103,6 +103,15 @@
 <li class="toctree-l2"><a class="reference internal" href="sprite/sprite.html">Sprite</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../texture/index.html">Texture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../texture/texture-manager.html">Texture manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texture/texture.html">Texture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../loader/index.html">Loader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../loader/loader.html">Loader</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../input/index.html">Input</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../input/keyboard/keyboard.html">Keyboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../input/pointer/mouse.html">Mouse</a></li>
@@ -180,18 +189,18 @@
 </ul>
 </div>
 <div class="figure align-default" id="id1">
-<div class="graphviz"><object data="../images/graphviz-b7e91524b09fa1c27e79014323269767a42859d2.svg" type="image/svg+xml" class="graphviz">
+<div class="graphviz"><object data="../images/graphviz-8c8d7077ebe5892c693a81959dd959f60051cba9.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph ClassTree {
     GameObject[label=&quot;GameObject\n(Children)&quot;]
-    Container[label=&quot;Container\n(Transform)&quot;]
+    Container[label=&quot;Container\n(Transform,\nSize)&quot;]
     Sprite[label=&quot;Sprite\n(Texture)&quot;]
     Text[label=&quot;Text\n(Text-&gt;Canvas\n-&gt;Texture)&quot;]
     AnimatedSprite[label=&quot;AnimatedSprite\n(Texture animation)&quot;]
     
-    GOLayer[label=&quot;Layer&quot;]
-    RenderLayer[label=&quot;RenderLayer&quot;]
-    EffectLayer[label=&quot;EffectLayer&quot;]
-    SpriteBatch[label=&quot;SpriteBatch&quot;]
+    GOLayer[label=&quot;Layer\n(Bypass transfom,\nvisible)&quot;]
+    RenderLayer[label=&quot;RenderLayer\n(Cache rendering result \nof children)&quot;]
+    EffectLayer[label=&quot;EffectLayer\n(Shaser)&quot;]
+    SpriteBatch[label=&quot;SpriteBatch\n(Draw texture\nmany times)&quot;]
     
     World[label=&quot;World\n(Camera)&quot;]
 
@@ -204,7 +213,7 @@
     
     GameObject -&gt; World
 }</p></object></div>
-<p class="caption"><span class="caption-text">Class tree of Game object classes</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Class inheritance tree of Game object classes</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 

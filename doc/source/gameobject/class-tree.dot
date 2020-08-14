@@ -1,14 +1,14 @@
 digraph ClassTree {
     GameObject[label="GameObject\n(Children)"]
-    Container[label="Container\n(Transform)"]
+    Container[label="Container\n(Transform,\nSize)"]
     Sprite[label="Sprite\n(Texture)"]
     Text[label="Text\n(Text->Canvas\n->Texture)"]
     AnimatedSprite[label="AnimatedSprite\n(Texture animation)"]
     
-    GOLayer[label="Layer"]
-    RenderLayer[label="RenderLayer"]
-    EffectLayer[label="EffectLayer"]
-    SpriteBatch[label="SpriteBatch"]
+    GOLayer[label="Layer\n(Bypass transfom,\nvisible)"]
+    RenderLayer[label="RenderLayer\n(Cache rendering result \nof children)"]
+    EffectLayer[label="EffectLayer\n(Shaser)"]
+    SpriteBatch[label="SpriteBatch\n(Draw texture\nmany times)"]
     
     World[label="World\n(Camera)"]
 

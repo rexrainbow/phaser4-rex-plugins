@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Input" href="../../input/index.html" />
+    <link rel="next" title="Texture" href="../../texture/index.html" />
     <link rel="prev" title="Container" href="../container/container.html" /> 
 </head>
 
@@ -101,6 +101,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../gameobject.html">Game object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../container/container.html">Container</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Sprite</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../texture/index.html">Texture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../texture/texture-manager.html">Texture manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texture/texture.html">Texture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../loader/index.html">Loader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../loader/loader.html">Loader</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../input/index.html">Input</a><ul>
@@ -180,7 +189,8 @@
 <li><p><a class="reference internal" href="#import-modules" id="id1">Import modules</a></p></li>
 <li><p><a class="reference internal" href="#custom-class" id="id2">Custom class</a></p></li>
 <li><p><a class="reference internal" href="#create-instance" id="id3">Create instance</a></p></li>
-<li><p><a class="reference internal" href="#texture" id="id4">Texture</a></p></li>
+<li><p><a class="reference internal" href="#load-texture" id="id4">Load texture</a></p></li>
+<li><p><a class="reference internal" href="#texture" id="id5">Texture</a></p></li>
 </ul>
 </div>
 <div class="section" id="import-modules">
@@ -210,8 +220,17 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="load-texture">
+<h2><a class="toc-backref" href="#id4">Load texture</a><a class="headerlink" href="#load-texture" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ImageFile</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/loader/files/ImageFile&#39;</span><span class="p">;</span>
+<span class="nx">ImageFile</span><span class="p">(</span><span class="nx">textureKey</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">load</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="p">});</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="texture">
-<h2><a class="toc-backref" href="#id4">Texture</a><a class="headerlink" href="#texture" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Texture</a><a class="headerlink" href="#texture" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>Get</p>
 <blockquote>

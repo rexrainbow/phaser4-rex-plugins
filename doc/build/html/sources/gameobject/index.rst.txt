@@ -11,4 +11,4 @@ Game Object
 
 
 .. graphviz:: class-tree.dot
-    :caption: Class tree of Game object classes
+    :caption: Class inheritance tree of Game object classes

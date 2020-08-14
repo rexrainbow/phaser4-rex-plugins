@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>General event emitter &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
+  <title>Loader &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
   
 
   
@@ -41,8 +41,8 @@
   <link rel="stylesheet" href="../static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Game Object" href="../gameobject/index.html" />
-    <link rel="prev" title="Events" href="index.html" /> 
+    <link rel="next" title="Input" href="../input/index.html" />
+    <link rel="prev" title="Loader" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -93,8 +93,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../system/static-world.html">Static world</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Events</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">General event emitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../events/events.html">General event emitter</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../gameobject/index.html">Game Object</a><ul>
@@ -108,8 +108,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../texture/texture.html">Texture</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../loader/index.html">Loader</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../loader/loader.html">Loader</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Loader</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Loader</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../input/index.html">Input</a><ul>
@@ -162,9 +162,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Events</a> &raquo;</li>
+          <li><a href="index.html">Loader</a> &raquo;</li>
         
-      <li>General event emitter</li>
+      <li>Loader</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -181,50 +181,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="general-event-emitter">
-<h1>General event emitter<a class="headerlink" href="#general-event-emitter" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="loader">
+<h1>Loader<a class="headerlink" href="#loader" title="Permalink to this headline">¶</a></h1>
+<p>Load assets.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#import-methods" id="id1">Import methods</a></p></li>
-<li><p><a class="reference internal" href="#register-event" id="id2">Register event</a></p></li>
-<li><p><a class="reference internal" href="#remove-event" id="id3">Remove event</a></p></li>
-<li><p><a class="reference internal" href="#remove-all-events" id="id4">Remove all events</a></p></li>
-<li><p><a class="reference internal" href="#emit-event" id="id5">Emit event</a></p></li>
+<li><p><a class="reference internal" href="#load-image" id="id1">Load image</a></p></li>
 </ul>
 </div>
-<div class="section" id="import-methods">
-<h2><a class="toc-backref" href="#id1">Import methods</a><a class="headerlink" href="#import-methods" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Events</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser&#39;</span><span class="p">;</span>
-<span class="c1">// import { On, Off } from &#39;@phaserjs/phaser/events&#39;;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="register-event">
-<h2><a class="toc-backref" href="#id2">Register event</a><a class="headerlink" href="#register-event" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
-<span class="c1">// let eventInstance = Events.On(eventEmitter, eventName, function () { }, context);</span>
-</pre></div>
-</div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">Once</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="remove-event">
-<h2><a class="toc-backref" href="#id3">Remove event</a><a class="headerlink" href="#remove-event" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">Off</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
-<span class="c1">// Events.Off(eventEmitter, eventInstance);</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="remove-all-events">
-<h2><a class="toc-backref" href="#id4">Remove all events</a><a class="headerlink" href="#remove-all-events" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">RemoveAllListeners</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="emit-event">
-<h2><a class="toc-backref" href="#id5">Emit event</a><a class="headerlink" href="#emit-event" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">Emit</span><span class="p">(</span><span class="nx">eventEmitter</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">arg0</span><span class="p">,</span> <span class="nx">arg1</span><span class="p">,</span> <span class="p">...);</span>
+<div class="section" id="load-image">
+<h2><a class="toc-backref" href="#id1">Load image</a><a class="headerlink" href="#load-image" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ImageFile</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/loader/files/ImageFile&#39;</span><span class="p">;</span>
+<span class="nx">ImageFile</span><span class="p">(</span><span class="nx">textureKey</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">load</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="p">});</span>
 </pre></div>
 </div>
 </div>
