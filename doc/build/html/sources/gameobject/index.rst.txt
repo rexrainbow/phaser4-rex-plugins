@@ -2,6 +2,9 @@
 Game Object
 =============================================================================
 
+.. graphviz:: class-tree.dot
+    :caption: Class inheritance tree of Game object classes
+
 .. toctree::
    :titlesonly:
 
@@ -9,7 +12,3 @@ Game Object
    container/container
    sprite/sprite
    text/text
-
-
-.. graphviz:: class-tree.dot
-    :caption: Class inheritance tree of Game object classes

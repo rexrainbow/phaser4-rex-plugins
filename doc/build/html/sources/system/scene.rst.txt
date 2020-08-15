@@ -44,8 +44,8 @@ Events
 
         Events.On(scene, 'update', function(delta, time) { }, context);
 
-    * Each world fires :code:`'update'` event under scene's :code:`'update'` event,
-      and run :code:`world.update(delta, time)` to invoke :code:`gameObject.update(delta, time)` 
+    * Each world fires ``'update'`` event under scene's ``'update'`` event,
+      and run ``world.update(delta, time)`` to invoke ``gameObject.update(delta, time)`` 
       of all children.
 
 * On render
@@ -54,4 +54,4 @@ Events
 
         Events.On(scene, 'render', function(renderResult) { }, context);
 
-    * Each world prepare renderable game object list under scene's :code:`'render'` event.
+    * Each world prepare renderable game object list under scene's ``'render'`` event.

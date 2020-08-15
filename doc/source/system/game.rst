@@ -16,7 +16,7 @@ Hierarchy
 
     * Game has a scene manager, scene manager contains many scenes
 
-        * World instances receive :code:`'update'` and :code:`'render'` events fired from scene
+        * World instances receive ``'update'`` and ``'render'`` events fired from scene
 
             * World contains children game objects
 

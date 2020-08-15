@@ -87,6 +87,7 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../plugin-list.html">Plugin list</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">System</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene.html">Scene</a></li>
@@ -216,11 +217,11 @@ and a camera that doesn’t move at all (no scrolling, rotation, etc)</p>
 </pre></div>
 </div>
 <ul>
-<li><p>World instance will listen <code class="code docutils literal notranslate"><span class="pre">'update'</span></code>, and <code class="code docutils literal notranslate"><span class="pre">'render'</span></code> events of
+<li><p>World instance will listen <code class="docutils literal notranslate"><span class="pre">'update'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'render'</span></code> events of
 this scene.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Run <code class="code docutils literal notranslate"><span class="pre">child.update()</span></code> for each child game object, in order.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">child.update()</span></code> for each child game object, in order.</p></li>
 <li><p>Render children game objects, in order.</p></li>
 </ul>
 </div></blockquote>
@@ -235,7 +236,7 @@ this scene.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Run <code class="code docutils literal notranslate"><span class="pre">gameObject.update(delta,</span> <span class="pre">time)</span></code> from first to last.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">gameObject.update(delta,</span> <span class="pre">time)</span></code> from first to last.</p></li>
 <li><p>Render game objects from first to last.</p></li>
 </ul>
 </div>
@@ -366,14 +367,14 @@ so we can return to this World again at a later stage.</p>
 <div class="section" id="events">
 <h2><a class="toc-backref" href="#id9">Events</a><a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p>On update, triggered before <code class="code docutils literal notranslate"><span class="pre">child.update()</span></code></p>
+<li><p>On update, triggered before <code class="docutils literal notranslate"><span class="pre">child.update()</span></code></p>
 <blockquote>
 <div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p>On post update, triggered after <code class="code docutils literal notranslate"><span class="pre">child.update()</span></code></p>
+<li><p>On post update, triggered after <code class="docutils literal notranslate"><span class="pre">child.update()</span></code></p>
 <blockquote>
 <div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="s1">&#39;postupdate&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
 </pre></div>

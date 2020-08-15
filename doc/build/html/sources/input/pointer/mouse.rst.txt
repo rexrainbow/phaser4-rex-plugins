@@ -39,13 +39,13 @@ Mouse events
             let hitGameObjects = mouse.hitTestChildren(world);
         }, context);
 
-    * Get hit game object of a World : :code:`mouse.hitTestChildren(world)`
+    * Get hit game object of a World : ``mouse.hitTestChildren(world)``
 
     * State of buttons
 
-        * :code:`mouse.primaryDown`
-        * :code:`mouse.auxDown`
-        * :code:`mouse.secondaryDown`
+        * ``mouse.primaryDown``
+        * ``mouse.auxDown``
+        * ``mouse.secondaryDown``
 
 * On pointer up
 
@@ -97,8 +97,8 @@ Hit test
     :parentGameObject: A world, or a game object.
     :topOnly:
 
-        * :code:`true` : Return top most hit game object, default value.
-        * :code:`false` : Return all hit game objects
+        * ``true`` : Return top most hit game object, default value.
+        * ``false`` : Return all hit game objects
 
 * Hit test
 
@@ -106,7 +106,7 @@ Hit test
     
         let isHit = mouse.hitTest(gameObject0, gameObject1, ... );
 
-    :isHit: Return :code:`true` if any game object is hit.
+    :isHit: Return ``true`` if any game object is hit.
 
         * Game object won't be checked if it is not added to any world.
 
@@ -114,4 +114,4 @@ Hit test
 
         let hitPoint = mouse.hitPoint;
 
-    :hitPoint: Local position :code:`{x, y}` of hit point.
+    :hitPoint: Local position ``{x, y}`` of hit point.

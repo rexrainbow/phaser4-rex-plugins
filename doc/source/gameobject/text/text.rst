@@ -40,8 +40,8 @@ Create instance
     // let text = new Text(x, y, content, font, fillStyle);
 
 :content: String, or string array.
-:font: Font string, include font size, font style, and font family. e.x. :code:`'16px monospace'`.
-:fillStyle: Color string, e.x. :code:`'white'`, or :code:`'#fff'`, or gradient.
+:font: Font string, include font size, font style, and font family. e.x. ``'16px monospace'``.
+:fillStyle: Color string, e.x. ``'white'``, or ``'#fff'``, or gradient.
 
 
 Content
@@ -65,7 +65,7 @@ Content
 
         text.text = content;
 
-    :code:`text.updateText()` has been invoked.
+    ``text.updateText()`` has been invoked when text changed.
 
 Font
 =============================================================================
@@ -75,7 +75,7 @@ Font
     import { SetFont } from '@phaserjs/phaser/gameobjects/text';
     SetFont(font, text);
 
-:font: Font string, include font size, font style, and font family. e.x. :code:`'16px monospace'`.
+:font: Font string, include font size, font style, and font family. e.x. ``'16px monospace'``.
 :text: Text game object.
 
 or
@@ -94,7 +94,7 @@ Fill style
     import { SetFillStyle } from '@phaserjs/phaser/gameobjects/text';
     SetFillStyle(style, text);
 
-:style: Color string, e.x. :code:`'white'`, or :code:`'#fff'`, or gradient.
+:style: Color string, e.x. ``'white'``, or ``'#fff'``, or gradient.
 :text: Text game object.
 
 or
@@ -113,7 +113,7 @@ Stroke style
     import { SetStrokeStyle } from '@phaserjs/phaser/gameobjects/text';
     SetStrokeStyle(style, lineWidth, text);
 
-:style: Color string, e.x. :code:`'white'`, or :code:`'#fff'`, or gradient.
+:style: Color string, e.x. ``'white'``, or ``'#fff'``, or gradient.
 :text: Text game object.
 
 or
@@ -151,7 +151,7 @@ Background style
     import { SetBackgroundStyle } from '@phaserjs/phaser/gameobjects/text';
     SetBackgroundStyle(style, cornerRadius, text);
 
-:style: Color string, e.x. :code:`'white'`, or :code:`'#fff'`, or gradient.
+:style: Color string, e.x. ``'white'``, or ``'#fff'``, or gradient.
 :text: Text game object.
 
 or
@@ -190,8 +190,7 @@ Alignment
     SetTextAlign(align, text);
 
 :text: Text game object.
-:align: :code:`'start'`, :code:`'end'`, :code:`'center'`, 
-           :code:`'left'`, :code:`'right'`
+:align: ``'start'``, ``'end'``, ``'center'``, ``'left'``, ``'right'``
 
 or
 
@@ -268,8 +267,7 @@ Baseline
     SetTextBaseline(baseline, text);
 
 :text: Text game object.
-:baseline: :code:`'alphabetic'`, :code:`'top'`, :code:`'hanging'`, 
-           :code:`'middle'`, :code:`'ideographic'`, :code:`'bottom'`
+:baseline: ``'alphabetic'``, ``'top'``, ``'hanging'``, ``'middle'``, ``'ideographic'``, ``'bottom'``
 
 or
 

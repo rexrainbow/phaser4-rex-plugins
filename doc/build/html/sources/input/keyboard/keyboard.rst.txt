@@ -35,7 +35,7 @@ Keyboard events
             const keyCode = event.key;
         }, context);
 
-    * Key code : :code:`event.key`
+    * Key code : ``event.key``
 
 * On any key up
 

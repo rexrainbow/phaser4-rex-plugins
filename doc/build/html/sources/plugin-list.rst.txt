@@ -1,14 +1,3 @@
 =============================================================================
-Home
+Plugin list
 =============================================================================
-
-.. toctree::
-   :hidden:
-
-   plugin-list
-   system/index
-   events/index
-   gameobject/index
-   texture/index
-   loader/index
-   input/index

@@ -18,7 +18,7 @@ Load texture
         .then(function(){ });
 
 
-Add texture to texture manager via :code:`textureKey` after loaded.
+Add texture to texture manager via ``textureKey`` after loaded.
 
 
 Get instance
@@ -47,7 +47,7 @@ Texture
 
         let texuture = textureManager.get(textureKey);
 
-    :texuture: :doc:`Texture<texture>` object, return *MISSING* texture if :code:`textureKey` is not existed.
+    :texuture: :doc:`Texture<texture>` object, return *MISSING* texture if ``textureKey`` is not existed.
 
 * Add
 

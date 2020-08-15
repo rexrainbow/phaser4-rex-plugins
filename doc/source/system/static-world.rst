@@ -28,10 +28,10 @@ Create world instance
     const world = new StaticWorld(scene);
 
 
-* World instance will listen :code:`'update'`, and :code:`'render'` events of 
+* World instance will listen ``'update'``, and ``'render'`` events of 
   this scene.
 
-    * Run :code:`child.update()` for each child game object, in order.
+    * Run ``child.update()`` for each child game object, in order.
     * Render children game objects, in order.
 
 
@@ -46,7 +46,7 @@ List of game objects
 
     let gameObjects = world.children;
 
-* Run :code:`gameObject.update(delta, time)` from first to last.
+* Run ``gameObject.update(delta, time)`` from first to last.
 
 * Render game objects from first to last.
 
@@ -169,13 +169,13 @@ Destroy
 Events
 =============================================================================
 
-* On update, triggered before :code:`child.update()`
+* On update, triggered before ``child.update()``
 
     .. code-block:: javascript
 
         Events.On(world, 'update', function(delta, time) { }, context);
 
-* On post update, triggered after :code:`child.update()`
+* On post update, triggered after ``child.update()``
 
     .. code-block:: javascript
 

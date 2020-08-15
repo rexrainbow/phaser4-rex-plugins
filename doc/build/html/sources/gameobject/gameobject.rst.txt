@@ -33,7 +33,7 @@ List of children game objects
 
     let gameObjects = parent.children;
 
-* Run :code:`gameObject.update(delta, time)` from first to last.
+* Run ``gameObject.update(delta, time)`` from first to last.
 
 * Render game objects from first to last.
 
