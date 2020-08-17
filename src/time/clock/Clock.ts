@@ -1,19 +1,21 @@
-import { IScene } from '@phaserjs/phaser/scenes/IScene';
+import { Scene } from '@phaserjs/phaser/scenes/Scene';
+import { BaseWorld } from '@phaserjs/phaser/world/BaseWorld';
+import { GameObject } from '@phaserjs/phaser/gameobjects/GameObject';
 import { On, Off } from '@phaserjs/phaser/events';
 
 import { TickTask } from '../../utils/ticktask/TickTask';
 import { IConfig, IState } from './IClock';
 import { TickingMode } from '../../utils/ticktask/ITickTask';
-import { GetSceneObject } from '../../utils/system/GetSceneObject';
 
 export class Clock extends TickTask {
-    scene: IScene;
+    updater: Scene | BaseWorld = null;
     timeScale: number = 1;
     now: number = 0;
 
     constructor(
         parent: any,
         {
+            updater = parent,
             isRunning = false,
             timeScale = 1,
             now = 0,
@@ -24,7 +26,7 @@ export class Clock extends TickTask {
         super(parent, arguments[1]);
 
         this.parent = parent;
-        this.scene = GetSceneObject(parent); // TODO: Clock in game object which not put on World
+        this.setUpdater(updater);
 
         this.isRunning = isRunning;
         this.timeScale = timeScale;
@@ -66,24 +68,50 @@ export class Clock extends TickTask {
     shutdown() {
         super.shutdown();
         this.parent = undefined;
-        this.scene = undefined;
+        this.updater = undefined;
     }
 
     destroy() {
         this.shutdown();
     }
 
+    setUpdater(
+        updater?: Scene | BaseWorld | GameObject
+    ): this {
+
+        if (updater instanceof GameObject) {
+            updater = updater.world;
+        }
+        if ((updater instanceof Scene) || (updater instanceof BaseWorld)) {
+            this.updater = updater;
+        } else {
+            this.updater = null;
+        }
+        return this;
+    }
+
     startTicking() {
 
+        // Try get updater from parent
+        if (this.update === null) {
+            this.setUpdater(this.parent);
+        }
+        // Can't start ticking if no updater
+        if (this.update === null) {
+            return;
+        }
+
         super.startTicking();
-        On(this.scene, 'update', this.update, this);
+        if (this.updater) {
+            On(this.updater, 'update', this.update, this);
+        }
     }
 
     stopTicking() {
 
         super.stopTicking();
-        if (this.scene) { // Scene might be destoryed
-            Off(this.scene, 'update', this.update, this);
+        if (this.updater) {
+            Off(this.updater, 'update', this.update, this);
         }
     }
 

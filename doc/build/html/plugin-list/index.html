@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Scene &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
+  <title>Plugin list &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
   
 
   
@@ -41,8 +41,7 @@
   <link rel="stylesheet" href="../static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Static world" href="static-world.html" />
-    <link rel="prev" title="Game" href="game.html" /> 
+    <link rel="prev" title="Mouse" href="../input/pointer/mouse.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,10 +86,10 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">System</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="game.html">Game</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Scene</a></li>
-<li class="toctree-l2"><a class="reference internal" href="static-world.html">Static world</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../system/game.html">Game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../system/scene.html">Scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../system/static-world.html">Static world</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a><ul>
@@ -118,7 +117,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../input/pointer/mouse.html">Mouse</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../plugin-list/index.html">Plugin list</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Plugin list</a></li>
 </ul>
 
             
@@ -164,9 +163,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">System</a> &raquo;</li>
-        
-      <li>Scene</li>
+      <li>Plugin list</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -183,66 +180,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="scene">
-<h1>Scene<a class="headerlink" href="#scene" title="Permalink to this headline">¶</a></h1>
-<p>Scene class.</p>
-<ul class="simple">
-<li><p>Load assets.</p></li>
-<li><p>Create world.</p></li>
-<li><p>Create game objects, add to world.</p></li>
-</ul>
-<div class="contents local topic" id="contents">
-<ul class="simple">
-<li><p><a class="reference internal" href="#import-modules" id="id1">Import modules</a></p></li>
-<li><p><a class="reference internal" href="#define-scene-class" id="id2">Define Scene class</a></p></li>
-<li><p><a class="reference internal" href="#events" id="id3">Events</a></p></li>
-</ul>
-</div>
-<div class="section" id="import-modules">
-<h2><a class="toc-backref" href="#id1">Import modules</a><a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Scene</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/scenes/Scene&#39;</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="define-scene-class">
-<h2><a class="toc-backref" href="#id2">Define Scene class</a><a class="headerlink" href="#define-scene-class" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">MyScene</span> <span class="kr">extends</span> <span class="nx">Scene</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kr">super</span><span class="p">();</span>
-
-        <span class="c1">// Load assets, or create world and game objects</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="events">
-<h2><a class="toc-backref" href="#id3">Events</a><a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p>On update</p>
-<blockquote>
-<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Each world fires <code class="docutils literal notranslate"><span class="pre">'update'</span></code> event under scene’s <code class="docutils literal notranslate"><span class="pre">'update'</span></code> event,
-and run <code class="docutils literal notranslate"><span class="pre">world.update(delta,</span> <span class="pre">time)</span></code> to invoke <code class="docutils literal notranslate"><span class="pre">gameObject.update(delta,</span> <span class="pre">time)</span></code>
-of all children.</p></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p>On render</p>
-<blockquote>
-<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Events</span><span class="p">.</span><span class="nx">On</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="s1">&#39;render&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">renderResult</span><span class="p">)</span> <span class="p">{</span> <span class="p">},</span> <span class="nx">context</span><span class="p">);</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Each world prepare renderable game object list under scene’s <code class="docutils literal notranslate"><span class="pre">'render'</span></code> event.</p></li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div>
+  <div class="section" id="plugin-list">
+<h1>Plugin list<a class="headerlink" href="#plugin-list" title="Permalink to this headline">¶</a></h1>
 </div>
 
 

@@ -8,23 +8,6 @@ import { Sprite } from '@phaserjs/phaser/gameobjects/sprite';
 
 import { LifeTime } from '../../src';
 
-class MySprite extends Sprite {
-    lifeTime: LifeTime;
-
-    constructor(world, x, y, texture, frame = undefined, lifeTime = 1000) {
-
-        super(x, y, texture, frame);
-
-        AddChild(world, this);
-        this.lifeTime = new LifeTime(this, {
-            lifeTime: lifeTime,
-            destroy: true
-        });
-
-        this.lifeTime.start();
-    }
-}
-
 class Demo extends Scene {
     constructor() {
         super();
@@ -38,11 +21,14 @@ class Demo extends Scene {
 
     create() {
         const world = new StaticWorld(this);
-        const obj = new MySprite(world, 400, 300, 'logo');
+        const obj = new Sprite(400, 300, 'logo');
+        AddChild(world, obj);
 
-        obj.lifeTime.on('die', function () {
-            console.log('Die');
+        const lifeTime = new LifeTime(obj, {
+            lifeTime: 1000,
+            destroy: true
         })
+        lifeTime.start();
 
         // TODO: p4 bug : https://github.com/phaserjs/phaser/issues/10
     }

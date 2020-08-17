@@ -42,7 +42,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Game" href="game.html" />
-    <link rel="prev" title="Plugin list" href="../plugin-list.html" /> 
+    <link rel="prev" title="Home" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,7 +87,6 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../plugin-list.html">Plugin list</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">System</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scene.html">Scene</a></li>
@@ -119,6 +118,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../input/pointer/mouse.html">Mouse</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../plugin-list/index.html">Plugin list</a></li>
 </ul>
 
             
@@ -183,12 +183,180 @@
             
   <div class="section" id="system">
 <h1>System<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
+<div class="section" id="hierarchy">
+<h2>Hierarchy<a class="headerlink" href="#hierarchy" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="id1">
+<div class="graphviz"><object data="../images/graphviz-8c242f06ea2148f0f8e8ac52f24924f15037f616.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph Game {
+    graph [rankdir=TD,splines=line]
+    node[shape=record]
+    
+    Game[label=&quot;{Game|Scene manager}&quot;]
+
+    Scene0[label=&quot;Scene&quot;]
+    Scene1[label=&quot;Scene&quot;]
+    Scene2[label=&quot;Scene&quot;]
+
+    World0[label=&quot;World&quot;]
+    World1[label=&quot;World&quot;]
+        
+    subgraph cluster_go {
+        color=&quot;gray&quot;
+        
+        GO00[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        GO01[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        GO02[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+            
+        GO10[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        GO11[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        GO12[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        
+        GO000[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+        GO001[label=&quot;GO&quot;,shape=&quot;ellipse&quot;]
+    }
+    
+    Game -&gt; { Scene0, Scene1, Scene2 }
+    Scene0 -&gt; { World0, World1 } [style=&quot;dashed&quot;]
+    World0 -&gt; { GO00, GO01, GO02 }
+    World1 -&gt; { GO10, GO11, GO12 }
+    
+    GO00 -&gt; { GO000, GO001 }
+}</p></object></div>
+<p class="caption"><span class="caption-text">From Game to Game object</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="game.html">Game</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scene.html">Scene</a></li>
-<li class="toctree-l1"><a class="reference internal" href="static-world.html">Static world</a></li>
+<li><p>Application has a Game instance</p>
+<blockquote>
+<div><ul>
+<li><p>Game has a scene manager, scene manager contains many scenes</p>
+<blockquote>
+<div><ul>
+<li><p>World instances receive <code class="docutils literal notranslate"><span class="pre">'update'</span></code> and <code class="docutils literal notranslate"><span class="pre">'render'</span></code> events fired from scene</p>
+<blockquote>
+<div><ul>
+<li><p>World contains children game objects</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Game object can have children game objects</p></li>
 </ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="update-loop">
+<h2>Update loop<a class="headerlink" href="#update-loop" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="id2">
+<div class="graphviz"><object data="../images/graphviz-4a81f5377c401a013bd5070339bf8ff00515b4b5.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph UpdateLoop {
+    graph [rankdir=TD]
+    
+    subgraph cluster_gamestep {
+        label=&quot;Game.step()&quot;
+        color=&quot;gray&quot;
+    
+        subgraph cluster_sceneupdate {
+            label=&quot;Scene.update()&quot;
+            color=&quot;gray&quot;
+                
+            SceneUpdateEvent[label=&quot;Scene event:\n'update'&quot;,fontcolor=&quot;blue&quot;]
+        
+            subgraph cluster_worldupdate {
+                label=&quot;World.update()&quot;
+                color=&quot;gray&quot;
+            
+                WorldUpdateEvent[label=&quot;World event:\n'update'&quot;,fontcolor=&quot;blue&quot;]
+                GameObjectUpdate[label=&quot;GameObject.update()&quot;,shape=&quot;rectangle&quot;,width=2.5]
+                WorldPostUpdateEvent[label=&quot;World event:\n'postupdate'&quot;,fontcolor=&quot;blue&quot;]
+            }
+        }
+    
+        subgraph cluster_scenerender {
+            label=&quot;Scene.render()&quot;
+            color=&quot;gray&quot;
+            
+            SceneRenderEvent[label=&quot;Scene event:\n'render'&quot;,fontcolor=&quot;blue&quot;]
+            
+            subgraph cluster_worldrender {
+                label=&quot;World.render()&quot;
+                color=&quot;gray&quot;
+                
+                BuildRenderList[label=&quot;BuildRenderList()&quot;,shape=&quot;rectangle&quot;,width=2.5]
+                WorldRenderEvent[label=&quot;World event:\n'worldrender'&quot;,fontcolor=&quot;blue&quot;]
+                
+            }
+        }
+    
+        subgraph cluster_gamerendererrender {
+            label=&quot;Game.renderer.render()&quot;
+            color=&quot;gray&quot;
+            
+            WorldRender[label=&quot;World.renderGL()&quot;,shape=&quot;rectangle&quot;,width=2.5]
+            GameObjectRender[label=&quot;GameObject.renderGL()&quot;,shape=&quot;rectangle&quot;,width=2.5]
+            WorldPostRender[label=&quot;World.postRenderGL()&quot;,shape=&quot;rectangle&quot;,width=2.5]
+        }
+    }
+    
+    
+    SceneUpdateEvent -&gt; WorldUpdateEvent
+    WorldUpdateEvent -&gt; GameObjectUpdate -&gt; WorldPostUpdateEvent
+    
+    WorldPostUpdateEvent -&gt; SceneRenderEvent -&gt; BuildRenderList -&gt; WorldRenderEvent
+    
+    WorldRenderEvent -&gt; WorldRender -&gt; GameObjectRender -&gt; WorldPostRender
+
+}</p></object></div>
+<p class="caption"><span class="caption-text">Every tick</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="simplest-sample-code">
+<h2>Simplest sample code<a class="headerlink" href="#simplest-sample-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">BackgroundColor</span><span class="p">,</span> <span class="nx">Parent</span><span class="p">,</span> <span class="nx">Scenes</span><span class="p">,</span> <span class="nx">Size</span><span class="p">,</span> <span class="nx">WebGLRenderer</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/config&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Game</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/Game&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Scene</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/scenes/Scene&#39;</span><span class="p">;</span>
+
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">AddChild</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/display/&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">ImageFile</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/loader/files/ImageFile&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Sprite</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/sprite&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">StaticWorld</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/world&#39;</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">Demo</span> <span class="kr">extends</span> <span class="nx">Scene</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">();</span>
+
+        <span class="nx">ImageFile</span><span class="p">(</span><span class="s1">&#39;logo&#39;</span><span class="p">,</span> <span class="s1">&#39;../assets/logo.png&#39;</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">load</span><span class="p">()</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+            <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="nx">create</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">world</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StaticWorld</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="kr">const</span> <span class="nx">logo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sprite</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="s1">&#39;logo&#39;</span><span class="p">);</span>
+        <span class="nx">AddChild</span><span class="p">(</span><span class="nx">world</span><span class="p">,</span> <span class="nx">logo</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">new</span> <span class="nx">Game</span><span class="p">(</span>
+    <span class="nx">WebGLRenderer</span><span class="p">(),</span>
+    <span class="nx">Size</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+    <span class="nx">Parent</span><span class="p">(</span><span class="s1">&#39;game&#39;</span><span class="p">),</span>
+    <span class="nx">BackgroundColor</span><span class="p">(</span><span class="mh">0x2d2d2d</span><span class="p">),</span>
+    <span class="nx">Scenes</span><span class="p">(</span><span class="nx">Demo</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 
