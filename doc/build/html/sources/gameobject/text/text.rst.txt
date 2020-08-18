@@ -284,3 +284,17 @@ Redraw content
 
     text.updateText();
 
+
+Canvas
+=============================================================================
+
+.. code-block:: javascript
+
+    let canvas = text.canvas;
+    let context = text.context;
+
+* `Get image data <https://www.w3schools.com/tags/canvas_getimagedata.asp>`_
+
+    .. code-block:: javascript
+
+        let imgData = context.getImageData(0, 0, canvas.width, canvas.height);

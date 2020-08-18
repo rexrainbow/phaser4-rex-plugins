@@ -5,6 +5,10 @@ Game Object
 .. graphviz:: class-tree.dot
     :caption: Class inheritance tree of Game object classes
 
+
+Chapters
+=============================================================================
+
 .. toctree::
    :titlesonly:
 

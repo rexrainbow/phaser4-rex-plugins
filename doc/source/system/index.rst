@@ -35,9 +35,11 @@ Simplest sample code
    :language: javascript
 
 
+Chapters
+=============================================================================
 
 .. toctree::
-   :hidden:
+   :titlesonly:
 
    game.rst
    scene.rst
