@@ -55,6 +55,10 @@ export function ExtendEventEmitter<T extends Constructor<{}>>(Base: T) {
             return this;
         }
 
+        getEventEmitter(): IEE {
+            return this;
+        }
+
         on(
             event: string,
             callback: Function,
