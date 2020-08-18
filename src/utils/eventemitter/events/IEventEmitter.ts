@@ -1,6 +1,5 @@
 import { IEventInstance } from './IEventInstance';
 
-export interface IEventEmitter
-{
+export interface IEventEmitter {
     events: Map<string, Set<IEventInstance>>;
 }
