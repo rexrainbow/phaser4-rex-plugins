@@ -87,6 +87,50 @@ Mouse events
 Hit test
 =============================================================================
 
+* Enable
+
+    .. code-block:: javascript
+
+        import { SetInteractive } from '@phaserjs/phaser/input';
+        SetInteractive(gameObject0, gameObject1, ... );
+
+    or
+
+    .. code-block:: javascript
+
+        gameObject.input.enabled = true;
+
+* Disable
+
+    .. code-block:: javascript
+
+        gameObject.input.enabled = false;
+
+* Set hit area, *optional*. 
+  Use rectangle of display size as hit area by default.
+
+    .. code-block:: javascript
+
+        gameObject.input.hitArea = geom;
+
+    :geom: Any kind of geometry object
+
+        * Rectangle
+
+            .. code-block:: javascript
+
+                import { Rectangle } from '@phaserjs/phaser/geom/rectangle';
+                gameObject.input.hitArea = new Rectangle(x, y, width, height);
+
+        * Circle
+
+            .. code-block:: javascript
+
+                import { Circle } from '@phaserjs/phaser/geom/circle';
+                gameObject.input.hitArea = new Circle(x, y, radius);
+
+        * Custom object contains ``contains(x, y):boolean`` method.
+
 * Get hit game objects
 
     .. code-block:: javascript

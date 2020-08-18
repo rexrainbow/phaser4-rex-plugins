@@ -14,15 +14,13 @@ export class FSM extends BaseEventEmitter implements IFSM {
     _prevState: string;
 
     constructor({
-        eventEmitter = true
+        eventEmitter
     }: IConfig = {}) {
 
         super();
 
         // Event emitter
-        if (eventEmitter) {
-            this.setEventEmitter();
-        }
+        this.setEventEmitter(eventEmitter);
     }
 
     destroy() {

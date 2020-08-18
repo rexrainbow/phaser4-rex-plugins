@@ -280,6 +280,57 @@
 <div class="section" id="hit-test">
 <h2><a class="toc-backref" href="#id4">Hit test</a><a class="headerlink" href="#hit-test" title="Permalink to this headline">¶</a></h2>
 <ul>
+<li><p>Enable</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetInteractive</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/input&#39;</span><span class="p">;</span>
+<span class="nx">SetInteractive</span><span class="p">(</span><span class="nx">gameObject0</span><span class="p">,</span> <span class="nx">gameObject1</span><span class="p">,</span> <span class="p">...</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">gameObject</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Disable</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">gameObject</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Set hit area, <em>optional</em>.
+Use rectangle of display size as hit area by default.</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">gameObject</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">hitArea</span> <span class="o">=</span> <span class="nx">geom</span><span class="p">;</span>
+</pre></div>
+</div>
+<dl class="field-list">
+<dt class="field-odd">geom</dt>
+<dd class="field-odd"><p>Any kind of geometry object</p>
+<ul>
+<li><p>Rectangle</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Rectangle</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/geom/rectangle&#39;</span><span class="p">;</span>
+<span class="nx">gameObject</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">hitArea</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Rectangle</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Circle</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Circle</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/geom/circle&#39;</span><span class="p">;</span>
+<span class="nx">gameObject</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">hitArea</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">radius</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Custom object contains <code class="docutils literal notranslate"><span class="pre">contains(x,</span> <span class="pre">y):boolean</span></code> method.</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</li>
 <li><p>Get hit game objects</p>
 <blockquote>
 <div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">hitGameObjects</span> <span class="o">=</span> <span class="nx">mouse</span><span class="p">.</span><span class="nx">hitTestChildren</span><span class="p">(</span><span class="nx">parentGameObject</span><span class="p">);</span>

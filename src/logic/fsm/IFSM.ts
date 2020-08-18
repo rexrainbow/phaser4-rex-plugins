@@ -1,4 +1,7 @@
-import { IBaseEventEmitter } from '../../utils/eventemitter/IBaseEventEmitter';
+import {
+    IBaseEventEmitter,
+    IConfig as IEventEmitterConfig
+} from '../../utils/eventemitter/IBaseEventEmitter';
 
 
 export type StateDefineType = {
@@ -11,13 +14,12 @@ export type StatesDefineType = {
     [stateName: string]: StateDefineType
 };
 
-export interface IConfig {
-    eventEmitter?: boolean;
+export interface IConfig extends IEventEmitterConfig {
 }
 
 export interface IFSM extends IBaseEventEmitter {
 
-    destroy():void;
+    destroy(): void;
     setEnable(enable?: boolean): this;
     start(state: string): this;
     goto(nextState?: string): this;
