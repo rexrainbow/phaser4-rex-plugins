@@ -37,6 +37,10 @@ export function ExtendEventEmitter<T extends Constructor<{}>>(Base: T) {
             return this;
         }
 
+        getEventEmitter(): IEE {
+            return this;
+        }
+
         clearEventEmitter(): this {
 
             this.setEventEmitter(null);
@@ -52,10 +56,6 @@ export function ExtendEventEmitter<T extends Constructor<{}>>(Base: T) {
                 this.events = null;
             }
 
-            return this;
-        }
-
-        getEventEmitter(): IEE {
             return this;
         }
 
