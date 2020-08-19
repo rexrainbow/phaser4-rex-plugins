@@ -30,7 +30,6 @@
 ## Canvas-data
 
 - [Text to bitmap](https://rexrainbow.github.io/phaser4-rex-plugins/public/canvas-data-text-object-to-bitmap/)
-
 - [Texture to color map](https://rexrainbow.github.io/phaser4-rex-plugins/public/canvas-data-texture-to-color-map/)
 
 ## Canvas-texture
