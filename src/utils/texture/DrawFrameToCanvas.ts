@@ -3,7 +3,7 @@ import { Frame } from '@phaserjs/phaser/textures/Frame';
 export function DrawFrame(
     frame: Frame,
     canvas: HTMLCanvasElement
-): void {
+): HTMLCanvasElement {
 
     if (canvas.width !== frame.width) {
         canvas.width = frame.width;
@@ -17,4 +17,6 @@ export function DrawFrame(
         frame.texture.image as HTMLCanvasElement,
         frame.x, frame.y, frame.width, frame.height
     );
+
+    return canvas;
 }
