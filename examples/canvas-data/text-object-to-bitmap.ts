@@ -40,6 +40,9 @@ class Demo extends Scene {
             })
 
         AddChild(world, image);
+
+        txt.setOrigin(0);
+        AddChild(world, txt); 
     }
 }
 

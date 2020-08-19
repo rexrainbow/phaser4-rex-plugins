@@ -50,6 +50,9 @@ class Demo extends Scene {
             })
 
         AddChild(world, image);
+
+        sprite.setOrigin(0);
+        AddChild(world, sprite); 
     }
 }
 
