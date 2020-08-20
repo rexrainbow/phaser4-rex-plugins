@@ -11,9 +11,9 @@ export interface IConfig {
     y?: number,
     width?: number,
     height?: number,
-    scaleX?: number | ICanvasGameObjectType,
+    scaleX?: number,
     scaleY?: number,
-    offsetX?: number | ICanvasGameObjectType,
+    offsetX?: number,
     offsetY?: number
 }
 

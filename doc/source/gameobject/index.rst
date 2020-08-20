@@ -16,3 +16,5 @@ Chapters
    container/container
    sprite/sprite
    text/text
+   spritebatch/spritebatch
+   renderlayer/renderlayer

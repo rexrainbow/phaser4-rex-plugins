@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Texture" href="../../texture/index.html" />
+    <link rel="next" title="Sprite Batch" href="../spritebatch/spritebatch.html" />
     <link rel="prev" title="Sprite" href="../sprite/sprite.html" /> 
 </head>
 
@@ -102,6 +102,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../container/container.html">Container</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sprite/sprite.html">Sprite</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spritebatch/spritebatch.html">Sprite Batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../renderlayer/renderlayer.html">Render layer</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../texture/index.html">Texture</a><ul>
@@ -186,41 +188,55 @@
   <div class="section" id="text">
 <h1>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h1>
 <p>Draw text on canvas texture, extended from <a class="reference internal" href="../sprite/sprite.html"><span class="doc">Sprite</span></a>.</p>
+<div class="figure align-default" id="id1">
+<div class="graphviz"><object data="../../images/graphviz-f498394d3a341812a63a1cbe39286a0307159a2c.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph ClassTree {
+    graph [rankdir=LR]
+
+    GameObject[label=&quot;GameObject\n(Children)&quot;]
+    Container[label=&quot;Container\n(Transform,\nSize)&quot;]
+    Sprite[label=&quot;Sprite\n(Texture)&quot;]
+    Text[label=&quot;Text\n(Text-&gt;Canvas\n-&gt;Texture)&quot;]
+
+    GameObject -&gt; Container -&gt; Sprite -&gt; Text
+}</p></object></div>
+<p class="caption"><span class="caption-text">Class inheritance tree of Text</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#import-modules" id="id1">Import modules</a></p></li>
-<li><p><a class="reference internal" href="#custom-class" id="id2">Custom class</a></p></li>
-<li><p><a class="reference internal" href="#create-instance" id="id3">Create instance</a></p></li>
-<li><p><a class="reference internal" href="#content" id="id4">Content</a></p></li>
-<li><p><a class="reference internal" href="#font" id="id5">Font</a></p></li>
-<li><p><a class="reference internal" href="#fill-style" id="id6">Fill style</a></p></li>
-<li><p><a class="reference internal" href="#stroke-style" id="id7">Stroke style</a></p>
+<li><p><a class="reference internal" href="#import-modules" id="id2">Import modules</a></p></li>
+<li><p><a class="reference internal" href="#custom-class" id="id3">Custom class</a></p></li>
+<li><p><a class="reference internal" href="#create-instance" id="id4">Create instance</a></p></li>
+<li><p><a class="reference internal" href="#content" id="id5">Content</a></p></li>
+<li><p><a class="reference internal" href="#font" id="id6">Font</a></p></li>
+<li><p><a class="reference internal" href="#fill-style" id="id7">Fill style</a></p></li>
+<li><p><a class="reference internal" href="#stroke-style" id="id8">Stroke style</a></p>
 <ul>
-<li><p><a class="reference internal" href="#line-width" id="id8">Line width</a></p></li>
+<li><p><a class="reference internal" href="#line-width" id="id9">Line width</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#background-style" id="id9">Background style</a></p>
+<li><p><a class="reference internal" href="#background-style" id="id10">Background style</a></p>
 <ul>
-<li><p><a class="reference internal" href="#corner-raduis" id="id10">Corner raduis</a></p></li>
+<li><p><a class="reference internal" href="#corner-raduis" id="id11">Corner raduis</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#alignment" id="id11">Alignment</a></p></li>
-<li><p><a class="reference internal" href="#line-spacing" id="id12">Line spacing</a></p></li>
-<li><p><a class="reference internal" href="#padding" id="id13">Padding</a></p></li>
-<li><p><a class="reference internal" href="#fixed-size" id="id14">Fixed size</a></p></li>
-<li><p><a class="reference internal" href="#baseline" id="id15">Baseline</a></p></li>
-<li><p><a class="reference internal" href="#redraw-content" id="id16">Redraw content</a></p></li>
-<li><p><a class="reference internal" href="#canvas" id="id17">Canvas</a></p></li>
+<li><p><a class="reference internal" href="#alignment" id="id12">Alignment</a></p></li>
+<li><p><a class="reference internal" href="#line-spacing" id="id13">Line spacing</a></p></li>
+<li><p><a class="reference internal" href="#padding" id="id14">Padding</a></p></li>
+<li><p><a class="reference internal" href="#fixed-size" id="id15">Fixed size</a></p></li>
+<li><p><a class="reference internal" href="#baseline" id="id16">Baseline</a></p></li>
+<li><p><a class="reference internal" href="#redraw-content" id="id17">Redraw content</a></p></li>
+<li><p><a class="reference internal" href="#canvas" id="id18">Canvas</a></p></li>
 </ul>
 </div>
 <div class="section" id="import-modules">
-<h2><a class="toc-backref" href="#id1">Import modules</a><a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Import modules</a><a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Text</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="custom-class">
-<h2><a class="toc-backref" href="#id2">Custom class</a><a class="headerlink" href="#custom-class" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Custom class</a><a class="headerlink" href="#custom-class" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">MyText</span> <span class="kr">extends</span> <span class="nx">Text</span> <span class="p">{</span>
     <span class="nx">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">font</span><span class="p">,</span> <span class="nx">fillStyle</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">supert</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">font</span><span class="p">,</span> <span class="nx">fillStyle</span><span class="p">);</span>
@@ -234,7 +250,7 @@
 </div>
 </div>
 <div class="section" id="create-instance">
-<h2><a class="toc-backref" href="#id3">Create instance</a><a class="headerlink" href="#create-instance" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Create instance</a><a class="headerlink" href="#create-instance" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">text</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Text</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">content</span><span class="p">);</span>
 <span class="c1">// let text = new Text(x, y, content, font, fillStyle);</span>
 </pre></div>
@@ -252,7 +268,7 @@
 </dl>
 </div>
 <div class="section" id="content">
-<h2><a class="toc-backref" href="#id4">Content</a><a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Content</a><a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>Get</p>
 <blockquote>
@@ -276,7 +292,7 @@
 </ul>
 </div>
 <div class="section" id="font">
-<h2><a class="toc-backref" href="#id5">Font</a><a class="headerlink" href="#font" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Font</a><a class="headerlink" href="#font" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetFont</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetFont</span><span class="p">(</span><span class="nx">font</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -296,7 +312,7 @@
 </div>
 </div>
 <div class="section" id="fill-style">
-<h2><a class="toc-backref" href="#id6">Fill style</a><a class="headerlink" href="#fill-style" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Fill style</a><a class="headerlink" href="#fill-style" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetFillStyle</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetFillStyle</span><span class="p">(</span><span class="nx">style</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -316,7 +332,7 @@
 </div>
 </div>
 <div class="section" id="stroke-style">
-<h2><a class="toc-backref" href="#id7">Stroke style</a><a class="headerlink" href="#stroke-style" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Stroke style</a><a class="headerlink" href="#stroke-style" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetStrokeStyle</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetStrokeStyle</span><span class="p">(</span><span class="nx">style</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -336,7 +352,7 @@
 </pre></div>
 </div>
 <div class="section" id="line-width">
-<h3><a class="toc-backref" href="#id8">Line width</a><a class="headerlink" href="#line-width" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Line width</a><a class="headerlink" href="#line-width" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetLineWidth</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetLineWidth</span><span class="p">(</span><span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -354,7 +370,7 @@
 </div>
 </div>
 <div class="section" id="background-style">
-<h2><a class="toc-backref" href="#id9">Background style</a><a class="headerlink" href="#background-style" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Background style</a><a class="headerlink" href="#background-style" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetBackgroundStyle</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetBackgroundStyle</span><span class="p">(</span><span class="nx">style</span><span class="p">,</span> <span class="nx">cornerRadius</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -374,7 +390,7 @@
 </pre></div>
 </div>
 <div class="section" id="corner-raduis">
-<h3><a class="toc-backref" href="#id10">Corner raduis</a><a class="headerlink" href="#corner-raduis" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Corner raduis</a><a class="headerlink" href="#corner-raduis" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetCornerRadius</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetCornerRadius</span><span class="p">(</span><span class="nx">cornerRadius</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -392,7 +408,7 @@
 </div>
 </div>
 <div class="section" id="alignment">
-<h2><a class="toc-backref" href="#id11">Alignment</a><a class="headerlink" href="#alignment" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Alignment</a><a class="headerlink" href="#alignment" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetTextAlign</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetTextAlign</span><span class="p">(</span><span class="nx">align</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -412,7 +428,7 @@
 </div>
 </div>
 <div class="section" id="line-spacing">
-<h2><a class="toc-backref" href="#id12">Line spacing</a><a class="headerlink" href="#line-spacing" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Line spacing</a><a class="headerlink" href="#line-spacing" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetLineSpacing</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetLineSpacing</span><span class="p">(</span><span class="nx">spacing</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -429,7 +445,7 @@
 </div>
 </div>
 <div class="section" id="padding">
-<h2><a class="toc-backref" href="#id13">Padding</a><a class="headerlink" href="#padding" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">Padding</a><a class="headerlink" href="#padding" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetPadding</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetPadding</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">,</span> <span class="nx">top</span><span class="p">,</span> <span class="nx">bottom</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -449,7 +465,7 @@
 </div>
 </div>
 <div class="section" id="fixed-size">
-<h2><a class="toc-backref" href="#id14">Fixed size</a><a class="headerlink" href="#fixed-size" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">Fixed size</a><a class="headerlink" href="#fixed-size" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetFixedSize</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetFixedSize</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -467,7 +483,7 @@
 </div>
 </div>
 <div class="section" id="baseline">
-<h2><a class="toc-backref" href="#id15">Baseline</a><a class="headerlink" href="#baseline" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">Baseline</a><a class="headerlink" href="#baseline" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SetTextBaseline</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects/text&#39;</span><span class="p">;</span>
 <span class="nx">SetTextBaseline</span><span class="p">(</span><span class="nx">baseline</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
 </pre></div>
@@ -487,13 +503,13 @@
 </div>
 </div>
 <div class="section" id="redraw-content">
-<h2><a class="toc-backref" href="#id16">Redraw content</a><a class="headerlink" href="#redraw-content" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id17">Redraw content</a><a class="headerlink" href="#redraw-content" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">text</span><span class="p">.</span><span class="nx">updateText</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="canvas">
-<h2><a class="toc-backref" href="#id17">Canvas</a><a class="headerlink" href="#canvas" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id18">Canvas</a><a class="headerlink" href="#canvas" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">canvas</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">context</span><span class="p">;</span>
 </pre></div>

@@ -4,6 +4,9 @@ Container
 
 Container of children game objects, extended from :doc:`Game object<../gameobject>`.
 
+.. graphviz:: container-class-tree.dot
+    :caption: Class inheritance tree of Container
+
 .. contents:: :local:
 
 

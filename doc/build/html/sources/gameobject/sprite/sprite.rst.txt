@@ -2,7 +2,10 @@
 Sprite
 =============================================================================
 
-Display of static images, extended from :doc:`Container<../container/container>`.
+Display of static image, extended from :doc:`Container<../container/container>`.
+
+.. graphviz:: sprite-class-tree.dot
+    :caption: Class inheritance tree of Sprite
 
 .. contents:: :local:
 
@@ -40,19 +43,17 @@ Create instance
     // let sprite = new Sprite(x, y, texture);
 
 
-Load texture
-=============================================================================
-
-.. code-block:: javascript
-
-    import { ImageFile } from '@phaserjs/phaser/loader/files/ImageFile';
-    ImageFile(textureKey, url)
-        .load()
-        .then(function(){ });
-
-
 Texture
 =============================================================================
+
+* Load texture
+
+    .. code-block:: javascript
+    
+        import { ImageFile } from '@phaserjs/phaser/loader/files/ImageFile';
+        ImageFile(textureKey, url)
+            .load()
+            .then(function(){ });
 
 * Get
 

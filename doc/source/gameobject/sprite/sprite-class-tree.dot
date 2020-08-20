@@ -1,0 +1,9 @@
+digraph ClassTree {
+    graph [rankdir=LR]
+
+    GameObject[label="GameObject\n(Children)"]
+    Container[label="Container\n(Transform,\nSize)"]
+    Sprite[label="Sprite\n(Texture)"]
+
+    GameObject -> Container -> Sprite
+}

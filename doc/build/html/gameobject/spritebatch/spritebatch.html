@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sprite Batch &mdash; Phaser4-rex-notes 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../static/documentation_options.js"></script>
+        <script src="../../static/jquery.js"></script>
+        <script src="../../static/underscore.js"></script>
+        <script src="../../static/doctools.js"></script>
+        <script src="../../static/language_data.js"></script>
+        <script src="../../static/clipboard.min.js"></script>
+        <script src="../../static/copybutton.js"></script>
+        <script >var copybuttonSkipText = '>>> ';</script>
+    
+    <script type="text/javascript" src="../../static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Render layer" href="../renderlayer/renderlayer.html" />
+    <link rel="prev" title="Text" href="../text/text.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Phaser4-rex-notes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../system/index.html">System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../system/game.html">Game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/scene.html">Scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/static-world.html">Static world</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../events/events.html">General event emitter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Game Object</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../gameobject.html">Game object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../container/container.html">Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sprite/sprite.html">Sprite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text/text.html">Text</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sprite Batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../renderlayer/renderlayer.html">Render layer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../texture/index.html">Texture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../texture/texture-manager.html">Texture manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texture/texture.html">Texture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../loader/index.html">Loader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../loader/loader.html">Loader</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../input/index.html">Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../input/keyboard/keyboard.html">Keyboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../input/pointer/mouse.html">Mouse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../plugin-list/index.html">Plugin list</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Phaser4-rex-notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Game Object</a> &raquo;</li>
+        
+      <li>Sprite Batch</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sprite-batch">
+<h1>Sprite Batch<a class="headerlink" href="#sprite-batch" title="Permalink to this headline">¶</a></h1>
+<p>Display of mutiple static images, extended from Layer.</p>
+<div class="figure align-default" id="id1">
+<div class="graphviz"><object data="../../images/graphviz-c29e61de31e14c6f3be985f1420b6553ce068d1a.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph ClassTree {
+    graph [rankdir=LR]
+    
+    GameObject[label=&quot;GameObject\n(Children)&quot;]
+    GOLayer[label=&quot;Layer\n(Bypass transfom,\nvisible)&quot;]
+    SpriteBatch[label=&quot;SpriteBatch\n(Draw texture\nmany times)&quot;]
+    
+    GameObject -&gt; GOLayer -&gt; SpriteBatch
+}</p></object></div>
+<p class="caption"><span class="caption-text">Class inheritance tree of Sprite Batch</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#import-modules" id="id2">Import modules</a></p></li>
+<li><p><a class="reference internal" href="#custom-class" id="id3">Custom class</a></p></li>
+<li><p><a class="reference internal" href="#create-instance" id="id4">Create instance</a></p></li>
+<li><p><a class="reference internal" href="#max-size" id="id5">Max size</a></p></li>
+<li><p><a class="reference internal" href="#current-size" id="id6">Current size</a></p></li>
+<li><p><a class="reference internal" href="#texture" id="id7">Texture</a></p></li>
+<li><p><a class="reference internal" href="#add-frame-image" id="id8">Add frame image</a></p></li>
+</ul>
+</div>
+<div class="section" id="import-modules">
+<h2><a class="toc-backref" href="#id2">Import modules</a><a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">SpriteBatch</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/gameobjects&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-class">
+<h2><a class="toc-backref" href="#id3">Custom class</a><a class="headerlink" href="#custom-class" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">MySpriteBatch</span> <span class="kr">extends</span> <span class="nx">SpriteBatch</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">maxSize</span><span class="p">,</span> <span class="nx">texture</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">supert</span><span class="p">(</span><span class="nx">maxSize</span><span class="p">,</span> <span class="nx">texture</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">update</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">time</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-instance">
+<h2><a class="toc-backref" href="#id4">Create instance</a><a class="headerlink" href="#create-instance" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">spriteBatch</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SpriteBatch</span><span class="p">(</span><span class="nx">maxSize</span><span class="p">,</span> <span class="nx">texture</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">maxSize</dt>
+<dd class="field-odd"><p>Clamp between <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">65535</span></code>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="max-size">
+<h2><a class="toc-backref" href="#id5">Max size</a><a class="headerlink" href="#max-size" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Set, also reset buffer.</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">spriteBatch</span><span class="p">.</span><span class="nx">setMaxSize</span><span class="p">(</span><span class="nx">maxSize</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">maxSize</dt>
+<dd class="field-odd"><p>Clamp between <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">65535</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>Get</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">maxSize</span> <span class="o">=</span> <span class="nx">spriteBatch</span><span class="p">.</span><span class="nx">maxSize</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="current-size">
+<h2><a class="toc-backref" href="#id6">Current size</a><a class="headerlink" href="#current-size" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Get</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">size</span> <span class="o">=</span> <span class="nx">spriteBatch</span><span class="p">.</span><span class="nx">count</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Clear</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">spriteBatch</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">spriteBatch</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="texture">
+<h2><a class="toc-backref" href="#id7">Texture</a><a class="headerlink" href="#texture" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Load texture</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ImageFile</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@phaserjs/phaser/loader/files/ImageFile&#39;</span><span class="p">;</span>
+<span class="nx">ImageFile</span><span class="p">(</span><span class="nx">textureKey</span><span class="p">,</span> <span class="nx">url</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">load</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="p">});</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Get</p>
+<blockquote>
+<div><ul>
+<li><p>Texture</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">texture</span> <span class="o">=</span> <span class="nx">spriteBatch</span><span class="p">.</span><span class="nx">texture</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">textureKey</span> <span class="o">=</span> <span class="nx">spriteBatch</span><span class="p">.</span><span class="nx">texture</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Set</p>
+<blockquote>
+<div><ul>
+<li><p>Set texture and frame</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">spriteBatch</span><span class="p">.</span><span class="nx">setTexture</span><span class="p">(</span><span class="nx">texture</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">texture</dt>
+<dd class="field-odd"><p>Texture key, or a Texture object.</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="add-frame-image">
+<h2><a class="toc-backref" href="#id8">Add frame image</a><a class="headerlink" href="#add-frame-image" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">spriteBatch</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
+        <span class="nx">frame</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">rotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">scaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">scaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">skewX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">skewY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">originX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">originY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">tint</span> <span class="o">=</span> <span class="mh">0xffffff</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">spriteBatch</span><span class="p">.</span><span class="nx">addXY</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">frame</span><span class="p">);</span>
+<span class="c1">// spriteBatch.addXY(x, y);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Rex
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

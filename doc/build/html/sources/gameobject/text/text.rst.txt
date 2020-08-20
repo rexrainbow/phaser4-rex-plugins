@@ -4,6 +4,9 @@ Text
 
 Draw text on canvas texture, extended from :doc:`Sprite<../sprite/sprite>`.
 
+.. graphviz:: text-class-tree.dot
+    :caption: Class inheritance tree of Text
+
 .. contents:: :local:
 
 

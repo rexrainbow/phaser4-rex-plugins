@@ -23,6 +23,8 @@ Destroy
         gameObject.destroy(newParent);
 
 
+.. _chileren-game-objects:
+
 Children game objects
 =============================================================================
 
