@@ -9,9 +9,6 @@ import { OnlineUserList } from './database/onlineuserlist';
 import { Room } from './database/room';
 import { SingleRoom } from './database/singleroom';
 
-import { LoadAPI } from './loadapi/LoadAPI';
-
-
 export {
     Broadcast,
     DynamicPageLoader,
@@ -23,7 +20,5 @@ export {
     OnlineUserList,
     Room,
     SingleRoom,
-    StaticPageLoader,
-
-    LoadAPI
+    StaticPageLoader
 }
