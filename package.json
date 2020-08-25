@@ -10,7 +10,7 @@
     "main": "./src/index.ts",
     "scripts": {
         "build-plugins": "rollup -c rollup.config.build.js",
-        "build-project": "node esbuild.build.js",
+        "build-project": "node esbuild.project.js",
         "start": "serve public -p 3000",
         "dev": "npm-run-all --parallel start build-project"
     },
