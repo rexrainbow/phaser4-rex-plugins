@@ -34,7 +34,7 @@
 
 ## Canvas-texture
 
-- [Draw](https://rexrainbow.github.io/phaser4-rex-plugins/public/canvas-texture-draw/)
+- [Circle](https://rexrainbow.github.io/phaser4-rex-plugins/public/canvas-texture-circle/)
 
 ## Masked image
 

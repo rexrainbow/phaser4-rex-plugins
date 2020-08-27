@@ -5,16 +5,23 @@ let path = inputMain.split('/');
 const inputFileName = path.pop().split('.')[0];
 const inputFolder = path.pop();
 const exportFolder = (production) ? `${inputFolder}-${inputFileName}` : '_preview';
+const exportPath = `./public/${exportFolder}`;
 
-// Generate boundle.js
-const { build } = require('esbuild');
-build({
-    entryPoints: [inputMain],
-    outfile: `./public/${exportFolder}/bundle.js`,  // Path from root
-    minify: production,
-    bundle: true,
-    sourcemap: true,
-})
+
+// Clear export folder
+const del = require('del');
+del([exportPath])
+    .then(function () {
+        // Generate boundle.js
+        const { build } = require('esbuild');        
+        return build({
+            entryPoints: [inputMain],
+            outfile: `${exportPath}/bundle.js`,  // Path from root
+            minify: production,
+            bundle: true,
+            sourcemap: (!production),
+        })
+    })
     .then(function () {
         // Generate index.html
         const templatePath = process.env.template || './examples/preview-template.html'; // Path from root
@@ -31,6 +38,6 @@ build({
             TITLE: title,
             SOURCE_CODE: sourceCodeLink
         });
-        fs.writeFileSync(`./public/${exportFolder}/index.html`, content); // Path from root
+        fs.writeFileSync(`${exportPath}/index.html`, content); // Path from root
     })
     .catch(() => process.exit(1))
