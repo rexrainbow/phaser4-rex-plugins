@@ -1,9 +1,9 @@
 const inputMain = process.env.main;  // Required
 const production = process.env.preview === '0';
 
-let path = inputMain.split('/');
-const inputFileName = path.pop().split('.')[0];
-const inputFolder = path.pop();
+let pathes = inputMain.split('/');
+const inputFileName = pathes.pop().split('.')[0];
+const inputFolder = pathes.pop();
 const exportFolder = (production) ? `${inputFolder}-${inputFileName}` : '_preview';
 const exportPath = `./public/${exportFolder}`;
 
