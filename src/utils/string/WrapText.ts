@@ -16,7 +16,7 @@ export type LineInfo = {
     newLineMode: NewLineMode;
 }
 
-export type GetTextWidthCallbackType = (text: string, context: unknown) => number;
+export type GetTextWidthCallbackType = (text: string, context?: unknown) => number;
 
 export const SplitTextRegExp = /(?:\r\n|\r|\n)/;
 
