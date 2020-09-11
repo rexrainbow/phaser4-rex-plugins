@@ -8,6 +8,7 @@ import { CSVToArray } from './data/csvtoarray';
 import { DrawCanvasTexture } from './texture/canvastexture';
 import * as Firebase from './firebase';
 import { FSM, CreateFSM } from './logic/fsm';
+import { StateManager } from './logic/statemanager';
 import { Gashapon } from './math/gashapon';
 import { LifeTime } from './time/lifetime';
 import { LoopInTicks } from './logic/loopinticks';
@@ -37,6 +38,7 @@ export {
     MaskedImage,
     Quest,
     RunCommands,
+    StateManager,
     TagText,
     TwoDTable,
     XOR
