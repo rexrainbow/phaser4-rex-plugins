@@ -7,7 +7,6 @@ import { Clock } from './time/clock';
 import { CSVToArray } from './data/csvtoarray';
 import { DrawCanvasTexture } from './texture/canvastexture';
 import * as Firebase from './firebase';
-import { FSM, CreateFSM } from './logic/fsm';
 import { StateManager } from './logic/statemanager';
 import { Gashapon } from './math/gashapon';
 import { LifeTime } from './time/lifetime';
@@ -26,11 +25,9 @@ export {
     Canvas,
     CanvasTexture,
     Clock,
-    CreateFSM,
     CSVToArray,
     DrawCanvasTexture,
     Firebase,
-    FSM,
     Gashapon,
     LifeTime,
     LoopInTicks,

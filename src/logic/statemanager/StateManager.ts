@@ -63,6 +63,20 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
         return this;
     }
 
+    removeState(
+        name: StateNameType
+    ): this {
+
+        this._states.delete(name);
+        return this;
+    }
+
+    removeAllStates(): this {
+
+        this._states.clear();
+        return this;
+    }
+
     set state(newState: StateNameType) {
 
         if (!this.enable || this._stateLock) {

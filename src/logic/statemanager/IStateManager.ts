@@ -27,23 +27,10 @@ export interface IStateManager extends IBaseEventEmitter {
     getState(name: StateNameType): IState;
     addState(state: IState): this;
     addStates(states: IState[]): this;
+    removeState(name: StateNameType): this;
+    removeAllStates(): this;
 
     start(state: StateNameType): this;
     goto(nextState?: StateNameType): this;
     next(): this;
-
-    update(
-        delta: number,
-        time: number,
-        type?: string
-    ): void;
-    preupdate(
-        delta: number,
-        time: number
-    ): void;
-    postupdate(
-        delta: number,
-        time: number
-    ): void;
-
 }

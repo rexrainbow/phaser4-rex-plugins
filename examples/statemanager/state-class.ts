@@ -1,23 +1,5 @@
 import { StateManager } from '../../src';
 
-class StateA {
-    name = 'A';
-    next = 'B';
-
-    enter(stateManager: StateManager) {
-        console.log('enter A');
-    }
-}
-
-class StateB {
-    name = 'B';
-    next = 'C';
-
-    enter(stateManager: StateManager) {
-        console.log('enter B');
-    }
-}
-
 class StateC {
     name = 'C';
     i = 0;
@@ -36,22 +18,15 @@ class StateC {
     }
 }
 
-class StateD {
-    name = 'D';
-    enter(stateManager: StateManager) {
-        console.log('enter D');
-    }
-}
-
 class MyStates extends StateManager {
     constructor() {
         super();
 
         this.addStates([
-            (new StateA()),
-            (new StateB()),
-            (new StateC()),
-            (new StateD())
+            { name: 'A', next: 'B', enter() { console.log('enter A') } }, // A json state object
+            { name: 'B', next: 'C', enter() { console.log('enter B') } },
+            (new StateC()), // A state object
+            { name: 'D', enter() { console.log('enter D') } },
         ])
             .goto('A');
     }
