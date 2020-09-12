@@ -1,6 +1,7 @@
-export function EnterStateEvent(state: string) {
-    return `enter_${state}`
+import { StateNameType, IStateManager } from '../IStateManager';
+
+export function EnterStateEvent(name: StateNameType) {
+    return `enter_${name.toString()}`
 }
 
-import { IFSM } from '../IFSM';
-export type EnterStateEventHandler = (fsm: IFSM) => void;
+export type EnterStateEventHandler = (stateManager: IStateManager) => void;

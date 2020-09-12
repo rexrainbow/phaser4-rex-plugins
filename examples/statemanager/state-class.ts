@@ -1,6 +1,7 @@
 import { StateManager } from '../../src';
 
 class StateA {
+    name = 'A';
     next = 'B';
 
     enter(stateManager: StateManager) {
@@ -9,6 +10,7 @@ class StateA {
 }
 
 class StateB {
+    name = 'B';
     next = 'C';
 
     enter(stateManager: StateManager) {
@@ -17,6 +19,7 @@ class StateB {
 }
 
 class StateC {
+    name = 'C';
     i = 0;
 
     next() {
@@ -34,6 +37,7 @@ class StateC {
 }
 
 class StateD {
+    name = 'D';
     enter(stateManager: StateManager) {
         console.log('enter D');
     }
@@ -43,12 +47,12 @@ class MyStates extends StateManager {
     constructor() {
         super();
 
-        this.addStates({
-            A: (new StateA()),
-            B: (new StateB()),
-            C: (new StateC()),
-            D: (new StateD())
-        })
+        this.addStates([
+            (new StateA()),
+            (new StateB()),
+            (new StateC()),
+            (new StateD())
+        ])
             .goto('A');
     }
 }

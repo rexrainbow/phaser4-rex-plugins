@@ -1,4 +1,4 @@
 export const StateChangeEvent = 'statechange';
 
-import { IFSM } from '../IFSM';
-export type StateChangeEventHandler = (fsm: IFSM) => void;
+import { StateNameType, IStateManager } from '../IStateManager';
+export type StateChangeEventHandler = (stateManager: IStateManager) => void;

@@ -1,6 +1,7 @@
-export function ExitStateEvent(state: string) {
-    return `exit_${state}`
+import { StateNameType, IStateManager } from '../IStateManager';
+
+export function ExitStateEvent(name: StateNameType) {
+    return `exit_${name.toString()}`
 }
 
-import { IFSM } from '../IFSM';
-export type ExitStateEventHandler = (fsm: IFSM) => void;
+export type ExitStateEventHandler = (stateManager: IStateManager) => void;
