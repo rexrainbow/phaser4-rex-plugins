@@ -71,7 +71,7 @@ export class BaseText extends Sprite implements IBaseText {
     fixedHeight: number = 0;
     resolution: number;
     padding = { left: 0, right: 0, top: 0, bottom: 0 };
-    _textOffsetY: number = 0;
+    _textScrollY: number = 0;
 
     constructor(
         x: number,
@@ -428,27 +428,27 @@ export class BaseText extends Sprite implements IBaseText {
 
     get textScrollY(): number {
 
-        return this._textOffsetY;
+        return this._textScrollY;
     }
 
     set textScrollY(value: number) {
 
-        this._textOffsetY = value;
+        this._textScrollY = value;
     }
 
-    get textOffsetYPercentage(): number {
+    get textScrollYPercentage(): number {
 
-        return -this._textOffsetY / (this.totalTextHeight - this.displayTextHeight);
+        return -this._textScrollY / (this.totalTextHeight - this.displayTextHeight);
     }
 
-    set textOffsetYPercentage(value: number) {
+    set textScrollYPercentage(value: number) {
 
         const displayHeight = this.displayTextHeight;
         const totalTextHeight = this.totalTextHeight;
         if (totalTextHeight <= displayHeight) {
-            this._textOffsetY = 0
+            this._textScrollY = 0
         } else {
-            this._textOffsetY = - (totalTextHeight - displayHeight) * value;
+            this._textScrollY = - (totalTextHeight - displayHeight) * value;
         }
     }
 

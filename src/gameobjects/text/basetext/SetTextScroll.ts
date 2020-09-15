@@ -7,7 +7,7 @@ export function SetTextScrollY(
 ): void {
 
     if (isPercent) {
-        baseText.textOffsetYPercentage = offsetY;
+        baseText.textScrollYPercentage = offsetY;
     } else {
         baseText.textScrollY = offsetY;
     }
