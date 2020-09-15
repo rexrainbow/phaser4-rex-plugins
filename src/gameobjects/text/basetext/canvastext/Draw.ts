@@ -50,7 +50,7 @@ export function Draw(
     const vAlign = parent.vAlign;
 
     // Shift offsetY
-    let offsetY = drawBoundY + textScrollY;
+    let offsetY = drawBoundY - textScrollY;
     switch (vAlign) {
         case VAlignMode.center:
             offsetY += (drawBoundHeight - totalLineHeight) / 2;
@@ -90,7 +90,7 @@ export function Draw(
 
 
         // Shift offsetX
-        let offsetX = drawBoundX + textScrollX;
+        let offsetX = drawBoundX - textScrollX;
         switch (hAlign) {
             case HAlignMode.center:
                 offsetX += (drawBoundWidth - lineWidth) / 2;

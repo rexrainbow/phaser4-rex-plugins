@@ -438,7 +438,7 @@ export class BaseText extends Sprite implements IBaseText {
 
     get textScrollYPercentage(): number {
 
-        return -this._textScrollY / (this.totalTextHeight - this.displayTextHeight);
+        return this._textScrollY / (this.totalTextHeight - this.displayTextHeight);
     }
 
     set textScrollYPercentage(value: number) {
@@ -448,7 +448,7 @@ export class BaseText extends Sprite implements IBaseText {
         if (totalTextHeight <= displayHeight) {
             this._textScrollY = 0
         } else {
-            this._textScrollY = - (totalTextHeight - displayHeight) * value;
+            this._textScrollY = (totalTextHeight - displayHeight) * value;
         }
     }
 
