@@ -1,6 +1,6 @@
 import { IBaseText } from './IBaseText';
 
-export function SetTextOffsetY(
+export function SetTextScrollY(
     baseText: IBaseText,
     offsetY: number,
     isPercent: boolean = false
@@ -9,7 +9,7 @@ export function SetTextOffsetY(
     if (isPercent) {
         baseText.textOffsetYPercentage = offsetY;
     } else {
-        baseText.textOffsetY = offsetY;
+        baseText.textScrollY = offsetY;
     }
 
 }

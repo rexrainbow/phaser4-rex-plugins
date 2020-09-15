@@ -69,7 +69,7 @@ export function UpdateText(
             textWidth,
             textHeight,
             0,
-            baseText.textOffsetY
+            baseText.textScrollY
         );
 
         context.restore();

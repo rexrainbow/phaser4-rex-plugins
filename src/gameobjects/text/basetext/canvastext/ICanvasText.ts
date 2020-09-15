@@ -29,6 +29,6 @@ export interface ICanvasText {
 
     textWidth: number;
     textHeight: number;
-    textOffsetX: number;
-    textOffsetY: number;
+    textScrollX: number;
+    textScrollY: number;
 }

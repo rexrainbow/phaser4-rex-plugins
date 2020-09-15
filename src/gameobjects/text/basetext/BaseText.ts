@@ -17,7 +17,7 @@ import { BaseParser } from './parser/BaseParser';
 
 import { UpdateText } from './UpdateText';
 import { SetFixedSize, SetPadding } from './SetSizeMethods';
-import { SetTextOffsetY } from './SetTextOffset';
+import { SetTextScrollY } from './SetTextScroll';
 import { SetHAlign, SetVAlign } from './SetAlignMethods';
 import { SetLineSpacing } from './SetLineSpacing';
 import { SetBackgroundStyle } from './SetBackgroundStyle';
@@ -257,12 +257,12 @@ export class BaseText extends Sprite implements IBaseText {
         return this;
     }
 
-    setTextOffsetY(
+    setTextScrollY(
         offsetY: number,
         isPercent: boolean = false
     ): this {
 
-        SetTextOffsetY(this, offsetY, isPercent);
+        SetTextScrollY(this, offsetY, isPercent);
         return this;
     }
 
@@ -426,12 +426,12 @@ export class BaseText extends Sprite implements IBaseText {
         return GetPenManager(this, text, penManager);
     }
 
-    get textOffsetY(): number {
+    get textScrollY(): number {
 
         return this._textOffsetY;
     }
 
-    set textOffsetY(value: number) {
+    set textScrollY(value: number) {
 
         this._textOffsetY = value;
     }

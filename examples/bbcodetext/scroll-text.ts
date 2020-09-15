@@ -60,7 +60,7 @@ class Demo extends Scene {
                 reverse = true;
             }
             text
-                .setTextOffsetY(progress / duration, true)
+                .setTextScrollY(progress / duration, true)
                 .updateText(false); // Don't wrap text, only draw text
         })
     }

@@ -31,8 +31,8 @@ export class CanvasText implements ICanvasText {
     imageManager: ImageManager;
     hitAreaManager: HitAreaManager;
 
-    textOffsetX: number = 0;
-    textOffsetY: number = 0;
+    textScrollX: number = 0;
+    textScrollY: number = 0;
 
     constructor({
         canvas,
@@ -102,13 +102,13 @@ export class CanvasText implements ICanvasText {
         y: number,
         width: number,
         height: number,
-        textOffsetX: number = 0,
-        textOffsetY: number = 0
+        textScrollX: number = 0,
+        textScrollY: number = 0
     ): this {
 
         Draw(this,
             x, y, width, height,
-            textOffsetX, textOffsetY,
+            textScrollX, textScrollY,
             this.penManager
         );
 

@@ -15,8 +15,8 @@ export function Draw(
     drawBoundY: number,
     drawBoundWidth: number,
     drawBoundHeight: number,
-    textOffsetX: number = 0,
-    textOffsetY: number = 0,
+    textScrollX: number = 0,
+    textScrollY: number = 0,
     penManager: PenManager = canvasText.penManager
 ) {
 
@@ -50,7 +50,7 @@ export function Draw(
     const vAlign = parent.vAlign;
 
     // Shift offsetY
-    let offsetY = drawBoundY + textOffsetY;
+    let offsetY = drawBoundY + textScrollY;
     switch (vAlign) {
         case VAlignMode.center:
             offsetY += (drawBoundHeight - totalLineHeight) / 2;
@@ -90,7 +90,7 @@ export function Draw(
 
 
         // Shift offsetX
-        let offsetX = drawBoundX + textOffsetX;
+        let offsetX = drawBoundX + textScrollX;
         switch (hAlign) {
             case HAlignMode.center:
                 offsetX += (drawBoundWidth - lineWidth) / 2;
