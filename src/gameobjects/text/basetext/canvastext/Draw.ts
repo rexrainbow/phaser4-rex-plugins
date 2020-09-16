@@ -4,6 +4,7 @@ import {
     IStyle, FillStyleType,
     HAlignMode, VAlignMode
 } from '../Types';
+import { AlignPositionMode, AlignPositionModeString } from '../../../../utils/types/AlignPositionMode';
 import { SyncFont, SyncStyle, SyncShadow } from './SyncContextMethods';
 import { HitAreaManager } from '../hitareamanager/HitAreaManager';
 import { PenManager } from '../penmanger/PenManager';
@@ -46,8 +47,47 @@ export function Draw(
         context.clip();
     }
 
-    const hAlign = parent.hAlign;
-    const vAlign = parent.vAlign;
+    let hAlign: HAlignMode,
+        vAlign: VAlignMode;
+
+    switch (parent.align) {
+        case AlignPositionMode.TOP_LEFT:
+            hAlign = HAlignMode.left;
+            vAlign = VAlignMode.top;
+            break;
+        case AlignPositionMode.TOP_CENTER:
+            hAlign = HAlignMode.center;
+            vAlign = VAlignMode.top;
+            break;
+        case AlignPositionMode.TOP_RIGHT:
+            hAlign = HAlignMode.right;
+            vAlign = VAlignMode.top;
+            break;
+        case AlignPositionMode.CENTER_LEFT:
+            hAlign = HAlignMode.left;
+            vAlign = VAlignMode.center;
+            break;
+        case AlignPositionMode.CENTER:
+            hAlign = HAlignMode.center;
+            vAlign = VAlignMode.center;
+            break;
+        case AlignPositionMode.CENTER_RIGHT:
+            hAlign = HAlignMode.right;
+            vAlign = VAlignMode.center;
+            break;
+        case AlignPositionMode.BOTTOM_LEFT:
+            hAlign = HAlignMode.left;
+            vAlign = VAlignMode.bottom;
+            break;
+        case AlignPositionMode.BOTTOM_CENTER:
+            hAlign = HAlignMode.center;
+            vAlign = VAlignMode.bottom;
+            break;
+        case AlignPositionMode.BOTTOM_RIGHT:
+            hAlign = HAlignMode.right;
+            vAlign = VAlignMode.bottom;
+            break;
+    }
 
     // Shift offsetY
     let offsetY = drawBoundY - textScrollY;

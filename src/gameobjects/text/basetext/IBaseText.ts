@@ -3,9 +3,9 @@ import { CanvasText } from './canvastext/CanvasText';
 import {
     IStyle,
     FillStyleType, IRadiusConfig,
-    WrapMode, WrapModeString,
-    HAlignMode, HAlignModeString, VAlignMode, VAlignModeString
+    WrapMode, WrapModeString
 } from './Types';
+import { AlignPositionMode, AlignPositionModeString } from '../../../utils/types/AlignPositionMode';
 import { ImageInfo } from './imagemanager/IImageManager';
 
 export type PaddingConfigType = {
@@ -21,8 +21,7 @@ export interface IConfig extends IStyle {
     height?: number;
     padding?: PaddingConfigType | number;
     wrapMode?: WrapMode | WrapModeString;
-    hAlign?: HAlignMode | HAlignModeString;
-    vAlign?: VAlignMode | VAlignModeString;
+    align?: AlignPositionMode | AlignPositionModeString;
     lineSpacing?: number;
     images?: string[] | { [key: string]: ImageInfo }
 }
@@ -58,8 +57,7 @@ export interface IBaseText extends ISprite {
     underlineThickness: number;
     underlineOffsetY: number;
 
-    hAlign: HAlignMode;
-    vAlign: VAlignMode;
+    align: AlignPositionMode;
     lineSpacing: number;
     wrapMode: WrapMode;
     wrapWidth: number;

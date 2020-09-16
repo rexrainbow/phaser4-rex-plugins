@@ -1,27 +1,12 @@
 import { IBaseText } from './IBaseText';
-import {
-    HAlignMode, HAlignModeString,
-    VAlignMode, VAlignModeString
-} from './Types';
+import { AlignPositionMode, AlignPositionModeString } from '../../../utils/types/AlignPositionMode';
 
-export function SetHAlign(
+export function SetAlign(
     baseText: IBaseText,
-    hAlign: HAlignMode | HAlignModeString = HAlignMode.left
+    align: AlignPositionMode | AlignPositionModeString
 ) {
-    if (typeof (hAlign) === 'string') {
-        hAlign = HAlignMode[hAlign];
+    if (typeof (align) === 'string') {
+        align = AlignPositionMode[align];
     }
-
-    baseText.hAlign = hAlign;
-}
-
-export function SetVAlign(
-    baseText: IBaseText,
-    vAlign: VAlignMode | VAlignModeString = VAlignMode.top
-) {
-    if (typeof (vAlign) === 'string') {
-        vAlign = VAlignMode[vAlign];
-    }
-
-    baseText.vAlign = vAlign;
+    baseText.align = align;
 }

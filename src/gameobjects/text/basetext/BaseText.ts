@@ -7,9 +7,9 @@ import { IBaseText, IConfig, PaddingConfigType } from './IBaseText';
 import {
     IStyle, IRadiusConfig,
     FillStyleType,
-    WrapMode, WrapModeString,
-    HAlignMode, HAlignModeString, VAlignMode, VAlignModeString
+    WrapMode, WrapModeString
 } from './Types';
+import { AlignPositionMode, AlignPositionModeString } from '../../../utils/types/AlignPositionMode';
 import { CanvasText } from './canvastext/CanvasText';
 import { ImageInfo } from './imagemanager/IImageManager';
 import { PenManager } from './penmanger/PenManager';
@@ -18,7 +18,7 @@ import { BaseParser } from './parser/BaseParser';
 import { UpdateText } from './UpdateText';
 import { SetFixedSize, SetPadding } from './SetSizeMethods';
 import { SetTextScrollY } from './SetTextScroll';
-import { SetHAlign, SetVAlign } from './SetAlignMethods';
+import { SetAlign } from './SetAlignMethods';
 import { SetLineSpacing } from './SetLineSpacing';
 import { SetBackgroundStyle } from './SetBackgroundStyle';
 import {
@@ -62,8 +62,7 @@ export class BaseText extends Sprite implements IBaseText {
     underlineThickness: number = 1;
     underlineOffsetY: number = 0;
 
-    hAlign: HAlignMode = HAlignMode.left;
-    vAlign: VAlignMode = VAlignMode.top;
+    align: AlignPositionMode = AlignPositionMode.TOP_LEFT;
     lineSpacing: number = 0;
     wrapMode: WrapMode = WrapMode.none;
     wrapWidth: number = 0;
@@ -88,8 +87,7 @@ export class BaseText extends Sprite implements IBaseText {
             backgroundStrokeThickness,
             cornerRadius = 0,
 
-            hAlign = HAlignMode.left,
-            vAlign = VAlignMode.top,
+            align = AlignPositionMode.TOP_LEFT,
 
             lineSpacing = 0,
 
@@ -141,8 +139,7 @@ export class BaseText extends Sprite implements IBaseText {
 
         SetWrapMode(this, wrapMode);
 
-        SetHAlign(this, hAlign);
-        SetVAlign(this, vAlign);
+        SetAlign(this, align);
 
         SetLineSpacing(this, lineSpacing);
 
@@ -266,20 +263,11 @@ export class BaseText extends Sprite implements IBaseText {
         return this;
     }
 
-    setHAlign(
-        hAlign: HAlignMode | HAlignModeString = HAlignMode.left
+    setAlign(
+        align: AlignPositionMode | AlignPositionModeString
     ): this {
 
-        SetHAlign(this, hAlign);
-
-        return this;
-    }
-
-    setVAlign(
-        vAlign: VAlignMode | VAlignModeString = VAlignMode.top
-    ): this {
-
-        SetVAlign(this, vAlign);
+        SetAlign(this, align);
 
         return this;
     }
