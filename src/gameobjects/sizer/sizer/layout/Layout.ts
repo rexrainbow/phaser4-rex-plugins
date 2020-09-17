@@ -1,5 +1,6 @@
 import { ISizer, ISizerState } from '../ISizer';
 import { IBaseSizer } from '../../basesizer/IBaseSizer';
+import { BaseSizer } from '../../basesizer';
 import { OrientationMode } from '../../util/OrientationMode';
 import { GetExpandedChildWidth } from './GetExpandedChildWidth';
 import { GetExpandedChildHeight } from './GetExpandedChildHeight';
@@ -50,8 +51,8 @@ export function Layout(
 
     // Layout children    
     const children = sizer.sizerChildren;
-    const startX = sizer.space.left;  // sizer.innerLeft;
-    const startY = sizer.space.top;   // sizer.innerTop;
+    const startX = sizer.left;
+    const startY = sizer.top;
     const innerWidth = sizer.innerWidth;
     const innerHeight = sizer.innerHeight;
     let itemX = startX,
@@ -68,7 +69,7 @@ export function Layout(
         // Set size
         let childWidth = GetExpandedChildWidth(sizer, child);
         let childHeight = GetExpandedChildHeight(sizer, child);
-        if (child.isRexSizer) {
+        if (child instanceof BaseSizer) {
             child._layout(sizer, childWidth, childHeight);
         } else {
             ResizeGameObject(child, childWidth, childHeight);

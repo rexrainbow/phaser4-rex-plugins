@@ -15,6 +15,7 @@ import { LZString } from './string/lzstring';
 import { MaskedImage } from './gameobjects/maskedimage';
 import * as Quest from './logic/quest';
 import { RunCommands } from './logic/runcommands';
+import { Sizer } from './gameobjects/sizer'
 import { TwoDTable } from './data/twodtable';
 import { XOR } from './string/xor';
 
@@ -35,6 +36,7 @@ export {
     MaskedImage,
     Quest,
     RunCommands,
+    Sizer,
     StateManager,
     TagText,
     TwoDTable,

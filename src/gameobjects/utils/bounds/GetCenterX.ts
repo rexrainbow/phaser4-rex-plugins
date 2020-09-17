@@ -1,9 +1,8 @@
 import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
-import { GetLeft } from './GetLeft';
 
 export function GetCenterX(
     gameobject: IContainer
 ): number {
 
-    return GetLeft(gameobject) + (gameobject.width / 2);
+    return gameobject.x + ((0.5 - gameobject.originX) * gameobject.width);
 }

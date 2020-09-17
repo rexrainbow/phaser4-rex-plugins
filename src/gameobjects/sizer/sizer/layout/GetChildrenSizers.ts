@@ -1,4 +1,5 @@
 import { IBaseSizer } from '../../basesizer/IBaseSizer';
+import { BaseSizer } from '../../basesizer';
 
 export function GetChildrenSizers(
     sizer: IBaseSizer,
@@ -8,7 +9,7 @@ export function GetChildrenSizers(
     const children = sizer.sizerChildren as IBaseSizer[];
     for (var i = 0, cnt = children.length; i < cnt; i++) {
         const child = children[i];
-        if (child.isRexSizer) {
+        if (child instanceof BaseSizer) {
             out.push(child);
         }
     }

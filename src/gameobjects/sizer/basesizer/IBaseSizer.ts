@@ -1,5 +1,6 @@
 import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
 import { ISizerState } from '../util/ISizerState';
+import { IChild } from '../util/IChild';
 import { IAddBackgroundConfig } from './add/AddBackground';
 import { IPadding } from '../util/IPadding';
 
@@ -17,8 +18,7 @@ export interface IConfig {
 }
 
 export interface IBaseSizer extends IContainer {
-    isRexSizer: boolean;
-    isRexSpace: boolean; // TODO: Remove this property
+    isRexSpace: false;
     type: string;
 
     space: ISpace;
@@ -48,31 +48,35 @@ export interface IBaseSizer extends IContainer {
     childrenHeight: number;
     _childrenHeight: number;
 
-    backgroundChildren: IBaseSizer[];
-    sizerChildren: any[] | { [name: string]: any };
-    childrenMap: { [name: string]: any };
-    
+    backgroundChildren: IChild[];
+    sizerChildren: IChild[] | { [name: string]: IChild };
+    childrenMap: { [name: string]: IChild };
+
     resize(
         width?: number,
         height?: number
     ): this;
 
     pin(
-        child: any
+        child: IChild
     ): this;
 
+    getSizerState(
+        child: IChild
+    ): ISizerState;
+
     addBackground(
-        child: any,
+        child: IChild,
         config?: IAddBackgroundConfig
     ): this;
 
     isBackground(
-        child: any
+        child: IChild
     ): boolean;
 
     addChildrenMap(
         key: string | number,
-        child: any
+        child: IChild
     ): this;
 
     layout(): this;

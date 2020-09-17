@@ -4,32 +4,27 @@ import {
 } from './IBaseSizer';
 import { Container } from '@phaserjs/phaser/gameobjects';
 import { ISizerState } from '../util/ISizerState';
+import { IChild } from '../util/IChild';
 import { GetBoundsConfig } from '../../../utils/bounds/GetBoundsConfig';
-import { GetLeft } from '../../../utils/bounds/GetLeft';
-import { GetCenterX } from '../../../utils/bounds/GetCenterX';
-import { GetRight } from '../../../utils/bounds/GetRight';
-import { GetTop } from '../../../utils/bounds/GetTop';
-import { GetCenterY } from '../../../utils/bounds/GetCenterY';
-import { GetBottom } from '../../../utils/bounds/GetBottom';
-import { SetLeft } from '../../../utils/bounds/SetLeft';
-import { SetCenterX } from '../../../utils/bounds/SetCenterX';
-import { SetRight } from '../../../utils/bounds/SetRight';
-import { SetTop } from '../../../utils/bounds/SetTop';
-import { SetCenterY } from '../../../utils/bounds/SetCenterY';
-import { SetBottom } from '../../../utils/bounds/SetBottom';
+import {
+    GetLeft, GetCenterX, GetRight,
+    GetTop, GetCenterY, GetBottom,
+    SetLeft, SetCenterX, SetRight,
+    SetTop, SetCenterY, SetBottom
+} from '../../utils/bounds';
 import { Layout } from './layout/Layout';
 import { PreLayout } from './layout/PreLayout';
 import { LayoutInit } from './layout/LayoutInit';
 import { LayoutBackgrounds } from './layout/LayoutBackgrounds';
 import { PostLayout } from './layout/PostLayout';
 import { Pin } from './add/Pin';
+import { GetSizerState } from '../util/GetSizerState';
 import { AddBackground, IAddBackgroundConfig } from './add/AddBackground';
 import { IsBackground } from './add/IsBackground';
 import { AddChildrenMap } from './add/AddChildrenMap';
 
 export class BaseSizer extends Container implements IBaseSizer {
-    isRexSizer: boolean = true;
-    isRexSpace: boolean = false;
+    isRexSpace: false;
     type: string = 'base';
 
     space: ISpace;
@@ -44,16 +39,16 @@ export class BaseSizer extends Container implements IBaseSizer {
     minHeight: number = 0;
     _childrenHeight: number = 0;
 
-    backgroundChildren: IBaseSizer[];
-    sizerChildren: any[] | { [name: string]: any };
-    childrenMap: { [name: string]: any };
+    backgroundChildren: IChild[];
+    sizerChildren: IChild[] | { [name: string]: IChild };
+    childrenMap: { [name: string]: IChild };
 
     constructor({
         space = 0,
         name = ''
     }: IConfig = {}) {
 
-        super(arguments[0]);
+        super();
 
         this.space = GetBoundsConfig(space);
         this.name = name;
@@ -221,6 +216,13 @@ export class BaseSizer extends Container implements IBaseSizer {
         return this;
     }
 
+    getSizerState(
+        child: IChild
+    ): ISizerState {
+
+        return GetSizerState(child);
+    }
+
 
     // Override
     getChildrenSizers(
@@ -283,7 +285,7 @@ export class BaseSizer extends Container implements IBaseSizer {
     }
 
     pin(
-        child: any
+        child: IChild
     ): this {
 
         Pin(this, child);
@@ -291,7 +293,7 @@ export class BaseSizer extends Container implements IBaseSizer {
     }
 
     addBackground(
-        child: any,
+        child: IChild,
         config?: IAddBackgroundConfig
     ): this {
 
@@ -300,7 +302,7 @@ export class BaseSizer extends Container implements IBaseSizer {
     }
 
     isBackground(
-        child: any
+        child: IChild
     ): boolean {
 
         return IsBackground(this, child);
@@ -308,7 +310,7 @@ export class BaseSizer extends Container implements IBaseSizer {
 
     addChildrenMap(
         key: string,
-        child: any
+        child: IChild
     ): this {
 
         AddChildrenMap(this, key, child);

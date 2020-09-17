@@ -5,6 +5,7 @@ import {
 } from '../basesizer/IBaseSizer';
 import { OrientationMode, OrientationModeString } from '../util/OrientationMode';
 import { ISizerState as IBaseSizerState } from '../util/ISizerState';
+import { IChild } from '../util/IChild';
 import { AlignPositionMode } from '../../../utils/types/AlignPositionMode';
 import { IAddConfig } from './add/Add';
 
@@ -29,7 +30,7 @@ export interface ISizer extends IBaseSizer {
     childrenProportion: number;
     _childrenProportion: number;
     proportionLength: number;
-    sizerChildren: IBaseSizer[];
+    sizerChildren: IChild[];
 
     getChildrenWidth(
         minimumMode?: boolean
@@ -40,7 +41,7 @@ export interface ISizer extends IBaseSizer {
     ): number;
 
     add(
-        child: any,
+        child: IChild,
         config?: IAddConfig
     ): this;
 

@@ -1,66 +1,48 @@
 import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
 import { AlignPositionMode } from '../../../../utils/types/AlignPositionMode';
-import { GetLeft } from '../../../../utils/bounds/GetLeft';
-import { GetCenterX } from '../../../../utils/bounds/GetCenterX';
-import { GetRight } from '../../../../utils/bounds/GetRight';
-import { GetTop } from '../../../../utils/bounds/GetTop';
-import { GetCenterY } from '../../../../utils/bounds/GetCenterY';
-import { GetBottom } from '../../../../utils/bounds/GetBottom';
-import { SetLeft } from '../../../../utils/bounds/SetLeft';
-import { SetCenterX } from '../../../../utils/bounds/SetCenterX';
-import { SetRight } from '../../../../utils/bounds/SetRight';
-import { SetTop } from '../../../../utils/bounds/SetTop';
-import { SetCenterY } from '../../../../utils/bounds/SetCenterY';
-import { SetBottom } from '../../../../utils/bounds/SetBottom';
+import {
+    GetLeft, GetCenterX, GetRight,
+    GetTop, GetCenterY, GetBottom,
+    SetLeft, SetCenterX, SetRight,
+    SetTop, SetCenterY, SetBottom
+} from '../../../utils/bounds';
 
 /*
-positionMode:
+alignPositionMode:
 0 1 2
 3 4 5
 6 7 8
 */
 
 export function AlignIn(
-    child: IContainer,  // Assume that child is a rectangle
-    parent: IContainer, // Assume that parent is a rectangle
-    positionMode: AlignPositionMode = AlignPositionMode.CENTER,
+    child: IContainer,
+    parent: IContainer,
+    alignPositionMode: AlignPositionMode = AlignPositionMode.CENTER,
     offsetX: number = 0,
     offsetY: number = 0
 ) {
 
-    switch (positionMode) {
-        // CENTER
-        case 1:
-        case 4:
-        case 7:
-            SetCenterX(child, GetCenterX(parent));
-            break;
-        // LEFT
+    const hAlign = (alignPositionMode % 3);
+    switch (hAlign) {
         case 0:
-        case 3:
-        case 6:
             SetLeft(child, GetLeft(parent));
             break;
-        // RIGHT
+        case 1:
+            SetCenterX(child, GetCenterX(parent));
+            break;
         default:
             SetRight(child, GetRight(parent));
             break;
     }
 
-    switch (positionMode) {
-        // CENTER
-        case 3:
-        case 4:
-        case 5:
-            SetCenterY(child, GetCenterY(parent));
-            break;
-        // TOP
+    const vAlign = Math.floor(alignPositionMode / 3);
+    switch (vAlign) {
         case 0:
-        case 1:
-        case 2:
             SetTop(child, GetTop(parent));
             break;
-        // BOTTOM
+        case 1:
+            SetCenterY(child, GetCenterY(parent));
+            break;
         default:
             SetBottom(child, GetBottom(parent));
             break;

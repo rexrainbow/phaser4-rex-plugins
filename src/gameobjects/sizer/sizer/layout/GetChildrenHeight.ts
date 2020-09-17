@@ -1,4 +1,5 @@
 import { ISizer, ISizerState } from '../ISizer';
+import { BaseSizer } from '../../basesizer';
 
 export function GetChildrenHeight(
     sizer: ISizer,
@@ -20,7 +21,7 @@ export function GetChildrenHeight(
                 continue;
             }
 
-            let childHeight = (child.isRexSizer) ?
+            let childHeight = (child instanceof BaseSizer) ?
                 Math.max(child.minHeight, child.childrenHeight) :
                 child.height;
 
@@ -45,7 +46,7 @@ export function GetChildrenHeight(
                 (childSizerState.proportion === 0) ||
                 (minimumMode && (!child.isRexSpace) && (childSizerState.proportion > 0))
             ) {
-                childHeight = (child.isRexSizer) ?
+                childHeight = (child instanceof BaseSizer) ?
                     Math.max(child.minHeight, child.childrenHeight) :
                     child.height;
             } else {

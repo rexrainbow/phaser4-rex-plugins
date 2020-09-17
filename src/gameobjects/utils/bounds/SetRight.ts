@@ -6,5 +6,5 @@ export function SetRight(
     value: number
 ) {
 
-    gameobject.y += (value - GetTop(gameobject));
+    gameobject.x += (value - GetTop(gameobject));
 }

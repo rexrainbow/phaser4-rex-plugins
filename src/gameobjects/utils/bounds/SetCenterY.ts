@@ -1,10 +1,10 @@
 import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
-import { GetBottom } from './GetBottom';
+import { GetCenterY } from './GetCenterY';
 
-export function SetBottom(
+export function SetCenterY(
     gameobject: IContainer,
     value: number
 ) {
 
-    gameobject.x += (value - GetBottom(gameobject));
+    gameobject.y += (value - GetCenterY(gameobject));
 }

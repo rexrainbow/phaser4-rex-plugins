@@ -1,4 +1,4 @@
-import { BaseSizer } from '../basesizer/BaseSizer';
+import { BaseSizer } from '../basesizer';
 import { IConfig, ISpace } from './ISizer';
 import { IBaseSizer } from '../basesizer/IBaseSizer'
 import { OrientationMode, OrientationModeString } from '../util/OrientationMode';
@@ -8,6 +8,7 @@ import { GetChildrenHeight } from './layout/GetChildrenHeight';
 import { GetChildrenSizers } from './layout/GetChildrenSizers';
 import { Layout } from './layout/Layout';
 import { LayoutInit } from './layout/LayoutInit';
+import { IChild } from '../util/IChild';
 import { Add, IAddConfig } from './add/Add';
 import { AddSpace } from './add/AddSpace';
 
@@ -17,11 +18,11 @@ export class Sizer extends BaseSizer {
     orientation: OrientationMode;
     _childrenProportion: number;
     proportionLength: number;
-    sizerChildren: IBaseSizer[] = [];
+    sizerChildren: IChild[] = [];
 
     constructor({
         space = { item: 0 },
-        orientation
+        orientation = OrientationMode.x
     }: IConfig = {}) {
 
         super(arguments[0]);
@@ -94,7 +95,7 @@ export class Sizer extends BaseSizer {
     }
 
     add(
-        child: any,
+        child: IChild,
         config?: IAddConfig
     ): this {
 

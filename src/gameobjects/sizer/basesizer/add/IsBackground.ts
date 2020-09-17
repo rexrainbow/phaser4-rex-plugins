@@ -1,8 +1,9 @@
 import { IBaseSizer } from '../IBaseSizer';
+import { IChild } from '../../util/IChild';
 
 export function IsBackground(
     sizer: IBaseSizer,
-    child: any
+    child: IChild
 ): boolean {
 
     if (sizer.backgroundChildren === undefined) {

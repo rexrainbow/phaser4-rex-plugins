@@ -1,10 +1,10 @@
 import { ISizer, ISizerState } from '../ISizer';
-import { IBaseSizer } from '../../basesizer/IBaseSizer';
+import { IChild } from '../../util/IChild';
 import { OrientationMode } from '../../util/OrientationMode';
 
 export function GetExpandedChildHeight(
     sizer: ISizer,
-    child: IBaseSizer
+    child: IChild
 ): number {
 
     let newHeight: number;

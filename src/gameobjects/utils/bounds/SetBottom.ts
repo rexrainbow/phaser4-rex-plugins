@@ -1,10 +1,10 @@
 import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
-import { GetLeft } from './GetLeft';
+import { GetBottom } from './GetBottom';
 
-export function SetTop(
+export function SetBottom(
     gameobject: IContainer,
     value: number
 ) {
 
-    gameobject.x += (value - GetLeft(gameobject));
+    gameobject.y += (value - GetBottom(gameobject));
 }

@@ -1,4 +1,5 @@
 import { ISizer, ISizerState } from '../ISizer';
+import { BaseSizer } from '../../basesizer';
 
 export function GetChildrenWidth(
     sizer: ISizer,
@@ -29,7 +30,7 @@ export function GetChildrenWidth(
                 (childSizerState.proportion === 0) ||
                 (minimumMode && (!child.isRexSpace) && (childSizerState.proportion > 0))
             ) {
-                childWidth = (child.isRexSizer) ?
+                childWidth = (child instanceof BaseSizer) ?
                     Math.max(child.minWidth, child.childrenWidth) :
                     child.width;
             } else {
@@ -54,7 +55,7 @@ export function GetChildrenWidth(
                 continue;
             }
 
-            let childWidth = (child.isRexSizer) ?
+            let childWidth = (child instanceof BaseSizer) ?
                 Math.max(child.minWidth, child.childrenWidth) :
                 child.width;
 

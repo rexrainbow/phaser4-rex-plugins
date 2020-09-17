@@ -1,3 +1,3 @@
-import { BaseSizer } from '../../basesizer/BaseSizer'
+import { Container } from '@phaserjs/phaser/gameobjects'
 
-export const Zone = new BaseSizer();
+export const Zone = (new Container()).setOrigin(0, 0);
