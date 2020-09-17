@@ -24,7 +24,7 @@ export function AddBackground(
     sizer.pin(child);
     sizer.backgroundChildren.push(child);
 
-    const childSizerState = sizer.rexSizer;
+    const childSizerState = sizer.getSizerState(child);
     childSizerState.padding = GetBoundsConfig(padding);
 
     if (childKey !== undefined) {

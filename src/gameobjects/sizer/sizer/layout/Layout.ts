@@ -51,8 +51,8 @@ export function Layout(
 
     // Layout children    
     const children = sizer.sizerChildren;
-    const startX = sizer.left;
-    const startY = sizer.top;
+    const startX = sizer.innerLeft;
+    const startY = sizer.innerTop;
     const innerWidth = sizer.innerWidth;
     const innerHeight = sizer.innerHeight;
     let itemX = startX,

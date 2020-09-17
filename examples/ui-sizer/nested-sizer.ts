@@ -9,7 +9,7 @@ import { SetTint } from '@phaserjs/phaser/gameobjects/sprite';
 import { Between } from '@phaserjs/phaser/math/Between';
 import { CreateRectangleTexture } from '../../src/texture/canvastexture';
 
-import { Sizer } from '../../src';
+import { Sizer, CanvasRoundRectangle } from '../../src';
 
 class Demo extends Scene {
     constructor() {
@@ -32,6 +32,10 @@ class Demo extends Scene {
         AddChild(world, ui);
     }
 }
+
+const COLOR_PRIMARY = 0x4e342e;
+const COLOR_LIGHT = 0x7b5e57;
+const COLOR_DARK = 0x260e04;
 
 function CreateItem(name: string): Sizer {
 
@@ -59,14 +63,24 @@ function CreateTable(
 
     const ui = new Sizer({
         space: {
+            left: 20, right: 20, top: 20, bottom: 20,
             item: 10
         },
         orientation: 'y'
     });
 
+    const background = new CanvasRoundRectangle({
+        radius: 20,
+        fillStyle: COLOR_DARK,
+        strokeStyle: COLOR_LIGHT,
+        lineWidth: 3
+    });
+
+    ui.addBackground(background);
+
     const text = new Text(0, 0, title, '36px monospace');
     ui.add(text, {
-        padding: { bottom: 5 }
+        padding: { bottom: 10 }
     });
 
     for (let i = 0; i < itemCount; i++) {

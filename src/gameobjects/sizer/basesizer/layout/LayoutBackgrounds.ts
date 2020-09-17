@@ -11,10 +11,10 @@ export function LayoutBackgrounds(
         return;
     }
 
-    var x = 0, // sizer.left
-        y = 0, // sizer.top
-        width = sizer.width,
-        height = sizer.height;
+    const startX = sizer.left;
+    const startY = sizer.top;
+    const width = sizer.width;
+    const height = sizer.height;
     const backgrounds = sizer.backgroundChildren;
     for (let i = 0, cnt = backgrounds.length; i < cnt; i++) {
         const child = backgrounds[i];
@@ -24,12 +24,12 @@ export function LayoutBackgrounds(
         }
 
         const padding = childSizerState.padding;
-        const childTLX = x + padding.left;
-        const childTLY = y + padding.top;
+        const x = startX + padding.left;
+        const y = startY + padding.top;
         const childWidth = width - padding.left - padding.right;
         const childHeight = height - padding.top - padding.bottom;
         ResizeGameObject(child, childWidth, childHeight);
-        Zone.setPosition(childTLX, childTLY).setSize(childWidth, childHeight);
+        Zone.setPosition(x, y).setSize(childWidth, childHeight);
         AlignIn(child, Zone);
     }
 }
