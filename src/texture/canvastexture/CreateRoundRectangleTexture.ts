@@ -10,7 +10,7 @@ export interface IConfig {
     height?: number;
     radius?: IRadiusConfig | number;
     fillStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
-    fillColor2?: string;
+    fillColor2?: string | number;
     isHorizontalGradient?: boolean;
     strokeStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
     lineWidth?: number;
@@ -53,7 +53,7 @@ export function CreateRoundRectangleTexture(
             GetStyle(fillStyle, canvas, context),
             GetStyle(strokeStyle, canvas, context),
             lineWidth,
-            fillColor2,
+            GetStyle(fillColor2, canvas, context) as string,
             isHorizontalGradient
         );
 
