@@ -52,7 +52,7 @@ function CreateItem(name: string): Sizer {
     return ui;
 }
 
-function CreateTable(itemCount): Sizer {
+function CreateTable(itemCount: number): Sizer {
 
     const ui = new Sizer({
         space: {
