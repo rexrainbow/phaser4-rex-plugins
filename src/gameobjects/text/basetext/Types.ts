@@ -22,6 +22,8 @@ export { IRadiusConfig };
 export interface IStyle {
 
     backgroundFillStyle?: FillStyleType;
+    backgroundFillColor2?: string;
+    backgroundIsHorizontalGradient?: boolean;
     backgroundStrokeStyle?: FillStyleType;
     backgroundStrokeThickness?: number;
     cornerRadius?: IRadiusConfig | number;

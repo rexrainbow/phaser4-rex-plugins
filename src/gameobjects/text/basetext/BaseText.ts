@@ -39,6 +39,8 @@ export class BaseText extends Sprite implements IBaseText {
     canvasText: CanvasText;
 
     backgroundFillStyle: FillStyleType;
+    backgroundFillColor2: string;
+    backgroundIsHorizontalGradient: boolean;
     backgroundStrokeStyle: FillStyleType;
     backgroundStrokeThickness: number;
     cornerRadius: IRadiusConfig;
@@ -83,6 +85,8 @@ export class BaseText extends Sprite implements IBaseText {
             wrapMode = WrapMode.none,
 
             backgroundFillStyle,
+            backgroundFillColor2,
+            backgroundIsHorizontalGradient,
             backgroundStrokeStyle,
             backgroundStrokeThickness,
             cornerRadius = 0,
@@ -146,7 +150,9 @@ export class BaseText extends Sprite implements IBaseText {
         SetBackgroundStyle(this,
             backgroundFillStyle,
             backgroundStrokeStyle, backgroundStrokeThickness,
-            cornerRadius
+            cornerRadius,
+            backgroundFillColor2,
+            backgroundIsHorizontalGradient
         );
 
         SetFontFamily(this, fontFamily);
@@ -225,10 +231,20 @@ export class BaseText extends Sprite implements IBaseText {
         fillStyle: FillStyleType,
         strokeStyle: FillStyleType,
         strokeThickness: number = 2,
-        radius: IRadiusConfig | number = 0
+        radius: IRadiusConfig | number = 0,
+        fillColor2?: string,
+        isHorizontalGradient: boolean = true
     ): this {
 
-        SetBackgroundStyle(this, fillStyle, strokeStyle, strokeThickness, radius);
+        SetBackgroundStyle(
+            this,
+            fillStyle,
+            strokeStyle,
+            strokeThickness,
+            radius,
+            fillColor2,
+            isHorizontalGradient
+        );
         return this;
     }
 

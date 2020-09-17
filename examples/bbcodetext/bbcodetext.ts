@@ -27,6 +27,8 @@ class Demo extends Scene {
 
         const text = new BBCodeText(400, 300, s,
             {
+                backgroundFillStyle: 'rgba(100, 100, 100, 0.5)',
+                backgroundFillColor2: 'rgba(0, 0, 0, 0.5)',
                 backgroundStrokeStyle: 'BurlyWood',
                 backgroundStrokeThickness: 4,
                 cornerRadius: 20,

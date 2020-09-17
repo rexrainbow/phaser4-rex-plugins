@@ -196,8 +196,8 @@ function DrawBackground(
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    const fillStyle = style.backgroundFillStyle,
-        strokeStyle = style.backgroundStrokeStyle;
+    const fillStyle = style.backgroundFillStyle;
+    const strokeStyle = style.backgroundStrokeStyle;
     if (fillStyle || strokeStyle) {
         const lineWidth = style.backgroundStrokeThickness,
             halfLineWidth = lineWidth / 2,
@@ -212,8 +212,11 @@ function DrawBackground(
             x, y,
             width, height,
             radius,
-            fillStyle, strokeStyle,
-            lineWidth
+            fillStyle,
+            strokeStyle,
+            lineWidth,
+            style.backgroundFillColor2,
+            style.backgroundIsHorizontalGradient
         )
 
     } else {
