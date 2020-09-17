@@ -5,11 +5,11 @@ import { DrawCircle } from '../../utils/canvas/DrawCircle';
 import { GetStyle } from '../../utils/canvas/GetStyle';
 
 export interface IConfig {
-    width?: number,
-    height?: number,
-    fillStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
-    strokeStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
-    lineWidth?: number
+    width?: number;
+    height?: number;
+    fillStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
+    strokeStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
+    lineWidth?: number;
 }
 
 export function CreateCircleTexture(

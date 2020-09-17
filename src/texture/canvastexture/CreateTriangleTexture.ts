@@ -10,12 +10,12 @@ export enum Direction {
 }
 
 export interface IConfig {
-    direction?: Direction,
-    width?: number,
-    height?: number,
-    fillStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
-    strokeStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
-    lineWidth?: number
+    direction?: Direction;
+    width?: number;
+    height?: number;
+    fillStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
+    strokeStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
+    lineWidth?: number;
 }
 
 export function CreateTriangleTexture(

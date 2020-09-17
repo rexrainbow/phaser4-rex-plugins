@@ -6,11 +6,11 @@ import { DrawPolygon } from '../../utils/canvas/DrawPolygon';
 import { GetStyle } from '../../utils/canvas/GetStyle';
 
 export interface IConfig {
-    points?: Vec2Type[],
-    fillStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
-    strokeStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
-    lineWidth?: number,
-    lineJoin?: 'bevel' | 'round' | 'miter'
+    points?: Vec2Type[];
+    fillStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
+    strokeStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
+    lineWidth?: number;
+    lineJoin?: 'bevel' | 'round' | 'miter';
 }
 
 export function CreatePolygonTexture(
