@@ -18,13 +18,13 @@ class Demo extends Scene {
         CreateRectangleTexture(
             'icon',
             {
-                width: 36,
-                height: 36,
+                width: 32,
+                height: 32,
                 fillStyle: 'white',
             }
         )
 
-        const ui = CreateTable(5)
+        const ui = CreateTable('Items', 5)
             .layout()
             .setPosition(400, 300);
 
@@ -38,7 +38,7 @@ function CreateItem(name: string): Sizer {
     const icon = new Sprite(0, 0, 'icon');
     SetTint(Between(0, 0x1000000), icon);
 
-    const text = new Text(0, 0, name, '32px monospace');
+    const text = new Text(0, 0, name, '30px monospace');
 
     const ui = (new Sizer({
         space: {
@@ -52,13 +52,21 @@ function CreateItem(name: string): Sizer {
     return ui;
 }
 
-function CreateTable(itemCount: number): Sizer {
+function CreateTable(
+    title = "Table",
+    itemCount: number = 3
+): Sizer {
 
     const ui = new Sizer({
         space: {
             item: 10
         },
         orientation: 'y'
+    });
+
+    const text = new Text(0, 0, title, '36px monospace');
+    ui.add(text, {
+        padding: { bottom: 5 }
     });
 
     for (let i = 0; i < itemCount; i++) {
