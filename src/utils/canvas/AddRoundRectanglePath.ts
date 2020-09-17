@@ -38,7 +38,7 @@ export function AddRoundRectanglePath(
     radiusY = radius.y * scaleRY;
     centerX = geom.width - radiusX;
     centerY = geom.height - radiusY;
-    if (IsArcCorner(radius)) {
+    if (IsArcCorner(radius) && (radiusX >= 0) && (radiusY >= 0)) {
         context.ellipse(centerX, centerY, radiusX, radiusY, 0, Rad0, Rad90);
     } else {
         context.moveTo(geom.width, centerY);
@@ -53,7 +53,7 @@ export function AddRoundRectanglePath(
     centerX = radiusX;
     centerY = geom.height - radiusY;
     context.lineTo(radiusX, geom.height);
-    if (IsArcCorner(radius)) {
+    if (IsArcCorner(radius) && (radiusX >= 0) && (radiusY >= 0)) {
         context.ellipse(centerX, centerY, radiusX, radiusY, 0, Rad90, Rad180);
     } else {
         context.lineTo(0, geom.height);
@@ -67,7 +67,7 @@ export function AddRoundRectanglePath(
     centerX = radiusX;
     centerY = radiusY;
     context.lineTo(0, centerY);
-    if (IsArcCorner(radius)) {
+    if (IsArcCorner(radius) && (radiusX >= 0) && (radiusY >= 0)) {
         context.ellipse(centerX, centerY, radiusX, radiusY, 0, Rad180, Rad270);
     } else {
         context.lineTo(0, 0);
@@ -81,14 +81,14 @@ export function AddRoundRectanglePath(
     centerX = geom.width - radiusX;
     centerY = radiusY;
     context.lineTo(centerX, 0);
-    if (IsArcCorner(radius)) {
+    if (IsArcCorner(radius) && (radiusX >= 0) && (radiusY >= 0)) {
         context.ellipse(centerX, centerY, radiusX, radiusY, 0, Rad270, Rad0);
     } else {
         context.lineTo(geom.width, 0);
         context.lineTo(geom.width, centerY);
     }
 
-    context.closePath();    
+    context.closePath();
 }
 
 function IsArcCorner(

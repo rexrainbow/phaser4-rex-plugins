@@ -39,8 +39,8 @@ export function CreateRoundRectangleTexture(
             lineWidth = 0;
         }
         const halfLineWidth = lineWidth / 2;
-        const x = halfLineWidth,
-            y = halfLineWidth;
+        const x = halfLineWidth;
+        const y = halfLineWidth;
 
         width -= lineWidth;
         height -= lineWidth;

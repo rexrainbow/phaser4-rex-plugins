@@ -12,7 +12,8 @@ export class MaskedImage extends BaseCanvas {
         y: number,
         key: string,
         frame?: string | number,
-        config: MaskType | MaskTypeString | IConfig = MaskType.circle) {
+        config: MaskType | MaskTypeString | IConfig = MaskType.circle
+    ) {
 
         super(x, y);
         this.type = 'rexMaskedImage';

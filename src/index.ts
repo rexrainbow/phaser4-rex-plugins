@@ -2,6 +2,7 @@ import { AwayTime } from './time/awaytime';
 import { BBCodeText, TagText } from './gameobjects/text';
 import * as Board from './board'
 import { Canvas } from './gameobjects/canvas';
+import { CanvasRoundRectangle } from './gameobjects/canvasroundrectangle';
 import * as CanvasTexture from './texture/canvastexture';
 import { Clock } from './time/clock';
 import { CSVToArray } from './data/csvtoarray';
@@ -24,6 +25,7 @@ export {
     BBCodeText,
     Board,
     Canvas,
+    CanvasRoundRectangle,
     CanvasTexture,
     Clock,
     CSVToArray,

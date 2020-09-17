@@ -48,7 +48,10 @@ export class BaseCanvas extends Sprite {
         super.destroy(reparentChildren);
     }
 
-    resize(width: number, height: number): this {
+    resize(
+        width: number,
+        height: number
+    ): this {
 
         Resize(this, width, height);
         return this;
