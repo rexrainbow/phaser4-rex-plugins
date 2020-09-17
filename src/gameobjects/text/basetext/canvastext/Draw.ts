@@ -47,47 +47,14 @@ export function Draw(
         context.clip();
     }
 
-    let hAlign: HAlignMode,
-        vAlign: VAlignMode;
+    /*
+    0 1 2
+    3 4 5
+    6 7 8
+    */
 
-    switch (parent.align) {
-        case AlignPositionMode.TOP_LEFT:
-            hAlign = HAlignMode.left;
-            vAlign = VAlignMode.top;
-            break;
-        case AlignPositionMode.TOP_CENTER:
-            hAlign = HAlignMode.center;
-            vAlign = VAlignMode.top;
-            break;
-        case AlignPositionMode.TOP_RIGHT:
-            hAlign = HAlignMode.right;
-            vAlign = VAlignMode.top;
-            break;
-        case AlignPositionMode.CENTER_LEFT:
-            hAlign = HAlignMode.left;
-            vAlign = VAlignMode.center;
-            break;
-        case AlignPositionMode.CENTER:
-            hAlign = HAlignMode.center;
-            vAlign = VAlignMode.center;
-            break;
-        case AlignPositionMode.CENTER_RIGHT:
-            hAlign = HAlignMode.right;
-            vAlign = VAlignMode.center;
-            break;
-        case AlignPositionMode.BOTTOM_LEFT:
-            hAlign = HAlignMode.left;
-            vAlign = VAlignMode.bottom;
-            break;
-        case AlignPositionMode.BOTTOM_CENTER:
-            hAlign = HAlignMode.center;
-            vAlign = VAlignMode.bottom;
-            break;
-        case AlignPositionMode.BOTTOM_RIGHT:
-            hAlign = HAlignMode.right;
-            vAlign = VAlignMode.bottom;
-            break;
-    }
+    let hAlign: HAlignMode = (parent.align % 3);
+    let vAlign: VAlignMode = Math.floor(parent.align / 3);
 
     // Shift offsetY
     let offsetY = drawBoundY - textScrollY;
