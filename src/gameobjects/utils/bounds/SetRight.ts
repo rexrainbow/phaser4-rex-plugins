@@ -1,8 +1,8 @@
-import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
+import { IBoundsObject } from './IBoundsObject';
 import { GetRight } from './GetRight';
 
 export function SetRight(
-    gameobject: IContainer,
+    gameobject: IBoundsObject,
     value: number
 ) {
 

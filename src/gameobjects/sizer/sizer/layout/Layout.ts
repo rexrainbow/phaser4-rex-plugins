@@ -5,8 +5,7 @@ import { OrientationMode } from '../../util/OrientationMode';
 import { GetExpandedChildWidth } from './GetExpandedChildWidth';
 import { GetExpandedChildHeight } from './GetExpandedChildHeight';
 import { ResizeGameObject } from '../../../../utils/size/ResizeGameObject';
-import { Zone } from '../../util/align/Zone';
-import { AlignIn } from '../../util/align/AlignIn';
+import { AlignZone } from '../../util/align/AlignZone';
 
 export function Layout(
     sizer: ISizer,
@@ -106,9 +105,9 @@ export function Layout(
             }
         }
 
-        // TODO
-        Zone.setPosition(x, y).setSize(width, height);
-        AlignIn(child, Zone, childSizerState.align);
+        AlignZone
+            .setTo(x, y, width, height)
+            .alignIn(child, childSizerState.align);
 
         if (sizer.orientation === OrientationMode.x) {
             itemX += (width + padding.left + padding.right + sizer.space.item);

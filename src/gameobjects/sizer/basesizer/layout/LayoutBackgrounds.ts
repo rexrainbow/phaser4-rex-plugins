@@ -1,7 +1,6 @@
 import { IBaseSizer } from '../IBaseSizer';
 import { ResizeGameObject } from '../../../../utils/size/ResizeGameObject';
-import { Zone } from '../../util/align/Zone';
-import { AlignIn } from '../../util/align/AlignIn';
+import { AlignZone } from '../../util/align/AlignZone';
 
 export function LayoutBackgrounds(
     sizer: IBaseSizer
@@ -29,7 +28,9 @@ export function LayoutBackgrounds(
         const childWidth = width - padding.left - padding.right;
         const childHeight = height - padding.top - padding.bottom;
         ResizeGameObject(child, childWidth, childHeight);
-        Zone.setPosition(x, y).setSize(childWidth, childHeight);
-        AlignIn(child, Zone);
+
+        AlignZone
+            .setTo(x, y, childWidth, childHeight)
+            .alignIn(child);
     }
 }

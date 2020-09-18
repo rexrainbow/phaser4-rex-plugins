@@ -1,7 +1,7 @@
-import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
+import { IBoundsObject } from './IBoundsObject';
 
 export function GetRight(
-    gameobject: IContainer
+    gameobject: IBoundsObject
 ): number {
 
     return gameobject.x + ((1 - gameobject.originX) * gameobject.width);

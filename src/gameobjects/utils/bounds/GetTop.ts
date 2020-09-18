@@ -1,7 +1,7 @@
-import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
+import { IBoundsObject } from './IBoundsObject';
 
 export function GetTop(
-    gameobject: IContainer
+    gameobject: IBoundsObject
 ): number {
 
     return gameobject.y - (gameobject.originY * gameobject.height);

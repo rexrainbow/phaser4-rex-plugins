@@ -1,7 +1,7 @@
-import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
+import { IBoundsObject } from './IBoundsObject';
 
 export function GetCenterY(
-    gameobject: IContainer
+    gameobject: IBoundsObject
 ): number {
 
     return gameobject.y + ((0.5 - gameobject.originY) * gameobject.height);

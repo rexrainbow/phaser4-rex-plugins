@@ -1,8 +1,8 @@
-import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
+import { IBoundsObject } from './IBoundsObject';
 import { GetCenterY } from './GetCenterY';
 
 export function SetCenterY(
-    gameobject: IContainer,
+    gameobject: IBoundsObject,
     value: number
 ) {
 

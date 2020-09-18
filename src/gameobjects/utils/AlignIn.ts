@@ -1,11 +1,11 @@
-import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
-import { AlignPositionMode } from '../../../../utils/types/AlignPositionMode';
+import { IBoundsObject } from './bounds/IBoundsObject';
+import { AlignPositionMode } from '../../utils/types/AlignPositionMode';
 import {
     GetLeft, GetCenterX, GetRight,
     GetTop, GetCenterY, GetBottom,
     SetLeft, SetCenterX, SetRight,
     SetTop, SetCenterY, SetBottom
-} from '../../../utils/bounds';
+} from './bounds';
 
 /*
 alignPositionMode:
@@ -15,8 +15,8 @@ alignPositionMode:
 */
 
 export function AlignIn(
-    child: IContainer,
-    parent: IContainer,
+    child: IBoundsObject,
+    parent: IBoundsObject,
     alignPositionMode: AlignPositionMode = AlignPositionMode.CENTER,
     offsetX: number = 0,
     offsetY: number = 0

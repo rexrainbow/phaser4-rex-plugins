@@ -1,8 +1,8 @@
-import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
+import { IBoundsObject } from './IBoundsObject';
 import { GetBottom } from './GetBottom';
 
 export function SetBottom(
-    gameobject: IContainer,
+    gameobject: IBoundsObject,
     value: number
 ) {
 
