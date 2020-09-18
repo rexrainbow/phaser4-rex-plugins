@@ -5,13 +5,9 @@ import { Scene } from '@phaserjs/phaser/scenes/Scene';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { StaticWorld } from '@phaserjs/phaser/world';
 import { Sprite, Text } from '@phaserjs/phaser/gameobjects';
-import { SetTint } from '@phaserjs/phaser/gameobjects/sprite';
-import { Between } from '@phaserjs/phaser/math/Between';
 import { CreateRectangleTexture } from '../../src/texture/canvastexture';
 
 import { UI } from '../../src';
-import { NextRowKey } from '../../src/data/twodtable/NextKey';
-import { ToXY } from '@phaserjs/phaser/math';
 
 const COLOR_PRIMARY = 0x4e342e;
 const COLOR_LIGHT = 0x7b5e57;
@@ -91,6 +87,7 @@ function CreateBackground(
         lineWidth: 3
     })
 }
+
 function CreateSprite(
     texture: string,
     frame?: string
