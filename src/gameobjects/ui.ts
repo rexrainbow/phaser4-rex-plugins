@@ -1,15 +1,18 @@
-import { BaseCanvas, Canvas } from './canvas';
+import {
+    BaseSizer,
+    Label,
+    Sizer
+} from './sizer';
+import { BBCodeText, TagText } from './text';
 import { MaskedImage } from './maskedimage';
 import { RoundRectangleCanvas } from './roundrectanglecanvas';
-import * as UI from './ui';
-import { BBCodeText, TagText } from './text';
 
 export {
+    BaseSizer,
     BBCodeText,
-    BaseCanvas,
-    Canvas,
+    Label,
     MaskedImage,
     RoundRectangleCanvas,
-    TagText,
-    UI
+    Sizer,
+    TagText
 }

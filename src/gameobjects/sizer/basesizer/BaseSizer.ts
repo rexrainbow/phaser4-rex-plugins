@@ -34,24 +34,29 @@ export class BaseSizer extends Container implements IBaseSizer {
 
     needLayout: boolean = true;
 
-    minWidth: number = 0;
-    _childrenWidth: number = 0;
+    minWidth: number;
+    _childrenWidth: number;
 
-    minHeight: number = 0;
-    _childrenHeight: number = 0;
+    minHeight: number;
+    _childrenHeight: number;
 
     backgroundChildren: IChild[];
     sizerChildren: IChild[] | { [name: string]: IChild };
     childrenMap: { [name: string]: any };
 
     constructor({
+        x = 0,
+        y = 0,
+        width = 0,
+        height = 0,
         space = 0,
         name = ''
     }: IConfig = {}) {
 
-        super();
+        super(x, y);
 
         this.type = 'rexBaseSizer';
+        this.setMinSize(width, height);
         this.space = GetBoundsConfig(space);
         this.name = name;
     }
@@ -236,7 +241,12 @@ export class BaseSizer extends Container implements IBaseSizer {
 
     layout(): this {
 
-        this._layout();
+        const x = this.x;
+        const y = this.y;
+        this
+            .setPosition(0, 0)  // Offset to (0,0)
+            ._layout()          // Run layout
+            .setPosition(x, y); // Offset back original position
         return this;
     }
 

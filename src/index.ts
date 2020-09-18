@@ -4,8 +4,8 @@ import {
     Canvas,
     MaskedImage,
     RoundRectangleCanvas,
-    Sizer,
-    TagText
+    TagText,
+    UI
 } from './gameobjects';
 import * as Board from './board';
 import * as CanvasTexture from './texture/canvastexture';
@@ -39,9 +39,9 @@ export {
     LZString,
     MaskedImage,
     Quest,
+    UI,
     RoundRectangleCanvas,
     RunCommands,
-    Sizer,
     StateManager,
     TagText,
     TwoDTable,

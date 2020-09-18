@@ -27,6 +27,7 @@ export class Sizer extends BaseSizer {
 
         super(arguments[0]);
 
+        this.type = 'rexSizer';
         this.setOrientation(orientation);
         this.setItemSpacing(space.item);
     }
