@@ -10,6 +10,8 @@ import { Between } from '@phaserjs/phaser/math/Between';
 import { CreateRectangleTexture } from '../../src/texture/canvastexture';
 
 import { UI } from '../../src';
+import { NextRowKey } from '../../src/data/twodtable/NextKey';
+import { ToXY } from '@phaserjs/phaser/math';
 
 const COLOR_PRIMARY = 0x4e342e;
 const COLOR_LIGHT = 0x7b5e57;
@@ -33,18 +35,13 @@ class Demo extends Scene {
 
             orientation: 'x',
 
-            background: (new UI.RoundRectangleCanvas({
-                radius: 20,
-                fillStyle: COLOR_DARK,
-                strokeStyle: COLOR_LIGHT,
-                lineWidth: 3
-            })),
+            background: CreateBackground(),
 
-            icon: (new Sprite(0, 0, 'icon')),
+            icon: CreateSprite('icon'),
 
-            text: (new Text(0, 0, 'Hello', '30px monospace')),
+            text: CreateText('Hello'),
 
-            action: (new Sprite(0, 0, 'icon')),
+            action: CreateSprite('icon'),
 
             space: {
                 left: 20, right: 20, top: 20, bottom: 20,
@@ -59,18 +56,13 @@ class Demo extends Scene {
 
             orientation: 'y',
 
-            background: (new UI.RoundRectangleCanvas({
-                radius: 20,
-                fillStyle: COLOR_DARK,
-                strokeStyle: COLOR_LIGHT,
-                lineWidth: 3
-            })),
+            background: CreateBackground(),
 
-            icon: (new Sprite(0, 0, 'icon')),
+            icon: CreateSprite('icon'),
 
-            text: (new Text(0, 0, 'World', '30px monospace')),
+            text: CreateText('World'),
 
-            action: (new Sprite(0, 0, 'icon')),
+            action: CreateSprite('icon'),
 
             space: {
                 left: 20, right: 20, top: 20, bottom: 20,
@@ -84,6 +76,35 @@ class Demo extends Scene {
         AddChild(world, horizontalLabel);
         AddChild(world, verticalLabel);
     }
+}
+
+function CreateBackground(
+    fillStyle: string | number = COLOR_DARK,
+    strokeStyle: string | number = COLOR_LIGHT,
+    radius: number = 20
+) {
+
+    return new UI.RoundRectangleCanvas({
+        radius: radius,
+        fillStyle: fillStyle,
+        strokeStyle: strokeStyle,
+        lineWidth: 3
+    })
+}
+function CreateSprite(
+    texture: string,
+    frame?: string
+): Sprite {
+
+    return new Sprite(0, 0, texture, frame);
+}
+
+function CreateText(
+    content: string = '',
+    font: string = '30px monospace'
+): Text {
+
+    return new Text(0, 0, content, font);
 }
 
 new Game(
