@@ -3,6 +3,7 @@ import {
     BBCodeText,
     Canvas,
     MaskedImage,
+    RectangleCanvas,
     RoundRectangleCanvas,
     TagText,
     UI
@@ -40,6 +41,7 @@ export {
     MaskedImage,
     Quest,
     UI,
+    RectangleCanvas,
     RoundRectangleCanvas,
     RunCommands,
     StateManager,
