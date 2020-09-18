@@ -1,6 +1,6 @@
-import { IBoundsObject } from '../../../utils/bounds/IBoundsObject';
-import { AlignPositionMode } from '../../../../utils/types/AlignPositionMode';
-import { AlignIn } from '../../../utils/AlignIn';
+import { IBoundsObject } from '../../utils/bounds/IBoundsObject';
+import { AlignPositionMode } from '../../../utils/types/AlignPositionMode';
+import { AlignIn } from '../../utils/AlignIn';
 
 class Zone implements IBoundsObject {
     x: number = 0;

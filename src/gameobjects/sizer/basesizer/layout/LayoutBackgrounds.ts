@@ -1,6 +1,6 @@
 import { IBaseSizer } from '../IBaseSizer';
 import { ResizeGameObject } from '../../../../utils/size/ResizeGameObject';
-import { AlignZone } from '../../util/align/AlignZone';
+import { AlignZone } from '../../util/AlignZone';
 
 export function LayoutBackgrounds(
     sizer: IBaseSizer
