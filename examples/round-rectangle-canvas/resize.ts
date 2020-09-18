@@ -3,13 +3,13 @@ import { Game } from '@phaserjs/phaser/Game';
 import { Scene } from '@phaserjs/phaser/scenes/Scene';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { StaticWorld } from '@phaserjs/phaser/world';
-import { CanvasRoundRectangle } from '../../src';
+import { RoundRectangleCanvas } from '../../src';
 
 class Demo extends Scene {
     constructor() {
         super();
 
-        const rect = new CanvasRoundRectangle({
+        const rect = new RoundRectangleCanvas({
             radius: 20,
             fillStyle: 'rgba(0,0,0,0.5)',
             fillColor2: 'rgba(100,100,100,0.5)',

@@ -9,7 +9,7 @@ import { SetTint } from '@phaserjs/phaser/gameobjects/sprite';
 import { Between } from '@phaserjs/phaser/math/Between';
 import { CreateRectangleTexture } from '../../src/texture/canvastexture';
 
-import { Sizer, CanvasRoundRectangle } from '../../src';
+import { Sizer, RoundRectangleCanvas } from '../../src';
 
 class Demo extends Scene {
     constructor() {
@@ -69,7 +69,7 @@ function CreateTable(
         orientation: 'y'
     });
 
-    const background = new CanvasRoundRectangle({
+    const background = new RoundRectangleCanvas({
         radius: 20,
         fillStyle: COLOR_DARK,
         strokeStyle: COLOR_LIGHT,

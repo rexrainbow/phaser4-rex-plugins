@@ -1,11 +1,11 @@
 import { BaseCanvas } from '../canvas/BaseCanvas';
-import { IConfig } from './ICanvasRoundRectangle';
+import { IConfig } from './IRoundRectangleCanvas';
 import { IRadiusConfig } from '../../utils/geom/roundrectangle/IRoundRectangle';
 import { GetCanvasGradientCallbackType } from '../../utils/types/GetCanvasGradientCallbackType';
 import { DrawRoundRectangle } from '../../utils/canvas/DrawRoundRectangle';
 import { GetStyle } from '../../utils/canvas/GetStyle';
 
-export class CanvasRoundRectangle extends BaseCanvas {
+export class RoundRectangleCanvas extends BaseCanvas {
     radius: IRadiusConfig | number;
     fillStyle: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
     fillColor2: string | number;
@@ -96,7 +96,7 @@ export class CanvasRoundRectangle extends BaseCanvas {
             GetStyle(this.fillStyle, this.canvas, this.context),
             GetStyle(this.strokeStyle, this.canvas, this.context),
             lineWidth,
-            this.fillColor2,
+            GetStyle(this.fillColor2, this.canvas, this.context) as string,
             this.isHorizontalGradient
         );
         return this;

@@ -1,6 +1,6 @@
 @echo off
 set preview=1
-set main=./examples/canvas-round-rectangle/resize.ts
+set main=./examples/round-rectangle-canvas/resize.ts
 cd ..
 cd ..
 npm run build-project
