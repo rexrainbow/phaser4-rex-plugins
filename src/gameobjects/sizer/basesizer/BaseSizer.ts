@@ -22,10 +22,11 @@ import { GetSizerState } from '../util/GetSizerState';
 import { AddBackground, IAddBackgroundConfig } from './add/AddBackground';
 import { IsBackground } from './add/IsBackground';
 import { AddChildrenMap } from './add/AddChildrenMap';
+import { GetElement } from './GetElement';
 
 export class BaseSizer extends Container implements IBaseSizer {
     isRexSpace: false;
-    type: string = 'base';
+    type: string;
 
     space: ISpace;
     name: string;
@@ -41,7 +42,7 @@ export class BaseSizer extends Container implements IBaseSizer {
 
     backgroundChildren: IChild[];
     sizerChildren: IChild[] | { [name: string]: IChild };
-    childrenMap: { [name: string]: IChild };
+    childrenMap: { [name: string]: any };
 
     constructor({
         space = 0,
@@ -50,6 +51,7 @@ export class BaseSizer extends Container implements IBaseSizer {
 
         super();
 
+        this.type = 'rexBaseSizer';
         this.space = GetBoundsConfig(space);
         this.name = name;
     }
@@ -310,10 +312,18 @@ export class BaseSizer extends Container implements IBaseSizer {
 
     addChildrenMap(
         key: string,
-        child: IChild
+        child: any
     ): this {
 
         AddChildrenMap(this, key, child);
         return this;
+    }
+
+    getElement(
+        name: string,
+        recursive: boolean = false
+    ): any {
+
+        return GetElement(this, name, recursive);
     }
 }

@@ -1,10 +1,9 @@
 import { IBaseSizer } from '../IBaseSizer';
-import { IChild } from '../../util/IChild';
 
 export function AddChildrenMap(
     sizer: IBaseSizer,
     key: string,
-    child: IChild
+    child: any
 ) {
 
     if (sizer.childrenMap === undefined) {
