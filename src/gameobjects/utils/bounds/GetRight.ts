@@ -4,5 +4,5 @@ export function GetRight(
     gameobject: IContainer
 ): number {
 
-    return gameobject.x + (gameobject.originX * gameobject.width);
+    return gameobject.x + ((1 - gameobject.originX) * gameobject.width);
 }

@@ -4,5 +4,5 @@ export function GetBottom(
     gameobject: IContainer
 ): number {
 
-    return gameobject.y + (gameobject.originY * gameobject.height);
+    return gameobject.y + ((1 - gameobject.originY) * gameobject.height);
 }

@@ -1,10 +1,10 @@
 import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
-import { GetTop } from './GetTop';
+import { GetRight } from './GetRight';
 
 export function SetRight(
     gameobject: IContainer,
     value: number
 ) {
 
-    gameobject.x += (value - GetTop(gameobject));
+    gameobject.x += (value - GetRight(gameobject));
 }

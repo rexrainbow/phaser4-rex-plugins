@@ -27,8 +27,6 @@ class Demo extends Scene {
         )
 
         const horizontalLabel = new UI.Label({
-            x: 300, y: 300,
-
             orientation: 'x',
 
             background: CreateBackground(),
@@ -45,11 +43,8 @@ class Demo extends Scene {
                 text: 10
             }
         })
-            .layout();
 
         const verticalLabel = new UI.Label({
-            x: 500, y: 300,
-
             orientation: 'y',
 
             background: CreateBackground(),
@@ -66,11 +61,33 @@ class Demo extends Scene {
                 text: 10
             }
         })
+
+        const horizontalLabelSizer = (new UI.Sizer({
+            orientation: 'y',
+        }))
+            .add(CreateText('Horizontal Label'), { padding: { bottom: 30 } })
+            .add(horizontalLabel)
+
+        const verticalLabelSizer = (new UI.Sizer({
+            orientation: 'y',
+        }))
+            .add(CreateText('Vertical Label'), { padding: { bottom: 30 } })
+            .add(verticalLabel)
+
+        const win = (new UI.Sizer({
+            x: 400, y: 300,
+            width: 600,
+
+            orientation: 'x',
+        }))
+            //.addBackground(CreateBackground('blue', null, 0))
+            .add(horizontalLabelSizer, { proportion: 1, expand: true, align: 'TOP_LEFT' })
+            .add(verticalLabelSizer, { proportion: 1, expand: true, align: 'TOP_RIGHT' })
             .layout();
 
+
         const world = new StaticWorld(this);
-        AddChild(world, horizontalLabel);
-        AddChild(world, verticalLabel);
+        AddChild(world, win);
     }
 }
 
