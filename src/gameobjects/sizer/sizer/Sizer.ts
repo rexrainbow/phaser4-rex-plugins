@@ -11,6 +11,9 @@ import { LayoutInit } from './layout/LayoutInit';
 import { IChild } from '../util/IChild';
 import { Add, IAddConfig } from './add/Add';
 import { AddSpace } from './add/AddSpace';
+import { Remove } from './remove/Remove';
+import { RemoveAll } from './remove/RemoveAll';
+import { Clear } from './remove/Clear';
 
 export class Sizer extends BaseSizer {
     type: string = 'sizer';
@@ -109,6 +112,31 @@ export class Sizer extends BaseSizer {
     ): this {
 
         AddSpace(this, proportion);
+        return this;
+    }
+
+    remove(
+        child: IChild,
+        destroyChild: boolean = true
+    ): this {
+
+        Remove(this, child, destroyChild);
+        return this;
+    }
+
+    removeAll(
+        destroyChild: boolean = true
+    ): this {
+
+        RemoveAll(this, destroyChild);
+        return this;
+    }
+
+    clear(
+        destroyChild: boolean = true
+    ): this {
+
+        Clear(this, destroyChild);
         return this;
     }
 }

@@ -112,4 +112,5 @@ export interface IBaseSizer extends IContainer {
         height?: number
     ): this;
 
+    isChild(child: IChild): boolean;
 };

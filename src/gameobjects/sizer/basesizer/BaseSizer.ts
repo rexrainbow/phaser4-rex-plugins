@@ -17,7 +17,9 @@ import { GetSizerState } from '../util/GetSizerState';
 import { AddBackground, IAddBackgroundConfig } from './add/AddBackground';
 import { IsBackground } from './add/IsBackground';
 import { AddChildrenMap } from './add/AddChildrenMap';
-import { GetElement } from './GetElement';
+import { GetElement } from './child/GetElement';
+import { IsChild } from './child/IsChild';
+import { GetTopmostParentSizer } from '../util/parent/GetTopmostParentSizer';
 
 export class BaseSizer extends Container implements IBaseSizer {
     isRexSpace: false;
@@ -330,5 +332,17 @@ export class BaseSizer extends Container implements IBaseSizer {
     ): any {
 
         return GetElement(this, name, recursive);
+    }
+
+    isChild(child: IChild): boolean {
+
+        return IsChild(this, child);
+    }
+
+    getTopmostParentSizer(
+        child: IChild = this
+    ): IBaseSizer {
+
+        return GetTopmostParentSizer(child);
     }
 }

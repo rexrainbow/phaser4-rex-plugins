@@ -1,5 +1,5 @@
-import { IBaseSizer } from './IBaseSizer';
-import { GetChildByName } from '../../utils/GetChildByName';
+import { IBaseSizer } from '../IBaseSizer';
+import { GetChildByName } from '../../../utils/GetChildByName';
 
 export function GetElement(
     sizer: IBaseSizer,
