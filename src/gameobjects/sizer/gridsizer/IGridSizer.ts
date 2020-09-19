@@ -7,6 +7,7 @@ import {
 import { ISizerState as IBaseSizerState } from '../util/ISizerState';
 import { IChild } from '../util/IChild';
 import { AlignPositionMode } from '../../../utils/types/AlignPositionMode';
+import { IAddConfig } from './add/IAddConfig';
 
 export interface ISizerState extends IBaseSizerState {
     expand: boolean;
@@ -41,4 +42,9 @@ export interface ISizer extends IBaseSizer {
     totalRowProportions: number;
     columnWidth: number[];
     rowHeight: number[];
+
+    add(
+        child: IChild,
+        config?: IAddConfig
+    ): this;
 }
