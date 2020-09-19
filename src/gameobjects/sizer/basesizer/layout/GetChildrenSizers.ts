@@ -6,7 +6,7 @@ export function GetChildrenSizers(
     out: IBaseSizer[] = []
 ): IBaseSizer[] {
 
-    const children = sizer.sizerChildren as IBaseSizer[];
+    const children = sizer.sizerChildren;
     for (var i = 0, cnt = children.length; i < cnt; i++) {
         const child = children[i];
         if (child instanceof BaseSizer) {

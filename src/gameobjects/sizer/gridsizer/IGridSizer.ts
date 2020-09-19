@@ -3,53 +3,47 @@ import {
     IConfig as IBaseSizerConfig,
     ISpace as IBaseSizerSpace
 } from '../basesizer/IBaseSizer';
-import { OrientationMode, OrientationModeString } from '../util/OrientationMode';
+
 import { ISizerState as IBaseSizerState } from '../util/ISizerState';
 import { IChild } from '../util/IChild';
 import { AlignPositionMode } from '../../../utils/types/AlignPositionMode';
-import { IAddConfig } from './add/IAddConfig';
 
 export interface ISizerState extends IBaseSizerState {
-    proportion: number;
     expand: boolean;
     align: AlignPositionMode;
 }
 
 export interface ISpace extends IBaseSizerSpace {
-    item?: number;
+    column?: number | number[];
+    row?: number | number[];
 }
 
 export interface IConfig extends IBaseSizerConfig {
+    column?: number;
+    row?: number;
+    columnProportions?: number | number[];
+    rowProportions?: number | number[];
     space?: ISpace;
-    orientation?: OrientationMode | OrientationModeString;
 }
 
 export interface ISizer extends IBaseSizer {
     sizerChildren: IChild[];
     space: {
-        item: number
+        column: number[],
+        row: number[]
     } & IBaseSizer["space"];
 
-    orientation: OrientationMode;
-    childrenProportion: number;
-    _childrenProportion: number;
-    proportionLength: number;
+    columnCount: number;
+    rowCount: number;
+    columnProportions: number[];
+    rowProportions: number[];
+    totalColumnProportions: number;
+    totalRowProportions: number;
+    columnWidth: number[];
+    rowHeight: number[];
 
-
-    getChildrenWidth(
-        minimumMode?: boolean
-    ): number;
-
-    getChildrenHeight(
-        minimumMode?: boolean
-    ): number;
-
-    add(
-        child: IChild,
-        config?: IAddConfig
-    ): this;
-
-    addSpace(
-        proportion: number
-    ): this;
+    getChildAt(
+        columnIndex: number,
+        rowIndex: number
+    ): IChild;
 }

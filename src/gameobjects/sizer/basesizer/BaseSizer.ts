@@ -4,9 +4,11 @@ import {
 } from './IBaseSizer';
 import { Container } from '@phaserjs/phaser/gameobjects';
 import { ISizerState } from '../util/ISizerState';
+import { IGameObject } from '@phaserjs/phaser/gameobjects/IGameObject'
 import { IChild } from '../util/IChild';
 import { GetBoundsConfig } from '../../../utils/bounds/GetBoundsConfig';
 import * as Bounds from '../../utils/align/bounds';
+import { GetChildrenSizers } from './layout/GetChildrenSizers';
 import { Layout } from './layout/Layout';
 import { PreLayout } from './layout/PreLayout';
 import { LayoutInit } from './layout/LayoutInit';
@@ -14,7 +16,8 @@ import { LayoutBackgrounds } from './layout/LayoutBackgrounds';
 import { PostLayout } from './layout/PostLayout';
 import { Pin } from './add/Pin';
 import { GetSizerState } from '../util/GetSizerState';
-import { AddBackground, IAddBackgroundConfig } from './add/AddBackground';
+import { AddBackground } from './add/AddBackground';
+import { IAddBackgroundConfig } from './add/IAddBackgroundConfig';
 import { IsBackground } from './add/IsBackground';
 import { AddChildrenMap } from './add/AddChildrenMap';
 import { GetElement } from './child/GetElement';
@@ -22,8 +25,8 @@ import { IsChild } from './child/IsChild';
 import { GetTopmostParentSizer } from '../util/parent/GetTopmostParentSizer';
 
 export class BaseSizer extends Container implements IBaseSizer {
+    type = 'rexBaseSizer';
     isRexSpace: false;
-    type: string;
 
     space: ISpace;
     name: string;
@@ -38,7 +41,7 @@ export class BaseSizer extends Container implements IBaseSizer {
     _childrenHeight: number;
 
     backgroundChildren: IChild[];
-    sizerChildren: IChild[] | { [name: string]: IChild };
+    sizerChildren: IChild[];
     childrenMap: { [name: string]: any };
 
     constructor({
@@ -52,10 +55,16 @@ export class BaseSizer extends Container implements IBaseSizer {
 
         super(x, y);
 
-        this.type = 'rexBaseSizer';
         this.setMinSize(width, height);
         this.space = GetBoundsConfig(space);
         this.name = name;
+    }
+
+    destroy(reparentChildren?: IGameObject) {
+
+        this.sizerChildren = null;
+        this.backgroundChildren = null;
+        super.destroy(reparentChildren);
     }
 
     get left(): number {
@@ -197,6 +206,13 @@ export class BaseSizer extends Container implements IBaseSizer {
         return 0;
     }
 
+    getChildrenSizers(
+        out: IBaseSizer[] = []
+    ): IBaseSizer[] {
+
+        return GetChildrenSizers(this, out);
+    }
+
     get childrenWidth() {
         if (this._childrenWidth === undefined) {
             this._childrenWidth = this.getChildrenWidth();
@@ -225,15 +241,6 @@ export class BaseSizer extends Container implements IBaseSizer {
     ): ISizerState {
 
         return GetSizerState(child);
-    }
-
-
-    // Override
-    getChildrenSizers(
-        out: IBaseSizer[] = []
-    ): IBaseSizer[] {
-
-        return out;
     }
 
     layout(): this {

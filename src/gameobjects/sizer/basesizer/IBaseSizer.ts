@@ -1,7 +1,7 @@
 import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
 import { ISizerState } from '../util/ISizerState';
 import { IChild } from '../util/IChild';
-import { IAddBackgroundConfig } from './add/AddBackground';
+import { IAddBackgroundConfig } from './add/IAddBackgroundConfig';
 import { IPadding } from '../util/IPadding';
 
 export interface ISpace extends IPadding {
@@ -21,7 +21,12 @@ export interface IBaseSizer extends IContainer {
     isRexSpace: false;
     type: string;
 
-    space: ISpace;
+    space: {
+        left: number,
+        right: number,
+        top: number,
+        bottom: number
+    };
     name: string;
     rexSizer: ISizerState;
 
@@ -49,7 +54,7 @@ export interface IBaseSizer extends IContainer {
     _childrenHeight: number;
 
     backgroundChildren: IChild[];
-    sizerChildren: IChild[] | { [name: string]: IChild };
+    sizerChildren: IChild[];
     childrenMap: { [name: string]: any };
 
     resize(

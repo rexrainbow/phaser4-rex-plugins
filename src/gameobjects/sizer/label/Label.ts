@@ -6,6 +6,7 @@ import { OrientationMode } from '../util/OrientationMode';
 import { AlignPositionMode } from '../../../utils/types/AlignPositionMode';
 
 export class Label extends Sizer implements ILabel {
+    type = 'rexLabel';
     childrenMap: {
         background: IChild,
         icon: IChild,
@@ -34,8 +35,6 @@ export class Label extends Sizer implements ILabel {
     }: IConfig = {}) {
 
         super(arguments[0]);
-
-        this.type = 'rexLabel';
 
         if (background) {
             this.addBackground(background);

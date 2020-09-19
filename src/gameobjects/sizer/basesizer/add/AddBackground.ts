@@ -1,12 +1,7 @@
 import { IBaseSizer } from '../IBaseSizer';
 import { IChild } from '../../util/IChild';
-import { IPadding } from '../../util/IPadding';
+import { IAddBackgroundConfig } from './IAddBackgroundConfig';
 import { GetBoundsConfig } from '../../../../utils/bounds/GetBoundsConfig';
-
-export interface IAddBackgroundConfig {
-    padding?: IPadding | number
-    childKey?: string
-}
 
 export function AddBackground(
     sizer: IBaseSizer,

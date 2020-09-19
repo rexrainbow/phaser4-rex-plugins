@@ -1,27 +1,32 @@
 import { BaseSizer } from '../basesizer';
-import { IConfig, ISpace } from './ISizer';
-import { IBaseSizer } from '../basesizer/IBaseSizer'
+import { ISizer, IConfig, ISpace } from './ISizer';
+import { IBaseSizer } from '../basesizer/IBaseSizer';
+import { IChild } from '../util/IChild';
 import { OrientationMode, OrientationModeString } from '../util/OrientationMode';
 import { GetChildrenProportion } from './layout/GetChildrenProportion';
 import { GetChildrenWidth } from './layout/GetChildrenWidth';
 import { GetChildrenHeight } from './layout/GetChildrenHeight';
-import { GetChildrenSizers } from './layout/GetChildrenSizers';
 import { Layout } from './layout/Layout';
 import { LayoutInit } from './layout/LayoutInit';
-import { IChild } from '../util/IChild';
-import { Add, IAddConfig } from './add/Add';
+
+import { Add } from './add/Add';
+import { IAddConfig } from './add/IAddConfig';
 import { AddSpace } from './add/AddSpace';
 import { Remove } from './remove/Remove';
 import { RemoveAll } from './remove/RemoveAll';
 import { Clear } from './remove/Clear';
 
-export class Sizer extends BaseSizer {
-    type: string = 'sizer';
-    space: ISpace;
+export class Sizer extends BaseSizer implements ISizer {
+    type: string = 'rexSizer';
+    sizerChildren: IChild[] = [];
+    space: {
+        item: number
+    } & IBaseSizer["space"];
+
     orientation: OrientationMode;
     _childrenProportion: number;
     proportionLength: number;
-    sizerChildren: IChild[] = [];
+
 
     constructor({
         space = { item: 0 },
@@ -30,7 +35,6 @@ export class Sizer extends BaseSizer {
 
         super(arguments[0]);
 
-        this.type = 'rexSizer';
         this.setOrientation(orientation);
         this.setItemSpacing(space.item);
     }
@@ -73,13 +77,6 @@ export class Sizer extends BaseSizer {
     ): number {
 
         return GetChildrenHeight(this, minimumMode);
-    }
-
-    getChildrenSizers(
-        out: IBaseSizer[] = []
-    ): IBaseSizer[] {
-
-        return GetChildrenSizers(this, out);
     }
 
     _layout(

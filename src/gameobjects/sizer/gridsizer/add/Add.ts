@@ -1,21 +1,28 @@
-import { ISizer, ISizerState } from '../ISizer';
+import { ISizer, ISizerState } from '../IGridSizer';
 import { IChild } from '../../util/IChild';
 import { IAddConfig } from './IAddConfig';
 import { AlignPositionMode } from '../../../../utils/types/AlignPositionMode';
 import { GetBoundsConfig } from '../../../../utils/bounds/GetBoundsConfig';
+import { GetEmptyItemIndex } from './GetEmptyItemIndex';
 
 export function Add(
     sizer: ISizer,
     child: IChild,
     {
-        proportion = 0,
+        column,
+        row,
         align = AlignPositionMode.CENTER,
         padding = 0,
-        expand = false,
-        childKey,
-        index
+        expand = true,
+        childKey
     }: IAddConfig = {}
 ) {
+
+    // Get insert index
+    const itemIndex = GetEmptyItemIndex(column, row, sizer.sizerChildren, sizer.columnCount, sizer.rowCount);
+    if (itemIndex === null) {
+        return;
+    }
 
     sizer.pin(child);
 
@@ -24,17 +31,12 @@ export function Add(
     }
 
     const childSizerState = sizer.getSizerState(child) as ISizerState;
-    childSizerState.proportion = proportion;
     childSizerState.align = align;
     childSizerState.padding = GetBoundsConfig(padding);
     childSizerState.expand = expand;
-    if ((index === undefined) || (index >= sizer.sizerChildren.length)) {
-        sizer.sizerChildren.push(child);
-    } else {
-        sizer.sizerChildren.splice(index, 0, child);
-    }
+    sizer.sizerChildren[itemIndex] = child;
 
     if (childKey !== undefined) {
         sizer.addChildrenMap(childKey, child)
     }
-};
+}

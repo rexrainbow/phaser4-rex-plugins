@@ -11,7 +11,8 @@ export function Layout(
     sizer: ISizer,
     parent?: IBaseSizer,
     minWidth?: number,
-    minHeight?: number) {
+    minHeight?: number
+) {
 
     // Skip hidden or !needLayout sizer
     if (sizer.rexSizer.hidden || (!sizer.needLayout)) {
