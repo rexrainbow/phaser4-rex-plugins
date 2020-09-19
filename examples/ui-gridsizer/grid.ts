@@ -24,12 +24,10 @@ class Demo extends Scene {
             }
         )
 
-        const column = 10;
-        const row = 10;
         const ui = new UI.GridSizer({
             width: 600, height: 600,
-            column: column,
-            row: row,
+            column: 10,
+            row: 10,
             columnProportions: 1,
             rowProportions: 1,
             space: {
@@ -40,8 +38,8 @@ class Demo extends Scene {
         ui.addBackground(
             CreateSprite('icon', undefined, 0x191970)
         )
-        for (let r = 0; r < row; r++) {
-            for (let c = 0; c < column; c++) {
+        for (let r = 0, rcnt = ui.rowCount; r < rcnt; r++) {
+            for (let c = 0, ccnt = ui.columnCount; c < ccnt; c++) {
                 ui.add(
                     CreateSprite('icon', undefined, Between(0, 0x1000000))
                 )

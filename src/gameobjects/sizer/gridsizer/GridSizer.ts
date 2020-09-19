@@ -3,7 +3,6 @@ import { ISizer, IConfig } from './IGridSizer';
 import { IBaseSizer } from '../basesizer/IBaseSizer';
 import { IChild } from '../util/IChild';
 import { Init } from './Init';
-import { Vec2Type } from '../../../utils/types/VectorType';
 
 import { GetChildrenWidth } from './layout/GetChildrenWidth';
 import { GetChildrenHeight } from './layout/GetChildrenHeight';
@@ -11,6 +10,11 @@ import { Layout } from './layout/Layout';
 
 import { Add } from './add/Add';
 import { IAddConfig } from './add/IAddConfig';
+
+import { GetChildAt } from './child/GetChildAt';
+import { ChildToGridIndex } from './child/ChildToGridIndex';
+import { Vec2Type } from '../../../utils/types/VectorType';
+import { GetEmptyGridCount } from './child/GetEmptyGridCount'; 0
 
 export class GridSizer extends BaseSizer implements ISizer {
     type = 'rexGridSizer';
@@ -98,7 +102,7 @@ export class GridSizer extends BaseSizer implements ISizer {
         rowIndex: number
     ): IChild {
 
-        return this.sizerChildren[(rowIndex * this.columnCount) + columnIndex];
+        return GetChildAt(this, columnIndex, rowIndex);
     }
 
     childToGridIndex(
@@ -106,20 +110,16 @@ export class GridSizer extends BaseSizer implements ISizer {
         out?: Vec2Type
     ): Vec2Type {
 
-        if (!child) {
-            return null;
-        }
+        return ChildToGridIndex(this, child, out);
+    }
 
-        const index = this.sizerChildren.indexOf(child);
-        if (index === -1) {
-            return null;
-        }
+    get gridCount(): number {
 
-        if (out === undefined) {
-            out = { x: 0, y: 0 };
-        }
-        out.x = index % this.columnCount;
-        out.y = Math.floor(index / this.columnCount);
-        return out;
+        return this.sizerChildren.length;
+    }
+
+    get emptyGridCount(): number {
+
+        return GetEmptyGridCount(this);
     }
 }
