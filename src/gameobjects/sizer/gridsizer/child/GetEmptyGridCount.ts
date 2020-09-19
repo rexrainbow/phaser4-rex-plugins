@@ -1,4 +1,5 @@
 import { ISizer } from '../IGridSizer';
+
 export function GetEmptyGridCount(
     sizer: ISizer
 ): number {

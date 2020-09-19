@@ -5,6 +5,7 @@ import { GetExpandedChildWidth } from './GetExpandedChildWidth';
 import { GetExpandedChildHeight } from './GetExpandedChildHeight';
 import { ResizeGameObject } from '../../../../utils/size/ResizeGameObject';
 import { AlignZone } from '../../util/AlignZone';
+import { GetChildAt } from '../child/GetChildAt';
 
 export function Layout(
     sizer: ISizer,
@@ -70,7 +71,7 @@ export function Layout(
             const colProportion = sizer.columnProportions[columnIndex];
             const colWidth = (colProportion === 0) ? sizer.columnWidth[columnIndex] : (colProportion * proportionWidthLength);
 
-            const child = sizer.getChildAt(columnIndex, rowIndex);
+            const child = GetChildAt(sizer, columnIndex, rowIndex);
             if ((!child) || (child.rexSizer.hidden)) {
                 itemX += (colWidth + columnSpace[columnIndex]);
                 continue;

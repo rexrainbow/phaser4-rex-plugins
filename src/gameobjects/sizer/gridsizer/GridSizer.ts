@@ -14,7 +14,9 @@ import { IAddConfig } from './add/IAddConfig';
 import { GetChildAt } from './child/GetChildAt';
 import { ChildToGridIndex } from './child/ChildToGridIndex';
 import { Vec2Type } from '../../../utils/types/VectorType';
+import { ForEachEmptyGrid } from './child/ForEachEmptyGrid';
 import { GetEmptyGridCount } from './child/GetEmptyGridCount'; 0
+
 
 export class GridSizer extends BaseSizer implements ISizer {
     type = 'rexGridSizer';
@@ -111,6 +113,15 @@ export class GridSizer extends BaseSizer implements ISizer {
     ): Vec2Type {
 
         return ChildToGridIndex(this, child, out);
+    }
+
+    forEachEmptyGrid(
+        callback: (columnIndex: number, rowIndex: number, sizer?: ISizer) => any,
+        scope?: unknown
+    ): this {
+
+        ForEachEmptyGrid(this, callback, scope);
+        return this;
     }
 
     get gridCount(): number {

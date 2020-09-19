@@ -38,13 +38,13 @@ class Demo extends Scene {
         ui.addBackground(
             CreateSprite('icon', undefined, 0x191970)
         )
-        for (let r = 0, rcnt = ui.rowCount; r < rcnt; r++) {
-            for (let c = 0, ccnt = ui.columnCount; c < ccnt; c++) {
-                ui.add(
-                    CreateSprite('icon', undefined, Between(0, 0x1000000))
-                )
-            }
-        }
+        ui.forEachEmptyGrid(function (c: number, r: number, sizer: UI.GridSizer) {
+            sizer.add(
+                CreateSprite('icon', undefined, Between(0, 0x1000000)),
+                { column: c, row: r }
+            )
+
+        })
 
         ui
             .layout()
