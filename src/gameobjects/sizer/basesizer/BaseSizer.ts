@@ -6,12 +6,7 @@ import { Container } from '@phaserjs/phaser/gameobjects';
 import { ISizerState } from '../util/ISizerState';
 import { IChild } from '../util/IChild';
 import { GetBoundsConfig } from '../../../utils/bounds/GetBoundsConfig';
-import {
-    GetLeft, GetCenterX, GetRight,
-    GetTop, GetCenterY, GetBottom,
-    SetLeft, SetCenterX, SetRight,
-    SetTop, SetCenterY, SetBottom
-} from '../../utils/bounds';
+import * as Bounds from '../../utils/align/bounds';
 import { Layout } from './layout/Layout';
 import { PreLayout } from './layout/PreLayout';
 import { LayoutInit } from './layout/LayoutInit';
@@ -62,11 +57,11 @@ export class BaseSizer extends Container implements IBaseSizer {
     }
 
     get left(): number {
-        return GetLeft(this);
+        return Bounds.GetLeft(this);
     }
 
     set left(value: number) {
-        SetLeft(this, value);
+        Bounds.SetLeft(this, value);
     }
 
     alignLeft(value: number) {
@@ -75,11 +70,11 @@ export class BaseSizer extends Container implements IBaseSizer {
     }
 
     get right(): number {
-        return GetRight(this);
+        return Bounds.GetRight(this);
     }
 
     set right(value: number) {
-        SetRight(this, value);
+        Bounds.SetRight(this, value);
     }
 
     alignRight(value: number) {
@@ -96,11 +91,11 @@ export class BaseSizer extends Container implements IBaseSizer {
     }
 
     get centerX(): number {
-        return GetCenterX(this);
+        return Bounds.GetCenterX(this);
     }
 
     set centerX(value) {
-        SetCenterX(this, value);
+        Bounds.SetCenterX(this, value);
     }
 
     alignCenterX(value: number) {
@@ -109,11 +104,11 @@ export class BaseSizer extends Container implements IBaseSizer {
     }
 
     get top(): number {
-        return GetTop(this);
+        return Bounds.GetTop(this);
     }
 
     set top(value: number) {
-        SetTop(this, value);
+        Bounds.SetTop(this, value);
     }
 
     alignTop(value: number) {
@@ -122,11 +117,11 @@ export class BaseSizer extends Container implements IBaseSizer {
     }
 
     get bottom(): number {
-        return GetBottom(this);
+        return Bounds.GetBottom(this);
     }
 
     set bottom(value: number) {
-        SetBottom(this, value);
+        Bounds.SetBottom(this, value);
     }
 
     alignBottom(value: number) {
@@ -143,11 +138,11 @@ export class BaseSizer extends Container implements IBaseSizer {
     }
 
     get centerY(): number {
-        return GetCenterY(this);
+        return Bounds.GetCenterY(this);
     }
 
     set centerY(value: number) {
-        SetCenterY(this, value);
+        Bounds.SetCenterY(this, value);
     }
 
     alignCenterY(value: number) {
