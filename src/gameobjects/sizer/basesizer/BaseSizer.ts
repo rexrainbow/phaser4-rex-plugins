@@ -23,12 +23,20 @@ import { AddChildrenMap } from './add/AddChildrenMap';
 import { GetElement } from './child/GetElement';
 import { IsChild } from './child/IsChild';
 import { GetTopmostParentSizer } from '../util/parent/GetTopmostParentSizer';
+import { Remove } from './remove/Remove';
+import { RemoveAll } from './remove/RemoveAll';
+import { Clear } from './remove/Clear';
 
 export class BaseSizer extends Container implements IBaseSizer {
     type = 'rexBaseSizer';
     isRexSpace: false;
 
-    space: ISpace;
+    space: {
+        left: number,
+        right: number,
+        top: number,
+        bottom: number
+    };
     name: string;
     rexSizer: ISizerState = {};
 
@@ -314,6 +322,31 @@ export class BaseSizer extends Container implements IBaseSizer {
     ): this {
 
         AddBackground(this, child, config);
+        return this;
+    }
+    
+    remove(
+        child: IChild,
+        destroyChild: boolean = true
+    ): this {
+
+        Remove(this, child, destroyChild);
+        return this;
+    }
+
+    removeAll(
+        destroyChild: boolean = true
+    ): this {
+
+        RemoveAll(this, destroyChild);
+        return this;
+    }
+
+    clear(
+        destroyChild: boolean = true
+    ): this {
+
+        Clear(this, destroyChild);
         return this;
     }
 

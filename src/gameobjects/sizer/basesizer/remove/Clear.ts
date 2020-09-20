@@ -1,13 +1,15 @@
-import { ISizer } from '../ISizer';
+import { IBaseSizer } from '../IBaseSizer';
 import { RemoveChildren } from '@phaserjs/phaser/display/RemoveChildren';
 import { IChild } from '../../util/IChild';
 
 export function Clear(
-    sizer: ISizer,
+    sizer: IBaseSizer,
     destroyChild: boolean = true
 ) {
     // Remove from container
-    RemoveChildren(sizer, ...sizer.sizerChildren);
+    if (sizer.sizerChildren) {
+        RemoveChildren(sizer, ...sizer.sizerChildren);
+    }
     if (sizer.backgroundChildren) {
         RemoveChildren(sizer, ...sizer.backgroundChildren);
     }
@@ -16,7 +18,10 @@ export function Clear(
     let destroyChildren: IChild[];
     if (destroyChild) {
         destroyChildren = [];
-        destroyChildren.push.apply(destroyChildren, sizer.sizerChildren);
+
+        if (sizer.sizerChildren) {
+            destroyChildren.push.apply(destroyChildren, sizer.sizerChildren);
+        }
 
         if (sizer.backgroundChildren) {
             destroyChildren.push.apply(destroyChildren, sizer.backgroundChildren);
@@ -24,13 +29,15 @@ export function Clear(
     }
 
     // Remove child from sizerChildren, and backgroundChildren
-    sizer.sizerChildren.length = 0;
+    if (sizer.sizerChildren) {
+        sizer.sizerChildren.length = 0;
+    }
     if (sizer.backgroundChildren) {
         sizer.backgroundChildren.length = 0;
     }
 
     // Destroy children
-    if (destroyChild) {
+    if (destroyChild && destroyChildren) {
         destroyChildren.forEach(function (child) {
             child.destroy();
         })
