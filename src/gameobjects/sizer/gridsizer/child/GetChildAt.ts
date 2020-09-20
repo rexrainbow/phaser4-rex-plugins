@@ -7,5 +7,5 @@ export function GetChildAt(
     rowIndex: number
 ): IChild {
 
-    return sizer.sizerChildren[(rowIndex * sizer.columnCount) + columnIndex];
+    return sizer.grids[(rowIndex * sizer.columnCount) + columnIndex];
 }

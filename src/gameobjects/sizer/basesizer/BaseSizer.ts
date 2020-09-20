@@ -22,6 +22,7 @@ import { IsBackground } from './add/IsBackground';
 import { AddChildrenMap } from './add/AddChildrenMap';
 import { GetElement } from './child/GetElement';
 import { IsChild } from './child/IsChild';
+import { IsBackgroundChild } from './child/IsBackgroundChild';
 import { GetTopmostParentSizer } from '../util/parent/GetTopmostParentSizer';
 import { Remove } from './remove/Remove';
 import { RemoveAll } from './remove/RemoveAll';
@@ -324,7 +325,7 @@ export class BaseSizer extends Container implements IBaseSizer {
         AddBackground(this, child, config);
         return this;
     }
-    
+
     remove(
         child: IChild,
         destroyChild: boolean = true
@@ -377,6 +378,11 @@ export class BaseSizer extends Container implements IBaseSizer {
     isChild(child: IChild): boolean {
 
         return IsChild(this, child);
+    }
+
+    isBackgroundChild(child: IChild): boolean {
+
+        return IsBackgroundChild(this, child);
     }
 
     getTopmostParentSizer(

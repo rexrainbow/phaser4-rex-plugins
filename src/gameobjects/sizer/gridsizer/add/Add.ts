@@ -19,7 +19,7 @@ export function Add(
 ) {
 
     // Get insert index
-    const itemIndex = GetEmptyItemIndex(column, row, sizer.sizerChildren, sizer.columnCount, sizer.rowCount);
+    const itemIndex = GetEmptyItemIndex(column, row, sizer.grids, sizer.columnCount, sizer.rowCount);
     if (itemIndex === null) {
         return;
     }
@@ -34,7 +34,8 @@ export function Add(
     childSizerState.align = align;
     childSizerState.padding = GetBoundsConfig(padding);
     childSizerState.expand = expand;
-    sizer.sizerChildren[itemIndex] = child;
+    sizer.sizerChildren.push(child);
+    sizer.grids[itemIndex] = child;
 
     if (childKey !== undefined) {
         sizer.addChildrenMap(childKey, child)

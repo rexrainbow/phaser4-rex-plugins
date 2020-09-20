@@ -28,12 +28,12 @@ export interface IConfig extends IBaseSizerConfig {
 }
 
 export interface ISizer extends IBaseSizer {
-    sizerChildren: IChild[];
     space: {
         column: number[],
         row: number[]
     } & IBaseSizer["space"];
 
+    grids: IChild[];
     columnCount: number;
     rowCount: number;
     columnProportions: number[];

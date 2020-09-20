@@ -16,8 +16,8 @@ export function Init(
     sizer.rowCount = row;
 
     // sizer children
-    sizer.sizerChildren.length = column * row;
-    Fill(sizer.sizerChildren, null);
+    sizer.grids.length = column * row;
+    Fill(sizer.grids, null);
 
     // proportions
     sizer.columnProportions.length = column;

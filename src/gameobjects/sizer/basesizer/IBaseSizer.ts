@@ -75,10 +75,6 @@ export interface IBaseSizer extends IContainer {
         config?: IAddBackgroundConfig
     ): this;
 
-    isBackground(
-        child: IChild
-    ): boolean;
-
     addChildrenMap(
         key: string | number,
         child: IChild
@@ -116,6 +112,4 @@ export interface IBaseSizer extends IContainer {
         width?: number,
         height?: number
     ): this;
-
-    isChild(child: IChild): boolean;
 };

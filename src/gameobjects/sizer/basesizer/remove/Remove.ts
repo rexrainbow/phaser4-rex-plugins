@@ -1,6 +1,8 @@
 import { IBaseSizer } from '../IBaseSizer';
 import { IChild } from '../../util/IChild';
-import { RemoveChild } from '@phaserjs/phaser/display/RemoveChild'
+import { IsChild } from '../child/IsChild';
+import { IsBackgroundChild } from '../child/IsBackgroundChild';
+import { RemoveChild } from '@phaserjs/phaser/display/RemoveChild';
 
 export function Remove(
     sizer: IBaseSizer,
@@ -8,16 +10,19 @@ export function Remove(
     destroyChild: boolean = true
 ) {
 
-    if (!sizer.isChild(child)) {
+    if (!IsChild(sizer, child)) {
         return
     }
 
     // Remove child from container
     RemoveChild(sizer, child);
-    // Remove child from sizerChildren
-    const sizerChildren = sizer.sizerChildren;
-    if (sizerChildren) {
-        sizerChildren.splice(sizerChildren.indexOf(child), 1);
+
+    // Remove child from sizerChildren, or backgroundChildren
+    const children = (IsBackgroundChild(sizer, child)) ?
+        sizer.backgroundChildren :
+        sizer.sizerChildren;
+    if (children) {
+        children.splice(children.indexOf(child), 1);
     }
 
     if (destroyChild) {

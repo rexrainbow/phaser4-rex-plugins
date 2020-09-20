@@ -26,6 +26,7 @@ export class GridSizer extends BaseSizer implements ISizer {
         row: number[]
     } & IBaseSizer["space"];
 
+    grids: IChild[] = [];
     columnCount: number;
     rowCount: number;
     columnProportions: number[] = [];
