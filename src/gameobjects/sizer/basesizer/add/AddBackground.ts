@@ -1,3 +1,4 @@
+import { Add as BaseAdd } from '../../../container/add/Add';
 import { IBaseSizer } from '../IBaseSizer';
 import { IChild } from '../../util/IChild';
 import { IAddBackgroundConfig } from './IAddBackgroundConfig';
@@ -16,7 +17,7 @@ export function AddBackground(
         sizer.backgroundChildren = [];
     }
 
-    sizer.pin(child);
+    BaseAdd(sizer, child);
     sizer.backgroundChildren.push(child);
 
     const childSizerState = sizer.getSizerState(child);

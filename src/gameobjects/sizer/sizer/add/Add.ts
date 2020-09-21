@@ -1,3 +1,4 @@
+import { Add as BaseAdd } from '../../../container/add/Add';
 import { ISizer, ISizerState } from '../ISizer';
 import { IChild } from '../../util/IChild';
 import { IAddConfig } from './IAddConfig';
@@ -17,7 +18,7 @@ export function Add(
     }: IAddConfig = {}
 ) {
 
-    sizer.pin(child);
+    BaseAdd(sizer, child);
 
     if (typeof (align) === 'string') {
         align = AlignPositionMode[align];
