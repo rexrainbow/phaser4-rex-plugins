@@ -8,7 +8,6 @@ import { IGameObject } from '@phaserjs/phaser/gameobjects/IGameObject'
 import { IChild } from '../util/IChild';
 import { GetBoundsConfig } from '../../../utils/bounds/GetBoundsConfig';
 import * as Bounds from '../../utils/align/bounds';
-import { GetChildrenSizers } from './layout/GetChildrenSizers';
 import { Layout } from './layout/Layout';
 import { PreLayout } from './layout/PreLayout';
 import { LayoutInit } from './layout/LayoutInit';
@@ -46,7 +45,7 @@ export class BaseSizer extends Container implements IBaseSizer {
     _childrenHeight: number;
 
     backgroundChildren: IChild[];
-    sizerChildren: IChild[];
+    sizerChildren: any;
     childrenMap: { [name: string]: any };
 
     constructor({
@@ -215,7 +214,7 @@ export class BaseSizer extends Container implements IBaseSizer {
         out: IBaseSizer[] = []
     ): IBaseSizer[] {
 
-        return GetChildrenSizers(this, out);
+        return out;
     }
 
     get childrenWidth() {

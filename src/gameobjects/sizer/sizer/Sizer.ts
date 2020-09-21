@@ -3,6 +3,7 @@ import { ISizer, IConfig, ISpace } from './ISizer';
 import { IBaseSizer } from '../basesizer/IBaseSizer';
 import { IChild } from '../util/IChild';
 import { OrientationMode, OrientationModeString } from '../util/OrientationMode';
+import { GetChildrenSizers } from './layout/GetChildrenSizers';
 import { GetChildrenProportion } from './layout/GetChildrenProportion';
 import { GetChildrenWidth } from './layout/GetChildrenWidth';
 import { GetChildrenHeight } from './layout/GetChildrenHeight';
@@ -63,6 +64,13 @@ export class Sizer extends BaseSizer implements ISizer {
             this._childrenProportion = GetChildrenProportion(this);
         }
         return this._childrenProportion;
+    }
+
+    getChildrenSizers(
+        out: IBaseSizer[] = []
+    ): IBaseSizer[] {
+
+        return GetChildrenSizers(this, out);
     }
 
     getChildrenWidth(

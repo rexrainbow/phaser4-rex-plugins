@@ -50,7 +50,7 @@ export interface IBaseSizer extends IContainer {
     childrenHeight: number;
     _childrenHeight: number;
 
-    sizerChildren: any[];
+    sizerChildren: any;
     backgroundChildren: IChild[];
     childrenMap: { [name: string]: any };
 

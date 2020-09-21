@@ -3,7 +3,7 @@ import { ISizer, IConfig } from './IGridSizer';
 import { IBaseSizer } from '../basesizer/IBaseSizer';
 import { IChild } from '../util/IChild';
 import { Init } from './Init';
-
+import { GetChildrenSizers } from './layout/GetChildrenSizers';
 import { GetChildrenWidth } from './layout/GetChildrenWidth';
 import { GetChildrenHeight } from './layout/GetChildrenHeight';
 import { Layout } from './layout/Layout';
@@ -72,6 +72,13 @@ export class GridSizer extends BaseSizer implements ISizer {
 
     get totalRowProportions(): number {
         return this.rowProportions.reduce((a, b) => a + b);
+    }
+
+    getChildrenSizers(
+        out: IBaseSizer[] = []
+    ): IBaseSizer[] {
+
+        return GetChildrenSizers(this, out);
     }
 
     getChildrenWidth(): number {
