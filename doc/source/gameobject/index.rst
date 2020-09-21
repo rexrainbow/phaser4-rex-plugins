@@ -18,3 +18,4 @@ Chapters
    text/text
    spritebatch/spritebatch
    renderlayer/renderlayer
+   sizer/index

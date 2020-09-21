@@ -1,0 +1,8 @@
+digraph ClassTree {
+    
+    BuiltInContainer[label="Build-in\nContainer"]
+    
+    BuiltInContainer -> Container -> BaseSizer
+    BaseSizer -> Sizer -> Label
+    BaseSizer -> GridSizer
+}
