@@ -1,6 +1,7 @@
 import { ISizer, ISizerState } from '../ISizer';
 import { BaseSizer } from '../../basesizer';
 import { IsSpace } from '../space/IsSpace';
+import { OrientationMode } from '../../util/OrientationMode';
 
 export function GetChildrenWidth(
     sizer: ISizer,
@@ -17,7 +18,7 @@ export function GetChildrenWidth(
 
     const children = sizer.sizerChildren;
     let result = 0;
-    if (sizer.orientation === 0) { // x
+    if (sizer.orientation === OrientationMode.x) { // x
         // Get summation of minimum width
         for (var i = 0, cnt = children.length; i < cnt; i++) {
             const child = children[i];
