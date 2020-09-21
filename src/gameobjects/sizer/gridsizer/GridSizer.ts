@@ -10,6 +10,10 @@ import { Layout } from './layout/Layout';
 
 import { Add } from './add/Add';
 import { IAddConfig } from './add/IAddConfig';
+import { Remove } from './remove/Remove';
+import { RemoveAt } from './remove/RemoveAt';
+import { RemoveAll } from './remove/RemoveAll';
+import { Clear } from './remove/Clear';
 
 import { GetChildAt } from './child/GetChildAt';
 import { ChildToGridIndex } from './child/ChildToGridIndex';
@@ -96,6 +100,42 @@ export class GridSizer extends BaseSizer implements ISizer {
     ): this {
 
         Add(this, child, config);
+        return this;
+    }
+
+    remove(
+        child: IChild,
+        destroyChild: boolean = true
+    ): this {
+
+        Remove(this, child, destroyChild);
+        return this;
+    }
+
+    removeAt(
+        columnIndex: number,
+        rowIndex: number,
+        destroyChild: boolean = true
+    ): this {
+
+        RemoveAt(this, columnIndex, rowIndex, destroyChild);
+        return this;
+    }
+
+    removeAll(
+        destroyChild: boolean = true
+    ): this {
+
+        RemoveAll(this, destroyChild);
+        return this;
+    }
+
+
+    clear(
+        destroyChild: boolean = true
+    ): this {
+
+        Clear(this, destroyChild);
         return this;
     }
 

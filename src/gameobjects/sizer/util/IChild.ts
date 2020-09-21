@@ -3,5 +3,4 @@ import { ISizerState } from './ISizerState';
 
 export interface IChild extends IContainer {
     rexSizer?: ISizerState;
-    isRexSpace?: boolean;
 }

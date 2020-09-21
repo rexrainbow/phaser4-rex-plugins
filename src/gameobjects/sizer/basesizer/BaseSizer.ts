@@ -27,7 +27,6 @@ import { GetTopmostParentSizer } from '../util/parent/GetTopmostParentSizer';
 
 export class BaseSizer extends Container implements IBaseSizer {
     type = 'rexBaseSizer';
-    isRexSpace: false;
 
     space: {
         left: number,

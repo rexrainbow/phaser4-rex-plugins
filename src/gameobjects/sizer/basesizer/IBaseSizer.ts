@@ -18,9 +18,6 @@ export interface IConfig {
 }
 
 export interface IBaseSizer extends IContainer {
-    isRexSpace: false;
-    type: string;
-
     space: {
         left: number,
         right: number,
