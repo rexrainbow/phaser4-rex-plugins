@@ -1,6 +1,6 @@
 import { ISizer } from '../ISizer';
 import { Add } from './Add';
-import { Space } from '../../space/Space';
+import { Space } from '../space/Space';
 
 export function AddSpace(
     sizer: ISizer,
