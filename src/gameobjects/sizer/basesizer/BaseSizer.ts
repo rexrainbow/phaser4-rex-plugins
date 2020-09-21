@@ -2,7 +2,7 @@ import {
     IBaseSizer,
     IConfig, ISpace
 } from './IBaseSizer';
-import { Container } from '@phaserjs/phaser/gameobjects';
+import { Container } from '../../container';
 import { ISizerState } from '../util/ISizerState';
 import { IGameObject } from '@phaserjs/phaser/gameobjects/IGameObject'
 import { IChild } from '../util/IChild';
@@ -24,9 +24,6 @@ import { GetElement } from './child/GetElement';
 import { IsChild } from './child/IsChild';
 import { IsBackgroundChild } from './child/IsBackgroundChild';
 import { GetTopmostParentSizer } from '../util/parent/GetTopmostParentSizer';
-import { Remove } from './remove/Remove';
-import { RemoveAll } from './remove/RemoveAll';
-import { Clear } from './remove/Clear';
 
 export class BaseSizer extends Container implements IBaseSizer {
     type = 'rexBaseSizer';
@@ -323,31 +320,6 @@ export class BaseSizer extends Container implements IBaseSizer {
     ): this {
 
         AddBackground(this, child, config);
-        return this;
-    }
-
-    remove(
-        child: IChild,
-        destroyChild: boolean = true
-    ): this {
-
-        Remove(this, child, destroyChild);
-        return this;
-    }
-
-    removeAll(
-        destroyChild: boolean = true
-    ): this {
-
-        RemoveAll(this, destroyChild);
-        return this;
-    }
-
-    clear(
-        destroyChild: boolean = true
-    ): this {
-
-        Clear(this, destroyChild);
         return this;
     }
 

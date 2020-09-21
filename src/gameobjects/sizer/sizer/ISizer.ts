@@ -25,6 +25,7 @@ export interface IConfig extends IBaseSizerConfig {
 }
 
 export interface ISizer extends IBaseSizer {
+    sizerChildren: IChild[];
     space: {
         item: number
     } & IBaseSizer["space"];

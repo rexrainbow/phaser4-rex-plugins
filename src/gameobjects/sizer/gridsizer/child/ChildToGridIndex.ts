@@ -12,7 +12,7 @@ export function ChildToGridIndex(
         return null;
     }
 
-    const index = sizer.grids.indexOf(child);
+    const index = sizer.sizerChildren.indexOf(child);
     if (index === -1) {
         return null;
     }
