@@ -10,7 +10,7 @@ export function Add(
     child: IChild,
     {
         proportion = 0,
-        align = AlignPositionMode.CENTER,
+        align = AlignPositionMode.center,
         padding = 0,
         expand = false,
         childKey,

@@ -11,7 +11,7 @@ export function Add(
     {
         key = Date.now(),
         padding = 0,
-        align = AlignPositionMode.CENTER,
+        align = AlignPositionMode.center,
         expand = true
     }: IAddConfig = {}
 ) {

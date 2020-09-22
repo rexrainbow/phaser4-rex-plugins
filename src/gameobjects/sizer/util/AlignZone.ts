@@ -27,7 +27,7 @@ class Zone implements IBoundsObject {
 
     alignIn(
         child: IBoundsObject,
-        alignPositionMode: AlignPositionMode = AlignPositionMode.CENTER,
+        alignPositionMode: AlignPositionMode = AlignPositionMode.center,
         offsetX: number = 0,
         offsetY: number = 0
     ): this {

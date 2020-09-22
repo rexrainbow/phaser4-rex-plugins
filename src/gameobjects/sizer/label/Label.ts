@@ -97,7 +97,7 @@ export class Label extends Sizer implements ILabel {
                 text,
                 {
                     proportion: proportion,
-                    align: AlignPositionMode.CENTER,
+                    align: AlignPositionMode.center,
                     padding: padding,
                     expand: expand
                 }

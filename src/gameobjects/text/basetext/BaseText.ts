@@ -64,7 +64,7 @@ export class BaseText extends Sprite implements IBaseText {
     underlineThickness: number = 1;
     underlineOffsetY: number = 0;
 
-    align: AlignPositionMode = AlignPositionMode.TOP_LEFT;
+    align: AlignPositionMode = AlignPositionMode.top_left;
     lineSpacing: number = 0;
     wrapMode: WrapMode = WrapMode.none;
     wrapWidth: number = 0;
@@ -91,7 +91,7 @@ export class BaseText extends Sprite implements IBaseText {
             backgroundStrokeThickness,
             cornerRadius = 0,
 
-            align = AlignPositionMode.TOP_LEFT,
+            align = AlignPositionMode.top_left,
 
             lineSpacing = 0,
 

@@ -146,7 +146,7 @@ export function Layout(
 
             AlignZone
                 .setTo(x, y, width, height)
-                .alignIn(child, AlignPositionMode.CENTER);
+                .alignIn(child, AlignPositionMode.center);
         }
 
         if (sizer.orientation === OrientationMode.x) {

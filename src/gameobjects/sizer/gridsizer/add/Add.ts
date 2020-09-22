@@ -12,7 +12,7 @@ export function Add(
     {
         column,
         row,
-        align = AlignPositionMode.CENTER,
+        align = AlignPositionMode.center,
         padding = 0,
         expand = true,
         childKey
