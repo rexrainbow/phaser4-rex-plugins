@@ -1,5 +1,6 @@
 import {
     BaseSizer,
+    FixedWidthSizer,
     GridSizer,
     Label,
     Sizer
@@ -12,6 +13,7 @@ import { RoundRectangleCanvas } from './roundrectanglecanvas';
 export {
     BaseSizer,
     BBCodeText,
+    FixedWidthSizer,
     GridSizer,
     Label,
     MaskedImage,
