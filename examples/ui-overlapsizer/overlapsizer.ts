@@ -24,11 +24,11 @@ class Demo extends Scene {
             )
             .add(
                 (new UI.RoundRectangleCanvas({ width: 40, radius: 20, fillStyle: COLOR_DARK })),
-                { key: 'right', align: 'RIGHT_CENTER', expand: { height: true } }
+                { key: 'right', align: 'right_center', expand: { height: true } }
             )
             .add(
                 (new UI.RoundRectangleCanvas({ width: 40, height: 40, radius: 20, fillStyle: COLOR_LIGHT })),
-                { key: 'bottom', align: 'BOTTOM_CENTER', expand: false }
+                { key: 'bottom', align: 'bottom_center', expand: false }
             )
         ui.layout();
 

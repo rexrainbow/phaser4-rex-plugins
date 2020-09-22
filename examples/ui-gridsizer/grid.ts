@@ -39,7 +39,7 @@ class Demo extends Scene {
             CreateSprite('icon', undefined, 0x191970)
         )
         ui.forEachEmptyGrid(function (c, r, sizer) {
-            sizer.add(
+            (sizer as UI.GridSizer).add(
                 CreateSprite('icon', undefined, Between(0, 0x1000000)),
                 { column: c, row: r }
             )

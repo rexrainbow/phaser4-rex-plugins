@@ -81,8 +81,8 @@ class Demo extends Scene {
             orientation: 'x',
         }))
             //.addBackground(CreateBackground('blue', null, 0))
-            .add(horizontalLabelSizer, { proportion: 1, expand: true, align: 'TOP_LEFT' })
-            .add(verticalLabelSizer, { proportion: 1, expand: true, align: 'TOP_RIGHT' })
+            .add(horizontalLabelSizer, { proportion: 1, expand: true, align: 'top_left' })
+            .add(verticalLabelSizer, { proportion: 1, expand: true, align: 'top_right' })
             .layout();
 
 
