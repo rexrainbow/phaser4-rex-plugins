@@ -9,7 +9,7 @@ export function Remove(
     destroyChild: boolean = true
 ) {
 
-    BaseRemove(this, child, destroyChild);
+    BaseRemove(sizer, child, destroyChild);
 
     // Remove child from sizer children
     const result = RemoveItem(sizer.sizerChildren, child);

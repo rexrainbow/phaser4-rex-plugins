@@ -3,34 +3,24 @@ import {
     IConfig as IBaseSizerConfig,
     ISpace as IBaseSizerSpace
 } from '../basesizer/IBaseSizer';
-import { OrientationMode, OrientationModeString } from '../util/OrientationMode';
 import { ISizerState as IBaseSizerState } from '../util/ISizerState';
 import { IChild } from '../util/IChild';
 import { AlignPositionMode } from '../../../utils/types/AlignPositionMode';
 
+export type KeyType = string | number;
 export interface ISizerState extends IBaseSizerState {
-    proportion: number;
-    expand: boolean;
+    key: KeyType;
     align: AlignPositionMode;
+    expandWidth: boolean;
+    expandHeight: boolean;
 }
 
 export interface ISpace extends IBaseSizerSpace {
-    item?: number;
 }
 
 export interface IConfig extends IBaseSizerConfig {
-    space?: ISpace;
-    orientation?: OrientationMode | OrientationModeString;
 }
 
 export interface ISizer extends IBaseSizer {
-    sizerChildren: IChild[];
-    space: {
-        item: number
-    } & IBaseSizer["space"];
-
-    orientation: OrientationMode;
-    childrenProportion: number;
-    _childrenProportion: number;
-    proportionLength: number;
+    sizerChildren: Map<KeyType, IChild>;
 }

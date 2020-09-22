@@ -3,6 +3,7 @@ import {
     FixedWidthSizer,
     GridSizer,
     Label,
+    OverlapSizer,
     Sizer
 } from './sizer';
 import { BBCodeText, TagText } from './text';
@@ -17,6 +18,7 @@ export {
     GridSizer,
     Label,
     MaskedImage,
+    OverlapSizer,
     RectangleCanvas,
     RoundRectangleCanvas,
     Sizer,

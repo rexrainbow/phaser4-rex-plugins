@@ -2,6 +2,8 @@ import { ISizer, ISizerState } from '../ISizer';
 import { IBaseSizer } from '../../basesizer/IBaseSizer';
 import { BaseSizer } from '../../basesizer';
 import { OrientationMode } from '../../util/OrientationMode';
+import { GetChildrenWidth } from './GetChildrenWidth';
+import { GetChildrenHeight } from './GetChildrenHeight';
 import { GetExpandedChildWidth } from './GetExpandedChildWidth';
 import { GetExpandedChildHeight } from './GetExpandedChildHeight';
 import { ResizeGameObject } from '../../../../utils/size/ResizeGameObject';
@@ -38,8 +40,8 @@ export function Layout(
 
         if (remainder > 0) {
             remainder = (sizer.orientation === OrientationMode.x) ?
-                (sizer.width - sizer.getChildrenWidth(false)) :
-                (sizer.height - sizer.getChildrenHeight(false));
+                (sizer.width - GetChildrenWidth(sizer, false)) :
+                (sizer.height - GetChildrenHeight(sizer, false));
             proportionLength = remainder / sizer.childrenProportion;
         } else {
             proportionLength = 0;

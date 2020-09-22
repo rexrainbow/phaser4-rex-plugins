@@ -5,4 +5,6 @@ digraph ClassTree {
     BuiltInContainer -> Container -> BaseSizer
     BaseSizer -> Sizer -> Label
     BaseSizer -> GridSizer
+    BaseSizer -> FixedWidthSizer
+    BaseSizer -> OverlapSizer
 }

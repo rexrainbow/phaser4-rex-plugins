@@ -1,5 +1,5 @@
 import { BaseSizer } from '../basesizer';
-import { ISizer, IConfig, ISpace } from './ISizer';
+import { ISizer, IConfig } from './ISizer';
 import { IBaseSizer } from '../basesizer/IBaseSizer';
 import { IChild } from '../util/IChild';
 import { OrientationMode, OrientationModeString } from '../util/OrientationMode';
@@ -136,7 +136,6 @@ export class Sizer extends BaseSizer implements ISizer {
         RemoveAll(this, destroyChild);
         return this;
     }
-
 
     clear(
         destroyChild: boolean = true

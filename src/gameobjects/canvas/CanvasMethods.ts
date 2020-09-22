@@ -8,7 +8,7 @@ export function Resize(
     const newCanvasWidth = Math.ceil(width * canvas.resolution);
     const newCanvasHeight = Math.ceil(height * canvas.resolution);
     const srcCanvas = canvas.canvas;
-    if ((srcCanvas.width === newCanvasWidth) || (srcCanvas.height === newCanvasHeight)) {
+    if ((srcCanvas.width === newCanvasWidth) && (srcCanvas.height === newCanvasHeight)) {
         Clear(canvas);
         return;
     }

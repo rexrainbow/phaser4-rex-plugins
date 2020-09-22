@@ -42,9 +42,4 @@ export interface ISizer extends IBaseSizer {
     totalRowProportions: number;
     columnWidth: number[];
     rowHeight: number[];
-
-    add(
-        child: IChild,
-        config?: IAddConfig
-    ): this;
 }

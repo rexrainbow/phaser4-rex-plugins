@@ -1,6 +1,7 @@
 import { Remove as BaseRemove } from '../../../container/remove/Remove';
-import { ISizer } from '../IGridSizer';
+import { ISizer } from '../IOverlapSizer';
 import { IChild } from '../../util/IChild';
+import { GetChildKey } from '../child/GetChildKey';
 import { Remove as RemoveItem } from '../../../../utils/array/Remove';
 
 export function Remove(
@@ -12,10 +13,10 @@ export function Remove(
     BaseRemove(sizer, child, destroyChild);
 
     // Remove child from sizer children
-    const index = sizer.sizerChildren.indexOf(child);
-    if (index >= 0) {
-        sizer.sizerChildren[index] = null;
-    } else if (sizer.backgroundChildren) {
+    const key = GetChildKey(sizer, child);
+    if (key) {
+        sizer.sizerChildren.delete(key);
+    } else {
         RemoveItem(sizer.backgroundChildren, child);
     }
 }

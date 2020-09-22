@@ -58,6 +58,10 @@
 
 - [Horizontal and vertical label](https://rexrainbow.github.io/phaser4-rex-plugins/public/ui-label-label/)
 
+### OverlapSizer
+
+- [OverlapSizer](https://rexrainbow.github.io/phaser4-rex-plugins/public/ui-overlapsizer-overlapsizer/)
+
 ### Sizer
 
 - [Nested-sizer](https://rexrainbow.github.io/phaser4-rex-plugins/public/ui-sizer-nested-sizer/)
