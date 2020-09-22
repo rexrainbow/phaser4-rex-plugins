@@ -1,4 +1,4 @@
-import { IRadiusConfig } from '../../utils/geom/roundrectangle/IRoundRectangle';
+import { IRadiusConfig } from '../../../utils/geom/roundrectangle/IRoundRectangle';
 
 export enum MaskType {
     circle = 0,

@@ -7,9 +7,9 @@ import {
     Sizer
 } from './sizer';
 import { BBCodeText, TagText } from './text';
-import { MaskedImage } from './maskedimage';
-import { RectangleCanvas } from './rectanglecanvas';
-import { RoundRectangleCanvas } from './roundrectanglecanvas';
+import { MaskedImage } from './canvas/maskedimage';
+import { RectangleCanvas } from './canvas/rectanglecanvas';
+import { RoundRectangleCanvas } from './canvas/roundrectanglecanvas';
 
 export {
     BaseSizer,

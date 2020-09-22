@@ -1,9 +1,9 @@
 import { BaseCanvas } from '../canvas/BaseCanvas';
 import { IConfig, MaskType, MaskTypeString } from './IMaskedImage';
-import { IRadiusConfig } from '../../utils/geom/roundrectangle/IRoundRectangle';
+import { IRadiusConfig } from '../../../utils/geom/roundrectangle/IRoundRectangle';
 import { TextureManagerInstance } from '@phaserjs/phaser/textures/TextureManagerInstance';
 
-import { AddRoundRectanglePath } from '../../utils/canvas/AddRoundRectanglePath';
+import { AddRoundRectanglePath } from '../../../utils/canvas/AddRoundRectanglePath';
 
 export class MaskedImage extends BaseCanvas {
 

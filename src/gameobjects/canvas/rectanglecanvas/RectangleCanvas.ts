@@ -1,8 +1,8 @@
 import { BaseCanvas } from '../canvas/BaseCanvas';
 import { IConfig } from './IRectangleCanvas';
-import { GetCanvasGradientCallbackType } from '../../utils/types/GetCanvasGradientCallbackType';
-import { DrawRectangle } from '../../utils/canvas/DrawRectangle';
-import { GetStyle } from '../../utils/canvas/GetStyle';
+import { GetCanvasGradientCallbackType } from '../../../utils/types/GetCanvasGradientCallbackType';
+import { DrawRectangle } from '../../../utils/canvas/DrawRectangle';
+import { GetStyle } from '../../../utils/canvas/GetStyle';
 
 export class RectangleCanvas extends BaseCanvas {
     fillStyle: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;

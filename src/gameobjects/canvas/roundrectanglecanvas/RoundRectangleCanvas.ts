@@ -1,9 +1,9 @@
 import { BaseCanvas } from '../canvas/BaseCanvas';
 import { IConfig } from './IRoundRectangleCanvas';
-import { IRadiusConfig } from '../../utils/geom/roundrectangle/IRoundRectangle';
-import { GetCanvasGradientCallbackType } from '../../utils/types/GetCanvasGradientCallbackType';
-import { DrawRoundRectangle } from '../../utils/canvas/DrawRoundRectangle';
-import { GetStyle } from '../../utils/canvas/GetStyle';
+import { IRadiusConfig } from '../../../utils/geom/roundrectangle/IRoundRectangle';
+import { GetCanvasGradientCallbackType } from '../../../utils/types/GetCanvasGradientCallbackType';
+import { DrawRoundRectangle } from '../../../utils/canvas/DrawRoundRectangle';
+import { GetStyle } from '../../../utils/canvas/GetStyle';
 
 export class RoundRectangleCanvas extends BaseCanvas {
     radius: IRadiusConfig | number;

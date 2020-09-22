@@ -1,7 +1,7 @@
 import { ICanvas } from './ICanvas';
 import { TextureManagerInstance } from '@phaserjs/phaser/textures/TextureManagerInstance';
-import { DrawCanvasTexture } from '../../texture/canvastexture'
-import { DrawFrame } from '../../utils/texture/DrawFrameToCanvas';
+import { DrawCanvasTexture } from '../../../texture/canvastexture'
+import { DrawFrame } from '../../../utils/texture/DrawFrameToCanvas';
 
 export function GenerateTexture(
     canvas: ICanvas,
