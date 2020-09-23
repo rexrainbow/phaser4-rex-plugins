@@ -5,6 +5,7 @@ import { DrawRectangle } from '../../../utils/canvas/DrawRectangle';
 import { GetStyle } from '../../../utils/canvas/GetStyle';
 
 export class RectangleCanvas extends BaseCanvas {
+    type = 'rexCanvasRoundRectangle';
     fillStyle: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
     fillColor2: string | number;
     isHorizontalGradient: boolean;
@@ -24,7 +25,6 @@ export class RectangleCanvas extends BaseCanvas {
     }: IConfig = {}) {
 
         super(x, y);
-        this.type = 'rexCanvasRoundRectangle';
 
         this.setFillStyle(fillStyle, fillColor2, isHorizontalGradient);
         this.setStrokeStyle(strokeStyle, lineWidth);

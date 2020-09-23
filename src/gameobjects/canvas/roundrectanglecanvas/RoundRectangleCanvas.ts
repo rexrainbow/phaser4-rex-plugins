@@ -6,6 +6,7 @@ import { DrawRoundRectangle } from '../../../utils/canvas/DrawRoundRectangle';
 import { GetStyle } from '../../../utils/canvas/GetStyle';
 
 export class RoundRectangleCanvas extends BaseCanvas {
+    type = 'rexCanvasRoundRectangle';
     radius: IRadiusConfig | number;
     fillStyle: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
     fillColor2: string | number;
@@ -27,7 +28,6 @@ export class RoundRectangleCanvas extends BaseCanvas {
     }: IConfig = {}) {
 
         super(x, y);
-        this.type = 'rexCanvasRoundRectangle';
 
         this.setRadius(radius);
         this.setFillStyle(fillStyle, fillColor2, isHorizontalGradient);
