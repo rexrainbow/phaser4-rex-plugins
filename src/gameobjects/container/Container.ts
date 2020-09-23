@@ -6,6 +6,7 @@ import { Remove } from './remove/Remove';
 import { Clear } from './remove/Clear';
 
 export class Container extends BaseContainer implements IContainer {
+    type = 'rexContainer';
 
     add(
         children: IGameObject | IGameObject[]

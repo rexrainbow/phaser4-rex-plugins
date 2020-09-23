@@ -6,7 +6,7 @@ import { Sprite } from '@phaserjs/phaser/gameobjects/sprite/Sprite';
 import { Resize, Clear } from './CanvasMethods';
 
 export class BaseCanvas extends Sprite {
-
+    type = 'rexCanvas';
     canvas: HTMLCanvasElement;
     context: CanvasRenderingContext2D;
     resolution: number;
@@ -19,7 +19,6 @@ export class BaseCanvas extends Sprite {
     ) {
 
         super(x, y, CanvasTexture());
-        this.type = 'rexCanvas';
 
         const game = GameInstance.get();
         this.resolution = game.renderer.resolution;
