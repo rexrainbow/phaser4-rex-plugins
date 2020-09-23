@@ -1,3 +1,4 @@
+import { Chart } from './canvas/chart';
 import {
     BaseSizer,
     FixedWidthSizer,
@@ -14,6 +15,7 @@ import { RoundRectangleCanvas } from './canvas/roundrectanglecanvas';
 export {
     BaseSizer,
     BBCodeText,
+    Chart,
     FixedWidthSizer,
     GridSizer,
     Label,

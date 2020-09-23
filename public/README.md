@@ -36,6 +36,10 @@
 
 - [Circle](https://rexrainbow.github.io/phaser4-rex-plugins/public/canvas-texture-circle/)
 
+## Chart.js
+
+- [Bar](https://rexrainbow.github.io/phaser4-rex-plugins/public/chart-bar/)
+
 ## Masked image
 
 - [Masked image](https://rexrainbow.github.io/phaser4-rex-plugins/public/maskedimage-maskedimage/)

@@ -1,4 +1,5 @@
 import { BaseCanvas, Canvas } from './canvas/canvas';
+import { Chart } from './canvas/chart';
 import { MaskedImage } from './canvas/maskedimage';
 import { RectangleCanvas } from './canvas/rectanglecanvas';
 import { RoundRectangleCanvas } from './canvas/roundrectanglecanvas';
@@ -9,6 +10,7 @@ export {
     BBCodeText,
     BaseCanvas,
     Canvas,
+    Chart,
     MaskedImage,
     RectangleCanvas,
     RoundRectangleCanvas,

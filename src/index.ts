@@ -2,6 +2,7 @@ import { AwayTime } from './time/awaytime';
 import {
     BBCodeText,
     Canvas,
+    Chart,
     MaskedImage,
     RectangleCanvas,
     RoundRectangleCanvas,
@@ -30,6 +31,7 @@ export {
     Board,
     Canvas,
     CanvasTexture,
+    Chart,
     Clock,
     CSVToArray,
     DrawCanvasTexture,
