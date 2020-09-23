@@ -2,6 +2,7 @@ import { BaseCanvas } from '../canvas/BaseCanvas';
 import * as ChartJS from 'chart.js';
 import { IContainer } from '@phaserjs/phaser/gameobjects/container/IContainer';
 import { CreateChartJSInstance } from './CreateChartJS';
+import { ResizeChart } from './ResizeChart';
 import { GetChartDataset } from './GetChartDataset';
 import { GetChartData } from './GetChartData';
 import { SetChartData } from './SetChartData';
@@ -53,11 +54,7 @@ export class Chart extends BaseCanvas {
         super.resize(width, height);
 
         if (this.chart) {
-            const chart = this.chart;
-            chart.height = this.canvas.height;
-            chart.width = this.canvas.width;
-            chart.aspectRatio = (chart.height) ? chart.width / chart.height : null;
-            chart.update();
+            ResizeChart(this.chart, this.canvas.width, this.canvas.height);
         }
         return this;
     }
@@ -97,7 +94,7 @@ export class Chart extends BaseCanvas {
         }
         return this;
     }
-    
+
     updateChart(): this {
 
         if (this.chart) {
