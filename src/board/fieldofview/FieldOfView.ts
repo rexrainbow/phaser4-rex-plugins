@@ -30,7 +30,7 @@ export class FieldOfView implements IFieldOfView {
     _cone: number | undefined;
     coneRad: number;
 
-    costCache: Map<string, CostValueType>;
+    costCache: Map<string, CostValueType> = new Map();
 
     constructor({
         occupiedTest = false,
@@ -60,8 +60,6 @@ export class FieldOfView implements IFieldOfView {
         this.setFace(face);
         this.setConeMode(coneMode);
         this.setCone(cone);
-
-        this.costCache = new Map();
     }
 
     destroy() {

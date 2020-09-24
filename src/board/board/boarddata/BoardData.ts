@@ -9,29 +9,16 @@ import { GetXYZ } from './methods/GetXYZ';
 import { GetMaxMapKey, GetMinMapKey } from './methods/GetMaxMinMapKey';
 
 export class BoardData implements IBoardData {
-    chessToXYZ: Map<IChess, XYZType>; // {chess: {x,y,z}}
-    XYToZMap: Map<string, Map<ZType, IChess>>; // {'x|y': {z:chess}}
-    XToChessSet: Map<XType, ChessSetType>; // {x, [chess]}
-    YToChessSet: Map<YType, ChessSetType>; // {y, [chess]}
-    ZToChessSet: Map<ZType, ChessSetType>; // {z, [chess]}
+    chessToXYZ: Map<IChess, XYZType> = new Map(); // {chess: {x,y,z}}
+    XYToZMap: Map<string, Map<ZType, IChess>> = new Map(); // {'x|y': {z:chess}}
+    XToChessSet: Map<XType, ChessSetType> = new Map(); // {x, [chess]}
+    YToChessSet: Map<YType, ChessSetType> = new Map(); // {y, [chess]}
+    ZToChessSet: Map<ZType, ChessSetType> = new Map(); // {z, [chess]}
 
-    _xMax: number | undefined;
-    _xMin: number | undefined;
-    _yMax: number | undefined;
-    _yMin: number | undefined;
-
-    constructor() {
-        this.chessToXYZ = new Map();
-        this.XYToZMap = new Map();
-        this.XToChessSet = new Map();
-        this.YToChessSet = new Map();
-        this.ZToChessSet = new Map();
-
-        this._xMax = undefined;
-        this._xMin = undefined;
-        this._yMax = undefined;
-        this._yMin = undefined;
-    }
+    _xMax: number | undefined = undefined;
+    _xMin: number | undefined = undefined;
+    _yMax: number | undefined = undefined;
+    _yMin: number | undefined = undefined;
 
     destroy(): void {
         this.clear();

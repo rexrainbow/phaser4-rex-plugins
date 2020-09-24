@@ -12,17 +12,14 @@ import { TileXY } from '../board'
 export class Match implements IMatch {
     board: IBaseBoard;
     wildcard: SymbolType;
-    symbols: SymbolType[];
-    dirMask: DirMaskType;
+    symbols: SymbolType[] = []; // tileX+(tileY*board.width)
+    dirMask: DirMaskType = {};
 
     constructor({
         board,
         wildcard,
         dirMask
     }: IConfig = {}) {
-
-        this.symbols = []; // tileX+(tileY*board.width)
-        this.dirMask = {};
 
         this.setBoard(board);
         this.setWildcard(wildcard);

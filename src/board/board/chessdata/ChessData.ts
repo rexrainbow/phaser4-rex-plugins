@@ -7,13 +7,11 @@ import {
 
 export class ChessData implements IChessData {
     parent: any;
-    board: IBaseBoard | null;
-    blocker: BlockerType | EdgeBlockerType;
+    board: IBaseBoard | null = null;
+    blocker: BlockerType | EdgeBlockerType = false;
 
     constructor(parent: any) {
         this.parent = parent;
-        this.board = null;
-        this.blocker = false;
         this.boot();
     }
 

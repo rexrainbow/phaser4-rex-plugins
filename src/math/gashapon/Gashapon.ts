@@ -12,15 +12,15 @@ import { MapToObj } from '../../utils/map/MapToObj';
 export class Gashapon implements IGashapon {
 
     mode: Mode;
-    items: ItemMapType;
-    remainder: ItemMapType;
+    items: ItemMapType = new Map();
+    remainder: ItemMapType = new Map();
     reload: boolean;
     rnd: RNDObjType | undefined;
-    result: string | null;
+    result: string | null = null;
 
 
     private _restartFlag: boolean;
-    private _totalRemainderCount: number | null;
+    private _totalRemainderCount: number | null = null;
 
     /**
      * Creates an instance of Gashapon.
@@ -38,11 +38,6 @@ export class Gashapon implements IGashapon {
         items = {},
         rnd = undefined
     }: IConfig = {}) {
-
-        this.items = new Map();
-        this.remainder = new Map();
-        this._totalRemainderCount = null;
-        this.result = null;
 
         this.setMode(mode);
         this.setReload(reload);
