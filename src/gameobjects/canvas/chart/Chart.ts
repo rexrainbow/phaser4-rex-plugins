@@ -14,8 +14,8 @@ export class Chart extends BaseCanvas {
     constructor(
         x: number = 0,
         y: number = 0,
-        width: number = 128,
-        height: number = 128,
+        width: number = 1,
+        height: number = 1,
         config: ChartJS.ChartConfiguration = {}
 
     ) {
