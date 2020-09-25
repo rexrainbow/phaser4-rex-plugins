@@ -4,5 +4,5 @@ export function GetLeft(
     gameobject: IBoundsObject
 ): number {
 
-    return gameobject.x - (gameobject.originX * gameobject.width);
+    return gameobject.x + ((0 - gameobject.originX) * gameobject.width);
 }

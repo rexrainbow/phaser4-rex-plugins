@@ -4,5 +4,5 @@ export function GetTop(
     gameobject: IBoundsObject
 ): number {
 
-    return gameobject.y - (gameobject.originY * gameobject.height);
+    return gameobject.y + ((0 - gameobject.originY) * gameobject.height);
 }
