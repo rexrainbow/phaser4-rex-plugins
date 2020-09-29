@@ -9,5 +9,5 @@ export function IsBackground(
     if (sizer.backgroundChildren === undefined) {
         return false;
     }
-    return (sizer.backgroundChildren.indexOf(child) !== -1);
+    return sizer.backgroundChildren.includes(child);
 }

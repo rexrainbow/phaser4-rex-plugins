@@ -15,7 +15,7 @@ export function HasRowKey(
     rowKey: string
 ): boolean {
 
-    return (table.rowKeys.indexOf(rowKey) !== -1);
+    return table.rowKeys.includes(rowKey);
 }
 
 export function HasColKey(
@@ -23,7 +23,7 @@ export function HasColKey(
     colKey: string
 ): boolean {
 
-    return (table.colKeys.indexOf(colKey) !== -1);
+    return table.colKeys.includes(colKey);
 }
 
 export function HasKey(

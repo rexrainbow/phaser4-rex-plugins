@@ -18,7 +18,7 @@ export function GetValue(
     } else if (source.hasOwnProperty(key)) {
         return source[key];
 
-    } else if (key.indexOf('.') !== -1) {
+    } else if (key.includes('.')) {
         let keys = key.split('.');
         let parent = source;
         let value = defaultValue;

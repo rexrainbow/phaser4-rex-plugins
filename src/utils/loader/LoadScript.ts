@@ -1,11 +1,11 @@
 export function LoadScript(
     url: string,
     onload: (() => void)
-):void {
+): void {
 
     const scripts = document.getElementsByTagName('script');
     for (let i = 0, cnt = scripts.length; i < cnt; i++) {
-        if (scripts[i].src.indexOf(url) != -1) {
+        if (scripts[i].src.includes(url)) {
             if (onload) {
                 onload();
             }

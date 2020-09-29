@@ -35,7 +35,7 @@ export class BinaryHeap {
 
     remove(node: object) {
 
-        let i = this.content.indexOf(node);
+        const i = this.content.indexOf(node);
 
         // When it is found, the process seen in 'pop' is repeated
         // to fill up the hole.

@@ -20,7 +20,7 @@ export function GetElement(
         name = name.substring(1);
         element = GetChildByName(sizer, name, recursive);
 
-    } else if (name.indexOf('[') === (-1)) { // Get element by key
+    } else if (!name.includes('[')) { // Get element by key
         if (sizer.childrenMap) {
             element = sizer.childrenMap[name];
         }

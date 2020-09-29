@@ -7,7 +7,7 @@ export function IsBackgroundChild(
 ): boolean {
 
     if (sizer.backgroundChildren) {
-        return (sizer.backgroundChildren.indexOf(child) >= 0);
+        return sizer.backgroundChildren.includes(child);
     } else {
         return false;
     }

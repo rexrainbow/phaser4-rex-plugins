@@ -23,7 +23,7 @@ export function GetTileXYAtDirection(
     }
 
     if (typeof (directions) === 'string') {
-        if (directions.indexOf(',') === -1) {
+        if (!directions.includes(',')) {
             directions = parseInt(directions);
         } else {
             directions = directions.split('.').map((dir) => parseInt(dir, 10))
