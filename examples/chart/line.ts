@@ -38,7 +38,7 @@ class Demo extends Scene {
 
         const world = new StaticWorld(this);
 
-        const chart = new Chart(400, 300, 600, 400, {
+        const chart = new Chart(400, 300, 800, 600, {
             type: 'line',
             data: {
                 labels: labels,
