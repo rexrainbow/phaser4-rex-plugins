@@ -6,7 +6,7 @@ import { StaticWorld } from '@phaserjs/phaser/world';
 import { On } from '@phaserjs/phaser/events';
 import { Chart } from '../../src';
 
-function GetNormalRandom(
+function GetNormalRandomInt(
     randomCount: number = 1,
     maxValue: number = 1
 ): number {
@@ -15,7 +15,7 @@ function GetNormalRandom(
     for (let i = 0; i < randomCount; i++) {
         result += Math.random();
     }
-    return (result * maxValue) / randomCount;
+    return Math.floor((result / randomCount) * maxValue);
 }
 
 class Demo extends Scene {
@@ -97,10 +97,10 @@ class Demo extends Scene {
 
             const iterCount = 1000;
             for (let i = 0; i < iterCount; i++) {
-                resultRand1[Math.floor(GetNormalRandom(1, maxValue))]++;
-                resultRand2[Math.floor(GetNormalRandom(2, maxValue))]++;
-                resultRand3[Math.floor(GetNormalRandom(3, maxValue))]++;
-                resultRand4[Math.floor(GetNormalRandom(4, maxValue))]++;
+                resultRand1[GetNormalRandomInt(1, maxValue)]++;
+                resultRand2[GetNormalRandomInt(2, maxValue)]++;
+                resultRand3[GetNormalRandomInt(3, maxValue)]++;
+                resultRand4[GetNormalRandomInt(4, maxValue)]++;
             }
 
             totalSamples += iterCount;
