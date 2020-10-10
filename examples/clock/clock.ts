@@ -33,7 +33,7 @@ class Demo extends Scene {
             print.text = (clock.now * 0.001).toString();
         })
 
-        const hint = new Text(0, 580, 'Mouse pointer-down to pause cloc');
+        const hint = new Text(0, 580, 'Mouse pointer-down to pause clock');
         hint.setOrigin(0);
         AddChild(world, hint);
     }
