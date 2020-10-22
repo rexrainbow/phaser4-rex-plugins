@@ -17,6 +17,7 @@ export function GetTime(
         d: `${y}-${m}-${d}`,
         w: `${y}-${w}`,
         m: `${y}-${m}`,
-        y: `${y}`
+        y: `${y}`,
+        a: ''
     };
 }

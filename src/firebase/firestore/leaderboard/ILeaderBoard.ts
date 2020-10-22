@@ -4,48 +4,55 @@ export type TimeFiltersType = {
     d?: boolean,
     w?: boolean,
     m?: boolean,
-    y?: boolean
+    y?: boolean,
+    a?: boolean
 }
 
-export type TimeFilterTypeString = 'd' | 'w' | 'm' | 'y';
-export type TimeFilterTypeStringAlias = TimeFilterTypeString | 'day' | 'week' | 'month' | 'year';
+export type TimeFilterTypeString = 'd' | 'w' | 'm' | 'y' | 'a';
+export type TimeFilterTypeStringAlias = TimeFilterTypeString | 'day' | 'week' | 'month' | 'year' | 'all';
 export enum TimeFilterTypeStringAliasMap {
     d = 'd',
     w = 'w',
     m = 'm',
     y = 'y',
+    a = 'a',
     day = 'd',
     week = 'w',
     month = 'm',
-    year = 'y'
+    year = 'y',
+    all = 'a'
 }
 
 export type TimeDataType = {
     d: string,
     w: string,
     m: string,
-    y: string
+    y: string,
+    a: string
 }
 
 export enum TimeTagKeys {
     d = 'tagD',
     w = 'tagW',
     m = 'tagM',
-    y = 'tagY'
+    y = 'tagY',
+    a = 'tagA'
 }
 
 export enum ScoreKeys {
     d = 'scoreD',
     w = 'scoreW',
     m = 'scoreM',
-    y = 'scoreY'
+    y = 'scoreY',
+    a = 'scoreA'
 }
 
 export enum FullTimeName {
     d = 'day',
     w = 'week',
     m = 'month',
-    y = 'year'
+    y = 'year',
+    a = 'all'
 }
 
 export interface IRecord {
@@ -59,10 +66,12 @@ export interface IRecord {
     tagW?: string;
     tagM?: string;
     tagY?: string;
+    tagA?: string;
     scoreD?: number;
     scoreW?: number;
     scoreM?: number;
     scoreY?: number;
+    scoreA?: number
 
     // Other properties
     [name: string]: any;

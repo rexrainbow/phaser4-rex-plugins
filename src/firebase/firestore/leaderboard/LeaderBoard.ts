@@ -123,18 +123,20 @@ export class LeaderBoard implements ILeaderBoard {
         if (filters === false) {
             this.timeFilters = false;
         } else { // filters is true, or a plain object
-            let d: boolean, w: boolean, m: boolean, y: boolean;
+            let d: boolean, w: boolean, m: boolean, y: boolean, a: boolean;
             ({
                 d = true,
                 w = true,
                 m = true,
-                y = true
+                y = true,
+                a = true
             } = (filters === true) ? {} : filters)
             this.timeFilters = {
                 d: d,
                 w: w,
                 m: m,
-                y: y
+                y: y,
+                a: a
             }
         }
         return this;
