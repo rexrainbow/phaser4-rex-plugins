@@ -34,7 +34,7 @@
 
 <script>
 import { Examples } from "../data/Examples.js";
-import Links from "components/Links.vue";
+import Links from "components/Links";
 
 export default {
   name: "MainLayout",
