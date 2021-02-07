@@ -2,8 +2,8 @@
   <div>
     <iframe
       :src="iFrameSrc"
-      :width=800
-      :height=600
+      :width="800"
+      :height="600"
       frameborder="0"
       scrolling="no"
       seamless="seamless"
@@ -12,11 +12,13 @@
 </template>
 
 <script>
+const IframeRootURL = "https://rexrainbow.github.io/phaser4-rex-plugins/public/";
+
 export default {
   name: "Example",
   data() {
     return {
-      gameIFrameSrc: "",
+      gameIFrameSrc: ""
     };
   },
   computed: {
@@ -24,7 +26,7 @@ export default {
       return this.$route.params.id;
     },
     iFrameSrc() {
-        return `https://rexrainbow.github.io/phaser4-rex-plugins/public/${this.id}/`
+      return `${IframeRootURL}${this.id}/`;
     }
   }
 };
