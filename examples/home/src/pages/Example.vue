@@ -49,16 +49,19 @@ export default {
         };
     },
     computed: {
+        title() {
+            return this.$route.params.id.replaceAll("_", "/");
+        },
         iFrameSrc() {
             var path = this.$route.params.id.replaceAll("_", "-");
-            return `${IframeRootURL}/${path}/`;
+            return `${IframeRootURL}/${path}/`.toLowerCase();
         },
         sourceCodeSrc() {
             var keys = this.$route.params.id.split("_");
             var fileName = keys[keys.length - 1];
             keys.length--;
             var folderName = keys.join("-");
-            return `${SourceCodeRootURL}/${folderName}/${fileName}.ts`;
+            return `${SourceCodeRootURL}/${folderName}/${fileName}.ts`.toLowerCase();
         },
     },
     watch: {
@@ -66,7 +69,7 @@ export default {
             this.tab = "demo";
         },
         sourceCodeSrc: function (val) {
-            this.sourceCodeSrc = "Loading source code...";
+            this.sourceCodeContent = "Loading source code...";
             this.loadSourceCode(this.sourceCodeSrc);
         },
     },

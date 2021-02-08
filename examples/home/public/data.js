@@ -1,9 +1,9 @@
-const Examples = {
-    BBCodeText: [
+var Examples = {
+    'BBCodeText': [
         'BBCodetext',
         'Scroll text'
     ],
-    Board: {
+    'Board': {
         'PathFinder': [
             'Find path',
         ],
@@ -17,7 +17,7 @@ const Examples = {
             'Hexagon'
         ]
     },
-    Canvas: [
+    'Canvas': [
         'Fill'
     ],
     'Canvas data': [
@@ -27,33 +27,31 @@ const Examples = {
     'Canvas texture': [
         'circle'
     ],
-    Chart: [
+    'Chart': [
         'Bar',
         'Line'
     ],
-    MaskedImage: [
+    'MaskedImage': [
         'MaskedImage'
     ],
-    TagText: [
+    'TagText': [
         'Tagtext'
     ],
-    UI: {
-        FixedWidthSizer: [
+    'UI': {
+        'FixedWidthSizer': [
             'Nested sizer'
         ],
-        Gridsizer: [
+        'Gridsizer': [
             'Grid'
         ],
-        Sizer: [
+        'Sizer': [
             'Nested sizer'
         ],
-        Label: [
+        'Label': [
             'Label'
         ],
-        OverlapSizer: [
+        'OverlapSizer': [
             'OverlapSizer'
         ]
     }
 }
-
-export { Examples };

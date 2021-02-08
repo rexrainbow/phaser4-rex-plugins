@@ -1,8 +1,8 @@
 <template>
     <q-tree
+        ref="tree"
         :nodes="dataToNode(links)"
         node-key="nodeKey"
-        default-expand-all
         no-connectors
     >
         <template v-slot:header-link="prop">
@@ -42,7 +42,7 @@ var DataTONode = function (data, parent) {
 };
 
 var GetNodeKey = function (name, parent) {
-    name = name.replaceAll(" ", "-").toLowerCase();
+    name = name.replaceAll(" ", "-");
     return parent ? `${parent.nodeKey}_${name}` : name;
 };
 
