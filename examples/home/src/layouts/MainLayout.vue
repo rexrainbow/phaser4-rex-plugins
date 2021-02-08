@@ -35,8 +35,6 @@
 import Links from "components/Links";
 import axios from "axios";
 
-import { LoadScriptPromise } from "../utils/loader/LoadScriptPromise.js";
-
 export default {
     name: "MainLayout",
     components: { Links },
