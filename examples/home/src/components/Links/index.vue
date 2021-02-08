@@ -5,6 +5,7 @@
         node-key="nodeKey"
         no-connectors
         accordion
+        dark
     >
         <template v-slot:header-link="prop">
             <q-item :to="prop.node.nodeKey" exact dense>

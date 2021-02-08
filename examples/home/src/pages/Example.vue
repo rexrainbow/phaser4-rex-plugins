@@ -1,6 +1,6 @@
 <template>
-    <q-page class="column flex flex-center">
-        <q-card>
+    <q-page class="column flex flex-center bg-grey-9">
+        <q-card dark>
             <q-tabs v-model="tab" align="justify" narrow-indicator>
                 <q-tab name="demo" label="Demo" />
                 <q-tab name="sourceCode" label="Source Code" />
@@ -8,7 +8,7 @@
 
             <q-separator />
 
-            <q-tab-panels v-model="tab" animated>
+            <q-tab-panels v-model="tab" animated class="bg-grey-9 text-white">
                 <q-tab-panel name="demo">
                     <iframe
                         :src="iFrameSrc"
@@ -21,9 +21,13 @@
                 </q-tab-panel>
 
                 <q-tab-panel name="sourceCode">
-                    <div style="width: 800px; height: 600px">
+                    <q-scroll-area
+                        dark
+                        class="bg-dark text-white rounded-borders"
+                        style="width: 800px; height: 600px"
+                    >
                         <q-markdown :src="sourceCodeContent" show-copy />
-                    </div>
+                    </q-scroll-area>
                 </q-tab-panel>
             </q-tab-panels>
         </q-card>

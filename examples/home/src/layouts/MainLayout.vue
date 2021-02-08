@@ -1,6 +1,6 @@
 <template>
     <q-layout view="lHh lpR lFf">
-        <q-header elevated class="bg-primary text-white">
+        <q-header elevated class="bg-grey-10 text-white">
             <q-toolbar>
                 <q-btn
                     dense
@@ -20,7 +20,7 @@
             v-model="leftDrawerOpen"
             show-if-above
             bordered
-            content-class="bg-grey-1"
+            content-class="bg-grey-10"
         >
             <Links :links="links" />
         </q-drawer>
@@ -33,6 +33,8 @@
 
 <script>
 import Links from "components/Links";
+import axios from "axios";
+
 import { LoadScriptPromise } from "../utils/loader/LoadScriptPromise.js";
 
 export default {
@@ -56,9 +58,12 @@ export default {
     },
     mounted() {
         var self = this;
-        LoadScriptPromise("data.js").then(function () {
-            self.links = window.Examples;
-        });
+        axios
+            .create()
+            .get("examples.json")
+            .then((response) => {
+                self.links = response.data;
+            });
     },
 };
 </script>
