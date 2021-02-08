@@ -1,22 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-
-        <q-toolbar-title>
-          Examples of Phaser4-Rex-Plugins
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-header>
-
+    <q-layout view="hHh lpR fFf">
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above

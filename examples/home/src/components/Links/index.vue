@@ -43,7 +43,7 @@ var DataTONode = function (data, parent) {
 
 var GetNodeKey = function (name, parent) {
     name = name.replaceAll(" ", "-").toLowerCase();
-    return parent ? `${parent.nodeKey}-${name}` : name;
+    return parent ? `${parent.nodeKey}_${name}` : name;
 };
 
 export default {
