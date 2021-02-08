@@ -79,7 +79,6 @@ export default {
                 .then((response) => {
                     self.sourceCodeContent =
                         "```javascript\n" + response.data + "\n```";
-                    console.log(self.sourceCodeContent);
                 });
         },
     },
