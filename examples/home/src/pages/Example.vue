@@ -1,7 +1,7 @@
 <template>
     <q-page class="column flex flex-center bg-grey-9">
         <q-card dark>
-            <q-tabs v-model="tab" align="justify" narrow-indicator>
+            <q-tabs v-model="tab" align="justify" narrow-indicator dense>
                 <q-tab name="demo" label="Demo" />
                 <q-tab name="sourceCode" label="Source Code" />
             </q-tabs>
