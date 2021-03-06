@@ -1,4 +1,5 @@
 import { GetCanvasGradientCallbackType } from '../types/GetCanvasGradientCallbackType';
+import { Pad, PadDirMode } from '../string/Pad';
 
 export function GetStyle(
     style: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType,
@@ -7,7 +8,7 @@ export function GetStyle(
 ): string | CanvasGradient | CanvasPattern {
 
     switch (typeof (style)) {
-        case 'number': return `#${style.toString(16)}`;
+        case 'number': return `#${Pad(style.toString(16), 6, '0', PadDirMode.left)}`;
         case 'function': return style(canvas, context);
         default: return style;
     }

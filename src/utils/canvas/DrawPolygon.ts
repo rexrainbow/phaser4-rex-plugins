@@ -25,12 +25,12 @@ export function DrawPolygon(
 
     context.closePath();
 
-    if (fillStyle) {
+    if (fillStyle !== undefined) {
         context.fillStyle = fillStyle;
         context.fill();
     }
 
-    if (strokeStyle) {
+    if (strokeStyle !== undefined) {
         context.strokeStyle = strokeStyle;
         context.lineWidth = lineWidth;
         context.stroke();

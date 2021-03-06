@@ -14,12 +14,12 @@ export function DrawCircle(
 
     context.ellipse(x, y, rx, ry, 0, 0, (2 * Math.PI));
 
-    if (fillStyle) {
+    if (fillStyle !== undefined) {
         context.fillStyle = fillStyle;
         context.fill();
     }
 
-    if (strokeStyle) {
+    if (strokeStyle !== undefined) {
         context.strokeStyle = strokeStyle;
         context.lineWidth = lineWidth;
         context.stroke();

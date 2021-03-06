@@ -18,9 +18,9 @@ export function DrawRoundRectangle(
 
     AddRoundRectanglePath(context, x, y, width, height, radiusConfig);
 
-    
-    if (fillStyle) {
-        if (fillColor2) {
+
+    if (fillStyle !== undefined) {
+        if (fillColor2 !== undefined) {
             let grd: CanvasGradient;
             if (isHorizontalGradient) {
                 grd = context.createLinearGradient(0, 0, width, 0);
@@ -36,7 +36,7 @@ export function DrawRoundRectangle(
         context.fill();
     }
 
-    if (strokeStyle) {
+    if (strokeStyle !== undefined) {
         context.strokeStyle = strokeStyle;
         context.lineWidth = lineWidth;
         context.stroke();
