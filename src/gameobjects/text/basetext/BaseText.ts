@@ -44,6 +44,7 @@ export class BaseText extends Sprite implements IBaseText {
     backgroundStrokeStyle: FillStyleType;
     backgroundStrokeThickness: number;
     cornerRadius: IRadiusConfig;
+    cornerIteration: number;
 
     antialias: boolean = false;
 
@@ -90,6 +91,7 @@ export class BaseText extends Sprite implements IBaseText {
             backgroundStrokeStyle,
             backgroundStrokeThickness,
             cornerRadius = 0,
+            cornerIteration,
 
             align = AlignPositionMode.top_left,
 
@@ -152,7 +154,8 @@ export class BaseText extends Sprite implements IBaseText {
             backgroundStrokeStyle, backgroundStrokeThickness,
             cornerRadius,
             backgroundFillColor2,
-            backgroundIsHorizontalGradient
+            backgroundIsHorizontalGradient,
+            cornerIteration
         );
 
         SetFontFamily(this, fontFamily);

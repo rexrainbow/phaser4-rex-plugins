@@ -13,10 +13,11 @@ export function DrawRoundRectangle(
     strokeStyle?: string | CanvasGradient | CanvasPattern,
     lineWidth?: number,
     fillColor2?: string,
-    isHorizontalGradient: boolean = true
+    isHorizontalGradient: boolean = true,
+    iteration?: number
 ) {
 
-    AddRoundRectanglePath(context, x, y, width, height, radiusConfig);
+    AddRoundRectanglePath(context, x, y, width, height, radiusConfig, iteration);
 
 
     if (fillStyle !== undefined) {

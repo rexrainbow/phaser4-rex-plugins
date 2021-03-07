@@ -39,6 +39,7 @@ export interface IBaseText extends ISprite {
     backgroundStrokeStyle: FillStyleType;
     backgroundStrokeThickness: number;
     cornerRadius: IRadiusConfig | number;
+    cornerIteration: number;
 
     antialias: boolean;
 

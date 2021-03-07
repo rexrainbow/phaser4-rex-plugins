@@ -11,5 +11,6 @@ export type MaskTypeString = 'circle' | 'ellipse' | 'roundRectangle'
 export interface IConfig {
     maskType?: MaskType | MaskTypeString,
     backgroundStyle?: string | CanvasGradient | CanvasPattern,
-    radius?: IRadiusConfig | number
+    radius?: IRadiusConfig | number,
+    iteration?: number
 }

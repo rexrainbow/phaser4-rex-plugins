@@ -27,6 +27,7 @@ export interface IStyle {
     backgroundStrokeStyle?: FillStyleType;
     backgroundStrokeThickness?: number;
     cornerRadius?: IRadiusConfig | number;
+    cornerIteration?: number;
 
     antialias?: boolean;
 

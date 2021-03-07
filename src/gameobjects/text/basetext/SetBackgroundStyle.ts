@@ -8,7 +8,8 @@ export function SetBackgroundStyle(
     strokeThickness: number = 0,
     radius: IRadiusConfig | number = 0,
     fillColor2: string,
-    isHorizontalGradient: boolean = true
+    isHorizontalGradient: boolean = true,
+    iteration?: number
 ) {
     if (!strokeStyle) {
         strokeThickness = 0;
@@ -20,4 +21,5 @@ export function SetBackgroundStyle(
     baseText.backgroundStrokeStyle = strokeStyle;
     baseText.backgroundStrokeThickness = strokeThickness;
     baseText.cornerRadius = radius;
+    baseText.cornerIteration = iteration;
 }

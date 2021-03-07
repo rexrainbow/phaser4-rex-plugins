@@ -14,9 +14,10 @@ export function MaskImage(
     let maskType: MaskType | MaskTypeString;
     let backgroundStyle: string | CanvasGradient | CanvasPattern;
     let radius: IRadiusConfig | number;
+    let iteration: number;
 
     if (typeof (config) === 'object') {
-        ({ maskType, backgroundStyle, radius } = config);
+        ({ maskType, backgroundStyle, radius, iteration } = config);
     } else {
         maskType = config;
     }
@@ -60,7 +61,7 @@ export function MaskImage(
     switch (maskType) {
 
         case MaskType.roundRectangle:
-            AddRoundRectanglePath(ctx, 0, 0, width, height, radius);
+            AddRoundRectanglePath(ctx, 0, 0, width, height, radius, iteration);
             break;
 
         default: // circle, ellipse

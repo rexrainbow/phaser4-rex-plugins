@@ -7,6 +7,7 @@ export interface IConfig {
     width?: number;
     height?: number;
     radius?: IRadiusConfig | number;
+    iteration?: number;
     fillStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
     fillColor2?: string | number;
     isHorizontalGradient?: boolean;

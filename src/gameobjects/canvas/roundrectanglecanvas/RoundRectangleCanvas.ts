@@ -8,6 +8,7 @@ import { GetStyle } from '../../../utils/canvas/GetStyle';
 export class RoundRectangleCanvas extends BaseCanvas {
     type = 'rexCanvasRoundRectangle';
     radius: IRadiusConfig | number;
+    iteration: number;
     fillStyle: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
     fillColor2: string | number;
     isHorizontalGradient: boolean;
@@ -20,6 +21,7 @@ export class RoundRectangleCanvas extends BaseCanvas {
         width = 1,
         height = 1,
         radius = 0,
+        iteration,
         fillStyle,
         fillColor2,
         isHorizontalGradient = true,
@@ -30,6 +32,7 @@ export class RoundRectangleCanvas extends BaseCanvas {
         super(x, y);
 
         this.setRadius(radius);
+        this.setIteration(iteration);
         this.setFillStyle(fillStyle, fillColor2, isHorizontalGradient);
         this.setStrokeStyle(strokeStyle, lineWidth);
         this.resize(width, height);
@@ -40,6 +43,14 @@ export class RoundRectangleCanvas extends BaseCanvas {
     ): this {
 
         this.radius = radius;
+        return this;
+    }
+
+    setIteration(
+        iteration?: number
+    ): this {
+
+        this.iteration = iteration;
         return this;
     }
 
@@ -97,7 +108,8 @@ export class RoundRectangleCanvas extends BaseCanvas {
             GetStyle(this.strokeStyle, this.canvas, this.context),
             lineWidth,
             GetStyle(this.fillColor2, this.canvas, this.context) as string,
-            this.isHorizontalGradient
+            this.isHorizontalGradient,
+            this.iteration
         );
         return this;
     }

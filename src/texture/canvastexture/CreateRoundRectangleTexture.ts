@@ -14,6 +14,7 @@ export interface IConfig {
     isHorizontalGradient?: boolean;
     strokeStyle?: string | number | CanvasGradient | CanvasPattern | GetCanvasGradientCallbackType;
     lineWidth?: number;
+    iteration?: number;
 }
 
 export function CreateRoundRectangleTexture(
@@ -26,7 +27,8 @@ export function CreateRoundRectangleTexture(
         fillColor2,
         isHorizontalGradient = true,
         strokeStyle,
-        lineWidth = 2
+        lineWidth = 2,
+        iteration
     }: IConfig = {}
 ): Texture {
 
@@ -54,7 +56,8 @@ export function CreateRoundRectangleTexture(
             GetStyle(strokeStyle, canvas, context),
             lineWidth,
             GetStyle(fillColor2, canvas, context) as string,
-            isHorizontalGradient
+            isHorizontalGradient,
+            iteration
         );
 
     });

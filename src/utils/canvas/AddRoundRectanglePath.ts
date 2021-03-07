@@ -14,6 +14,7 @@ export function AddRoundRectanglePath(
     width: number,
     height: number,
     radiusConfig: IRadiusConfig | number,
+    iteration?: number
 ) {
     const geom = new RoundRectangle(x, y, width, height, radiusConfig),
         minWidth = geom.minWidth,
@@ -39,7 +40,7 @@ export function AddRoundRectanglePath(
     centerX = width - radiusX;
     centerY = height - radiusY;
     if (IsArcCorner(radius) && (radiusX >= 0) && (radiusY >= 0)) {
-        context.ellipse(centerX, centerY, radiusX, radiusY, 0, Rad0, Rad90);
+        ArcTo(context, centerX, centerY, radiusX, radiusY, Rad0, Rad90, iteration);
     } else {
         context.moveTo(width, centerY);
         context.lineTo(width, height);
@@ -54,7 +55,7 @@ export function AddRoundRectanglePath(
     centerY = height - radiusY;
     context.lineTo(radiusX, height);
     if (IsArcCorner(radius) && (radiusX >= 0) && (radiusY >= 0)) {
-        context.ellipse(centerX, centerY, radiusX, radiusY, 0, Rad90, Rad180);
+        ArcTo(context, centerX, centerY, radiusX, radiusY, Rad90, Rad180, iteration);
     } else {
         context.lineTo(0, height);
         context.lineTo(0, centerY);
@@ -68,7 +69,7 @@ export function AddRoundRectanglePath(
     centerY = radiusY;
     context.lineTo(0, centerY);
     if (IsArcCorner(radius) && (radiusX >= 0) && (radiusY >= 0)) {
-        context.ellipse(centerX, centerY, radiusX, radiusY, 0, Rad180, Rad270);
+        ArcTo(context, centerX, centerY, radiusX, radiusY, Rad180, Rad270, iteration);
     } else {
         context.lineTo(0, 0);
         context.lineTo(centerX, 0);
@@ -82,13 +83,37 @@ export function AddRoundRectanglePath(
     centerY = radiusY;
     context.lineTo(centerX, 0);
     if (IsArcCorner(radius) && (radiusX >= 0) && (radiusY >= 0)) {
-        context.ellipse(centerX, centerY, radiusX, radiusY, 0, Rad270, Rad0);
+        ArcTo(context, centerX, centerY, radiusX, radiusY, Rad270, Rad0, iteration);
     } else {
         context.lineTo(width, 0);
         context.lineTo(width, centerY);
     }
 
     context.closePath();
+}
+
+var ArcTo = function (context: CanvasRenderingContext2D,
+    centerX: number,
+    centerY: number,
+    radiusX: number,
+    radiusY: number,
+    startAngle: number,
+    endAngle: number,
+    iteration: number
+): void {
+
+    if (iteration === undefined) {
+        context.ellipse(centerX, centerY, radiusX, radiusY, 0, startAngle, endAngle);
+    } else {
+        iteration += 1;
+        let step = (endAngle - startAngle) / iteration;
+        for (let i = 0; i <= iteration; i++) {
+            const angle = startAngle + (step * i);
+            const x = centerX + (radiusX * Math.cos(angle));
+            const y = centerY + (radiusY * Math.sin(angle));
+            context.lineTo(x, y);
+        }
+    }
 }
 
 function IsArcCorner(
