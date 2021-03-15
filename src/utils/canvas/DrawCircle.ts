@@ -7,12 +7,15 @@ export function DrawCircle(
     ry: number,
     fillStyle?: string | CanvasGradient | CanvasPattern,
     strokeStyle?: string | CanvasGradient | CanvasPattern,
-    lineWidth: number = 2
+    lineWidth: number = 2,
+    startAngle: number = 0,
+    endAngle: number = (2 * Math.PI),
+    anticlockwise: boolean = false
 ): void {
 
     context.beginPath();
 
-    context.ellipse(x, y, rx, ry, 0, 0, (2 * Math.PI));
+    context.ellipse(x, y, rx, ry, 0, startAngle, endAngle, anticlockwise);
 
     if (fillStyle !== undefined) {
         context.fillStyle = fillStyle;
