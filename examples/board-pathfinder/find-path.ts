@@ -7,7 +7,6 @@ import { Sprite, SetTint, SetAlpha } from '@phaserjs/phaser/gameobjects/sprite';
 import { Text } from '@phaserjs/phaser/gameobjects/text'
 
 import { Board, HexagonGrid, PathFinder } from '../../src/board';
-import { CreatePolygonTexture } from '../../src/texture/canvastexture';
 import { Shuffle } from '../../src/utils/array/Shuffle';
 
 class MyBoard extends Board {
@@ -22,17 +21,9 @@ class MyBoard extends Board {
             occupiedTest: true
         });
 
-        CreatePolygonTexture('tile', {
-            points: this.getGridPoints(),
-            strokeStyle: 'white',
-            lineWidth: 1,
-            lineJoin: 'miter'
-        })
-
-        CreatePolygonTexture('chess', {
-            points: this.getGridPoints(),
-            fillStyle: 'white'
-        })
+        this
+            .createTileTexture('tile', undefined, 'white', 1)
+            .createTileTexture('chess', 'white');
     }
 
     setWorld(world: StaticWorld): this {

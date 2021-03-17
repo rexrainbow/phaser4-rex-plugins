@@ -6,7 +6,6 @@ import { AddChild } from '@phaserjs/phaser/display/';
 import { Sprite, SetTint, SetAlpha } from '@phaserjs/phaser/gameobjects/sprite';
 
 import { Board, HexagonGrid, PathFinder } from '../../src/board';
-import { CreatePolygonTexture } from '../../src/texture/canvastexture';
 
 class MyBoard extends Board {
     world: StaticWorld;
@@ -17,17 +16,9 @@ class MyBoard extends Board {
 
         this.pathFinder = new PathFinder();
 
-        CreatePolygonTexture('tile', {
-            points: this.getGridPoints(),
-            strokeStyle: 'white',
-            lineWidth: 1,
-            lineJoin: 'miter'
-        })
-
-        CreatePolygonTexture('chess', {
-            points: this.getGridPoints(),
-            fillStyle: 'white'
-        })
+        this
+            .createTileTexture('tile', undefined, 'white', 1)
+            .createTileTexture('chess', 'white');
     }
 
     setWorld(world: StaticWorld): this {

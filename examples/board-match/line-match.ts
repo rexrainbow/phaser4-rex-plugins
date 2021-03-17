@@ -8,7 +8,6 @@ import { Text } from '@phaserjs/phaser/gameobjects/text'
 import { Between as RandomInt } from '@phaserjs/phaser/math'
 
 import { Board, HexagonGrid, Match } from '../../src/board';
-import { CreatePolygonTexture } from '../../src/texture/canvastexture';
 
 const Colors: number[] = [0xff0000, 0x00ff00, 0x0000ff, 0x800080, 0x808000, 0x008080];
 
@@ -43,17 +42,9 @@ class MyBoard extends Board {
         });
         this.lastMatchedCount = 0;
 
-        CreatePolygonTexture('tile', {
-            points: this.getGridPoints(),
-            strokeStyle: 'white',
-            lineWidth: 2,
-            lineJoin: 'miter'
-        })
-
-        CreatePolygonTexture('chess', {
-            points: this.getGridPoints(),
-            fillStyle: 'white'
-        })
+        this
+            .createTileTexture('tile', undefined, 'white', 2)
+            .createTileTexture('chess', 'white');
     }
 
     setWorld(world: StaticWorld): this {
