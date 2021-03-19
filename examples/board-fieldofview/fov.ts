@@ -5,7 +5,7 @@ import { StaticWorld } from '@phaserjs/phaser/world';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { Sprite, SetTint, SetAlpha } from '@phaserjs/phaser/gameobjects/sprite';
 
-import { Board, HexagonGrid, FieldOfView } from '../../src/board';
+import { Board, HexagonGrid, FieldOfView, CreateTileTexture } from '../../src/board';
 import { Shuffle } from '../../src/utils/array/Shuffle';
 
 class Chess extends Sprite {
@@ -19,9 +19,8 @@ class MyBoard extends Board {
     constructor(config) {
         super(config);
 
-        this
-            .createTileTexture('tile', undefined, 'white', 1)
-            .createTileTexture('chess', 'white')
+        CreateTileTexture(this, 'tile', undefined, 'white', 1);
+        CreateTileTexture(this, 'chess', 'white');
     }
 
     setWorld(world: StaticWorld): this {

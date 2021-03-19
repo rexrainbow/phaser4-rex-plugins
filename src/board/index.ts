@@ -19,6 +19,9 @@ import { FieldOfView } from './fieldofview';
 // HexagonMap
 import * as HexagonMap from './hexagonmap';
 
+// Texture
+import { CreateTileTexture } from './texture';
+
 export {
     // Board
     BaseBoard, LogicBoard, Board,
@@ -36,5 +39,8 @@ export {
     FieldOfView,
 
     // HexagonMap
-    HexagonMap
+    HexagonMap,
+
+    // Texture
+    CreateTileTexture
 }

@@ -11,7 +11,6 @@ import * as Nieghbors from './neighbors';
 import * as Transform from './transform';
 import * as Shape from './shape';
 import * as Ring from './ring';
-import * as Texture from './texture';
 
 export {
     BaseBoard,
@@ -26,6 +25,5 @@ export {
     Nieghbors,
     Transform,
     Shape,
-    Ring,
-    Texture
+    Ring
 }

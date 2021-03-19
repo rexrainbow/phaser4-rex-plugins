@@ -7,7 +7,7 @@ import { Sprite, SetTint, SetAlpha } from '@phaserjs/phaser/gameobjects/sprite';
 import { Text } from '@phaserjs/phaser/gameobjects/text'
 import { Between as RandomInt } from '@phaserjs/phaser/math'
 
-import { Board, HexagonGrid, Match } from '../../src/board';
+import { Board, HexagonGrid, CreateTileTexture, Match } from '../../src/board';
 
 const Colors: number[] = [0xff0000, 0x00ff00, 0x0000ff, 0x800080, 0x808000, 0x008080];
 
@@ -42,9 +42,8 @@ class MyBoard extends Board {
         });
         this.lastMatchedCount = 0;
 
-        this
-            .createTileTexture('tile', undefined, 'white', 2)
-            .createTileTexture('chess', 'white');
+        CreateTileTexture(this, 'tile', undefined, 'white', 2);
+        CreateTileTexture(this, 'chess', 'white');
     }
 
     setWorld(world: StaticWorld): this {

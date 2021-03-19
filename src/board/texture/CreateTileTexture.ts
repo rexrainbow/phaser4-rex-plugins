@@ -1,8 +1,8 @@
-import { GetGridPoints } from '../worldxy/GetGridPoints';
-import { IBaseBoard } from '../IBaseBoard';
+import { GetGridPoints } from '../board/worldxy/GetGridPoints';
+import { IBaseBoard } from '../board/IBaseBoard';
 import { Texture } from '@phaserjs/phaser/textures/Texture';
-import { CreatePolygonTexture } from '../../../texture/canvastexture';
-import { GetCanvasGradientCallbackType } from '../../../utils/types/GetCanvasGradientCallbackType';
+import { CreatePolygonTexture } from '../../texture/canvastexture';
+import { GetCanvasGradientCallbackType } from '../../utils/types/GetCanvasGradientCallbackType';
 
 export function CreateTileTexture(
     board: IBaseBoard,

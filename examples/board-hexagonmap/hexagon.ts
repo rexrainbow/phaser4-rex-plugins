@@ -4,8 +4,7 @@ import { Scene } from '@phaserjs/phaser/scenes/Scene';
 import { StaticWorld } from '@phaserjs/phaser/world';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { Sprite } from '@phaserjs/phaser/gameobjects/sprite';
-import { Board, HexagonGrid } from '../../src/board';
-import { GetHexagonMap } from '../../src/board/hexagonmap'
+import { Board, HexagonGrid, CreateTileTexture, HexagonMap } from '../../src/board';
 
 class Demo extends Scene {
     constructor() {
@@ -22,9 +21,9 @@ class Demo extends Scene {
             width: 8, height: 8
         })
 
-        board.createTileTexture('tile', undefined, 'white', 2);
+        CreateTileTexture(board, 'tile', undefined, 'white', 2);
 
-        let tileXYArray = board.fit(GetHexagonMap(board, 4));
+        let tileXYArray = board.fit(HexagonMap.GetHexagonMap(board, 4));
         tileXYArray.forEach((tileXY) => {
             let tile = new Sprite(0, 0, 'tile');
             AddChild(world, tile);
