@@ -10,7 +10,7 @@
       bordered
       content-class="bg-grey-10"
     >
-      <Links :links="links" />
+      <Links />
     </q-drawer>
 
     <q-page-container>
@@ -22,7 +22,6 @@
 <script>
 import Toolbar from "components/Toolbar";
 import Links from "components/Links";
-import axios from "axios";
 
 export default {
   name: "MainLayout",
@@ -30,17 +29,7 @@ export default {
   data() {
     return {
       leftDrawerOpen: false,
-      links: {},
     };
-  },
-  mounted() {
-    var self = this;
-    axios
-      .create()
-      .get("examples.json")
-      .then((response) => {
-        self.links = response.data;
-      });
   },
 };
 </script>

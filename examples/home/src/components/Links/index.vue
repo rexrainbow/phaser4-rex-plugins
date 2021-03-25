@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 var DataTONode = function (data, parent) {
   var nodes = [];
   if (!Array.isArray(data)) {
@@ -50,11 +52,24 @@ var GetNodeKey = function (name, parent) {
 
 export default {
   name: "Links",
-  props: ["links"],
+  data() {
+    return {
+      links: {},
+    };
+  },
   methods: {
     dataToNode(data) {
       return DataTONode(data);
     },
+  },
+  mounted() {
+    var self = this;
+    axios
+      .create()
+      .get("examples.json")
+      .then((response) => {
+        self.links = response.data;
+      });
   },
 };
 </script>
