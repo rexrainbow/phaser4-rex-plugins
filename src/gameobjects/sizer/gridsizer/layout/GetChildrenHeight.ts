@@ -1,5 +1,4 @@
 import { ISizer } from '../IGridSizer';
-import { BaseSizer } from '../../basesizer';
 import { Sum } from '../../../../utils/math/Sum';
 
 
@@ -26,11 +25,8 @@ export function GetChildrenHeight(
                     continue;
                 }
 
-                let childHeight = (child instanceof BaseSizer) ?
-                    Math.max(child.minHeight, child.childrenHeight) :
-                    child.height;
                 const padding = child.rexSizer.padding;
-                childHeight += (padding.top + padding.bottom);
+                const childHeight = sizer.getChildHeight(child) + padding.top + padding.bottom;
                 rowHeight = Math.max(rowHeight, childHeight);
             }
             result += rowHeight;

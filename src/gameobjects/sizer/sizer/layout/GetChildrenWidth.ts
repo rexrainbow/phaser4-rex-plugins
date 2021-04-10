@@ -1,5 +1,4 @@
 import { ISizer, ISizerState } from '../ISizer';
-import { BaseSizer } from '../../basesizer';
 import { IsSpace } from '../space/IsSpace';
 import { OrientationMode } from '../../util/OrientationMode';
 
@@ -27,18 +26,16 @@ export function GetChildrenWidth(
                 continue;
             }
 
+            const padding = childSizerState.padding;
             let childWidth: number;
             if (
                 (childSizerState.proportion === 0) ||
                 (minimumMode && (!IsSpace(child)) && (childSizerState.proportion > 0))
             ) {
-                childWidth = (child instanceof BaseSizer) ?
-                    Math.max(child.minWidth, child.childrenWidth) :
-                    child.width;
+                childWidth = sizer.getChildWidth(child);
             } else {
                 childWidth = 0;
             }
-            const padding = childSizerState.padding;
             childWidth += (padding.left + padding.right);
             if (i > 0) {
                 childWidth += sizer.space.item;
@@ -57,12 +54,8 @@ export function GetChildrenWidth(
                 continue;
             }
 
-            let childWidth = (child instanceof BaseSizer) ?
-                Math.max(child.minWidth, child.childrenWidth) :
-                child.width;
-
             const padding = childSizerState.padding;
-            childWidth += (padding.left + padding.right);
+            const childWidth = sizer.getChildWidth(child) + padding.left + padding.right;
             result = Math.max(childWidth, result);
         }
     }

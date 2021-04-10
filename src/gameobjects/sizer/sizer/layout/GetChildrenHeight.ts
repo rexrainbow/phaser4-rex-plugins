@@ -1,5 +1,4 @@
 import { ISizer, ISizerState } from '../ISizer';
-import { BaseSizer } from '../../basesizer';
 import { IsSpace } from '../space/IsSpace';
 import { OrientationMode } from '../../util/OrientationMode';
 
@@ -23,12 +22,8 @@ export function GetChildrenHeight(
                 continue;
             }
 
-            let childHeight = (child instanceof BaseSizer) ?
-                Math.max(child.minHeight, child.childrenHeight) :
-                child.height;
-
             const padding = childSizerState.padding;
-            childHeight += (padding.top + padding.bottom);
+            const childHeight = sizer.getChildHeight(child) + padding.top + padding.bottom;
             result = Math.max(childHeight, result);
         }
     } else {
@@ -43,18 +38,16 @@ export function GetChildrenHeight(
                 continue;
             }
 
+            const padding = childSizerState.padding;
             let childHeight: number;
             if (
                 (childSizerState.proportion === 0) ||
                 (minimumMode && (!IsSpace(child)) && (childSizerState.proportion > 0))
             ) {
-                childHeight = (child instanceof BaseSizer) ?
-                    Math.max(child.minHeight, child.childrenHeight) :
-                    child.height;
+                childHeight = sizer.getChildHeight(child);
             } else {
                 childHeight = 0;
             }
-            const padding = childSizerState.padding;
             childHeight += (padding.top + padding.bottom);
             if (i > 0) {
                 childHeight += sizer.space.item;

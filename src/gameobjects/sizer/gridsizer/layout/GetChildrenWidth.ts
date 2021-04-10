@@ -1,5 +1,4 @@
 import { ISizer } from '../IGridSizer';
-import { BaseSizer } from '../../basesizer';
 import { Sum } from '../../../../utils/math/Sum';
 
 export function GetChildrenWidth(
@@ -25,11 +24,8 @@ export function GetChildrenWidth(
                     continue;
                 }
 
-                let childWidth = (child instanceof BaseSizer) ?
-                    Math.max(child.minWidth, child.childrenWidth) :
-                    child.width;
                 const padding = child.rexSizer.padding;
-                childWidth += (padding.left + padding.right);
+                const childWidth = sizer.getChildWidth(child) + padding.left + padding.right;
                 columnWidth = Math.max(columnWidth, childWidth);
             }
             result += columnWidth;

@@ -1,5 +1,4 @@
 import { ISizer } from '../IFixedWidthSizer';
-import { BaseSizer } from '../../basesizer';
 import { IChild } from '../../util/IChild';
 
 export function GetMaxChildWidth(
@@ -14,9 +13,7 @@ export function GetMaxChildWidth(
             continue;
         }
 
-        const childWidth = (child instanceof BaseSizer) ?
-            Math.max(child.minWidth, child.childrenWidth) :
-            child.width;
+        const childWidth = sizer.getChildWidth(child);
         result = Math.max(childWidth, result);
     }
     return result;

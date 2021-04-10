@@ -8,6 +8,8 @@ import { IGameObject } from '@phaserjs/phaser/gameobjects/IGameObject'
 import { IChild } from '../util/IChild';
 import { GetBoundsConfig } from '../../../utils/bounds/GetBoundsConfig';
 import * as Bounds from '../../utils/align/bounds';
+import { GetChildWidth } from './layout/GetChildWidth';
+import { GetChildHeight } from './layout/GetChildHeight';
 import { Layout } from './layout/Layout';
 import { PreLayout } from './layout/PreLayout';
 import { LayoutInit } from './layout/LayoutInit';
@@ -196,6 +198,16 @@ export class BaseSizer extends Container implements IBaseSizer {
 
         this.minHeight = height;
         return this;
+    }
+
+    getChildWidth(child): number {
+
+        return GetChildWidth(child);
+    }
+
+    getChildHeight(child): number {
+
+        return GetChildHeight(child);
     }
 
     // Override

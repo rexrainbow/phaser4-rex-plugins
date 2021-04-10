@@ -80,6 +80,16 @@ export interface IBaseSizer extends IContainer {
     layout(): this;
 
     // Internal method
+    getChildWidth(
+        child: IChild
+    ): number;
+
+    // Internal method
+    getChildHeight(
+        child: IChild
+    ): number;
+
+    // Internal method
     getChildrenWidth(): number;
     // Internal method
     getChildrenHeight(): number;
