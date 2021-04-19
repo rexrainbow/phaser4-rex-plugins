@@ -67,7 +67,6 @@ function CreateTitle() {
 
 function CreateItems() {
     const items = new UI.FixedWidthSizer({
-        orientation: 'x',
         space: {
             left: 3,
             right: 3,
