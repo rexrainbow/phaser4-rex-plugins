@@ -8,6 +8,7 @@ import { IGameObject } from '@phaserjs/phaser/gameobjects/IGameObject'
 import { IChild } from '../util/IChild';
 import { GetBoundsConfig } from '../../../utils/bounds/GetBoundsConfig';
 import * as Bounds from '../../utils/align/bounds';
+import { GetPadding, SetPadding } from '../util/Padding';
 import { GetChildWidth } from './layout/GetChildWidth';
 import { GetChildHeight } from './layout/GetChildHeight';
 import { RunLayout } from './layout/RunLayout';
@@ -292,6 +293,38 @@ export class BaseSizer extends Container implements IBaseSizer {
             .setPosition(0, 0)  // Offset to (0,0)
             .runLayout()        // Run layout
             .setPosition(x, y); // Offset back original position
+        return this;
+    }
+
+    getInnerPadding(
+        key?: string
+    ): number | ISpace {
+
+        return GetPadding(this.space, key);
+    }
+
+    setInnerPadding(
+        key: string | number | ISpace,
+        value?: number
+    ): this {
+
+        SetPadding(this.space, key, value);
+        return this;
+    }
+
+    getOutterPadding(
+        key?: string
+    ): number | ISpace {
+
+        return GetPadding(this.getSizerState(this).padding, key);
+    }
+
+    setOutterPadding(
+        key: string | number | ISpace,
+        value?: number
+    ): this {
+
+        SetPadding(this.getSizerState(this).padding, key, value);
         return this;
     }
 

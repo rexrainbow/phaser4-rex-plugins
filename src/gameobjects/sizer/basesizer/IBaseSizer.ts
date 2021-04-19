@@ -80,16 +80,32 @@ export interface IBaseSizer extends IContainer {
 
     layout(): this;
 
+    getInnerPadding(
+        key?: string
+    ): number | ISpace;
+
+    setInnerPadding(
+        key: string | number | ISpace,
+        value?: number
+    ): this;
+
+    getOutterPadding(
+        key?: string
+    ): number | ISpace;
+
+    setOutterPadding(
+        key: string | number | ISpace,
+        value?: number
+    ): this;
+
     // Internal method
     getChildWidth(
         child: IChild
     ): number;
-
     // Internal method
     getChildHeight(
         child: IChild
     ): number;
-
     // Internal method
     getChildrenWidth(): number;
     // Internal method
