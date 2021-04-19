@@ -3,10 +3,9 @@ import {
     IConfig as IBaseSizerConfig,
     ISpace as IBaseSizerSpace
 } from '../basesizer/IBaseSizer';
-import { OrientationMode, OrientationModeString } from '../util/OrientationMode';
 import { ISizerState as IBaseSizerState } from '../util/ISizerState';
 import { IChild } from '../util/IChild';
-import { IAddConfig } from './add/IAddConfig';
+import { WidthWrapResultType } from './layout/RunChildrenWrap';
 
 export enum AlignMode {
     left = 0,
@@ -35,7 +34,6 @@ export interface ISpace extends IBaseSizerSpace {
 
 export interface IConfig extends IBaseSizerConfig {
     space?: ISpace;
-    orientation?: OrientationMode | OrientationModeString;
     align?: AlignMode | AlignModeString;
     rtl?: boolean;
 }
@@ -48,7 +46,6 @@ export interface ISizer extends IBaseSizer {
         line: number
     } & IBaseSizer["space"];
 
-    orientation: OrientationMode;
     align: AlignMode;
     rtl: boolean;
 
@@ -57,4 +54,6 @@ export interface ISizer extends IBaseSizer {
 
     maxChildHeight: number;
     _maxChildHeight: number;
+
+    widthWrapResult: WidthWrapResultType;
 }

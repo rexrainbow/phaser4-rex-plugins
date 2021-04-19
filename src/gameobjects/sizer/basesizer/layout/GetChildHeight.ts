@@ -2,7 +2,10 @@ import { IChild } from '../../util/IChild';
 import { BaseSizer } from '../../basesizer';
 
 
-export function GetChildHeight(child: IChild) {
+export function GetChildHeight(
+    child: IChild
+): number {
+
     let childHeight: number;
     if (child instanceof BaseSizer) {  // Sizer game object
         childHeight = Math.max(child.minHeight, child.childrenHeight);

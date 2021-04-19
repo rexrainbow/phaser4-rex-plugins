@@ -1,14 +1,13 @@
 import { ISizer } from '../IFixedWidthSizer';
 import { BaseSizer } from '../../basesizer';
 import { IChild } from '../../util/IChild';
-import { OrientationMode } from '../../util/OrientationMode';
 
 type LineType = {
     children: IChild[],
     width: number,
     height: number
 }
-export type ResultType = {
+export type WidthWrapResultType = {
     lines: LineType[],
     width: number,
     height: number
@@ -16,16 +15,23 @@ export type ResultType = {
 
 export function RunChildrenWrap(
     sizer: ISizer,
-    lineWidth: number
-): ResultType {
+    lineWidth: number,
+    out?: WidthWrapResultType
+): WidthWrapResultType {
 
-    const result: ResultType = {
-        lines: [],
-        width: 0,
-        height: 0
-    };
-    const lines = result.lines;
+    if (out === undefined) {
+        out = {
+            lines: [],
+            width: 0,
+            height: 0
+        }
+    } else {
+        out.lines.length = 0;
+        out.width = 0;
+        out.height = 0;
+    }
 
+    const lines = out.lines;
     const children = sizer.sizerChildren;
     let remainder = 0;
     let lastLine: LineType;
@@ -46,17 +52,15 @@ export function RunChildrenWrap(
                 child.layout(); // Use original size
             }
 
-            childWidth = (sizer.orientation === OrientationMode.x) ?
-                GetChildWidth(child) :
-                GeChildHeight(child);
+            childWidth = GetChildWidth(child);
             newLine = (remainder < childWidth);
         }
         // New line
         if (newLine) {
             if (lastLine) {
                 lastLine.width = lineWidth - (remainder + sizer.space.item);
-                result.width = Math.max(result.width, lastLine.width);
-                result.height += lastLine.height + sizer.space.line;
+                out.width = Math.max(out.width, lastLine.width);
+                out.height += lastLine.height + sizer.space.line;
             }
 
             lastLine = {
@@ -71,19 +75,17 @@ export function RunChildrenWrap(
         remainder -= (childWidth + sizer.space.item);
         if (child) {
             lastLine.children.push(child as IChild);
-            const childHeight = (sizer.orientation === OrientationMode.x) ?
-                GeChildHeight(child as IChild) :
-                GetChildWidth(child as IChild);
+            const childHeight = GeChildHeight(child as IChild);
             lastLine.height = Math.max(lastLine.height, childHeight);
         }
     }
 
     if (lastLine) {
         lastLine.width = lineWidth - (remainder + sizer.space.item);
-        result.width = Math.max(result.width, lastLine.width);
-        result.height += lastLine.height;
+        out.width = Math.max(out.width, lastLine.width);
+        out.height += lastLine.height;
     }
-    return result;
+    return out;
 }
 
 function GetChildWidth(child: IChild): number {

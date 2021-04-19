@@ -10,9 +10,12 @@ import { GetBoundsConfig } from '../../../utils/bounds/GetBoundsConfig';
 import * as Bounds from '../../utils/align/bounds';
 import { GetChildWidth } from './layout/GetChildWidth';
 import { GetChildHeight } from './layout/GetChildHeight';
-import { Layout } from './layout/Layout';
+import { RunLayout } from './layout/RunLayout';
+import { ResolveWidth } from './layout/ResolveWidth';
+import { ResolveHeight } from './layout/ResolveHeight';
+import { ResolveChildrenWidth } from './layout/ResolveChildrenWidth';
+import { RunWidthWrap } from './layout/RunWidthWrap';
 import { PreLayout } from './layout/PreLayout';
-import { LayoutInit } from './layout/LayoutInit';
 import { LayoutBackgrounds } from './layout/LayoutBackgrounds';
 import { PostLayout } from './layout/PostLayout';
 import { Pin } from './add/Pin';
@@ -71,6 +74,10 @@ export class BaseSizer extends Container implements IBaseSizer {
         this.sizerChildren = null;
         this.backgroundChildren = null;
         super.destroy(reparentChildren);
+    }
+
+    get ignoreLayout(): boolean {
+        return this.rexSizer.hidden || (!this.needLayout);
     }
 
     get left(): number {
@@ -222,6 +229,24 @@ export class BaseSizer extends Container implements IBaseSizer {
         return 0;
     }
 
+    // Override
+    getExpandedChildWidth(
+        child: IChild,
+        parentWidth?: number
+    ): number {
+
+        return parentWidth;
+    }
+
+    // Override
+    getExpandedChildHeight(
+        child: IChild,
+        parentHeight?: number
+    ): number {
+
+        return parentHeight;
+    }
+
     getChildrenSizers(
         out: IBaseSizer[] = []
     ): IBaseSizer[] {
@@ -265,19 +290,19 @@ export class BaseSizer extends Container implements IBaseSizer {
         const y = this.y;
         this
             .setPosition(0, 0)  // Offset to (0,0)
-            ._layout()          // Run layout
+            .runLayout()        // Run layout
             .setPosition(x, y); // Offset back original position
         return this;
     }
 
     // Override
-    _layout(
+    runLayout(
         parent?: IBaseSizer,
         width?: number,
         height?: number
-    ) {
+    ): this {
 
-        Layout(this, parent, width, height);
+        RunLayout(this, parent, width, height);
         return this;
     }
 
@@ -287,15 +312,39 @@ export class BaseSizer extends Container implements IBaseSizer {
         height?: number
     ): this {
 
-        PreLayout(this, parent, width, height);
+        PreLayout(this);
         return this;
     }
 
-    // Override
-    layoutInit(): this {
+    resolveWidth(
+        width?: number
+    ): number {
 
-        LayoutInit(this);
-        return this;
+        return ResolveWidth(this, width);
+    }
+
+    resolveHeight(
+        height?: number
+    ): number {
+
+        return ResolveHeight(this, height);
+    }
+
+    resolveChildrenWidth(
+        width?: number
+    ): void {
+
+        ResolveChildrenWidth(this, width);
+    }
+
+    runWidthWrap(
+        width: number
+    ): void {
+
+        RunWidthWrap(this, width);
+    }
+
+    layoutChildren(): void {
     }
 
     layoutBackgrounds(

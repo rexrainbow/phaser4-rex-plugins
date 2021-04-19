@@ -1,35 +1,12 @@
 import { ISizer, ISizerState } from '../IOverlapSizer';
-import { IBaseSizer } from '../../basesizer/IBaseSizer';
 import { BaseSizer } from '../../basesizer';
-import { GetExpandedChildWidth } from './GetExpandedChildWidth';
-import { GetExpandedChildHeight } from './GetExpandedChildHeight';
 import { ResizeGameObject } from '../../../../utils/size/ResizeGameObject';
 import { AlignZone } from '../../util/AlignZone';
 
-export function Layout(
-    sizer: ISizer,
-    parent?: IBaseSizer,
-    minWidth?: number,
-    minHeight?: number
+export function LayoutChildren(
+    sizer: ISizer
 ) {
 
-    // Skip hidden or !dirty sizer
-    if (sizer.rexSizer.hidden || (!sizer.needLayout)) {
-        return;
-    }
-
-    sizer.preLayout(parent);
-
-    // Set size
-    if (minWidth === undefined) {
-        minWidth = Math.max(sizer.childrenWidth, sizer.minWidth);
-    }
-    if (minHeight === undefined) {
-        minHeight = Math.max(sizer.childrenHeight, sizer.minHeight);
-    }
-    sizer.resize(minWidth, minHeight);
-
-    // Layout children
     const startX = sizer.innerLeft;
     const startY = sizer.innerTop;
     const innerWidth = sizer.innerWidth;
@@ -40,10 +17,10 @@ export function Layout(
 
         // Set size
         if (child instanceof BaseSizer) {
-            child._layout(
+            child.runLayout(
                 sizer,
-                GetExpandedChildWidth(sizer, child),
-                GetExpandedChildHeight(sizer, child)
+                sizer.getExpandedChildWidth(child),
+                sizer.getExpandedChildHeight(child)
             );
         } else {
             let childWidth: number;
@@ -67,9 +44,4 @@ export function Layout(
             .setTo(x, y, width, height)
             .alignIn(child, childSizerState.align);
     }
-
-    // Layout background children
-    sizer.layoutBackgrounds();
-
-    sizer.postLayout();
 }

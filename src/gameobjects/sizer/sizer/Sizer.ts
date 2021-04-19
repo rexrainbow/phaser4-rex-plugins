@@ -7,8 +7,12 @@ import { GetChildrenSizers } from './layout/GetChildrenSizers';
 import { GetChildrenProportion } from './layout/GetChildrenProportion';
 import { GetChildrenWidth } from './layout/GetChildrenWidth';
 import { GetChildrenHeight } from './layout/GetChildrenHeight';
-import { Layout } from './layout/Layout';
-import { LayoutInit } from './layout/LayoutInit';
+import { GetExpandedChildWidth } from './layout/GetExpandedChildWidth';
+import { GetExpandedChildHeight } from './layout/GetExpandedChildHeight';
+import { PreLayout } from './layout/PreLayout';
+import { ResolveWidth } from './layout/ResolveWidth';
+import { ResolveHeight } from './layout/ResolveHeight';
+import { LayoutChildren } from './layout/LayoutChildren';
 
 import { Add } from './add/Add';
 import { IAddConfig } from './add/IAddConfig';
@@ -87,19 +91,45 @@ export class Sizer extends BaseSizer implements ISizer {
         return GetChildrenHeight(this, minimumMode);
     }
 
-    _layout(
-        parent?: IBaseSizer,
-        minWidth?: number,
-        minHeight?: number
-    ): this {
+    getExpandedChildWidth(
+        child: IChild,
+        parentWidth?: number
+    ): number {
 
-        Layout(this, parent, minWidth, minHeight);
+        return GetExpandedChildWidth(this, child, parentWidth);
+    }
+
+    getExpandedChildHeight(
+        child: IChild,
+        parentHeight?: number
+    ): number {
+
+        return GetExpandedChildHeight(this, child, parentHeight);
+    }
+
+    preLayout(): this {
+
+        PreLayout(this);
         return this;
     }
 
-    layoutInit(): this {
+    resolveWidth(
+        width?: number
+    ): number {
 
-        LayoutInit(this);
+        return ResolveWidth(this, width);
+    }
+
+    resolveHeight(
+        height?: number
+    ): number {
+
+        return ResolveHeight(this, height);
+    }
+
+    layoutChildren(): this {
+
+        LayoutChildren(this);
         return this;
     }
 

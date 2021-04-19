@@ -4,7 +4,8 @@ import { OrientationMode } from '../../util/OrientationMode';
 
 export function GetExpandedChildHeight(
     sizer: ISizer,
-    child: IChild
+    child: IChild,
+    parentHeight: number = sizer.height
 ): number {
 
     let newHeight: number;
@@ -12,7 +13,8 @@ export function GetExpandedChildHeight(
     const padding = childSizerState.padding;
     if (sizer.orientation === OrientationMode.x) { // x
         if (childSizerState.expand) {
-            newHeight = sizer.innerHeight - padding.top - padding.bottom;
+            const innerHeight = parentHeight - sizer.space.top - sizer.space.bottom;
+            newHeight = innerHeight - padding.top - padding.bottom;
         }
     } else { // y
         if ((childSizerState.proportion > 0) && (sizer.proportionLength > 0)) {

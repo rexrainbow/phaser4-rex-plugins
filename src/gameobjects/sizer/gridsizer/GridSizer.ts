@@ -6,7 +6,15 @@ import { Init } from './Init';
 import { GetChildrenSizers } from './layout/GetChildrenSizers';
 import { GetChildrenWidth } from './layout/GetChildrenWidth';
 import { GetChildrenHeight } from './layout/GetChildrenHeight';
-import { Layout } from './layout/Layout';
+import { GetExpandedChildWidth } from './layout/GetExpandedChildWidth';
+import { GetExpandedChildHeight } from './layout/GetExpandedChildHeight';
+import { ResolveWidth } from './layout/ResolveWidth';
+import { ResolveHeight } from './layout/ResolveHeight';
+import { ResolveChildrenWidth } from './layout/ResolveChildrenWidth';
+import { RunWidthWrap } from './layout/RunWidthWrap';
+import { LayoutChildren } from './layout/LayoutChildren';
+import { GetColumnWidth } from './layout/GetColumnWidth';
+import { GetRowHeight } from './layout/GetRowHeight';
 
 import { Add } from './add/Add';
 import { IAddConfig } from './add/IAddConfig';
@@ -34,6 +42,10 @@ export class GridSizer extends BaseSizer implements ISizer {
     rowCount: number;
     columnProportions: number[] = [];
     rowProportions: number[] = [];
+    _totalColumnProportions: number;
+    _totalRowProportions: number;
+    proportionWidthLength: number;
+    proportionHeightLength: number;
     columnWidth: number[] = [];
     rowHeight: number[] = [];
 
@@ -67,11 +79,17 @@ export class GridSizer extends BaseSizer implements ISizer {
     }
 
     get totalColumnProportions(): number {
-        return this.columnProportions.reduce((a, b) => a + b);
+        if (this._totalColumnProportions === undefined) {
+            this._totalColumnProportions = this.columnProportions.reduce((a, b) => a + b);
+        }
+        return this._totalColumnProportions;
     }
 
     get totalRowProportions(): number {
-        return this.rowProportions.reduce((a, b) => a + b);
+        if (this._totalRowProportions === undefined) {
+            this._totalRowProportions = this.rowProportions.reduce((a, b) => a + b);
+        }
+        return this._totalRowProportions;
     }
 
     getChildrenSizers(
@@ -91,13 +109,63 @@ export class GridSizer extends BaseSizer implements ISizer {
         return GetChildrenHeight(this);
     }
 
-    _layout(
-        parent?: IBaseSizer,
-        minWidth?: number,
-        minHeight?: number
-    ): this {
+    getExpandedChildWidth(
+        child: IChild,
+        colWidth: number
+    ): number {
 
-        Layout(this, parent, minWidth, minHeight);
+        return GetExpandedChildWidth(child, colWidth);
+    }
+
+    getExpandedChildHeight(
+        child: IChild,
+        rowHeight: number
+    ): number {
+
+        return GetExpandedChildHeight(child, rowHeight);
+    }
+
+    preLayout(): this {
+
+        this._totalColumnProportions = undefined;
+        this._totalRowProportions = undefined;
+        this.proportionWidthLength = undefined;
+        this.proportionHeightLength = undefined;
+        super.preLayout();
+        return this;
+    }
+
+    resolveWidth(
+        width?: number
+    ): number {
+
+        return ResolveWidth(this, width);
+    }
+
+    resolveHeight(
+        height?: number
+    ): number {
+
+        return ResolveHeight(this, height);
+    }
+
+    resolveChildrenWidth(
+        width?: number
+    ): void {
+
+        ResolveChildrenWidth(this, width);
+    }
+
+    runWidthWrap(
+        width: number
+    ): void {
+
+        RunWidthWrap(this, width);
+    }
+
+    layoutChildren(): this {
+
+        LayoutChildren(this);
         return this;
     }
 
@@ -160,6 +228,20 @@ export class GridSizer extends BaseSizer implements ISizer {
     ): Vec2Type {
 
         return ChildToGridIndex(this, child, out);
+    }
+
+    getColumnWidth(
+        columnIndex: number
+    ): number {
+
+        return GetColumnWidth(this, columnIndex);
+    }
+
+    getRowHeight(
+        rowIndex: number
+    ): number {
+
+        return GetRowHeight(this, rowIndex);
     }
 
     forEachEmptyGrid(

@@ -4,7 +4,8 @@ import { OrientationMode } from '../../util/OrientationMode';
 
 export function GetExpandedChildWidth(
     sizer: ISizer,
-    child: IChild
+    child: IChild,
+    parentWidth: number = sizer.width
 ): number {
 
     let newWidth: number;
@@ -16,7 +17,8 @@ export function GetExpandedChildWidth(
         }
     } else { // y
         if (childSizerState.expand) {
-            newWidth = sizer.innerWidth - padding.left - padding.right;
+            const innerWidth = parentWidth - sizer.space.left - sizer.space.right;
+            newWidth = innerWidth - padding.left - padding.right;
         }
     }
     return newWidth;

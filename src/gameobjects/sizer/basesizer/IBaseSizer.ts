@@ -53,6 +53,7 @@ export interface IBaseSizer extends IContainer {
     sizerChildren: any;
     backgroundChildren: IChild[];
     childrenMap: { [name: string]: any };
+    ignoreLayout: boolean;
 
     resize(
         width?: number,
@@ -94,11 +95,21 @@ export interface IBaseSizer extends IContainer {
     // Internal method
     getChildrenHeight(): number;
     // Internal method
+    getExpandedChildWidth(
+        child: IChild,
+        parentWidth?: number
+    ): number;
+    // Internal method
+    getExpandedChildHeight(
+        child: IChild,
+        parentHeight?: number
+    ): number;
+    // Internal method
     getChildrenSizers(
         out?: IBaseSizer[]
     ): IBaseSizer[];
     // Internal method
-    _layout(
+    runLayout(
         parent?: IBaseSizer,
         width?: number,
         height?: number
@@ -110,7 +121,15 @@ export interface IBaseSizer extends IContainer {
         height?: number
     ): this;
     // Internal method
-    layoutInit(): this;
+    resolveWidth(width?: number): number;
+    // Internal method
+    resolveHeight(height?: number): number;
+    // Internal method
+    resolveChildrenWidth(width?: number): void;
+    // Internal method
+    runWidthWrap(width: number): void;
+    // Internal method
+    layoutChildren(): void;
     // Internal method
     layoutBackgrounds(): this;
     // Internal method

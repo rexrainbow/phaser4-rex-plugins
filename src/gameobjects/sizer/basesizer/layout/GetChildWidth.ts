@@ -2,7 +2,10 @@ import { IChild } from '../../util/IChild';
 import { BaseSizer } from '../../basesizer';
 
 
-export function GetChildWidth(child: IChild) {
+export function GetChildWidth(
+    child: IChild
+): number {
+
     let childWidth: number;
     if (child instanceof BaseSizer) {  // Sizer game object
         childWidth = Math.max(child.minWidth, child.childrenWidth);

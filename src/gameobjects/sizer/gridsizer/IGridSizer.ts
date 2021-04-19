@@ -39,7 +39,11 @@ export interface ISizer extends IBaseSizer {
     columnProportions: number[];
     rowProportions: number[];
     totalColumnProportions: number;
+    _totalColumnProportions: number;
     totalRowProportions: number;
+    _totalRowProportions: number;
+    proportionWidthLength: number;
+    proportionHeightLength: number;
     columnWidth: number[];
     rowHeight: number[];
 }

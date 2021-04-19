@@ -5,7 +5,9 @@ import { IChild } from '../util/IChild';
 import { GetChildrenSizers } from './layout/GetChildrenSizers';
 import { GetChildrenWidth } from './layout/GetChildrenWidth';
 import { GetChildrenHeight } from './layout/GetChildrenHeight';
-import { Layout } from './layout/Layout';
+import { GetExpandedChildWidth } from './layout/GetExpandedChildWidth';
+import { GetExpandedChildHeight } from './layout/GetExpandedChildHeight';
+import { LayoutChildren } from './layout/LayoutChildren';
 
 import { Add } from './add/Add';
 import { IAddConfig } from './add/IAddConfig';
@@ -40,13 +42,25 @@ export class OverlapSizer extends BaseSizer implements ISizer {
         return GetChildrenHeight(this);
     }
 
-    _layout(
-        parent?: IBaseSizer,
-        minWidth?: number,
-        minHeight?: number
-    ): this {
+    getExpandedChildWidth(
+        child: IChild,
+        parentWidth?: number
+    ): number {
 
-        Layout(this, parent, minWidth, minHeight);
+        return GetExpandedChildWidth(this, child);
+    }
+
+    getExpandedChildHeight(
+        child: IChild,
+        parentHeight?: number
+    ): number {
+
+        return GetExpandedChildHeight(this, child);
+    }
+
+    layoutChildren(): this {
+
+        LayoutChildren(this);
         return this;
     }
 

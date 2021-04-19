@@ -33,4 +33,12 @@ export interface ISizer extends IBaseSizer {
     childrenProportion: number;
     _childrenProportion: number;
     proportionLength: number;
+
+    getChildrenWidth(
+        minimumMode?: boolean
+    ): number;
+
+    getChildrenHeight(
+        minimumMode?: boolean
+    ): number;
 }

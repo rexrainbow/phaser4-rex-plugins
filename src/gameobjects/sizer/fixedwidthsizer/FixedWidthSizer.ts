@@ -2,14 +2,15 @@ import { BaseSizer } from '../basesizer';
 import { ISizer, IConfig, AlignMode, AlignModeString } from './IFixedWidthSizer';
 import { IBaseSizer } from '../basesizer/IBaseSizer';
 import { IChild } from '../util/IChild';
-import { OrientationMode, OrientationModeString } from '../util/OrientationMode';
+import { WidthWrapResultType } from './layout/RunChildrenWrap';
 import { GetMaxChildWidth } from './layout/GetMaxChildWidth';
 import { GetMaxChildHeight } from './layout/GetMaxChildHeight';
 import { GetChildrenSizers } from './layout/GetChildrenSizers';
 import { GetChildrenWidth } from './layout/GetChildrenWidth';
 import { GetChildrenHeight } from './layout/GetChildrenHeight';
-import { Layout } from './layout/Layout';
-import { LayoutInit } from './layout/LayoutInit';
+import { PreLayout } from './layout/PreLayout';
+import { RunWidthWrap } from './layout/RunWidthWrap';
+import { LayoutChildren } from './layout/LayoutChildren';
 
 import { Add } from './add/Add';
 import { IAddConfig } from './add/IAddConfig';
@@ -26,7 +27,7 @@ export class FixedWidthSizer extends BaseSizer implements ISizer {
         line: number
     } & IBaseSizer["space"];
 
-    orientation: OrientationMode;
+    widthWrapResult: WidthWrapResultType;
     align: AlignMode;
     rtl: boolean;
 
@@ -39,29 +40,16 @@ export class FixedWidthSizer extends BaseSizer implements ISizer {
             item: 0,
             line: 0
         },
-        orientation = OrientationMode.x,
         align = AlignMode.left,
         rtl = false
     }: IConfig = {}) {
 
         super(arguments[0]);
 
-        this.setOrientation(orientation);
         this.setItemSpacing(space.item);
         this.setLineSpacing(space.line);
         this.setAlign(align);
         this.setRTL(rtl);
-    }
-
-    setOrientation(
-        orientation: OrientationMode | OrientationModeString
-    ): this {
-
-        if (typeof (orientation) === 'string') {
-            orientation = OrientationMode[orientation];
-        }
-        this.orientation = orientation;
-        return this;
     }
 
     setItemSpacing(
@@ -130,20 +118,22 @@ export class FixedWidthSizer extends BaseSizer implements ISizer {
         return GetChildrenHeight(this);
     }
 
-    _layout(
-        parent?: IBaseSizer,
-        minWidth?: number,
-        minHeight?: number
-    ): this {
+    preLayout(): this {
 
-        Layout(this, parent, minWidth, minHeight);
+        PreLayout(this)
         return this;
     }
 
-    layoutInit(): this {
+    runWidthWrap(
+        width: number
+    ): void {
 
-        LayoutInit(this);
-        return this;
+        RunWidthWrap(this, width);
+    }
+
+    layoutChildren() {
+
+        LayoutChildren(this);
     }
 
     add(
