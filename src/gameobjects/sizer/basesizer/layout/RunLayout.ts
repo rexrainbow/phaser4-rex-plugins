@@ -3,8 +3,8 @@ import { IBaseSizer } from '../IBaseSizer';
 export function RunLayout(
     sizer: IBaseSizer,
     parent?: IBaseSizer,
-    minWidth?: number,
-    minHeight?: number
+    newWidth?: number,
+    newHeight?: number
 ) {
 
     // Skip hidden or !dirty sizer
@@ -19,14 +19,14 @@ export function RunLayout(
     }
 
     // Calculate parent width
-    const newWidth = sizer.resolveWidth(minWidth);
+    newWidth = sizer.resolveWidth(newWidth);
     // Calculate all children width, run width wrap
     if (isTopmostParent) {
         sizer.resolveChildrenWidth(newWidth);
         sizer.runWidthWrap(newWidth);
     }
     // Calculate parent height
-    const newHeight = sizer.resolveHeight(minHeight);
+    newHeight = sizer.resolveHeight(newHeight);
     // Resize parent
     sizer.resize(newWidth, newHeight);
 
