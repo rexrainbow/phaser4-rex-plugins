@@ -38,7 +38,7 @@ export class BaseSizer extends Container implements IBaseSizer {
         right: number,
         top: number,
         bottom: number
-    };
+    } = {left:0, right:0, top:0, bottom:0};
     name: string;
     rexSizer: ISizerState = {};
 
@@ -66,7 +66,7 @@ export class BaseSizer extends Container implements IBaseSizer {
         super(x, y);
 
         this.setMinSize(width, height);
-        this.space = GetBoundsConfig(space);
+        this.setInnerPadding(space);
         this.name = name;
     }
 
