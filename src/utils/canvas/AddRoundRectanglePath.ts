@@ -29,6 +29,7 @@ export function AddRoundRectanglePath(
         centerX: number,
         centerY: number;
 
+    context.save();
     context.beginPath();
 
     context.translate(x, y);
@@ -90,6 +91,7 @@ export function AddRoundRectanglePath(
     }
 
     context.closePath();
+    context.restore();
 }
 
 var ArcTo = function (context: CanvasRenderingContext2D,
