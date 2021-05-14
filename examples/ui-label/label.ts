@@ -1,4 +1,4 @@
-import { BackgroundColor, Parent, Scenes, Size, WebGLRenderer } from '@phaserjs/phaser/config';
+import { BackgroundColor, Parent, Scenes, Size, WebGL } from '@phaserjs/phaser/config';
 import { Game } from '@phaserjs/phaser/Game';
 import { Scene } from '@phaserjs/phaser/scenes/Scene';
 
@@ -122,7 +122,7 @@ function CreateText(
 }
 
 new Game(
-    WebGLRenderer(),
+    WebGL(),
     Size(800, 600),
     Parent('game'),
     BackgroundColor(0x2d2d2d),
