@@ -21,7 +21,8 @@ class Demo extends Scene {
     create() {
         const world = new StaticWorld(this);
 
-        const s = `[size=30][color=red][i][u]Phaser[/i][img=dude][/u]
+        const s = `[size=20]1[y=-4]2[y=-8]3[y=-12]4[y=-16]5[/y]6[/size][size=40] [/size]
+[size=30][color=red][i][u]Phaser[/i][img=dude][/u]
 [size=20][color=blue][shadow=yellow][b]is[/b][/shadow]
 [size=40][color=none][stroke=green]Fun`;
 

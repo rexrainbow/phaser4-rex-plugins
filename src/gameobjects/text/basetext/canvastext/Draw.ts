@@ -128,7 +128,7 @@ export function DrawPen(
 ): void {
 
     offsetX += pen.x;
-    offsetY += pen.y;
+    offsetY += pen.y + (pen.prop.y || 0);
 
     let canvas = canvasText.canvas,
         context = canvasText.context,

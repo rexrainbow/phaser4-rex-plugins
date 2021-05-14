@@ -13,6 +13,7 @@ type PropType = {
     stroke?: string | true,
     u?: string | true,
     shadow?: true,
+    y?: number,
     img?: string,
     area?: string
 }
@@ -132,6 +133,14 @@ export class Parser extends BaseParser {
             plainText = '';
         } else if (RE_STROKE_CLOSE.test(text)) {
             UpdateProp(prevProp, PROP_REMOVE, 'stroke');
+            plainText = '';
+
+        } else if (RE_OFFSETY_OPEN.test(text)) {
+            innerMatch = text.match(RE_OFFSETY_OPEN);
+            UpdateProp(prevProp, PROP_ADD, 'y', parseFloat(innerMatch[1]));
+            plainText = '';
+        } else if (RE_OFFSETY_CLOSE.test(text)) {
+            UpdateProp(prevProp, PROP_REMOVE, 'y');
             plainText = '';
 
         } else if (RE_IMAGE_OPEN.test(text)) {
@@ -255,53 +264,54 @@ export class Parser extends BaseParser {
             prevProp = EmptyProp;
         }
 
+        let headers: string[] = [];
+
         // Close previous tag
-        let closedHeaders: string[] = [];
         for (const k in prevProp) {
-            if (prop.hasOwnProperty(k)) {
-                continue;
+            if (!prop.hasOwnProperty(k)) {
+                headers.push(`[/${k}]`);
             }
 
-            closedHeaders.push(`[/${k}]`);
         }
-        text = `${closedHeaders.join()}${text}`;
 
-        let openHeaders: string[] = [];
         for (const k in prop) {
-            if (prevProp[k] === prop[k]) {
+            var value = prop[k];
+
+            if (prevProp[k] === value) {
                 continue;
             }
 
             switch (k) {
                 case 'size':
                     const fontSize = prop.size.replace('px', '');
-                    openHeaders.push(`[size=${fontSize}]`);
+                    headers.push(`[size=${fontSize}]`);
                     break;
 
                 case 'color':
                 case 'img':
                 case 'area':
-                    openHeaders.push(`[${k}=${prop[k]}]`);
+                case 'y':
+                    headers.push(`[${k}=${value}]`);
                     break;
 
                 case 'stroke':
                 case 'u':
-                    if (prop[k] === true) {
-                        openHeaders.push(`[${k}]`);
+                    if (value === true) {
+                        headers.push(`[${k}]`);
                     } else {
-                        openHeaders.push(`[${k}=${prop[k]}]`)
+                        headers.push(`[${k}=${value}]`)
                     }
                     break;
 
                 default:
-                    openHeaders.push(`[${k}]`);
+                    headers.push(`[${k}]`);
                     break;
             }
         }
 
-        text = `${text}${openHeaders.join()}`;
+        headers.push(text);
 
-        return text;
+        return headers.join('');
     }
 }
 
@@ -344,7 +354,7 @@ var GetFontStyle = function (
 
 const EmptyProp: PropType = {};
 
-const RE_SPLITTEXT = /\[b\]|\[\/b\]|\[i\]|\[\/i\]|\[size=(\d+)\]|\[\/size\]|\[color=([a-z]+|#[0-9abcdef]+)\]|\[\/color\]|\[u\]|\[u=([a-z]+|#[0-9abcdef]+)\]|\[\/u\]|\[shadow\]|\[shadow=([a-z]+|#[0-9abcdef]+)\]|\[\/shadow\]|\[stroke\]|\[stroke=([a-z]+|#[0-9abcdef]+)\]|\[\/stroke\]|\[img=([^\]]+)\]|\[\/img\]|\[area=([^\]]+)\]|\[\/area\]/ig;
+var RE_SPLITTEXT = /\[b\]|\[\/b\]|\[i\]|\[\/i\]|\[size=(\d+)\]|\[\/size\]|\[color=([a-z]+|#[0-9abcdef]+)\]|\[\/color\]|\[u\]|\[u=([a-z]+|#[0-9abcdef]+)\]|\[\/u\]|\[shadow\]|\[\/shadow\]|\[stroke\]|\[stroke=([a-z]+|#[0-9abcdef]+)\]|\[\/stroke\]|\[img=([^\]]+)\]|\[\/img\]|\[area=([^\]]+)\]|\[\/area\]|\[y=([-.0-9]+)\]|\[\/y\]/ig;
 
 var RE_BLOD_OPEN = /\[b\]/i;
 var RE_BLOD_CLOSE = /\[\/b\]/i;
@@ -363,6 +373,8 @@ var RE_SHADOW_CLOSE = /\[\/shadow\]/i;
 var RE_STROKE_OPEN = /\[stroke\]/i;
 var RE_STROKE_OPENC = /\[stroke=([a-z]+|#[0-9abcdef]+)\]/i;
 var RE_STROKE_CLOSE = /\[\/stroke\]/i;
+var RE_OFFSETY_OPEN = /\[y=([-.0-9]+)\]/i;
+var RE_OFFSETY_CLOSE = /\[\/y\]/i;
 var RE_IMAGE_OPEN = /\[img=([^\]]+)\]/i;
 var RE_IMAGE_CLOSE = /\[\/img\]/i;
 var RE_AREA_OPEN = /\[area=([^\]]+)\]/i;

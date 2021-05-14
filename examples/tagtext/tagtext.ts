@@ -23,7 +23,7 @@ class Demo extends Scene {
 
         const s0 = `<style='size:30px;color:red;style:italic;underline:#fff'>Phaser</style><style='img:dude;underline:#fff'></style>
 <style='size:20px;color:blue;style:bold;shadow:yellow'>is</style>
-<style='size:40px;color:none;stroke:green'>Fun</style>`;
+<style='size:40px;color:none;stroke:green'>Fun</style><style='size:20px;y:-12'>Fun</style>`;
 
         const text0 = new TagText(400, 200, s0,
             {
@@ -39,7 +39,7 @@ class Demo extends Scene {
 
         const s1 = `<class='line0'>Phaser</class><class='imgDude'></class>
 <class='line1'>is</class>
-<class='line2'>Fun</class>`;
+<class='line2'>Fun</class><class='superscript'>Fun</class>`;
 
         const text1 = new TagText(400, 400, s1,
             {
@@ -77,6 +77,10 @@ class Demo extends Scene {
                         underline: {
                             color: '#fff'
                         }
+                    },
+                    superscript: {
+                        size:20,
+                        y: -12
                     }
                 }
             }

@@ -48,6 +48,8 @@ export type PropType = {
 
     underline?: UnderlineType,
 
+    y?: number,
+
     img?: string,
 
     _class?: string,
@@ -339,9 +341,14 @@ function StyleToProp(
             }
             result[name] = value;
 
+        } else if (name === 'y') {
+
+            result.y = parseFloat(valueString);
+
         } else {
 
             result[name] = valueString;
+
         }
     }
     return result;
