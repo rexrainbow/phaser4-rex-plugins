@@ -5,6 +5,7 @@ import { Scene } from '@phaserjs/phaser/scenes/Scene';
 import { AddChild } from '@phaserjs/phaser/display/';
 import { StaticWorld } from '@phaserjs/phaser/world';
 
+import { Text } from '@phaserjs/phaser/gameobjects';
 import { UI } from '../../src';
 
 class Demo extends Scene {
@@ -29,6 +30,15 @@ class Demo extends Scene {
             .add(
                 (new UI.RoundRectangleCanvas({ width: 40, height: 40, radius: 20, fillStyle: COLOR_LIGHT })),
                 { key: 'bottom', align: 'bottom_center', expand: false }
+            )
+            .add(
+                (new UI.Label({
+                    background: (new UI.RoundRectangleCanvas({ radius: 20, fillStyle: COLOR_DARK })),
+                    icon: (new UI.RoundRectangleCanvas({ width: 24, height: 24, radius: 10, fillStyle: COLOR_LIGHT })),
+                    text: (new Text(0, 0, 'start')),
+                    space: { left: 20, right: 20, top: 20, bottom: 20, icon: 10 }
+                })),
+                { key: 'center', align: 'center', expand: false }
             )
         ui.layout();
 
