@@ -12,7 +12,7 @@ import { RunCommand } from './RunCommand';
  */
 export function RunCommands(
     queue: any[],
-    scope: object,
+    scope?: object,
     {
         reverse = false
     }: IRunCommandsConfig = {}
