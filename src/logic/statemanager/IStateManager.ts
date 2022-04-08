@@ -33,4 +33,9 @@ export interface IStateManager extends IBaseEventEmitter {
     start(state: StateNameType): this;
     goto(nextState?: StateNameType): this;
     next(): this;
+
+    runMethod(methodName: string, ...args: unknown[]): unknown;
+    update(delta: number, time: number): void;
+    preupdate(delta: number, time: number): void;
+    postupdate(delta: number, time: number): void;
 }

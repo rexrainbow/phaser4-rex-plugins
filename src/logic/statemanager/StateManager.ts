@@ -162,16 +162,30 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
         return this;
     }
 
-    update(
-        time: number,
-        delta: number,
-        type: string = 'update'
-    ): void {
+    runMethod(
+        methodName: string,
+        ...args: unknown[]
+    ): unknown {
 
         const state = this.getState(this.state);
-        if (state && state[type]) {
-            state[type](this, time, delta);
+        if (!state) {
+            return undefined;
         }
+
+        const fn = state[methodName];
+        if (!fn) {
+            return undefined;
+        }
+
+        return fn(this, ...args);
+    }
+
+    update(
+        time: number,
+        delta: number
+    ): void {
+
+        this.runMethod('update', time, delta);
     }
 
     preupdate(
@@ -179,7 +193,7 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
         time: number
     ): void {
 
-        this.update(time, delta, 'preupdate');
+        this.runMethod('preupdate', time, delta);
     }
 
     postupdate(
@@ -187,7 +201,7 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
         time: number
     ): void {
 
-        this.update(time, delta, 'postupdate');
+        this.runMethod('postupdate', time, delta);
     }
 
 }
