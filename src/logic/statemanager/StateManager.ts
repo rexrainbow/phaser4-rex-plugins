@@ -2,17 +2,17 @@ import { BaseEventEmitter } from '../../utils/eventemitter/BaseEventEmitter';
 import {
     IStateManager,
     IConfig,
-    IState, StateNameType
+    IState
 } from './IStateManager';
 import { StateChangeEvent, ExitStateEvent, EnterStateEvent } from './events';
 
 export class StateManager extends BaseEventEmitter implements IStateManager {
-    _states: Map<StateNameType, IState> = new Map();
+    _states: Map<string, IState> = new Map();
     _stateLock: boolean;
     enable: boolean = true;
-    _start: StateNameType;
-    _state: StateNameType;
-    _prevState: StateNameType;
+    _start: string;
+    _state: string;
+    _prevState: string;
 
     constructor({
         eventEmitter
@@ -44,27 +44,41 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
         return this;
     }
 
-    getState(name: StateNameType): IState {
+    getState(name: string): IState {
 
         return this._states.get(name);
     }
 
-    addState(state: IState): this {
+    addState(
+        name: string | IState,
+        state?: IState
+    ): this {
+        if (typeof (name) !== 'string') {
+            state = name;
+            name = state.name;
+        }
 
-        this._states.set(state.name, state);
+        this._states.set(name, state);
         return this;
     }
 
-    addStates(states: IState[]): this {
-
-        for (let i = 0, cnt = states.length; i < cnt; i++) {
-            this.addState(states[i]);
+    addStates(
+        states: IState[] | { [name: string]: IState }
+    ): this {
+        if (Array.isArray(states)) {
+            for (let i = 0, cnt = states.length; i < cnt; i++) {
+                this.addState(states[i]);
+            }
+        } else {
+            for (var name in states) {
+                this.addState(name, states[name]);
+            }
         }
         return this;
     }
 
     removeState(
-        name: StateNameType
+        name: string
     ): this {
 
         this._states.delete(name);
@@ -77,7 +91,7 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
         return this;
     }
 
-    set state(newState: StateNameType) {
+    set state(newState: string) {
 
         if (!this.enable || this._stateLock) {
             return;
@@ -112,21 +126,21 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
         }
     }
 
-    get state(): StateNameType {
+    get state(): string {
         return this._state;
     }
 
-    get prevState(): StateNameType {
+    get prevState(): string {
         return this._prevState;
     }
 
-    get stateList(): StateNameType[] {
+    get stateList(): string[] {
 
         return Array.from(this._states.keys());
     }
 
     start(
-        state: StateNameType
+        state: string
     ): this {
 
         this._start = state;
@@ -136,7 +150,7 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
     }
 
     goto(
-        nextState?: StateNameType
+        nextState?: string
     ): this {
 
         if (nextState != null) {
