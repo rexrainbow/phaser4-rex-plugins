@@ -10,6 +10,7 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
     _states: Map<StateNameType, IState> = new Map();
     _stateLock: boolean;
     enable: boolean = true;
+    _start: StateNameType;
     _state: StateNameType;
     _prevState: StateNameType;
 
@@ -32,7 +33,8 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
             curState: this.state,
             prevState: this.prevState,
 
-            enable: this.enable
+            enable: this.enable,
+            start: this._start
         };
     }
 
@@ -127,6 +129,7 @@ export class StateManager extends BaseEventEmitter implements IStateManager {
         state: StateNameType
     ): this {
 
+        this._start = state;
         this._prevState = undefined;
         this._state = state; // Won't fire statechange events
         return this;
